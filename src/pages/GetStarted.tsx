@@ -11,7 +11,7 @@ const GetStarted = () => {
     {
       title: "Individual",
       description: "Individualized support from a licensed therapist for ages 18+",
-      link: "/online-therapy",
+      link: "/therapist-matching",
       icon: User,
       color: "from-blue-500 to-purple-600"
     },

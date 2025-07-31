@@ -20,6 +20,7 @@ import InsuranceProvider from "./pages/InsuranceProvider";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import NotFound from "./pages/NotFound";
+import TherapistMatching from "./pages/TherapistMatching";
 
 const queryClient = new QueryClient();
 
@@ -45,6 +46,7 @@ const App = () => (
           <Route path="/career" element={<Career />} />
           <Route path="/emergency-resources" element={<EmergencyResources />} />
           <Route path="/get-started" element={<GetStarted />} />
+          <Route path="/therapist-matching" element={<TherapistMatching />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-conditions" element={<TermsAndConditions />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
