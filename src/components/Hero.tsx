@@ -58,18 +58,66 @@ const Hero = () => {
             </Link>
           </div>
 
-          {/* Insurance acceptance */}
-          <div className="rounded-2xl bg-white/60 backdrop-blur-sm border border-white/20 p-8 shadow-card">
-            <p className="mb-6 text-lg font-semibold text-foreground">
+          {/* Modern Insurance Section */}
+          <div className="bg-white/80 backdrop-blur-lg border border-white/30 rounded-3xl p-8 shadow-modern hover:shadow-xl transition-all duration-300">
+            <p className="text-xl font-semibold text-foreground mb-8 text-center">
               We accept most major insurance plans and self-pay
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-6 opacity-70">
-              <div className="text-sm font-medium text-muted-foreground">CareSource</div>
-              <div className="text-sm font-medium text-muted-foreground">Amerigroup</div>
-              <div className="text-sm font-medium text-muted-foreground">BlueCross BlueShield</div>
-              <div className="text-sm font-medium text-muted-foreground">Aetna</div>
-              <div className="text-sm font-medium text-muted-foreground">Cigna</div>
-              <div className="text-sm font-medium text-muted-foreground">Optum</div>
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
+              <Link to="/insurance/caresource" className="group">
+                <div className="bg-white rounded-xl p-4 shadow-card hover:shadow-modern transition-all duration-300 group-hover:scale-105 border border-gray-100">
+                  <div className="text-center font-medium text-muted-foreground group-hover:text-primary transition-colors">
+                    CareSource
+                  </div>
+                </div>
+              </Link>
+              <Link to="/insurance/amerigroup" className="group">
+                <div className="bg-white rounded-xl p-4 shadow-card hover:shadow-modern transition-all duration-300 group-hover:scale-105 border border-gray-100">
+                  <div className="text-center font-medium text-muted-foreground group-hover:text-primary transition-colors">
+                    Amerigroup
+                  </div>
+                </div>
+              </Link>
+              <Link to="/insurance/bluecross-blueshield" className="group">
+                <div className="bg-white rounded-xl p-4 shadow-card hover:shadow-modern transition-all duration-300 group-hover:scale-105 border border-gray-100">
+                  <div className="text-center font-medium text-muted-foreground group-hover:text-primary transition-colors">
+                    BlueCross BlueShield
+                  </div>
+                </div>
+              </Link>
+              <Link to="/insurance/aetna" className="group">
+                <div className="bg-white rounded-xl p-4 shadow-card hover:shadow-modern transition-all duration-300 group-hover:scale-105 border border-gray-100">
+                  <div className="text-center font-medium text-muted-foreground group-hover:text-primary transition-colors">
+                    Aetna
+                  </div>
+                </div>
+              </Link>
+              <Link to="/insurance/cigna" className="group">
+                <div className="bg-white rounded-xl p-4 shadow-card hover:shadow-modern transition-all duration-300 group-hover:scale-105 border border-gray-100">
+                  <div className="text-center font-medium text-muted-foreground group-hover:text-primary transition-colors">
+                    Cigna
+                  </div>
+                </div>
+              </Link>
+              <Link to="/insurance/optum" className="group">
+                <div className="bg-white rounded-xl p-4 shadow-card hover:shadow-modern transition-all duration-300 group-hover:scale-105 border border-gray-100">
+                  <div className="text-center font-medium text-muted-foreground group-hover:text-primary transition-colors">
+                    Optum
+                  </div>
+                </div>
+              </Link>
+              <Link to="/insurance" className="group">
+                <div className="bg-gradient-to-r from-primary to-secondary rounded-xl p-4 shadow-card hover:shadow-modern transition-all duration-300 group-hover:scale-105 border border-primary/20">
+                  <div className="text-center font-medium text-white">
+                    And more...
+                  </div>
+                </div>
+              </Link>
+            </div>
+            <div className="text-center mt-6">
+              <Link to="/insurance" className="text-primary hover:text-primary/80 font-medium underline-offset-4 hover:underline transition-all">
+                View all accepted insurance plans →
+              </Link>
             </div>
           </div>
         </div>
