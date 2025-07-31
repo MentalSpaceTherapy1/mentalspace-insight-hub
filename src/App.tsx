@@ -46,7 +46,7 @@ const App = () => (
           <Route path="/emergency-resources" element={<EmergencyResources />} />
           <Route path="/get-started" element={<GetStarted />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-          <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+          <Route path="/terms-conditions" element={<TermsAndConditions />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
