@@ -79,12 +79,12 @@ const Hero = () => {
         </div>
 
         {/* Insurance Section - Full Width Below */}
-        <div className="mt-16 max-w-6xl mx-auto">
-          <div className="bg-gradient-to-br from-white/90 via-blue-50/80 to-green-50/80 backdrop-blur-xl border-2 border-white/40 rounded-3xl p-10 shadow-modern hover:shadow-xl transition-all duration-500 hover:scale-[1.02]">
-            <p className="text-2xl font-bold text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-green-600 bg-clip-text mb-10 text-center">
+        <div className="mt-12 max-w-6xl mx-auto">
+          <div className="bg-gradient-to-br from-white/90 via-blue-50/80 to-green-50/80 backdrop-blur-xl border-2 border-white/40 rounded-3xl p-6 shadow-modern hover:shadow-xl transition-all duration-500 hover:scale-[1.02]">
+            <p className="text-2xl font-bold text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-green-600 bg-clip-text mb-6 text-center">
               We accept most major insurance plans and self-pay
             </p>
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4 mb-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4 mb-6">
               <Link to="/insurance/caresource" className="group">
                 <div className="bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl p-4 h-20 flex items-center justify-center shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-110 group-hover:rotate-1 border border-blue-200">
                   <div className="text-center font-bold text-white text-sm">
