@@ -24,42 +24,10 @@ const Hero = () => {
               Therapy Anytime. Anywhere.
             </h1>
             
-            <p className="mb-8 text-xl text-muted-foreground sm:text-2xl">
+            <p className="mb-12 text-xl text-muted-foreground sm:text-2xl">
               Professional online therapy and life coaching that fits your schedule. 
               Connect with licensed therapists from the comfort of your home.
             </p>
-
-            <div className="mb-8 text-lg font-medium text-foreground">
-              What kind of service are you looking for?
-            </div>
-
-            {/* Service buttons */}
-            <div className="mb-12 grid grid-cols-2 gap-4 sm:grid-cols-4 sm:gap-6">
-              <Link to="/online-therapy">
-                <Button variant="service" size="lg" className="h-16 flex-col w-full">
-                  Individual
-                  <span className="text-sm font-normal text-muted-foreground">Therapy</span>
-                </Button>
-              </Link>
-              <Link to="/couples-therapy">
-                <Button variant="service" size="lg" className="h-16 flex-col w-full">
-                  Couple
-                  <span className="text-sm font-normal text-muted-foreground">Therapy</span>
-                </Button>
-              </Link>
-              <Link to="/teen-therapy">
-                <Button variant="service" size="lg" className="h-16 flex-col w-full">
-                  Teen
-                  <span className="text-sm font-normal text-muted-foreground">Therapy</span>
-                </Button>
-              </Link>
-              <Link to="/life-coaching">
-                <Button variant="service" size="lg" className="h-16 flex-col w-full">
-                  Life
-                  <span className="text-sm font-normal text-muted-foreground">Coaching</span>
-                </Button>
-              </Link>
-            </div>
           </div>
 
           {/* Image Side */}
