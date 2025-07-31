@@ -95,16 +95,14 @@ const GetStarted = () => {
                       <p className="text-muted-foreground mb-8 leading-relaxed text-lg">
                         {service.description}
                       </p>
-                      <Link to={service.link}>
-                        <Button 
-                          className="w-full group" 
-                          size="lg"
-                          onClick={() => console.log(`Clicking ${service.title} - navigating to ${service.link}`)}
-                        >
-                          Get Started
-                          <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
-                        </Button>
-                      </Link>
+                      <Button 
+                        className="w-full group" 
+                        size="lg"
+                        onClick={() => window.location.href = service.link}
+                      >
+                        Get Started
+                        <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+                      </Button>
                     </CardContent>
                   </Card>
                 );
