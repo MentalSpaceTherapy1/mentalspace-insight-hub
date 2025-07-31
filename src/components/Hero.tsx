@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
@@ -31,22 +32,30 @@ const Hero = () => {
 
           {/* Service buttons */}
           <div className="mb-16 grid grid-cols-2 gap-4 sm:grid-cols-4 sm:gap-6">
-            <Button variant="service" size="lg" className="h-16 flex-col">
-              Individual
-              <span className="text-sm font-normal text-muted-foreground">Therapy</span>
-            </Button>
-            <Button variant="service" size="lg" className="h-16 flex-col">
-              Couple
-              <span className="text-sm font-normal text-muted-foreground">Therapy</span>
-            </Button>
-            <Button variant="service" size="lg" className="h-16 flex-col">
-              Teen
-              <span className="text-sm font-normal text-muted-foreground">Therapy</span>
-            </Button>
-            <Button variant="service" size="lg" className="h-16 flex-col">
-              Life
-              <span className="text-sm font-normal text-muted-foreground">Coaching</span>
-            </Button>
+            <Link to="/online-therapy">
+              <Button variant="service" size="lg" className="h-16 flex-col w-full">
+                Individual
+                <span className="text-sm font-normal text-muted-foreground">Therapy</span>
+              </Button>
+            </Link>
+            <Link to="/couples-therapy">
+              <Button variant="service" size="lg" className="h-16 flex-col w-full">
+                Couple
+                <span className="text-sm font-normal text-muted-foreground">Therapy</span>
+              </Button>
+            </Link>
+            <Link to="/teen-therapy">
+              <Button variant="service" size="lg" className="h-16 flex-col w-full">
+                Teen
+                <span className="text-sm font-normal text-muted-foreground">Therapy</span>
+              </Button>
+            </Link>
+            <Link to="/life-coaching">
+              <Button variant="service" size="lg" className="h-16 flex-col w-full">
+                Life
+                <span className="text-sm font-normal text-muted-foreground">Coaching</span>
+              </Button>
+            </Link>
           </div>
 
           {/* Insurance acceptance */}
