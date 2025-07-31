@@ -16,6 +16,7 @@ import ContactUs from "./pages/ContactUs";
 import Career from "./pages/Career";
 import EmergencyResources from "./pages/EmergencyResources";
 import GetStarted from "./pages/GetStarted";
+import InsuranceProvider from "./pages/InsuranceProvider";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -35,6 +36,7 @@ const App = () => (
           <Route path="/relationship-coaching" element={<RelationshipCoaching />} />
           <Route path="/coaching-services" element={<CoachingServices />} />
           <Route path="/insurance" element={<Insurance />} />
+          <Route path="/insurance/:provider" element={<InsuranceProvider />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/career" element={<Career />} />

@@ -1,40 +1,49 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const Insurance = () => {
   const insuranceProviders = [
     {
       name: "CareSource",
-      copay: "$0/$30"
+      copay: "$0/$30",
+      slug: "caresource"
     },
     {
       name: "Amerigroup", 
-      copay: "$0/$30"
+      copay: "$0/$30",
+      slug: "amerigroup"
     },
     {
       name: "Peach State",
-      copay: "$0/$30/$40"
+      copay: "$0/$30/$40",
+      slug: "peach-state"
     },
     {
       name: "Optum",
-      copay: "$0/$30"
+      copay: "$0/$30",
+      slug: "optum"
     },
     {
       name: "Blue Cross Blue Shield",
-      copay: "$30/$40"
+      copay: "$30/$40",
+      slug: "blue-cross"
     },
     {
       name: "Aetna",
-      copay: "$0/$30"
+      copay: "$0/$30",
+      slug: "aetna"
     },
     {
       name: "Cigna", 
-      copay: "$30/$40"
+      copay: "$30/$40",
+      slug: "cigna"
     },
     {
       name: "Alliant Health",
-      copay: "$0/$30"
+      copay: "$0/$30",
+      slug: "alliant"
     }
   ];
 
@@ -61,10 +70,10 @@ const Insurance = () => {
               {insuranceProviders.map((provider, index) => (
                 <div key={index} className="p-8 rounded-lg border bg-card text-center">
                   <h3 className="text-2xl font-bold mb-4 text-primary">
-                    Therapists in‑network with {provider.name}
+                    {provider.name}
                   </h3>
                   <p className="text-muted-foreground mb-6 leading-relaxed">
-                    Getting mental health support should be straightforward. That's why Coping & Healing Counseling is in‑network with {provider.name} and various other insurance plans. Our licensed therapists are here to guide you towards meaningful life changes. Real therapy for real transformation.
+                    Getting mental health support should be straightforward. That's why Coping & Healing Counseling is in‑network with {provider.name} and various other insurance plans. Our licensed therapists are here to guide you towards meaningful life changes.
                   </p>
                   <div className="mb-6">
                     <h4 className="text-lg font-semibold mb-2">Your copay could be as low as $0</h4>
@@ -72,9 +81,18 @@ const Insurance = () => {
                       Average {provider.name} member copay per session {provider.copay}
                     </p>
                   </div>
-                  <Button className="w-full">
-                    Get Started
-                  </Button>
+                  <div className="space-y-3">
+                    <Link to={`/insurance/${provider.slug}`}>
+                      <Button className="w-full">
+                        Learn More
+                      </Button>
+                    </Link>
+                    <Link to="/get-started">
+                      <Button variant="outline" className="w-full">
+                        Get Started
+                      </Button>
+                    </Link>
+                  </div>
                 </div>
               ))}
             </div>
