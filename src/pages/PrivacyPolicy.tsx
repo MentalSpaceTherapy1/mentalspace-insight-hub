@@ -6,6 +6,7 @@ import { ArrowLeft, Shield, Mail, Phone, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import privacyHero from "@/assets/privacy-hero.jpg";
 
 const PrivacyPolicy = () => {
   return (
@@ -13,26 +14,52 @@ const PrivacyPolicy = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary/10 to-secondary/10 pt-20 pb-16">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="flex items-center justify-center mb-6">
-              <Shield className="h-16 w-16 text-primary" />
+      <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 z-0"
+          style={{
+            backgroundImage: `url(${privacyHero})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }}
+        >
+          <div className="absolute inset-0 bg-black/40"></div>
+        </div>
+        
+        {/* Content */}
+        <div className="relative z-10 container mx-auto px-4 text-center text-white">
+          <div className="max-w-4xl mx-auto">
+            <div className="flex items-center justify-center mb-6 animate-fade-in">
+              <div className="bg-white/10 backdrop-blur-sm rounded-full p-4 border border-white/20">
+                <Shield className="h-16 w-16 text-white" />
+              </div>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+            <h1 className="text-5xl md:text-6xl font-bold mb-6 animate-fade-in">
               Privacy Policy
             </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
+            <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-8 animate-fade-in">
               Your privacy and security are our top priorities. Learn how we protect and handle your information.
             </p>
-            <Link to="/">
-              <Button variant="outline" className="mb-8">
-                <ArrowLeft className="mr-2 h-4 w-4" />
-                Back to Home
-              </Button>
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in">
+              <Link to="/">
+                <Button variant="secondary" className="bg-white/10 backdrop-blur-sm text-white border-white/20 hover:bg-white/20">
+                  <ArrowLeft className="mr-2 h-4 w-4" />
+                  Back to Home
+                </Button>
+              </Link>
+              <Link to="/terms-conditions">
+                <Button variant="outline" className="bg-transparent text-white border-white/20 hover:bg-white/10">
+                  Terms & Conditions
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
+        
+        {/* Decorative Elements */}
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent z-10"></div>
       </section>
 
       {/* Privacy Policy Content */}
