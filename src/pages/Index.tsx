@@ -1,6 +1,5 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import ServicesHero from "@/components/ServicesHero";
 import HowItWorks from "@/components/HowItWorks";
 import Services from "@/components/Services";
 import Comparison from "@/components/Comparison";
@@ -90,7 +89,6 @@ const Index = () => {
       <Header />
       <main>
         <Hero />
-        <ServicesHero />
         
         {/* Modern Stats Section */}
         <section className="py-16 px-4 bg-gradient-modern">
