@@ -19,15 +19,15 @@ const FAQ = () => {
       faqs: [
         {
           question: "What is MentalSpace?",
-          answer: "MentalSpace is an online private practice company offering therapy, life coaching, and relationship coaching. Clients can communicate with therapists and certified coaches via text, audio, or video, with subscriptions starting at $49.95 a week."
+          answer: "MentalSpace is an online private practice company offering therapy, life coaching, and relationship coaching. Clients can communicate with therapists and certified coaches via text, audio, or video, with subscriptions starting at $49.95 a week. Live Video Sessions are also available."
         },
         {
           question: "How do I get started?",
-          answer: "Just click on Get Started anywhere on MentalSpace website, answer some questions about your needs, choose a subscription plan. Our team will contact you to schedule your first appointment."
+          answer: "Just click on Get Started anywhere on MentalSpace website, answer some questions about your needs, choose a subscription plan. Our team will contact you to schedule your first appointment. A licensed therapist will conduct an in-depth assessment with you, then we will propose the best therapists and coaches that match your needs and personality."
         },
         {
           question: "How much does MentalSpace cost?",
-          answer: "Subscriptions start at $49.95 a week. All plans give you access to a therapist and a life coach. Various plans are available to suit your needs, with no long‑term contracts."
+          answer: "MentalSpace offers subscriptions starting at $49.95 a week. All plans give you access to a therapist and a life coach. Various plans are available to suit your needs, with no long-term contracts. You can change or cancel your plan at any time."
         }
       ]
     },
@@ -36,19 +36,23 @@ const FAQ = () => {
       faqs: [
         {
           question: "How does therapy differ from life coaching?",
-          answer: "Life coaching is goal‑oriented and focuses on personal growth, helping you achieve specific objectives and improve various aspects of your life. Individual therapy addresses mental or emotional problems with a focus on healing, exploring underlying emotions, past experiences, and providing therapeutic interventions for mental health challenges."
+          answer: "Life Coaching: Focus on goal-oriented personal growth, development, and achievement. It addresses specific life goals, career aspirations, or personal development areas. Coaches use practical strategies and tools to help clients create actionable plans and make positive changes. The main goal is to empower individuals to reach their potential and achieve specific life objectives.\n\nIndividual Therapy: Focused on addressing specific mental or emotional problems, such as anxiety, depression, trauma, or relationship issues. Therapists explore underlying emotions, patterns, and psychological dynamics. The primary goal is to understand and resolve emotional challenges, heal psychological wounds, and foster overall mental well-being."
         },
         {
           question: "Are MentalSpace therapists and coaches experienced?",
-          answer: "Yes, our network includes licensed therapists, associates, and certified coaches who have been carefully selected. All therapists are licensed or master's level professionals with experience in various specialties."
+          answer: "Yes. MentalSpace's network includes licensed therapists, associates, mastered level therapists, and certified coaches, ensuring quality care. Our professionals are experienced and have been carefully selected and trained to provide services on our platform."
         },
         {
-          question: "Can I have a life coach and a therapist at the same time?",
-          answer: "Yes! For $49.95/week clients can access both a therapist and a life coach, with coordinated sessions to ensure comprehensive support for your mental health and personal growth goals."
+          question: "Can I have a Life Coach and a Therapist at the same time for the same $49.95/week subscription?",
+          answer: "Absolutely! For just $49.95/week, you can access both a Life Coach and a Therapist. Our professionals work in harmony, coordinating or alternating sessions to provide you with cohesive, personalized care. This innovative approach ensures that you receive comprehensive guidance, empowering you to overcome challenges and unlock your true potential. Experience the synergy of therapy and coaching with MentalSpace, where your growth and healing are our top priority."
         },
         {
-          question: "What types of issues can you help with?",
-          answer: "Our therapists and coaches specialize in a variety of issues including anxiety, depression, PTSD, trauma, relationship problems, life transitions, stress management, goal setting, personal growth, and many other mental health and life coaching concerns."
+          question: "If I'm a teenager, do I need permission from my parents/guardian?",
+          answer: "If you are under 18, most U.S. states require parent/guardian consent to start therapy or coaching. MentalSpace requires parental consent through specific procedures. Our support team can guide you through the required steps."
+        },
+        {
+          question: "Is MentalSpace as effective as traditional therapy?",
+          answer: "MentalSpace's unique blend of therapy, life coaching, and relationship coaching is designed to address diverse needs effectively. Our approach is backed by satisfied clients who have found success and improvement through our platform."
         }
       ]
     },
@@ -57,15 +61,39 @@ const FAQ = () => {
       faqs: [
         {
           question: "What is online couples therapy?",
-          answer: "Online couples therapy allows partners to connect virtually with licensed therapists through live video sessions to address relationship challenges, improve communication, and strengthen their bond from the comfort of their own space."
+          answer: "MentalSpace's online couples therapy allows partners to connect with therapists virtually, addressing relationship challenges through live video sessions."
         },
         {
-          question: "How does couples therapy differ from relationship coaching?",
-          answer: "Couples therapy addresses specific relationship problems and focuses on healing emotional wounds, resolving conflicts, and treating relationship dysfunction. Relationship coaching focuses on present and future goals, improving communication skills, and building tools for ongoing relationship success."
+          question: "How does couples' therapy differ from relationship coaching?",
+          answer: "Couples' Therapy: Primarily focused on addressing specific problems within a relationship, from communication breakdowns to more severe issues like infidelity or substance abuse. The therapist explores underlying emotions, patterns, and dynamics that contribute to relationship problems. The primary goal is to resolve conflicts, heal emotional wounds, and foster a healthier relationship.\n\nRelationship Coaching: More goal-oriented and focuses on the present and future of the relationship rather than delving into deep-seated issues from the past. It's about enhancing the relationship, improving communication, and achieving specific relationship goals. Coaches work on practical strategies, tools, and techniques to improve relationship dynamics. The main goal is to empower the couple to develop skills, create actionable plans, and make positive changes in their relationship."
+        },
+        {
+          question: "What can I expect from couples therapy?",
+          answer: "MentalSpace offers couples therapy to help partners understand their relationship better, resolve conflicts, and build a stronger foundation. The process includes assessment, goal setting, and enhancing communication skills, whether conducted online or in-person."
+        },
+        {
+          question: "Is it better to attend online couples counseling as a couple or solo?",
+          answer: "Starting treatment as a couple is typically best for shared concerns. If individual therapy is needed, MentalSpace therapists will guide you through options for individual sessions."
         },
         {
           question: "Who should seek couples counseling?",
-          answer: "Couples counseling is suitable for relationships at all stages - whether you're experiencing recurring disagreements, want to strengthen your connection, are preparing for marriage, or simply want to improve your communication and intimacy."
+          answer: "Couples counseling with MentalSpace is suitable for all relationship stages and situations, including recurring disagreements, dealing with tragedy, rebuilding chemistry, or simply strengthening the connection."
+        },
+        {
+          question: "Is online couples counseling really effective?",
+          answer: "Yes, MentalSpace's online couples' therapy has been shown to be as effective as in-person sessions, offering a convenient and impactful way to enhance relationships."
+        },
+        {
+          question: "Is online couples counseling right for my partner and me?",
+          answer: "Online couples therapy with MentalSpace offers flexibility and accessibility. The key is both partners feeling comfortable with the therapist and treatment method."
+        },
+        {
+          question: "Is couples therapy only for married couples?",
+          answer: "No, MentalSpace offers couples therapy for all type of relationship, helping partners reconnect, strengthen bonds, or address conflicts."
+        },
+        {
+          question: "Does MentalSpace offer premarital counseling?",
+          answer: "Yes, MentalSpace provides premarital counseling with experienced therapists, supporting engaged couples in strengthening their relationship and resolving issues before marriage."
         }
       ]
     },
@@ -74,28 +102,7 @@ const FAQ = () => {
       faqs: [
         {
           question: "How does MentalSpace protect my privacy?",
-          answer: "MentalSpace uses HIPAA‑compliant encryption and security measures to protect all client information. Our therapists follow strict professional and ethical confidentiality codes, and all communications are securely stored and encrypted."
-        },
-        {
-          question: "Do teenagers need parental consent?",
-          answer: "If under 18, parental consent is required according to U.S. law. MentalSpace guides families through the necessary steps to ensure proper consent and privacy protections for teen clients."
-        },
-        {
-          question: "What if I need crisis support?",
-          answer: "If you're experiencing a mental health crisis, please contact your local emergency services immediately or visit our Emergency Resources page for crisis hotlines. MentalSpace provides ongoing support but is not designed for crisis intervention."
-        }
-      ]
-    },
-    {
-      title: "Platform & Experience",
-      faqs: [
-        {
-          question: "Is MentalSpace as effective as traditional therapy?",
-          answer: "MentalSpace's blend of therapy and coaching is effective and backed by satisfied clients. Many clients report that our comprehensive approach addresses their diverse needs more effectively than traditional therapy alone."
-        },
-        {
-          question: "Can I switch therapists or coaches?",
-          answer: "Yes, you can switch therapists or coaches at no extra cost to find the perfect fit. We want to ensure you have the best possible therapeutic relationship for your success."
+          answer: "MentalSpace prioritizes your security with HIPAA compliance and industry-standard encryption. Access requires secure authentication, and additional security features are available on enabled devices."
         }
       ]
     }
