@@ -1,8 +1,27 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
+import { useEffect, useState } from "react";
+import heroImage1 from "@/assets/hero-person-1.jpg";
+import heroImage2 from "@/assets/hero-person-2.jpg";
+import heroImage3 from "@/assets/hero-person-3.jpg";
+import heroImage4 from "@/assets/hero-person-4.jpg";
+import heroImage5 from "@/assets/hero-person-5.jpg";
+import heroImage6 from "@/assets/hero-person-6.jpg";
 
 const Hero = () => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const heroImages = [heroImage1, heroImage2, heroImage3, heroImage4, heroImage5, heroImage6];
+  
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
+    }, 4000); // Change every 4 seconds
+    
+    return () => clearInterval(interval);
+  }, [heroImages.length]);
+
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-primary/5 via-background to-secondary/5 py-16 lg:py-24">
       {/* Decorative elements */}
@@ -12,30 +31,51 @@ const Hero = () => {
       </div>
 
       <div className="container relative px-4">
-        <div className="mx-auto max-w-4xl text-center">
-          <h1 className="mb-6 text-4xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-7xl">
-            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              MentalSpace:
-            </span>
-            <br />
-            Therapy Anytime. Anywhere.
-          </h1>
-          
-          <p className="mb-8 text-xl text-muted-foreground sm:text-2xl">
-            Professional online therapy and life coaching that fits your schedule. 
-            Connect with licensed therapists from the comfort of your home.
-          </p>
+        <div className="grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
+          {/* Left side - Text content */}
+          <div className="text-center lg:text-left order-2 lg:order-1">
+            <h1 className="mb-6 text-4xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-7xl">
+              <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                MentalSpace:
+              </span>
+              <br />
+              Therapy Anytime. Anywhere.
+            </h1>
+            
+            <p className="mb-8 text-xl text-muted-foreground sm:text-2xl">
+              Professional online therapy and life coaching that fits your schedule. 
+              Connect with licensed therapists from the comfort of your home.
+            </p>
 
-          <div className="mb-12">
-            <Link to="/get-started">
-              <Button size="lg" className="group bg-gradient-to-r from-primary to-secondary text-white font-semibold py-4 px-8 rounded-full hover:shadow-lg transition-all duration-300">
-                Get Started Today
-                <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </Link>
+            <div className="mb-12">
+              <Link to="/get-started">
+                <Button size="lg" className="group bg-gradient-to-r from-primary to-secondary text-white font-semibold py-4 px-8 rounded-full hover:shadow-lg transition-all duration-300">
+                  Get Started Today
+                  <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </Link>
+            </div>
           </div>
 
-          {/* Ultra Modern Insurance Section */}
+          {/* Right side - Rotating Images */}
+          <div className="order-1 lg:order-2 flex justify-center">
+            <div className="relative w-80 h-80 lg:w-96 lg:h-96">
+              <div className="absolute inset-0 rounded-full overflow-hidden shadow-2xl">
+                <img 
+                  key={currentImageIndex}
+                  src={heroImages[currentImageIndex]} 
+                  alt="Happy diverse people using mental health services"
+                  className="w-full h-full object-cover animate-fade-in"
+                />
+              </div>
+              {/* Gradient overlay */}
+              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/10 to-secondary/10"></div>
+            </div>
+          </div>
+        </div>
+
+        {/* Insurance Section - Full Width Below */}
+        <div className="mt-16 max-w-6xl mx-auto">
           <div className="bg-gradient-to-br from-white/90 via-blue-50/80 to-green-50/80 backdrop-blur-xl border-2 border-white/40 rounded-3xl p-10 shadow-modern hover:shadow-xl transition-all duration-500 hover:scale-[1.02]">
             <p className="text-2xl font-bold text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-green-600 bg-clip-text mb-10 text-center">
               We accept most major insurance plans and self-pay
