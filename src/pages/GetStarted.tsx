@@ -97,7 +97,7 @@ const GetStarted = () => {
                         {service.description}
                       </p>
                       <Button 
-                        className="w-full group" 
+                        className="w-full group relative z-10" 
                         size="lg"
                         onClick={() => navigate(service.link)}
                       >
