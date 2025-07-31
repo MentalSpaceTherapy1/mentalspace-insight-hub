@@ -71,9 +71,6 @@ const Header = () => {
             </DropdownMenuContent>
           </DropdownMenu>
           
-          <Link to="/insurance" className="text-foreground hover:text-primary transition-colors">
-            Insurance
-          </Link>
           <Link to="/contact-us" className="text-foreground hover:text-primary transition-colors">
             Contact Us
           </Link>

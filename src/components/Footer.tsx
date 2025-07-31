@@ -1,87 +1,131 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { MapPin, Phone, Mail } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="bg-foreground text-background py-16">
-      <div className="container px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-          {/* Company Info */}
-          <div>
-            <img 
-              src="/lovable-uploads/15cbf558-6b23-4694-9684-232897817b20.png" 
-              alt="MentalSpace Therapy" 
-              className="h-8 w-auto mb-4 brightness-0 invert"
-            />
-            <p className="text-background/80 mb-4">
-              Professional online therapy and life coaching that fits your schedule.
+    <footer className="bg-muted/50 border-t">
+      <div className="container mx-auto px-4 py-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* About Section */}
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">MentalSpace</h3>
+            <p className="text-sm text-muted-foreground">
+              Your Trusted Online Therapy and Life/Business Coach Platform.
             </p>
-            <div className="space-y-2 text-sm text-background/70">
-              <div className="flex items-center gap-2">
+            <p className="text-sm text-red-600 font-medium">
+              If you are in a crisis or need immediate help, please contact your local emergency services.
+            </p>
+            
+            {/* Contact Info */}
+            <div className="space-y-2">
+              <div className="flex items-center space-x-2 text-sm">
+                <MapPin className="h-4 w-4" />
+                <span>Alpharetta, GA 30022</span>
+              </div>
+              <div className="flex items-center space-x-2 text-sm">
                 <Phone className="h-4 w-4" />
                 <span>404-832-0102</span>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center space-x-2 text-sm">
                 <Mail className="h-4 w-4" />
                 <span>support@chctherapy.com</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <MapPin className="h-4 w-4" />
-                <span>Alpharetta, GA 30022</span>
               </div>
             </div>
           </div>
 
           {/* Therapy Services */}
-          <div>
-            <h3 className="font-semibold mb-4">Therapy Services</h3>
-            <ul className="space-y-2 text-background/80">
-              <li><a href="#" className="hover:text-primary-light transition-colors">Individual Therapy</a></li>
-              <li><a href="#" className="hover:text-primary-light transition-colors">Couples Therapy</a></li>
-              <li><a href="#" className="hover:text-primary-light transition-colors">Teen Therapy</a></li>
-              <li><a href="#" className="hover:text-primary-light transition-colors">Online Therapy</a></li>
-            </ul>
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">Therapy Services</h3>
+            <div className="space-y-2">
+              <Link to="/online-therapy" className="block text-sm text-muted-foreground hover:text-primary transition-colors">
+                Online Therapy
+              </Link>
+              <Link to="/couples-therapy" className="block text-sm text-muted-foreground hover:text-primary transition-colors">
+                Couples Therapy
+              </Link>
+              <Link to="/teen-therapy" className="block text-sm text-muted-foreground hover:text-primary transition-colors">
+                Teen Therapy
+              </Link>
+            </div>
           </div>
 
           {/* Coaching Services */}
-          <div>
-            <h3 className="font-semibold mb-4">Coaching Services</h3>
-            <ul className="space-y-2 text-background/80">
-              <li><a href="#" className="hover:text-secondary-light transition-colors">Life Coaching</a></li>
-              <li><a href="#" className="hover:text-secondary-light transition-colors">Relationship Coaching</a></li>
-              <li><a href="#" className="hover:text-secondary-light transition-colors">Career Coaching</a></li>
-              <li><a href="#" className="hover:text-secondary-light transition-colors">Goal Setting</a></li>
-            </ul>
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">Coaching Services</h3>
+            <div className="space-y-2">
+              <Link to="/life-coaching" className="block text-sm text-muted-foreground hover:text-primary transition-colors">
+                Life Coaching
+              </Link>
+              <Link to="/relationship-coaching" className="block text-sm text-muted-foreground hover:text-primary transition-colors">
+                Relationship Coaching
+              </Link>
+            </div>
+
+            <h4 className="text-md font-semibold mt-6">Resources</h4>
+            <div className="space-y-2">
+              <Link to="/insurance" className="block text-sm text-muted-foreground hover:text-primary transition-colors">
+                Insurance Coverage
+              </Link>
+              <a href="#" className="block text-sm text-muted-foreground hover:text-primary transition-colors">
+                Mental Health Library
+              </a>
+              <a href="#" className="block text-sm text-muted-foreground hover:text-primary transition-colors">
+                Free Mental Health Tests
+              </a>
+              <a href="#" className="block text-sm text-muted-foreground hover:text-primary transition-colors">
+                Blog
+              </a>
+              <Link to="/emergency-resources" className="block text-sm text-muted-foreground hover:text-primary transition-colors">
+                Emergency Resources
+              </Link>
+            </div>
           </div>
 
-          {/* Newsletter */}
-          <div>
-            <h3 className="font-semibold mb-4">Stay Connected</h3>
-            <p className="text-background/80 mb-4 text-sm">
-              Subscribe to our newsletter for mental health tips and updates.
-            </p>
+          {/* About & Newsletter */}
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">About</h3>
             <div className="space-y-2">
-              <Input 
-                type="email" 
-                placeholder="Your email address"
-                className="bg-background/10 border-background/20 text-background placeholder:text-background/50"
-              />
-              <Button variant="secondary" className="w-full">
-                Subscribe
-              </Button>
+              <Link to="/career" className="block text-sm text-muted-foreground hover:text-primary transition-colors">
+                Career
+              </Link>
+              <Link to="/faq" className="block text-sm text-muted-foreground hover:text-primary transition-colors">
+                FAQ
+              </Link>
+              <Link to="/privacy-policy" className="block text-sm text-muted-foreground hover:text-primary transition-colors">
+                Privacy Policy
+              </Link>
+              <Link to="/terms-conditions" className="block text-sm text-muted-foreground hover:text-primary transition-colors">
+                Terms and Conditions
+              </Link>
+            </div>
+
+            {/* Newsletter Signup */}
+            <div className="mt-6">
+              <h4 className="text-md font-semibold mb-3">Stay Connected</h4>
+              <p className="text-sm text-muted-foreground mb-3">
+                Subscribe for mental health tips and insights
+              </p>
+              <div className="flex space-x-2">
+                <Input 
+                  type="email" 
+                  placeholder="Enter your email" 
+                  className="text-sm"
+                />
+                <Button size="sm">Subscribe</Button>
+              </div>
             </div>
           </div>
         </div>
+      </div>
 
-        {/* Bottom section */}
-        <div className="border-t border-background/20 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-background/70">
-          <p>&copy; 2025 MentalSpace Therapy. All rights reserved.</p>
-          <div className="flex gap-6 mt-4 md:mt-0">
-            <a href="#" className="hover:text-background transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-background transition-colors">Terms & Conditions</a>
-            <a href="#" className="hover:text-background transition-colors">Emergency Resources</a>
-          </div>
+      {/* Bottom Bar */}
+      <div className="border-t bg-background">
+        <div className="container mx-auto px-4 py-4">
+          <p className="text-center text-sm text-muted-foreground">
+            Copyright 2025 | MentalSpace Therapy | All Rights Reserved.
+          </p>
         </div>
       </div>
     </footer>

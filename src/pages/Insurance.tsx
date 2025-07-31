@@ -44,6 +44,11 @@ const Insurance = () => {
       name: "Alliant Health",
       copay: "$0/$30",
       slug: "alliant"
+    },
+    {
+      name: "Humana",
+      copay: "$0/$30",
+      slug: "humana"
     }
   ];
 
@@ -59,6 +64,9 @@ const Insurance = () => {
             </h1>
             <p className="text-xl md:text-2xl mb-8 text-muted-foreground max-w-4xl mx-auto">
               Our therapists accept most insurances. At MentalSpace, we proudly serve a vast community, with our therapy services covered by numerous insurance providers. The majority of our insured clients enjoy the benefit of an average copay under $30.
+            </p>
+            <p className="text-lg text-muted-foreground">
+              <strong>And more</strong> - We work with additional insurance providers not listed here. Contact us to verify your coverage.
             </p>
           </div>
         </section>

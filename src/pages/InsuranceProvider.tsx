@@ -47,6 +47,11 @@ const InsuranceProvider = () => {
       name: 'Alliant Health',
       copay: '$0/$30',
       description: 'Alliant Health members have access to our full range of therapy services.'
+    },
+    'humana': {
+      name: 'Humana',
+      copay: '$0/$30',
+      description: 'Humana members receive excellent mental health coverage through our trusted network.'
     }
   };
 
