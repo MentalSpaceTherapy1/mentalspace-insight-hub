@@ -26,34 +26,11 @@ const Hero = () => {
             Connect with licensed therapists from the comfort of your home.
           </p>
 
-          <div className="mb-12 text-lg font-medium text-foreground">
-            What kind of service are you looking for?
-          </div>
-
-          {/* Service buttons */}
-          <div className="mb-16 grid grid-cols-2 gap-4 sm:grid-cols-4 sm:gap-6">
-            <Link to="/online-therapy">
-              <Button variant="service" size="lg" className="h-16 flex-col w-full">
-                Individual
-                <span className="text-sm font-normal text-muted-foreground">Therapy</span>
-              </Button>
-            </Link>
-            <Link to="/couples-therapy">
-              <Button variant="service" size="lg" className="h-16 flex-col w-full">
-                Couple
-                <span className="text-sm font-normal text-muted-foreground">Therapy</span>
-              </Button>
-            </Link>
-            <Link to="/teen-therapy">
-              <Button variant="service" size="lg" className="h-16 flex-col w-full">
-                Teen
-                <span className="text-sm font-normal text-muted-foreground">Therapy</span>
-              </Button>
-            </Link>
-            <Link to="/life-coaching">
-              <Button variant="service" size="lg" className="h-16 flex-col w-full">
-                Life
-                <span className="text-sm font-normal text-muted-foreground">Coaching</span>
+          <div className="mb-12">
+            <Link to="/get-started">
+              <Button size="lg" className="group bg-gradient-to-r from-primary to-secondary text-white font-semibold py-4 px-8 rounded-full hover:shadow-lg transition-all duration-300">
+                Get Started Today
+                <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
           </div>
