@@ -17,6 +17,7 @@ import Career from "./pages/Career";
 import EmergencyResources from "./pages/EmergencyResources";
 import GetStarted from "./pages/GetStarted";
 import InsuranceProvider from "./pages/InsuranceProvider";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -43,6 +44,7 @@ const App = () => (
           <Route path="/career" element={<Career />} />
           <Route path="/emergency-resources" element={<EmergencyResources />} />
           <Route path="/get-started" element={<GetStarted />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
