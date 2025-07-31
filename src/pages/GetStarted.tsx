@@ -2,11 +2,12 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ArrowRight, User, Users, Heart, Target } from "lucide-react";
 import heroImage from "@/assets/get-started-hero.jpg";
 
 const GetStarted = () => {
+  const navigate = useNavigate();
   const services = [
     {
       title: "Individual",
@@ -98,7 +99,7 @@ const GetStarted = () => {
                       <Button 
                         className="w-full group" 
                         size="lg"
-                        onClick={() => window.location.href = service.link}
+                        onClick={() => navigate(service.link)}
                       >
                         Get Started
                         <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
