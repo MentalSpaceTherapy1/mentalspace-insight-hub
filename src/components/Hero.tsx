@@ -65,51 +65,51 @@ const Hero = () => {
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4 mb-8">
               <Link to="/insurance/caresource" className="group">
-                <div className="bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-110 group-hover:rotate-1 border border-blue-200">
-                  <div className="text-center font-bold text-white">
+                <div className="bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl p-4 h-20 flex items-center justify-center shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-110 group-hover:rotate-1 border border-blue-200">
+                  <div className="text-center font-bold text-white text-sm">
                     CareSource
                   </div>
                 </div>
               </Link>
               <Link to="/insurance/amerigroup" className="group">
-                <div className="bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-110 group-hover:rotate-1 border border-purple-200">
-                  <div className="text-center font-bold text-white">
+                <div className="bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl p-4 h-20 flex items-center justify-center shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-110 group-hover:rotate-1 border border-purple-200">
+                  <div className="text-center font-bold text-white text-sm">
                     Amerigroup
                   </div>
                 </div>
               </Link>
               <Link to="/insurance/bluecross-blueshield" className="group">
-                <div className="bg-gradient-to-br from-indigo-500 to-blue-600 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-110 group-hover:rotate-1 border border-indigo-200">
-                  <div className="text-center font-bold text-white">
-                    BlueCross BlueShield
+                <div className="bg-gradient-to-br from-indigo-500 to-blue-600 rounded-2xl p-4 h-20 flex items-center justify-center shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-110 group-hover:rotate-1 border border-indigo-200">
+                  <div className="text-center font-bold text-white text-sm">
+                    BCBS
                   </div>
                 </div>
               </Link>
               <Link to="/insurance/aetna" className="group">
-                <div className="bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-110 group-hover:rotate-1 border border-green-200">
-                  <div className="text-center font-bold text-white">
+                <div className="bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl p-4 h-20 flex items-center justify-center shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-110 group-hover:rotate-1 border border-green-200">
+                  <div className="text-center font-bold text-white text-sm">
                     Aetna
                   </div>
                 </div>
               </Link>
               <Link to="/insurance/cigna" className="group">
-                <div className="bg-gradient-to-br from-orange-500 to-red-500 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-110 group-hover:rotate-1 border border-orange-200">
-                  <div className="text-center font-bold text-white">
+                <div className="bg-gradient-to-br from-orange-500 to-red-500 rounded-2xl p-4 h-20 flex items-center justify-center shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-110 group-hover:rotate-1 border border-orange-200">
+                  <div className="text-center font-bold text-white text-sm">
                     Cigna
                   </div>
                 </div>
               </Link>
               <Link to="/insurance/optum" className="group">
-                <div className="bg-gradient-to-br from-teal-500 to-cyan-600 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-110 group-hover:rotate-1 border border-teal-200">
-                  <div className="text-center font-bold text-white">
+                <div className="bg-gradient-to-br from-teal-500 to-cyan-600 rounded-2xl p-4 h-20 flex items-center justify-center shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-110 group-hover:rotate-1 border border-teal-200">
+                  <div className="text-center font-bold text-white text-sm">
                     Optum
                   </div>
                 </div>
               </Link>
               <Link to="/insurance" className="group">
-                <div className="bg-gradient-to-br from-pink-500 via-purple-500 to-indigo-500 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-110 group-hover:rotate-1 border border-pink-200 relative overflow-hidden">
+                <div className="bg-gradient-to-br from-pink-500 via-purple-500 to-indigo-500 rounded-2xl p-4 h-20 flex items-center justify-center shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-110 group-hover:rotate-1 border border-pink-200 relative overflow-hidden">
                   <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="text-center font-bold text-white relative z-10">
+                  <div className="text-center font-bold text-white text-sm relative z-10">
                     And more...
                   </div>
                 </div>
