@@ -96,7 +96,11 @@ const GetStarted = () => {
                         {service.description}
                       </p>
                       <Link to={service.link}>
-                        <Button className="w-full group" size="lg">
+                        <Button 
+                          className="w-full group" 
+                          size="lg"
+                          onClick={() => console.log(`Clicking ${service.title} - navigating to ${service.link}`)}
+                        >
                           Get Started
                           <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
                         </Button>
