@@ -4,6 +4,18 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
+import OnlineTherapy from "./pages/OnlineTherapy";
+import CouplesTherapy from "./pages/CouplesTherapy";
+import TeenTherapy from "./pages/TeenTherapy";
+import LifeCoaching from "./pages/LifeCoaching";
+import RelationshipCoaching from "./pages/RelationshipCoaching";
+import CoachingServices from "./pages/CoachingServices";
+import Insurance from "./pages/Insurance";
+import FAQ from "./pages/FAQ";
+import ContactUs from "./pages/ContactUs";
+import Career from "./pages/Career";
+import EmergencyResources from "./pages/EmergencyResources";
+import GetStarted from "./pages/GetStarted";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -16,6 +28,18 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/online-therapy" element={<OnlineTherapy />} />
+          <Route path="/couples-therapy" element={<CouplesTherapy />} />
+          <Route path="/teen-therapy" element={<TeenTherapy />} />
+          <Route path="/life-coaching" element={<LifeCoaching />} />
+          <Route path="/relationship-coaching" element={<RelationshipCoaching />} />
+          <Route path="/coaching-services" element={<CoachingServices />} />
+          <Route path="/insurance" element={<Insurance />} />
+          <Route path="/faq" element={<FAQ />} />
+          <Route path="/contact-us" element={<ContactUs />} />
+          <Route path="/career" element={<Career />} />
+          <Route path="/emergency-resources" element={<EmergencyResources />} />
+          <Route path="/get-started" element={<GetStarted />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
