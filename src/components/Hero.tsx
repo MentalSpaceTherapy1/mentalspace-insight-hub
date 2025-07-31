@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import heroWellnessImg from "@/assets/hero-wellness.jpg";
 
 const Hero = () => {
   return (
@@ -12,52 +13,89 @@ const Hero = () => {
       </div>
 
       <div className="container relative px-4">
-        <div className="mx-auto max-w-4xl text-center">
-          <h1 className="mb-6 text-4xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-7xl">
-            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              MentalSpace:
-            </span>
-            <br />
-            Therapy Anytime. Anywhere.
-          </h1>
-          
-          <p className="mb-8 text-xl text-muted-foreground sm:text-2xl">
-            Professional online therapy and life coaching that fits your schedule. 
-            Connect with licensed therapists from the comfort of your home.
-          </p>
+        <div className="grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
+          {/* Content Side */}
+          <div className="text-center lg:text-left">
+            <h1 className="mb-6 text-4xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-7xl">
+              <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                MentalSpace:
+              </span>
+              <br />
+              Therapy Anytime. Anywhere.
+            </h1>
+            
+            <p className="mb-8 text-xl text-muted-foreground sm:text-2xl">
+              Professional online therapy and life coaching that fits your schedule. 
+              Connect with licensed therapists from the comfort of your home.
+            </p>
 
-          <div className="mb-12 text-lg font-medium text-foreground">
-            What kind of service are you looking for?
+            <div className="mb-8 text-lg font-medium text-foreground">
+              What kind of service are you looking for?
+            </div>
+
+            {/* Service buttons */}
+            <div className="mb-12 grid grid-cols-2 gap-4 sm:grid-cols-4 sm:gap-6">
+              <Link to="/online-therapy">
+                <Button variant="service" size="lg" className="h-16 flex-col w-full">
+                  Individual
+                  <span className="text-sm font-normal text-muted-foreground">Therapy</span>
+                </Button>
+              </Link>
+              <Link to="/couples-therapy">
+                <Button variant="service" size="lg" className="h-16 flex-col w-full">
+                  Couple
+                  <span className="text-sm font-normal text-muted-foreground">Therapy</span>
+                </Button>
+              </Link>
+              <Link to="/teen-therapy">
+                <Button variant="service" size="lg" className="h-16 flex-col w-full">
+                  Teen
+                  <span className="text-sm font-normal text-muted-foreground">Therapy</span>
+                </Button>
+              </Link>
+              <Link to="/life-coaching">
+                <Button variant="service" size="lg" className="h-16 flex-col w-full">
+                  Life
+                  <span className="text-sm font-normal text-muted-foreground">Coaching</span>
+                </Button>
+              </Link>
+            </div>
           </div>
 
-          {/* Service buttons */}
-          <div className="mb-16 grid grid-cols-2 gap-4 sm:grid-cols-4 sm:gap-6">
-            <Link to="/online-therapy">
-              <Button variant="service" size="lg" className="h-16 flex-col w-full">
-                Individual
-                <span className="text-sm font-normal text-muted-foreground">Therapy</span>
-              </Button>
-            </Link>
-            <Link to="/couples-therapy">
-              <Button variant="service" size="lg" className="h-16 flex-col w-full">
-                Couple
-                <span className="text-sm font-normal text-muted-foreground">Therapy</span>
-              </Button>
-            </Link>
-            <Link to="/teen-therapy">
-              <Button variant="service" size="lg" className="h-16 flex-col w-full">
-                Teen
-                <span className="text-sm font-normal text-muted-foreground">Therapy</span>
-              </Button>
-            </Link>
-            <Link to="/life-coaching">
-              <Button variant="service" size="lg" className="h-16 flex-col w-full">
-                Life
-                <span className="text-sm font-normal text-muted-foreground">Coaching</span>
-              </Button>
-            </Link>
+          {/* Image Side */}
+          <div className="relative animate-fade-in">
+            <div className="relative rounded-3xl overflow-hidden shadow-modern hover:shadow-xl transition-all duration-500 hover:scale-[1.02]">
+              <img 
+                src={heroWellnessImg} 
+                alt="People connecting through wellness technology" 
+                className="w-full h-[500px] object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
+              {/* Floating stats overlay */}
+              <div className="absolute bottom-6 left-6 right-6">
+                <div className="bg-white/90 backdrop-blur-lg rounded-2xl p-4 shadow-lg">
+                  <div className="flex justify-between items-center text-center">
+                    <div>
+                      <div className="text-2xl font-bold text-primary">24/7</div>
+                      <div className="text-sm text-muted-foreground">Available</div>
+                    </div>
+                    <div>
+                      <div className="text-2xl font-bold text-primary">10K+</div>
+                      <div className="text-sm text-muted-foreground">Clients</div>
+                    </div>
+                    <div>
+                      <div className="text-2xl font-bold text-primary">95%</div>
+                      <div className="text-sm text-muted-foreground">Success</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
+        </div>
 
+        {/* Insurance Section - Now Full Width Below */}
+        <div className="mt-20 max-w-6xl mx-auto">
           {/* Ultra Modern Insurance Section */}
           <div className="bg-gradient-to-br from-white/90 via-blue-50/80 to-green-50/80 backdrop-blur-xl border-2 border-white/40 rounded-3xl p-10 shadow-modern hover:shadow-xl transition-all duration-500 hover:scale-[1.02]">
             <p className="text-2xl font-bold text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-green-600 bg-clip-text mb-10 text-center">
