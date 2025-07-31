@@ -127,6 +127,13 @@ const Hero = () => {
                   </div>
                 </div>
               </Link>
+              <Link to="/insurance/peach-state" className="group">
+                <div className="bg-gradient-to-br from-emerald-400 to-green-500 rounded-2xl p-4 h-20 flex items-center justify-center shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-110 group-hover:rotate-1 border border-emerald-200">
+                  <div className="text-center font-bold text-white text-sm">
+                    Peach State
+                  </div>
+                </div>
+              </Link>
               <Link to="/insurance" className="group">
                 <div className="bg-gradient-to-br from-pink-500 via-purple-500 to-indigo-500 rounded-2xl p-4 h-20 flex items-center justify-center shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-110 group-hover:rotate-1 border border-pink-200 relative overflow-hidden">
                   <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
