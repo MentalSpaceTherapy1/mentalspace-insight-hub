@@ -1,4 +1,6 @@
 import { CheckCircle, UserCheck, Play } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const HowItWorks = () => {
   const steps = [
@@ -52,6 +54,15 @@ const HowItWorks = () => {
               )}
             </div>
           ))}
+        </div>
+        
+        {/* Call to Action */}
+        <div className="text-center mt-12">
+          <Link to="/get-started">
+            <Button size="lg" className="px-8 py-6 text-lg">
+              Get Started Today
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

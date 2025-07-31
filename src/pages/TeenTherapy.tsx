@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const TeenTherapy = () => {
   const steps = [
@@ -38,9 +39,11 @@ const TeenTherapy = () => {
             <p className="text-xl md:text-2xl mb-8 text-muted-foreground max-w-4xl mx-auto">
               The benefits of talking with a therapist can be nothing less than amazing!
             </p>
-            <Button size="lg" className="text-lg px-8 py-6">
-              Get Started
-            </Button>
+            <Link to="/get-started">
+              <Button size="lg" className="text-lg px-8 py-6">
+                Get Started
+              </Button>
+            </Link>
           </div>
         </section>
 
@@ -108,9 +111,11 @@ const TeenTherapy = () => {
             <p className="text-xl mb-8 text-primary-foreground/90">
               Contact us for a free consultation to begin your journey to a happier and healthier you
             </p>
-            <Button variant="secondary" size="lg" className="text-lg px-8 py-6">
-              Get Started
-            </Button>
+            <Link to="/get-started">
+              <Button variant="secondary" size="lg" className="text-lg px-8 py-6">
+                Get Started
+              </Button>
+            </Link>
           </div>
         </section>
       </main>

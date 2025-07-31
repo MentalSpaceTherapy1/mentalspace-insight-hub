@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { CheckCircle, Clock, Shield, Users, Heart, DollarSign } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const OnlineTherapy = () => {
   const advantages = [
@@ -68,9 +69,11 @@ const OnlineTherapy = () => {
             <p className="text-lg mb-8 max-w-3xl mx-auto text-muted-foreground">
               We all have been troubled by negative thoughts and behaviors. With the help of an experienced therapist, you'll learn to identify and overcome these obstacles and coaching with MentalSpace.
             </p>
-            <Button size="lg" className="text-lg px-8 py-6">
-              Get Started
-            </Button>
+            <Link to="/get-started">
+              <Button size="lg" className="text-lg px-8 py-6">
+                Get Started
+              </Button>
+            </Link>
           </div>
         </section>
 
@@ -126,9 +129,11 @@ const OnlineTherapy = () => {
             <p className="text-xl mb-8 text-primary-foreground/90">
               Contact us for a free consultation to begin your journey to a happier and healthier you
             </p>
-            <Button variant="secondary" size="lg" className="text-lg px-8 py-6">
-              Get Started
-            </Button>
+            <Link to="/get-started">
+              <Button variant="secondary" size="lg" className="text-lg px-8 py-6">
+                Get Started
+              </Button>
+            </Link>
           </div>
         </section>
       </main>

@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Heart, Users, UserCheck, Target } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Services = () => {
   const services = [
@@ -8,25 +9,29 @@ const Services = () => {
       icon: <Heart className="h-8 w-8" />,
       title: "Individual Therapy",
       description: "One-on-one support with licensed therapists for anxiety, depression, trauma, and personal growth.",
-      color: "from-primary to-primary-light"
+      color: "from-primary to-primary-light",
+      link: "/online-therapy"
     },
     {
       icon: <Users className="h-8 w-8" />,
       title: "Couples Therapy", 
       description: "Enhance your relationship with professional guidance to improve communication and strengthen bonds.",
-      color: "from-secondary to-secondary-light"
+      color: "from-secondary to-secondary-light",
+      link: "/couples-therapy"
     },
     {
       icon: <UserCheck className="h-8 w-8" />,
       title: "Teen Therapy",
       description: "Specialized care for youth aged 13-17, providing a safe space to navigate adolescent challenges.",
-      color: "from-primary to-secondary"
+      color: "from-primary to-secondary",
+      link: "/teen-therapy"
     },
     {
       icon: <Target className="h-8 w-8" />,
       title: "Life Coaching",
       description: "Find balance, purpose, and joy with personalized coaching to achieve your personal and professional goals.",
-      color: "from-secondary to-primary"
+      color: "from-secondary to-primary",
+      link: "/life-coaching"
     }
   ];
 
@@ -55,9 +60,11 @@ const Services = () => {
                 <p className="mb-6 text-muted-foreground">
                   {service.description}
                 </p>
-                <Button variant="outline" className="w-full border-primary/20 hover:bg-primary hover:text-white transition-all duration-300">
-                  Get Started
-                </Button>
+                <Link to={service.link}>
+                  <Button variant="outline" className="w-full border-primary/20 hover:bg-primary hover:text-white transition-all duration-300">
+                    Get Started
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
           ))}
