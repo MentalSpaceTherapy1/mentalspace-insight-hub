@@ -61,12 +61,16 @@ const Hero = () => {
           <div className="order-1 lg:order-2 flex justify-center">
             <div className="relative w-80 h-80 lg:w-96 lg:h-96">
               <div className="absolute inset-0 rounded-full overflow-hidden shadow-2xl">
-                <img 
-                  key={currentImageIndex}
-                  src={heroImages[currentImageIndex]} 
-                  alt="Happy diverse people using mental health services"
-                  className="w-full h-full object-cover animate-fade-in"
-                />
+                {heroImages.map((image, index) => (
+                  <img 
+                    key={index}
+                    src={image} 
+                    alt="Happy diverse people using mental health services"
+                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
+                      index === currentImageIndex ? 'opacity-100' : 'opacity-0'
+                    }`}
+                  />
+                ))}
               </div>
               {/* Gradient overlay */}
               <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/10 to-secondary/10"></div>
