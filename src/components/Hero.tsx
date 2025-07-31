@@ -134,14 +134,6 @@ const Hero = () => {
                   </div>
                 </div>
               </Link>
-              <Link to="/insurance" className="group">
-                <div className="bg-gradient-to-br from-pink-500 via-purple-500 to-indigo-500 rounded-2xl p-4 h-20 flex items-center justify-center shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-110 group-hover:rotate-1 border border-pink-200 relative overflow-hidden">
-                  <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="text-center font-bold text-white text-sm relative z-10">
-                    And more...
-                  </div>
-                </div>
-              </Link>
             </div>
             <div className="text-center">
               <Link to="/insurance" className="group inline-flex items-center space-x-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
