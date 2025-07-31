@@ -1,8 +1,9 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { CheckCircle, Clock, Shield, Users, Heart, DollarSign } from "lucide-react";
+import { CheckCircle, Clock, Shield, Users, Heart, DollarSign, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import heroImage from "@/assets/online-therapy-hero.jpg";
 
 const OnlineTherapy = () => {
   const advantages = [
@@ -58,41 +59,63 @@ const OnlineTherapy = () => {
       <Header />
       <main>
         {/* Hero Section */}
-        <section className="py-20 px-4 bg-gradient-to-br from-primary-light/20 to-secondary-light/20">
-          <div className="container mx-auto text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              Online Therapy & Coaching
-            </h1>
-            <p className="text-xl md:text-2xl mb-4 text-muted-foreground">
-              Anytime. Anywhere. Just the way you need it!
-            </p>
-            <p className="text-lg mb-8 max-w-3xl mx-auto text-muted-foreground">
-              We all have been troubled by negative thoughts and behaviors. With the help of an experienced therapist, you'll learn to identify and overcome these obstacles and coaching with MentalSpace.
-            </p>
-            <Link to="/get-started">
-              <Button size="lg" className="text-lg px-8 py-6">
-                Get Started
-              </Button>
-            </Link>
+        <section className="relative py-20 px-4 overflow-hidden">
+          <div className="absolute inset-0">
+            <img 
+              src={heroImage} 
+              alt="Online therapy session" 
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/70 to-transparent"></div>
+          </div>
+          <div className="container mx-auto relative z-10">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div className="text-white">
+                <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+                  Online Therapy & Coaching
+                </h1>
+                <p className="text-xl md:text-2xl mb-4 text-white/90">
+                  Anytime. Anywhere. Just the way you need it!
+                </p>
+                <p className="text-lg mb-8 text-white/80 leading-relaxed">
+                  We all have been troubled by negative thoughts and behaviors. With the help of an experienced therapist, you'll learn to identify and overcome these obstacles and coaching with MentalSpace.
+                </p>
+                <Link to="/get-started">
+                  <Button size="lg" variant="secondary" className="text-lg px-8 py-6 group">
+                    Get Started
+                    <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </Link>
+              </div>
+            </div>
           </div>
         </section>
 
         {/* Advantages Section */}
-        <section className="py-20 px-4">
+        <section className="py-20 px-4 bg-gradient-to-b from-background to-muted/30">
           <div className="container mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
-              Advantages of Online Therapy
-            </h2>
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                Advantages of Online Therapy
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+                Experience the benefits of modern, accessible mental health care designed for your lifestyle
+              </p>
+            </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {advantages.map((advantage, index) => {
                 const Icon = advantage.icon;
                 return (
-                  <div key={index} className="text-center p-6 rounded-lg border bg-card">
-                    <Icon className="h-12 w-12 mx-auto mb-4 text-primary" />
-                    <h3 className="text-xl font-semibold mb-4 text-primary">
+                  <div key={index} className="group p-8 rounded-2xl border bg-card hover:shadow-xl transition-all duration-300 hover:scale-105 hover:border-primary/20">
+                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-secondary p-0.5 mb-6 mx-auto">
+                      <div className="w-full h-full rounded-full bg-background flex items-center justify-center">
+                        <Icon className="h-8 w-8 text-primary group-hover:scale-110 transition-transform" />
+                      </div>
+                    </div>
+                    <h3 className="text-xl font-semibold mb-4 text-center text-primary">
                       {advantage.title}
                     </h3>
-                    <p className="text-muted-foreground">{advantage.description}</p>
+                    <p className="text-muted-foreground text-center leading-relaxed">{advantage.description}</p>
                   </div>
                 );
               })}
@@ -103,19 +126,49 @@ const OnlineTherapy = () => {
         {/* How MentalSpace Works */}
         <section className="py-20 px-4 bg-muted/50">
           <div className="container mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
-              How MentalSpace Works
-            </h2>
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                How MentalSpace Works
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+                Getting started with online therapy is simple and straightforward
+              </p>
+            </div>
+            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
               {steps.map((step, index) => (
-                <div key={index} className="text-center">
-                  <div className="w-16 h-16 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-2xl font-bold mx-auto mb-4">
-                    {index + 1}
+                <div key={index} className="text-center group">
+                  <div className="relative mb-8">
+                    <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-3xl font-bold mx-auto text-white shadow-lg group-hover:scale-110 transition-transform">
+                      {index + 1}
+                    </div>
+                    {index < steps.length - 1 && (
+                      <div className="hidden md:block absolute top-10 left-full w-full h-0.5 bg-gradient-to-r from-primary/50 to-transparent -translate-x-10"></div>
+                    )}
                   </div>
                   <h3 className="text-xl font-semibold mb-4">{step.title}</h3>
-                  <p className="text-muted-foreground">{step.description}</p>
+                  <p className="text-muted-foreground leading-relaxed">{step.description}</p>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Statistics Section */}
+        <section className="py-20 px-4 bg-gradient-to-br from-primary/5 to-secondary/5">
+          <div className="container mx-auto text-center">
+            <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+              <div className="p-8">
+                <div className="text-4xl font-bold text-primary mb-2">98%</div>
+                <p className="text-muted-foreground">Client Satisfaction Rate</p>
+              </div>
+              <div className="p-8">
+                <div className="text-4xl font-bold text-primary mb-2">24hrs</div>
+                <p className="text-muted-foreground">Average Response Time</p>
+              </div>
+              <div className="p-8">
+                <div className="text-4xl font-bold text-primary mb-2">10k+</div>
+                <p className="text-muted-foreground">Lives Transformed</p>
+              </div>
             </div>
           </div>
         </section>
@@ -126,12 +179,13 @@ const OnlineTherapy = () => {
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-primary-foreground">
               Are you ready to begin?
             </h2>
-            <p className="text-xl mb-8 text-primary-foreground/90">
+            <p className="text-xl mb-8 text-primary-foreground/90 max-w-2xl mx-auto">
               Contact us for a free consultation to begin your journey to a happier and healthier you
             </p>
             <Link to="/get-started">
-              <Button variant="secondary" size="lg" className="text-lg px-8 py-6">
+              <Button variant="secondary" size="lg" className="text-lg px-8 py-6 group">
                 Get Started
+                <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
           </div>
