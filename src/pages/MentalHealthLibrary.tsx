@@ -13,6 +13,18 @@ import adhdPerson from '@/assets/adhd-person.jpg';
 import ptsdPerson from '@/assets/ptsd-person.jpg';
 import bipolarPerson from '@/assets/bipolar-person.jpg';
 import bpdPerson from '@/assets/bpd-person.jpg';
+import narcissisticPerson from '@/assets/narcissistic-person.jpg';
+import didPerson from '@/assets/did-person.jpg';
+import oddPerson from '@/assets/odd-person.jpg';
+import bddPerson from '@/assets/bdd-person.jpg';
+import panicPerson from '@/assets/panic-person.jpg';
+import socialAnxietyPerson from '@/assets/social-anxiety-person.jpg';
+import ocdPerson from '@/assets/ocd-person.jpg';
+import antisocialPerson from '@/assets/antisocial-person.jpg';
+import adjustmentPerson from '@/assets/adjustment-person.jpg';
+import substancePerson from '@/assets/substance-person.jpg';
+import anorexiaPerson from '@/assets/anorexia-person.jpg';
+import codependencyPerson from '@/assets/codependency-person.jpg';
 
 const MentalHealthLibrary = () => {
   const conditions = [
@@ -88,7 +100,7 @@ const MentalHealthLibrary = () => {
       category: "Personality Disorders",
       icon: Users,
       slug: "narcissistic-personality-disorder",
-      image: bpdPerson,
+      image: narcissisticPerson,
       gradient: "from-slate-500 via-gray-500 to-zinc-500",
       bgGradient: "from-slate-50 via-gray-50 to-zinc-50",
       darkBgGradient: "from-slate-950/30 via-gray-950/30 to-zinc-950/30"
@@ -99,7 +111,7 @@ const MentalHealthLibrary = () => {
       category: "Dissociative Disorders",
       icon: Brain,
       slug: "dissociative-identity-disorder",
-      image: ptsdPerson,
+      image: didPerson,
       gradient: "from-fuchsia-500 via-purple-500 to-violet-500",
       bgGradient: "from-fuchsia-50 via-purple-50 to-violet-50",
       darkBgGradient: "from-fuchsia-950/30 via-purple-950/30 to-violet-950/30"
@@ -110,7 +122,7 @@ const MentalHealthLibrary = () => {
       category: "Behavioral Disorders",
       icon: Activity,
       slug: "oppositional-defiant-disorder",
-      image: adhdPerson,
+      image: oddPerson,
       gradient: "from-red-500 via-orange-500 to-amber-500",
       bgGradient: "from-red-50 via-orange-50 to-amber-50",
       darkBgGradient: "from-red-950/30 via-orange-950/30 to-amber-950/30"
@@ -121,7 +133,7 @@ const MentalHealthLibrary = () => {
       category: "Body-Related Disorders",
       icon: Heart,
       slug: "body-dysmorphic-disorder",
-      image: anxietyPerson,
+      image: bddPerson,
       gradient: "from-pink-500 via-rose-500 to-red-500",
       bgGradient: "from-pink-50 via-rose-50 to-red-50",
       darkBgGradient: "from-pink-950/30 via-rose-950/30 to-red-950/30"
@@ -132,7 +144,7 @@ const MentalHealthLibrary = () => {
       category: "Anxiety Disorders",
       icon: Brain,
       slug: "panic-disorder",
-      image: anxietyPerson,
+      image: panicPerson,
       gradient: "from-sky-500 via-blue-500 to-indigo-500",
       bgGradient: "from-sky-50 via-blue-50 to-indigo-50",
       darkBgGradient: "from-sky-950/30 via-blue-950/30 to-indigo-950/30"
@@ -143,7 +155,7 @@ const MentalHealthLibrary = () => {
       category: "Anxiety Disorders",
       icon: Users,
       slug: "social-anxiety-disorder",
-      image: anxietyPerson,
+      image: socialAnxietyPerson,
       gradient: "from-teal-500 via-cyan-500 to-blue-500",
       bgGradient: "from-teal-50 via-cyan-50 to-blue-50",
       darkBgGradient: "from-teal-950/30 via-cyan-950/30 to-blue-950/30"
@@ -154,7 +166,7 @@ const MentalHealthLibrary = () => {
       category: "Anxiety Disorders",
       icon: Brain,
       slug: "obsessive-compulsive-disorder",
-      image: anxietyPerson,
+      image: ocdPerson,
       gradient: "from-violet-500 via-indigo-500 to-blue-500",
       bgGradient: "from-violet-50 via-indigo-50 to-blue-50",
       darkBgGradient: "from-violet-950/30 via-indigo-950/30 to-blue-950/30"
@@ -165,7 +177,7 @@ const MentalHealthLibrary = () => {
       category: "Personality Disorders",
       icon: Users,
       slug: "antisocial-personality-disorder",
-      image: bpdPerson,
+      image: antisocialPerson,
       gradient: "from-stone-500 via-neutral-500 to-gray-500",
       bgGradient: "from-stone-50 via-neutral-50 to-gray-50",
       darkBgGradient: "from-stone-950/30 via-neutral-950/30 to-gray-950/30"
@@ -176,7 +188,7 @@ const MentalHealthLibrary = () => {
       category: "Stress-Related Disorders",
       icon: Heart,
       slug: "adjustment-disorder",
-      image: depressionPerson,
+      image: adjustmentPerson,
       gradient: "from-lime-500 via-green-500 to-emerald-500",
       bgGradient: "from-lime-50 via-green-50 to-emerald-50",
       darkBgGradient: "from-lime-950/30 via-green-950/30 to-emerald-950/30"
@@ -187,7 +199,7 @@ const MentalHealthLibrary = () => {
       category: "Addiction Disorders",
       icon: Activity,
       slug: "substance-use-disorder",
-      image: ptsdPerson,
+      image: substancePerson,
       gradient: "from-amber-500 via-yellow-500 to-lime-500",
       bgGradient: "from-amber-50 via-yellow-50 to-lime-50",
       darkBgGradient: "from-amber-950/30 via-yellow-950/30 to-lime-950/30"
@@ -198,7 +210,7 @@ const MentalHealthLibrary = () => {
       category: "Eating Disorders",
       icon: Heart,
       slug: "anorexia",
-      image: depressionPerson,
+      image: anorexiaPerson,
       gradient: "from-rose-500 via-pink-500 to-fuchsia-500",
       bgGradient: "from-rose-50 via-pink-50 to-fuchsia-50",
       darkBgGradient: "from-rose-950/30 via-pink-950/30 to-fuchsia-950/30"
@@ -209,7 +221,7 @@ const MentalHealthLibrary = () => {
       category: "Relationship Disorders",
       icon: Users,
       slug: "co-dependency",
-      image: bpdPerson,
+      image: codependencyPerson,
       gradient: "from-cyan-500 via-sky-500 to-blue-500",
       bgGradient: "from-cyan-50 via-sky-50 to-blue-50",
       darkBgGradient: "from-cyan-950/30 via-sky-950/30 to-blue-950/30"
@@ -242,7 +254,7 @@ const MentalHealthLibrary = () => {
                 <Sparkles className="w-8 h-8 animate-pulse" />
               </div>
               <p className="text-xl md:text-2xl mb-8 max-w-4xl mx-auto text-white/90 leading-relaxed">
-                🧠 Discover comprehensive information about mental health conditions with real stories of hope and recovery. 
+                Discover comprehensive information about mental health conditions with real stories of hope and recovery. 
                 Your journey to understanding and healing starts here.
               </p>
               <div className="flex flex-col sm:flex-row gap-6 justify-center">
@@ -265,7 +277,7 @@ const MentalHealthLibrary = () => {
           <div className="container mx-auto px-4">
             <div className="text-center mb-16 animate-fade-in">
               <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-violet-600 via-purple-600 to-fuchsia-600 bg-clip-text text-transparent">
-                🌟 Browse Mental Health Conditions
+                Browse Mental Health Conditions
               </h2>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
                 Meet real people on their journey to recovery. Each condition is presented with hope, understanding, and professional guidance.
@@ -296,8 +308,7 @@ const MentalHealthLibrary = () => {
                                 alt={`Person representing ${condition.title}`}
                                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                               />
-                              <div className={`absolute inset-0 bg-gradient-to-br ${condition.gradient} opacity-80 group-hover:opacity-70 transition-opacity duration-300`}></div>
-                              <div className={`absolute inset-0 bg-gradient-to-t ${condition.bgGradient} dark:${condition.darkBgGradient} opacity-20`}></div>
+                              <div className={`absolute inset-0 bg-gradient-to-br ${condition.gradient} opacity-60 group-hover:opacity-50 transition-opacity duration-300`}></div>
                               
                               {/* Icon overlay */}
                               <div className="absolute top-4 right-4 p-3 rounded-full bg-white/20 backdrop-blur-sm border border-white/30">
@@ -350,41 +361,38 @@ const MentalHealthLibrary = () => {
           <div className="container mx-auto px-4 text-center relative z-10 animate-fade-in">
             <div className="max-w-4xl mx-auto text-white">
               <h2 className="text-4xl md:text-6xl font-bold mb-6">
-                ✨ Ready to Transform Your Life? ✨
+                Ready to Transform Your Life?
               </h2>
               <p className="text-xl md:text-2xl mb-10 text-white/90 leading-relaxed">
-                🌈 You don't have to face this alone. Our compassionate licensed therapists are here to guide 
+                You don't have to face this alone. Our compassionate licensed therapists are here to guide 
                 you toward healing, growth, and the life you deserve. Take the first brave step today.
               </p>
               <div className="flex flex-col sm:flex-row gap-6 justify-center">
                 <Button size="lg" className="bg-white text-purple-600 hover:bg-white/90 hover:scale-105 transition-all duration-300 shadow-2xl text-lg px-8 py-4 group" asChild>
                   <Link to="/therapist-matching">
-                    🤝 Find Your Perfect Therapist Match
+                    Find Your Perfect Therapist Match
                     <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </Button>
                 <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-purple-600 hover:scale-105 transition-all duration-300 text-lg px-8 py-4" asChild>
-                  <Link to="/get-started">🚀 Start Your Journey Now</Link>
+                  <Link to="/get-started">Start Your Journey Now</Link>
                 </Button>
               </div>
               
-              <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
-                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-                  <div className="text-2xl mb-2">🏆</div>
-                  <div className="font-semibold">Licensed Professionals</div>
-                  <div className="text-white/80">Qualified therapists ready to help</div>
-                </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-                  <div className="text-2xl mb-2">💝</div>
-                  <div className="font-semibold">Personalized Care</div>
-                  <div className="text-white/80">Treatment tailored just for you</div>
-                </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-                  <div className="text-2xl mb-2">🌟</div>
-                  <div className="font-semibold">Proven Results</div>
-                  <div className="text-white/80">Thousands of success stories</div>
-                </div>
-              </div>
+               <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
+                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+                   <div className="font-semibold">Licensed Professionals</div>
+                   <div className="text-white/80">Qualified therapists ready to help</div>
+                 </div>
+                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+                   <div className="font-semibold">Personalized Care</div>
+                   <div className="text-white/80">Treatment tailored just for you</div>
+                 </div>
+                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+                   <div className="font-semibold">Proven Results</div>
+                   <div className="text-white/80">Thousands of success stories</div>
+                 </div>
+               </div>
             </div>
           </div>
         </section>
