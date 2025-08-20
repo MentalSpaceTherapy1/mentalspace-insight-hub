@@ -21,6 +21,10 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import NotFound from "./pages/NotFound";
 import TherapistMatching from "./pages/TherapistMatching";
+import MentalHealthLibrary from "./pages/MentalHealthLibrary";
+import Depression from "./pages/conditions/Depression";
+import Anxiety from "./pages/conditions/Anxiety";
+import ADHD from "./pages/conditions/ADHD";
 
 const queryClient = new QueryClient();
 
@@ -47,6 +51,10 @@ const App = () => (
           <Route path="/emergency-resources" element={<EmergencyResources />} />
           <Route path="/get-started" element={<GetStarted />} />
           <Route path="/therapist-matching" element={<TherapistMatching />} />
+          <Route path="/mental-health-library" element={<MentalHealthLibrary />} />
+          <Route path="/mental-health-library/depression" element={<Depression />} />
+          <Route path="/mental-health-library/anxiety" element={<Anxiety />} />
+          <Route path="/mental-health-library/adhd" element={<ADHD />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-conditions" element={<TermsAndConditions />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
