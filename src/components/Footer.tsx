@@ -68,9 +68,9 @@ const Footer = () => {
               <Link to="/insurance" className="block text-sm text-muted-foreground hover:text-primary transition-colors">
                 Insurance Coverage
               </Link>
-              <a href="#" className="block text-sm text-muted-foreground hover:text-primary transition-colors">
+              <Link to="/mental-health-library" className="block text-sm text-muted-foreground hover:text-primary transition-colors">
                 Mental Health Library
-              </a>
+              </Link>
               <a href="#" className="block text-sm text-muted-foreground hover:text-primary transition-colors">
                 Free Mental Health Tests
               </a>
