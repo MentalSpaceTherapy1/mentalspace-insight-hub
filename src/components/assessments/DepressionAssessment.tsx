@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
@@ -8,6 +9,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { ArrowLeft, ArrowRight, AlertTriangle, Phone } from "lucide-react";
 
 const DepressionAssessment = ({ onBack }: { onBack: () => void }) => {
+  const navigate = useNavigate();
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<Record<number, string>>({});
   const [showResults, setShowResults] = useState(false);
@@ -280,7 +282,18 @@ const DepressionAssessment = ({ onBack }: { onBack: () => void }) => {
 
         {!crisis && (
           <div className="pt-4">
-            <Button className="w-full" size="lg">
+            <Button 
+              className="w-full" 
+              size="lg"
+              onClick={() => navigate("/assessment-contact", {
+                state: {
+                  assessmentType: "Depression",
+                  score: totalScore,
+                  severity: getSeverityString(),
+                  resultText: getResultDescription()
+                }
+              })}
+            >
               {severity === "mod-severe" || severity === "severe" 
                 ? "Priority scheduling with MentalSpace Therapy"
                 : "Request an appointment with MentalSpace Therapy"
