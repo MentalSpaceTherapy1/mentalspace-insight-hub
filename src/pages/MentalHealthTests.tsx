@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { CheckCircle, Clock, Users, Brain } from "lucide-react";
 
 const MentalHealthTests = () => {
+  // Mental Health Tests Page Component
   const tests = [
     {
       title: "Depression Assessment",
