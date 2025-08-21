@@ -1,11 +1,15 @@
+import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle, Clock, Users, Brain } from "lucide-react";
+import DepressionAssessment from "@/components/assessments/DepressionAssessment";
+import AnxietyAssessment from "@/components/assessments/AnxietyAssessment";
 
 const MentalHealthTests = () => {
-  // Mental Health Tests Page Component
+  const [currentAssessment, setCurrentAssessment] = useState<string | null>(null);
+
   const tests = [
     {
       title: "Depression Assessment",
@@ -50,6 +54,36 @@ const MentalHealthTests = () => {
       color: "bg-teal-500"
     }
   ];
+
+  // Handle assessment navigation
+  const handleBackToTests = () => {
+    setCurrentAssessment(null);
+  };
+
+  // Render specific assessment if selected
+  if (currentAssessment === "Depression Assessment") {
+    return (
+      <div className="min-h-screen bg-background">
+        <Header />
+        <main className="py-8">
+          <DepressionAssessment onBack={handleBackToTests} />
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (currentAssessment === "Anxiety Screening") {
+    return (
+      <div className="min-h-screen bg-background">
+        <Header />
+        <main className="py-8">
+          <AnxietyAssessment onBack={handleBackToTests} />
+        </main>
+        <Footer />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background">
@@ -112,7 +146,10 @@ const MentalHealthTests = () => {
                         <span>{test.duration}</span>
                       </div>
                     </div>
-                    <Button className="w-full group-hover:bg-primary/90 transition-colors">
+                    <Button 
+                      className="w-full group-hover:bg-primary/90 transition-colors"
+                      onClick={() => setCurrentAssessment(test.title)}
+                    >
                       Start Assessment
                     </Button>
                   </CardContent>
