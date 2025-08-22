@@ -25,26 +25,51 @@ export const useAssessmentSubmission = () => {
   });
 
   const saveAssessment = async (assessmentData: AssessmentData) => {
+    console.log('Starting assessment submission:', assessmentData);
     setState({ isSubmitting: true, isSuccess: false, error: null });
 
     try {
-      const { data, error } = await supabase.functions.invoke('save-assessment', {
+      console.log('Invoking save-assessment function...');
+      
+      // Add timeout to prevent hanging
+      const timeoutPromise = new Promise((_, reject) => 
+        setTimeout(() => reject(new Error('Assessment save timeout - please try again')), 30000)
+      );
+      
+      const savePromise = supabase.functions.invoke('save-assessment', {
         body: assessmentData,
       });
 
+      const { data, error } = await Promise.race([savePromise, timeoutPromise]) as any;
+
+      console.log('Save-assessment response:', { data, error });
+
       if (error) {
+        console.error('Supabase save-assessment error:', error);
         throw error;
       }
 
       if (!data?.success) {
+        console.error('Save-assessment returned failure:', data);
         throw new Error(data?.error || 'Assessment save failed');
       }
 
+      console.log('Assessment saved successfully:', data);
       setState({ isSubmitting: false, isSuccess: true, error: null });
       return { success: true, sessionId: data.sessionId, databaseId: data.databaseId };
 
     } catch (error: any) {
-      const errorMessage = error.message || 'Failed to save assessment';
+      console.error('Assessment submission error:', error);
+      let errorMessage = 'Failed to save assessment';
+      
+      if (error.message?.includes('timeout')) {
+        errorMessage = 'Assessment save timed out. Please check your connection and try again.';
+      } else if (error.message?.includes('Failed to fetch')) {
+        errorMessage = 'Network error. Please check your connection and try again.';
+      } else if (error.message) {
+        errorMessage = error.message;
+      }
+      
       setState({ isSubmitting: false, isSuccess: false, error: errorMessage });
       return { success: false, error: errorMessage };
     }
