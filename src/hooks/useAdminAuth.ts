@@ -51,6 +51,8 @@ export const useAdminAuth = () => {
             });
           } catch (error) {
             console.error('Error checking admin profile:', error);
+            console.error('Session user ID:', session.user.id);
+            console.error('Full error details:', error);
             setState({
               user: session.user,
               session,
@@ -92,6 +94,8 @@ export const useAdminAuth = () => {
           });
         } catch (error) {
           console.error('Error checking admin profile for existing session:', error);
+          console.error('Session user ID:', session.user.id);
+          console.error('Full error details:', error);
           setState({
             user: session.user,
             session,
