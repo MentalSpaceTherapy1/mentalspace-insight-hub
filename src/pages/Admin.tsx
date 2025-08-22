@@ -16,7 +16,7 @@ const Admin = () => {
         console.error('Admin page auth timeout - something is wrong with authentication');
         setAuthTimeout(true);
       }
-    }, 12000); // 12 second timeout, slightly longer than auth hook
+    }, 10000); // 10 second timeout, aligned with auth hook
 
     return () => clearTimeout(timeout);
   }, [loading]);

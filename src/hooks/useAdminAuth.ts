@@ -35,8 +35,16 @@ export const useAdminAuth = () => {
     const setLoadingTimeout = () => {
       timeoutId = setTimeout(() => {
         console.warn('Admin auth loading timeout - forcing loading to false');
-        setState(prev => ({ ...prev, loading: false }));
-      }, 10000); // 10 second timeout
+        setState(prev => ({ 
+          ...prev, 
+          loading: false,
+          // Clear everything on timeout to ensure clean state
+          user: null,
+          session: null,
+          profile: null,
+          isAdmin: false
+        }));
+      }, 8000); // 8 second timeout
     };
 
     const clearLoadingTimeout = () => {
@@ -70,6 +78,12 @@ export const useAdminAuth = () => {
             loading: false,
           });
           return;
+        }
+
+        // Handle successful sign in
+        if (event === 'SIGNED_IN') {
+          console.log('🎉 User signed in successfully');
+          // Continue with the session processing below
         }
 
         // Handle token refresh specifically
@@ -272,6 +286,14 @@ export const useAdminAuth = () => {
   const signIn = async (email: string, password: string) => {
     console.log('Attempting sign in for:', email);
     
+    // Clear local storage of any stale auth data
+    Object.keys(localStorage).forEach((key) => {
+      if (key.startsWith('supabase.auth.') || key.includes('sb-')) {
+        localStorage.removeItem(key);
+        console.log('Cleared stale auth key:', key);
+      }
+    });
+
     try {
       // Clear any existing auth state first
       await supabase.auth.signOut({ scope: 'global' });
@@ -290,12 +312,9 @@ export const useAdminAuth = () => {
       throw error;
     }
     
-    // Force a page refresh to ensure clean state
-    if (data.session) {
-      setTimeout(() => {
-        window.location.reload();
-      }, 1000);
-    }
+    // Let the auth state change handler manage the state transition
+    // No forced page reload - this was causing session persistence issues
+    console.log('✅ Sign in successful, letting auth state handler manage transition');
   };
 
   const signOut = async () => {
