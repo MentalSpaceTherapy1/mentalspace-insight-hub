@@ -16,6 +16,7 @@ import BipolarAssessment from "@/components/assessments/BipolarAssessment";
 import InsomniaAssessment from "@/components/assessments/InsomniaAssessment";
 import AlcoholUseAssessment from "@/components/assessments/AlcoholUseAssessment";
 import SubstanceUseAssessment from "@/components/assessments/SubstanceUseAssessment";
+import NicotineAssessment from "@/components/assessments/NicotineAssessment";
 
 const MentalHealthTests = () => {
   const [currentAssessment, setCurrentAssessment] = useState<string | null>(null);
@@ -104,6 +105,13 @@ const MentalHealthTests = () => {
       duration: "2-3 minutes",
       icon: Brain,
       color: "bg-emerald-500"
+    },
+    {
+      title: "Nicotine Dependence Assessment",
+      description: "Screen for nicotine dependence across cigarettes, vaping, and smokeless products",
+      duration: "2-3 minutes",
+      icon: Brain,
+      color: "bg-amber-600"
     },
     {
       title: "Mood Tracker",
@@ -265,6 +273,18 @@ const MentalHealthTests = () => {
         <Header />
         <main className="py-8">
           <SubstanceUseAssessment />
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (currentAssessment === "Nicotine Dependence Assessment") {
+    return (
+      <div className="min-h-screen bg-background">
+        <Header />
+        <main className="py-8">
+          <NicotineAssessment />
         </main>
         <Footer />
       </div>
