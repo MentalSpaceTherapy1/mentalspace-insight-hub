@@ -26,6 +26,7 @@ import GriefAssessment from "@/components/assessments/GriefAssessment";
 import PerinatalMoodAssessment from "@/components/assessments/PerinatalMoodAssessment";
 import AngerAssessment from "@/components/assessments/AngerAssessment";
 import StressBurnoutAssessment from "@/components/assessments/StressBurnoutAssessment";
+import MoodTracker from "@/components/assessments/MoodTracker";
 
 const MentalHealthTests = () => {
   const [currentAssessment, setCurrentAssessment] = useState<string | null>(null);
@@ -465,6 +466,18 @@ const MentalHealthTests = () => {
         <Header />
         <main className="py-8">
           <StressBurnoutAssessment />
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (currentAssessment === "Mood Tracker") {
+    return (
+      <div className="min-h-screen bg-background">
+        <Header />
+        <main className="py-8">
+          <MoodTracker />
         </main>
         <Footer />
       </div>
