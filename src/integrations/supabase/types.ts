@@ -14,16 +14,385 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      admin_profiles: {
+        Row: {
+          created_at: string
+          email: string
+          full_name: string
+          id: string
+          is_active: boolean
+          role: Database["public"]["Enums"]["admin_role"]
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          full_name: string
+          id?: string
+          is_active?: boolean
+          role?: Database["public"]["Enums"]["admin_role"]
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          full_name?: string
+          id?: string
+          is_active?: boolean
+          role?: Database["public"]["Enums"]["admin_role"]
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      analytics_events: {
+        Row: {
+          created_at: string
+          event_data: Json | null
+          event_type: string
+          id: string
+          ip_address: unknown | null
+          page_url: string | null
+          referrer: string | null
+          session_id: string | null
+          user_agent: string | null
+        }
+        Insert: {
+          created_at?: string
+          event_data?: Json | null
+          event_type: string
+          id?: string
+          ip_address?: unknown | null
+          page_url?: string | null
+          referrer?: string | null
+          session_id?: string | null
+          user_agent?: string | null
+        }
+        Update: {
+          created_at?: string
+          event_data?: Json | null
+          event_type?: string
+          id?: string
+          ip_address?: unknown | null
+          page_url?: string | null
+          referrer?: string | null
+          session_id?: string | null
+          user_agent?: string | null
+        }
+        Relationships: []
+      }
+      assessment_contacts: {
+        Row: {
+          assessment_session_id: string | null
+          contact_data: Json
+          created_at: string
+          id: string
+          is_processed: boolean
+          notes: string | null
+          processed_at: string | null
+          processed_by: string | null
+          updated_at: string
+        }
+        Insert: {
+          assessment_session_id?: string | null
+          contact_data: Json
+          created_at?: string
+          id?: string
+          is_processed?: boolean
+          notes?: string | null
+          processed_at?: string | null
+          processed_by?: string | null
+          updated_at?: string
+        }
+        Update: {
+          assessment_session_id?: string | null
+          contact_data?: Json
+          created_at?: string
+          id?: string
+          is_processed?: boolean
+          notes?: string | null
+          processed_at?: string | null
+          processed_by?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "assessment_contacts_assessment_session_id_fkey"
+            columns: ["assessment_session_id"]
+            isOneToOne: false
+            referencedRelation: "assessment_sessions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "assessment_contacts_processed_by_fkey"
+            columns: ["processed_by"]
+            isOneToOne: false
+            referencedRelation: "admin_profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      assessment_sessions: {
+        Row: {
+          additional_info: Json | null
+          answers: Json
+          assessment_type: Database["public"]["Enums"]["assessment_type"]
+          completed_at: string
+          created_at: string
+          id: string
+          ip_address: unknown | null
+          recommendations: string[] | null
+          score: number | null
+          session_id: string
+          severity: string | null
+        }
+        Insert: {
+          additional_info?: Json | null
+          answers: Json
+          assessment_type: Database["public"]["Enums"]["assessment_type"]
+          completed_at?: string
+          created_at?: string
+          id?: string
+          ip_address?: unknown | null
+          recommendations?: string[] | null
+          score?: number | null
+          session_id: string
+          severity?: string | null
+        }
+        Update: {
+          additional_info?: Json | null
+          answers?: Json
+          assessment_type?: Database["public"]["Enums"]["assessment_type"]
+          completed_at?: string
+          created_at?: string
+          id?: string
+          ip_address?: unknown | null
+          recommendations?: string[] | null
+          score?: number | null
+          session_id?: string
+          severity?: string | null
+        }
+        Relationships: []
+      }
+      blog_posts: {
+        Row: {
+          author_id: string
+          content: string
+          created_at: string
+          excerpt: string | null
+          featured_image_url: string | null
+          id: string
+          meta_description: string | null
+          meta_title: string | null
+          published_at: string | null
+          slug: string
+          status: Database["public"]["Enums"]["content_status"]
+          tags: string[] | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          author_id: string
+          content: string
+          created_at?: string
+          excerpt?: string | null
+          featured_image_url?: string | null
+          id?: string
+          meta_description?: string | null
+          meta_title?: string | null
+          published_at?: string | null
+          slug: string
+          status?: Database["public"]["Enums"]["content_status"]
+          tags?: string[] | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          author_id?: string
+          content?: string
+          created_at?: string
+          excerpt?: string | null
+          featured_image_url?: string | null
+          id?: string
+          meta_description?: string | null
+          meta_title?: string | null
+          published_at?: string | null
+          slug?: string
+          status?: Database["public"]["Enums"]["content_status"]
+          tags?: string[] | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "blog_posts_author_id_fkey"
+            columns: ["author_id"]
+            isOneToOne: false
+            referencedRelation: "admin_profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      form_submissions: {
+        Row: {
+          created_at: string
+          form_data: Json
+          form_type: Database["public"]["Enums"]["form_type"]
+          id: string
+          ip_address: unknown | null
+          is_processed: boolean
+          notes: string | null
+          processed_at: string | null
+          processed_by: string | null
+          submission_date: string
+          updated_at: string
+          user_agent: string | null
+        }
+        Insert: {
+          created_at?: string
+          form_data: Json
+          form_type: Database["public"]["Enums"]["form_type"]
+          id?: string
+          ip_address?: unknown | null
+          is_processed?: boolean
+          notes?: string | null
+          processed_at?: string | null
+          processed_by?: string | null
+          submission_date?: string
+          updated_at?: string
+          user_agent?: string | null
+        }
+        Update: {
+          created_at?: string
+          form_data?: Json
+          form_type?: Database["public"]["Enums"]["form_type"]
+          id?: string
+          ip_address?: unknown | null
+          is_processed?: boolean
+          notes?: string | null
+          processed_at?: string | null
+          processed_by?: string | null
+          submission_date?: string
+          updated_at?: string
+          user_agent?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "form_submissions_processed_by_fkey"
+            columns: ["processed_by"]
+            isOneToOne: false
+            referencedRelation: "admin_profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      resources: {
+        Row: {
+          author_id: string
+          category: string | null
+          content: string | null
+          created_at: string
+          description: string | null
+          file_path: string | null
+          id: string
+          published_at: string | null
+          resource_type: string
+          resource_url: string | null
+          status: Database["public"]["Enums"]["content_status"]
+          tags: string[] | null
+          title: string
+          updated_at: string
+          view_count: number
+        }
+        Insert: {
+          author_id: string
+          category?: string | null
+          content?: string | null
+          created_at?: string
+          description?: string | null
+          file_path?: string | null
+          id?: string
+          published_at?: string | null
+          resource_type: string
+          resource_url?: string | null
+          status?: Database["public"]["Enums"]["content_status"]
+          tags?: string[] | null
+          title: string
+          updated_at?: string
+          view_count?: number
+        }
+        Update: {
+          author_id?: string
+          category?: string | null
+          content?: string | null
+          created_at?: string
+          description?: string | null
+          file_path?: string | null
+          id?: string
+          published_at?: string | null
+          resource_type?: string
+          resource_url?: string | null
+          status?: Database["public"]["Enums"]["content_status"]
+          tags?: string[] | null
+          title?: string
+          updated_at?: string
+          view_count?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "resources_author_id_fkey"
+            columns: ["author_id"]
+            isOneToOne: false
+            referencedRelation: "admin_profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      is_admin: {
+        Args: Record<PropertyKey, never>
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      admin_role: "super_admin" | "admin" | "content_manager"
+      assessment_type:
+        | "anxiety"
+        | "depression"
+        | "adhd"
+        | "bipolar"
+        | "bdd"
+        | "alcohol"
+        | "binge_eating"
+        | "anger"
+        | "eating_concerns"
+        | "grief"
+        | "health_anxiety"
+        | "insomnia"
+        | "mood_tracker"
+        | "nicotine"
+        | "ocd"
+        | "ptsd"
+        | "panic"
+        | "perinatal_mood"
+        | "social_anxiety"
+        | "somatic_symptom"
+        | "specific_phobia"
+        | "stress_burnout"
+        | "substance_use"
+        | "wellbeing_check"
+      content_status: "draft" | "published" | "archived"
+      form_type:
+        | "therapist_matching"
+        | "contact_us"
+        | "career_application"
+        | "assessment_contact"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +519,41 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      admin_role: ["super_admin", "admin", "content_manager"],
+      assessment_type: [
+        "anxiety",
+        "depression",
+        "adhd",
+        "bipolar",
+        "bdd",
+        "alcohol",
+        "binge_eating",
+        "anger",
+        "eating_concerns",
+        "grief",
+        "health_anxiety",
+        "insomnia",
+        "mood_tracker",
+        "nicotine",
+        "ocd",
+        "ptsd",
+        "panic",
+        "perinatal_mood",
+        "social_anxiety",
+        "somatic_symptom",
+        "specific_phobia",
+        "stress_burnout",
+        "substance_use",
+        "wellbeing_check",
+      ],
+      content_status: ["draft", "published", "archived"],
+      form_type: [
+        "therapist_matching",
+        "contact_us",
+        "career_application",
+        "assessment_contact",
+      ],
+    },
   },
 } as const
