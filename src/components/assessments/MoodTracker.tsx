@@ -127,6 +127,22 @@ export default function MoodTracker() {
     setShowSaved(false);
   };
 
+  const navigateToContact = () => {
+    const todayEntry = savedEntries.find(entry => entry.date === new Date().toISOString().split('T')[0]);
+    
+    // Create assessment-like data for the contact form
+    const moodScore = todayEntry ? todayEntry.mood : moodData.mood[0];
+    const assessmentData = {
+      assessmentType: "Mood Tracker",
+      score: moodScore,
+      severity: moodScore <= 3 ? "Concerning" : moodScore <= 5 ? "Moderate" : "Good",
+      resultText: "Based on your mood tracking, connecting with a therapist can help you develop personalized strategies for better mental health.",
+      maxScore: 10
+    };
+
+    navigate('/assessment-contact', { state: assessmentData });
+  };
+
   const getInsights = () => {
     if (savedEntries.length < 3) return null;
 
@@ -572,7 +588,7 @@ export default function MoodTracker() {
               <Button 
                 className="w-full" 
                 size="lg"
-                onClick={() => navigate('/assessment-contact')}
+                onClick={navigateToContact}
               >
                 Request Therapy Appointment
               </Button>
@@ -674,7 +690,7 @@ export default function MoodTracker() {
                 <Button 
                   size="sm" 
                   className="w-full"
-                  onClick={() => navigate('/assessment-contact')}
+                  onClick={navigateToContact}
                 >
                   Request Therapy Appointment
                 </Button>
