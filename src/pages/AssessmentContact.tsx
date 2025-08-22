@@ -278,10 +278,11 @@ const AssessmentContact = () => {
                         max={new Date().getFullYear()}
                         value={formData.dateOfBirth?.getFullYear() || ""}
                         onChange={(e) => {
-                          const year = parseInt(e.target.value);
-                          if (year >= 1900 && year <= new Date().getFullYear()) {
+                          const year = e.target.value;
+                          // Allow typing, only validate when complete
+                          if (year === "" || (parseInt(year) >= 1900 && parseInt(year) <= new Date().getFullYear())) {
                             const currentDate = formData.dateOfBirth || new Date(1990, 0, 1);
-                            const newDate = new Date(year, currentDate.getMonth(), currentDate.getDate());
+                            const newDate = year === "" ? undefined : new Date(parseInt(year), currentDate.getMonth(), currentDate.getDate());
                             handleInputChange("dateOfBirth", newDate);
                           }
                         }}
