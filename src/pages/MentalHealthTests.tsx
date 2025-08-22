@@ -23,6 +23,7 @@ import BDDAssessment from "@/components/assessments/BDDAssessment";
 import HealthAnxietyAssessment from "@/components/assessments/HealthAnxietyAssessment";
 import SomaticSymptomAssessment from "@/components/assessments/SomaticSymptomAssessment";
 import GriefAssessment from "@/components/assessments/GriefAssessment";
+import PerinatalMoodAssessment from "@/components/assessments/PerinatalMoodAssessment";
 
 const MentalHealthTests = () => {
   const [currentAssessment, setCurrentAssessment] = useState<string | null>(null);
@@ -160,6 +161,13 @@ const MentalHealthTests = () => {
       duration: "2-3 minutes",
       icon: Brain,
       color: "bg-slate-700"
+    },
+    {
+      title: "Perinatal Mood & Anxiety Assessment",
+      description: "Screen for depression/anxiety during pregnancy and postpartum period",
+      duration: "2-3 minutes",
+      icon: Brain,
+      color: "bg-pink-700"
     },
     {
       title: "Mood Tracker",
@@ -405,6 +413,18 @@ const MentalHealthTests = () => {
         <Header />
         <main className="py-8">
           <GriefAssessment />
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (currentAssessment === "Perinatal Mood & Anxiety Assessment") {
+    return (
+      <div className="min-h-screen bg-background">
+        <Header />
+        <main className="py-8">
+          <PerinatalMoodAssessment />
         </main>
         <Footer />
       </div>
