@@ -13,6 +13,7 @@ import OCDAssessment from "@/components/assessments/OCDAssessment";
 import PTSDAssessment from "@/components/assessments/PTSDAssessment";
 import ADHDAssessment from "@/components/assessments/ADHDAssessment";
 import BipolarAssessment from "@/components/assessments/BipolarAssessment";
+import InsomniaAssessment from "@/components/assessments/InsomniaAssessment";
 
 const MentalHealthTests = () => {
   const [currentAssessment, setCurrentAssessment] = useState<string | null>(null);
@@ -80,6 +81,13 @@ const MentalHealthTests = () => {
       duration: "2-3 minutes",
       icon: Brain,
       color: "bg-violet-500"
+    },
+    {
+      title: "Insomnia Assessment",
+      description: "Screen for sleep initiation, maintenance, and quality issues",
+      duration: "2-3 minutes",
+      icon: Brain,
+      color: "bg-indigo-500"
     },
     {
       title: "Mood Tracker",
@@ -205,6 +213,18 @@ const MentalHealthTests = () => {
         <Header />
         <main className="py-8">
           <BipolarAssessment />
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (currentAssessment === "Insomnia Assessment") {
+    return (
+      <div className="min-h-screen bg-background">
+        <Header />
+        <main className="py-8">
+          <InsomniaAssessment />
         </main>
         <Footer />
       </div>
