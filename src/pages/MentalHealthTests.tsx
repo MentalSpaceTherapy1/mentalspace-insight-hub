@@ -25,6 +25,7 @@ import SomaticSymptomAssessment from "@/components/assessments/SomaticSymptomAss
 import GriefAssessment from "@/components/assessments/GriefAssessment";
 import PerinatalMoodAssessment from "@/components/assessments/PerinatalMoodAssessment";
 import AngerAssessment from "@/components/assessments/AngerAssessment";
+import StressBurnoutAssessment from "@/components/assessments/StressBurnoutAssessment";
 
 const MentalHealthTests = () => {
   const [currentAssessment, setCurrentAssessment] = useState<string | null>(null);
@@ -176,6 +177,13 @@ const MentalHealthTests = () => {
       duration: "2-3 minutes",
       icon: Brain,
       color: "bg-red-700"
+    },
+    {
+      title: "Stress & Burnout Assessment",
+      description: "Screen for burnout pattern—exhaustion, cynicism, reduced efficacy—and workplace stress",
+      duration: "2-3 minutes",
+      icon: Brain,
+      color: "bg-yellow-700"
     },
     {
       title: "Mood Tracker",
@@ -445,6 +453,18 @@ const MentalHealthTests = () => {
         <Header />
         <main className="py-8">
           <AngerAssessment />
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (currentAssessment === "Stress & Burnout Assessment") {
+    return (
+      <div className="min-h-screen bg-background">
+        <Header />
+        <main className="py-8">
+          <StressBurnoutAssessment />
         </main>
         <Footer />
       </div>
