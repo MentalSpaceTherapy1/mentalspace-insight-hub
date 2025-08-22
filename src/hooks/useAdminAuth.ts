@@ -17,6 +17,7 @@ interface AdminAuthState {
   profile: AdminProfile | null;
   isAdmin: boolean;
   loading: boolean;
+  error: string | null;
 }
 
 export const useAdminAuth = () => {
@@ -26,313 +27,175 @@ export const useAdminAuth = () => {
     profile: null,
     isAdmin: false,
     loading: true,
+    error: null,
   });
 
+  const checkAdminStatus = async (user: User) => {
+    try {
+      console.log('🔍 Checking admin status for user:', user.id);
+      
+      const { data: profile, error } = await supabase
+        .from('admin_profiles')
+        .select('*')
+        .eq('user_id', user.id)
+        .eq('is_active', true)
+        .maybeSingle();
+
+      console.log('📋 Admin profile result:', { profile, error });
+
+      if (error) {
+        console.error('❌ Admin profile query error:', error);
+        return null;
+      }
+
+      return profile;
+    } catch (error) {
+      console.error('❌ Error checking admin status:', error);
+      return null;
+    }
+  };
+
   useEffect(() => {
+    let mounted = true;
     let timeoutId: NodeJS.Timeout;
 
-    // Set timeout to prevent infinite loading
-    const setLoadingTimeout = () => {
-      timeoutId = setTimeout(() => {
-        console.warn('Admin auth loading timeout - forcing loading to false');
-        setState(prev => ({ 
-          ...prev, 
-          loading: false,
-          // Clear everything on timeout to ensure clean state
+    // Failsafe timeout to prevent infinite loading
+    timeoutId = setTimeout(() => {
+      if (mounted) {
+        console.warn('⏰ Auth timeout - clearing loading state');
+        setState(prev => ({ ...prev, loading: false, error: 'Authentication timeout' }));
+      }
+    }, 10000);
+
+    const handleAuthState = async (event: string, session: Session | null) => {
+      console.log('🔔 Auth event:', event, 'Session exists:', !!session);
+
+      if (!mounted) return;
+
+      // Clear timeout since we got a response
+      if (timeoutId) clearTimeout(timeoutId);
+
+      if (!session || !session.user) {
+        console.log('🚪 No session - user signed out');
+        setState({
           user: null,
           session: null,
           profile: null,
-          isAdmin: false
-        }));
-      }, 8000); // 8 second timeout
-    };
-
-    const clearLoadingTimeout = () => {
-      if (timeoutId) {
-        clearTimeout(timeoutId);
-      }
-    };
-
-    setLoadingTimeout();
-
-    // Set up auth state listener
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (event, session) => {
-        console.log('🔔 Auth state change:', { 
-          event, 
-          hasSession: !!session, 
-          userId: session?.user?.id,
-          hasAccessToken: !!session?.access_token 
+          isAdmin: false,
+          loading: false,
+          error: null,
         });
-        
-        clearLoadingTimeout();
-        
-        // Handle explicit sign out or token refresh failures
-        if (event === 'SIGNED_OUT' || !session) {
-          console.log('🚪 User signed out or session lost');
-          setState({
-            user: null,
-            session: null,
-            profile: null,
-            isAdmin: false,
-            loading: false,
-          });
-          return;
-        }
-
-        // Handle successful sign in
-        if (event === 'SIGNED_IN') {
-          console.log('🎉 User signed in successfully');
-          // Continue with the session processing below
-        }
-
-        // Handle token refresh specifically
-        if (event === 'TOKEN_REFRESHED') {
-          console.log('🔄 Token refreshed:', {
-            hasSession: !!session,
-            hasAccessToken: !!session?.access_token,
-            expiresAt: session?.expires_at
-          });
-          
-          // If token refresh failed (no session returned), sign out
-          if (!session || !session.access_token) {
-            console.error('❌ Token refresh failed - signing out');
-            try {
-              await supabase.auth.signOut({ scope: 'global' });
-            } catch (err) {
-              console.error('Error during forced sign out:', err);
-            }
-            setState({
-              user: null,
-              session: null,
-              profile: null,
-              isAdmin: false,
-              loading: false,
-            });
-            return;
-          }
-        }
-        
-        if (session?.user) {
-          console.log('✅ Processing session for user:', {
-            userId: session.user.id,
-            email: session.user.email,
-            jwtToken: session.access_token?.substring(0, 20) + '...',
-            expiresAt: session.expires_at
-          });
-          
-          try {
-            // Add delay to allow JWT to be processed
-            await new Promise(resolve => setTimeout(resolve, 50));
-            
-            // Test auth.uid() by calling is_admin_user with timeout
-            let testAuth, authError;
-            try {
-              const authTestPromise = supabase.rpc('is_admin_user');
-              const timeoutPromise = new Promise((_, reject) => 
-                setTimeout(() => reject(new Error('Auth test timeout')), 5000)
-              );
-              
-              const result = await Promise.race([
-                authTestPromise,
-                timeoutPromise
-              ]) as { data: any; error: any };
-              testAuth = result.data;
-              authError = result.error;
-            } catch (error) {
-              authError = error;
-              testAuth = null;
-            }
-            
-            console.log('🧪 Auth test result:', { testAuth, authError });
-            
-            if (authError) {
-              console.error('❌ Database auth test failed, signing out:', authError);
-              try {
-                await supabase.auth.signOut({ scope: 'global' });
-              } catch (err) {
-                console.error('Error during forced sign out:', err);
-              }
-              setState({
-                user: null,
-                session: null,
-                profile: null,
-                isAdmin: false,
-                loading: false,
-              });
-              return;
-            }
-
-            // Check if user is admin
-            const { data: profile, error } = await supabase
-              .from('admin_profiles')
-              .select('*')
-              .eq('user_id', session.user.id)
-              .eq('is_active', true)
-              .maybeSingle();
-
-            console.log('👤 Admin profile query result:', { profile, error });
-
-            if (error) {
-              console.error('❌ Supabase error details:', error.message, error.code, error.hint);
-            }
-
-            setState({
-              user: session.user,
-              session,
-              profile: profile || null,
-              isAdmin: !!profile,
-              loading: false,
-            });
-          } catch (error) {
-            console.error('❌ Error checking admin profile:', error);
-            
-            // If this is a timeout or critical error, sign out
-            if (error.message?.includes('timeout') || error.message?.includes('Auth test timeout')) {
-              console.log('🔄 Critical auth error, signing out');
-              try {
-                await supabase.auth.signOut({ scope: 'global' });
-              } catch (err) {
-                console.error('Error during forced sign out:', err);
-              }
-              setState({
-                user: null,
-                session: null,
-                profile: null,
-                isAdmin: false,
-                loading: false,
-              });
-            } else {
-              setState({
-                user: session.user,
-                session,
-                profile: null,
-                isAdmin: false,
-                loading: false,
-              });
-            }
-          }
-        }
-      }
-    );
-
-    // Check for existing session
-    supabase.auth.getSession().then(async ({ data: { session }, error: sessionError }) => {
-      console.log('Initial session check:', { hasSession: !!session, sessionError });
-      
-      if (sessionError) {
-        console.error('Session error:', sessionError);
-        clearLoadingTimeout();
-        setState(prev => ({ ...prev, loading: false }));
         return;
       }
-      
-      if (session?.user) {
-        console.log('Found existing session for user:', session.user.id);
-        console.log('Session token info:', {
-          hasAccessToken: !!session.access_token,
-          expiresAt: session.expires_at,
-          tokenType: session.token_type
-        });
-        
-        try {
-          // Add delay to allow JWT to be processed
-          await new Promise(resolve => setTimeout(resolve, 100));
-          
-          // Test auth.uid() first
-          const { data: testAuth, error: authError } = await supabase.rpc('is_admin_user');
-          console.log('Existing session auth test result:', { testAuth, authError });
 
-          const { data: profile, error } = await supabase
-            .from('admin_profiles')
-            .select('*')
-            .eq('user_id', session.user.id)
-            .eq('is_active', true)
-            .maybeSingle();
+      console.log('✅ Valid session found for:', session.user.email);
 
-          console.log('Existing session admin profile query result:', { profile, error });
+      // Set basic auth state immediately
+      setState(prev => ({
+        ...prev,
+        user: session.user,
+        session,
+        loading: true, // Still loading while checking admin status
+        error: null,
+      }));
 
-          clearLoadingTimeout();
-          setState({
-            user: session.user,
-            session,
-            profile: profile || null,
-            isAdmin: !!profile,
-            loading: false,
-          });
-        } catch (error) {
-          console.error('Error checking admin profile for existing session:', error);
-          clearLoadingTimeout();
-          setState({
-            user: session.user,
-            session,
-            profile: null,
-            isAdmin: false,
-            loading: false,
-          });
-        }
-      } else {
-        clearLoadingTimeout();
-        setState(prev => ({ ...prev, loading: false }));
+      // Check admin status
+      const profile = await checkAdminStatus(session.user);
+
+      if (mounted) {
+        setState(prev => ({
+          ...prev,
+          profile,
+          isAdmin: !!profile,
+          loading: false,
+        }));
       }
+    };
+
+    // Set up auth state listener
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(handleAuthState);
+
+    // Check for existing session
+    supabase.auth.getSession().then(({ data: { session }, error }) => {
+      if (error) {
+        console.error('❌ Session check error:', error);
+        if (mounted) {
+          setState(prev => ({ ...prev, loading: false, error: error.message }));
+        }
+        return;
+      }
+
+      // Process the initial session
+      handleAuthState('INITIAL_SESSION', session);
     });
 
     return () => {
+      mounted = false;
       subscription.unsubscribe();
-      clearLoadingTimeout();
+      if (timeoutId) clearTimeout(timeoutId);
     };
   }, []);
 
   const signIn = async (email: string, password: string) => {
-    console.log('Attempting sign in for:', email);
-    
-    // Clear local storage of any stale auth data
-    Object.keys(localStorage).forEach((key) => {
-      if (key.startsWith('supabase.auth.') || key.includes('sb-')) {
-        localStorage.removeItem(key);
-        console.log('Cleared stale auth key:', key);
-      }
-    });
+    console.log('🔐 Starting sign in for:', email);
+
+    setState(prev => ({ ...prev, loading: true, error: null }));
 
     try {
-      // Clear any existing auth state first
-      await supabase.auth.signOut({ scope: 'global' });
-    } catch (err) {
-      console.log('Cleanup sign out error (ignoring):', err);
-    }
+      // Clean up any stale auth data
+      Object.keys(localStorage).forEach((key) => {
+        if (key.startsWith('supabase.auth.') || key.includes('sb-')) {
+          localStorage.removeItem(key);
+          console.log('🧹 Cleared stale auth key:', key);
+        }
+      });
 
-    const { error, data } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-    
-    console.log('Sign in result:', { error, hasSession: !!data.session, hasUser: !!data.user });
-    
-    if (error) {
+      // Sign out any existing session first
+      try {
+        await supabase.auth.signOut({ scope: 'global' });
+      } catch (err) {
+        console.log('Cleanup sign out (ignoring error):', err);
+      }
+
+      // Sign in
+      const { error, data } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (error) {
+        setState(prev => ({ ...prev, loading: false, error: error.message }));
+        throw error;
+      }
+
+      console.log('✅ Sign in successful, auth state handler will take over');
+      // The auth state change handler will handle the rest
+    } catch (error) {
+      console.error('❌ Sign in failed:', error);
+      setState(prev => ({ ...prev, loading: false, error: error.message }));
       throw error;
     }
-    
-    // Let the auth state change handler manage the state transition
-    // No forced page reload - this was causing session persistence issues
-    console.log('✅ Sign in successful, letting auth state handler manage transition');
   };
 
   const signOut = async () => {
-    console.log('Attempting sign out');
-    
+    console.log('🚪 Signing out');
+
     try {
       const { error } = await supabase.auth.signOut({ scope: 'global' });
       if (error) {
         console.error('Sign out error:', error);
       }
+    } catch (err) {
+      console.error('Sign out error:', err);
     } finally {
-      // Clear state regardless of error
+      // Always clear state
       setState({
         user: null,
         session: null,
         profile: null,
         isAdmin: false,
         loading: false,
+        error: null,
       });
     }
   };
