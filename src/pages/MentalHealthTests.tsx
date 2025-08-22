@@ -12,6 +12,7 @@ import SpecificPhobiaAssessment from "@/components/assessments/SpecificPhobiaAss
 import OCDAssessment from "@/components/assessments/OCDAssessment";
 import PTSDAssessment from "@/components/assessments/PTSDAssessment";
 import ADHDAssessment from "@/components/assessments/ADHDAssessment";
+import BipolarAssessment from "@/components/assessments/BipolarAssessment";
 
 const MentalHealthTests = () => {
   const [currentAssessment, setCurrentAssessment] = useState<string | null>(null);
@@ -72,6 +73,13 @@ const MentalHealthTests = () => {
       duration: "3 minutes",
       icon: Brain,
       color: "bg-cyan-500"
+    },
+    {
+      title: "Bipolar Assessment",
+      description: "Screen for hypomanic/manic episodes and mood cycling patterns",
+      duration: "2-3 minutes",
+      icon: Brain,
+      color: "bg-violet-500"
     },
     {
       title: "Mood Tracker",
@@ -185,6 +193,18 @@ const MentalHealthTests = () => {
         <Header />
         <main className="py-8">
           <ADHDAssessment />
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (currentAssessment === "Bipolar Assessment") {
+    return (
+      <div className="min-h-screen bg-background">
+        <Header />
+        <main className="py-8">
+          <BipolarAssessment />
         </main>
         <Footer />
       </div>
