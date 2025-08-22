@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { format } from "date-fns";
-import { CalendarIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -9,11 +7,8 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Calendar } from "@/components/ui/calendar";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { ArrowLeft } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { cn } from "@/lib/utils";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
@@ -235,40 +230,64 @@ const AssessmentContact = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label>Date of Birth *</Label>
-                    <Popover>
-                      <PopoverTrigger asChild>
-                        <Button
-                          variant="outline"
-                          className={cn(
-                            "w-full justify-start text-left font-normal",
-                            !formData.dateOfBirth && "text-muted-foreground"
-                          )}
-                        >
-                          <CalendarIcon className="mr-2 h-4 w-4" />
-                          {formData.dateOfBirth ? (
-                            format(formData.dateOfBirth, "PPP")
-                          ) : (
-                            <span>Pick a date</span>
-                          )}
-                        </Button>
-                      </PopoverTrigger>
-                      <PopoverContent className="w-auto p-0" align="start">
-                        <Calendar
-                          mode="single"
-                          selected={formData.dateOfBirth}
-                          onSelect={(date) => handleInputChange("dateOfBirth", date)}
-                          disabled={(date) =>
-                            date > new Date() || date < new Date("1900-01-01")
+                    <div className="grid grid-cols-3 gap-2">
+                      <Select onValueChange={(value) => {
+                        const month = parseInt(value);
+                        const currentDate = formData.dateOfBirth || new Date(1990, 0, 1);
+                        const newDate = new Date(currentDate.getFullYear(), month - 1, currentDate.getDate());
+                        handleInputChange("dateOfBirth", newDate);
+                      }} required>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Month" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="1">January</SelectItem>
+                          <SelectItem value="2">February</SelectItem>
+                          <SelectItem value="3">March</SelectItem>
+                          <SelectItem value="4">April</SelectItem>
+                          <SelectItem value="5">May</SelectItem>
+                          <SelectItem value="6">June</SelectItem>
+                          <SelectItem value="7">July</SelectItem>
+                          <SelectItem value="8">August</SelectItem>
+                          <SelectItem value="9">September</SelectItem>
+                          <SelectItem value="10">October</SelectItem>
+                          <SelectItem value="11">November</SelectItem>
+                          <SelectItem value="12">December</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <Input
+                        placeholder="Day"
+                        type="number"
+                        min="1"
+                        max="31"
+                        value={formData.dateOfBirth?.getDate() || ""}
+                        onChange={(e) => {
+                          const day = parseInt(e.target.value);
+                          if (day >= 1 && day <= 31) {
+                            const currentDate = formData.dateOfBirth || new Date(1990, 0, 1);
+                            const newDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
+                            handleInputChange("dateOfBirth", newDate);
                           }
-                          initialFocus
-                          captionLayout="dropdown"
-                          fromYear={1900}
-                          toYear={new Date().getFullYear()}
-                          defaultMonth={new Date(1990, 0)}
-                          className={cn("p-3 pointer-events-auto")}
-                        />
-                      </PopoverContent>
-                    </Popover>
+                        }}
+                        required
+                      />
+                      <Input
+                        placeholder="Year"
+                        type="number"
+                        min="1900"
+                        max={new Date().getFullYear()}
+                        value={formData.dateOfBirth?.getFullYear() || ""}
+                        onChange={(e) => {
+                          const year = parseInt(e.target.value);
+                          if (year >= 1900 && year <= new Date().getFullYear()) {
+                            const currentDate = formData.dateOfBirth || new Date(1990, 0, 1);
+                            const newDate = new Date(year, currentDate.getMonth(), currentDate.getDate());
+                            handleInputChange("dateOfBirth", newDate);
+                          }
+                        }}
+                        required
+                      />
+                    </div>
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="gender">Gender *</Label>
