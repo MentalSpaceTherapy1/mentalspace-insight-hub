@@ -355,9 +355,25 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      create_initial_admin: {
+        Args: { admin_email: string; admin_full_name: string }
+        Returns: string
+      }
       is_admin: {
         Args: Record<PropertyKey, never>
         Returns: boolean
+      }
+      promote_user_to_admin: {
+        Args: { full_name?: string; user_email: string }
+        Returns: string
+      }
+      setup_first_admin: {
+        Args: {
+          admin_email: string
+          admin_full_name: string
+          admin_password: string
+        }
+        Returns: string
       }
     }
     Enums: {
