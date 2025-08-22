@@ -52,6 +52,12 @@ const AdminDashboard = () => {
     }
   };
 
+  const handleForceAuthRefresh = async () => {
+    toast.info('Forcing auth refresh and reload...');
+    const { forceAuthRefresh } = await import('@/utils/cacheUtils');
+    await forceAuthRefresh();
+  };
+
   const handleClearAllCache = () => {
     const success = clearAllCache();
     if (success) {
@@ -338,6 +344,14 @@ const AdminDashboard = () => {
                     >
                       <Trash2 className="h-4 w-4 mr-2 text-blue-500" />
                       Auth Only
+                    </Button>
+                    <Button 
+                      onClick={handleForceAuthRefresh}
+                      variant="secondary" 
+                      className="bg-white hover:bg-gray-50 border shadow-sm hover:shadow-md transition-all duration-200"
+                    >
+                      <Zap className="h-4 w-4 mr-2 text-purple-500" />
+                      Force Auth Refresh
                     </Button>
                     <Button 
                       onClick={handleClearBrowserCache}
