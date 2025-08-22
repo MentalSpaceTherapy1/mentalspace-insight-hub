@@ -82,6 +82,11 @@ const Header = () => {
             <Phone className="h-4 w-4" />
             <span>404-832-0102</span>
           </div>
+          <Link to="/admin">
+            <Button variant="outline" size="sm">
+              Admin Login
+            </Button>
+          </Link>
           <Link to="/therapist-matching">
             <Button variant="hero" size="lg">
               Request an Appointment
@@ -159,6 +164,13 @@ const Header = () => {
               onClick={() => setIsMenuOpen(false)}
             >
               Contact Us
+            </Link>
+            <Link 
+              to="/admin" 
+              className="block py-2 text-foreground hover:text-primary"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Admin Login
             </Link>
           </div>
         </div>

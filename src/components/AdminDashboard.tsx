@@ -27,8 +27,12 @@ const AdminDashboard = () => {
   const handleSignOut = async () => {
     try {
       await signOut();
+      // Redirect to home page after successful logout
+      window.location.href = '/';
     } catch (error) {
       console.error('Sign out error:', error);
+      // Even if signOut fails, redirect to home page
+      window.location.href = '/';
     }
   };
 
