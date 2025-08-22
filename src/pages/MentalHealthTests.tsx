@@ -7,6 +7,7 @@ import { CheckCircle, Clock, Users, Brain } from "lucide-react";
 import DepressionAssessment from "@/components/assessments/DepressionAssessment";
 import AnxietyAssessment from "@/components/assessments/AnxietyAssessment";
 import PanicAssessment from "@/components/assessments/PanicAssessment";
+import SocialAnxietyAssessment from "@/components/assessments/SocialAnxietyAssessment";
 
 const MentalHealthTests = () => {
   const [currentAssessment, setCurrentAssessment] = useState<string | null>(null);
@@ -34,11 +35,18 @@ const MentalHealthTests = () => {
       color: "bg-red-500"
     },
     {
+      title: "Social Anxiety Assessment",
+      description: "Screen for social/performance anxiety and fear of negative evaluation",
+      duration: "2-3 minutes",
+      icon: Brain,
+      color: "bg-purple-500"
+    },
+    {
       title: "ADHD Self-Assessment",
       description: "Adult ADHD self-report scale to identify attention difficulties",
       duration: "10-15 minutes",
       icon: Brain,
-      color: "bg-purple-500"
+      color: "bg-indigo-500"
     },
     {
       title: "Mood Tracker",
@@ -92,6 +100,18 @@ const MentalHealthTests = () => {
         <Header />
         <main className="py-8">
           <PanicAssessment />
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (currentAssessment === "Social Anxiety Assessment") {
+    return (
+      <div className="min-h-screen bg-background">
+        <Header />
+        <main className="py-8">
+          <SocialAnxietyAssessment />
         </main>
         <Footer />
       </div>
