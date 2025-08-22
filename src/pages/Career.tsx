@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -5,6 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { TrendingUp, Clock, Shield, DollarSign, Users, FileText, GraduationCap, MessageSquare, UserPlus } from "lucide-react";
 
 const Career = () => {
+  const navigate = useNavigate();
   const benefits = [
     {
       title: "$200–300 monthly Health Insurance Stipend",
@@ -106,7 +108,7 @@ const Career = () => {
             <p className="text-lg mb-8 text-muted-foreground max-w-4xl mx-auto">
               At MentalSpace, we're revolutionizing behavioral healthcare, creating unique opportunities for therapists. Join us!
             </p>
-            <Button size="lg" className="text-lg px-8 py-6">
+            <Button size="lg" className="text-lg px-8 py-6" onClick={() => navigate('/career-application')}>
               Join Our Team
             </Button>
           </div>
@@ -210,7 +212,7 @@ const Career = () => {
             <p className="text-xl mb-8 text-primary-foreground/90">
               Join our team of dedicated professionals making mental health accessible
             </p>
-            <Button variant="secondary" size="lg" className="text-lg px-8 py-6">
+            <Button variant="secondary" size="lg" className="text-lg px-8 py-6" onClick={() => navigate('/career-application')}>
               Apply Now
             </Button>
           </div>

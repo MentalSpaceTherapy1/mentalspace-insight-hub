@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
@@ -12,6 +12,8 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { useToast } from "@/hooks/use-toast";
+import { useFormSubmission } from "@/hooks/useFormSubmission";
+import { useAnalytics } from "@/hooks/useAnalytics";
 import { cn } from "@/lib/utils";
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -19,6 +21,8 @@ import Footer from '@/components/Footer';
 const TherapistMatching = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { submitForm, isSubmitting, isSuccess, error } = useFormSubmission();
+  const { trackFormStart } = useAnalytics();
   
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({
@@ -36,7 +40,10 @@ const TherapistMatching = () => {
     termsAccepted: false
   });
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  // Track form start on mount
+  useEffect(() => {
+    trackFormStart('therapist_matching');
+  }, [trackFormStart]);
 
   const totalSteps = 7;
   const progressPercentage = (currentStep / totalSteps) * 100;
@@ -99,18 +106,38 @@ const TherapistMatching = () => {
       return;
     }
 
-    setIsSubmitting(true);
-    
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    toast({
-      title: "Request Submitted",
-      description: "Thank you for your request. A MentalSpace Therapy coordinator will contact you soon."
-    });
+    // Prepare form data for submission
+    const submissionData = {
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      dateOfBirth: formData.dateOfBirth?.toISOString(),
+      gender: formData.gender,
+      email: formData.email,
+      phone: formData.phone,
+      state: formData.state,
+      hasInsurance: formData.hasInsurance,
+      insuranceName: formData.hasInsurance === 'yes' ? formData.insuranceName : null,
+      customInsurance: formData.insuranceName === 'Other' ? formData.customInsurance : null,
+      timeline: formData.timeline,
+      termsAccepted: formData.termsAccepted,
+      submissionDate: new Date().toISOString()
+    };
 
-    // Navigate to thank you page
-    navigate("/thank-you");
+    const result = await submitForm('therapist_matching', submissionData);
+    
+    if (result.success) {
+      toast({
+        title: "Request Submitted",
+        description: "Thank you for your request. A MentalSpace Therapy coordinator will contact you soon."
+      });
+      navigate("/thank-you");
+    } else {
+      toast({
+        variant: "destructive",
+        title: "Submission Failed",
+        description: result.error || "There was an error submitting your request. Please try again."
+      });
+    }
   };
 
   const renderStep = () => {

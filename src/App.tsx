@@ -25,6 +25,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import NotFound from "./pages/NotFound";
 import TherapistMatching from "./pages/TherapistMatching";
+import CareerApplication from "./pages/CareerApplication";
 import MentalHealthLibrary from "./pages/MentalHealthLibrary";
 import MentalHealthTests from "./pages/MentalHealthTests";
 import AssessmentContact from "./pages/AssessmentContact";
@@ -59,6 +60,7 @@ const App = () => (
             <Route path="/faq" element={<FAQ />} />
             <Route path="/contact-us" element={<ContactUs />} />
             <Route path="/career" element={<Career />} />
+            <Route path="/career-application" element={<CareerApplication />} />
             <Route path="/emergency-resources" element={<EmergencyResources />} />
             <Route path="/get-started" element={<GetStarted />} />
             <Route path="/therapist-matching" element={<TherapistMatching />} />
