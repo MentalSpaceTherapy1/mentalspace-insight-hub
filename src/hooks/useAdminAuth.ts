@@ -33,6 +33,8 @@ export const useAdminAuth = () => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (event, session) => {
         if (session?.user) {
+          console.log('Checking admin status for user:', session.user.id);
+          console.log('User email:', session.user.email);
           try {
             // Check if user is admin
             const { data: profile, error } = await supabase
@@ -41,6 +43,12 @@ export const useAdminAuth = () => {
               .eq('user_id', session.user.id)
               .eq('is_active', true)
               .maybeSingle();
+
+            console.log('Admin profile query result:', { profile, error });
+
+            if (error) {
+              console.error('Supabase error details:', error);
+            }
 
             setState({
               user: session.user,
@@ -76,6 +84,8 @@ export const useAdminAuth = () => {
     // Check for existing session
     supabase.auth.getSession().then(async ({ data: { session } }) => {
       if (session?.user) {
+        console.log('Checking admin status for existing session:', session.user.id);
+        console.log('User email:', session.user.email);
         try {
           // Check admin status
           const { data: profile, error } = await supabase
@@ -84,6 +94,12 @@ export const useAdminAuth = () => {
             .eq('user_id', session.user.id)
             .eq('is_active', true)
             .maybeSingle();
+
+          console.log('Existing session admin profile query result:', { profile, error });
+
+          if (error) {
+            console.error('Existing session Supabase error details:', error);
+          }
 
           setState({
             user: session.user,
