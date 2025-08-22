@@ -33,21 +33,32 @@ export const useAdminAuth = () => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (event, session) => {
         if (session?.user) {
-          // Check if user is admin
-          const { data: profile } = await supabase
-            .from('admin_profiles')
-            .select('*')
-            .eq('user_id', session.user.id)
-            .eq('is_active', true)
-            .single();
+          try {
+            // Check if user is admin
+            const { data: profile } = await supabase
+              .from('admin_profiles')
+              .select('*')
+              .eq('user_id', session.user.id)
+              .eq('is_active', true)
+              .maybeSingle();
 
-          setState({
-            user: session.user,
-            session,
-            profile: profile || null,
-            isAdmin: !!profile,
-            loading: false,
-          });
+            setState({
+              user: session.user,
+              session,
+              profile: profile || null,
+              isAdmin: !!profile,
+              loading: false,
+            });
+          } catch (error) {
+            console.error('Error checking admin profile:', error);
+            setState({
+              user: session.user,
+              session,
+              profile: null,
+              isAdmin: false,
+              loading: false,
+            });
+          }
         } else {
           setState({
             user: null,
@@ -61,24 +72,34 @@ export const useAdminAuth = () => {
     );
 
     // Check for existing session
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    supabase.auth.getSession().then(async ({ data: { session } }) => {
       if (session?.user) {
-        // Check admin status
-        supabase
-          .from('admin_profiles')
-          .select('*')
-          .eq('user_id', session.user.id)
-          .eq('is_active', true)
-          .single()
-          .then(({ data: profile }) => {
-            setState({
-              user: session.user,
-              session,
-              profile: profile || null,
-              isAdmin: !!profile,
-              loading: false,
-            });
+        try {
+          // Check admin status
+          const { data: profile } = await supabase
+            .from('admin_profiles')
+            .select('*')
+            .eq('user_id', session.user.id)
+            .eq('is_active', true)
+            .maybeSingle();
+
+          setState({
+            user: session.user,
+            session,
+            profile: profile || null,
+            isAdmin: !!profile,
+            loading: false,
           });
+        } catch (error) {
+          console.error('Error checking admin profile:', error);
+          setState({
+            user: session.user,
+            session,
+            profile: null,
+            isAdmin: false,
+            loading: false,
+          });
+        }
       } else {
         setState(prev => ({ ...prev, loading: false }));
       }
