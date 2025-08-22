@@ -42,8 +42,8 @@ const AssessmentContact = () => {
 
   // Insurance options
   const insuranceProviders = [
-    "Aetna", "Anthem", "Blue Cross Blue Shield", "Cigna", "Humana", 
-    "Kaiser Permanente", "Medicaid", "Medicare", "UnitedHealthcare", "Other"
+    "Caresource", "Amerigroup", "Peach State", "Alliant", "UnitedHealthCare", 
+    "BCBS", "Anthem", "Optum", "Humana", "VA-Optum", "Cigna", "Oscar", "Aetna", "Other"
   ];
 
   // US States
