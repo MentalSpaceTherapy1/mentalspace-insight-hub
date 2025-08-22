@@ -10,6 +10,7 @@ import PanicAssessment from "@/components/assessments/PanicAssessment";
 import SocialAnxietyAssessment from "@/components/assessments/SocialAnxietyAssessment";
 import SpecificPhobiaAssessment from "@/components/assessments/SpecificPhobiaAssessment";
 import OCDAssessment from "@/components/assessments/OCDAssessment";
+import PTSDAssessment from "@/components/assessments/PTSDAssessment";
 
 const MentalHealthTests = () => {
   const [currentAssessment, setCurrentAssessment] = useState<string | null>(null);
@@ -56,6 +57,13 @@ const MentalHealthTests = () => {
       duration: "2-3 minutes", 
       icon: Brain,
       color: "bg-teal-500"
+    },
+    {
+      title: "PTSD Assessment",
+      description: "Screen for post-traumatic stress symptoms and trauma responses", 
+      duration: "2-3 minutes",
+      icon: Brain,
+      color: "bg-rose-500"
     },
     {
       title: "ADHD Self-Assessment",
@@ -152,6 +160,18 @@ const MentalHealthTests = () => {
         <Header />
         <main className="py-8">
           <OCDAssessment />
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (currentAssessment === "PTSD Assessment") {
+    return (
+      <div className="min-h-screen bg-background">
+        <Header />
+        <main className="py-8">
+          <PTSDAssessment />
         </main>
         <Footer />
       </div>
