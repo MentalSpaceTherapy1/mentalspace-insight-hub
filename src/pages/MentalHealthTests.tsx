@@ -24,6 +24,7 @@ import HealthAnxietyAssessment from "@/components/assessments/HealthAnxietyAsses
 import SomaticSymptomAssessment from "@/components/assessments/SomaticSymptomAssessment";
 import GriefAssessment from "@/components/assessments/GriefAssessment";
 import PerinatalMoodAssessment from "@/components/assessments/PerinatalMoodAssessment";
+import AngerAssessment from "@/components/assessments/AngerAssessment";
 
 const MentalHealthTests = () => {
   const [currentAssessment, setCurrentAssessment] = useState<string | null>(null);
@@ -168,6 +169,13 @@ const MentalHealthTests = () => {
       duration: "2-3 minutes",
       icon: Brain,
       color: "bg-pink-700"
+    },
+    {
+      title: "Anger & Irritability Assessment",
+      description: "Identify anger frequency, intensity, control, and harm risk",
+      duration: "2-3 minutes",
+      icon: Brain,
+      color: "bg-red-700"
     },
     {
       title: "Mood Tracker",
@@ -425,6 +433,18 @@ const MentalHealthTests = () => {
         <Header />
         <main className="py-8">
           <PerinatalMoodAssessment />
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (currentAssessment === "Anger & Irritability Assessment") {
+    return (
+      <div className="min-h-screen bg-background">
+        <Header />
+        <main className="py-8">
+          <AngerAssessment />
         </main>
         <Footer />
       </div>
