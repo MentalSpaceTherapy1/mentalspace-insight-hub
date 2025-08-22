@@ -95,7 +95,7 @@ const Insurance = () => {
                         Learn More
                       </Button>
                     </Link>
-                    <Link to="/get-started">
+                    <Link to="/therapist-matching">
                       <Button variant="outline" className="w-full">
                         Request an Appointment
                       </Button>
@@ -116,9 +116,11 @@ const Insurance = () => {
             <p className="text-xl mb-8 text-primary-foreground/90">
               Contact us today to verify your coverage and request an appointment
             </p>
-            <Button variant="secondary" size="lg" className="text-lg px-8 py-6">
-              Request an Appointment
-            </Button>
+            <Link to="/therapist-matching">
+              <Button variant="secondary" size="lg" className="text-lg px-8 py-6">
+                Request an Appointment
+              </Button>
+            </Link>
           </div>
         </section>
       </main>

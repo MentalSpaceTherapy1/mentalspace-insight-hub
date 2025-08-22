@@ -133,7 +133,7 @@ const Index = () => {
             
             {/* Call to Action */}
             <div className="text-center mt-12">
-              <Link to="/get-started">
+              <Link to="/therapist-matching">
                 <Button size="lg" className="px-8 py-6 text-lg">
                   Request an Appointment
                 </Button>
@@ -194,7 +194,7 @@ const Index = () => {
                   Our platform connects you with experienced, licensed therapists who specialize in your specific needs. 
                   Every session is conducted in a secure, HIPAA-compliant environment.
                 </p>
-                <Link to="/get-started">
+                <Link to="/therapist-matching">
                   <Button size="lg" className="group">
                     Request an Appointment
                     <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
@@ -320,7 +320,7 @@ const Index = () => {
             </div>
             
             <div className="text-center animate-fade-in">
-              <Link to="/get-started">
+              <Link to="/therapist-matching">
                 <Button size="lg" variant="hero" className="text-lg px-12 py-6">
                   Start Your Journey Today
                   <ArrowRight className="ml-2" />

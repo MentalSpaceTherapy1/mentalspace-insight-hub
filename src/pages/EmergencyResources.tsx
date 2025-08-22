@@ -276,7 +276,7 @@ const EmergencyResources = () => {
                   Our team of licensed therapists and certified coaches are here to provide ongoing mental health support through your journey.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Link to="/get-started">
+                  <Link to="/therapist-matching">
                     <Button size="lg" className="bg-primary hover:bg-primary/90">
                       Request an Appointment
                     </Button>

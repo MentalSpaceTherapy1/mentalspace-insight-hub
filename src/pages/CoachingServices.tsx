@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import { ClipboardList, FileText, Play } from "lucide-react";
 
 const CoachingServices = () => {
@@ -41,9 +42,11 @@ const CoachingServices = () => {
             <p className="text-xl md:text-2xl mb-8 text-muted-foreground max-w-4xl mx-auto">
               At MentalSpace, we understand that sometimes you need more than therapy. You need guidance, mentorship, and a roadmap to navigate life's challenges. Our coaching services are designed to provide you with the tools and strategies to thrive in various aspects of your life.
             </p>
-            <Button size="lg" className="text-lg px-8 py-6">
-              Request an Appointment
-            </Button>
+            <Link to="/therapist-matching">
+              <Button size="lg" className="text-lg px-8 py-6">
+                Request an Appointment
+              </Button>
+            </Link>
           </div>
         </section>
 
@@ -106,9 +109,11 @@ const CoachingServices = () => {
             <p className="text-xl mb-8 text-primary-foreground/90">
               Take the first step towards personal growth and transformation
             </p>
-            <Button variant="secondary" size="lg" className="text-lg px-8 py-6">
-              Request an Appointment
-            </Button>
+            <Link to="/therapist-matching">
+              <Button variant="secondary" size="lg" className="text-lg px-8 py-6">
+                Request an Appointment
+              </Button>
+            </Link>
           </div>
         </section>
       </main>

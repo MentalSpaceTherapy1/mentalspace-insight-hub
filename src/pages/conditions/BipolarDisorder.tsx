@@ -55,7 +55,7 @@ const BipolarDisorder = () => {
                   <Link to="/therapist-matching">Find a Therapist</Link>
                 </Button>
                 <Button variant="outline" size="lg" asChild>
-                  <Link to="/get-started">Request an Appointment</Link>
+                  <Link to="/therapist-matching">Request an Appointment</Link>
                 </Button>
               </div>
             </div>

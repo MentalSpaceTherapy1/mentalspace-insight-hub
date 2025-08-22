@@ -10,28 +10,28 @@ const Services = () => {
       title: "Individual Therapy",
       description: "One-on-one support with licensed therapists for anxiety, depression, trauma, and personal growth.",
       color: "from-primary to-primary-light",
-      link: "/online-therapy"
+      link: "/therapist-matching"
     },
     {
       icon: <Users className="h-8 w-8" />,
       title: "Couples Therapy", 
       description: "Enhance your relationship with professional guidance to improve communication and strengthen bonds.",
       color: "from-secondary to-secondary-light",
-      link: "/couples-therapy"
+      link: "/therapist-matching"
     },
     {
       icon: <UserCheck className="h-8 w-8" />,
       title: "Teen Therapy",
       description: "Specialized care for youth aged 13-17, providing a safe space to navigate adolescent challenges.",
       color: "from-primary to-secondary",
-      link: "/teen-therapy"
+      link: "/therapist-matching"
     },
     {
       icon: <Target className="h-8 w-8" />,
       title: "Life Coaching",
       description: "Find balance, purpose, and joy with personalized coaching to achieve your personal and professional goals.",
       color: "from-secondary to-primary",
-      link: "/life-coaching"
+      link: "/therapist-matching"
     }
   ];
 

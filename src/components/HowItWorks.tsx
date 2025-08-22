@@ -58,7 +58,7 @@ const HowItWorks = () => {
         
         {/* Call to Action */}
         <div className="text-center mt-12">
-          <Link to="/get-started">
+          <Link to="/therapist-matching">
             <Button size="lg" className="px-8 py-6 text-lg">
               Request an Appointment
             </Button>

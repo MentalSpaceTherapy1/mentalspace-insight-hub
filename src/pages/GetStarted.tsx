@@ -99,7 +99,7 @@ const GetStarted = () => {
                       <Button 
                         className="w-full group relative z-10" 
                         size="lg"
-                        onClick={() => navigate(service.link)}
+                        onClick={() => navigate("/therapist-matching")}
                       >
                         Request an Appointment
                         <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />

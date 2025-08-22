@@ -162,9 +162,11 @@ const InsuranceProvider = () => {
               Start your mental health journey today with covered therapy sessions
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="secondary" size="lg" className="text-lg px-8 py-6">
-                Request an Appointment
-              </Button>
+              <Link to="/therapist-matching">
+                <Button variant="secondary" size="lg" className="text-lg px-8 py-6">
+                  Request an Appointment
+                </Button>
+              </Link>
               <Link to="/insurance">
                 <Button variant="outline" size="lg" className="text-lg px-8 py-6 border-white text-white hover:bg-white hover:text-primary">
                   View All Insurance Options

@@ -80,7 +80,7 @@ const OnlineTherapy = () => {
                 <p className="text-lg mb-8 text-white/80 leading-relaxed">
                   We all have been troubled by negative thoughts and behaviors. With the help of an experienced therapist, you'll learn to identify and overcome these obstacles and coaching with MentalSpace.
                 </p>
-                <Link to="/get-started">
+                <Link to="/therapist-matching">
                   <Button size="lg" variant="secondary" className="text-lg px-8 py-6 group">
                     Request an Appointment
                     <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
@@ -182,7 +182,7 @@ const OnlineTherapy = () => {
             <p className="text-xl mb-8 text-primary-foreground/90 max-w-2xl mx-auto">
               Contact us for a free consultation to begin your journey to a happier and healthier you
             </p>
-            <Link to="/get-started">
+            <Link to="/therapist-matching">
               <Button variant="secondary" size="lg" className="text-lg px-8 py-6 group">
                 Request an Appointment
                 <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />

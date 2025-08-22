@@ -82,7 +82,7 @@ const Header = () => {
             <Phone className="h-4 w-4" />
             <span>404-832-0102</span>
           </div>
-          <Link to="/get-started">
+          <Link to="/therapist-matching">
             <Button variant="hero" size="lg">
               Request an Appointment
             </Button>

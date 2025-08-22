@@ -256,7 +256,7 @@ const FAQ = () => {
               Have more questions? Contact us for a free consultation and get personalized answers
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/get-started">
+              <Link to="/therapist-matching">
                 <Button variant="secondary" size="lg" className="text-lg px-8 py-6 group">
                   Request an Appointment
                   <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
