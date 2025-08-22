@@ -66,7 +66,7 @@ const MentalHealthTests = () => {
       <div className="min-h-screen bg-background">
         <Header />
         <main className="py-8">
-          <DepressionAssessment onBack={handleBackToTests} />
+          <DepressionAssessment />
         </main>
         <Footer />
       </div>
@@ -78,7 +78,7 @@ const MentalHealthTests = () => {
       <div className="min-h-screen bg-background">
         <Header />
         <main className="py-8">
-          <AnxietyAssessment onBack={handleBackToTests} />
+          <AnxietyAssessment />
         </main>
         <Footer />
       </div>

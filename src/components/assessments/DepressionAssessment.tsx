@@ -8,7 +8,7 @@ import { Progress } from "@/components/ui/progress";
 import { Checkbox } from "@/components/ui/checkbox";
 import { ArrowLeft, ArrowRight, AlertTriangle, Phone } from "lucide-react";
 
-const DepressionAssessment = ({ onBack }: { onBack: () => void }) => {
+const DepressionAssessment = () => {
   const navigate = useNavigate();
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<Record<number, string>>({});
@@ -318,7 +318,7 @@ const DepressionAssessment = ({ onBack }: { onBack: () => void }) => {
         <Card>
           <CardHeader>
             <div className="flex items-center justify-between mb-4">
-              <Button variant="ghost" onClick={onBack} className="p-2">
+              <Button variant="ghost" onClick={() => navigate("/mental-health-tests")} className="p-2">
                 <ArrowLeft className="h-4 w-4" />
               </Button>
               <div className="text-sm text-muted-foreground">Assessment Complete</div>
@@ -352,7 +352,7 @@ const DepressionAssessment = ({ onBack }: { onBack: () => void }) => {
       <Card>
         <CardHeader>
           <div className="flex items-center justify-between mb-4">
-            <Button variant="ghost" onClick={onBack} className="p-2">
+            <Button variant="ghost" onClick={() => navigate("/mental-health-tests")} className="p-2">
               <ArrowLeft className="h-4 w-4" />
             </Button>
             <div className="text-sm text-muted-foreground">
