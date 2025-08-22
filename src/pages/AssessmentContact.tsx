@@ -35,6 +35,9 @@ const AssessmentContact = () => {
     firstName: "",
     lastName: "",
     dateOfBirth: undefined as Date | undefined,
+    birthMonth: "",
+    birthDay: "",
+    birthYear: "",
     gender: "",
     email: "",
     phone: "",
@@ -231,12 +234,11 @@ const AssessmentContact = () => {
                   <div className="space-y-2">
                     <Label>Date of Birth *</Label>
                     <div className="grid grid-cols-3 gap-2">
-                      <Select onValueChange={(value) => {
-                        const month = parseInt(value);
-                        const currentDate = formData.dateOfBirth || new Date(1990, 0, 1);
-                        const newDate = new Date(currentDate.getFullYear(), month - 1, currentDate.getDate());
-                        handleInputChange("dateOfBirth", newDate);
-                      }} required>
+                      <Select 
+                        value={formData.birthMonth}
+                        onValueChange={(value) => handleInputChange("birthMonth", value)}
+                        required
+                      >
                         <SelectTrigger>
                           <SelectValue placeholder="Month" />
                         </SelectTrigger>
@@ -260,15 +262,8 @@ const AssessmentContact = () => {
                         type="number"
                         min="1"
                         max="31"
-                        value={formData.dateOfBirth?.getDate() || ""}
-                        onChange={(e) => {
-                          const day = parseInt(e.target.value);
-                          if (day >= 1 && day <= 31) {
-                            const currentDate = formData.dateOfBirth || new Date(1990, 0, 1);
-                            const newDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
-                            handleInputChange("dateOfBirth", newDate);
-                          }
-                        }}
+                        value={formData.birthDay}
+                        onChange={(e) => handleInputChange("birthDay", e.target.value)}
                         required
                       />
                       <Input
@@ -276,16 +271,8 @@ const AssessmentContact = () => {
                         type="number"
                         min="1900"
                         max={new Date().getFullYear()}
-                        value={formData.dateOfBirth?.getFullYear() || ""}
-                        onChange={(e) => {
-                          const year = e.target.value;
-                          // Allow typing, only validate when complete
-                          if (year === "" || (parseInt(year) >= 1900 && parseInt(year) <= new Date().getFullYear())) {
-                            const currentDate = formData.dateOfBirth || new Date(1990, 0, 1);
-                            const newDate = year === "" ? undefined : new Date(parseInt(year), currentDate.getMonth(), currentDate.getDate());
-                            handleInputChange("dateOfBirth", newDate);
-                          }
-                        }}
+                        value={formData.birthYear}
+                        onChange={(e) => handleInputChange("birthYear", e.target.value)}
                         required
                       />
                     </div>
