@@ -14,6 +14,7 @@ import PTSDAssessment from "@/components/assessments/PTSDAssessment";
 import ADHDAssessment from "@/components/assessments/ADHDAssessment";
 import BipolarAssessment from "@/components/assessments/BipolarAssessment";
 import InsomniaAssessment from "@/components/assessments/InsomniaAssessment";
+import AlcoholUseAssessment from "@/components/assessments/AlcoholUseAssessment";
 
 const MentalHealthTests = () => {
   const [currentAssessment, setCurrentAssessment] = useState<string | null>(null);
@@ -88,6 +89,13 @@ const MentalHealthTests = () => {
       duration: "2-3 minutes",
       icon: Brain,
       color: "bg-indigo-500"
+    },
+    {
+      title: "Alcohol Use Assessment",
+      description: "Screen for unhealthy alcohol use patterns and safety risks",
+      duration: "2-3 minutes",
+      icon: Brain,
+      color: "bg-orange-500"
     },
     {
       title: "Mood Tracker",
@@ -225,6 +233,18 @@ const MentalHealthTests = () => {
         <Header />
         <main className="py-8">
           <InsomniaAssessment />
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (currentAssessment === "Alcohol Use Assessment") {
+    return (
+      <div className="min-h-screen bg-background">
+        <Header />
+        <main className="py-8">
+          <AlcoholUseAssessment />
         </main>
         <Footer />
       </div>
