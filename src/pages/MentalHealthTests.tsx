@@ -11,6 +11,7 @@ import SocialAnxietyAssessment from "@/components/assessments/SocialAnxietyAsses
 import SpecificPhobiaAssessment from "@/components/assessments/SpecificPhobiaAssessment";
 import OCDAssessment from "@/components/assessments/OCDAssessment";
 import PTSDAssessment from "@/components/assessments/PTSDAssessment";
+import ADHDAssessment from "@/components/assessments/ADHDAssessment";
 
 const MentalHealthTests = () => {
   const [currentAssessment, setCurrentAssessment] = useState<string | null>(null);
@@ -66,11 +67,11 @@ const MentalHealthTests = () => {
       color: "bg-rose-500"
     },
     {
-      title: "ADHD Self-Assessment",
-      description: "Adult ADHD self-report scale to identify attention difficulties",
-      duration: "10-15 minutes",
+      title: "ADHD Assessment",
+      description: "Screen for attention, hyperactivity, and executive function difficulties",
+      duration: "3 minutes",
       icon: Brain,
-      color: "bg-indigo-500"
+      color: "bg-cyan-500"
     },
     {
       title: "Mood Tracker",
@@ -84,7 +85,7 @@ const MentalHealthTests = () => {
       description: "General mental health and wellness screening tool",
       duration: "15-20 minutes",
       icon: Brain,
-      color: "bg-teal-500"
+      color: "bg-slate-500"
     }
   ];
 
@@ -172,6 +173,18 @@ const MentalHealthTests = () => {
         <Header />
         <main className="py-8">
           <PTSDAssessment />
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (currentAssessment === "ADHD Assessment") {
+    return (
+      <div className="min-h-screen bg-background">
+        <Header />
+        <main className="py-8">
+          <ADHDAssessment />
         </main>
         <Footer />
       </div>
