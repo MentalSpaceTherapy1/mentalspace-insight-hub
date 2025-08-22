@@ -22,6 +22,7 @@ import BingeEatingAssessment from "@/components/assessments/BingeEatingAssessmen
 import BDDAssessment from "@/components/assessments/BDDAssessment";
 import HealthAnxietyAssessment from "@/components/assessments/HealthAnxietyAssessment";
 import SomaticSymptomAssessment from "@/components/assessments/SomaticSymptomAssessment";
+import GriefAssessment from "@/components/assessments/GriefAssessment";
 
 const MentalHealthTests = () => {
   const [currentAssessment, setCurrentAssessment] = useState<string | null>(null);
@@ -152,6 +153,13 @@ const MentalHealthTests = () => {
       duration: "2-3 minutes",
       icon: Brain,
       color: "bg-gray-700"
+    },
+    {
+      title: "Prolonged Grief Assessment",
+      description: "Screen for persistent, impairing grief reactions after loss",
+      duration: "2-3 minutes",
+      icon: Brain,
+      color: "bg-slate-700"
     },
     {
       title: "Mood Tracker",
@@ -385,6 +393,18 @@ const MentalHealthTests = () => {
         <Header />
         <main className="py-8">
           <SomaticSymptomAssessment />
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (currentAssessment === "Prolonged Grief Assessment") {
+    return (
+      <div className="min-h-screen bg-background">
+        <Header />
+        <main className="py-8">
+          <GriefAssessment />
         </main>
         <Footer />
       </div>
