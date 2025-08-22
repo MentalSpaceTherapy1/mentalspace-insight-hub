@@ -50,12 +50,57 @@ export const useAdminAuth = () => {
     // Set up auth state listener
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (event, session) => {
-        console.log('Auth state change:', { event, hasSession: !!session, userId: session?.user?.id });
+        console.log('🔔 Auth state change:', { 
+          event, 
+          hasSession: !!session, 
+          userId: session?.user?.id,
+          hasAccessToken: !!session?.access_token 
+        });
         
         clearLoadingTimeout();
         
+        // Handle explicit sign out or token refresh failures
+        if (event === 'SIGNED_OUT' || !session) {
+          console.log('🚪 User signed out or session lost');
+          setState({
+            user: null,
+            session: null,
+            profile: null,
+            isAdmin: false,
+            loading: false,
+          });
+          return;
+        }
+
+        // Handle token refresh specifically
+        if (event === 'TOKEN_REFRESHED') {
+          console.log('🔄 Token refreshed:', {
+            hasSession: !!session,
+            hasAccessToken: !!session?.access_token,
+            expiresAt: session?.expires_at
+          });
+          
+          // If token refresh failed (no session returned), sign out
+          if (!session || !session.access_token) {
+            console.error('❌ Token refresh failed - signing out');
+            try {
+              await supabase.auth.signOut({ scope: 'global' });
+            } catch (err) {
+              console.error('Error during forced sign out:', err);
+            }
+            setState({
+              user: null,
+              session: null,
+              profile: null,
+              isAdmin: false,
+              loading: false,
+            });
+            return;
+          }
+        }
+        
         if (session?.user) {
-          console.log('Session details:', {
+          console.log('✅ Processing session for user:', {
             userId: session.user.id,
             email: session.user.email,
             jwtToken: session.access_token?.substring(0, 20) + '...',
@@ -64,11 +109,45 @@ export const useAdminAuth = () => {
           
           try {
             // Add delay to allow JWT to be processed
-            await new Promise(resolve => setTimeout(resolve, 100));
+            await new Promise(resolve => setTimeout(resolve, 50));
             
-            // Test auth.uid() by calling a simple function first
-            const { data: testAuth, error: authError } = await supabase.rpc('is_admin_user');
-            console.log('Auth test result:', { testAuth, authError });
+            // Test auth.uid() by calling is_admin_user with timeout
+            let testAuth, authError;
+            try {
+              const authTestPromise = supabase.rpc('is_admin_user');
+              const timeoutPromise = new Promise((_, reject) => 
+                setTimeout(() => reject(new Error('Auth test timeout')), 5000)
+              );
+              
+              const result = await Promise.race([
+                authTestPromise,
+                timeoutPromise
+              ]) as { data: any; error: any };
+              testAuth = result.data;
+              authError = result.error;
+            } catch (error) {
+              authError = error;
+              testAuth = null;
+            }
+            
+            console.log('🧪 Auth test result:', { testAuth, authError });
+            
+            if (authError) {
+              console.error('❌ Database auth test failed, signing out:', authError);
+              try {
+                await supabase.auth.signOut({ scope: 'global' });
+              } catch (err) {
+                console.error('Error during forced sign out:', err);
+              }
+              setState({
+                user: null,
+                session: null,
+                profile: null,
+                isAdmin: false,
+                loading: false,
+              });
+              return;
+            }
 
             // Check if user is admin
             const { data: profile, error } = await supabase
@@ -78,10 +157,10 @@ export const useAdminAuth = () => {
               .eq('is_active', true)
               .maybeSingle();
 
-            console.log('Admin profile query result:', { profile, error });
+            console.log('👤 Admin profile query result:', { profile, error });
 
             if (error) {
-              console.error('Supabase error details:', error.message, error.code, error.hint);
+              console.error('❌ Supabase error details:', error.message, error.code, error.hint);
             }
 
             setState({
@@ -92,24 +171,33 @@ export const useAdminAuth = () => {
               loading: false,
             });
           } catch (error) {
-            console.error('Error checking admin profile:', error);
-            setState({
-              user: session.user,
-              session,
-              profile: null,
-              isAdmin: false,
-              loading: false,
-            });
+            console.error('❌ Error checking admin profile:', error);
+            
+            // If this is a timeout or critical error, sign out
+            if (error.message?.includes('timeout') || error.message?.includes('Auth test timeout')) {
+              console.log('🔄 Critical auth error, signing out');
+              try {
+                await supabase.auth.signOut({ scope: 'global' });
+              } catch (err) {
+                console.error('Error during forced sign out:', err);
+              }
+              setState({
+                user: null,
+                session: null,
+                profile: null,
+                isAdmin: false,
+                loading: false,
+              });
+            } else {
+              setState({
+                user: session.user,
+                session,
+                profile: null,
+                isAdmin: false,
+                loading: false,
+              });
+            }
           }
-        } else {
-          console.log('No session found');
-          setState({
-            user: null,
-            session: null,
-            profile: null,
-            isAdmin: false,
-            loading: false,
-          });
         }
       }
     );
