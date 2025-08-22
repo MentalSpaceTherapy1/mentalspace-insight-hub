@@ -27,10 +27,17 @@ serve(async (req) => {
 
     const eventData: AnalyticsEvent = await req.json();
     
-    // Get client info
-    const clientIP = req.headers.get('x-forwarded-for') || 
-                    req.headers.get('x-real-ip') || 
-                    'unknown';
+    // Get client info - handle multiple IPs by taking the first one
+    const forwardedFor = req.headers.get('x-forwarded-for');
+    const realIP = req.headers.get('x-real-ip');
+    let clientIP = 'unknown';
+    
+    if (forwardedFor) {
+      // Take the first IP from comma-separated list
+      clientIP = forwardedFor.split(',')[0].trim();
+    } else if (realIP) {
+      clientIP = realIP.trim();
+    }
     const userAgent = req.headers.get('user-agent') || 'unknown';
 
     console.log('Tracking analytics event:', eventData.eventType);
