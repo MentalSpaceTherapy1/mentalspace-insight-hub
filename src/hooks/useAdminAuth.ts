@@ -29,16 +29,11 @@ export const useAdminAuth = () => {
   });
 
   useEffect(() => {
-    console.log('useAdminAuth: useEffect running');
-    
     // Set up auth state listener
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (event, session) => {
-        console.log('useAdminAuth: Auth state change event:', event, session?.user?.id);
-        
         if (session?.user) {
           try {
-            console.log('useAdminAuth: Checking admin profile for user:', session.user.id);
             // Check if user is admin
             const { data: profile, error } = await supabase
               .from('admin_profiles')
@@ -46,8 +41,6 @@ export const useAdminAuth = () => {
               .eq('user_id', session.user.id)
               .eq('is_active', true)
               .maybeSingle();
-
-            console.log('useAdminAuth: Admin profile query result:', { profile, error });
 
             setState({
               user: session.user,
@@ -57,7 +50,7 @@ export const useAdminAuth = () => {
               loading: false,
             });
           } catch (error) {
-            console.error('useAdminAuth: Error checking admin profile:', error);
+            console.error('Error checking admin profile:', error);
             setState({
               user: session.user,
               session,
@@ -67,7 +60,6 @@ export const useAdminAuth = () => {
             });
           }
         } else {
-          console.log('useAdminAuth: No session, setting state to not authenticated');
           setState({
             user: null,
             session: null,
@@ -80,13 +72,9 @@ export const useAdminAuth = () => {
     );
 
     // Check for existing session
-    console.log('useAdminAuth: Checking for existing session');
     supabase.auth.getSession().then(async ({ data: { session } }) => {
-      console.log('useAdminAuth: Existing session check:', session?.user?.id);
-      
       if (session?.user) {
         try {
-          console.log('useAdminAuth: Checking admin profile for existing session user:', session.user.id);
           // Check admin status
           const { data: profile, error } = await supabase
             .from('admin_profiles')
@@ -94,8 +82,6 @@ export const useAdminAuth = () => {
             .eq('user_id', session.user.id)
             .eq('is_active', true)
             .maybeSingle();
-
-          console.log('useAdminAuth: Existing session admin profile result:', { profile, error });
 
           setState({
             user: session.user,
@@ -105,7 +91,7 @@ export const useAdminAuth = () => {
             loading: false,
           });
         } catch (error) {
-          console.error('useAdminAuth: Error checking admin profile for existing session:', error);
+          console.error('Error checking admin profile for existing session:', error);
           setState({
             user: session.user,
             session,
@@ -115,7 +101,6 @@ export const useAdminAuth = () => {
           });
         }
       } else {
-        console.log('useAdminAuth: No existing session found');
         setState(prev => ({ ...prev, loading: false }));
       }
     });
