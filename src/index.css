@@ -52,6 +52,28 @@ All colors MUST be HSL.
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
+    /* Admin Dashboard Colors */
+    --admin-primary: 220 70% 50%; /* Blue */
+    --admin-secondary: 270 60% 55%; /* Purple */
+    --admin-accent: 160 50% 45%; /* Teal */
+    --admin-warning: 35 85% 55%; /* Orange */
+    --admin-success: 140 50% 45%; /* Green */
+    --admin-danger: 0 70% 55%; /* Red */
+    
+    /* Admin Gradients */
+    --admin-gradient-primary: linear-gradient(135deg, hsl(var(--admin-primary)) 0%, hsl(var(--admin-secondary)) 100%);
+    --admin-gradient-accent: linear-gradient(135deg, hsl(var(--admin-accent)) 0%, hsl(var(--admin-primary)) 100%);
+    --admin-gradient-success: linear-gradient(135deg, hsl(var(--admin-success)) 0%, hsl(var(--admin-accent)) 100%);
+    --admin-gradient-warning: linear-gradient(135deg, hsl(var(--admin-warning)) 0%, hsl(35 100% 70%) 100%);
+    --admin-gradient-danger: linear-gradient(135deg, hsl(var(--admin-danger)) 0%, hsl(0 85% 70%) 100%);
+    --admin-gradient-card: linear-gradient(145deg, hsl(var(--card)) 0%, hsl(220 20% 98%) 100%);
+    --admin-gradient-sidebar: linear-gradient(180deg, hsl(220 25% 98%) 0%, hsl(220 15% 96%) 100%);
+    
+    /* Admin Shadows */
+    --admin-shadow-card: 0 8px 32px -8px hsl(var(--admin-primary) / 0.1);
+    --admin-shadow-hover: 0 12px 40px -12px hsl(var(--admin-primary) / 0.15);
+    --admin-shadow-focus: 0 0 0 3px hsl(var(--admin-primary) / 0.2);
+
     --radius: 1rem;
 
     --sidebar-background: 0 0% 98%;
@@ -163,6 +185,59 @@ All colors MUST be HSL.
     background: var(--gradient-card);
   }
 
+  /* Admin Utilities */
+  .admin-gradient-primary {
+    background: var(--admin-gradient-primary);
+  }
+  
+  .admin-gradient-accent {
+    background: var(--admin-gradient-accent);
+  }
+  
+  .admin-gradient-success {
+    background: var(--admin-gradient-success);
+  }
+  
+  .admin-gradient-warning {
+    background: var(--admin-gradient-warning);
+  }
+  
+  .admin-gradient-danger {
+    background: var(--admin-gradient-danger);
+  }
+  
+  .admin-gradient-card {
+    background: var(--admin-gradient-card);
+  }
+  
+  .admin-gradient-sidebar {
+    background: var(--admin-gradient-sidebar);
+  }
+  
+  .admin-shadow-card {
+    box-shadow: var(--admin-shadow-card);
+  }
+  
+  .admin-shadow-hover {
+    box-shadow: var(--admin-shadow-hover);
+  }
+  
+  .admin-card {
+    @apply relative overflow-hidden rounded-xl border bg-gradient-to-br from-white to-slate-50/50 
+           shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] 
+           before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent 
+           before:via-white/5 before:to-transparent before:translate-x-[-100%] 
+           hover:before:translate-x-[100%] before:transition-transform before:duration-700;
+  }
+
+  .admin-stat-card {
+    @apply relative overflow-hidden rounded-2xl p-6 text-white font-medium
+           hover:scale-105 transition-all duration-300 hover:shadow-2xl
+           before:absolute before:inset-0 before:bg-gradient-to-r before:from-white/0 
+           before:via-white/10 before:to-white/0 before:translate-x-[-100%]
+           hover:before:translate-x-[100%] before:transition-transform before:duration-1000;
+  }
+
   .glass-effect {
     @apply bg-white/80 backdrop-blur-lg border border-white/20;
   }
@@ -182,5 +257,18 @@ All colors MUST be HSL.
   .image-overlay::before {
     content: '';
     @apply absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-10;
+  }
+
+  .pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .glow-effect {
+    @apply relative;
+  }
+
+  .glow-effect::before {
+    content: '';
+    @apply absolute inset-0 rounded-lg bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-teal-500/20 blur-sm;
   }
 }
