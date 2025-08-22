@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
@@ -55,6 +56,7 @@ const commonActivities = [
 ];
 
 export default function MoodTracker() {
+  const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(0);
   const [moodData, setMoodData] = useState({
     mood: [5],
@@ -567,7 +569,11 @@ export default function MoodTracker() {
               Tracking your mood is a great first step. Professional therapy can help you develop personalized strategies for lasting mental health improvements.
             </p>
             <div className="space-y-3">
-              <Button className="w-full" size="lg">
+              <Button 
+                className="w-full" 
+                size="lg"
+                onClick={() => navigate('/assessment-contact')}
+              >
                 Request Therapy Appointment
               </Button>
               <div className="text-center">
@@ -665,7 +671,11 @@ export default function MoodTracker() {
                 <p className="text-sm text-muted-foreground mb-3">
                   Professional therapy can provide personalized strategies for your mental health journey.
                 </p>
-                <Button size="sm" className="w-full">
+                <Button 
+                  size="sm" 
+                  className="w-full"
+                  onClick={() => navigate('/assessment-contact')}
+                >
                   Request Therapy Appointment
                 </Button>
               </div>
