@@ -27,6 +27,7 @@ import PerinatalMoodAssessment from "@/components/assessments/PerinatalMoodAsses
 import AngerAssessment from "@/components/assessments/AngerAssessment";
 import StressBurnoutAssessment from "@/components/assessments/StressBurnoutAssessment";
 import MoodTracker from "@/components/assessments/MoodTracker";
+import WellbeingCheck from "@/components/assessments/WellbeingCheck";
 
 const MentalHealthTests = () => {
   const [currentAssessment, setCurrentAssessment] = useState<string | null>(null);
@@ -195,10 +196,10 @@ const MentalHealthTests = () => {
     },
     {
       title: "Wellbeing Check",
-      description: "General mental health and wellness screening tool",
-      duration: "15-20 minutes",
+      description: "Comprehensive assessment of your overall wellbeing across life satisfaction, relationships, health, and purpose",
+      duration: "3-5 minutes",
       icon: Brain,
-      color: "bg-slate-500"
+      color: "bg-green-600"
     }
   ];
 
@@ -478,6 +479,18 @@ const MentalHealthTests = () => {
         <Header />
         <main className="py-8">
           <MoodTracker />
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (currentAssessment === "Wellbeing Check") {
+    return (
+      <div className="min-h-screen bg-background">
+        <Header />
+        <main className="py-8">
+          <WellbeingCheck />
         </main>
         <Footer />
       </div>
