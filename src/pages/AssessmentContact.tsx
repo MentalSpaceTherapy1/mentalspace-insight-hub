@@ -261,6 +261,10 @@ const AssessmentContact = () => {
                             date > new Date() || date < new Date("1900-01-01")
                           }
                           initialFocus
+                          captionLayout="dropdown"
+                          fromYear={1900}
+                          toYear={new Date().getFullYear()}
+                          defaultMonth={new Date(1990, 0)}
                           className={cn("p-3 pointer-events-auto")}
                         />
                       </PopoverContent>
