@@ -25,6 +25,8 @@ import TherapistMatching from "./pages/TherapistMatching";
 import MentalHealthLibrary from "./pages/MentalHealthLibrary";
 import MentalHealthTests from "./pages/MentalHealthTests";
 import AssessmentContact from "./pages/AssessmentContact";
+import ThankYou from "./pages/ThankYou";
+import Blog from "./pages/Blog";
 import Depression from "./pages/conditions/Depression";
 import Anxiety from "./pages/conditions/Anxiety";
 import ADHD from "./pages/conditions/ADHD";
@@ -57,7 +59,9 @@ const App = () => (
           <Route path="/therapist-matching" element={<TherapistMatching />} />
           <Route path="/mental-health-library" element={<MentalHealthLibrary />} />
           <Route path="/mental-health-tests" element={<MentalHealthTests />} />
-          <Route path="/assessment-contact" element={<AssessmentContact />} />
+        <Route path="/assessment-contact" element={<AssessmentContact />} />
+        <Route path="/thank-you" element={<ThankYou />} />
+        <Route path="/blog" element={<Blog />} />
           <Route path="/mental-health-library/depression" element={<Depression />} />
           <Route path="/mental-health-library/anxiety" element={<Anxiety />} />
           <Route path="/mental-health-library/adhd" element={<ADHD />} />

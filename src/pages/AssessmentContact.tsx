@@ -93,8 +93,8 @@ const AssessmentContact = () => {
       description: "Thank you for your request. A MentalSpace Therapy coordinator will contact you soon."
     });
 
-    // Navigate to confirmation or home page
-    navigate("/");
+    // Navigate to thank you page
+    navigate("/thank-you");
   };
 
   if (!assessmentData) {
