@@ -8,6 +8,7 @@ import DepressionAssessment from "@/components/assessments/DepressionAssessment"
 import AnxietyAssessment from "@/components/assessments/AnxietyAssessment";
 import PanicAssessment from "@/components/assessments/PanicAssessment";
 import SocialAnxietyAssessment from "@/components/assessments/SocialAnxietyAssessment";
+import SpecificPhobiaAssessment from "@/components/assessments/SpecificPhobiaAssessment";
 
 const MentalHealthTests = () => {
   const [currentAssessment, setCurrentAssessment] = useState<string | null>(null);
@@ -40,6 +41,13 @@ const MentalHealthTests = () => {
       duration: "2-3 minutes",
       icon: Brain,
       color: "bg-purple-500"
+    },
+    {
+      title: "Specific Phobia Assessment", 
+      description: "Screen for excessive fear of specific objects or situations",
+      duration: "2-3 minutes",
+      icon: Brain,
+      color: "bg-amber-500"
     },
     {
       title: "ADHD Self-Assessment",
@@ -112,6 +120,18 @@ const MentalHealthTests = () => {
         <Header />
         <main className="py-8">
           <SocialAnxietyAssessment />
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (currentAssessment === "Specific Phobia Assessment") {
+    return (
+      <div className="min-h-screen bg-background">
+        <Header />
+        <main className="py-8">
+          <SpecificPhobiaAssessment />
         </main>
         <Footer />
       </div>
