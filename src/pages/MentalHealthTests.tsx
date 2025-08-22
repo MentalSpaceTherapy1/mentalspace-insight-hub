@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { CheckCircle, Clock, Users, Brain } from "lucide-react";
 import DepressionAssessment from "@/components/assessments/DepressionAssessment";
 import AnxietyAssessment from "@/components/assessments/AnxietyAssessment";
+import PanicAssessment from "@/components/assessments/PanicAssessment";
 
 const MentalHealthTests = () => {
   const [currentAssessment, setCurrentAssessment] = useState<string | null>(null);
@@ -19,18 +20,18 @@ const MentalHealthTests = () => {
       color: "bg-blue-500"
     },
     {
-      title: "Anxiety Screening",
-      description: "GAD-7 questionnaire to evaluate anxiety levels",
-      duration: "5-10 minutes", 
+      title: "Anxiety Assessment", 
+      description: "GAD-7 questionnaire to evaluate generalized anxiety symptoms",
+      duration: "2-3 minutes",
       icon: Brain,
       color: "bg-green-500"
     },
     {
-      title: "Stress Assessment",
-      description: "Comprehensive evaluation of your stress levels and coping mechanisms",
-      duration: "10-15 minutes",
+      title: "Panic Assessment",
+      description: "Screen for panic symptoms and episodes over the last 4 weeks",
+      duration: "2-3 minutes",
       icon: Brain,
-      color: "bg-orange-500"
+      color: "bg-red-500"
     },
     {
       title: "ADHD Self-Assessment",
@@ -73,12 +74,24 @@ const MentalHealthTests = () => {
     );
   }
 
-  if (currentAssessment === "Anxiety Screening") {
+  if (currentAssessment === "Anxiety Assessment") {
     return (
       <div className="min-h-screen bg-background">
         <Header />
         <main className="py-8">
           <AnxietyAssessment />
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (currentAssessment === "Panic Assessment") {
+    return (
+      <div className="min-h-screen bg-background">
+        <Header />
+        <main className="py-8">
+          <PanicAssessment />
         </main>
         <Footer />
       </div>

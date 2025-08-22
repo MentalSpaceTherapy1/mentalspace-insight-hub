@@ -23,6 +23,12 @@ const AssessmentContact = () => {
     score: number;
     severity: string;
     resultText: string;
+    addOns?: Array<{
+      type: string;
+      title: string;
+      content: string;
+    }>;
+    maxScore?: number;
   } | null;
 
   const [formData, setFormData] = useState({
@@ -146,18 +152,32 @@ const AssessmentContact = () => {
               <div className={`p-4 rounded-lg border-2 mb-4 ${getSeverityColor(assessmentData.severity)}`}>
                 <div className="flex justify-between items-center mb-2">
                   <h3 className="text-lg font-semibold">Severity Level: {assessmentData.severity}</h3>
-                  <span className="text-sm font-medium">Score: {assessmentData.score}/27</span>
+                  <span className="text-sm font-medium">
+                    Score: {assessmentData.score}/{(assessmentData as any).maxScore || 27}
+                  </span>
                 </div>
                 <p className="text-sm">{assessmentData.resultText}</p>
               </div>
               
-              {assessmentData.severity !== "None/Minimal" && (
+              {assessmentData.severity !== "None/Minimal" && assessmentData.severity !== "Minimal" && (
                 <div className="bg-blue-50 border border-blue-200 p-4 rounded-lg">
                   <h4 className="font-medium text-blue-800 mb-2">Recommended Next Steps:</h4>
                   <p className="text-sm text-blue-700">
                     Based on your results, we recommend connecting with a mental health professional. 
                     Complete the form below to schedule a consultation with MentalSpace Therapy.
                   </p>
+                </div>
+              )}
+
+              {/* Dynamic Add-Ons */}
+              {assessmentData.addOns && assessmentData.addOns.length > 0 && (
+                <div className="space-y-3 mt-4">
+                  {assessmentData.addOns.map((addon, index) => (
+                    <div key={index} className="bg-amber-50 border border-amber-200 p-4 rounded-lg">
+                      <h4 className="font-medium text-amber-800 mb-2">{addon.title}</h4>
+                      <p className="text-sm text-amber-700">{addon.content}</p>
+                    </div>
+                  ))}
                 </div>
               )}
             </CardContent>

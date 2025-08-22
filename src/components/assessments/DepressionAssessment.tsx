@@ -290,7 +290,8 @@ const DepressionAssessment = () => {
                   assessmentType: "Depression",
                   score: totalScore,
                   severity: getSeverityString(),
-                  resultText: getResultDescription()
+                  resultText: getResultDescription(),
+                  maxScore: 27
                 }
               })}
             >

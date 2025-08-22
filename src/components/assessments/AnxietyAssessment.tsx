@@ -83,7 +83,8 @@ const AnxietyAssessment = () => {
         resultText: resultText,
         functionalCollapse: functionalCollapse,
         medicalConcerns: medicalConcerns,
-        dynamicAddOns: getDynamicAddOns()
+        dynamicAddOns: getDynamicAddOns(),
+        maxScore: 21
       }
     });
   };
