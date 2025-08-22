@@ -77,48 +77,48 @@ const BipolarAssessment = () => {
     // Generate dynamic add-ons based on responses
     const addOns = [];
     
-    // Sleep ↓ (Item 2 ≥2) + Risky acts (Item 7 ≥2) → Pause Major Decisions
+    // Sleep ↓ (Item 2 ≥2) + Risky acts (Item 7 ≥2) → "Pause Major Decisions" banner
     if (answers[1] >= 2 && answers[6] >= 2) {
       addOns.push({
-        type: "pause-major-decisions",
-        title: "Decision-Making Safeguards Recommended",
-        content: "Given your decreased sleep need and risky behaviors, implement a 72-hour pause on major decisions (spending, travel, job changes). Consider freezing credit cards and enlisting a financial/decision buddy for major purchases."
+        type: "pause-major-decisions-impulse-lock",
+        title: "Decision-Making Safeguards Required",
+        content: "Based on your decreased sleep and risky behaviors, implement a 3-step money/impulsivity lock: freeze credit cards, implement a 72-hour rule for major decisions, and enlist a trusted decision buddy for purchases over $100."
       });
     }
 
-    // Impairment (Item 8 ≥2) → Priority Scheduling
+    // Impairment (Item 8 ≥2) → Priority Scheduling + combination treatment
     if (answers[7] >= 2) {
       addOns.push({
-        type: "priority-scheduling",
-        title: "Priority Psychiatric Care Needed",
-        content: "Since others have noticed significant changes in your functioning, consider combination treatment (mood stabilizer + second-generation antipsychotic) and priority scheduling for immediate evaluation."
+        type: "priority-scheduling-combo-treatment",
+        title: "Priority Scheduling & Combination Treatment",
+        content: "Given the clear functional impact, priority scheduling is recommended. Consider combination treatment (mood stabilizer + second-generation antipsychotic) rather than monotherapy for more effective symptom control."
       });
     }
 
-    // Psychosis → Crisis Overlay
+    // Psychosis → Crisis Overlay with urgent-care routing
     if (psychosis) {
       addOns.push({
-        type: "urgent-evaluation",
-        title: "URGENT: Immediate Psychiatric Evaluation Required",
-        content: "The presence of psychotic symptoms (delusions, hallucinations) requires immediate psychiatric evaluation. Consider emergency services if you feel unsafe or are having thoughts of harming yourself or others."
+        type: "urgent-evaluation-banner",
+        title: "URGENT: Crisis Intervention Required",
+        content: "The presence of psychotic symptoms requires immediate psychiatric evaluation. If you're experiencing delusions, hallucinations, or feel unsafe, call 911 or go to the nearest emergency room immediately."
       });
     }
 
-    // Antidepressant only → Medication Safety
+    // Antidepressant only → Medication Safety card
     if (antidepressantOnly) {
       addOns.push({
-        type: "antidepressant-safety",
-        title: "Medication Safety Alert",
-        content: "Antidepressants alone can worsen mood cycling in bipolar disorder. Discuss with your prescriber about adding a mood stabilizer or second-generation antipsychotic, or supervised tapering of the antidepressant."
+        type: "antidepressant-safety-note",
+        title: "Medication Safety Alert: Antidepressant Risk",
+        content: "Antidepressants alone can worsen cycling and trigger mania in bipolar disorder. Discuss with your prescriber about adding a mood stabilizer/SGA or supervised taper of the antidepressant. Avoid antidepressant monotherapy."
       });
     }
 
-    // Can become pregnant → Valproate Warning
+    // Can become pregnant → Valproate Warning card
     if (canBecomePregnant) {
       addOns.push({
         type: "valproate-warning",
-        title: "Important: Valproate Safety Warning",
-        content: "If valproate/divalproex is recommended, it should NOT be used in women of childbearing potential unless other options are unsuitable and a formal pregnancy-prevention program is in place due to severe birth defect risks."
+        title: "Critical: Valproate Safety Warning for Women",
+        content: "Do not start or continue valproate/divalproex unless other options are unsuitable and a formal pregnancy-prevention program is in place. Valproate causes severe birth defects and developmental delays (NICE/MHRA & WHO guidelines)."
       });
     }
 
@@ -126,8 +126,8 @@ const BipolarAssessment = () => {
     if (irregularRoutines) {
       addOns.push({
         type: "ipsrt-routine-builder",
-        title: "Rhythm Stabilization Plan",
-        content: "Irregular sleep/wake cycles can trigger mood episodes. Implement Interpersonal & Social Rhythm Therapy (IPSRT) principles: fixed wake time, consistent meals, regular bedtime routine, and stable social activities."
+        title: "IPSRT Routine Builder: Rhythm Stabilization",
+        content: "Irregular sleep/wake/meal patterns can trigger mood episodes. Build an Interpersonal & Social Rhythm Therapy (IPSRT) routine: fixed sleep/wake times, consistent meals, regular social activities, and limited night shifts."
       });
     }
 
@@ -165,7 +165,7 @@ const BipolarAssessment = () => {
     if (isLastQuestion) {
       return (
         <div className="mt-6 space-y-4 p-4 bg-muted/50 rounded-lg">
-          <h4 className="font-medium">Additional Information (Important for Safety)</h4>
+          <h4 className="font-medium">Additional Information (Critical for Safety Assessment)</h4>
           
           <div className="flex items-start space-x-2">
             <Checkbox
@@ -196,7 +196,7 @@ const BipolarAssessment = () => {
               onCheckedChange={(checked) => setCanBecomePregnant(checked as boolean)}
             />
             <Label htmlFor="can-become-pregnant" className="text-sm leading-relaxed">
-              I am a woman of childbearing potential (ages 12-55) or could become pregnant
+              I am a woman/girl of childbearing potential (ages 12-55)
             </Label>
           </div>
 
@@ -207,7 +207,7 @@ const BipolarAssessment = () => {
               onCheckedChange={(checked) => setFunctionalCollapse(checked as boolean)}
             />
             <Label htmlFor="functional-collapse" className="text-sm leading-relaxed">
-              I cannot work, care for myself, or do essential daily tasks due to mood symptoms
+              I cannot work or care for myself due to these symptoms (major role failure)
             </Label>
           </div>
 
@@ -218,7 +218,7 @@ const BipolarAssessment = () => {
               onCheckedChange={(checked) => setIrregularRoutines(checked as boolean)}
             />
             <Label htmlFor="irregular-routines" className="text-sm leading-relaxed">
-              I have very irregular sleep/wake times, meals, or work schedules
+              I have very irregular sleep/wake/meal times or work night shifts frequently
             </Label>
           </div>
         </div>
