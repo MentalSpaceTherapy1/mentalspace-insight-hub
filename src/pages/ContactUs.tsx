@@ -1,3 +1,5 @@
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -7,11 +9,16 @@ import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Phone, Mail, Clock, ArrowRight, MessageCircle } from "lucide-react";
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import heroImage from "@/assets/contact-us-hero.jpg";
+import { useFormSubmission } from "@/hooks/useFormSubmission";
+import { useAnalytics } from "@/hooks/useAnalytics";
+import { toast } from "sonner";
 
 const ContactUs = () => {
+  const navigate = useNavigate();
+  const { submitForm, isSubmitting, isSuccess, error } = useFormSubmission();
+  const { trackFormStart } = useAnalytics();
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -30,11 +37,31 @@ const ContactUs = () => {
     "Saturday Set by Appointment"
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log("Form submitted:", formData);
+    
+    try {
+      const result = await submitForm('contact_us', formData);
+      
+      if (result.success) {
+        toast.success("Thank you for contacting us! We'll get back to you soon.", {
+          description: "You'll receive a confirmation email shortly."
+        });
+        
+        // Navigate to thank you page
+        navigate("/thank-you");
+      } else {
+        toast.error("There was an error submitting your message. Please try again.");
+      }
+    } catch (err) {
+      toast.error("There was an error submitting your message. Please try again.");
+    }
   };
+
+  // Track form start on first render
+  useEffect(() => {
+    trackFormStart('contact_us');
+  }, [trackFormStart]);
 
   const handleInputChange = (field: string, value: string | boolean) => {
     setFormData(prev => ({ ...prev, [field]: value }));
@@ -174,8 +201,8 @@ const ContactUs = () => {
                         </Label>
                       </div>
 
-                      <Button type="submit" className="w-full group" size="lg">
-                        Send Message
+                      <Button type="submit" className="w-full group" size="lg" disabled={isSubmitting}>
+                        {isSubmitting ? "Sending..." : "Send Message"}
                         <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
                       </Button>
                     </form>

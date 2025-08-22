@@ -1,24 +1,31 @@
-import { useState, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
-import { ArrowLeft } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
+import { Badge } from "@/components/ui/badge";
+import { ArrowLeft, Calendar, Shield, AlertTriangle } from "lucide-react";
+import { toast } from "sonner";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { useFormSubmission } from "@/hooks/useFormSubmission";
+import { useAssessmentSubmission } from "@/hooks/useAssessmentSubmission";
+import { useAnalytics } from "@/hooks/useAnalytics";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 const AssessmentContact = () => {
-  const location = useLocation();
   const navigate = useNavigate();
-  const { toast } = useToast();
+  const location = useLocation();
+  const assessmentData = location.state;
+  const { submitForm, isSubmitting: isSubmittingContact } = useFormSubmission();
+  const { saveAssessment, isSubmitting: isSavingAssessment } = useAssessmentSubmission();
+  const { trackFormStart } = useAnalytics();
   
   // Get assessment results from navigation state
-  const assessmentData = location.state as {
+  const assessmentResults = location.state as {
     assessmentType: string;
     score: number;
     severity: string;
@@ -49,7 +56,7 @@ const AssessmentContact = () => {
     termsAccepted: false
   });
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  // Remove the local isSubmitting state since we're using the hook
 
   // Gender options
   const genderOptions = [
@@ -79,10 +86,10 @@ const AssessmentContact = () => {
   ];
 
   useEffect(() => {
-    if (!assessmentData) {
+    if (!assessmentResults) {
       navigate("/mental-health-tests");
     }
-  }, [assessmentData, navigate]);
+  }, [assessmentResults, navigate]);
 
   const handleInputChange = (field: string, value: string | boolean | Date | undefined) => {
     setFormData(prev => ({
@@ -95,29 +102,52 @@ const AssessmentContact = () => {
     e.preventDefault();
     
     if (!formData.termsAccepted) {
-      toast({
-        variant: "destructive",
-        title: "Terms Required",
-        description: "Please accept the terms and conditions to continue."
-      });
+      toast.error("Please accept the terms and conditions to proceed.");
       return;
     }
 
-    setIsSubmitting(true);
-    
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    toast({
-      title: "Request Submitted",
-      description: "Thank you for your request. A MentalSpace Therapy coordinator will contact you soon."
-    });
+    try {
+      // First save the assessment data if it exists
+      if (assessmentResults) {
+        const sessionId = `assessment_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+        await saveAssessment({
+          sessionId,
+          assessmentType: assessmentResults.assessmentType || 'unknown',
+          answers: (assessmentResults as any).answers || {},
+          score: assessmentResults.score,
+          severity: assessmentResults.severity,
+          recommendations: (assessmentResults as any).recommendations || [],
+          additionalInfo: (assessmentResults as any).additionalInfo || {},
+        });
+      }
 
-    // Navigate to thank you page
-    navigate("/thank-you");
+      // Then submit the contact form
+      const result = await submitForm('assessment_contact', {
+        ...formData,
+        assessmentData: assessmentResults ? {
+          type: assessmentResults.assessmentType,
+          score: assessmentResults.score,
+          severity: assessmentResults.severity,
+        } : null,
+      });
+
+      if (result.success) {
+        toast.success("Thank you! We'll contact you within 24 hours to schedule your consultation.");
+        navigate('/thank-you');
+      } else {
+        toast.error("There was an error submitting your information. Please try again.");
+      }
+    } catch (err) {
+      toast.error("There was an error submitting your information. Please try again.");
+    }
   };
 
-  if (!assessmentData) {
+  // Track form start on first render
+  useEffect(() => {
+    trackFormStart('assessment_contact');
+  }, [trackFormStart]);
+
+  if (!assessmentResults) {
     return null;
   }
 
@@ -156,24 +186,24 @@ const AssessmentContact = () => {
           {/* Assessment Results */}
           <Card>
             <CardHeader>
-              <CardTitle className="text-2xl">Your {assessmentData.assessmentType} Assessment Results</CardTitle>
+              <CardTitle className="text-2xl">Your {assessmentResults.assessmentType} Assessment Results</CardTitle>
               <CardDescription>
                 Self-checks are educational and do not replace a professional evaluation. 
                 If you feel unsafe or have thoughts of self-harm, call/text/chat 988 (24/7).
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className={`p-4 rounded-lg border-2 mb-4 ${getSeverityColor(assessmentData.severity)}`}>
+              <div className={`p-4 rounded-lg border-2 mb-4 ${getSeverityColor(assessmentResults.severity)}`}>
                 <div className="flex justify-between items-center mb-2">
-                  <h3 className="text-lg font-semibold">Severity Level: {assessmentData.severity}</h3>
+                  <h3 className="text-lg font-semibold">Severity Level: {assessmentResults.severity}</h3>
                   <span className="text-sm font-medium">
-                    Score: {assessmentData.score}/{(assessmentData as any).maxScore || 27}
+                    Score: {assessmentResults.score}/{(assessmentResults as any).maxScore || 27}
                   </span>
                 </div>
-                <p className="text-sm">{assessmentData.resultText}</p>
+                <p className="text-sm">{assessmentResults.resultText}</p>
               </div>
               
-              {assessmentData.severity !== "None/Minimal" && assessmentData.severity !== "Minimal" && (
+              {assessmentResults.severity !== "None/Minimal" && assessmentResults.severity !== "Minimal" && (
                 <div className="bg-blue-50 border border-blue-200 p-4 rounded-lg">
                   <h4 className="font-medium text-blue-800 mb-2">Recommended Next Steps:</h4>
                   <p className="text-sm text-blue-700">
@@ -184,9 +214,9 @@ const AssessmentContact = () => {
               )}
 
               {/* Dynamic Add-Ons */}
-              {assessmentData.addOns && assessmentData.addOns.length > 0 && (
+              {assessmentResults.addOns && assessmentResults.addOns.length > 0 && (
                 <div className="space-y-3 mt-4">
-                  {assessmentData.addOns.map((addon, index) => (
+                  {assessmentResults.addOns.map((addon, index) => (
                     <div key={index} className="bg-amber-50 border border-amber-200 p-4 rounded-lg">
                       <h4 className="font-medium text-amber-800 mb-2">{addon.title}</h4>
                       <p className="text-sm text-amber-700">{addon.content}</p>
@@ -437,9 +467,9 @@ const AssessmentContact = () => {
                 <Button 
                   type="submit" 
                   className="w-full"
-                  disabled={isSubmitting}
+                  disabled={isSubmittingContact || isSavingAssessment}
                 >
-                  {isSubmitting ? "Submitting..." : "Request Therapy Consultation"}
+                  {(isSubmittingContact || isSavingAssessment) ? "Processing..." : "Request Therapy Consultation"}
                 </Button>
               </form>
             </CardContent>
