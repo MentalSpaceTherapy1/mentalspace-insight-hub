@@ -191,6 +191,9 @@ const TherapistMatching = () => {
                       initialFocus
                       className={cn("p-3 pointer-events-auto")}
                       defaultMonth={new Date(1990, 0)}
+                      captionLayout="dropdown"
+                      fromYear={1900}
+                      toYear={new Date().getFullYear()}
                     />
                   </PopoverContent>
                 </Popover>
