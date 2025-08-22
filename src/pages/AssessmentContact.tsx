@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { format } from "date-fns";
+import { CalendarIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -7,8 +9,11 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Calendar } from "@/components/ui/calendar";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { ArrowLeft } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { cn } from "@/lib/utils";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
@@ -34,6 +39,8 @@ const AssessmentContact = () => {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
+    dateOfBirth: undefined as Date | undefined,
+    gender: "",
     email: "",
     phone: "",
     state: "",
@@ -45,6 +52,15 @@ const AssessmentContact = () => {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Gender options
+  const genderOptions = [
+    "Female",
+    "Male", 
+    "Non-binary",
+    "Prefer not to answer",
+    "Other"
+  ];
 
   // Insurance options
   const insuranceProviders = [
@@ -70,7 +86,7 @@ const AssessmentContact = () => {
     }
   }, [assessmentData, navigate]);
 
-  const handleInputChange = (field: string, value: string | boolean) => {
+  const handleInputChange = (field: string, value: string | boolean | Date | undefined) => {
     setFormData(prev => ({
       ...prev,
       [field]: value
@@ -212,6 +228,58 @@ const AssessmentContact = () => {
                       onChange={(e) => handleInputChange("lastName", e.target.value)}
                       required
                     />
+                  </div>
+                </div>
+
+                {/* Date of Birth and Gender */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label>Date of Birth *</Label>
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <Button
+                          variant="outline"
+                          className={cn(
+                            "w-full justify-start text-left font-normal",
+                            !formData.dateOfBirth && "text-muted-foreground"
+                          )}
+                        >
+                          <CalendarIcon className="mr-2 h-4 w-4" />
+                          {formData.dateOfBirth ? (
+                            format(formData.dateOfBirth, "PPP")
+                          ) : (
+                            <span>Pick a date</span>
+                          )}
+                        </Button>
+                      </PopoverTrigger>
+                      <PopoverContent className="w-auto p-0" align="start">
+                        <Calendar
+                          mode="single"
+                          selected={formData.dateOfBirth}
+                          onSelect={(date) => handleInputChange("dateOfBirth", date)}
+                          disabled={(date) =>
+                            date > new Date() || date < new Date("1900-01-01")
+                          }
+                          initialFocus
+                          className={cn("p-3 pointer-events-auto")}
+                        />
+                      </PopoverContent>
+                    </Popover>
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="gender">Gender *</Label>
+                    <Select onValueChange={(value) => handleInputChange("gender", value)} required>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select your gender" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {genderOptions.map((gender) => (
+                          <SelectItem key={gender} value={gender}>
+                            {gender}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
                   </div>
                 </div>
 
