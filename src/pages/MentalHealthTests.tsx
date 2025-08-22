@@ -20,6 +20,7 @@ import NicotineAssessment from "@/components/assessments/NicotineAssessment";
 import EatingConcernsAssessment from "@/components/assessments/EatingConcernsAssessment";
 import BingeEatingAssessment from "@/components/assessments/BingeEatingAssessment";
 import BDDAssessment from "@/components/assessments/BDDAssessment";
+import HealthAnxietyAssessment from "@/components/assessments/HealthAnxietyAssessment";
 
 const MentalHealthTests = () => {
   const [currentAssessment, setCurrentAssessment] = useState<string | null>(null);
@@ -136,6 +137,13 @@ const MentalHealthTests = () => {
       duration: "2-3 minutes",
       icon: Brain,
       color: "bg-purple-700"
+    },
+    {
+      title: "Health Anxiety Assessment",
+      description: "Screen for excessive worry about illness and health-related behaviors",
+      duration: "2-3 minutes",
+      icon: Brain,
+      color: "bg-blue-700"
     },
     {
       title: "Mood Tracker",
@@ -345,6 +353,18 @@ const MentalHealthTests = () => {
         <Header />
         <main className="py-8">
           <BDDAssessment />
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (currentAssessment === "Health Anxiety Assessment") {
+    return (
+      <div className="min-h-screen bg-background">
+        <Header />
+        <main className="py-8">
+          <HealthAnxietyAssessment />
         </main>
         <Footer />
       </div>
