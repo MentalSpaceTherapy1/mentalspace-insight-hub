@@ -23,7 +23,7 @@ const FAQ = () => {
         },
         {
           question: "How do I get started?",
-          answer: "Just click on Get Started anywhere on MentalSpace website, answer some questions about your needs, choose a subscription plan. Our team will contact you to schedule your first appointment. A licensed therapist will conduct an in-depth assessment with you, then we will propose the best therapists and coaches that match your needs and personality."
+          answer: "Just click on Request an Appointment anywhere on MentalSpace website, answer some questions about your needs, choose a subscription plan. Our team will contact you to schedule your first appointment. A licensed therapist will conduct an in-depth assessment with you, then we will propose the best therapists and coaches that match your needs and personality."
         },
         {
           question: "How much does MentalSpace cost?",
@@ -250,7 +250,7 @@ const FAQ = () => {
         <section className="py-20 px-4 bg-gradient-to-r from-primary to-secondary">
           <div className="container mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-primary-foreground">
-              Ready to Get Started?
+              Ready to Request an Appointment?
             </h2>
             <p className="text-xl mb-8 text-primary-foreground/90 max-w-2xl mx-auto">
               Have more questions? Contact us for a free consultation and get personalized answers
@@ -258,7 +258,7 @@ const FAQ = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/get-started">
                 <Button variant="secondary" size="lg" className="text-lg px-8 py-6 group">
-                  Get Started
+                  Request an Appointment
                   <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </Link>

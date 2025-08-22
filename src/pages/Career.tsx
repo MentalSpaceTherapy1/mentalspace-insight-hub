@@ -81,7 +81,7 @@ const Career = () => {
       answer: "MentalSpace is an online private practice company offering therapy, life coaching, and relationship coaching with a revolutionary approach to behavioral healthcare."
     },
     {
-      question: "How do I get started?",
+      question: "How do I request an appointment?",
       answer: "Submit your application through our Join Our Team button, and we'll guide you through our onboarding process."
     },
     {
@@ -163,7 +163,7 @@ const Career = () => {
         <section className="py-20 px-4">
           <div className="container mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
-              How to Get Started
+              How to Request an Appointment
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               {steps.map((step, index) => {

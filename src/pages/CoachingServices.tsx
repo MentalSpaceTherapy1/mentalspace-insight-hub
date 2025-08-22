@@ -17,7 +17,7 @@ const CoachingServices = () => {
     },
     {
       icon: Play,
-      title: "Get Started",
+      title: "Request an Appointment",
       description: "Engage in regular sessions with your coach to track progress and make adjustments"
     }
   ];
@@ -42,7 +42,7 @@ const CoachingServices = () => {
               At MentalSpace, we understand that sometimes you need more than therapy. You need guidance, mentorship, and a roadmap to navigate life's challenges. Our coaching services are designed to provide you with the tools and strategies to thrive in various aspects of your life.
             </p>
             <Button size="lg" className="text-lg px-8 py-6">
-              Get Started
+              Request an Appointment
             </Button>
           </div>
         </section>
@@ -107,7 +107,7 @@ const CoachingServices = () => {
               Take the first step towards personal growth and transformation
             </p>
             <Button variant="secondary" size="lg" className="text-lg px-8 py-6">
-              Get Started
+              Request an Appointment
             </Button>
           </div>
         </section>

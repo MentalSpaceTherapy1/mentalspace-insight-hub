@@ -60,7 +60,7 @@ const HowItWorks = () => {
         <div className="text-center mt-12">
           <Link to="/get-started">
             <Button size="lg" className="px-8 py-6 text-lg">
-              Get Started Today
+              Request an Appointment
             </Button>
           </Link>
         </div>

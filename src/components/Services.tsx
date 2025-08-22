@@ -62,7 +62,7 @@ const Services = () => {
                 </p>
                 <Link to={service.link}>
                   <Button variant="outline" className="w-full border-primary/20 hover:bg-primary hover:text-white transition-all duration-300">
-                    Get Started
+                    Request an Appointment
                   </Button>
                 </Link>
               </CardContent>

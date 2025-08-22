@@ -176,7 +176,7 @@ const Blog = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg">
-              <Link to="/get-started">Get Started Today</Link>
+              <Link to="/get-started">Request an Appointment</Link>
             </Button>
             <Button asChild variant="outline" size="lg">
               <Link to="/mental-health-tests">Take a Mental Health Test</Link>

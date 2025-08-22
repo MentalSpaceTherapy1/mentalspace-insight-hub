@@ -82,7 +82,7 @@ const OnlineTherapy = () => {
                 </p>
                 <Link to="/get-started">
                   <Button size="lg" variant="secondary" className="text-lg px-8 py-6 group">
-                    Get Started
+                    Request an Appointment
                     <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
                   </Button>
                 </Link>
@@ -184,7 +184,7 @@ const OnlineTherapy = () => {
             </p>
             <Link to="/get-started">
               <Button variant="secondary" size="lg" className="text-lg px-8 py-6 group">
-                Get Started
+                Request an Appointment
                 <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>

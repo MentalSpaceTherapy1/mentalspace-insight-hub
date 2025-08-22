@@ -50,7 +50,7 @@ const Hero = () => {
             <div className="mb-12">
               <Link to="/get-started">
                 <Button size="lg" className="group bg-gradient-to-r from-primary to-secondary text-white font-semibold py-4 px-8 rounded-full hover:shadow-lg transition-all duration-300">
-                  Get Started Today
+                  Request an Appointment
                   <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </Link>

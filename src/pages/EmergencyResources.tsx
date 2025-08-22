@@ -278,7 +278,7 @@ const EmergencyResources = () => {
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Link to="/get-started">
                     <Button size="lg" className="bg-primary hover:bg-primary/90">
-                      Get Started Today
+                      Request an Appointment
                     </Button>
                   </Link>
                   <Link to="/contact-us">

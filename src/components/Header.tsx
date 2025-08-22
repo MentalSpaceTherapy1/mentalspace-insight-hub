@@ -84,7 +84,7 @@ const Header = () => {
           </div>
           <Link to="/get-started">
             <Button variant="hero" size="lg">
-              Get Started
+              Request an Appointment
             </Button>
           </Link>
           <Button 

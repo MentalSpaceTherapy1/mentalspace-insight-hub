@@ -135,7 +135,7 @@ const Index = () => {
             <div className="text-center mt-12">
               <Link to="/get-started">
                 <Button size="lg" className="px-8 py-6 text-lg">
-                  Get Started Today
+                  Request an Appointment
                 </Button>
               </Link>
             </div>
@@ -196,7 +196,7 @@ const Index = () => {
                 </p>
                 <Link to="/get-started">
                   <Button size="lg" className="group">
-                    Get Started Today
+                    Request an Appointment
                     <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
                   </Button>
                 </Link>

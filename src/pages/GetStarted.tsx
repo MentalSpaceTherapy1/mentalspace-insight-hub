@@ -101,7 +101,7 @@ const GetStarted = () => {
                         size="lg"
                         onClick={() => navigate(service.link)}
                       >
-                        Get Started
+                        Request an Appointment
                         <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
                       </Button>
                     </CardContent>
