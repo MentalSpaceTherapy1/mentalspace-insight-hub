@@ -8,21 +8,37 @@ import { Loader2, Shield, Lock } from 'lucide-react';
 import { useAdminAuth } from '@/hooks/useAdminAuth';
 
 const AdminAuth = () => {
-  const { signIn, loading } = useAdminAuth();
+  const { signIn, loading, user, session } = useAdminAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [debugMode, setDebugMode] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     setError(null);
 
+    console.log('Admin sign-in attempt:', { email, timestamp: new Date().toISOString() });
+
     try {
       await signIn(email, password);
     } catch (err: any) {
-      setError(err.message || 'Failed to sign in');
+      console.error('Sign in error:', err);
+      let errorMessage = 'Failed to sign in';
+      
+      if (err.message?.includes('Invalid login credentials')) {
+        errorMessage = 'Invalid email or password. Please check your credentials.';
+      } else if (err.message?.includes('Email not confirmed')) {
+        errorMessage = 'Please check your email and confirm your account before signing in.';
+      } else if (err.message?.includes('Too many requests')) {
+        errorMessage = 'Too many sign-in attempts. Please wait a few minutes and try again.';
+      } else if (err.message) {
+        errorMessage = err.message;
+      }
+      
+      setError(errorMessage);
     } finally {
       setIsSubmitting(false);
     }
@@ -103,10 +119,38 @@ const AdminAuth = () => {
             </Button>
           </form>
 
-          <div className="mt-6 p-4 bg-muted/50 rounded-lg">
-            <p className="text-sm text-muted-foreground text-center">
-              Admin access is restricted to authorized personnel only.
-            </p>
+          <div className="mt-6 space-y-4">
+            <div className="p-4 bg-muted/50 rounded-lg">
+              <p className="text-sm text-muted-foreground text-center">
+                Admin access is restricted to authorized personnel only.
+              </p>
+            </div>
+            
+            {(user || session || debugMode) && (
+              <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border">
+                <div className="flex items-center justify-between mb-2">
+                  <h4 className="text-sm font-medium text-blue-900 dark:text-blue-100">
+                    Debug Information
+                  </h4>
+                  <button
+                    type="button"
+                    onClick={() => setDebugMode(!debugMode)}
+                    className="text-xs text-blue-600 hover:text-blue-800 dark:text-blue-400"
+                  >
+                    {debugMode ? 'Hide' : 'Show'}
+                  </button>
+                </div>
+                {debugMode && (
+                  <div className="text-xs space-y-1 text-blue-800 dark:text-blue-200 font-mono">
+                    <p>User ID: {user?.id || 'None'}</p>
+                    <p>Email: {user?.email || 'None'}</p>
+                    <p>Session: {session ? 'Active' : 'None'}</p>
+                    <p>Loading: {loading ? 'Yes' : 'No'}</p>
+                    <p>Timestamp: {new Date().toISOString()}</p>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </CardContent>
       </Card>

@@ -4,16 +4,31 @@
 
 export const clearAuthCache = () => {
   try {
-    // Clear all Supabase auth tokens
+    console.log('Clearing auth cache...');
+    
+    // Get current storage state for debugging
+    const authKeys = Object.keys(localStorage).filter(key => 
+      key.startsWith('supabase.auth.') || key.includes('sb-')
+    );
+    console.log('Found auth keys in localStorage:', authKeys);
+    
+    // Clear all Supabase auth tokens from localStorage
     Object.keys(localStorage).forEach((key) => {
       if (key.startsWith('supabase.auth.') || key.includes('sb-')) {
+        console.log('Removing localStorage key:', key);
         localStorage.removeItem(key);
       }
     });
 
     // Clear sessionStorage auth data
+    const sessionAuthKeys = Object.keys(sessionStorage || {}).filter(key => 
+      key.startsWith('supabase.auth.') || key.includes('sb-')
+    );
+    console.log('Found auth keys in sessionStorage:', sessionAuthKeys);
+    
     Object.keys(sessionStorage || {}).forEach((key) => {
       if (key.startsWith('supabase.auth.') || key.includes('sb-')) {
+        console.log('Removing sessionStorage key:', key);
         sessionStorage.removeItem(key);
       }
     });
@@ -22,6 +37,31 @@ export const clearAuthCache = () => {
     return true;
   } catch (error) {
     console.error('Error clearing auth cache:', error);
+    return false;
+  }
+};
+
+export const forceAuthRefresh = async () => {
+  try {
+    console.log('Forcing auth refresh...');
+    
+    // Import supabase client dynamically to avoid circular dependencies
+    const { supabase } = await import('@/integrations/supabase/client');
+    
+    // Sign out completely first
+    await supabase.auth.signOut({ scope: 'global' });
+    
+    // Clear all auth cache
+    clearAuthCache();
+    
+    // Force page reload to ensure clean state
+    setTimeout(() => {
+      window.location.reload();
+    }, 500);
+    
+    return true;
+  } catch (error) {
+    console.error('Error forcing auth refresh:', error);
     return false;
   }
 };
