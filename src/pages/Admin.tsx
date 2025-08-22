@@ -1,10 +1,10 @@
 import AdminAuth from '@/components/AdminAuth';
 import AdminDashboard from '@/components/AdminDashboard';
-import { useAdminAuth } from '@/hooks/useAdminAuth';
+import { useAdminAuth, AdminAuthProvider } from '@/contexts/AdminAuthContext';
 import { Loader2, AlertCircle } from 'lucide-react';
 
-const Admin = () => {
-  const { isAdmin, loading, user, session, error } = useAdminAuth();
+const AdminContent = () => {
+  const { isAdmin, loading, user, error } = useAdminAuth();
 
   // Show loading state
   if (loading) {
@@ -16,7 +16,6 @@ const Admin = () => {
             <p className="text-lg font-medium">Checking admin access...</p>
             <div className="text-sm text-muted-foreground space-y-1">
               <p>User: {user ? `✓ ${user.email}` : '✗ No user'}</p>
-              <p>Session: {session ? '✓ Active' : '✗ No session'}</p>
               <p>Admin Status: {user ? 'Verifying...' : 'Waiting for auth...'}</p>
             </div>
           </div>
@@ -47,6 +46,14 @@ const Admin = () => {
   }
 
   return <AdminAuth />;
+};
+
+const Admin = () => {
+  return (
+    <AdminAuthProvider>
+      <AdminContent />
+    </AdminAuthProvider>
+  );
 };
 
 export default Admin;

@@ -19,7 +19,7 @@ import {
   Shield,
   Activity
 } from 'lucide-react';
-import { useAdminAuth } from '@/hooks/useAdminAuth';
+import { useAdminAuth } from '@/contexts/AdminAuthContext';
 import { clearAuthCache, clearAllCache, clearBrowserCache } from '@/utils/cacheUtils';
 import FormSubmissions from '@/components/admin/FormSubmissions';
 import AssessmentResults from '@/components/admin/AssessmentResults';
