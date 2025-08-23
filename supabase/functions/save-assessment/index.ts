@@ -36,12 +36,17 @@ serve(async (req) => {
 
     console.log('Saving assessment session:', assessmentData.sessionId);
 
+    // Convert assessment type to lowercase to match database enum
+    const normalizedAssessmentType = assessmentData.assessmentType.toLowerCase().replace(/\s+/g, '_');
+    
+    console.log('Normalized assessment type:', normalizedAssessmentType);
+
     // Insert assessment session into database
     const { data: session, error } = await supabase
       .from('assessment_sessions')
       .insert({
         session_id: assessmentData.sessionId,
-        assessment_type: assessmentData.assessmentType,
+        assessment_type: normalizedAssessmentType,
         answers: assessmentData.answers,
         score: assessmentData.score,
         severity: assessmentData.severity,
@@ -63,7 +68,7 @@ serve(async (req) => {
       .insert({
         event_type: 'assessment_completed',
         event_data: { 
-          assessment_type: assessmentData.assessmentType,
+          assessment_type: normalizedAssessmentType,
           session_id: assessmentData.sessionId,
           score: assessmentData.score,
           severity: assessmentData.severity
