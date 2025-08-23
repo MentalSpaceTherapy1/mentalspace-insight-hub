@@ -415,6 +415,45 @@ export type Database = {
           },
         ]
       }
+      site_content_cache: {
+        Row: {
+          content: string
+          created_at: string
+          description: string | null
+          full_url: string
+          id: string
+          last_crawled: string
+          title: string
+          updated_at: string
+          url: string
+          word_count: number | null
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          description?: string | null
+          full_url: string
+          id?: string
+          last_crawled?: string
+          title: string
+          updated_at?: string
+          url: string
+          word_count?: number | null
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          description?: string | null
+          full_url?: string
+          id?: string
+          last_crawled?: string
+          title?: string
+          updated_at?: string
+          url?: string
+          word_count?: number | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

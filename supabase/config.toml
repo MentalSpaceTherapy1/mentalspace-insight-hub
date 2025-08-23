@@ -12,6 +12,9 @@ verify_jwt = false
 [functions.track-analytics]
 verify_jwt = false
 
+[functions.site-crawler]
+verify_jwt = false
+
 [functions.therapy-chat]
 verify_jwt = false
 

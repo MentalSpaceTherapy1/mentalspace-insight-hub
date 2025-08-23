@@ -82,7 +82,12 @@ These trained counselors are available 24/7 and can provide immediate support. P
     const previousMessages = sessionData?.messages || [];
     const userContext = sessionData?.user_context || {};
 
-    // Remove database queries for empty tables and use actual website content
+    // Get crawled site content from database instead of hardcoded content
+    const { data: siteContent } = await supabase
+      .from('site_content_cache')
+      .select('url, title, description, content')
+      .order('last_crawled', { ascending: false });
+
     const websiteContent = {
       services: [
         {
@@ -146,50 +151,8 @@ These trained counselors are available 24/7 and can provide immediate support. P
         { name: "Mental Health Library", description: "Educational resources and articles about mental health", link: "/mental-health-library" },
         { name: "Contact Us", description: "Get in touch with our support team", link: "/contact-us" }
       ],
-      blogPosts: [
-        {
-          title: "Understanding Anxiety: Signs, Symptoms, and Treatment Options",
-          description: "Learn about the different types of anxiety disorders and evidence-based treatment approaches that can help you manage anxiety effectively.",
-          excerpt: "Comprehensive guide to understanding anxiety disorders, recognizing symptoms, and exploring treatment options including therapy and self-care strategies.",
-          url: "/blog/understanding-anxiety",
-          topics: ["anxiety types", "GAD", "panic disorder", "social anxiety", "treatment options", "therapy", "self-care strategies", "when to seek help"]
-        },
-        {
-          title: "Depression in Adults: Breaking the Stigma and Finding Help",
-          description: "Explore the reality of adult depression, common misconceptions, and how therapy can provide a path to recovery and healing.",
-          excerpt: "Breaking down stigma around depression and providing practical guidance for understanding, recognizing, and treating depression in adults.",
-          url: "/blog/depression-breaking-stigma",
-          topics: ["depression myths", "recognizing signs", "stigma impact", "therapy benefits", "treatment options", "finding help"]
-        },
-        {
-          title: "The Benefits of Online Therapy: Accessible Mental Health Care",
-          description: "Discover how online therapy has revolutionized mental health care, making it more accessible and convenient for everyone.",
-          excerpt: "Exploring the advantages of virtual therapy sessions, accessibility benefits, and effectiveness of online mental health care.",
-          url: "/blog/online-therapy-benefits",
-          topics: ["teletherapy", "virtual sessions", "accessibility", "convenience", "effectiveness research", "getting started"]
-        },
-        {
-          title: "Couples Therapy: Improving Communication and Connection",
-          description: "Learn how couples therapy can strengthen relationships through better communication and deeper emotional connection.",
-          excerpt: "Practical guidance for couples looking to improve their relationship through professional therapy and communication skills.",
-          url: "/blog/couples-therapy-communication",
-          topics: ["relationship communication", "couples counseling", "connection building", "conflict resolution"]
-        },
-        {
-          title: "Teen Mental Health: Supporting Adolescents Through Challenges",
-          description: "Understanding the unique mental health needs of teenagers and how to provide appropriate support and intervention.",
-          excerpt: "Comprehensive guide to teen mental health challenges and effective support strategies for adolescents.",
-          url: "/blog/teen-mental-health",
-          topics: ["adolescent psychology", "teen therapy", "family support", "mental health awareness"]
-        },
-        {
-          title: "PTSD Recovery: Evidence-Based Treatments for Trauma Healing",
-          description: "Explore effective, evidence-based treatments for PTSD and the journey toward trauma recovery and healing.",
-          excerpt: "In-depth look at PTSD treatment options, recovery processes, and evidence-based therapeutic approaches for trauma healing.",
-          url: "/blog/ptsd-recovery",
-          topics: ["PTSD treatment", "trauma therapy", "recovery process", "evidence-based treatments", "healing journey"]
-        }
-      ],
+      // Use crawled content from database
+      crawledContent: siteContent || [],
       conditions: [
         { name: "Anxiety Disorders", description: "Comprehensive care for various anxiety disorders including GAD, panic, and social anxiety", link: "/conditions/anxiety" },
         { name: "Depression", description: "Evidence-based treatment for major depression and mood disorders", link: "/conditions/depression" },
@@ -244,8 +207,8 @@ ${websiteContent.assessments.map(assessment => `- ${assessment.name}: ${assessme
 **KEY WEBSITE PAGES:**
 ${websiteContent.pages.map(page => `- ${page.name}: ${page.description} (Link: ${page.link})`).join('\n')}
 
-**PUBLISHED BLOG POSTS & ARTICLES:**
-${websiteContent.blogPosts.map(post => `- ${post.title}: ${post.description || post.excerpt} (Topics: ${post.topics ? post.topics.join(', ') : 'N/A'}) (Link: ${post.url})`).join('\n')}
+**CRAWLED WEBSITE CONTENT (All Pages):**
+${websiteContent.crawledContent.map(page => `- ${page.title} (${page.url}): ${page.description} | Content: ${page.content.substring(0, 300)}...`).join('\n')}
 
 **CONDITIONS WE TREAT:**
 ${websiteContent.conditions.map(condition => `- ${condition.name}: ${condition.description} (Link: ${condition.link})`).join('\n')}
