@@ -34,6 +34,21 @@ import Blog from "./pages/Blog";
 import Depression from "./pages/conditions/Depression";
 import Anxiety from "./pages/conditions/Anxiety";
 import ADHD from "./pages/conditions/ADHD";
+import PTSD from "./pages/conditions/PTSD";
+import BipolarDisorder from "./pages/conditions/BipolarDisorder";
+import BorderlinePersonalityDisorder from "./pages/conditions/BorderlinePersonalityDisorder";
+import NarcissisticPersonalityDisorder from "./pages/conditions/NarcissisticPersonalityDisorder";
+import DissociativeIdentityDisorder from "./pages/conditions/DissociativeIdentityDisorder";
+import OppositionalDefiantDisorder from "./pages/conditions/OppositionalDefiantDisorder";
+import BodyDysmorphicDisorder from "./pages/conditions/BodyDysmorphicDisorder";
+import PanicDisorder from "./pages/conditions/PanicDisorder";
+import SocialAnxietyDisorder from "./pages/conditions/SocialAnxietyDisorder";
+import ObsessiveCompulsiveDisorder from "./pages/conditions/ObsessiveCompulsiveDisorder";
+import AntisocialPersonalityDisorder from "./pages/conditions/AntisocialPersonalityDisorder";
+import AdjustmentDisorder from "./pages/conditions/AdjustmentDisorder";
+import SubstanceUseDisorder from "./pages/conditions/SubstanceUseDisorder";
+import Anorexia from "./pages/conditions/Anorexia";
+import Codependency from "./pages/conditions/Codependency";
 
 const queryClient = new QueryClient();
 
@@ -72,6 +87,21 @@ const App = () => (
             <Route path="/mental-health-library/depression" element={<Depression />} />
             <Route path="/mental-health-library/anxiety" element={<Anxiety />} />
             <Route path="/mental-health-library/adhd" element={<ADHD />} />
+            <Route path="/mental-health-library/ptsd" element={<PTSD />} />
+            <Route path="/mental-health-library/bipolar-disorder" element={<BipolarDisorder />} />
+            <Route path="/mental-health-library/borderline-personality-disorder" element={<BorderlinePersonalityDisorder />} />
+            <Route path="/mental-health-library/narcissistic-personality-disorder" element={<NarcissisticPersonalityDisorder />} />
+            <Route path="/mental-health-library/dissociative-identity-disorder" element={<DissociativeIdentityDisorder />} />
+            <Route path="/mental-health-library/oppositional-defiant-disorder" element={<OppositionalDefiantDisorder />} />
+            <Route path="/mental-health-library/body-dysmorphic-disorder" element={<BodyDysmorphicDisorder />} />
+            <Route path="/mental-health-library/panic-disorder" element={<PanicDisorder />} />
+            <Route path="/mental-health-library/social-anxiety-disorder" element={<SocialAnxietyDisorder />} />
+            <Route path="/mental-health-library/obsessive-compulsive-disorder" element={<ObsessiveCompulsiveDisorder />} />
+            <Route path="/mental-health-library/antisocial-personality-disorder" element={<AntisocialPersonalityDisorder />} />
+            <Route path="/mental-health-library/adjustment-disorder" element={<AdjustmentDisorder />} />
+            <Route path="/mental-health-library/substance-use-disorder" element={<SubstanceUseDisorder />} />
+            <Route path="/mental-health-library/anorexia" element={<Anorexia />} />
+            <Route path="/mental-health-library/co-dependency" element={<Codependency />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms-conditions" element={<TermsAndConditions />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
