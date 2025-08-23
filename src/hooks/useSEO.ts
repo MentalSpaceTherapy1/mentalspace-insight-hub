@@ -111,11 +111,11 @@ export const useSEO = ({
 // Pre-defined SEO configurations for common pages
 export const SEO_CONFIGS = {
   home: {
-    title: "MentalSpace - Online Therapy & Mental Health Services | Licensed Therapists Available 24/7",
-    description: "Professional online therapy and mental health services. Connect with licensed therapists anytime, anywhere. Individual therapy, couples counseling, teen therapy, and life coaching. Most insurance accepted.",
-    keywords: "online therapy, mental health, licensed therapists, counseling, psychology, depression, anxiety, couples therapy, teen therapy, life coaching",
+    title: "MentalSpace - Online Therapy & Mental Health Services | Licensed Therapists & Same-Week Starts",
+    description: "Professional online therapy and mental health services. Connect with licensed therapists with flexible scheduling. Individual therapy, couples counseling, teen therapy, and life coaching. Most insurance accepted.",
+    keywords: "online therapy, mental health, licensed therapists, counseling, psychology, depression, anxiety, couples therapy, teen therapy, life coaching, same week therapy, flexible scheduling",
     ogTitle: "MentalSpace - Professional Online Therapy Services",
-    ogDescription: "Connect with licensed therapists anytime, anywhere. Professional mental health support that fits your schedule."
+    ogDescription: "Connect with licensed therapists with flexible scheduling. Professional mental health support that fits your schedule."
   },
   onlineTherapy: {
     title: "Online Therapy Services - Licensed Therapists | MentalSpace",

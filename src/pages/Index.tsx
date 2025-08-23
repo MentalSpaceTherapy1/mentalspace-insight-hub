@@ -138,8 +138,8 @@ const Index = () => {
     },
     {
       icon: Clock,
-      title: "24/7 Availability", 
-      description: "Connect with your therapist anytime that works for your schedule.",
+      title: "Flexible Scheduling", 
+      description: "Same-week appointments available with scheduling that works for your lifestyle.",
       color: "from-purple-500 to-pink-500"
     },
     {
@@ -253,8 +253,8 @@ const Index = () => {
                 <div className="text-muted-foreground">Success Rate</div>
               </div>
               <div className="animate-bounce-in" style={{animationDelay: '0.2s'}}>
-                <div className="text-4xl font-bold text-gradient mb-2" aria-label="24 hours 7 days availability">24/7</div>
-                <div className="text-muted-foreground">Availability</div>
+                <div className="text-4xl font-bold text-gradient mb-2" aria-label="Same week appointment availability">Same Week</div>
+                <div className="text-muted-foreground">Appointment Starts</div>
               </div>
               <div className="animate-bounce-in" style={{animationDelay: '0.3s'}}>
                 <div className="text-4xl font-bold text-gradient mb-2" aria-label="500 plus expert therapists">500+</div>

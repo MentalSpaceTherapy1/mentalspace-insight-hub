@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MentalSpace - Online Therapy & Mental Health Services | Licensed Therapists Available 24/7</title>
-    <meta name="description" content="Professional online therapy and mental health services. Connect with licensed therapists anytime, anywhere. Individual therapy, couples counseling, teen therapy, and life coaching. Most insurance accepted." />
+    <title>MentalSpace - Online Therapy & Mental Health Services | Licensed Therapists & Same-Week Starts</title>
+    <meta name="description" content="Professional online therapy and mental health services. Connect with licensed therapists with flexible scheduling. Individual therapy, couples counseling, teen therapy, and life coaching. Most insurance accepted." />
     <meta name="keywords" content="online therapy, mental health, licensed therapists, counseling, psychology, depression, anxiety, couples therapy, teen therapy, life coaching" />
     <meta name="author" content="MentalSpace" />
     <meta name="robots" content="index, follow" />
@@ -37,7 +37,7 @@
       "name": "MentalSpace",
       "url": "https://mentalspace-insight-hub.lovable.app",
       "logo": "https://mentalspace-insight-hub.lovable.app/logo.png",
-      "description": "Professional online mental health services providing therapy, counseling, and psychiatric care with licensed mental health professionals available 24/7",
+      "description": "Professional online mental health services providing therapy, counseling, and psychiatric care with licensed mental health professionals offering same-week appointment starts",
       "address": {
         "@type": "PostalAddress",
         "addressCountry": "US"
@@ -47,12 +47,20 @@
         "telephone": "+1-800-MENTAL",
         "contactType": "customer service",
         "availableLanguage": ["en"],
-        "hoursAvailable": {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-          "opens": "00:00",
-          "closes": "23:59"
-        }
+        "hoursAvailable": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "08:00",
+            "closes": "20:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification", 
+            "dayOfWeek": ["Saturday", "Sunday"],
+            "opens": "10:00",
+            "closes": "18:00"
+          }
+        ]
       },
       "sameAs": [
         "https://facebook.com/mentalspace",
