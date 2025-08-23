@@ -317,25 +317,90 @@ const AssessmentResults = () => {
 
   const renderContactInfo = (additionalInfo: Record<string, any>) => {
     const contactInfo = additionalInfo?.contact_info;
-    if (!contactInfo) return null;
+    const originalFormData = additionalInfo?.original_form_data;
+    
+    if (!contactInfo && !originalFormData) return null;
 
     return (
-      <div className="space-y-3">
-        <h5 className="font-medium text-sm">Contact Information</h5>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+      <div className="space-y-4">
+        <h5 className="font-medium">Contact & Personal Information</h5>
+        
+        {/* Basic Contact */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <span className="font-medium text-muted-foreground">Name:</span>
-            <p className="font-medium">{contactInfo.firstName} {contactInfo.lastName}</p>
+            <span className="font-medium text-muted-foreground text-sm">Full Name:</span>
+            <p className="font-medium">{contactInfo?.firstName} {contactInfo?.lastName}</p>
           </div>
           <div>
-            <span className="font-medium text-muted-foreground">Email:</span>
-            <p className="font-medium">{contactInfo.email}</p>
+            <span className="font-medium text-muted-foreground text-sm">Email:</span>
+            <p className="font-medium">{contactInfo?.email}</p>
           </div>
-          <div className="md:col-span-2">
-            <span className="font-medium text-muted-foreground">Phone:</span>
-            <p className="font-medium">{contactInfo.phone || 'Not provided'}</p>
+          <div>
+            <span className="font-medium text-muted-foreground text-sm">Phone:</span>
+            <p className="font-medium">{contactInfo?.phone || 'Not provided'}</p>
+          </div>
+          <div>
+            <span className="font-medium text-muted-foreground text-sm">State:</span>
+            <p className="font-medium">{originalFormData?.state || contactInfo?.state || 'Not provided'}</p>
           </div>
         </div>
+
+        {/* Personal Details */}
+        {(originalFormData?.birthDay || originalFormData?.gender) && (
+          <div>
+            <h6 className="font-medium text-sm mb-2">Personal Details</h6>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {(originalFormData?.birthDay && originalFormData?.birthMonth && originalFormData?.birthYear) && (
+                <div>
+                  <span className="font-medium text-muted-foreground text-sm">Date of Birth:</span>
+                  <p className="font-medium">
+                    {originalFormData.birthMonth}/{originalFormData.birthDay}/{originalFormData.birthYear}
+                  </p>
+                </div>
+              )}
+              {originalFormData?.gender && (
+                <div>
+                  <span className="font-medium text-muted-foreground text-sm">Gender:</span>
+                  <p className="font-medium">{originalFormData.gender}</p>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* Insurance Information */}
+        {originalFormData?.hasInsurance && (
+          <div>
+            <h6 className="font-medium text-sm mb-2">Insurance Information</h6>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <span className="font-medium text-muted-foreground text-sm">Has Insurance:</span>
+                <p className="font-medium">
+                  {originalFormData.hasInsurance === 'yes' ? 'Yes' : 'No'}
+                </p>
+              </div>
+              {originalFormData.hasInsurance === 'yes' && (
+                <div>
+                  <span className="font-medium text-muted-foreground text-sm">Insurance Provider:</span>
+                  <p className="font-medium">
+                    {originalFormData.insuranceName || originalFormData.customInsurance || 'Not specified'}
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* Therapy Preferences */}
+        {originalFormData?.timeline && (
+          <div>
+            <h6 className="font-medium text-sm mb-2">Therapy Preferences</h6>
+            <div>
+              <span className="font-medium text-muted-foreground text-sm">Preferred Timeline:</span>
+              <p className="font-medium">{originalFormData.timeline}</p>
+            </div>
+          </div>
+        )}
       </div>
     );
   };
