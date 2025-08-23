@@ -33,11 +33,11 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Organization",
+      "@type": "MedicalOrganization",
       "name": "MentalSpace",
       "url": "https://mentalspace-insight-hub.lovable.app",
       "logo": "https://mentalspace-insight-hub.lovable.app/logo.png",
-      "description": "Professional online therapy and mental health services with licensed therapists available 24/7",
+      "description": "Professional online mental health services providing therapy, counseling, and psychiatric care with licensed mental health professionals available 24/7",
       "address": {
         "@type": "PostalAddress",
         "addressCountry": "US"
@@ -46,44 +46,124 @@
         "@type": "ContactPoint",
         "telephone": "+1-800-MENTAL",
         "contactType": "customer service",
-        "availableLanguage": ["en"]
+        "availableLanguage": ["en"],
+        "hoursAvailable": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+          "opens": "00:00",
+          "closes": "23:59"
+        }
       },
       "sameAs": [
         "https://facebook.com/mentalspace",
         "https://twitter.com/mentalspace",
         "https://linkedin.com/company/mentalspace"
       ],
-      "serviceType": ["Mental Health Services", "Online Therapy", "Counseling", "Life Coaching"],
-      "areaServed": "US"
-    }
-    </script>
-
-    <!-- Structured Data for Medical Organization -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "MedicalOrganization",
-      "name": "MentalSpace",
-      "url": "https://mentalspace-insight-hub.lovable.app",
-      "medicalSpecialty": ["Psychiatry", "Psychology", "Mental Health Counseling"],
-      "serviceType": ["Online Therapy", "Individual Therapy", "Couples Therapy", "Teen Therapy", "Life Coaching"],
+      "medicalSpecialty": [
+        "Psychiatry", 
+        "Psychology", 
+        "Mental Health Counseling",
+        "Marriage and Family Therapy",
+        "Clinical Social Work",
+        "Addiction Counseling"
+      ],
+      "serviceType": [
+        "Online Therapy",
+        "Individual Therapy", 
+        "Couples Therapy",
+        "Teen Therapy",
+        "Life Coaching",
+        "Mental Health Assessment",
+        "Crisis Counseling"
+      ],
+      "areaServed": "US",
       "availableService": [
         {
           "@type": "MedicalTherapy",
-          "name": "Online Individual Therapy",
-          "description": "One-on-one therapy sessions with licensed professionals"
-        },
-        {
-          "@type": "MedicalTherapy", 
-          "name": "Couples Therapy",
-          "description": "Relationship counseling for couples"
+          "name": "Depression Treatment",
+          "description": "Evidence-based therapy for depression using cognitive behavioral therapy and other proven approaches"
         },
         {
           "@type": "MedicalTherapy",
-          "name": "Teen Therapy", 
-          "description": "Specialized therapy for adolescents aged 13-17"
+          "name": "Anxiety Treatment", 
+          "description": "Specialized anxiety therapy including panic disorder, social anxiety, and generalized anxiety treatment"
+        },
+        {
+          "@type": "MedicalTherapy",
+          "name": "PTSD Treatment",
+          "description": "Trauma-focused therapy for PTSD and trauma recovery using EMDR and other evidence-based methods"
+        },
+        {
+          "@type": "MedicalTherapy",
+          "name": "ADHD Support",
+          "description": "Comprehensive ADHD assessment and therapeutic support for children, teens, and adults"
+        },
+        {
+          "@type": "MedicalTherapy",
+          "name": "Bipolar Disorder Treatment",
+          "description": "Mood stabilization therapy and psychiatric support for bipolar disorder management"
+        }
+      ],
+      "hasCredential": [
+        {
+          "@type": "EducationalOccupationalCredential",
+          "name": "Licensed Clinical Social Worker (LCSW)"
+        },
+        {
+          "@type": "EducationalOccupationalCredential", 
+          "name": "Licensed Professional Counselor (LPC)"
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "name": "Licensed Marriage and Family Therapist (LMFT)"
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "name": "Licensed Clinical Mental Health Counselor (LCMHC)"
         }
       ]
+    }
+    </script>
+
+    <!-- Structured Data for Medical Facility -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MedicalClinic",
+      "name": "MentalSpace Online Therapy Clinic",
+      "description": "Virtual mental health clinic providing professional online therapy and psychiatric services",
+      "url": "https://mentalspace-insight-hub.lovable.app",
+      "availableService": [
+        {
+          "@type": "MedicalService",
+          "name": "Online Mental Health Assessment",
+          "description": "Comprehensive mental health screening and diagnostic assessment",
+          "serviceType": "Mental Health Assessment"
+        },
+        {
+          "@type": "MedicalService", 
+          "name": "Individual Psychotherapy",
+          "description": "One-on-one therapy sessions for depression, anxiety, trauma, and other mental health conditions",
+          "serviceType": "Psychotherapy"
+        },
+        {
+          "@type": "MedicalService",
+          "name": "Couples Counseling",
+          "description": "Relationship therapy and marriage counseling services",
+          "serviceType": "Marriage Counseling"
+        },
+        {
+          "@type": "MedicalService",
+          "name": "Adolescent Therapy", 
+          "description": "Specialized mental health services for teenagers and adolescents",
+          "serviceType": "Teen Counseling"
+        }
+      ],
+      "potentialAction": {
+        "@type": "ScheduleAction",
+        "target": "https://mentalspace-insight-hub.lovable.app/therapist-matching",
+        "name": "Schedule Therapy Appointment"
+      }
     }
     </script>
   </head>

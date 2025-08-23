@@ -11,6 +11,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle, Calendar, Shield, DollarSign, ClipboardList, Users, Play, Star, ArrowRight, Zap, Heart, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useSEO, SEO_CONFIGS } from "@/hooks/useSEO";
+import LazyImage from "@/components/LazyImage";
 import therapySessionImg from "@/assets/therapy-session.jpg";
 import happyPeopleImg from "@/assets/happy-people.jpg";
 import wellnessMeditationImg from "@/assets/wellness-meditation.jpg";
@@ -21,48 +22,95 @@ const Index = () => {
   useSEO({
     ...SEO_CONFIGS.home,
     canonicalUrl: "https://mentalspace-insight-hub.lovable.app/",
-    structuredData: {
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      "name": "MentalSpace - Online Therapy & Mental Health Services",
-      "description": "Professional online therapy and mental health services. Connect with licensed therapists anytime, anywhere.",
-      "url": "https://mentalspace-insight-hub.lovable.app/",
-      "mainEntity": {
-        "@type": "MedicalBusiness",
-        "name": "MentalSpace",
-        "description": "Online therapy platform connecting users with licensed mental health professionals",
-        "hasOfferCatalog": {
-          "@type": "OfferCatalog",
-          "name": "Mental Health Services",
-          "itemListElement": [
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Individual Online Therapy",
-                "description": "One-on-one therapy sessions with licensed therapists"
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "MentalSpace - Professional Online Mental Health Services",
+        "description": "Professional online therapy and mental health services. Connect with licensed therapists anytime, anywhere for depression, anxiety, PTSD, ADHD, and more.",
+        "url": "https://mentalspace-insight-hub.lovable.app/",
+        "mainEntity": {
+          "@type": "MedicalBusiness",
+          "name": "MentalSpace",
+          "description": "Leading online therapy platform connecting users with licensed mental health professionals for comprehensive psychiatric care",
+          "medicalSpecialty": [
+            "Depression Treatment",
+            "Anxiety Disorders",
+            "PTSD and Trauma Therapy", 
+            "ADHD Assessment and Support",
+            "Bipolar Disorder Treatment",
+            "Couples and Relationship Therapy",
+            "Teen and Adolescent Mental Health"
+          ],
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Mental Health Treatment Services",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "MedicalService",
+                  "name": "Depression Therapy Online",
+                  "description": "Evidence-based cognitive behavioral therapy and interpersonal therapy for depression treatment"
+                }
+              },
+              {
+                "@type": "Offer", 
+                "itemOffered": {
+                  "@type": "MedicalService",
+                  "name": "Anxiety Treatment Services",
+                  "description": "Specialized therapy for generalized anxiety, panic disorder, social anxiety, and phobias"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "MedicalService", 
+                  "name": "Trauma and PTSD Therapy",
+                  "description": "EMDR therapy and trauma-focused cognitive behavioral therapy for PTSD recovery"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "MedicalService",
+                  "name": "ADHD Assessment and Support", 
+                  "description": "Comprehensive ADHD evaluation and therapeutic support for children, teens, and adults"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "MedicalService",
+                  "name": "Couples Relationship Therapy",
+                  "description": "Evidence-based couples therapy and marriage counseling using Gottman Method and EFT approaches"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "MedicalService",
+                  "name": "Teen Mental Health Services",
+                  "description": "Specialized therapy for adolescents dealing with depression, anxiety, self-esteem, and behavioral issues"
+                }
               }
-            },
-            {
-              "@type": "Offer", 
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Couples Therapy",
-                "description": "Relationship counseling for couples"
-              }
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service", 
-                "name": "Teen Therapy",
-                "description": "Specialized therapy for adolescents aged 13-17"
-              }
-            }
+            ]
+          },
+          "acceptedPaymentMethod": [
+            "Insurance", 
+            "Self-Pay", 
+            "HSA",
+            "FSA"
+          ],
+          "paymentAccepted": [
+            "Aetna",
+            "Blue Cross Blue Shield", 
+            "Cigna",
+            "Optum",
+            "CareSource",
+            "Amerigroup"
           ]
         }
       }
-    }
   });
   const coachingSteps = [
     {
@@ -231,7 +279,7 @@ const Index = () => {
             
             <article className="grid lg:grid-cols-2 gap-16 items-center mb-24">
               <div className="animate-slide-up">
-                <img 
+                <LazyImage 
                   src={therapySessionImg} 
                   alt="Professional licensed therapist conducting an online therapy session with client in comfortable home setting" 
                   className="w-full h-96 object-cover rounded-3xl shadow-modern hover-lift"
@@ -275,7 +323,7 @@ const Index = () => {
                 </div>
               </div>
               <div className="animate-slide-up order-1 lg:order-2" style={{animationDelay: '0.2s'}}>
-                <img 
+                <LazyImage 
                   src={wellnessMeditationImg} 
                   alt="Person practicing mindfulness and wellness meditation in peaceful environment for mental health" 
                   className="w-full h-96 object-cover rounded-3xl shadow-modern hover-lift"
@@ -333,7 +381,7 @@ const Index = () => {
             
             <div className="grid lg:grid-cols-2 gap-16 items-center mb-16">
               <div className="animate-slide-up">
-                <img 
+                <LazyImage 
                   src={happyPeopleImg} 
                   alt="Happy diverse people who have successfully completed online therapy showing positive mental health outcomes" 
                   className="w-full h-96 object-cover rounded-3xl shadow-modern hover-lift"
@@ -344,7 +392,7 @@ const Index = () => {
                   <Card key={index} className="glass-effect border-0 hover-lift">
                     <CardContent className="p-6">
                       <div className="flex items-start space-x-4">
-                        <img 
+                        <LazyImage 
                           src={testimonial.avatar} 
                           alt={`${testimonial.name}, ${testimonial.role} - MentalSpace therapy success story`}
                           className="w-16 h-16 rounded-full object-cover shadow-card"
