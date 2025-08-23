@@ -35,6 +35,8 @@ import AnxietyUnderstanding from "./pages/blog/AnxietyUnderstanding";
 import DepressionBreakingStigma from "./pages/blog/DepressionBreakingStigma";
 import OnlineTherapyBenefits from "./pages/blog/OnlineTherapyBenefits";
 import CouplesTherapyCommunication from "./pages/blog/CouplesTherapyCommunication";
+import TeenMentalHealth from "./pages/blog/TeenMentalHealth";
+import PTSDRecovery from "./pages/blog/PTSDRecovery";
 import Depression from "./pages/conditions/Depression";
 import Anxiety from "./pages/conditions/Anxiety";
 import ADHD from "./pages/conditions/ADHD";
@@ -92,6 +94,8 @@ const App = () => (
             <Route path="/blog/depression-breaking-stigma" element={<DepressionBreakingStigma />} />
             <Route path="/blog/online-therapy-benefits" element={<OnlineTherapyBenefits />} />
             <Route path="/blog/couples-therapy-communication" element={<CouplesTherapyCommunication />} />
+            <Route path="/blog/teen-mental-health" element={<TeenMentalHealth />} />
+            <Route path="/blog/ptsd-recovery" element={<PTSDRecovery />} />
             <Route path="/mental-health-library/depression" element={<Depression />} />
             <Route path="/mental-health-library/anxiety" element={<Anxiety />} />
             <Route path="/mental-health-library/adhd" element={<ADHD />} />

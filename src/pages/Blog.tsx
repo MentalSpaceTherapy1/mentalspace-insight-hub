@@ -113,6 +113,8 @@ const Blog = () => {
                   post.id === 2 ? "/blog/depression-breaking-stigma" : 
                   post.id === 3 ? "/blog/online-therapy-benefits" :
                   post.id === 4 ? "/blog/couples-therapy-communication" :
+                  post.id === 5 ? "/blog/teen-mental-health" :
+                  post.id === 6 ? "/blog/ptsd-recovery" :
                   "#"
                 }
                 className="block"
@@ -152,6 +154,8 @@ const Blog = () => {
                         post.id === 2 ? "/blog/depression-breaking-stigma" : 
                         post.id === 3 ? "/blog/online-therapy-benefits" :
                         post.id === 4 ? "/blog/couples-therapy-communication" :
+                        post.id === 5 ? "/blog/teen-mental-health" :
+                        post.id === 6 ? "/blog/ptsd-recovery" :
                         "#"
                       }
                     >
