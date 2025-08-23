@@ -20,9 +20,10 @@ serve(async (req) => {
     
     console.log(`Session action: ${action} for session: ${sessionId}`);
     
-    const clientIP = req.headers.get('x-forwarded-for') || 
-                    req.headers.get('x-real-ip') || 
-                    '0.0.0.0';
+    const forwardedFor = req.headers.get('x-forwarded-for');
+    const clientIP = forwardedFor ? 
+                    forwardedFor.split(',')[0].trim() : 
+                    req.headers.get('x-real-ip') || '0.0.0.0';
 
     if (action === 'create') {
       // Create new session

@@ -23,9 +23,10 @@ serve(async (req) => {
     console.log(`Processing chat message for session: ${sessionId}`);
     
     // Get client IP for safety logging
-    const clientIP = req.headers.get('x-forwarded-for') || 
-                    req.headers.get('x-real-ip') || 
-                    '0.0.0.0';
+    const forwardedFor = req.headers.get('x-forwarded-for');
+    const clientIP = forwardedFor ? 
+                    forwardedFor.split(',')[0].trim() : 
+                    req.headers.get('x-real-ip') || '0.0.0.0';
 
     // Check for crisis keywords
     const crisisKeywords = [
