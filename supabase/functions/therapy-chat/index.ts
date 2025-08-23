@@ -28,10 +28,12 @@ serve(async (req) => {
                     forwardedFor.split(',')[0].trim() : 
                     req.headers.get('x-real-ip') || '0.0.0.0';
 
-    // Check for crisis keywords
+    // Enhanced crisis detection with more comprehensive patterns
     const crisisKeywords = [
       'suicide', 'kill myself', 'end my life', 'want to die', 'harm myself',
-      'cut myself', 'overdose', 'jump off', 'not worth living'
+      'cut myself', 'overdose', 'jump off', 'not worth living', 'plan to hurt',
+      'thinking about hurting myself', 'plan to end', 'better off dead',
+      'no point in living', 'thinking of suicide', 'want to hurt myself'
     ];
     
     const messageText = message.toLowerCase();
@@ -50,20 +52,21 @@ serve(async (req) => {
 
       const crisisResponse = {
         role: 'assistant',
-        content: `I'm very concerned about you right now. If you're having thoughts of suicide or self-harm, please reach out for immediate help:
+        content: `I'm really sorry you're feeling this way. You are not alone. Please call or text **988** to reach the Suicide & Crisis Lifeline, or dial **911** if you're in immediate danger.
 
-🆘 **Crisis Lifeline**: 988 (call or text)
-🚨 **Emergency**: 911
-💬 **Crisis Text Line**: Text HOME to 741741
+**National Crisis Resources:**
+• **988 Suicide & Crisis Lifeline**: Call or text 988
+• **Crisis Text Line**: Text HOME to 741741
+• **National Suicide Prevention Lifeline**: 1-800-273-8255
+• **Emergency Services**: 911
 
-You matter, and there are people who want to help. While I can provide support and information about mental health resources, I encourage you to speak with a trained crisis counselor or mental health professional right away.
-
-Would you like me to help you find local mental health resources or talk about what support options are available?`
+These trained counselors are available 24/7 and can provide immediate support. Please reach out to them right now.`
       };
 
       return new Response(JSON.stringify({ 
         response: crisisResponse,
-        isCrisis: true 
+        isCrisis: true,
+        endSession: true
       }), {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
@@ -160,16 +163,36 @@ Would you like me to help you find local mental health resources or talk about w
       resources: resources || []
     };
 
-    // Build conversation history for OpenAI
+    // Build conversation history with production-ready system prompt
     const conversationHistory = [
       {
         role: 'system',
-        content: `You are a helpful mental health support assistant for MentalSpace Therapy. Your role is to:
+        content: `You are the MentalSpace Website Assistant for prospective clients in Georgia. 
+Your purpose: (1) answer questions using only MentalSpace/CHC published content and other clearly cited, authoritative sources; (2) help visitors understand options; (3) guide them to "Get Started" to book an intake. You are NOT a therapist and do not provide medical advice or crisis counseling.
 
-1. Provide supportive, empathetic responses about mental health topics
-2. Recommend relevant resources from our website (assessments, services, pages)
-3. Guide users to appropriate professional help when needed
-4. NEVER provide medical diagnoses or specific treatment plans
+STRICT RULES
+- Scope: Use only the content provided in your context ("Site Context") and, where applicable, whitelisted authoritative sources (CDC, NIH, APA) that appear in your retrieval. If the answer is not in context, say you don't have that information and offer to connect the user to our team or link to "Get Started."
+- No diagnosis. No treatment or medication advice. No prognoses. No legal/insurance promises. Educational information only.
+- Crisis handling: If the user expresses intent to harm self/others, or you detect imminent risk language, immediately show this message (and STOP normal conversation):
+  "I'm really sorry you're feeling this way. You are not alone. Please call or text **988** to reach the Suicide & Crisis Lifeline, or dial **911** if you're in immediate danger."
+  Then offer national crisis resources and end the session.
+- PHI & privacy: Do not ask for names, dates of birth, addresses, or plan numbers. If the user starts to share personal health details, gently redirect to "Get Started" where information is collected securely.
+- Tone: Warm, concise, plain English (≈8th-grade reading level). Use Georgia-specific context where relevant. 
+- Output style: 
+  1) A direct answer in 2–5 short sentences. 
+  2) "What to do next" with one clear CTA.
+  3) If you referenced sources, list 1–3 "Sources" as bullet links (no footnote jargon).
+- If the question is about scheduling, insurance, prices, or getting care, always include a **Get Started** CTA.
+- If the question asks for something MentalSpace/CHC doesn't do, say so clearly and redirect to an appropriate alternative (educational only).
+
+REFUSAL TEMPLATES
+- Out of scope (not in Site Context): "I don't have that on our site. Would you like me to connect you with our team or start the intake so we can help directly?"
+- Clinical advice request: "I can't give medical advice here, but I can share education from our articles and help you book with a licensed clinician."
+
+BRAND
+- Organization: MentalSpace (with Coping & Healing Counseling as a related brand).
+- Service area: Georgia (virtual care).
+- Voice: Professional, reassuring, efficient. No hype claims (e.g., not "available 24/7" unless literally true).
 
 WEBSITE CONTENT KNOWLEDGE BASE:
 
@@ -188,19 +211,7 @@ ${websiteContent.blogPosts.map(post => `- ${post.title}: ${post.excerpt || post.
 **PUBLISHED RESOURCES:**
 ${websiteContent.resources.map(resource => `- ${resource.title}: ${resource.description} (Category: ${resource.category})`).join('\n')}
 
-RESPONSE GUIDELINES:
-- Be warm, professional, and non-judgmental
-- Acknowledge feelings and validate experiences
-- When users mention symptoms, suggest relevant assessments by name
-- Recommend specific services based on user needs
-- Provide exact page links when referencing website content
-- Direct to crisis resources if safety concerns arise (/emergency-resources)
-- Keep responses concise but helpful (2-3 paragraphs max)
-- Always remind users this is not a substitute for professional therapy
-
-IMPORTANT: You have detailed knowledge of all our services, assessments, and website content. Use specific names and descriptions when making recommendations. Always provide direct links to relevant pages.
-
-Remember: You're a knowledgeable guide with access to all MentalSpace Therapy resources, not a replacement for professional mental health care.`
+Remember: You're a knowledgeable guide with access to all MentalSpace Therapy resources, not a replacement for professional mental health care. Always guide users toward "Get Started" for actual care.`
       },
       ...previousMessages.map((msg: any) => ({
         role: msg.role,
@@ -221,12 +232,36 @@ Remember: You're a knowledgeable guide with access to all MentalSpace Therapy re
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: 'gpt-4.1-2025-04-14',
+        model: 'gpt-4o-mini',
         messages: conversationHistory,
-        max_tokens: 500,
-        temperature: 0.7,
+        max_completion_tokens: 800,
+        temperature: 0.3,
+        top_p: 1.0,
+        seed: 7,
+        stream: false,
+        response_format: {
+          type: "json_schema",
+          json_schema: {
+            name: "website_bot_response",
+            schema: {
+              type: "object",
+              properties: {
+                answer_text: { type: "string" },
+                cta: {
+                  type: "string",
+                  enum: ["GET_STARTED", "READ_ARTICLE", "CONTACT_TEAM", "CRISIS_HELP", "NONE"]
+                },
+                sources: {
+                  type: "array",
+                  items: { type: "string" }
+                }
+              },
+              required: ["answer_text", "cta"]
+            }
+          }
+        }
       }),
-    });
+    });</thinking>
 
     if (!response.ok) {
       const errorText = await response.text();
@@ -235,7 +270,48 @@ Remember: You're a knowledgeable guide with access to all MentalSpace Therapy re
     }
 
     const data = await response.json();
-    const aiResponse = data.choices[0].message;
+    let aiResponse;
+
+    try {
+      // Parse structured JSON response
+      const structuredResponse = JSON.parse(data.choices[0].message.content);
+      
+      // Convert structured response to chat format
+      let content = structuredResponse.answer_text;
+      
+      // Add CTA if present
+      if (structuredResponse.cta && structuredResponse.cta !== "NONE") {
+        content += "\n\n";
+        switch (structuredResponse.cta) {
+          case "GET_STARTED":
+            content += "**What to do next:** Ready to begin? [Get Started](/get-started) to book your intake.";
+            break;
+          case "READ_ARTICLE":
+            content += "**What to do next:** Learn more in our [Mental Health Library](/mental-health-library).";
+            break;
+          case "CONTACT_TEAM":
+            content += "**What to do next:** Have more questions? [Contact our team](/contact-us) for personalized help.";
+            break;
+          case "CRISIS_HELP":
+            content += "**What to do next:** For immediate support, visit our [Emergency Resources](/emergency-resources) page.";
+            break;
+        }
+      }
+
+      // Add sources if present
+      if (structuredResponse.sources && structuredResponse.sources.length > 0) {
+        content += "\n\n**Sources:**\n" + structuredResponse.sources.map(source => `• ${source}`).join("\n");
+      }
+
+      aiResponse = {
+        role: 'assistant',
+        content: content
+      };
+    } catch (parseError) {
+      // Fallback to regular content if JSON parsing fails
+      console.log('Failed to parse structured response, using fallback');
+      aiResponse = data.choices[0].message;
+    }
 
     console.log(`Generated response for session ${sessionId}`);
 
