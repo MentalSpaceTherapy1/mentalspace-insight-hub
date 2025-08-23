@@ -279,6 +279,7 @@ export type Database = {
           messages: Json[] | null
           session_id: string
           user_context: Json | null
+          user_id: string | null
         }
         Insert: {
           created_at?: string
@@ -288,6 +289,7 @@ export type Database = {
           messages?: Json[] | null
           session_id: string
           user_context?: Json | null
+          user_id?: string | null
         }
         Update: {
           created_at?: string
@@ -297,6 +299,7 @@ export type Database = {
           messages?: Json[] | null
           session_id?: string
           user_context?: Json | null
+          user_id?: string | null
         }
         Relationships: []
       }
