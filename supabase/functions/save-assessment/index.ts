@@ -36,9 +36,69 @@ serve(async (req) => {
 
     console.log('Saving assessment session:', assessmentData.sessionId);
 
-    // Convert assessment type to lowercase to match database enum
-    const normalizedAssessmentType = assessmentData.assessmentType.toLowerCase().replace(/\s+/g, '_');
+    // Map human-readable assessment names to database enum values
+    const getAssessmentType = (assessmentName: string): string => {
+      const typeMap: { [key: string]: string } = {
+        // Direct matches to database enum values
+        'anxiety': 'anxiety',
+        'depression': 'depression', 
+        'adhd': 'adhd',
+        'adult adhd / executive function': 'adhd',
+        'ptsd': 'ptsd',
+        'post-traumatic stress (ptsd)': 'ptsd',
+        'post-traumatic stress': 'ptsd',
+        'ocd': 'ocd',
+        'obsessive compulsive disorder': 'ocd',
+        'bipolar': 'bipolar',
+        'bipolar disorder': 'bipolar',
+        'panic': 'panic',
+        'panic disorder': 'panic',
+        'social anxiety': 'social_anxiety',
+        'social anxiety disorder': 'social_anxiety',
+        'specific phobia': 'specific_phobia',
+        'eating concerns': 'eating_concerns',
+        'binge eating': 'binge_eating',
+        'body dysmorphic disorder': 'bdd',
+        'bdd': 'bdd',
+        'health anxiety': 'health_anxiety',
+        'insomnia': 'insomnia',
+        'substance use': 'substance_use',
+        'alcohol use': 'alcohol',
+        'alcohol': 'alcohol',
+        'nicotine': 'nicotine',
+        'grief': 'grief',
+        'perinatal mood': 'perinatal_mood',
+        'somatic symptom': 'somatic_symptom',
+        'stress burnout': 'stress_burnout',
+        'anger': 'anger',
+        'wellbeing check': 'wellbeing_check',
+        'mood tracker': 'mood_tracker'
+      };
+
+      const normalizedInput = assessmentName.toLowerCase().trim();
+      
+      // Direct match
+      if (typeMap[normalizedInput]) {
+        return typeMap[normalizedInput];
+      }
+      
+      // Partial match for complex names
+      for (const [key, value] of Object.entries(typeMap)) {
+        if (normalizedInput.includes(key) || key.includes(normalizedInput)) {
+          return value;
+        }
+      }
+      
+      // Fallback: convert to snake_case and remove special characters
+      return normalizedInput
+        .replace(/[^\w\s]/g, '')
+        .replace(/\s+/g, '_')
+        .toLowerCase();
+    };
+
+    const normalizedAssessmentType = getAssessmentType(assessmentData.assessmentType);
     
+    console.log('Original assessment type:', assessmentData.assessmentType);
     console.log('Normalized assessment type:', normalizedAssessmentType);
 
     // Insert assessment session into database
