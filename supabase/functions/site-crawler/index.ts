@@ -58,7 +58,7 @@ const SITE_ROUTES = [
 ];
 
 // Base URL for the site
-const BASE_URL = 'https://5c75af88-5155-4e84-ad3c-ba7a4a8f239f.sandbox.lovable.dev';
+const BASE_URL = 'https://preview--mentalspace-insight-hub.lovable.app';
 
 serve(async (req) => {
   if (req.method === 'OPTIONS') {

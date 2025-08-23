@@ -93,19 +93,65 @@ These trained counselors are available 24/7 and can provide immediate support. P
       console.error('Error fetching site content:', contentError);
     }
 
-    // Fallback content if database is empty - include insurance info
-    const fallbackContent = [
+    // If database is empty, trigger crawler and use comprehensive fallback
+    if (!siteContent || siteContent.length === 0) {
+      console.log('No site content found, triggering crawler...');
+      
+      // Trigger site crawler asynchronously (don't wait for it)
+      supabase.functions.invoke('site-crawler', {
+        body: { trigger: 'auto', timestamp: new Date().toISOString() }
+      }).catch(err => console.error('Failed to trigger crawler:', err));
+    }
+
+    // Comprehensive fallback content with detailed information
+    const comprehensiveFallback = [
+      {
+        url: '/',
+        title: 'MentalSpace Therapy - Online Mental Health Services in Georgia',
+        description: 'Professional online therapy and mental health services in Georgia',
+        content: 'MentalSpace Therapy provides comprehensive online mental health services throughout Georgia. Our licensed therapists offer individual therapy, couples therapy, teen therapy, and life coaching. We specialize in treating anxiety, depression, trauma, PTSD, ADHD, bipolar disorder, eating disorders, and relationship issues. Same-week appointments available with evening and weekend options. We accept most major insurance plans including Aetna, Blue Cross Blue Shield, Cigna, Humana, UnitedHealthcare, and Amerigroup. All sessions are HIPAA-compliant and conducted through secure video platforms. Get started today with our simple 5-step process: complete intake, insurance verification, therapist matching, scheduling, and begin therapy.'
+      },
       {
         url: '/insurance',
         title: 'Insurance Coverage - MentalSpace Therapy',
-        description: 'Insurance plans accepted including Amerigroup',
-        content: 'Insurance Coverage at MentalSpace. We accept most major insurance plans including Aetna, Anthem, Blue Cross Blue Shield, Cigna, Humana, UnitedHealthcare, Amerigroup, and many others. We are in-network with several Georgia plans. We will verify your benefits before your first session and handle insurance billing. Out-of-network options available. Many plans cover mental health services with minimal copays. We also offer sliding scale fees for uninsured clients. Amerigroup members can receive covered therapy services through our network.'
+        description: 'Comprehensive insurance coverage information for mental health services',
+        content: 'MentalSpace Therapy accepts most major insurance plans in Georgia including Aetna, Anthem, Blue Cross Blue Shield (BCBS), Cigna, Humana, UnitedHealthcare, Amerigroup, Kaiser Permanente, Medicaid, and Medicare. We are in-network providers for many Georgia insurance plans. Our billing team verifies your benefits before your first session at no charge and handles all insurance paperwork. Most plans cover mental health services with copays as low as $10-40 per session. Out-of-network options available with superbill provided for reimbursement. We also offer sliding scale fees for uninsured clients based on income. No referral required to start therapy. Coverage typically includes individual therapy, couples therapy, family therapy, and psychiatric consultations.'
       },
       {
-        url: '/',
-        title: 'MentalSpace Therapy - Online Mental Health Services',
-        description: 'Online mental health services in Georgia',
-        content: 'MentalSpace Therapy provides online mental health services in Georgia including individual therapy, couples therapy, teen therapy, and life coaching. Same-week appointments available with licensed therapists. We accept most insurance plans including Aetna, Blue Cross Blue Shield, Cigna, Humana, and Amerigroup. Get started today with professional mental health support.'
+        url: '/online-therapy',
+        title: 'Online Therapy Services - Secure Virtual Mental Health Care',
+        description: 'Professional online therapy services with licensed therapists in Georgia',
+        content: 'Online therapy at MentalSpace offers convenient, effective mental health care from home. Our secure, HIPAA-compliant video platform connects you with licensed therapists for 45-50 minute sessions. Benefits include flexible scheduling with evening/weekend availability, no commute time, access to specialized therapists, comfort of your own space, and often lower costs than in-person therapy. Research shows online therapy is equally effective as traditional therapy for anxiety, depression, trauma, and relationship issues. Our therapists are trained in telehealth best practices and use evidence-based treatments including CBT, DBT, EMDR, and ACT. Technical requirements: stable internet, computer/tablet/smartphone with camera and microphone. We provide technical support and backup communication options.'
+      },
+      {
+        url: '/couples-therapy',
+        title: 'Couples Therapy - Strengthen Your Relationship',
+        description: 'Professional couples therapy to improve communication and relationships',
+        content: 'Couples therapy at MentalSpace helps partners strengthen their relationship, improve communication, resolve conflicts, and build deeper intimacy. Our licensed therapists are trained in evidence-based approaches including the Gottman Method, Emotionally Focused Therapy (EFT), and Imago Relationship Therapy. We address issues like communication problems, infidelity recovery, sexual difficulties, parenting disagreements, financial stress, and pre-marital counseling. Sessions available online for convenience and privacy. Both partners can join from the same location or separate locations if needed. We also offer individual sessions within couples therapy when appropriate. Same-week appointments often available with flexible scheduling including evenings and weekends.'
+      },
+      {
+        url: '/teen-therapy',
+        title: 'Teen Therapy - Specialized Mental Health Care for Adolescents',
+        description: 'Expert therapy services for teenagers aged 13-17',
+        content: 'Teen therapy at MentalSpace provides specialized mental health care for adolescents aged 13-17. Our therapists have advanced training in adolescent development and teen-specific issues including anxiety, depression, academic stress, peer relationships, identity concerns, body image issues, family conflicts, and behavioral problems. We create a safe, confidential space where teens can express themselves freely. Treatment approaches include CBT, DBT skills, mindfulness, and creative therapies. Parent involvement varies based on teen preference and clinical needs. Online sessions provide privacy and comfort for teens who may feel more open in their own space. We also offer family therapy sessions to improve family communication and relationships.'
+      },
+      {
+        url: '/mental-health-tests',
+        title: 'Free Mental Health Assessments and Screenings',
+        description: 'Confidential mental health screenings to assess symptoms and treatment needs',
+        content: 'Take free, confidential mental health assessments at MentalSpace to better understand your symptoms and treatment options. Available screenings include: Depression (PHQ-9), Anxiety (GAD-7), PTSD (PCL-5), ADHD, Bipolar Disorder, OCD, Panic Disorder, Social Anxiety, Eating Disorders, Substance Use, Health Anxiety, Insomnia, Stress/Burnout, Grief, and Perinatal Mood disorders. All assessments use clinically validated tools and take 2-5 minutes to complete. Results provide educational information about symptoms and severity levels, plus personalized recommendations for next steps. Assessments are not diagnostic tools but help determine if professional evaluation would be beneficial. Results can be shared with your therapist to inform treatment planning.'
+      },
+      {
+        url: '/get-started',
+        title: 'Get Started with Therapy - Simple 5-Step Process',
+        description: 'Begin your mental health journey with our easy enrollment process',
+        content: 'Starting therapy at MentalSpace is simple and can often be completed within a few days. Step 1: Complete our secure online intake form (10-15 minutes) providing basic information and therapy goals. Step 2: Our team verifies your insurance benefits at no charge and explains your coverage. Step 3: Based on your preferences, concerns, and schedule, we match you with a licensed therapist who specializes in your needs. Step 4: Schedule your first appointment, often available within the same week, including evening and weekend options. Step 5: Begin therapy with your matched therapist using our secure video platform. No referral needed. The entire process typically takes 2-3 business days from intake to first session.'
+      },
+      {
+        url: '/emergency-resources',
+        title: 'Mental Health Crisis Resources - 24/7 Support Available',
+        description: 'Immediate crisis support and emergency mental health resources',
+        content: 'If you are experiencing a mental health crisis or thoughts of self-harm, immediate help is available 24/7. National Suicide Prevention Lifeline: Call or text 988 for free, confidential support. Crisis Text Line: Text HOME to 741741 to reach a trained crisis counselor. National Domestic Violence Hotline: 1-800-799-7233 for intimate partner violence. SAMHSA National Helpline: 1-800-662-4357 for substance abuse and mental health information. LGBT National Hotline: 1-866-488-7386. Teen Line: Text TEEN to 839863. For immediate physical danger, call 911. Georgia Crisis & Access Line: 1-800-715-4225. These resources provide immediate support from trained counselors and can help connect you to local emergency services and ongoing care.'
       }
     ];
 
@@ -172,8 +218,8 @@ These trained counselors are available 24/7 and can provide immediate support. P
         { name: "Mental Health Library", description: "Educational resources and articles about mental health", link: "/mental-health-library" },
         { name: "Contact Us", description: "Get in touch with our support team", link: "/contact-us" }
       ],
-      // Use crawled content from database, fallback to hardcoded if empty
-      crawledContent: (siteContent && siteContent.length > 0) ? siteContent : fallbackContent,
+      // Use crawled content from database, fallback to comprehensive content if empty
+      crawledContent: (siteContent && siteContent.length > 0) ? siteContent : comprehensiveFallback,
       conditions: [
         { name: "Anxiety Disorders", description: "Comprehensive care for various anxiety disorders including GAD, panic, and social anxiety", link: "/conditions/anxiety" },
         { name: "Depression", description: "Evidence-based treatment for major depression and mood disorders", link: "/conditions/depression" },
