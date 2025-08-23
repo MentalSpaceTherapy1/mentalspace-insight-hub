@@ -11,7 +11,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle, Calendar, Shield, DollarSign, ClipboardList, Users, Play, Star, ArrowRight, Zap, Heart, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useSEO, SEO_CONFIGS } from "@/hooks/useSEO";
-import LazyImage from "@/components/LazyImage";
 import therapySessionImg from "@/assets/therapy-session.jpg";
 import happyPeopleImg from "@/assets/happy-people.jpg";
 import wellnessMeditationImg from "@/assets/wellness-meditation.jpg";
@@ -279,11 +278,11 @@ const Index = () => {
             
             <article className="grid lg:grid-cols-2 gap-16 items-center mb-24">
               <div className="animate-slide-up">
-                <LazyImage 
+                <img 
                   src={therapySessionImg} 
                   alt="Professional licensed therapist conducting an online therapy session with client in comfortable home setting" 
                   className="w-full h-96 object-cover rounded-3xl shadow-modern hover-lift"
-                  priority={false}
+                  loading="lazy"
                 />
               </div>
               <div className="animate-slide-up" style={{animationDelay: '0.2s'}}>
@@ -324,10 +323,11 @@ const Index = () => {
                 </div>
               </div>
               <div className="animate-slide-up order-1 lg:order-2" style={{animationDelay: '0.2s'}}>
-                <LazyImage 
+                <img 
                   src={wellnessMeditationImg} 
                   alt="Person practicing mindfulness and wellness meditation in peaceful environment for mental health" 
                   className="w-full h-96 object-cover rounded-3xl shadow-modern hover-lift"
+                  loading="lazy"
                 />
               </div>
             </div>
@@ -382,10 +382,11 @@ const Index = () => {
             
             <div className="grid lg:grid-cols-2 gap-16 items-center mb-16">
               <div className="animate-slide-up">
-                <LazyImage 
+                <img 
                   src={happyPeopleImg} 
                   alt="Happy diverse people who have successfully completed online therapy showing positive mental health outcomes" 
                   className="w-full h-96 object-cover rounded-3xl shadow-modern hover-lift"
+                  loading="lazy"
                 />
               </div>
               <div className="space-y-8 animate-slide-up" style={{animationDelay: '0.2s'}}>
@@ -393,10 +394,11 @@ const Index = () => {
                   <Card key={index} className="glass-effect border-0 hover-lift">
                     <CardContent className="p-6">
                       <div className="flex items-start space-x-4">
-                        <LazyImage 
+                        <img 
                           src={testimonial.avatar} 
                           alt={`${testimonial.name}, ${testimonial.role} - MentalSpace therapy success story`}
                           className="w-16 h-16 rounded-full object-cover shadow-card"
+                          loading="lazy"
                         />
                         <div className="flex-1">
                           <div className="flex mb-2">

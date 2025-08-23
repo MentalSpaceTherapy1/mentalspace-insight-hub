@@ -3,7 +3,6 @@ import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import { useEffect, useState } from "react";
-import LazyImage from "@/components/LazyImage";
 import heroImage1 from "@/assets/hero-person-1.jpg";
 import heroImage2 from "@/assets/hero-person-2.jpg";
 import heroImage3 from "@/assets/hero-person-3.jpg";
@@ -17,7 +16,11 @@ const Hero = () => {
   
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
+      setCurrentImageIndex((prev) => {
+        const nextIndex = (prev + 1) % heroImages.length;
+        console.log(`Hero carousel: switching from image ${prev + 1} to image ${nextIndex + 1}`);
+        return nextIndex;
+      });
     }, 4000); // Change every 4 seconds
     
     return () => clearInterval(interval);
@@ -63,19 +66,35 @@ const Hero = () => {
             <div className="relative w-80 h-80 lg:w-96 lg:h-96">
               <div className="absolute inset-0 rounded-full overflow-hidden shadow-2xl">
                 {heroImages.map((image, index) => (
-                  <LazyImage
+                  <img
                     key={index}
                     src={image}
                     alt={`Mental health therapy success story ${index + 1} - Happy person after online therapy sessions`}
                     className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
                       index === currentImageIndex ? 'opacity-100' : 'opacity-0'
                     }`}
-                    priority={index === 0} // Load first image immediately
+                    loading={index === 0 ? 'eager' : 'lazy'}
                   />
                 ))}
               </div>
               {/* Gradient overlay */}
               <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/10 to-secondary/10"></div>
+              
+              {/* Carousel indicators */}
+              <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                {heroImages.map((_, index) => (
+                  <button
+                    key={index}
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                      index === currentImageIndex 
+                        ? 'bg-primary scale-125' 
+                        : 'bg-white/50 hover:bg-white/75'
+                    }`}
+                    onClick={() => setCurrentImageIndex(index)}
+                    aria-label={`Go to image ${index + 1}`}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>
