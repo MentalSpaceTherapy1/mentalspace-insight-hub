@@ -163,7 +163,7 @@ What would you like to know about today?`,
   }
 
   return (
-    <Card className="fixed bottom-6 right-6 z-50 w-80 h-96 shadow-xl border-border">
+    <Card className="fixed bottom-6 right-6 z-50 w-80 h-[32rem] shadow-xl border-border">
       {showCrisisAlert && (
         <div className="absolute top-0 left-0 right-0 bg-destructive text-destructive-foreground p-2 text-sm flex items-center gap-2 z-10">
           <AlertTriangle className="h-4 w-4" />
@@ -193,7 +193,7 @@ What would you like to know about today?`,
         </div>
       </CardHeader>
       
-      <CardContent className="p-0 flex flex-col h-80">
+      <CardContent className="p-0 flex flex-col h-[28rem]">
         <ScrollArea className="flex-1 p-4">
           <div className="space-y-4">
             {messages.length === 0 && (
