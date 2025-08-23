@@ -5,6 +5,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
 import FormIntegration from "./components/FormIntegration";
+import ChatWidget from "./components/chat/ChatWidget";
+import { ChatProvider } from "./components/chat/ChatContext";
 import Admin from "./pages/Admin";
 // ... keep existing imports ...
 import Index from "./pages/Index";
@@ -65,8 +67,10 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <ScrollToTop />
-          <FormIntegration>
-            <Routes>
+          <ChatProvider>
+            <FormIntegration>
+              <ChatWidget />
+              <Routes>
             <Route path="/admin" element={<Admin />} />
             <Route path="/" element={<Index />} />
             <Route path="/online-therapy" element={<OnlineTherapy />} />
@@ -120,6 +124,7 @@ const App = () => (
             <Route path="*" element={<NotFound />} />
             </Routes>
           </FormIntegration>
+        </ChatProvider>
         </BrowserRouter>
       </TooltipProvider>
   </QueryClientProvider>

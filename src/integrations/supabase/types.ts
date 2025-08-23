@@ -235,6 +235,71 @@ export type Database = {
           },
         ]
       }
+      chat_safety_logs: {
+        Row: {
+          action_taken: string | null
+          created_at: string
+          id: string
+          message_content: string | null
+          session_id: string | null
+          trigger_type: string
+        }
+        Insert: {
+          action_taken?: string | null
+          created_at?: string
+          id?: string
+          message_content?: string | null
+          session_id?: string | null
+          trigger_type: string
+        }
+        Update: {
+          action_taken?: string | null
+          created_at?: string
+          id?: string
+          message_content?: string | null
+          session_id?: string | null
+          trigger_type?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "chat_safety_logs_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "chat_sessions"
+            referencedColumns: ["session_id"]
+          },
+        ]
+      }
+      chat_sessions: {
+        Row: {
+          created_at: string
+          id: string
+          ip_address: unknown | null
+          last_activity: string
+          messages: Json[] | null
+          session_id: string
+          user_context: Json | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          ip_address?: unknown | null
+          last_activity?: string
+          messages?: Json[] | null
+          session_id: string
+          user_context?: Json | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          ip_address?: unknown | null
+          last_activity?: string
+          messages?: Json[] | null
+          session_id?: string
+          user_context?: Json | null
+        }
+        Relationships: []
+      }
       form_submissions: {
         Row: {
           created_at: string

@@ -11,3 +11,9 @@ verify_jwt = false
 
 [functions.track-analytics]
 verify_jwt = false
+
+[functions.therapy-chat]
+verify_jwt = false
+
+[functions.chat-session]
+verify_jwt = false
