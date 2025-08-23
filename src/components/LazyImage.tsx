@@ -4,7 +4,6 @@ interface LazyImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   src: string;
   alt: string;
   className?: string;
-  placeholderSrc?: string;
   threshold?: number;
 }
 
@@ -12,7 +11,6 @@ const LazyImage: React.FC<LazyImageProps> = ({
   src,
   alt,
   className = '',
-  placeholderSrc = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2YzZjRmNiIvPjx0ZXh0IHg9IjUwIiB5PSI1MCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzlmYTJhNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9IjAuMzVlbSI+TG9hZGluZy4uLjwvdGV4dD48L3N2Zz4=',
   threshold = 0.1,
   ...props
 }) => {
@@ -22,6 +20,8 @@ const LazyImage: React.FC<LazyImageProps> = ({
   const imgRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
+    if (!src) return;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -37,33 +37,31 @@ const LazyImage: React.FC<LazyImageProps> = ({
     }
 
     return () => observer.disconnect();
-  }, [threshold]);
+  }, [threshold, src]);
 
   const handleLoad = () => {
     setIsLoaded(true);
+    setHasError(false);
   };
 
   const handleError = () => {
     setHasError(true);
-    setIsLoaded(true);
+    setIsLoaded(false);
   };
 
+  if (!src) {
+    return (
+      <div className={`bg-muted flex items-center justify-center ${className}`}>
+        <span className="text-muted-foreground text-sm">No image</span>
+      </div>
+    );
+  }
+
   return (
-    <div className={`relative overflow-hidden ${className}`}>
-      {/* Placeholder */}
-      {!isLoaded && (
-        <img
-          src={placeholderSrc}
-          alt=""
-          className="absolute inset-0 w-full h-full object-cover blur-sm transition-opacity duration-300"
-          aria-hidden="true"
-        />
-      )}
-      
-      {/* Actual Image */}
+    <div className={`relative ${className}`}>
       <img
         ref={imgRef}
-        src={isInView ? src : ''}
+        src={isInView ? src : undefined}
         alt={alt}
         className={`w-full h-full object-cover transition-opacity duration-300 ${
           isLoaded ? 'opacity-100' : 'opacity-0'
@@ -75,17 +73,19 @@ const LazyImage: React.FC<LazyImageProps> = ({
         {...props}
       />
       
-      {/* Error state */}
-      {hasError && (
-        <div className="absolute inset-0 flex items-center justify-center bg-gray-100 text-gray-500 text-sm">
-          Failed to load image
+      {/* Loading placeholder */}
+      {!isLoaded && !hasError && (
+        <div className="absolute inset-0 bg-muted animate-pulse flex items-center justify-center">
+          {isInView && (
+            <div className="w-6 h-6 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
+          )}
         </div>
       )}
       
-      {/* Loading indicator */}
-      {!isLoaded && isInView && !hasError && (
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
+      {/* Error state */}
+      {hasError && (
+        <div className="absolute inset-0 bg-muted flex items-center justify-center text-muted-foreground text-sm">
+          Image unavailable
         </div>
       )}
     </div>
