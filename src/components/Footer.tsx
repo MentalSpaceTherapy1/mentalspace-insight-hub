@@ -74,9 +74,9 @@ const Footer = () => {
               <Link to="/mental-health-tests" className="block text-sm text-muted-foreground hover:text-primary transition-colors">
                 Free Mental Health Tests
               </Link>
-              <Link to="/blog" className="block text-sm text-muted-foreground hover:text-primary transition-colors">
+              <a href="#" className="block text-sm text-muted-foreground hover:text-primary transition-colors">
                 Blog
-              </Link>
+              </a>
               <Link to="/emergency-resources" className="block text-sm text-muted-foreground hover:text-primary transition-colors">
                 Emergency Resources
               </Link>

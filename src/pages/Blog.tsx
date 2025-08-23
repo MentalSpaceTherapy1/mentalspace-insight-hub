@@ -107,18 +107,6 @@ const Blog = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {blogPosts.map((post) => (
             <Card key={post.id} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-              <Link 
-                to={
-                  post.id === 1 ? "/blog/understanding-anxiety" : 
-                  post.id === 2 ? "/blog/depression-breaking-stigma" : 
-                  post.id === 3 ? "/blog/online-therapy-benefits" :
-                  post.id === 4 ? "/blog/couples-therapy-communication" :
-                  post.id === 5 ? "/blog/teen-mental-health" :
-                  post.id === 6 ? "/blog/ptsd-recovery" :
-                  "#"
-                }
-                className="block"
-              >
               <div className="aspect-video overflow-hidden rounded-t-lg">
                 <img
                   src={post.image}
@@ -147,25 +135,12 @@ const Blog = () => {
                     <Calendar className="h-4 w-4 mr-1" />
                     {post.date}
                   </div>
-                  <Button asChild variant="ghost" size="sm" className="group/btn">
-                    <Link 
-                      to={
-                        post.id === 1 ? "/blog/understanding-anxiety" : 
-                        post.id === 2 ? "/blog/depression-breaking-stigma" : 
-                        post.id === 3 ? "/blog/online-therapy-benefits" :
-                        post.id === 4 ? "/blog/couples-therapy-communication" :
-                        post.id === 5 ? "/blog/teen-mental-health" :
-                        post.id === 6 ? "/blog/ptsd-recovery" :
-                        "#"
-                      }
-                    >
-                      Read More
-                      <ArrowRight className="h-4 w-4 ml-1 group-hover/btn:translate-x-1 transition-transform" />
-                    </Link>
+                  <Button variant="ghost" size="sm" className="group/btn">
+                    Read More
+                    <ArrowRight className="h-4 w-4 ml-1 group-hover/btn:translate-x-1 transition-transform" />
                   </Button>
                 </div>
               </CardContent>
-              </Link>
             </Card>
           ))}
         </div>

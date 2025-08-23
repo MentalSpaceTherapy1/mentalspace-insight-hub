@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MentalSpace - Online Therapy & Mental Health Services | Licensed Therapists & Same-Week Starts</title>
-    <meta name="description" content="Professional online therapy and mental health services. Connect with licensed therapists with flexible scheduling. Individual therapy, couples counseling, teen therapy, and life coaching. Most insurance accepted." />
+    <title>MentalSpace - Online Therapy & Mental Health Services | Licensed Therapists Available 24/7</title>
+    <meta name="description" content="Professional online therapy and mental health services. Connect with licensed therapists anytime, anywhere. Individual therapy, couples counseling, teen therapy, and life coaching. Most insurance accepted." />
     <meta name="keywords" content="online therapy, mental health, licensed therapists, counseling, psychology, depression, anxiety, couples therapy, teen therapy, life coaching" />
     <meta name="author" content="MentalSpace" />
     <meta name="robots" content="index, follow" />
@@ -37,7 +37,7 @@
       "name": "MentalSpace",
       "url": "https://mentalspace-insight-hub.lovable.app",
       "logo": "https://mentalspace-insight-hub.lovable.app/logo.png",
-      "description": "Professional online mental health services providing therapy, counseling, and psychiatric care with licensed mental health professionals offering same-week appointment starts",
+      "description": "Professional online mental health services providing therapy, counseling, and psychiatric care with licensed mental health professionals available 24/7",
       "address": {
         "@type": "PostalAddress",
         "addressCountry": "US"
@@ -47,20 +47,12 @@
         "telephone": "+1-800-MENTAL",
         "contactType": "customer service",
         "availableLanguage": ["en"],
-        "hoursAvailable": [
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-            "opens": "08:00",
-            "closes": "20:00"
-          },
-          {
-            "@type": "OpeningHoursSpecification", 
-            "dayOfWeek": ["Saturday", "Sunday"],
-            "opens": "10:00",
-            "closes": "18:00"
-          }
-        ]
+        "hoursAvailable": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+          "opens": "00:00",
+          "closes": "23:59"
+        }
       },
       "sameAs": [
         "https://facebook.com/mentalspace",
@@ -177,67 +169,7 @@
   </head>
 
   <body>
-    <div id="root">
-      <!-- Server-side rendered content shell for better LCP -->
-      <div class="min-h-screen bg-background" id="ssr-shell">
-        <!-- Header shell -->
-        <header class="header-nav h-20">
-          <div class="container mx-auto px-4 h-full flex items-center justify-between">
-            <div class="flex items-center space-x-2">
-              <div class="w-8 h-8 bg-primary rounded"></div>
-              <span class="text-xl font-bold">MentalSpace</span>
-            </div>
-            <nav class="hidden md:flex items-center space-x-6">
-              <a href="/online-therapy" class="text-muted-foreground hover:text-foreground">Therapy</a>
-              <a href="/couples-therapy" class="text-muted-foreground hover:text-foreground">Couples</a>
-              <a href="/teen-therapy" class="text-muted-foreground hover:text-foreground">Teen</a>
-              <button class="btn-primary">Get Started</button>
-            </nav>
-          </div>
-        </header>
-        
-        <!-- Hero section shell -->
-        <main class="hero-section">
-          <div class="container mx-auto px-4 text-center">
-            <h1 class="text-4xl md:text-6xl font-bold mb-6">
-              <span class="text-gradient">Professional Online Therapy</span>
-            </h1>
-            <p class="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
-              Connect with licensed therapists for depression, anxiety, PTSD, and more. Same-week appointments available.
-            </p>
-            <button class="btn-primary text-lg px-8 py-4">
-              Start Your Journey Today
-            </button>
-          </div>
-        </main>
-        
-        <!-- Loading indicator -->
-        <div id="css-loader" class="fixed inset-0 bg-background/50 flex items-center justify-center z-50">
-          <div class="skeleton-pulse w-8 h-8 bg-primary rounded-full"></div>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Preload critical resources -->
-    <link rel="preload" href="/src/assets/hero-person-1.jpg" as="image">
-    <link rel="preload" href="/src/assets/therapy-session.jpg" as="image">
-    
-    <!-- Module preload for faster hydration -->
-    <link rel="modulepreload" href="/src/main.tsx">
-    <link rel="modulepreload" href="/src/App.tsx">
-    
+    <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-    
-    <!-- Remove SSR shell after React hydration -->
-    <script>
-      window.addEventListener('DOMContentLoaded', () => {
-        setTimeout(() => {
-          const shell = document.getElementById('ssr-shell');
-          if (shell && window.React) {
-            shell.style.display = 'none';
-          }
-        }, 200);
-      });
-    </script>
   </body>
 </html>

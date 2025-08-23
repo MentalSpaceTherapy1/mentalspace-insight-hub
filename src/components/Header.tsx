@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Phone, Menu, ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
+import LazyImage from "@/components/LazyImage";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,11 +19,10 @@ const Header = () => {
         {/* Logo */}
         <div className="flex items-center space-x-2">
           <Link to="/">
-            <img 
+            <LazyImage 
               src="/lovable-uploads/15cbf558-6b23-4694-9684-232897817b20.png" 
               alt="MentalSpace - Professional Online Therapy and Mental Health Services" 
               className="h-8 w-auto"
-              loading="eager"
             />
           </Link>
         </div>
