@@ -148,7 +148,7 @@ const AnxietyUnderstanding = () => {
           <article className="lg:col-span-2 order-1 lg:order-2">
             <header className="mb-8">
               <Badge className="mb-4 bg-gradient-to-r from-primary to-primary-glow text-white">Anxiety</Badge>
-              <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight bg-gradient-to-br from-foreground to-muted-foreground bg-clip-text text-transparent">
+              <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight text-foreground">
                 Understanding Anxiety: Signs, Symptoms, and Treatment Options
               </h1>
               
@@ -215,8 +215,8 @@ const AnxietyUnderstanding = () => {
                 </CardContent>
               </Card>
 
-              <h2 id="what-is-anxiety" className="text-3xl font-bold mb-4 flex items-center">
-                <span className="bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">What is Anxiety?</span>
+              <h2 id="what-is-anxiety" className="text-3xl font-bold mb-4 text-foreground">
+                What is Anxiety?
               </h2>
               <p className="text-lg leading-relaxed mb-6">
                 Anxiety is a natural human response to stress or perceived threats. It becomes a disorder when these feelings 
@@ -224,8 +224,8 @@ const AnxietyUnderstanding = () => {
                 fear or anxiety that is disproportionate to the actual situation.
               </p>
 
-              <h2 id="types-of-anxiety" className="text-3xl font-bold mb-6 flex items-center">
-                <span className="bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">Common Types of Anxiety Disorders</span>
+              <h2 id="types-of-anxiety" className="text-3xl font-bold mb-6 text-foreground">
+                Common Types of Anxiety Disorders
               </h2>
 
               <div className="grid md:grid-cols-1 gap-6 mb-8">
@@ -255,8 +255,8 @@ const AnxietyUnderstanding = () => {
                 </Card>
               </div>
 
-              <h2 id="signs-symptoms" className="text-3xl font-bold mb-6">
-                <span className="bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">Recognizing the Signs and Symptoms</span>
+              <h2 id="signs-symptoms" className="text-3xl font-bold mb-6 text-foreground">
+                Recognizing the Signs and Symptoms
               </h2>
               <p className="text-lg mb-6">Anxiety manifests differently in each person, but common symptoms include:</p>
               
@@ -307,8 +307,8 @@ const AnxietyUnderstanding = () => {
                 </div>
               </Card>
 
-              <h2 id="treatment-options" className="text-3xl font-bold mb-6">
-                <span className="bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">Evidence-Based Treatment Options</span>
+              <h2 id="treatment-options" className="text-3xl font-bold mb-6 text-foreground">
+                Evidence-Based Treatment Options
               </h2>
 
               <div className="space-y-6 mb-8">
@@ -346,8 +346,8 @@ const AnxietyUnderstanding = () => {
                 </Card>
               </div>
 
-              <h2 id="self-care" className="text-3xl font-bold mb-6">
-                <span className="bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">Self-Care Strategies</span>
+              <h2 id="self-care" className="text-3xl font-bold mb-6 text-foreground">
+                Self-Care Strategies
               </h2>
               <p className="text-lg mb-6">While professional treatment is important, these self-care practices can complement therapy:</p>
               
@@ -384,8 +384,8 @@ const AnxietyUnderstanding = () => {
                 </div>
               </Card>
 
-              <h2 id="seeking-help" className="text-3xl font-bold mb-6">
-                <span className="bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">When to Seek Professional Help</span>
+              <h2 id="seeking-help" className="text-3xl font-bold mb-6 text-foreground">
+                When to Seek Professional Help
               </h2>
               <p className="text-lg mb-6">
                 Consider reaching out to a mental health professional if anxiety is interfering with your daily life, 
