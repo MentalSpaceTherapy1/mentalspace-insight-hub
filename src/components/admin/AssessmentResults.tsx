@@ -120,6 +120,179 @@ const AssessmentResults = () => {
     URL.revokeObjectURL(url);
   };
 
+  // Generate recommendations for migrated data that lacks them
+  const generateMigratedRecommendations = (assessmentType: string, score: number, severity: string) => {
+    const recommendations: string[] = [];
+    
+    switch (assessmentType) {
+      case 'ptsd':
+        if (severity === 'Severe') {
+          recommendations.push(
+            'Consider immediate professional trauma therapy (EMDR, CPT, or PE therapy)',
+            'Safety planning if experiencing flashbacks or dissociation', 
+            'Grounding techniques for managing overwhelming symptoms',
+            'Consider medication consultation with psychiatrist if symptoms persist',
+            'Build a trauma-informed support network'
+          );
+        } else if (severity === 'Moderate') {
+          recommendations.push(
+            'Trauma-focused therapy with a qualified therapist',
+            'Practice stress reduction techniques (breathing exercises, mindfulness)',
+            'Gradual exposure to avoided situations with professional guidance',
+            'Consider joining a trauma support group'
+          );
+        }
+        break;
+        
+      case 'anxiety': 
+        if (severity === 'Severe') {
+          recommendations.push(
+            'Consider immediate professional anxiety treatment (CBT, exposure therapy)',
+            'Practice daily relaxation techniques and breathing exercises',
+            'Consider medication evaluation with healthcare provider',
+            'Avoid caffeine and alcohol which can worsen anxiety',
+            'Establish regular sleep schedule and exercise routine'
+          );
+        } else if (severity === 'Moderate') {
+          recommendations.push(
+            'Cognitive Behavioral Therapy (CBT) can be highly effective for anxiety',
+            'Practice mindfulness and stress management techniques',
+            'Regular exercise and maintaining healthy sleep habits',
+            'Consider anxiety management apps or online resources'
+          );
+        }
+        break;
+        
+      default:
+        recommendations.push(
+          'Consider professional mental health evaluation',
+          'Practice self-care and stress management techniques',
+          'Maintain regular sleep, exercise, and nutrition habits',
+          'Consider therapy or counseling for additional support'
+        );
+    }
+    
+    // Add crisis resources for severe cases
+    if (severity === 'Severe') {
+      recommendations.push('Crisis support: Call/text 988 for immediate help if feeling overwhelmed');
+    }
+    
+    return recommendations;
+  };
+
+  const renderFullAssessmentDetails = (session: AssessmentSession) => {
+    const hasAnswers = session.answers && Object.keys(session.answers).length > 0;
+    const hasRecommendations = session.recommendations && session.recommendations.length > 0;
+    const isMigrated = session.additional_info?.migrated_from_form_id;
+    
+    // Generate recommendations for migrated data
+    const displayRecommendations = hasRecommendations 
+      ? session.recommendations 
+      : generateMigratedRecommendations(session.assessment_type, session.score || 0, session.severity || '');
+
+    return (
+      <div className="space-y-6">
+        {/* Assessment Summary */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <Card>
+            <CardHeader className="pb-3">
+              <CardTitle className="text-sm">Score</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{session.score ?? 'N/A'}</div>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader className="pb-3">
+              <CardTitle className="text-sm">Severity</CardTitle>
+            </CardHeader>
+            <CardContent>
+              {session.severity ? (
+                <Badge variant={getSeverityColor(session.severity)} className="text-sm">
+                  {session.severity}
+                </Badge>
+              ) : 'N/A'}
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader className="pb-3">
+              <CardTitle className="text-sm">Assessment Type</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="text-sm font-medium">
+                {getAssessmentTitle(session.assessment_type)}
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Recommendations */}
+        <div>
+          <h4 className="font-medium mb-3">Personalized Recommendations</h4>
+          {displayRecommendations && displayRecommendations.length > 0 ? (
+            <div className="space-y-3">
+              {displayRecommendations.map((rec, index) => (
+                <div key={index} className="flex items-start gap-3 p-3 bg-blue-50 dark:bg-blue-950 rounded-lg">
+                  <div className="w-6 h-6 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <span className="text-blue-600 dark:text-blue-300 text-xs font-medium">{index + 1}</span>
+                  </div>
+                  <p className="text-sm leading-relaxed">{rec}</p>
+                </div>
+              ))}
+              {isMigrated && (
+                <p className="text-xs text-muted-foreground italic mt-2">
+                  * Recommendations generated based on your assessment score and severity level
+                </p>
+              )}
+            </div>
+          ) : (
+            <p className="text-muted-foreground text-sm">No recommendations available</p>
+          )}
+        </div>
+
+        {/* Individual Answers */}
+        <div>
+          <h4 className="font-medium mb-3">Assessment Responses</h4>
+          <div className="bg-muted p-4 rounded-lg">
+            {hasAnswers ? (
+              renderAnswers(session.answers)
+            ) : (
+              <div className="text-center py-6 space-y-2">
+                <p className="text-muted-foreground">Individual question responses not available for this assessment.</p>
+                <p className="text-sm text-muted-foreground">
+                  {isMigrated 
+                    ? "This assessment was migrated from previous data that only contained summary results."
+                    : "Detailed responses were not captured for this assessment."
+                  }
+                </p>
+                <div className="mt-4 p-3 bg-background rounded border-l-4 border-blue-500">
+                  <p className="text-sm">
+                    <strong>What this assessment typically measures:</strong>
+                  </p>
+                  <p className="text-sm text-muted-foreground mt-1">
+                    {session.assessment_type === 'ptsd' && "PTSD symptoms including flashbacks, nightmares, avoidance behaviors, negative thoughts, hypervigilance, and concentration difficulties over the past month."}
+                    {session.assessment_type === 'anxiety' && "Anxiety symptoms including nervousness, worry, trouble relaxing, restlessness, irritability, and fear over the past 2 weeks."}
+                    {!['ptsd', 'anxiety'].includes(session.assessment_type) && `${getAssessmentTitle(session.assessment_type)} symptoms and related concerns.`}
+                  </p>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Additional Information */}
+        {session.additional_info && Object.keys(session.additional_info).length > 0 && (
+          <div>
+            <h4 className="font-medium mb-3">Additional Information</h4>
+            <div className="bg-muted p-4 rounded-lg">
+              {renderAdditionalInfo(session.additional_info)}
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  };
+
   const renderAnswers = (answers: Record<string, any>) => {
     if (!answers || Object.keys(answers).length === 0) {
       return (
@@ -276,80 +449,16 @@ const AssessmentResults = () => {
                                 View
                               </Button>
                             </DialogTrigger>
-                            <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
-                              <DialogHeader>
-                                <DialogTitle>
-                                  {getAssessmentTitle(session.assessment_type)} Results
-                                </DialogTitle>
-                                <DialogDescription>
-                                  Session ID: {session.session_id} | Completed: {new Date(session.completed_at).toLocaleString()}
-                                </DialogDescription>
-                              </DialogHeader>
-                              <div className="space-y-6">
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                  <Card>
-                                    <CardHeader className="pb-3">
-                                      <CardTitle className="text-sm">Score</CardTitle>
-                                    </CardHeader>
-                                    <CardContent>
-                                      <div className="text-2xl font-bold">
-                                        {session.score ?? 'N/A'}
-                                      </div>
-                                    </CardContent>
-                                  </Card>
-                                  <Card>
-                                    <CardHeader className="pb-3">
-                                      <CardTitle className="text-sm">Severity</CardTitle>
-                                    </CardHeader>
-                                    <CardContent>
-                                      {session.severity ? (
-                                        <Badge variant={getSeverityColor(session.severity)}>
-                                          {session.severity}
-                                        </Badge>
-                                      ) : (
-                                        'N/A'
-                                      )}
-                                    </CardContent>
-                                  </Card>
-                                  <Card>
-                                    <CardHeader className="pb-3">
-                                      <CardTitle className="text-sm">Recommendations</CardTitle>
-                                    </CardHeader>
-                                    <CardContent>
-                                      <div className="text-sm">
-                                        {session.recommendations ? session.recommendations.length : 0} items
-                                      </div>
-                                    </CardContent>
-                                  </Card>
-                                </div>
-
-                                {session.recommendations && session.recommendations.length > 0 && (
-                                  <div>
-                                    <h4 className="font-medium mb-2">Recommendations</h4>
-                                    <ul className="list-disc pl-5 space-y-1">
-                                      {session.recommendations.map((rec, index) => (
-                                        <li key={index} className="text-sm">{rec}</li>
-                                      ))}
-                                    </ul>
-                                  </div>
-                                )}
-
-                                <div>
-                                  <h4 className="font-medium mb-2">Assessment Answers</h4>
-                                  <div className="bg-muted p-3 rounded-lg">
-                                    {renderAnswers(session.answers)}
-                                  </div>
-                                </div>
-
-                                {session.additional_info && Object.keys(session.additional_info).length > 0 && (
-                                  <div>
-                                    <h4 className="font-medium mb-2">Additional Information</h4>
-                                    <div className="bg-muted p-3 rounded-lg">
-                                      {renderAdditionalInfo(session.additional_info)}
-                                    </div>
-                                  </div>
-                                )}
-                              </div>
+                              <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+                                <DialogHeader>
+                                  <DialogTitle className="text-xl">
+                                    {getAssessmentTitle(session.assessment_type)} - Complete Results
+                                  </DialogTitle>
+                                  <DialogDescription>
+                                    Session ID: {session.session_id} | Completed: {new Date(session.completed_at).toLocaleString()}
+                                  </DialogDescription>
+                                </DialogHeader>
+                                {renderFullAssessmentDetails(session)}
                             </DialogContent>
                           </Dialog>
                           <Button
