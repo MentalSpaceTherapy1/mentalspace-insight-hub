@@ -163,7 +163,7 @@ What would you like to know about today?`,
   }
 
   return (
-    <Card className="fixed bottom-6 right-6 z-50 w-80 h-[32rem] shadow-xl border-border">
+    <Card className="fixed bottom-6 right-6 z-50 w-96 h-[85vh] max-h-[700px] shadow-2xl border-0 bg-white/95 backdrop-blur-xl rounded-2xl overflow-hidden">
       {showCrisisAlert && (
         <div className="absolute top-0 left-0 right-0 bg-destructive text-destructive-foreground p-2 text-sm flex items-center gap-2 z-10">
           <AlertTriangle className="h-4 w-4" />
@@ -179,26 +179,38 @@ What would you like to know about today?`,
         </div>
       )}
       
-      <CardHeader className="pb-2 border-b">
+      <CardHeader className="pb-4 border-b border-border/10 bg-gradient-to-r from-primary/5 to-primary/10">
         <div className="flex items-center justify-between">
-          <CardTitle className="text-sm font-medium">Mental Health Support</CardTitle>
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded-full bg-gradient-to-r from-primary to-primary-glow flex items-center justify-center">
+              <MessageCircle className="h-4 w-4 text-white" />
+            </div>
+            <div>
+              <CardTitle className="text-base font-semibold text-foreground">Mental Health Support</CardTitle>
+              <p className="text-xs text-muted-foreground">AI-powered guidance & resources</p>
+            </div>
+          </div>
           <Button
             variant="ghost"
             size="sm"
             onClick={() => setIsOpen(false)}
-            className="h-6 w-6 p-0"
+            className="h-8 w-8 p-0 rounded-full hover:bg-background/80"
           >
             <X className="h-4 w-4" />
           </Button>
         </div>
       </CardHeader>
       
-      <CardContent className="p-0 flex flex-col h-[28rem]">
-        <ScrollArea className="flex-1 p-4">
-          <div className="space-y-4">
+      <CardContent className="p-0 flex flex-col h-full">
+        <ScrollArea className="flex-1 px-4 py-6">
+          <div className="space-y-6">
             {messages.length === 0 && (
-              <div className="text-center text-muted-foreground text-sm py-8">
-                Starting chat session...
+              <div className="text-center text-muted-foreground py-12">
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                  <MessageCircle className="h-6 w-6 text-primary" />
+                </div>
+                <p className="text-sm font-medium mb-2">Starting your session...</p>
+                <p className="text-xs">Connecting you with mental health support</p>
               </div>
             )}
             
@@ -207,19 +219,26 @@ What would you like to know about today?`,
                 key={index}
                 className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
               >
-                <div
-                  className={`max-w-[85%] p-3 rounded-lg text-sm ${
-                    message.role === 'user'
-                      ? 'bg-primary text-primary-foreground'
-                      : 'bg-muted text-foreground'
-                  }`}
-                >
-                  <div className="whitespace-pre-wrap">{message.content}</div>
-                  <div className="text-xs opacity-70 mt-1">
-                    {new Date(message.timestamp).toLocaleTimeString([], {
-                      hour: '2-digit',
-                      minute: '2-digit'
-                    })}
+                <div className={`flex gap-3 max-w-[85%] ${message.role === 'user' ? 'flex-row-reverse' : ''}`}>
+                  {message.role === 'assistant' && (
+                    <div className="w-8 h-8 rounded-full bg-gradient-to-r from-primary to-primary-glow flex items-center justify-center flex-shrink-0 mt-1">
+                      <MessageCircle className="h-4 w-4 text-white" />
+                    </div>
+                  )}
+                  <div
+                    className={`p-4 rounded-2xl text-sm leading-relaxed ${
+                      message.role === 'user'
+                        ? 'bg-gradient-to-r from-primary to-primary-glow text-white shadow-lg'
+                        : 'bg-muted/50 text-foreground border border-border/20'
+                    }`}
+                  >
+                    <div className="whitespace-pre-wrap">{message.content}</div>
+                    <div className={`text-xs mt-3 ${message.role === 'user' ? 'text-white/70' : 'text-muted-foreground'}`}>
+                      {new Date(message.timestamp).toLocaleTimeString([], {
+                        hour: '2-digit',
+                        minute: '2-digit'
+                      })}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -227,14 +246,19 @@ What would you like to know about today?`,
             
             {loading && (
               <div className="flex justify-start">
-                <div className="bg-muted p-3 rounded-lg text-sm">
-                  <div className="flex items-center gap-2">
-                    <div className="flex space-x-1">
-                      <div className="w-1 h-1 bg-foreground rounded-full animate-bounce" />
-                      <div className="w-1 h-1 bg-foreground rounded-full animate-bounce delay-100" />
-                      <div className="w-1 h-1 bg-foreground rounded-full animate-bounce delay-200" />
+                <div className="flex gap-3">
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-r from-primary to-primary-glow flex items-center justify-center flex-shrink-0">
+                    <MessageCircle className="h-4 w-4 text-white" />
+                  </div>
+                  <div className="bg-muted/50 border border-border/20 p-4 rounded-2xl">
+                    <div className="flex items-center gap-3">
+                      <div className="flex space-x-1">
+                        <div className="w-2 h-2 bg-primary rounded-full animate-bounce" />
+                        <div className="w-2 h-2 bg-primary rounded-full animate-bounce delay-100" />
+                        <div className="w-2 h-2 bg-primary rounded-full animate-bounce delay-200" />
+                      </div>
+                      <span className="text-muted-foreground text-sm">Thinking...</span>
                     </div>
-                    <span className="text-muted-foreground">Thinking...</span>
                   </div>
                 </div>
               </div>
@@ -245,16 +269,16 @@ What would you like to know about today?`,
         </ScrollArea>
         
         {messages.length === 1 && !loading && (
-          <div className="p-3 border-t border-b bg-muted/30">
-            <div className="text-xs text-muted-foreground mb-2">Quick actions:</div>
-            <div className="flex gap-1 flex-wrap">
+          <div className="px-4 py-4 border-t border-border/10 bg-gradient-to-r from-muted/30 to-muted/10">
+            <div className="text-xs font-medium text-muted-foreground mb-3">Quick actions:</div>
+            <div className="flex gap-2 flex-wrap">
               {quickActions.map((action, index) => (
                 <Button
                   key={index}
                   variant="outline"
                   size="sm"
                   onClick={action.action}
-                  className="text-xs h-7"
+                  className="text-xs h-8 px-4 rounded-full border-border/30 hover:bg-primary/10 hover:border-primary/30 hover:text-primary transition-all"
                 >
                   {action.label}
                 </Button>
@@ -263,27 +287,27 @@ What would you like to know about today?`,
           </div>
         )}
         
-        <div className="p-3 border-t">
-          <div className="flex gap-2">
+        <div className="p-4 border-t border-border/10 bg-background/80">
+          <div className="flex gap-3">
             <Input
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyPress={handleKeyPress}
               placeholder="Ask about mental health, therapy, or resources..."
               disabled={loading}
-              className="text-sm"
+              className="flex-1 rounded-full border-border/30 bg-muted/20 px-4 py-3 text-sm placeholder:text-muted-foreground/60 focus:border-primary/50 focus:bg-background transition-all"
             />
             <Button
               onClick={handleSendMessage}
               disabled={!input.trim() || loading || !sessionId}
               size="sm"
-              className="px-3"
+              className="h-11 w-11 rounded-full bg-gradient-to-r from-primary to-primary-glow hover:from-primary/90 hover:to-primary-glow/90 shadow-lg transition-all"
             >
               <Send className="h-4 w-4" />
             </Button>
           </div>
-          <div className="text-xs text-muted-foreground mt-2">
-            This is not a substitute for professional therapy.
+          <div className="text-xs text-muted-foreground/80 mt-3 px-1">
+            This is not a substitute for professional therapy. • Confidential support available 24/7
           </div>
         </div>
       </CardContent>
