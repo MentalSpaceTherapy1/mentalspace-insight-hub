@@ -63,13 +63,15 @@ const Hero = () => {
             <div className="relative w-80 h-80 lg:w-96 lg:h-96">
               <div className="absolute inset-0 rounded-full overflow-hidden shadow-2xl">
                 {heroImages.map((image, index) => (
-                  <LazyImage
+                  <img
                     key={index}
                     src={image}
                     alt={`Mental health therapy success story ${index + 1} - Happy person after online therapy sessions`}
                     className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
                       index === currentImageIndex ? 'opacity-100' : 'opacity-0'
                     }`}
+                    loading="eager"
+                    decoding="async"
                   />
                 ))}
               </div>
