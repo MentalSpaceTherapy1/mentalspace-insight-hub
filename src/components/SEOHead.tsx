@@ -42,16 +42,36 @@ const SEOHead = ({
   articleData
 }: SEOHeadProps) => {
   // Detect environment for robots directive
-  const isProduction = window.location.hostname !== 'localhost' && 
-                      !window.location.hostname.includes('lovable.app');
+  const isProduction = window.location.hostname === 'mentalspacetherapy.lovable.app' ||
+                      window.location.hostname === 'mentalspacetherapy.com';
   
+  // Set base URL for schemas and links
+  const baseUrl = isProduction ? 'https://mentalspacetherapy.lovable.app' : window.location.origin;
+  
+  // Generate WebSite Schema (for homepage)
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "MentalSpace",
+    "url": baseUrl,
+    "description": "Professional online therapy and mental health services with licensed therapists",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": `${baseUrl}/search?q={search_term_string}`
+      },
+      "query-input": "required name=search_term_string"
+    }
+  };
+
   // Generate Organization Schema
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "MedicalOrganization",
     "name": "MentalSpace",
-    "url": "https://mentalspace.com",
-    "logo": "https://mentalspace.com/logo.png",
+    "url": baseUrl,
+    "logo": `${baseUrl}/favicon.ico`,
     "description": "Professional online therapy and mental health services with licensed therapists",
     "address": {
       "@type": "PostalAddress",
@@ -98,7 +118,7 @@ const SEOHead = ({
       "name": "MentalSpace",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://mentalspace.com/logo.png"
+        "url": `${baseUrl}/favicon.ico`
       }
     },
     "datePublished": articleData.datePublished,
@@ -135,6 +155,10 @@ const SEOHead = ({
       {ogImage && <meta name="twitter:image" content={ogImage} />}
       
       {/* Structured Data */}
+      <script type="application/ld+json">
+        {JSON.stringify(websiteSchema)}
+      </script>
+      
       <script type="application/ld+json">
         {JSON.stringify(organizationSchema)}
       </script>

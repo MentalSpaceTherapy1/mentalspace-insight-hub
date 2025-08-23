@@ -87,16 +87,26 @@ const prerender = async () => {
         timeout: 30000
       });
 
-      // Wait for React to fully render
+      // Wait for React to fully render and content to load
       await page.waitForFunction(() => {
-        return document.querySelector('main') ||
-               document.querySelector('[role="main"]') ||
-               document.body.innerHTML.includes('MentalSpace') ||
-               document.querySelectorAll('h1, h2, h3').length > 0;
+        const hasContent = document.body.innerHTML.includes('MentalSpace') ||
+                          document.querySelectorAll('h1, h2, h3').length > 0 ||
+                          document.querySelector('main') ||
+                          document.querySelector('[role="main"]');
+        const notLoadingState = !document.body.innerHTML.includes('loading') &&
+                               !document.body.innerHTML.includes('Edit in Lovable');
+        return hasContent && notLoadingState;
       }, { timeout: 15000 });
 
-      // Additional wait for lazy content
-      await page.waitForTimeout(2000);
+      // Additional wait for lazy content and images
+      await page.waitForTimeout(3000);
+      
+      // Ensure all critical content is loaded
+      await page.evaluate(() => {
+        // Force render any lazy components
+        window.scrollTo(0, document.body.scrollHeight);
+        window.scrollTo(0, 0);
+      });
 
       const renderedHtml = await page.content();
 
