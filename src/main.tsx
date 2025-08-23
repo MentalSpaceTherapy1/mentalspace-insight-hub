@@ -1,4 +1,5 @@
 import { createRoot } from 'react-dom/client'
+import { HelmetProvider } from 'react-helmet-async'
 import App from './App.tsx'
 import './index.css'
 import { addResourceHints } from './utils/imageUtils'
@@ -12,10 +13,12 @@ addResourceHints();
 
 // Progressive hydration with critical CSS
 createRoot(document.getElementById("root")!).render(
-  <ServerSideRenderer>
-    <CriticalCSS />
-    <PerformanceOptimizer />
-    <SEOEnhancer />
-    <App />
-  </ServerSideRenderer>
+  <HelmetProvider>
+    <ServerSideRenderer>
+      <CriticalCSS />
+      <PerformanceOptimizer />
+      <SEOEnhancer />
+      <App />
+    </ServerSideRenderer>
+  </HelmetProvider>
 );
