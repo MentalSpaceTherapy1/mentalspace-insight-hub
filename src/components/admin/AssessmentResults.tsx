@@ -149,21 +149,19 @@ const AssessmentResults = () => {
     return (
       <div className="space-y-3">
         <h5 className="font-medium text-sm">Contact Information</h5>
-        <div className="grid grid-cols-2 gap-3 text-sm">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
           <div>
-            <span className="font-medium">Name:</span>
-            <p>{contactInfo.firstName} {contactInfo.lastName}</p>
+            <span className="font-medium text-muted-foreground">Name:</span>
+            <p className="font-medium">{contactInfo.firstName} {contactInfo.lastName}</p>
           </div>
           <div>
-            <span className="font-medium">Email:</span>
-            <p>{contactInfo.email}</p>
+            <span className="font-medium text-muted-foreground">Email:</span>
+            <p className="font-medium">{contactInfo.email}</p>
           </div>
-          {contactInfo.phone && (
-            <div>
-              <span className="font-medium">Phone:</span>
-              <p>{contactInfo.phone}</p>
-            </div>
-          )}
+          <div className="md:col-span-2">
+            <span className="font-medium text-muted-foreground">Phone:</span>
+            <p className="font-medium">{contactInfo.phone || 'Not provided'}</p>
+          </div>
         </div>
       </div>
     );
