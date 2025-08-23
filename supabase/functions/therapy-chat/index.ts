@@ -261,7 +261,7 @@ Remember: You're a knowledgeable guide with access to all MentalSpace Therapy re
           }
         }
       }),
-    });</thinking>
+    });
 
     if (!response.ok) {
       const errorText = await response.text();
