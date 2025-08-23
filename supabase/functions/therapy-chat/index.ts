@@ -204,7 +204,8 @@ STRICT RULES
 - Output style: 
   1) A direct answer in 2–5 short sentences. 
   2) "What to do next" with one clear CTA.
-  3) If you referenced sources, list 1–3 "Sources" as bullet links (no footnote jargon).
+  3) NEVER include URLs, links, or path references (like /insurance, /get-started) in your responses
+  4) Use descriptive references instead (e.g., "our Insurance page" or "Get Started section")
 - If the question is about scheduling, insurance, prices, or getting care, always include a **Get Started** CTA.
 - If the question asks for something MentalSpace/CHC doesn't do, say so clearly and redirect to an appropriate alternative (educational only).
 
@@ -220,21 +221,21 @@ BRAND
 WEBSITE CONTENT KNOWLEDGE BASE:
 
 **SERVICES AVAILABLE:**
-${websiteContent.services.map(service => `- ${service.name}: ${service.description} (Link: ${service.link})`).join('\n')}
+${websiteContent.services.map(service => `- ${service.name}: ${service.description}`).join('\n')}
 
-**MENTAL HEALTH ASSESSMENTS (Available at /mental-health-tests):**
+**MENTAL HEALTH ASSESSMENTS (Available on our Mental Health Tests page):**
 ${websiteContent.assessments.map(assessment => `- ${assessment.name}: ${assessment.description} (Duration: ${assessment.duration})`).join('\n')}
 
 **KEY WEBSITE PAGES:**
-${websiteContent.pages.map(page => `- ${page.name}: ${page.description} (Link: ${page.link})`).join('\n')}
+${websiteContent.pages.map(page => `- ${page.name}: ${page.description}`).join('\n')}
 
 **CRAWLED WEBSITE CONTENT (All Pages):**
-${websiteContent.crawledContent.map(page => `- ${page.title} (${page.url}): ${page.description} | Content: ${page.content.substring(0, 300)}...`).join('\n')}
+${websiteContent.crawledContent.map(page => `- ${page.title}: ${page.description} | Content: ${page.content.substring(0, 300)}...`).join('\n')}
 
 **CONDITIONS WE TREAT:**
-${websiteContent.conditions.map(condition => `- ${condition.name}: ${condition.description} (Link: ${condition.link})`).join('\n')}
+${websiteContent.conditions.map(condition => `- ${condition.name}: ${condition.description}`).join('\n')}
 
-Remember: You're a knowledgeable guide with access to all MentalSpace Therapy resources, not a replacement for professional mental health care. Always guide users toward "Get Started" for actual care.`
+Remember: You're a knowledgeable guide with access to all MentalSpace Therapy resources, not a replacement for professional mental health care. Always guide users toward "Get Started" for actual care. NEVER include website paths or URLs in your responses - use descriptive language only.`
       },
       ...previousMessages.map((msg: any) => ({
         role: msg.role,
@@ -307,23 +308,30 @@ Remember: You're a knowledgeable guide with access to all MentalSpace Therapy re
         content += "\n\n";
         switch (structuredResponse.cta) {
           case "GET_STARTED":
-            content += "**What to do next:** Ready to begin? [Get Started](/get-started) to book your intake.";
+            content += "**What to do next:** Ready to begin? Visit our Get Started page to book your intake.";
             break;
           case "READ_ARTICLE":
-            content += "**What to do next:** Learn more in our [Mental Health Library](/mental-health-library).";
+            content += "**What to do next:** Learn more in our Mental Health Library.";
             break;
           case "CONTACT_TEAM":
-            content += "**What to do next:** Have more questions? [Contact our team](/contact-us) for personalized help.";
+            content += "**What to do next:** Have more questions? Contact our team for personalized help.";
             break;
           case "CRISIS_HELP":
-            content += "**What to do next:** For immediate support, visit our [Emergency Resources](/emergency-resources) page.";
+            content += "**What to do next:** For immediate support, visit our Emergency Resources page.";
             break;
         }
       }
 
-      // Add sources if present
+      // Add sources if present (remove URLs from sources)
       if (structuredResponse.sources && structuredResponse.sources.length > 0) {
-        content += "\n\n**Sources:**\n" + structuredResponse.sources.map(source => `• ${source}`).join("\n");
+        const cleanSources = structuredResponse.sources.map(source => {
+          // Remove any URLs or paths from sources
+          return source.replace(/https?:\/\/[^\s]+/g, '').replace(/\/[^\s]*/g, '').trim();
+        }).filter(source => source.length > 0);
+        
+        if (cleanSources.length > 0) {
+          content += "\n\n**Sources:**\n" + cleanSources.map(source => `• ${source}`).join("\n");
+        }
       }
 
       aiResponse = {
