@@ -40,7 +40,15 @@ export const AdminAuthProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  // Cache to avoid redundant profile checks
+  const profileCache = React.useRef<Map<string, AdminProfile | null>>(new Map());
+
   const checkAdminProfile = async (userId: string) => {
+    // Check cache first
+    if (profileCache.current.has(userId)) {
+      return profileCache.current.get(userId);
+    }
+
     try {
       const { data: profile, error } = await supabase
         .from('admin_profiles')
@@ -51,12 +59,16 @@ export const AdminAuthProvider: React.FC<{ children: React.ReactNode }> = ({ chi
 
       if (error) {
         console.error('Admin profile query error:', error);
+        profileCache.current.set(userId, null);
         return null;
       }
 
+      // Cache the result
+      profileCache.current.set(userId, profile);
       return profile;
     } catch (error) {
       console.error('Error checking admin profile:', error);
+      profileCache.current.set(userId, null);
       return null;
     }
   };
@@ -93,10 +105,17 @@ export const AdminAuthProvider: React.FC<{ children: React.ReactNode }> = ({ chi
 
   useEffect(() => {
     let mounted = true;
+    let isProcessing = false;
 
     const handleAuthChange = async (event: string, session: Session | null) => {
-      if (!mounted) return;
+      if (!mounted || isProcessing) return;
+      
+      // Prevent redundant calls
+      if (event === 'SIGNED_IN' && user?.id === session?.user?.id && profile) {
+        return;
+      }
 
+      isProcessing = true;
       console.log('Auth event:', event, 'Session:', !!session);
 
       if (!session?.user) {
@@ -105,6 +124,8 @@ export const AdminAuthProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         setProfile(null);
         setLoading(false);
         setError(null);
+        profileCache.current.clear();
+        isProcessing = false;
         return;
       }
 
@@ -118,6 +139,8 @@ export const AdminAuthProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         setProfile(adminProfile);
         setLoading(false);
       }
+      
+      isProcessing = false;
     };
 
     // Set up auth listener
