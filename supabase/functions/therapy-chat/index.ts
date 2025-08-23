@@ -79,6 +79,87 @@ Would you like me to help you find local mental health resources or talk about w
     const previousMessages = sessionData?.messages || [];
     const userContext = sessionData?.user_context || {};
 
+    // Query published blog posts and resources from database
+    const { data: blogPosts } = await supabase
+      .from('blog_posts')
+      .select('title, slug, excerpt, meta_description')
+      .eq('status', 'published')
+      .not('published_at', 'is', null);
+
+    const { data: resources } = await supabase
+      .from('resources')
+      .select('title, description, category, resource_type')
+      .eq('status', 'published')
+      .not('published_at', 'is', null);
+
+    // Build comprehensive knowledge base
+    const websiteContent = {
+      services: [
+        {
+          name: "Individual Therapy",
+          description: "One-on-one support with licensed therapists for anxiety, depression, trauma, and personal growth.",
+          link: "/therapist-matching"
+        },
+        {
+          name: "Couples Therapy",
+          description: "Enhance your relationship with professional guidance to improve communication and strengthen bonds.",
+          link: "/couples-therapy"
+        },
+        {
+          name: "Teen Therapy",
+          description: "Specialized care for youth aged 13-17, providing a safe space to navigate adolescent challenges.",
+          link: "/teen-therapy"
+        },
+        {
+          name: "Life Coaching",
+          description: "Find balance, purpose, and joy with personalized coaching to achieve your personal and professional goals.",
+          link: "/life-coaching"
+        },
+        {
+          name: "Online Therapy",
+          description: "Convenient, secure virtual therapy sessions from the comfort of your home.",
+          link: "/online-therapy"
+        }
+      ],
+      assessments: [
+        { name: "Depression Assessment", description: "PHQ-9 screening tool to assess symptoms of depression", duration: "5-10 minutes", link: "/mental-health-tests" },
+        { name: "Anxiety Assessment", description: "GAD-7 questionnaire to evaluate generalized anxiety symptoms", duration: "2-3 minutes", link: "/mental-health-tests" },
+        { name: "Panic Assessment", description: "Screen for panic symptoms and episodes over the last 4 weeks", duration: "2-3 minutes", link: "/mental-health-tests" },
+        { name: "Social Anxiety Assessment", description: "Screen for social/performance anxiety and fear of negative evaluation", duration: "2-3 minutes", link: "/mental-health-tests" },
+        { name: "Specific Phobia Assessment", description: "Screen for excessive fear of specific objects or situations", duration: "2-3 minutes", link: "/mental-health-tests" },
+        { name: "OCD Assessment", description: "Screen for obsessive-compulsive symptoms and rituals", duration: "2-3 minutes", link: "/mental-health-tests" },
+        { name: "PTSD Assessment", description: "Screen for post-traumatic stress symptoms and trauma responses", duration: "2-3 minutes", link: "/mental-health-tests" },
+        { name: "ADHD Assessment", description: "Screen for attention, hyperactivity, and executive function difficulties", duration: "3 minutes", link: "/mental-health-tests" },
+        { name: "Bipolar Assessment", description: "Screen for hypomanic/manic episodes and mood cycling patterns", duration: "2-3 minutes", link: "/mental-health-tests" },
+        { name: "Insomnia Assessment", description: "Screen for sleep initiation, maintenance, and quality issues", duration: "2-3 minutes", link: "/mental-health-tests" },
+        { name: "Alcohol Use Assessment", description: "Screen for unhealthy alcohol use patterns and safety risks", duration: "2-3 minutes", link: "/mental-health-tests" },
+        { name: "Substance Use Assessment", description: "Screen for unhealthy use of non-alcohol substances and safety risks", duration: "2-3 minutes", link: "/mental-health-tests" },
+        { name: "Nicotine Dependence Assessment", description: "Screen for nicotine dependence across cigarettes, vaping, and smokeless products", duration: "2-3 minutes", link: "/mental-health-tests" },
+        { name: "Eating Concerns Assessment", description: "Screen for eating disorder risk and disordered eating patterns", duration: "2-3 minutes", link: "/mental-health-tests" },
+        { name: "Binge-Eating Behaviors Assessment", description: "Screen for binge-eating patterns and related distress/impairment", duration: "2-3 minutes", link: "/mental-health-tests" },
+        { name: "Body Dysmorphic Disorder Assessment", description: "Screen for appearance-related preoccupations and repetitive behaviors", duration: "2-3 minutes", link: "/mental-health-tests" },
+        { name: "Health Anxiety Assessment", description: "Screen for excessive worry about illness and health-related behaviors", duration: "2-3 minutes", link: "/mental-health-tests" },
+        { name: "Somatic Symptom Assessment", description: "Screen for distressing physical symptoms and related thoughts/behaviors", duration: "2-3 minutes", link: "/mental-health-tests" },
+        { name: "Prolonged Grief Assessment", description: "Screen for persistent, impairing grief reactions after loss", duration: "2-3 minutes", link: "/mental-health-tests" },
+        { name: "Perinatal Mood & Anxiety Assessment", description: "Screen for depression/anxiety during pregnancy and postpartum period", duration: "2-3 minutes", link: "/mental-health-tests" },
+        { name: "Anger & Irritability Assessment", description: "Identify anger frequency, intensity, control, and harm risk", duration: "2-3 minutes", link: "/mental-health-tests" },
+        { name: "Stress & Burnout Assessment", description: "Screen for burnout pattern—exhaustion, cynicism, reduced efficacy—and workplace stress", duration: "2-3 minutes", link: "/mental-health-tests" },
+        { name: "Mood Tracker", description: "Quick daily mood assessment to track emotional patterns", duration: "2-5 minutes", link: "/mental-health-tests" },
+        { name: "Wellbeing Check", description: "Comprehensive assessment of your overall wellbeing across life satisfaction, relationships, health, and purpose", duration: "3-5 minutes", link: "/mental-health-tests" }
+      ],
+      pages: [
+        { name: "Get Started", description: "Begin your mental health journey with MentalSpace Therapy", link: "/get-started" },
+        { name: "Therapist Matching", description: "Find the right therapist for your specific needs", link: "/therapist-matching" },
+        { name: "Insurance Coverage", description: "Check if your insurance is accepted", link: "/insurance" },
+        { name: "FAQ", description: "Frequently asked questions about our services", link: "/faq" },
+        { name: "Emergency Resources", description: "Crisis support and emergency mental health resources", link: "/emergency-resources" },
+        { name: "Mental Health Library", description: "Educational resources and articles about mental health", link: "/mental-health-library" },
+        { name: "Contact Us", description: "Get in touch with our support team", link: "/contact-us" }
+      ],
+      blogPosts: blogPosts || [],
+      resources: resources || []
+    };
+
     // Build conversation history for OpenAI
     const conversationHistory = [
       {
@@ -86,25 +167,40 @@ Would you like me to help you find local mental health resources or talk about w
         content: `You are a helpful mental health support assistant for MentalSpace Therapy. Your role is to:
 
 1. Provide supportive, empathetic responses about mental health topics
-2. Recommend relevant resources from our website (blog articles, assessments, services)
+2. Recommend relevant resources from our website (assessments, services, pages)
 3. Guide users to appropriate professional help when needed
 4. NEVER provide medical diagnoses or specific treatment plans
 
-Key resources available:
-- Mental Health Assessments: Depression, Anxiety, PTSD, ADHD, Bipolar, OCD, Panic, Social Anxiety, Substance Use, Eating Disorders, Grief, Health Anxiety, Insomnia, Stress/Burnout
-- Services: Individual Therapy, Couples Therapy, Teen Therapy, Life Coaching, Online Therapy
-- Blog Articles: Understanding Anxiety, Depression Stigma, Online Therapy Benefits, Couples Communication, Teen Mental Health, PTSD Recovery
+WEBSITE CONTENT KNOWLEDGE BASE:
 
-Guidelines:
+**SERVICES AVAILABLE:**
+${websiteContent.services.map(service => `- ${service.name}: ${service.description} (Link: ${service.link})`).join('\n')}
+
+**MENTAL HEALTH ASSESSMENTS (Available at /mental-health-tests):**
+${websiteContent.assessments.map(assessment => `- ${assessment.name}: ${assessment.description} (Duration: ${assessment.duration})`).join('\n')}
+
+**KEY WEBSITE PAGES:**
+${websiteContent.pages.map(page => `- ${page.name}: ${page.description} (Link: ${page.link})`).join('\n')}
+
+**PUBLISHED BLOG POSTS:**
+${websiteContent.blogPosts.map(post => `- ${post.title}: ${post.excerpt || post.meta_description || 'Available on our website'}`).join('\n')}
+
+**PUBLISHED RESOURCES:**
+${websiteContent.resources.map(resource => `- ${resource.title}: ${resource.description} (Category: ${resource.category})`).join('\n')}
+
+RESPONSE GUIDELINES:
 - Be warm, professional, and non-judgmental
 - Acknowledge feelings and validate experiences
-- Suggest assessments when symptoms are mentioned
-- Recommend therapy services when appropriate
-- Direct to crisis resources if safety concerns arise
+- When users mention symptoms, suggest relevant assessments by name
+- Recommend specific services based on user needs
+- Provide exact page links when referencing website content
+- Direct to crisis resources if safety concerns arise (/emergency-resources)
 - Keep responses concise but helpful (2-3 paragraphs max)
-- Always remind users that this is not a substitute for professional therapy
+- Always remind users this is not a substitute for professional therapy
 
-Remember: You're a supportive guide, not a replacement for professional mental health care.`
+IMPORTANT: You have detailed knowledge of all our services, assessments, and website content. Use specific names and descriptions when making recommendations. Always provide direct links to relevant pages.
+
+Remember: You're a knowledgeable guide with access to all MentalSpace Therapy resources, not a replacement for professional mental health care.`
       },
       ...previousMessages.map((msg: any) => ({
         role: msg.role,
