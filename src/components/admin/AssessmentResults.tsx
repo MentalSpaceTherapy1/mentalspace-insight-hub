@@ -121,6 +121,15 @@ const AssessmentResults = () => {
   };
 
   const renderAnswers = (answers: Record<string, any>) => {
+    if (!answers || Object.keys(answers).length === 0) {
+      return (
+        <div className="text-center py-4 text-muted-foreground">
+          <p>Individual question responses not available for this assessment.</p>
+          <p className="text-sm">This may be from migrated data that only contained summary results.</p>
+        </div>
+      );
+    }
+    
     return (
       <div className="space-y-2">
         {Object.entries(answers).map(([key, value], index) => (
@@ -129,6 +138,65 @@ const AssessmentResults = () => {
             <span className="col-span-2">{String(value)}</span>
           </div>
         ))}
+      </div>
+    );
+  };
+
+  const renderContactInfo = (additionalInfo: Record<string, any>) => {
+    const contactInfo = additionalInfo?.contact_info;
+    if (!contactInfo) return null;
+
+    return (
+      <div className="space-y-3">
+        <h5 className="font-medium text-sm">Contact Information</h5>
+        <div className="grid grid-cols-2 gap-3 text-sm">
+          <div>
+            <span className="font-medium">Name:</span>
+            <p>{contactInfo.firstName} {contactInfo.lastName}</p>
+          </div>
+          <div>
+            <span className="font-medium">Email:</span>
+            <p>{contactInfo.email}</p>
+          </div>
+          {contactInfo.phone && (
+            <div>
+              <span className="font-medium">Phone:</span>
+              <p>{contactInfo.phone}</p>
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  };
+
+  const renderAdditionalInfo = (additionalInfo: Record<string, any>) => {
+    const isMigrated = additionalInfo?.migrated_from_form_id;
+    
+    return (
+      <div className="space-y-4">
+        {isMigrated && (
+          <div className="bg-blue-50 dark:bg-blue-950 p-3 rounded-lg">
+            <div className="flex items-center gap-2 mb-2">
+              <Badge variant="outline">Migrated Data</Badge>
+            </div>
+            <p className="text-sm text-muted-foreground">
+              This assessment was migrated from a previous form submission.
+            </p>
+          </div>
+        )}
+        
+        {renderContactInfo(additionalInfo)}
+        
+        {additionalInfo && Object.keys(additionalInfo).length > 2 && (
+          <details className="cursor-pointer">
+            <summary className="font-medium text-sm hover:text-primary">
+              Technical Details (Advanced)
+            </summary>
+            <div className="mt-2 bg-muted p-3 rounded text-xs">
+              <pre>{JSON.stringify(additionalInfo, null, 2)}</pre>
+            </div>
+          </details>
+        )}
       </div>
     );
   };
@@ -279,9 +347,7 @@ const AssessmentResults = () => {
                                   <div>
                                     <h4 className="font-medium mb-2">Additional Information</h4>
                                     <div className="bg-muted p-3 rounded-lg">
-                                      <pre className="text-sm">
-                                        {JSON.stringify(session.additional_info, null, 2)}
-                                      </pre>
+                                      {renderAdditionalInfo(session.additional_info)}
                                     </div>
                                   </div>
                                 )}
