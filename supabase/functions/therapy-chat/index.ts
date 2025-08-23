@@ -83,10 +83,31 @@ These trained counselors are available 24/7 and can provide immediate support. P
     const userContext = sessionData?.user_context || {};
 
     // Get crawled site content from database instead of hardcoded content
-    const { data: siteContent } = await supabase
+    const { data: siteContent, error: contentError } = await supabase
       .from('site_content_cache')
       .select('url, title, description, content')
       .order('last_crawled', { ascending: false });
+
+    console.log(`Site content query result: ${siteContent?.length || 0} pages found`);
+    if (contentError) {
+      console.error('Error fetching site content:', contentError);
+    }
+
+    // Fallback content if database is empty - include insurance info
+    const fallbackContent = [
+      {
+        url: '/insurance',
+        title: 'Insurance Coverage - MentalSpace Therapy',
+        description: 'Insurance plans accepted including Amerigroup',
+        content: 'Insurance Coverage at MentalSpace. We accept most major insurance plans including Aetna, Anthem, Blue Cross Blue Shield, Cigna, Humana, UnitedHealthcare, Amerigroup, and many others. We are in-network with several Georgia plans. We will verify your benefits before your first session and handle insurance billing. Out-of-network options available. Many plans cover mental health services with minimal copays. We also offer sliding scale fees for uninsured clients. Amerigroup members can receive covered therapy services through our network.'
+      },
+      {
+        url: '/',
+        title: 'MentalSpace Therapy - Online Mental Health Services',
+        description: 'Online mental health services in Georgia',
+        content: 'MentalSpace Therapy provides online mental health services in Georgia including individual therapy, couples therapy, teen therapy, and life coaching. Same-week appointments available with licensed therapists. We accept most insurance plans including Aetna, Blue Cross Blue Shield, Cigna, Humana, and Amerigroup. Get started today with professional mental health support.'
+      }
+    ];
 
     const websiteContent = {
       services: [
@@ -151,8 +172,8 @@ These trained counselors are available 24/7 and can provide immediate support. P
         { name: "Mental Health Library", description: "Educational resources and articles about mental health", link: "/mental-health-library" },
         { name: "Contact Us", description: "Get in touch with our support team", link: "/contact-us" }
       ],
-      // Use crawled content from database
-      crawledContent: siteContent || [],
+      // Use crawled content from database, fallback to hardcoded if empty
+      crawledContent: (siteContent && siteContent.length > 0) ? siteContent : fallbackContent,
       conditions: [
         { name: "Anxiety Disorders", description: "Comprehensive care for various anxiety disorders including GAD, panic, and social anxiety", link: "/conditions/anxiety" },
         { name: "Depression", description: "Evidence-based treatment for major depression and mood disorders", link: "/conditions/depression" },
