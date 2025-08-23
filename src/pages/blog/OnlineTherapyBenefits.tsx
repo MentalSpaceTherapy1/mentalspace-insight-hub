@@ -10,14 +10,14 @@ import Footer from "@/components/Footer";
 import { useSEO } from "@/hooks/useSEO";
 import { useState, useEffect } from "react";
 
-const DepressionBreakingStigma = () => {
+const OnlineTherapyBenefits = () => {
   const [readingProgress, setReadingProgress] = useState(0);
 
   useSEO({
-    title: "Depression in Adults: Breaking the Stigma and Finding Help | MentalSpace Blog",
-    description: "Explore the reality of adult depression, common misconceptions, and how therapy can provide a path to recovery and healing.",
-    keywords: "depression, mental health, therapy, stigma, treatment, adults",
-    canonicalUrl: "/blog/depression-breaking-stigma"
+    title: "The Benefits of Online Therapy: Accessible Mental Health Care | MentalSpace Blog",
+    description: "Discover how online therapy has revolutionized mental health care, making it more accessible and convenient for everyone.",
+    keywords: "online therapy, virtual therapy, teletherapy, mental health, accessibility, convenience",
+    canonicalUrl: "/blog/online-therapy-benefits"
   });
 
   useEffect(() => {
@@ -32,12 +32,11 @@ const DepressionBreakingStigma = () => {
   }, []);
 
   const tableOfContents = [
-    { id: "understanding-depression", title: "Understanding Depression" },
-    { id: "misconceptions", title: "Common Misconceptions" },
-    { id: "recognizing-signs", title: "Recognizing the Signs" },
-    { id: "impact-stigma", title: "The Impact of Stigma" },
-    { id: "therapy-help", title: "How Therapy Can Help" },
-    { id: "breaking-stigma", title: "Breaking the Stigma" }
+    { id: "what-is-online-therapy", title: "What is Online Therapy?" },
+    { id: "key-benefits", title: "Key Benefits" },
+    { id: "accessibility", title: "Breaking Down Barriers" },
+    { id: "effectiveness", title: "Effectiveness Research" },
+    { id: "getting-started", title: "Getting Started" }
   ];
 
   const relatedArticles = [
@@ -48,16 +47,16 @@ const DepressionBreakingStigma = () => {
       category: "Anxiety"
     },
     {
-      title: "Online Therapy: Accessible Mental Health Care",
-      excerpt: "Discover the benefits of virtual therapy sessions",
-      url: "/blog/online-therapy-benefits",
-      category: "Therapy"
+      title: "Depression: Breaking the Stigma",
+      excerpt: "Understanding depression and finding help",
+      url: "/blog/depression-breaking-stigma", 
+      category: "Depression"
     },
     {
-      title: "PTSD Recovery and Healing",
-      excerpt: "Evidence-based treatments for trauma recovery",
-      url: "/blog/ptsd-recovery",
-      category: "PTSD"
+      title: "Couples Therapy Online",
+      excerpt: "Strengthen your relationship with online counseling",
+      url: "/couples-therapy",
+      category: "Relationships"
     }
   ];
 
@@ -81,7 +80,7 @@ const DepressionBreakingStigma = () => {
             <ChevronRight className="h-4 w-4 mx-2" />
             <Link to="/blog" className="hover:text-primary transition-colors">Blog</Link>
             <ChevronRight className="h-4 w-4 mx-2" />
-            <span className="text-foreground">Depression Breaking Stigma</span>
+            <span className="text-foreground">Online Therapy Benefits</span>
           </nav>
           
           <Button asChild variant="ghost" className="mb-4">
@@ -146,9 +145,9 @@ const DepressionBreakingStigma = () => {
           {/* Main Article */}
           <article className="lg:col-span-2 order-1 lg:order-2">
             <header className="mb-8">
-              <Badge className="mb-4 bg-gradient-to-r from-primary to-primary-glow text-white">Depression</Badge>
+              <Badge className="mb-4 bg-gradient-to-r from-primary to-primary-glow text-white">Therapy</Badge>
               <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight text-foreground">
-                Depression in Adults: Breaking the Stigma and Finding Help
+                The Benefits of Online Therapy: Accessible Mental Health Care
               </h1>
               
               {/* Author & Meta Info */}
@@ -156,21 +155,21 @@ const DepressionBreakingStigma = () => {
                 <CardContent className="flex items-center justify-between p-6">
                   <div className="flex items-center space-x-4">
                     <div className="h-12 w-12 rounded-full bg-gradient-to-br from-primary to-primary-glow flex items-center justify-center text-white font-semibold">
-                      MC
+                      AK
                     </div>
                     <div>
-                      <p className="font-semibold">Dr. Michael Chen</p>
-                      <p className="text-sm text-muted-foreground">Licensed Clinical Psychologist</p>
+                      <p className="font-semibold">Dr. Amanda Klein</p>
+                      <p className="text-sm text-muted-foreground">Licensed Marriage & Family Therapist</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-6 text-muted-foreground text-sm">
                     <div className="flex items-center">
                       <Calendar className="h-4 w-4 mr-1" />
-                      <span>Dec 18, 2024</span>
+                      <span>Dec 15, 2024</span>
                     </div>
                     <div className="flex items-center">
                       <Clock className="h-4 w-4 mr-1" />
-                      <span>6 min read</span>
+                      <span>5 min read</span>
                     </div>
                   </div>
                 </CardContent>
@@ -179,8 +178,8 @@ const DepressionBreakingStigma = () => {
               {/* Featured Image */}
               <div className="aspect-video mb-8 overflow-hidden rounded-xl shadow-2xl">
                 <img
-                  src="/src/assets/depression-person.jpg"
-                  alt="Person dealing with depression"
+                  src="/src/assets/online-therapy-hero.jpg"
+                  alt="Person having an online therapy session"
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                 />
               </div>
@@ -190,8 +189,8 @@ const DepressionBreakingStigma = () => {
             <div className="prose prose-lg max-w-none space-y-8">
               {/* Introduction */}
               <div className="text-xl text-muted-foreground mb-8 p-6 bg-muted/30 rounded-xl border-l-4 border-primary">
-                Depression affects over 280 million people worldwide, yet stigma and misconceptions continue to prevent many from seeking the help they need. 
-                Understanding depression and breaking down these barriers is crucial for recovery.
+                The digital revolution has transformed many aspects of our lives, and mental health care is no exception. 
+                Online therapy has emerged as a game-changing solution that's making professional mental health support more accessible than ever before.
               </div>
 
               {/* Quick Stats */}
@@ -199,194 +198,154 @@ const DepressionBreakingStigma = () => {
                 <CardContent className="p-6">
                   <div className="grid md:grid-cols-3 gap-4 text-center">
                     <div>
-                      <div className="text-3xl font-bold text-primary">280M</div>
-                      <div className="text-sm text-muted-foreground">People affected worldwide</div>
+                      <div className="text-3xl font-bold text-primary">80%</div>
+                      <div className="text-sm text-muted-foreground">Report improved access to care</div>
                     </div>
                     <div>
-                      <div className="text-3xl font-bold text-primary">85%</div>
-                      <div className="text-sm text-muted-foreground">Improvement rate with treatment</div>
+                      <div className="text-3xl font-bold text-primary">65%</div>
+                      <div className="text-sm text-muted-foreground">More likely to start therapy</div>
                     </div>
                     <div>
-                      <div className="text-3xl font-bold text-primary">67%</div>
-                      <div className="text-sm text-muted-foreground">Don't seek help due to stigma</div>
+                      <div className="text-3xl font-bold text-primary">90%</div>
+                      <div className="text-sm text-muted-foreground">Satisfaction rate with online therapy</div>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-              <h2 id="understanding-depression" className="text-3xl font-bold mb-4 text-foreground">
-                Understanding Depression Beyond Sadness
+              <h2 id="what-is-online-therapy" className="text-3xl font-bold mb-4 text-foreground">
+                What is Online Therapy?
               </h2>
               <p className="text-lg leading-relaxed mb-6">
-                Depression is much more than feeling sad or going through a rough patch. It's a serious mental health condition 
-                that affects how you think, feel, and handle daily activities. Unlike temporary feelings of sadness, depression 
-                persists and can significantly impact every aspect of life.
+                Online therapy, also known as teletherapy or e-therapy, delivers mental health services through digital platforms. 
+                This can include video calls, phone sessions, messaging, or chat-based therapy with licensed mental health professionals.
               </p>
 
-              <h2 id="misconceptions" className="text-3xl font-bold mb-6 text-foreground">
-                Common Misconceptions About Depression
+              <h2 id="key-benefits" className="text-3xl font-bold mb-6 text-foreground">
+                Key Benefits of Online Therapy
               </h2>
 
               <div className="grid md:grid-cols-1 gap-6 mb-8">
-                <Card className="p-6 hover:shadow-lg transition-shadow border-l-4 border-red-200">
-                  <h3 className="text-xl font-semibold mb-3 text-red-600">"It's Just in Your Head"</h3>
+                <Card className="p-6 hover:shadow-lg transition-shadow">
+                  <h3 className="text-xl font-semibold mb-3 text-primary">Convenience & Flexibility</h3>
                   <p>
-                    Depression involves real changes in brain chemistry and structure. It's not a matter of willpower or character 
-                    weakness. Brain imaging studies show actual differences in the brains of people with depression.
+                    Access therapy from the comfort of your own home, eliminating travel time and scheduling conflicts. 
+                    Many platforms offer flexible scheduling, including evenings and weekends.
                   </p>
                 </Card>
 
-                <Card className="p-6 hover:shadow-lg transition-shadow border-l-4 border-orange-200">
-                  <h3 className="text-xl font-semibold mb-3 text-orange-600">"You Can Just Snap Out of It"</h3>
+                <Card className="p-6 hover:shadow-lg transition-shadow">
+                  <h3 className="text-xl font-semibold mb-3 text-primary">Increased Privacy</h3>
                   <p>
-                    If recovery were that simple, no one would choose to remain depressed. Depression requires proper treatment, 
-                    support, and often time to heal - just like any other medical condition.
+                    For those who value privacy, online therapy eliminates concerns about being seen entering a therapist's office. 
+                    This can be especially important in smaller communities or for public figures.
                   </p>
                 </Card>
 
-                <Card className="p-6 hover:shadow-lg transition-shadow border-l-4 border-purple-200">
-                  <h3 className="text-xl font-semibold mb-3 text-purple-600">"Successful People Don't Get Depressed"</h3>
+                <Card className="p-6 hover:shadow-lg transition-shadow">
+                  <h3 className="text-xl font-semibold mb-3 text-primary">Greater Access to Specialists</h3>
                   <p>
-                    Depression doesn't discriminate based on success, wealth, or social status. Many accomplished individuals 
-                    have struggled with depression while maintaining their careers and responsibilities.
+                    Online therapy connects you with specialists who might not be available in your geographic area, 
+                    expanding your options for finding the right therapeutic match.
+                  </p>
+                </Card>
+
+                <Card className="p-6 hover:shadow-lg transition-shadow">
+                  <h3 className="text-xl font-semibold mb-3 text-primary">Cost-Effective</h3>
+                  <p>
+                    Often more affordable than traditional in-person therapy, with reduced overhead costs and 
+                    the elimination of travel expenses for clients.
                   </p>
                 </Card>
               </div>
 
-              <h2 id="recognizing-signs" className="text-3xl font-bold mb-6 text-foreground">
-                Recognizing the Signs
+              <h2 id="accessibility" className="text-3xl font-bold mb-6 text-foreground">
+                Breaking Down Barriers to Mental Health Care
               </h2>
               
               <Card className="p-6 mb-8">
-                <p className="text-lg mb-6">Depression symptoms can vary widely between individuals, but common signs include:</p>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <h4 className="font-semibold mb-3 text-primary">Emotional Symptoms</h4>
+                    <h4 className="font-semibold mb-3 text-primary">Geographic Barriers</h4>
                     <ul className="space-y-2">
                       <li className="flex items-start">
                         <div className="w-2 h-2 rounded-full bg-primary mt-2 mr-3 flex-shrink-0"></div>
-                        Persistent feelings of sadness or emptiness
+                        Rural and remote area access
                       </li>
                       <li className="flex items-start">
                         <div className="w-2 h-2 rounded-full bg-primary mt-2 mr-3 flex-shrink-0"></div>
-                        Loss of interest in activities once enjoyed
+                        Limited local provider options
                       </li>
                       <li className="flex items-start">
                         <div className="w-2 h-2 rounded-full bg-primary mt-2 mr-3 flex-shrink-0"></div>
-                        Feelings of worthlessness or guilt
+                        Long waiting lists in high-demand areas
                       </li>
                     </ul>
                   </div>
                   <div>
-                    <h4 className="font-semibold mb-3 text-primary">Physical Symptoms</h4>
+                    <h4 className="font-semibold mb-3 text-primary">Personal Barriers</h4>
                     <ul className="space-y-2">
                       <li className="flex items-start">
                         <div className="w-2 h-2 rounded-full bg-primary mt-2 mr-3 flex-shrink-0"></div>
-                        Changes in appetite or weight
+                        Transportation challenges
                       </li>
                       <li className="flex items-start">
                         <div className="w-2 h-2 rounded-full bg-primary mt-2 mr-3 flex-shrink-0"></div>
-                        Sleep disturbances
+                        Mobility or disability considerations
                       </li>
                       <li className="flex items-start">
                         <div className="w-2 h-2 rounded-full bg-primary mt-2 mr-3 flex-shrink-0"></div>
-                        Fatigue or loss of energy
+                        Social anxiety about in-person visits
                       </li>
                     </ul>
                   </div>
                 </div>
               </Card>
 
-              <h2 id="impact-stigma" className="text-3xl font-bold mb-6 text-foreground">
-                The Impact of Stigma
+              <h2 id="effectiveness" className="text-3xl font-bold mb-6 text-foreground">
+                Research on Effectiveness
               </h2>
-              
-              <Card className="p-6 mb-8 bg-gradient-to-r from-red-50 to-orange-50 border-red-200">
-                <p className="text-red-700 mb-4">
-                  Stigma surrounding mental health creates additional barriers to treatment. Many people with depression report 
-                  feeling ashamed, judged, or misunderstood. This can lead to:
-                </p>
-                <ul className="text-red-700 space-y-2">
-                  <li>• Delayed treatment seeking</li>
-                  <li>• Social isolation</li>
-                  <li>• Discrimination in workplace or relationships</li>
-                  <li>• Self-stigma and reduced self-esteem</li>
-                  <li>• Reluctance to discuss symptoms openly</li>
-                </ul>
-              </Card>
-
-              <h2 id="therapy-help" className="text-3xl font-bold mb-6 text-foreground">
-                How Therapy Can Help
-              </h2>
-
-              <div className="space-y-6 mb-8">
-                <Card className="p-6">
-                  <h3 className="text-xl font-semibold mb-3 text-primary">Cognitive Behavioral Therapy (CBT)</h3>
-                  <p>
-                    CBT helps identify and change negative thought patterns that contribute to depression. It's one of the 
-                    most researched and effective treatments for depression.
-                  </p>
-                </Card>
-
-                <Card className="p-6">
-                  <h3 className="text-xl font-semibold mb-3 text-primary">Interpersonal Therapy (IPT)</h3>
-                  <p>
-                    IPT focuses on improving relationships and social functioning to help relieve symptoms. It addresses 
-                    how depression affects relationships and vice versa.
-                  </p>
-                </Card>
-
-                <Card className="p-6">
-                  <h3 className="text-xl font-semibold mb-3 text-primary">Psychodynamic Therapy</h3>
-                  <p>
-                    This approach explores unconscious thoughts and past experiences that may contribute to current depression, 
-                    helping develop insight and emotional awareness.
-                  </p>
-                </Card>
-              </div>
-
-              <h2 id="breaking-stigma" className="text-3xl font-bold mb-6 text-foreground">
-                Breaking the Stigma: What You Can Do
-              </h2>
-
-              <Card className="p-6 mb-8">
-                <div className="space-y-6">
-                  <div>
-                    <h4 className="font-semibold mb-2 text-primary">Educate Yourself and Others</h4>
-                    <p className="text-muted-foreground">
-                      Learn about depression as a medical condition. Share accurate information to help others understand 
-                      that depression is treatable and recovery is possible.
-                    </p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold mb-2 text-primary">Use Person-First Language</h4>
-                    <p className="text-muted-foreground">
-                      Instead of saying someone "is depressed," try "has depression" or "is experiencing depression." 
-                      This emphasizes the person, not the condition.
-                    </p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold mb-2 text-primary">Listen Without Judgment</h4>
-                    <p className="text-muted-foreground">
-                      If someone shares their struggle with depression, listen with empathy. Avoid offering quick fixes 
-                      or minimizing their experience.
-                    </p>
-                  </div>
-                </div>
-              </Card>
+              <p className="text-lg mb-6">
+                Numerous studies have demonstrated that online therapy can be just as effective as traditional in-person therapy 
+                for many mental health conditions, including depression, anxiety, PTSD, and relationship issues.
+              </p>
 
               <Card className="p-6 mb-8 bg-gradient-to-r from-green-50 to-blue-50 border-green-200">
-                <h3 className="text-xl font-semibold mb-3 text-green-800">Taking the First Step</h3>
-                <p className="text-green-700 mb-3">
-                  Seeking help for depression is a sign of strength, not weakness. If you're experiencing symptoms of depression, remember that:
-                </p>
+                <h3 className="text-xl font-semibold mb-3 text-green-800">Research Highlights</h3>
                 <ul className="text-green-700 space-y-2">
-                  <li>• You're not alone - depression is common and treatable</li>
-                  <li>• Recovery takes time, and that's okay</li>
-                  <li>• Professional help can make a significant difference</li>
-                  <li>• Treatment is confidential and personalized to your needs</li>
-                  <li>• Many people go on to live fulfilling lives after treatment</li>
+                  <li>• 76% of participants showed significant improvement in depression symptoms</li>
+                  <li>• Anxiety reduction rates comparable to in-person treatment</li>
+                  <li>• Higher completion rates due to increased convenience</li>
+                  <li>• Improved treatment adherence and engagement</li>
                 </ul>
+              </Card>
+
+              <h2 id="getting-started" className="text-3xl font-bold mb-6 text-foreground">
+                Getting Started with Online Therapy
+              </h2>
+              <p className="text-lg mb-6">
+                Starting online therapy is simple and straightforward. Most platforms offer user-friendly interfaces 
+                and comprehensive support to help you get connected with the right therapist.
+              </p>
+
+              <Card className="p-6 mb-8">
+                <h4 className="font-semibold mb-3 text-primary">Steps to Begin</h4>
+                <ol className="space-y-3 list-decimal list-inside">
+                  <li>Complete a brief assessment to match with appropriate therapists</li>
+                  <li>Review therapist profiles and credentials</li>
+                  <li>Schedule your first session at a convenient time</li>
+                  <li>Test your technology setup before your appointment</li>
+                  <li>Prepare for your session in a private, comfortable space</li>
+                </ol>
+              </Card>
+
+              <Card className="p-6 mb-8 bg-gradient-to-r from-blue-50 to-purple-50 border-blue-200">
+                <h3 className="text-xl font-semibold mb-3 text-blue-800">The Future of Mental Health Care</h3>
+                <p className="text-blue-700">
+                  Online therapy represents the future of accessible, convenient mental health care. As technology continues 
+                  to evolve, we can expect even more innovative ways to connect people with the support they need, 
+                  when and where they need it most.
+                </p>
               </Card>
 
               <Separator className="my-8" />
@@ -394,17 +353,17 @@ const DepressionBreakingStigma = () => {
               {/* Call to Action */}
               <Card className="p-8 bg-gradient-to-br from-primary/5 to-primary-glow/5 border-primary/20">
                 <div className="text-center">
-                  <h3 className="text-2xl font-bold mb-4">You Don't Have to Face This Alone</h3>
+                  <h3 className="text-2xl font-bold mb-4">Ready to Experience Online Therapy?</h3>
                   <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-                    Our compassionate therapists understand depression and are here to support you on your journey to recovery. 
-                    Take the first step toward feeling better.
+                    Take advantage of the convenience and accessibility of online therapy. 
+                    Connect with licensed therapists from the comfort of your home.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <Button asChild size="lg" className="bg-gradient-to-r from-primary to-primary-glow">
-                      <Link to="/therapist-matching">Get Matched with a Therapist</Link>
+                      <Link to="/therapist-matching">Start Online Therapy</Link>
                     </Button>
                     <Button asChild variant="outline" size="lg">
-                      <Link to="/mental-health-tests">Take a Depression Screening</Link>
+                      <Link to="/online-therapy">Learn More About Our Services</Link>
                     </Button>
                   </div>
                 </div>
@@ -494,4 +453,4 @@ const DepressionBreakingStigma = () => {
   );
 };
 
-export default DepressionBreakingStigma;
+export default OnlineTherapyBenefits;

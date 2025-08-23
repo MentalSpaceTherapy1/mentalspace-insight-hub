@@ -108,7 +108,13 @@ const Blog = () => {
           {blogPosts.map((post) => (
             <Card key={post.id} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
               <Link 
-                to={post.id === 1 ? "/blog/understanding-anxiety" : post.id === 2 ? "/blog/depression-breaking-stigma" : "#"}
+                to={
+                  post.id === 1 ? "/blog/understanding-anxiety" : 
+                  post.id === 2 ? "/blog/depression-breaking-stigma" : 
+                  post.id === 3 ? "/blog/online-therapy-benefits" :
+                  post.id === 4 ? "/blog/couples-therapy-communication" :
+                  "#"
+                }
                 className="block"
               >
               <div className="aspect-video overflow-hidden rounded-t-lg">
@@ -141,7 +147,13 @@ const Blog = () => {
                   </div>
                   <Button asChild variant="ghost" size="sm" className="group/btn">
                     <Link 
-                      to={post.id === 1 ? "/blog/understanding-anxiety" : post.id === 2 ? "/blog/depression-breaking-stigma" : "#"}
+                      to={
+                        post.id === 1 ? "/blog/understanding-anxiety" : 
+                        post.id === 2 ? "/blog/depression-breaking-stigma" : 
+                        post.id === 3 ? "/blog/online-therapy-benefits" :
+                        post.id === 4 ? "/blog/couples-therapy-communication" :
+                        "#"
+                      }
                     >
                       Read More
                       <ArrowRight className="h-4 w-4 ml-1 group-hover/btn:translate-x-1 transition-transform" />
