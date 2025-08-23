@@ -10,12 +10,60 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle, Calendar, Shield, DollarSign, ClipboardList, Users, Play, Star, ArrowRight, Zap, Heart, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useSEO, SEO_CONFIGS } from "@/hooks/useSEO";
 import therapySessionImg from "@/assets/therapy-session.jpg";
 import happyPeopleImg from "@/assets/happy-people.jpg";
 import wellnessMeditationImg from "@/assets/wellness-meditation.jpg";
 import coupleTherapyImg from "@/assets/couple-therapy.jpg";
 
 const Index = () => {
+  // SEO Configuration
+  useSEO({
+    ...SEO_CONFIGS.home,
+    canonicalUrl: "https://mentalspace-insight-hub.lovable.app/",
+    structuredData: {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "MentalSpace - Online Therapy & Mental Health Services",
+      "description": "Professional online therapy and mental health services. Connect with licensed therapists anytime, anywhere.",
+      "url": "https://mentalspace-insight-hub.lovable.app/",
+      "mainEntity": {
+        "@type": "MedicalBusiness",
+        "name": "MentalSpace",
+        "description": "Online therapy platform connecting users with licensed mental health professionals",
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Mental Health Services",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Individual Online Therapy",
+                "description": "One-on-one therapy sessions with licensed therapists"
+              }
+            },
+            {
+              "@type": "Offer", 
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Couples Therapy",
+                "description": "Relationship counseling for couples"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service", 
+                "name": "Teen Therapy",
+                "description": "Specialized therapy for adolescents aged 13-17"
+              }
+            }
+          ]
+        }
+      }
+    }
+  });
   const coachingSteps = [
     {
       icon: ClipboardList,
@@ -88,16 +136,16 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <main>
+      <main role="main">
         <Hero />
         <ServicesOverview />
         <HowItWorks />
         
         {/* How Coaching Works at MentalSpace */}
-        <section className="py-20 bg-background">
+        <section className="py-20 bg-background" aria-labelledby="coaching-process">
           <div className="container px-4">
             <div className="mx-auto max-w-3xl text-center mb-16">
-              <h2 className="mb-4 text-3xl font-bold text-foreground sm:text-4xl">
+              <h2 id="coaching-process" className="mb-4 text-3xl font-bold text-foreground sm:text-4xl">
                 How Coaching Works at MentalSpace
               </h2>
               <p className="text-lg text-muted-foreground">
@@ -145,23 +193,24 @@ const Index = () => {
         <Comparison />
         
         {/* Modern Stats Section */}
-        <section className="py-16 px-4 bg-gradient-modern">
+        <section className="py-16 px-4 bg-gradient-modern" aria-labelledby="company-stats">
           <div className="container mx-auto">
+            <h2 id="company-stats" className="sr-only">MentalSpace Statistics and Success Metrics</h2>
             <div className="grid md:grid-cols-4 gap-8 text-center">
               <div className="animate-bounce-in">
-                <div className="text-4xl font-bold text-gradient mb-2">10K+</div>
+                <div className="text-4xl font-bold text-gradient mb-2" aria-label="10,000 plus happy clients">10K+</div>
                 <div className="text-muted-foreground">Happy Clients</div>
               </div>
               <div className="animate-bounce-in" style={{animationDelay: '0.1s'}}>
-                <div className="text-4xl font-bold text-gradient mb-2">95%</div>
+                <div className="text-4xl font-bold text-gradient mb-2" aria-label="95 percent success rate">95%</div>
                 <div className="text-muted-foreground">Success Rate</div>
               </div>
               <div className="animate-bounce-in" style={{animationDelay: '0.2s'}}>
-                <div className="text-4xl font-bold text-gradient mb-2">24/7</div>
+                <div className="text-4xl font-bold text-gradient mb-2" aria-label="24 hours 7 days availability">24/7</div>
                 <div className="text-muted-foreground">Availability</div>
               </div>
               <div className="animate-bounce-in" style={{animationDelay: '0.3s'}}>
-                <div className="text-4xl font-bold text-gradient mb-2">500+</div>
+                <div className="text-4xl font-bold text-gradient mb-2" aria-label="500 plus expert therapists">500+</div>
                 <div className="text-muted-foreground">Expert Therapists</div>
               </div>
             </div>
@@ -169,22 +218,22 @@ const Index = () => {
         </section>
 
         {/* Modern How It Works with Images */}
-        <section className="py-24 px-4">
+        <section className="py-24 px-4" aria-labelledby="wellness-journey">
           <div className="container mx-auto">
-            <div className="text-center mb-16 animate-fade-in">
-              <h2 className="text-5xl md:text-6xl font-bold mb-6 text-gradient">
+            <header className="text-center mb-16 animate-fade-in">
+              <h2 id="wellness-journey" className="text-5xl md:text-6xl font-bold mb-6 text-gradient">
                 Your Journey to Wellness
               </h2>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
                 Experience therapy like never before with our innovative approach to mental health care
               </p>
-            </div>
+            </header>
             
-            <div className="grid lg:grid-cols-2 gap-16 items-center mb-24">
+            <article className="grid lg:grid-cols-2 gap-16 items-center mb-24">
               <div className="animate-slide-up">
                 <img 
                   src={therapySessionImg} 
-                  alt="Professional therapy session" 
+                  alt="Professional licensed therapist conducting an online therapy session with client in comfortable home setting" 
                   className="w-full h-96 object-cover rounded-3xl shadow-modern hover-lift"
                 />
               </div>
@@ -194,14 +243,14 @@ const Index = () => {
                   Our platform connects you with experienced, licensed therapists who specialize in your specific needs. 
                   Every session is conducted in a secure, HIPAA-compliant environment.
                 </p>
-                <Link to="/therapist-matching">
+                <Link to="/therapist-matching" aria-label="Request an appointment with a licensed therapist">
                   <Button size="lg" className="group">
                     Request an Appointment
-                    <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                   </Button>
                 </Link>
               </div>
-            </div>
+            </article>
 
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               <div className="animate-slide-up order-2 lg:order-1">
@@ -228,7 +277,7 @@ const Index = () => {
               <div className="animate-slide-up order-1 lg:order-2" style={{animationDelay: '0.2s'}}>
                 <img 
                   src={wellnessMeditationImg} 
-                  alt="Peaceful wellness session" 
+                  alt="Person practicing mindfulness and wellness meditation in peaceful environment for mental health" 
                   className="w-full h-96 object-cover rounded-3xl shadow-modern hover-lift"
                 />
               </div>
@@ -286,7 +335,7 @@ const Index = () => {
               <div className="animate-slide-up">
                 <img 
                   src={happyPeopleImg} 
-                  alt="Happy people in modern setting" 
+                  alt="Happy diverse people who have successfully completed online therapy showing positive mental health outcomes" 
                   className="w-full h-96 object-cover rounded-3xl shadow-modern hover-lift"
                 />
               </div>
@@ -297,7 +346,7 @@ const Index = () => {
                       <div className="flex items-start space-x-4">
                         <img 
                           src={testimonial.avatar} 
-                          alt={testimonial.name}
+                          alt={`${testimonial.name}, ${testimonial.role} - MentalSpace therapy success story`}
                           className="w-16 h-16 rounded-full object-cover shadow-card"
                         />
                         <div className="flex-1">
