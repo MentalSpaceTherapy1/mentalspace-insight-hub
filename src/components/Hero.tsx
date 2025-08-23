@@ -70,6 +70,7 @@ const Hero = () => {
                     className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
                       index === currentImageIndex ? 'opacity-100' : 'opacity-0'
                     }`}
+                    priority={index === 0} // Load first image immediately
                   />
                 ))}
               </div>

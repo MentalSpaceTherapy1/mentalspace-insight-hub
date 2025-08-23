@@ -283,6 +283,7 @@ const Index = () => {
                   src={therapySessionImg} 
                   alt="Professional licensed therapist conducting an online therapy session with client in comfortable home setting" 
                   className="w-full h-96 object-cover rounded-3xl shadow-modern hover-lift"
+                  priority={false}
                 />
               </div>
               <div className="animate-slide-up" style={{animationDelay: '0.2s'}}>
