@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import ScrollToTop from "./components/ScrollToTop";
 import FormIntegration from "./components/FormIntegration";
+import { CrisisBanner } from "../components/CrisisBanner";
 import Admin from "./pages/Admin";
 // ... keep existing imports ...
 import Index from "./pages/Index";
@@ -35,6 +36,10 @@ import Blog from "./pages/Blog";
 import Depression from "./pages/conditions/Depression";
 import Anxiety from "./pages/conditions/Anxiety";
 import ADHD from "./pages/conditions/ADHD";
+import HTMLDiagnostic from "./components/diagnostics/HTMLDiagnostic";
+import SEODiagnostic from "./components/diagnostics/SEODiagnostic";
+import Adults from "./pages/services/Adults";
+import AnxietyBasics from "./pages/insights/AnxietyBasics";
 
 const queryClient = new QueryClient();
 
@@ -82,12 +87,18 @@ const App = () => {
                 <Route path="/mental-health-library/depression" element={<Depression />} />
                 <Route path="/mental-health-library/anxiety" element={<Anxiety />} />
                 <Route path="/mental-health-library/adhd" element={<ADHD />} />
+                <Route path="/services/adults" element={<Adults />} />
+                <Route path="/insights/anxiety-basics" element={<AnxietyBasics />} />
                 <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                 <Route path="/terms-conditions" element={<TermsAndConditions />} />
+                {/* Diagnostic routes */}
+                <Route path="/__diagnostics/html" element={<HTMLDiagnostic />} />
+                <Route path="/__diagnostics/seo" element={<SEODiagnostic />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </FormIntegration>
+            <CrisisBanner />
           </BrowserRouter>
         </TooltipProvider>
       </QueryClientProvider>

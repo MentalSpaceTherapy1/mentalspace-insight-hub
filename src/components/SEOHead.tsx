@@ -41,12 +41,14 @@ const SEOHead = ({
   breadcrumbs,
   articleData
 }: SEOHeadProps) => {
-  // Detect environment for robots directive
-  const isProduction = window.location.hostname === 'mentalspacetherapy.lovable.app' ||
-                      window.location.hostname === 'mentalspacetherapy.com';
+  // Detect environment for robots directive - check for production env
+  const isProduction = process.env.NODE_ENV === 'production' && 
+                       (typeof window === 'undefined' || 
+                        window.location.hostname === 'mentalspacetherapy.lovable.app' ||
+                        window.location.hostname === 'mentalspacetherapy.com');
   
   // Set base URL for schemas and links
-  const baseUrl = isProduction ? 'https://mentalspacetherapy.lovable.app' : window.location.origin;
+  const baseUrl = 'https://mentalspacetherapy.lovable.app';
   
   // Generate WebSite Schema (for homepage)
   const websiteSchema = {
