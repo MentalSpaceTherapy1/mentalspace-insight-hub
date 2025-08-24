@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
+import { getBaseUrl } from '@/utils/envUtils';
+import Header from '@/components/Header';
 
 const HTMLDiagnostic = () => {
   const [htmlContent, setHtmlContent] = useState('Loading...');
 
   useEffect(() => {
     const fetchHTML = async () => {
-      const baseUrl = 'https://mentalspacetherapy.lovable.app';
+      const baseUrl = getBaseUrl();
       const routes = ['/', '/online-therapy', '/mental-health-library/anxiety'];
       let output = '';
 
@@ -36,6 +38,11 @@ const HTMLDiagnostic = () => {
             const jsonLdMatches = html.match(/<script[^>]*type="application\/ld\+json"[^>]*>(.*?)<\/script>/gi);
             output += `JSON-LD Scripts: ${jsonLdMatches ? jsonLdMatches.length : 0}\n`;
             
+            // Show first 500 chars of HTML for verification
+            if (route === '/') {
+              output += `\nFirst 500 chars of HTML:\n${html.slice(0, 500)}\n`;
+            }
+            
           } else {
             output += `\n\n=== ROUTE: ${route} ===\nERROR: ${response.status} ${response.statusText}\n`;
           }
@@ -51,14 +58,19 @@ const HTMLDiagnostic = () => {
   }, []);
 
   return (
-    <div style={{ 
-      fontFamily: 'monospace', 
-      whiteSpace: 'pre-wrap', 
-      padding: '20px',
-      backgroundColor: '#f5f5f5',
-      minHeight: '100vh'
-    }}>
-      {htmlContent}
+    <div className="min-h-screen bg-background">
+      <div className="container max-w-4xl mx-auto py-8">
+        <Header />
+        <main className="mt-8">
+          <h1 className="text-3xl font-bold mb-6">HTML Diagnostic Report</h1>
+          <p className="text-muted-foreground mb-6">
+            This page shows the actual HTML content served for key routes to verify SEO crawling.
+          </p>
+          <pre className="bg-muted p-4 rounded-lg text-sm overflow-auto whitespace-pre-wrap">
+            {htmlContent}
+          </pre>
+        </main>
+      </div>
     </div>
   );
 };

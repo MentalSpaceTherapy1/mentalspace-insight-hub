@@ -7,6 +7,7 @@ import { HelmetProvider } from "react-helmet-async";
 import ScrollToTop from "./components/ScrollToTop";
 import FormIntegration from "./components/FormIntegration";
 import { CrisisBanner } from "../components/CrisisBanner";
+import { SEOEnvironment } from "./components/SEOEnvironment";
 import Admin from "./pages/Admin";
 // ... keep existing imports ...
 import Index from "./pages/Index";
@@ -57,6 +58,7 @@ const App = () => {
         <TooltipProvider>
           <Toaster />
           <Sonner />
+          <SEOEnvironment />
           <BrowserRouter>
             <ScrollToTop />
             <FormIntegration>
