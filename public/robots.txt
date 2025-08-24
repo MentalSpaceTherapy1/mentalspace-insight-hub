@@ -1,8 +1,9 @@
 User-agent: *
 Allow: /
 
-# Block admin areas
+# Block admin areas and diagnostic endpoints  
 Disallow: /admin
+Disallow: /__diagnostics
 
 # Important files
 Sitemap: https://mentalspacetherapy.lovable.app/sitemap.xml

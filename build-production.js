@@ -2,25 +2,18 @@
 
 import { execSync } from 'child_process';
 
-console.log('🚀 Building production app with enhanced SSG...');
+console.log('🚀 Building production app with SSR/SSG...');
 
 try {
-  // Step 1: Build the Vite app with SSG config
-  console.log('📦 Building Vite app with SSG optimizations...');
-  execSync('vite build --config vite.config.ssg.ts', { stdio: 'inherit' });
+  // Use the new SSG build script
+  console.log('📦 Running SSG build with server-side rendering...');
+  execSync('node scripts/build-ssg.js', { stdio: 'inherit' });
 
-  // Step 2: Run enhanced prerendering
-  console.log('🎯 Running enhanced prerendering...');
-  execSync('node scripts/prerender.js', { stdio: 'inherit' });
-
-  // Step 3: Generate sitemap dynamically
-  console.log('🗺️ Generating sitemap...');
-  execSync('node scripts/generate-sitemap.js', { stdio: 'inherit' });
-
-  console.log('✅ Production build complete with enhanced SSG!');
+  console.log('✅ Production build complete with SSR/SSG!');
   console.log('📁 Static files are ready in the dist/ directory');
-  console.log('🌐 All routes now have SEO-friendly static HTML with full content');
-  console.log('🔍 Sitemap generated and robots.txt configured');
+  console.log('🌐 All routes now have server-rendered HTML with full content');
+  console.log('🔍 Diagnostics available at /__diagnostics/html and /__diagnostics/seo');
+  console.log('🤖 Robots.txt and sitemap.xml generated');
 } catch (error) {
   console.error('❌ Build failed:', error.message);
   process.exit(1);
