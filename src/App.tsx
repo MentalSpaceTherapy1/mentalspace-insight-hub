@@ -43,6 +43,7 @@ import HTMLDiagnostic from "./components/diagnostics/HTMLDiagnostic";
 import SEODiagnostic from "./components/diagnostics/SEODiagnostic";
 import Adults from "./pages/services/Adults";
 import AnxietyBasics from "./pages/insights/AnxietyBasics";
+import { BuildStatus } from "./components/BuildStatus";
 
 const queryClient = new QueryClient();
 
@@ -105,6 +106,7 @@ const App = () => {
               </Routes>
             </FormIntegration>
             <CrisisBanner />
+            <BuildStatus />
           </BrowserRouter>
         </TooltipProvider>
       </QueryClientProvider>

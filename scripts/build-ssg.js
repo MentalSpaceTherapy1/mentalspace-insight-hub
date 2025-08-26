@@ -46,13 +46,24 @@ function getEnvironment() {
 
 async function buildSSG() {
   try {
+    // Clean previous builds first
+    console.log('🧹 Cleaning previous builds...');
+    await fs.remove(distDir);
+    await fs.remove(distSSRDir);
+
     // Step 1: Build client
     console.log('📦 Building client bundle...');
-    execSync('vite build', { stdio: 'inherit' });
+    execSync('vite build', { 
+      stdio: 'inherit',
+      cwd: rootDir 
+    });
 
     // Step 2: Build server
     console.log('🔧 Building SSR server...');
-    execSync('vite build --config vite.config.ssr.ts', { stdio: 'inherit' });
+    execSync('vite build --config vite.config.ssr.ts', { 
+      stdio: 'inherit',
+      cwd: rootDir 
+    });
 
     // Step 3: Generate static HTML files
     console.log('📄 Generating static HTML files...');
