@@ -23,12 +23,12 @@ async function robustBuild() {
     await fs.remove('dist');
     await fs.remove('dist-ssr');
     
-    // Step 2: Run SSG build with comprehensive logging
-    console.log('🚀 Running SSG build...');
+    // Step 2: Run simple Vite build
+    console.log('🚀 Running Vite build...');
     try {
-      execSync('node scripts/build-ssg.js', { stdio: 'inherit' });
-    } catch (ssgError) {
-      console.warn('⚠️ SSG build encountered issues:', ssgError.message);
+      execSync('npx vite build', { stdio: 'inherit' });
+    } catch (buildError) {
+      console.warn('⚠️ Build encountered issues:', buildError.message);
       // Continue with verification as build might still be partially successful
     }
     
