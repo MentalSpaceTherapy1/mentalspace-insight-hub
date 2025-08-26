@@ -12,6 +12,12 @@ const distSSRDir = path.join(rootDir, 'dist-ssr');
 
 console.log('🚀 Building SSG with server-side rendering...');
 
+// Enhanced logging and environment detection
+const env = getEnvironment();
+console.log('🌍 Environment:', env);
+console.log('📍 Hostname:', process.env.HOSTNAME || 'not set');
+console.log('🔧 Node ENV:', process.env.NODE_ENV || 'not set');
+
 // Routes to pre-generate
 const routes = [
   '/',
@@ -163,7 +169,27 @@ ${routes.map(route => `  <url>
 
     await fs.writeFile(path.join(distDir, 'sitemap.xml'), sitemap, 'utf-8');
 
-    // Step 6: Update robots.txt
+    // Step 6: Create build status endpoint
+    console.log('📊 Creating build status endpoint...');
+    const buildStatus = {
+      timestamp: new Date().toISOString(),
+      environment: env,
+      success: true,
+      routes_generated: routes.length,
+      static_files_count: (await fs.readdir(distDir)).length,
+      has_diagnostics: true,
+      build_version: Date.now().toString(),
+      hostname: process.env.HOSTNAME || 'unknown',
+      node_env: process.env.NODE_ENV || 'development'
+    };
+    
+    await fs.writeFile(
+      path.join(distDir, '__diagnostics', 'build-status.json'),
+      JSON.stringify(buildStatus, null, 2),
+      'utf-8'
+    );
+
+    // Step 7: Update robots.txt
     console.log('🤖 Updating robots.txt...');
     const robotsTxt = `User-agent: *
 Allow: /
@@ -187,13 +213,75 @@ Crawl-delay: 1`;
     console.log('✅ SSG build complete!');
     console.log(`📁 Static files ready in: ${distDir}`);
     console.log(`🌐 Routes pre-rendered: ${routes.length}`);
-    console.log(`🔍 Diagnostics available at: /__diagnostics/html.txt and /__diagnostics/seo.json`);
+    console.log(`🔍 Diagnostics available at:`);
+    console.log(`  - /__diagnostics/html.txt`);
+    console.log(`  - /__diagnostics/seo.json`);
+    console.log(`  - /__diagnostics/build-status.json`);
     console.log(`🤖 Environment: ${env} (${robotsContent})`);
+    console.log(`🏗️ Build verification: Run 'node scripts/verify-build.js' to verify`);
+    
+    // Final verification
+    const verification = await quickVerify();
+    if (!verification.success) {
+      console.warn('⚠️ Build completed but verification found issues:', verification.issues);
+    } else {
+      console.log('🎉 Build verified successfully!');
+    }
     
   } catch (error) {
     console.error('❌ SSG build failed:', error);
+    
+    // Create error diagnostic
+    try {
+      await fs.ensureDir(path.join(distDir, '__diagnostics'));
+      const errorStatus = {
+        timestamp: new Date().toISOString(),
+        success: false,
+        error: error.message,
+        environment: getEnvironment(),
+        hostname: process.env.HOSTNAME || 'unknown'
+      };
+      
+      await fs.writeFile(
+        path.join(distDir, '__diagnostics', 'build-status.json'),
+        JSON.stringify(errorStatus, null, 2),
+        'utf-8'
+      );
+    } catch (diagError) {
+      console.error('Failed to write error diagnostic:', diagError.message);
+    }
+    
     process.exit(1);
   }
+}
+
+// Quick verification function
+async function quickVerify() {
+  const issues = [];
+  
+  try {
+    // Check index.html has content
+    const indexPath = path.join(distDir, 'index.html');
+    if (await fs.pathExists(indexPath)) {
+      const content = await fs.readFile(indexPath, 'utf-8');
+      if (!content.includes('<h1')) issues.push('index.html missing H1');
+      if (!content.includes('<p')) issues.push('index.html missing paragraph content');
+    } else {
+      issues.push('index.html not found');
+    }
+    
+    // Check diagnostics
+    const diagDir = path.join(distDir, '__diagnostics');
+    if (!await fs.pathExists(diagDir)) issues.push('diagnostics directory missing');
+    
+  } catch (error) {
+    issues.push(`Verification error: ${error.message}`);
+  }
+  
+  return {
+    success: issues.length === 0,
+    issues
+  };
 }
 
 buildSSG();
