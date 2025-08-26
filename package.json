@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && vite preview --port 4173 --host & sleep 5 && node scripts/prerender.js && kill %1",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview"
