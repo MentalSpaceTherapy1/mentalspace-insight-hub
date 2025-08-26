@@ -8,8 +8,8 @@ export function render(url: string) {
   const helmetContext = {} as any;
   
   const html = ReactDOMServer.renderToString(
-    React.createElement(MemoryRouter, { initialEntries: [url] }, 
-      React.createElement(HelmetProvider, { context: helmetContext },
+    React.createElement(HelmetProvider, { context: helmetContext },
+      React.createElement(MemoryRouter, { initialEntries: [url] }, 
         React.createElement(App)
       )
     )
