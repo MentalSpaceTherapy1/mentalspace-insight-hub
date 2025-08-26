@@ -45,8 +45,16 @@ export function render(url: string) {
   
   const { helmet } = helmetContext;
   
+  // Extract all helmet data including JSON-LD
+  const helmetData = {
+    title: helmet ? helmet.title.toString() : '',
+    meta: helmet ? helmet.meta.toString() : '',
+    link: helmet ? helmet.link.toString() : '',
+    script: helmet ? helmet.script.toString() : ''
+  };
+  
   return {
     html,
-    helmet: helmet || {}
+    helmet: helmetData
   };
 }
