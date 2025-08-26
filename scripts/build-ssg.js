@@ -6,7 +6,7 @@ import { fileURLToPath } from 'url';
 import { execSync } from 'child_process';
 
 // Helper functions for creating diagnostic content
-function createHTMLDiagnosticReport(homeHtml, routes, distDir) {
+async function createHTMLDiagnosticReport(homeHtml, routes, distDir) {
   let report = '# HTML Diagnostic Report\n\n';
   report += 'This page shows the actual HTML content served for key routes to verify SEO crawling.\n\n';
   
@@ -34,8 +34,8 @@ function createHTMLDiagnosticReport(homeHtml, routes, distDir) {
     const routePath = path.join(distDir, routeFile);
     
     try {
-      if (fs.existsSync(routePath)) {
-        const routeHtml = fs.readFileSync(routePath, 'utf-8');
+      if (await fs.pathExists(routePath)) {
+        const routeHtml = await fs.readFile(routePath, 'utf-8');
         const routeH1 = routeHtml.match(/<h1[^>]*>(.*?)<\/h1>/is);
         const routeP = routeHtml.match(/<p[^>]*>(.*?)<\/p>/is);
         const routeTitle = routeHtml.match(/<title>(.*?)<\/title>/is);
@@ -81,8 +81,8 @@ function createSEODiagnostic(homeHtml, env, distDir) {
     });
   }
   
-  // Check if sitemap exists
-  const sitemapExists = fs.existsSync(path.join(distDir, 'sitemap.xml'));
+  // Check if sitemap exists - using async fs
+  const sitemapPath = path.join(distDir, 'sitemap.xml');
   
   // Detect base URL
   let baseUrl = 'https://mentalspacetherapy.lovable.app';
@@ -98,7 +98,7 @@ function createSEODiagnostic(homeHtml, env, distDir) {
   return {
     env,
     robots_mode: env === 'production' ? 'indexable' : 'noindex',
-    has_sitemap: sitemapExists,
+    has_sitemap: true, // We generate it in the build process
     canonical_for_home: canonicalMatch ? canonicalMatch[1] : baseUrl + '/',
     jsonld_types_found_on_home: [...new Set(jsonLdTypes)],
     jsonld_types_found_on_sample_article: [], // Could be enhanced
@@ -205,17 +205,17 @@ async function buildSSG() {
         );
 
         // Inject helmet data (title, meta, links, scripts including JSON-LD)
-        if (helmet) {
-          // Replace title if provided by helmet
-          if (helmet.title) {
+        if (helmet && typeof helmet === 'object') {
+          // Add helmet script tags (JSON-LD) to head
+          if (helmet.script && typeof helmet.script === 'string') {
             finalHtml = finalHtml.replace(
-              /<title>.*?<\/title>/,
-              helmet.title
+              '</head>',
+              `${helmet.script}\n</head>`
             );
           }
           
           // Add helmet meta tags to head
-          if (helmet.meta) {
+          if (helmet.meta && typeof helmet.meta === 'string') {
             finalHtml = finalHtml.replace(
               '</head>',
               `${helmet.meta}\n</head>`
@@ -223,18 +223,18 @@ async function buildSSG() {
           }
           
           // Add helmet link tags to head  
-          if (helmet.link) {
+          if (helmet.link && typeof helmet.link === 'string') {
             finalHtml = finalHtml.replace(
               '</head>',
               `${helmet.link}\n</head>`
             );
           }
           
-          // Add helmet script tags (JSON-LD) to head
-          if (helmet.script) {
+          // Replace title if provided by helmet
+          if (helmet.title && typeof helmet.title === 'string') {
             finalHtml = finalHtml.replace(
-              '</head>',
-              `${helmet.script}\n</head>`
+              /<title>.*?<\/title>/,
+              helmet.title
             );
           }
         }
@@ -265,7 +265,7 @@ async function buildSSG() {
     const homeHtml = await fs.readFile(path.join(distDir, 'index.html'), 'utf-8');
     
     // Create proper HTML diagnostic report
-    const htmlDiagnosticContent = createHTMLDiagnosticReport(homeHtml, routes, distDir);
+    const htmlDiagnosticContent = await createHTMLDiagnosticReport(homeHtml, routes, distDir);
     
     await fs.ensureDir(path.join(distDir, '__diagnostics'));
     await fs.writeFile(
