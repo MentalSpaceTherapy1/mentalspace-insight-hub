@@ -6,7 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import ScrollToTop from "./components/ScrollToTop";
 import FormIntegration from "./components/FormIntegration";
-import { CrisisBanner } from "../components/CrisisBanner";
+
 import { SEOEnvironment } from "./components/SEOEnvironment";
 import Admin from "./pages/Admin";
 // ... keep existing imports ...
@@ -105,7 +105,6 @@ const App = () => {
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </FormIntegration>
-            <CrisisBanner />
             <BuildStatus />
           </BrowserRouter>
         </TooltipProvider>
