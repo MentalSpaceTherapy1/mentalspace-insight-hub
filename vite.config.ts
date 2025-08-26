@@ -10,15 +10,11 @@ export default defineConfig(({ mode }) => ({
     port: 8080,
   },
   build: {
-    outDir: 'dist',
-    emptyOutDir: true,
     rollupOptions: {
       input: {
         main: path.resolve(__dirname, 'index.html')
       }
-    },
-    target: 'es2015',
-    minify: 'terser'
+    }
   },
   plugins: [
     react(),
@@ -29,7 +25,4 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  define: {
-    'process.env.NODE_ENV': JSON.stringify(mode === 'production' ? 'production' : 'development')
-  }
 }));

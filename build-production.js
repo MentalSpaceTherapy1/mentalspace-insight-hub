@@ -2,19 +2,18 @@
 
 import { execSync } from 'child_process';
 
-console.log('🚀 Building production app...');
+console.log('🚀 Building production app with SSR/SSG...');
 
 try {
-  // Clean previous builds
-  console.log('🧹 Cleaning previous builds...');
-  execSync('rm -rf dist', { stdio: 'inherit' });
+  // Use the new SSG build script
+  console.log('📦 Running SSG build with server-side rendering...');
+  execSync('node scripts/build-ssg.js', { stdio: 'inherit' });
 
-  // Run simple Vite build
-  console.log('📦 Running Vite build...');
-  execSync('vite build', { stdio: 'inherit' });
-
-  console.log('✅ Production build complete!');
+  console.log('✅ Production build complete with SSR/SSG!');
   console.log('📁 Static files are ready in the dist/ directory');
+  console.log('🌐 All routes now have server-rendered HTML with full content');
+  console.log('🔍 Diagnostics available at /__diagnostics/html and /__diagnostics/seo');
+  console.log('🤖 Robots.txt and sitemap.xml generated');
 } catch (error) {
   console.error('❌ Build failed:', error.message);
   process.exit(1);

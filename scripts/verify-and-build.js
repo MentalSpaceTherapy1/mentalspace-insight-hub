@@ -23,14 +23,9 @@ async function robustBuild() {
     await fs.remove('dist');
     await fs.remove('dist-ssr');
     
-    // Step 2: Run simple Vite build
-    console.log('🚀 Running Vite build...');
-    try {
-      execSync('npx vite build', { stdio: 'inherit' });
-    } catch (buildError) {
-      console.warn('⚠️ Build encountered issues:', buildError.message);
-      // Continue with verification as build might still be partially successful
-    }
+    // Step 2: Run SSG build with comprehensive logging
+    console.log('🚀 Running SSG build...');
+    execSync('node scripts/build-ssg.js', { stdio: 'inherit' });
     
     // Step 2.5: Verify build immediately after SSG
     console.log('🔍 Quick build verification...');
@@ -57,14 +52,11 @@ async function robustBuild() {
   } catch (error) {
     console.error('💥 Build failed:', error.message);
     
-    // Fallback: try basic Vite build
-    console.log('🔄 Attempting fallback Vite build...');
+    // Fallback: try legacy build
+    console.log('🔄 Attempting fallback build...');
     try {
-      execSync('npx vite build', { stdio: 'inherit' });
+      execSync('npm run build:legacy', { stdio: 'inherit' });
       console.log('✅ Fallback build completed');
-      
-      // Create minimal diagnostics for fallback build
-      await createFallbackDiagnostics();
     } catch (fallbackError) {
       console.error('❌ Both builds failed:', fallbackError.message);
       process.exit(1);
@@ -165,37 +157,6 @@ async function quickVerifyBuild() {
       success: false,
       issues: [`Quick verification failed: ${error.message}`]
     };
-  }
-}
-
-async function createFallbackDiagnostics() {
-  try {
-    const diagnosticsDir = path.join('dist', '__diagnostics');
-    await fs.ensureDir(diagnosticsDir);
-    
-    // Create minimal build status
-    const buildStatus = {
-      success: true,
-      buildType: 'fallback-vite',
-      timestamp: new Date().toISOString(),
-      environment: process.env.NODE_ENV || 'production',
-      message: 'Fallback Vite build completed successfully'
-    };
-    
-    await fs.writeJson(path.join(diagnosticsDir, 'build-status.json'), buildStatus, { spaces: 2 });
-    
-    // Create basic HTML diagnostic
-    const indexPath = path.join('dist', 'index.html');
-    if (await fs.pathExists(indexPath)) {
-      const content = await fs.readFile(indexPath, 'utf-8');
-      const diagnostic = `# Fallback Build HTML Diagnostic\n\nBuild Type: Vite Fallback\nTimestamp: ${new Date().toISOString()}\n\nHTML Length: ${content.length} characters\nContains H1: ${content.includes('<h1') ? 'Yes' : 'No'}\n`;
-      
-      await fs.writeFile(path.join(diagnosticsDir, 'html.txt'), diagnostic);
-    }
-    
-    console.log('📊 Fallback diagnostics created');
-  } catch (error) {
-    console.warn('⚠️ Could not create fallback diagnostics:', error.message);
   }
 }
 
