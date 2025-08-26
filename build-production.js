@@ -11,7 +11,7 @@ try {
 
   // Run simple Vite build
   console.log('📦 Running Vite build...');
-  execSync('npx vite build', { stdio: 'inherit' });
+  execSync('vite build', { stdio: 'inherit' });
 
   console.log('✅ Production build complete!');
   console.log('📁 Static files are ready in the dist/ directory');

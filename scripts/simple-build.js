@@ -13,7 +13,7 @@ async function simpleBuild() {
 
     // Run Vite build
     console.log('📦 Running Vite build...');
-    execSync('npx vite build', { stdio: 'inherit' });
+    execSync('vite build', { stdio: 'inherit' });
 
     // Verify build output
     console.log('✅ Verifying build output...');
