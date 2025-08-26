@@ -7,7 +7,6 @@ import { HelmetProvider } from "react-helmet-async";
 import ScrollToTop from "./components/ScrollToTop";
 import FormIntegration from "./components/FormIntegration";
 import Admin from "./pages/Admin";
-// ... keep existing imports ...
 import Index from "./pages/Index";
 import OnlineTherapy from "./pages/OnlineTherapy";
 import CouplesTherapy from "./pages/CouplesTherapy";
@@ -35,17 +34,12 @@ import Blog from "./pages/Blog";
 import Depression from "./pages/conditions/Depression";
 import Anxiety from "./pages/conditions/Anxiety";
 import ADHD from "./pages/conditions/ADHD";
+import SEODiagnostics from "./pages/diagnostics/SEO";
+import HTMLDiagnostics from "./pages/diagnostics/HTML";
 
 const queryClient = new QueryClient();
 
 const App = () => {
-  // Signal to prerender that the app is ready
-  if (typeof window !== 'undefined' && document.readyState === 'complete') {
-    setTimeout(() => {
-      document.dispatchEvent(new Event('render-event'));
-    }, 100);
-  }
-
   return (
     <HelmetProvider>
       <QueryClientProvider client={queryClient}>
@@ -84,7 +78,8 @@ const App = () => {
                 <Route path="/mental-health-library/adhd" element={<ADHD />} />
                 <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                 <Route path="/terms-conditions" element={<TermsAndConditions />} />
-                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                <Route path="/__diagnostics/seo" element={<SEODiagnostics />} />
+                <Route path="/__diagnostics/html" element={<HTMLDiagnostics />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </FormIntegration>
