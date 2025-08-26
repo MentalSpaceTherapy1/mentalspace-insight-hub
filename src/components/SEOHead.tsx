@@ -41,39 +41,17 @@ const SEOHead = ({
   breadcrumbs,
   articleData
 }: SEOHeadProps) => {
-  // Detect environment for robots directive - check for production env
-  const isProduction = process.env.NODE_ENV === 'production' && 
-                       (typeof window === 'undefined' || 
-                        window.location.hostname === 'mentalspacetherapy.lovable.app' ||
-                        window.location.hostname === 'mentalspacetherapy.com');
+  // Detect environment for robots directive
+  const isProduction = window.location.hostname !== 'localhost' && 
+                      !window.location.hostname.includes('lovable.app');
   
-  // Set base URL for schemas and links
-  const baseUrl = 'https://mentalspacetherapy.lovable.app';
-  
-  // Generate WebSite Schema (for homepage)
-  const websiteSchema = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "MentalSpace",
-    "url": baseUrl,
-    "description": "Professional online therapy and mental health services with licensed therapists",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": {
-        "@type": "EntryPoint",
-        "urlTemplate": `${baseUrl}/search?q={search_term_string}`
-      },
-      "query-input": "required name=search_term_string"
-    }
-  };
-
   // Generate Organization Schema
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "MedicalOrganization",
     "name": "MentalSpace",
-    "url": baseUrl,
-    "logo": `${baseUrl}/favicon.ico`,
+    "url": "https://mentalspace.com",
+    "logo": "https://mentalspace.com/logo.png",
     "description": "Professional online therapy and mental health services with licensed therapists",
     "address": {
       "@type": "PostalAddress",
@@ -120,7 +98,7 @@ const SEOHead = ({
       "name": "MentalSpace",
       "logo": {
         "@type": "ImageObject",
-        "url": `${baseUrl}/favicon.ico`
+        "url": "https://mentalspace.com/logo.png"
       }
     },
     "datePublished": articleData.datePublished,
@@ -157,10 +135,6 @@ const SEOHead = ({
       {ogImage && <meta name="twitter:image" content={ogImage} />}
       
       {/* Structured Data */}
-      <script type="application/ld+json">
-        {JSON.stringify(websiteSchema)}
-      </script>
-      
       <script type="application/ld+json">
         {JSON.stringify(organizationSchema)}
       </script>

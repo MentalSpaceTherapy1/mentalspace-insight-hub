@@ -21,13 +21,13 @@ const Index = () => {
   // SEO Configuration
   useSEO({
     ...SEO_CONFIGS.home,
-    canonicalUrl: "https://mentalspacetherapy.lovable.app/",
+    canonicalUrl: "https://mentalspace-insight-hub.lovable.app/",
       "structuredData": {
         "@context": "https://schema.org",
         "@type": "WebPage",
         "name": "MentalSpace - Professional Online Mental Health Services",
         "description": "Professional online therapy and mental health services. Connect with licensed therapists anytime, anywhere for depression, anxiety, PTSD, ADHD, and more.",
-        "url": "https://mentalspacetherapy.lovable.app/",
+        "url": "https://mentalspace-insight-hub.lovable.app/",
         "mainEntity": {
           "@type": "MedicalBusiness",
           "name": "MentalSpace",
