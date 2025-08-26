@@ -1,10 +1,28 @@
-import { useTheme } from "next-themes"
 import { Toaster as Sonner, toast } from "sonner"
+import { useEffect, useState } from "react"
 
 type ToasterProps = React.ComponentProps<typeof Sonner>
 
+const useNativeTheme = () => {
+  const [theme, setTheme] = useState<"dark" | "light" | "system">("system")
+  
+  useEffect(() => {
+    // Check for saved theme preference or default to 'system'
+    const savedTheme = localStorage.getItem("theme") as "dark" | "light" | "system" | null
+    if (savedTheme) {
+      setTheme(savedTheme)
+    } else {
+      // Check system preference
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches
+      setTheme(prefersDark ? "dark" : "light")
+    }
+  }, [])
+
+  return { theme }
+}
+
 const Toaster = ({ ...props }: ToasterProps) => {
-  const { theme = "system" } = useTheme()
+  const { theme } = useNativeTheme()
 
   return (
     <Sonner
