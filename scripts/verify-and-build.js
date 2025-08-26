@@ -27,6 +27,13 @@ async function robustBuild() {
     console.log('🚀 Running SSG build...');
     execSync('node scripts/build-ssg.js', { stdio: 'inherit' });
     
+    // Step 2.5: Verify build immediately after SSG
+    console.log('🔍 Quick build verification...');
+    const quickCheck = await quickVerifyBuild();
+    if (!quickCheck.success) {
+      console.warn('⚠️ Build verification warnings:', quickCheck.issues);
+    }
+    
     // Step 3: Verify build output
     console.log('✅ Verifying build output...');
     const verificationResult = await verifyBuildOutput();
@@ -120,6 +127,37 @@ async function verifyBuildOutput() {
   }
   
   return result;
+}
+
+async function quickVerifyBuild() {
+  try {
+    const indexPath = path.join('dist', 'index.html');
+    const indexContent = await fs.readFile(indexPath, 'utf-8');
+    
+    const checks = {
+      hasH1: indexContent.includes('<h1'),
+      hasContent: indexContent.includes('<p') && indexContent.length > 5000,
+      hasJsonLd: indexContent.includes('application/ld+json'),
+      hasCanonical: indexContent.includes('rel="canonical"')
+    };
+    
+    const issues = [];
+    if (!checks.hasH1) issues.push('Missing H1 tags');
+    if (!checks.hasContent) issues.push('Insufficient rendered content');
+    if (!checks.hasJsonLd) issues.push('Missing JSON-LD structured data');
+    if (!checks.hasCanonical) issues.push('Missing canonical tags');
+    
+    return {
+      success: issues.length === 0,
+      issues: issues,
+      checks: checks
+    };
+  } catch (error) {
+    return {
+      success: false,
+      issues: [`Quick verification failed: ${error.message}`]
+    };
+  }
 }
 
 robustBuild();
