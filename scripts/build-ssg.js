@@ -53,7 +53,7 @@ async function buildSSG() {
 
     // Step 1: Build client
     console.log('📦 Building client bundle...');
-    execSync('vite build', { 
+    execSync('vite build --config vite.config.ssg.ts', { 
       stdio: 'inherit',
       cwd: rootDir 
     });
