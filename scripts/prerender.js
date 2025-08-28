@@ -1,24 +1,87 @@
-#!/usr/bin/env node
+import puppeteer from 'puppeteer';
+import fs from 'fs';
+import path from 'path';
 
-import { execSync } from 'child_process';
+const routes = [
+  '/',
+  '/online-therapy',
+  '/couples-therapy', 
+  '/teen-therapy',
+  '/life-coaching',
+  '/relationship-coaching',
+  '/coaching-services',
+  '/insurance',
+  '/faq',
+  '/contact-us',
+  '/career',
+  '/career-application',
+  '/emergency-resources',
+  '/get-started',
+  '/therapist-matching',
+  '/mental-health-library',
+  '/mental-health-tests',
+  '/assessment-contact',
+  '/thank-you',
+  '/blog',
+  '/mental-health-library/depression',
+  '/mental-health-library/anxiety', 
+  '/mental-health-library/adhd',
+  '/privacy-policy',
+  '/terms-conditions'
+];
 
-console.log('🚀 Running SSG build with enhanced verification...');
+const baseUrl = process.env.BASE_URL || 'http://localhost:8080';
+const distDir = './dist';
 
-try {
-  // Use the robust build script
-  console.log('📦 Running robust SSG build with verification...');
-  execSync('node scripts/verify-and-build.js', { stdio: 'inherit' });
-
-  console.log('✅ Production build complete with SSR/SSG!');
-  console.log('📁 Static files are ready in the dist/ directory');
-  console.log('🌐 All routes now have server-rendered HTML with full content');
-  console.log('🔍 Diagnostics available at:');
-  console.log('  - /__diagnostics/html.txt');
-  console.log('  - /__diagnostics/seo.json');
-  console.log('  - /__diagnostics/build-status.json');
-  console.log('🤖 Robots.txt and sitemap.xml generated');
-  console.log('🛠️ Run "node scripts/verify-build.js" to verify output');
-} catch (error) {
-  console.error('❌ Build failed:', error.message);
-  process.exit(1);
+async function prerenderRoutes() {
+  const browser = await puppeteer.launch({ 
+    headless: 'new',
+    args: ['--no-sandbox', '--disable-setuid-sandbox']
+  });
+  
+  console.log('Starting prerendering...');
+  
+  for (const route of routes) {
+    try {
+      console.log(`Prerendering ${route}...`);
+      const page = await browser.newPage();
+      
+      // Set viewport and user agent
+      await page.setViewport({ width: 1200, height: 800 });
+      await page.setUserAgent('Mozilla/5.0 (compatible; PrerenderBot/1.0)');
+      
+      const url = `${baseUrl}${route}`;
+      await page.goto(url, { 
+        waitUntil: 'networkidle0',
+        timeout: 30000 
+      });
+      
+      // Wait a bit more for React to fully render
+      await page.waitForTimeout(2000);
+      
+      const html = await page.content();
+      
+      // Create directory structure
+      const routePath = route === '/' ? '/index' : route;
+      const filePath = path.join(distDir, routePath + '.html');
+      const dirPath = path.dirname(filePath);
+      
+      if (!fs.existsSync(dirPath)) {
+        fs.mkdirSync(dirPath, { recursive: true });
+      }
+      
+      // Write the HTML file
+      fs.writeFileSync(filePath, html);
+      console.log(`✅ Generated ${filePath}`);
+      
+      await page.close();
+    } catch (error) {
+      console.error(`❌ Failed to prerender ${route}:`, error.message);
+    }
+  }
+  
+  await browser.close();
+  console.log('✅ Prerendering complete!');
 }
+
+prerenderRoutes().catch(console.error);
