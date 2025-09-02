@@ -1,6 +1,10 @@
 import puppeteer from 'puppeteer';
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
+import { createServer } from 'vite';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const routes = [
   '/',
@@ -30,16 +34,36 @@ const routes = [
   '/terms-conditions'
 ];
 
-const baseUrl = process.env.BASE_URL || 'http://localhost:8080';
 const distDir = './dist';
 
 async function prerenderRoutes() {
+  // Check if dist directory exists
+  if (!fs.existsSync(distDir)) {
+    console.error('❌ Dist directory not found. Make sure build has completed first.');
+    return;
+  }
+
+  console.log('🚀 Starting server-side prerendering...');
+  
+  // Create a preview server to serve the built files
+  const server = await createServer({
+    root: distDir,
+    server: { port: 0 }, // Use any available port
+    mode: 'production',
+    configFile: false,
+    plugins: []
+  });
+  
+  await server.listen();
+  const port = server.config.server.port;
+  const baseUrl = `http://localhost:${port}`;
+  
+  console.log(`📡 Preview server started on ${baseUrl}`);
+
   const browser = await puppeteer.launch({ 
     headless: 'new',
     args: ['--no-sandbox', '--disable-setuid-sandbox']
   });
-  
-  console.log('Starting prerendering...');
   
   for (const route of routes) {
     try {
@@ -56,23 +80,31 @@ async function prerenderRoutes() {
         timeout: 30000 
       });
       
-      // Wait a bit more for React to fully render
+      // Wait for React to fully render
       await page.waitForTimeout(2000);
       
       const html = await page.content();
       
-      // Create directory structure
-      const routePath = route === '/' ? '/index' : route;
-      const filePath = path.join(distDir, routePath + '.html');
-      const dirPath = path.dirname(filePath);
-      
-      if (!fs.existsSync(dirPath)) {
-        fs.mkdirSync(dirPath, { recursive: true });
+      // Verify content was rendered
+      if (!html.includes('<nav') || !html.includes('<footer')) {
+        console.warn(`⚠️  Navigation or footer missing in ${route}`);
       }
       
-      // Write the HTML file
-      fs.writeFileSync(filePath, html);
-      console.log(`✅ Generated ${filePath}`);
+      // Only generate non-root route files (root is handled by build)
+      if (route !== '/') {
+        const routePath = route;
+        const filePath = path.join(distDir, routePath + '.html');
+        const dirPath = path.dirname(filePath);
+        
+        if (!fs.existsSync(dirPath)) {
+          fs.mkdirSync(dirPath, { recursive: true });
+        }
+        
+        fs.writeFileSync(filePath, html);
+        console.log(`✅ Generated ${filePath}`);
+      } else {
+        console.log(`✅ Root route already handled by build process`);
+      }
       
       await page.close();
     } catch (error) {
@@ -81,7 +113,8 @@ async function prerenderRoutes() {
   }
   
   await browser.close();
-  console.log('✅ Prerendering complete!');
+  await server.close();
+  console.log('✅ Server-side prerendering complete!');
 }
 
 prerenderRoutes().catch(console.error);

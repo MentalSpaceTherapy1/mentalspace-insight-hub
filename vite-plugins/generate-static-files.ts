@@ -9,19 +9,6 @@ const execAsync = promisify(exec);
 export const generateStaticFiles = (): Plugin => {
   return {
     name: 'generate-static-files',
-    async writeBundle() {
-      // Run server-side prerendering during build process
-      if (process.env.NODE_ENV === 'production') {
-        try {
-          console.log('🚀 Running server-side prerendering...');
-          await execAsync('node scripts/prerender.js');
-          console.log('✅ Server-side prerendering completed');
-        } catch (error) {
-          console.error('❌ Prerendering failed:', error);
-          // Don't fail the build, just warn
-        }
-      }
-    },
     closeBundle() {
       // Generate static diagnostic files after build
       const distDir = './dist';
@@ -129,6 +116,19 @@ export const generateStaticFiles = (): Plugin => {
       }
       
       console.log('✅ SEO verification passed');
+      
+      // Run server-side prerendering after static content is processed
+      if (process.env.NODE_ENV === 'production') {
+        console.log('🚀 Starting server-side prerendering...');
+        execAsync('node scripts/prerender.js')
+          .then(() => {
+            console.log('✅ Server-side prerendering completed');
+          })
+          .catch((error) => {
+            console.error('❌ Prerendering failed:', error);
+            // Don't fail the build, just warn
+          });
+      }
     }
   };
 };
