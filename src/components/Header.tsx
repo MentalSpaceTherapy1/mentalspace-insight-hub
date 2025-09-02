@@ -14,27 +14,25 @@ const Header = () => {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center justify-between px-4">
+      <div className="container flex h-18 items-center justify-between px-4">
         {/* Logo */}
-        <Link to="/">
+        <Link to="/" className="flex-shrink-0">
           <img 
             src="/lovable-uploads/15cbf558-6b23-4694-9684-232897817b20.png" 
             alt="MentalSpace - Professional Online Therapy and Mental Health Services" 
-            className="h-8 w-auto"
-            width={40}
-            height={32}
+            className="max-h-10 w-auto object-contain"
             loading="eager"
           />
         </Link>
 
         {/* Navigation */}
-        <nav className="hidden md:flex items-center space-x-5">
-          <Link to="/" className="text-sm text-foreground hover:text-primary transition-colors">
+        <nav className="hidden md:flex items-center space-x-8">
+          <Link to="/" className="text-base font-medium text-foreground hover:text-primary transition-colors">
             Home
           </Link>
           
           <DropdownMenu>
-            <DropdownMenuTrigger className="flex items-center space-x-1 text-sm text-foreground hover:text-primary transition-colors">
+            <DropdownMenuTrigger className="flex items-center space-x-1 text-base font-medium text-foreground hover:text-primary transition-colors">
               <span>Services</span>
               <ChevronDown className="h-4 w-4" />
             </DropdownMenuTrigger>
@@ -62,17 +60,17 @@ const Header = () => {
             </DropdownMenuContent>
           </DropdownMenu>
           
-          <Link to="/contact-us" className="text-sm text-foreground hover:text-primary transition-colors">
+          <Link to="/contact-us" className="text-base font-medium text-foreground hover:text-primary transition-colors">
             Contact Us
           </Link>
         </nav>
 
         {/* Right Section */}
-        <div className="flex items-center space-x-3">
+        <div className="flex items-center space-x-4">
           {/* Phone */}
-          <div className="hidden md:flex items-center space-x-2 text-foreground">
+          <div className="hidden lg:flex items-center space-x-2 text-foreground">
             <Phone className="h-4 w-4 text-primary" />
-            <span className="text-sm">404-832-0102</span>
+            <span className="text-sm font-medium">404-832-0102</span>
           </div>
           
           <Link to="/therapist-matching">
