@@ -22,10 +22,10 @@ const Header = () => {
             <ResponsiveImage 
               src="/lovable-uploads/15cbf558-6b23-4694-9684-232897817b20.png" 
               alt="MentalSpace - Professional Online Therapy and Mental Health Services" 
-              className="h-8 w-auto"
-              width={47}
-              height={32}
-              sizes="47px"
+              className="h-6 w-auto"
+              width={35}
+              height={24}
+              sizes="35px"
               loading="eager"
               priority={true}
             />
