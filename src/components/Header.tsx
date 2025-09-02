@@ -86,6 +86,73 @@ const Header = () => {
                   </div>
                 </Link>
               </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/relationship-coaching" className="relative w-full cursor-pointer rounded-lg px-3 py-2.5 text-sm font-medium hover:bg-gradient-to-r hover:from-primary/10 hover:to-primary/5 transition-all duration-200">
+                  <div className="flex items-center space-x-3">
+                    <Sparkles className="h-4 w-4 text-primary" />
+                    <span>Relationship Coaching</span>
+                  </div>
+                </Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          <DropdownMenu>
+            <DropdownMenuTrigger className="relative flex items-center space-x-1 px-4 py-2 text-base font-medium text-foreground/80 hover:text-foreground transition-all duration-300 group border-none bg-transparent focus:outline-none">
+              <span className="relative z-10">Resources</span>
+              <ChevronDown className="h-4 w-4 transition-transform duration-300 group-data-[state=open]:rotate-180" />
+              <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-primary/10 to-secondary/10 opacity-0 group-hover:opacity-100 transition-all duration-300 scale-75 group-hover:scale-100" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="w-64 bg-card/95 backdrop-blur-xl border border-border/50 shadow-2xl rounded-xl p-2 animate-fade-in">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 rounded-xl pointer-events-none" />
+              <DropdownMenuItem asChild>
+                <Link to="/mental-health-library" className="relative w-full cursor-pointer rounded-lg px-3 py-2.5 text-sm font-medium hover:bg-gradient-to-r hover:from-primary/10 hover:to-primary/5 transition-all duration-200">
+                  <div className="flex items-center space-x-3">
+                    <Sparkles className="h-4 w-4 text-primary" />
+                    <span>Mental Health Library</span>
+                  </div>
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/mental-health-tests" className="relative w-full cursor-pointer rounded-lg px-3 py-2.5 text-sm font-medium hover:bg-gradient-to-r hover:from-primary/10 hover:to-primary/5 transition-all duration-200">
+                  <div className="flex items-center space-x-3">
+                    <Sparkles className="h-4 w-4 text-primary" />
+                    <span>Mental Health Tests</span>
+                  </div>
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/blog" className="relative w-full cursor-pointer rounded-lg px-3 py-2.5 text-sm font-medium hover:bg-gradient-to-r hover:from-primary/10 hover:to-primary/5 transition-all duration-200">
+                  <div className="flex items-center space-x-3">
+                    <Sparkles className="h-4 w-4 text-primary" />
+                    <span>Blog</span>
+                  </div>
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/insurance" className="relative w-full cursor-pointer rounded-lg px-3 py-2.5 text-sm font-medium hover:bg-gradient-to-r hover:from-primary/10 hover:to-primary/5 transition-all duration-200">
+                  <div className="flex items-center space-x-3">
+                    <Sparkles className="h-4 w-4 text-primary" />
+                    <span>Insurance</span>
+                  </div>
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/faq" className="relative w-full cursor-pointer rounded-lg px-3 py-2.5 text-sm font-medium hover:bg-gradient-to-r hover:from-primary/10 hover:to-primary/5 transition-all duration-200">
+                  <div className="flex items-center space-x-3">
+                    <Sparkles className="h-4 w-4 text-primary" />
+                    <span>FAQ</span>
+                  </div>
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/emergency-resources" className="relative w-full cursor-pointer rounded-lg px-3 py-2.5 text-sm font-medium hover:bg-gradient-to-r hover:from-primary/10 hover:to-primary/5 transition-all duration-200">
+                  <div className="flex items-center space-x-3">
+                    <Sparkles className="h-4 w-4 text-primary" />
+                    <span>Emergency Resources</span>
+                  </div>
+                </Link>
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
           
@@ -136,6 +203,7 @@ const Header = () => {
               Home
             </Link>
             <div className="space-y-1 pl-4">
+              <p className="px-4 py-2 text-xs text-muted-foreground uppercase tracking-wider font-semibold">Services</p>
               <Link 
                 to="/online-therapy" 
                 className="flex items-center space-x-3 px-4 py-2.5 text-sm text-muted-foreground hover:text-primary hover:bg-gradient-to-r hover:from-primary/10 hover:to-primary/5 rounded-lg transition-all duration-200"
@@ -167,6 +235,64 @@ const Header = () => {
               >
                 <Sparkles className="h-4 w-4" />
                 <span>Life Coaching</span>
+              </Link>
+              <Link 
+                to="/relationship-coaching" 
+                className="flex items-center space-x-3 px-4 py-2.5 text-sm text-muted-foreground hover:text-primary hover:bg-gradient-to-r hover:from-primary/10 hover:to-primary/5 rounded-lg transition-all duration-200"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <Sparkles className="h-4 w-4" />
+                <span>Relationship Coaching</span>
+              </Link>
+              
+              <p className="px-4 py-2 text-xs text-muted-foreground uppercase tracking-wider font-semibold mt-4">Resources</p>
+              <Link 
+                to="/mental-health-library" 
+                className="flex items-center space-x-3 px-4 py-2.5 text-sm text-muted-foreground hover:text-primary hover:bg-gradient-to-r hover:from-primary/10 hover:to-primary/5 rounded-lg transition-all duration-200"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <Sparkles className="h-4 w-4" />
+                <span>Mental Health Library</span>
+              </Link>
+              <Link 
+                to="/mental-health-tests" 
+                className="flex items-center space-x-3 px-4 py-2.5 text-sm text-muted-foreground hover:text-primary hover:bg-gradient-to-r hover:from-primary/10 hover:to-primary/5 rounded-lg transition-all duration-200"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <Sparkles className="h-4 w-4" />
+                <span>Mental Health Tests</span>
+              </Link>
+              <Link 
+                to="/blog" 
+                className="flex items-center space-x-3 px-4 py-2.5 text-sm text-muted-foreground hover:text-primary hover:bg-gradient-to-r hover:from-primary/10 hover:to-primary/5 rounded-lg transition-all duration-200"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <Sparkles className="h-4 w-4" />
+                <span>Blog</span>
+              </Link>
+              <Link 
+                to="/insurance" 
+                className="flex items-center space-x-3 px-4 py-2.5 text-sm text-muted-foreground hover:text-primary hover:bg-gradient-to-r hover:from-primary/10 hover:to-primary/5 rounded-lg transition-all duration-200"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <Sparkles className="h-4 w-4" />
+                <span>Insurance</span>
+              </Link>
+              <Link 
+                to="/faq" 
+                className="flex items-center space-x-3 px-4 py-2.5 text-sm text-muted-foreground hover:text-primary hover:bg-gradient-to-r hover:from-primary/10 hover:to-primary/5 rounded-lg transition-all duration-200"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <Sparkles className="h-4 w-4" />
+                <span>FAQ</span>
+              </Link>
+              <Link 
+                to="/emergency-resources" 
+                className="flex items-center space-x-3 px-4 py-2.5 text-sm text-muted-foreground hover:text-primary hover:bg-gradient-to-r hover:from-primary/10 hover:to-primary/5 rounded-lg transition-all duration-200"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <Sparkles className="h-4 w-4" />
+                <span>Emergency Resources</span>
               </Link>
             </div>
             <Link 
