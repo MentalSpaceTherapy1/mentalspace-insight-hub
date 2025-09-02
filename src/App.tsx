@@ -35,6 +35,8 @@ import Blog from "./pages/Blog";
 import Depression from "./pages/conditions/Depression";
 import Anxiety from "./pages/conditions/Anxiety";
 import ADHD from "./pages/conditions/ADHD";
+import SEODiagnostics from "./pages/diagnostics/SEO";
+import HTMLDiagnostics from "./pages/diagnostics/HTML";
 
 const queryClient = new QueryClient();
 
@@ -82,6 +84,8 @@ const App = () => {
                 <Route path="/mental-health-library/depression" element={<Depression />} />
                 <Route path="/mental-health-library/anxiety" element={<Anxiety />} />
                 <Route path="/mental-health-library/adhd" element={<ADHD />} />
+                <Route path="/__diagnostics/seo.json" element={<SEODiagnostics />} />
+                <Route path="/__diagnostics/html.txt" element={<HTMLDiagnostics />} />
                 <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                 <Route path="/terms-conditions" element={<TermsAndConditions />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
