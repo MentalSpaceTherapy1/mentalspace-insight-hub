@@ -15,12 +15,32 @@ export const generateStaticFiles = (): Plugin => {
         fs.mkdirSync(diagnosticsDir, { recursive: true });
       }
 
-      // Read the generated index.html
+      // Read the source index.html to get the static content
+      const sourceIndexPath = './index.html';
+      const sourceContent = fs.readFileSync(sourceIndexPath, 'utf-8');
+      
+      // Read the generated index.html from dist
       const indexPath = path.join(distDir, 'index.html');
       let indexContent = '';
       
       if (fs.existsSync(indexPath)) {
         indexContent = fs.readFileSync(indexPath, 'utf-8');
+        
+        // Inject the static content from source into the built version
+        // Replace the empty root div with the static content
+        const rootDivRegex = /<div id="root"><\/div>/;
+        
+        // Extract the static content from source (between <div id="root"> and </div>)
+        const staticContentMatch = sourceContent.match(/<div id="root">([\s\S]*?)<\/div>/);
+        
+        if (staticContentMatch && rootDivRegex.test(indexContent)) {
+          const staticContent = staticContentMatch[1];
+          indexContent = indexContent.replace(rootDivRegex, `<div id="root">${staticContent}</div>`);
+          
+          // Write the updated HTML back to dist
+          fs.writeFileSync(indexPath, indexContent);
+          console.log('✅ Static content injected into built HTML');
+        }
       }
 
       // Generate SEO diagnostics JSON

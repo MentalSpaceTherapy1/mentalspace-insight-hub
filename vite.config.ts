@@ -13,7 +13,7 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     react(),
     mode === 'development' && componentTagger(),
-    generateStaticFiles(),
+    generateStaticFiles(), // Run in all modes to ensure static files are generated
   ].filter(Boolean),
   resolve: {
     alias: {
