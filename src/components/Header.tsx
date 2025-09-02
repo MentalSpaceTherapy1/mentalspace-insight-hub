@@ -8,6 +8,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useState } from "react";
+import ResponsiveImage from "@/components/ResponsiveImage";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -20,11 +21,16 @@ const Header = () => {
         {/* Logo */}
         <Link to="/" className="flex-shrink-0 group">
           <div className="relative">
-            <img 
+            <ResponsiveImage
               src="/lovable-uploads/15cbf558-6b23-4694-9684-232897817b20.png" 
               alt="MentalSpace - Professional Online Therapy and Mental Health Services" 
               className="max-h-12 w-auto object-contain transition-all duration-300 group-hover:scale-105"
+              width={71}
+              height={48}
+              sizes="71px"
               loading="eager"
+              priority={true}
+              fetchPriority="high"
             />
             <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-primary/20 to-secondary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl" />
           </div>

@@ -64,8 +64,8 @@ const ServicesOverview = () => {
                     src={service.image} 
                     alt={`${service.title} ${service.subtitle}`}
                     className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
-                    width={262}
-                    height={192}
+                    width={242}
+                    height={194}
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     loading="lazy"
                   />
