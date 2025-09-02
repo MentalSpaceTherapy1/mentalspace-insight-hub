@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Phone, Menu, ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
-import ResponsiveImage from "@/components/ResponsiveImage";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,15 +17,13 @@ const Header = () => {
       <div className="container flex h-16 items-center justify-between px-4">
         {/* Logo */}
         <Link to="/">
-          <ResponsiveImage 
+          <img 
             src="/lovable-uploads/15cbf558-6b23-4694-9684-232897817b20.png" 
             alt="MentalSpace - Professional Online Therapy and Mental Health Services" 
-            className="h-4 w-auto"
-            width={24}
-            height={16}
-            sizes="24px"
+            className="h-6 w-auto"
+            width={32}
+            height={24}
             loading="eager"
-            priority={true}
           />
         </Link>
 
