@@ -116,19 +116,6 @@ export const generateStaticFiles = (): Plugin => {
       }
       
       console.log('✅ SEO verification passed');
-      
-      // Run server-side prerendering after static content is processed
-      if (process.env.NODE_ENV === 'production') {
-        console.log('🚀 Starting server-side prerendering...');
-        execAsync('node scripts/prerender.js')
-          .then(() => {
-            console.log('✅ Server-side prerendering completed');
-          })
-          .catch((error) => {
-            console.error('❌ Prerendering failed:', error);
-            // Don't fail the build, just warn
-          });
-      }
     }
   };
 };
