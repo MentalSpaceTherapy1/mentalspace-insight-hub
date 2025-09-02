@@ -37,9 +37,19 @@ export const generateStaticFiles = (): Plugin => {
           const staticContent = staticContentMatch[1];
           indexContent = indexContent.replace(rootDivRegex, `<div id="root">${staticContent}</div>`);
           
+          // Add resource preload hints for critical resources
+          const headEndTag = '</head>';
+          const preloadHints = `
+    <!-- Resource preload hints for FCP optimization -->
+    <link rel="preload" href="/src/main.tsx" as="script" />
+    <link rel="modulepreload" href="/src/main.tsx" />
+  ${headEndTag}`;
+          
+          indexContent = indexContent.replace(headEndTag, preloadHints);
+          
           // Write the updated HTML back to dist
           fs.writeFileSync(indexPath, indexContent);
-          console.log('✅ Static content injected into built HTML');
+          console.log('✅ Static content injected into built HTML with FCP optimizations');
         }
       }
 
