@@ -3,6 +3,103 @@ import path from 'path';
 import type { Plugin } from 'vite';
 
 export const generateStaticFiles = (): Plugin => {
+  const runPrerender = async () => {
+    try {
+      console.log('🚀 Starting automatic prerendering...');
+      
+      // Skip prerendering in development
+      if (process.env.NODE_ENV !== 'production') {
+        console.log('⏭️  Skipping prerendering in development mode');
+        return;
+      }
+      
+      // Import puppeteer dynamically to avoid issues in development
+      const puppeteer = await import('puppeteer');
+      
+      const routes = [
+        '/',
+        '/online-therapy',
+        '/couples-therapy', 
+        '/teen-therapy',
+        '/life-coaching',
+        '/relationship-coaching',
+        '/coaching-services',
+        '/insurance',
+        '/faq',
+        '/contact-us',
+        '/career',
+        '/career-application',
+        '/emergency-resources',
+        '/get-started',
+        '/therapist-matching',
+        '/mental-health-library',
+        '/mental-health-tests',
+        '/assessment-contact',
+        '/thank-you',
+        '/blog',
+        '/mental-health-library/depression',
+        '/mental-health-library/anxiety', 
+        '/mental-health-library/adhd',
+        '/privacy-policy',
+        '/terms-conditions'
+      ];
+
+      const baseUrl = 'http://localhost:8080';
+      const distDir = './dist';
+      
+      const browser = await puppeteer.default.launch({ 
+        headless: 'new',
+        args: ['--no-sandbox', '--disable-setuid-sandbox']
+      });
+      
+      for (const route of routes) {
+        try {
+          console.log(`Prerendering ${route}...`);
+          const page = await browser.newPage();
+          
+          await page.setViewport({ width: 1200, height: 800 });
+          await page.setUserAgent('Mozilla/5.0 (compatible; PrerenderBot/1.0)');
+          
+          const url = `${baseUrl}${route}`;
+          await page.goto(url, { 
+            waitUntil: 'networkidle0',
+            timeout: 30000 
+          });
+          
+          await page.waitForTimeout(2000);
+          
+          const html = await page.content();
+          
+          // Verify navigation is present
+          if (!html.includes('nav') || !html.includes('footer')) {
+            console.warn(`⚠️  Navigation or footer missing in ${route}`);
+          }
+          
+          const routePath = route === '/' ? '/index' : route;
+          const filePath = path.join(distDir, routePath + '.html');
+          const dirPath = path.dirname(filePath);
+          
+          if (!fs.existsSync(dirPath)) {
+            fs.mkdirSync(dirPath, { recursive: true });
+          }
+          
+          fs.writeFileSync(filePath, html);
+          console.log(`✅ Generated ${filePath}`);
+          
+          await page.close();
+        } catch (error) {
+          console.error(`❌ Failed to prerender ${route}:`, error.message);
+        }
+      }
+      
+      await browser.close();
+      console.log('✅ Prerendering complete!');
+      
+    } catch (error) {
+      console.warn('⚠️  Prerendering skipped (likely in development):', error.message);
+    }
+  };
+
   return {
     name: 'generate-static-files',
     closeBundle() {
@@ -102,6 +199,11 @@ export const generateStaticFiles = (): Plugin => {
       }
 
       console.log('✅ Static files and diagnostics generated');
+      
+      // Auto-run prerendering after build completes (production only)
+      if (process.env.NODE_ENV === 'production') {
+        runPrerender();
+      }
       
       // Verify critical content exists
       if (!seoData.has_h1_on_home || !seoData.first_paragraph_present) {
