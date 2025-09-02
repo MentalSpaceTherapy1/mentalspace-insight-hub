@@ -67,7 +67,24 @@
       section { 
         margin: 2rem 0; 
       }
+      .hero-image {
+        width: 384px;
+        height: 384px;
+        border-radius: 50%;
+        object-fit: cover;
+        display: block;
+        margin: 2rem auto;
+      }
+      @media (max-width: 1024px) {
+        .hero-image {
+          width: 320px;
+          height: 320px;
+        }
+      }
     </style>
+
+    <!-- LCP Image Preload for immediate discovery -->
+    <link rel="preload" href="/assets/hero-person-1-CNvz1g1e.jpg" as="image" fetchpriority="high" />
 
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="MentalSpace - Online Therapy & Mental Health Services" />
@@ -239,6 +256,18 @@
         <section>
           <h1>Transform Your Mental Health with Professional Online Therapy</h1>
           <p>Connect with licensed therapists anytime, anywhere. Professional mental health support for depression, anxiety, PTSD, ADHD, couples therapy, and teen counseling.</p>
+          
+          <!-- LCP Hero Image - discoverable immediately -->
+          <img 
+            src="/assets/hero-person-1-CNvz1g1e.jpg" 
+            alt="Mental health therapy success story 1 - Happy person after online therapy sessions" 
+            class="hero-image"
+            width="384" 
+            height="384" 
+            fetchpriority="high"
+            loading="eager"
+            decoding="async"
+          />
           
           <section>
             <h2>Professional Online Mental Health Services</h2>
