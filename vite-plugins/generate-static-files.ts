@@ -118,10 +118,9 @@ export const generateStaticFiles = (): Plugin => {
       
       console.log('✅ SEO verification passed');
       
-      // Run server-side prerendering in production builds
-      if (process.env.NODE_ENV === 'production' || (this as any).build) {
-        await prerenderRoutes(distDir);
-      }
+      // Always run server-side prerendering during build
+      console.log('🔄 Starting prerendering process...');
+      await prerenderRoutes(distDir);
     }
   };
 };
