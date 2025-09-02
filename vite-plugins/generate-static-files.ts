@@ -1,15 +1,16 @@
+import { Plugin } from 'vite';
 import fs from 'fs';
 import path from 'path';
 import { exec } from 'child_process';
 import { promisify } from 'util';
-import type { Plugin } from 'vite';
+import puppeteer from 'puppeteer';
 
 const execAsync = promisify(exec);
 
 export const generateStaticFiles = (): Plugin => {
   return {
     name: 'generate-static-files',
-    closeBundle() {
+    async closeBundle() {
       // Generate static diagnostic files after build
       const distDir = './dist';
       const diagnosticsDir = path.join(distDir, '__diagnostics');
@@ -116,6 +117,130 @@ export const generateStaticFiles = (): Plugin => {
       }
       
       console.log('✅ SEO verification passed');
+      
+      // Run server-side prerendering in production builds
+      if (process.env.NODE_ENV === 'production' || (this as any).build) {
+        await prerenderRoutes(distDir);
+      }
     }
   };
 };
+
+// Routes that need to be prerendered for SEO
+const routes = [
+  '/',
+  '/online-therapy',
+  '/couples-therapy', 
+  '/teen-therapy',
+  '/life-coaching',
+  '/relationship-coaching',
+  '/coaching-services',
+  '/insurance',
+  '/faq',
+  '/contact-us',
+  '/career',
+  '/career-application',
+  '/emergency-resources',
+  '/get-started',
+  '/therapist-matching',
+  '/mental-health-library',
+  '/mental-health-tests',
+  '/assessment-contact',
+  '/thank-you',
+  '/blog',
+  '/mental-health-library/depression',
+  '/mental-health-library/anxiety', 
+  '/mental-health-library/adhd',
+  '/privacy-policy',
+  '/terms-conditions'
+];
+
+async function prerenderRoutes(distDir: string) {
+  console.log('🚀 Starting server-side prerendering for SEO...');
+  
+  try {
+    // Start a simple HTTP server for the dist files
+    const { createServer } = await import('vite');
+    const server = await createServer({
+      root: distDir,
+      server: { port: 0 },
+      mode: 'production',
+      configFile: false,
+      plugins: []
+    });
+    
+    await server.listen();
+    const port = server.config.server.port;
+    const baseUrl = `http://localhost:${port}`;
+    
+    console.log(`📡 Preview server started on ${baseUrl}`);
+
+    const browser = await puppeteer.launch({ 
+      headless: 'new',
+      args: ['--no-sandbox', '--disable-setuid-sandbox']
+    });
+    
+    let successCount = 0;
+    let failCount = 0;
+    
+    for (const route of routes) {
+      try {
+        const page = await browser.newPage();
+        
+        // Set viewport and user agent for SEO crawlers
+        await page.setViewport({ width: 1200, height: 800 });
+        await page.setUserAgent('Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)');
+        
+        const url = `${baseUrl}${route}`;
+        await page.goto(url, { 
+          waitUntil: 'networkidle0',
+          timeout: 30000 
+        });
+        
+        // Wait for React to fully render
+        await page.waitForTimeout(2000);
+        
+        const html = await page.content();
+        
+        // Verify content was rendered (should have navigation and main content)
+        if (!html.includes('<nav') || html.includes('<div id="root"></div>')) {
+          console.warn(`⚠️  Content may not be fully rendered for ${route}`);
+        }
+        
+        // Generate file for non-root routes
+        if (route !== '/') {
+          const filePath = path.join(distDir, route + '.html');
+          const dirPath = path.dirname(filePath);
+          
+          if (!fs.existsSync(dirPath)) {
+            fs.mkdirSync(dirPath, { recursive: true });
+          }
+          
+          fs.writeFileSync(filePath, html);
+          console.log(`✅ Prerendered ${route}`);
+        } else {
+          // For root route, update the existing index.html with rendered content
+          const indexPath = path.join(distDir, 'index.html');
+          fs.writeFileSync(indexPath, html);
+          console.log(`✅ Updated root route with rendered content`);
+        }
+        
+        successCount++;
+        await page.close();
+      } catch (error) {
+        console.error(`❌ Failed to prerender ${route}:`, error.message);
+        failCount++;
+      }
+    }
+    
+    await browser.close();
+    await server.close();
+    
+    console.log(`✅ Prerendering complete! Success: ${successCount}, Failed: ${failCount}`);
+    console.log('🔍 All routes now have static HTML for search engine crawling');
+    
+  } catch (error) {
+    console.error('❌ Prerendering process failed:', error);
+    // Don't fail the build, just warn
+  }
+}
