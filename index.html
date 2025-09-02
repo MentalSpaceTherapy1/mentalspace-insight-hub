@@ -25,56 +25,126 @@
     
     <!-- Critical CSS for First Contentful Paint -->
     <style>
+      /* CSS Variables for critical path */
+      :root {
+        --primary: 220 70% 50%;
+        --primary-foreground: 210 40% 98%;
+        --secondary: 210 40% 96%;
+        --secondary-foreground: 222.2 84% 4.9%;
+        --background: 0 0% 100%;
+        --foreground: 222.2 84% 4.9%;
+        --muted: 210 40% 96%;
+        --muted-foreground: 215.4 16.3% 46.9%;
+        --border: 214.3 31.8% 91.4%;
+        --card: 0 0% 100%;
+        --radius: 0.5rem;
+      }
+      
+      * { box-sizing: border-box; }
+      
       body { 
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         line-height: 1.6; 
         margin: 0; 
-        background: #fafafa;
-        color: #1f2937;
+        background: hsl(var(--background));
+        color: hsl(var(--foreground));
+        font-feature-settings: "rlig" 1, "calt" 1;
       }
+      
+      /* Critical header styles */
+      .header-critical {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        width: 100%;
+        border-bottom: 1px solid hsl(var(--border));
+        background: hsl(var(--background) / 0.95);
+        backdrop-filter: blur(12px);
+      }
+      
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+      
+      /* Critical typography */
       h1 { 
         font-family: 'Playfair Display', serif;
-        font-size: 2.5rem; 
+        font-size: clamp(2rem, 5vw, 4rem);
         font-weight: 700; 
-        color: #111827;
+        color: hsl(var(--foreground));
         margin: 1rem 0;
         line-height: 1.2;
       }
+      
       h2 { 
         font-family: 'Playfair Display', serif;
-        font-size: 2rem; 
+        font-size: clamp(1.5rem, 4vw, 2rem);
         font-weight: 600; 
-        color: #1f2937;
+        color: hsl(var(--foreground));
         margin: 1.5rem 0 1rem 0;
       }
+      
       p { 
         margin: 1rem 0; 
-        color: #4b5563;
+        color: hsl(var(--muted-foreground));
         font-size: 1.125rem;
+        line-height: 1.7;
       }
-      header, main, section { 
-        max-width: 1200px; 
-        margin: 0 auto; 
-        padding: 0 1rem;
+      
+      /* Critical button styles */
+      .btn-primary {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.75rem 1.5rem;
+        font-size: 0.875rem;
+        font-weight: 500;
+        background: hsl(var(--primary));
+        color: hsl(var(--primary-foreground));
+        border: none;
+        border-radius: calc(var(--radius) * 2);
+        text-decoration: none;
+        transition: all 0.2s;
+        cursor: pointer;
       }
-      header { 
-        padding: 2rem 1rem 1rem 1rem;
-        border-bottom: 1px solid #e5e7eb;
+      
+      .btn-primary:hover {
+        background: hsl(var(--primary) / 0.9);
+        transform: translateY(-1px);
       }
-      main { 
-        padding: 2rem 1rem; 
+      
+      /* Critical layout */
+      .flex { display: flex; }
+      .items-center { align-items: center; }
+      .justify-between { justify-content: space-between; }
+      .justify-center { justify-content: center; }
+      .grid { display: grid; }
+      .relative { position: relative; }
+      .absolute { position: absolute; }
+      .hidden { display: none; }
+      
+      /* Critical spacing */
+      .py-16 { padding-top: 4rem; padding-bottom: 4rem; }
+      .px-4 { padding-left: 1rem; padding-right: 1rem; }
+      .mb-6 { margin-bottom: 1.5rem; }
+      .mb-8 { margin-bottom: 2rem; }
+      .space-x-4 > * + * { margin-left: 1rem; }
+      
+      /* Critical responsive */
+      @media (min-width: 768px) {
+        .md\\:flex { display: flex; }
+        .md\\:hidden { display: none; }
+        .md\\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       }
-      ul { 
-        margin: 1rem 0; 
-        padding-left: 1.5rem;
-        color: #4b5563;
+      
+      @media (min-width: 1024px) {
+        .lg\\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .lg\\:py-24 { padding-top: 6rem; padding-bottom: 6rem; }
       }
-      li { 
-        margin: 0.5rem 0; 
-      }
-      section { 
-        margin: 2rem 0; 
-      }
+      
+      /* Hero image critical styles */
       .hero-image {
         width: 384px;
         height: 384px;
@@ -82,12 +152,30 @@
         object-fit: cover;
         display: block;
         margin: 2rem auto;
+        box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 10px 10px -5px rgb(0 0 0 / 0.04);
       }
+      
       @media (max-width: 1024px) {
         .hero-image {
           width: 320px;
           height: 320px;
         }
+      }
+      
+      /* Critical gradient text */
+      .text-gradient {
+        background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      
+      /* Loading placeholder to prevent layout shift */
+      .loading-placeholder {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
     </style>
 
