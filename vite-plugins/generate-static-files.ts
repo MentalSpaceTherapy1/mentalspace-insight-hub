@@ -40,7 +40,8 @@ export const generateStaticFiles = (): Plugin => {
           // Add resource preload hints for critical resources
           const headEndTag = '</head>';
           const preloadHints = `
-    <!-- Resource preload hints for FCP optimization -->
+    <!-- Resource preload hints for LCP optimization -->
+    <link rel="preload" href="/src/assets/hero-person-1.jpg" as="image" fetchpriority="high" />
     <link rel="preload" href="/src/main.tsx" as="script" />
     <link rel="modulepreload" href="/src/main.tsx" />
   ${headEndTag}`;

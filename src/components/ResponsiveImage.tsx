@@ -8,6 +8,7 @@ interface ResponsiveImageProps extends HTMLAttributes<HTMLImageElement> {
   sizes?: string;
   loading?: 'eager' | 'lazy';
   priority?: boolean;
+  fetchPriority?: 'high' | 'low' | 'auto';
 }
 
 const ResponsiveImage = ({ 
@@ -19,6 +20,7 @@ const ResponsiveImage = ({
   sizes = '(max-width: 768px) 320px, 384px',
   loading = 'lazy',
   priority = false,
+  fetchPriority = 'auto',
   ...props 
 }: ResponsiveImageProps) => {
   return (
@@ -31,6 +33,7 @@ const ResponsiveImage = ({
       sizes={sizes}
       loading={priority ? 'eager' : loading}
       decoding="async"
+      fetchPriority={fetchPriority}
       {...props}
       style={{
         maxWidth: '100%',
