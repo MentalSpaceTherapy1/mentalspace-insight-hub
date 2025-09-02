@@ -37,20 +37,30 @@ export const generateStaticFiles = (): Plugin => {
           const staticContent = staticContentMatch[1];
           indexContent = indexContent.replace(rootDivRegex, `<div id="root">${staticContent}</div>`);
           
-          // Add resource preload hints for critical resources
+          // Find the actual hero image path in the built HTML
+          const heroImageMatch = indexContent.match(/\/assets\/hero-person-1-[^"]+\.jpg/);
+          const heroImagePath = heroImageMatch ? heroImageMatch[0] : '/assets/hero-person-1-CNvz1g1e.jpg';
+          
+          // Add resource preload hints for critical resources with correct paths
           const headEndTag = '</head>';
           const preloadHints = `
     <!-- Resource preload hints for LCP optimization -->
-    <link rel="preload" href="/src/assets/hero-person-1.jpg" as="image" fetchpriority="high" />
+    <link rel="preload" href="${heroImagePath}" as="image" fetchpriority="high" />
     <link rel="preload" href="/src/main.tsx" as="script" />
     <link rel="modulepreload" href="/src/main.tsx" />
   ${headEndTag}`;
           
           indexContent = indexContent.replace(headEndTag, preloadHints);
           
+          // Update static HTML to use the correct built asset path
+          indexContent = indexContent.replace(
+            /src="\/assets\/hero-person-1-CNvz1g1e\.jpg"/,
+            `src="${heroImagePath}"`
+          );
+          
           // Write the updated HTML back to dist
           fs.writeFileSync(indexPath, indexContent);
-          console.log('✅ Static content injected into built HTML with FCP optimizations');
+          console.log('✅ Static content injected into built HTML with LCP optimizations');
         }
       }
 
