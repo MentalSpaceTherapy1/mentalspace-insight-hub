@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import { useEffect, useState } from "react";
 import LazyImage from "@/components/LazyImage";
+import ResponsiveImage from "@/components/ResponsiveImage";
 import heroImage1 from "@/assets/hero-person-1.jpg";
 import heroImage2 from "@/assets/hero-person-2.jpg";
 import heroImage3 from "@/assets/hero-person-3.jpg";
@@ -63,15 +64,18 @@ const Hero = () => {
             <div className="relative w-80 h-80 lg:w-96 lg:h-96">
               <div className="absolute inset-0 rounded-full overflow-hidden shadow-2xl">
                 {heroImages.map((image, index) => (
-                  <img
+                  <ResponsiveImage
                     key={index}
                     src={image}
                     alt={`Mental health therapy success story ${index + 1} - Happy person after online therapy sessions`}
                     className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
                       index === currentImageIndex ? 'opacity-100' : 'opacity-0'
                     }`}
-                    loading="eager"
-                    decoding="async"
+                    width={384}
+                    height={384}
+                    sizes="(max-width: 1024px) 320px, 384px"
+                    loading={index === 0 ? "eager" : "lazy"}
+                    priority={index === 0}
                   />
                 ))}
               </div>

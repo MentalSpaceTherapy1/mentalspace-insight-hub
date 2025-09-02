@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import ResponsiveImage from "@/components/ResponsiveImage";
 import individualTherapyImg from "@/assets/individual-therapy.jpg";
 import coupleTherapyImg from "@/assets/couple-therapy-session.jpg";
 import teenTherapyImg from "@/assets/teen-therapy-session.jpg";
@@ -59,10 +60,14 @@ const ServicesOverview = () => {
             <Link key={index} to={service.link} className="group">
               <Card className="overflow-hidden hover-lift glass-effect border-0 animate-slide-up" style={{animationDelay: `${index * 0.1}s`}}>
                 <div className="relative overflow-hidden">
-                  <img 
+                  <ResponsiveImage
                     src={service.image} 
                     alt={`${service.title} ${service.subtitle}`}
                     className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
+                    width={262}
+                    height={192}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    loading="lazy"
                   />
                   <div className={`absolute inset-0 bg-gradient-to-t ${service.color} opacity-20 group-hover:opacity-30 transition-opacity duration-300`}></div>
                   <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
