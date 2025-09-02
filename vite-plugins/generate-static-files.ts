@@ -175,7 +175,7 @@ async function prerenderRoutes(distDir: string) {
     console.log(`📡 Preview server started on ${baseUrl}`);
 
     const browser = await puppeteer.launch({ 
-      headless: 'new',
+      headless: true,
       args: ['--no-sandbox', '--disable-setuid-sandbox']
     });
     
@@ -200,7 +200,7 @@ async function prerenderRoutes(distDir: string) {
         });
         
         // Wait for React to fully render
-        await page.waitForTimeout(2000);
+        await page.evaluate(() => new Promise(resolve => setTimeout(resolve, 2000)));
         
         const html = await page.content();
         
@@ -254,7 +254,8 @@ async function prerenderRoutes(distDir: string) {
         successCount++;
         await page.close();
       } catch (error) {
-        console.error(`❌ Failed to prerender ${route}:`, error.message);
+        const errorMessage = error instanceof Error ? error.message : String(error);
+        console.error(`❌ Failed to prerender ${route}:`, errorMessage);
         routeResults.push({
           route,
           success: false,
