@@ -9,21 +9,31 @@ interface AnalyticsEvent {
 
 export const useAnalytics = () => {
   const trackEvent = useCallback(async (event: AnalyticsEvent) => {
-    try {
-      // Add page info automatically
-      const pageUrl = window.location.href;
-      const referrer = document.referrer || 'direct';
+    // Defer analytics to not block critical path
+    const deferredTrack = async () => {
+      try {
+        // Add page info automatically
+        const pageUrl = window.location.href;
+        const referrer = document.referrer || 'direct';
 
-      await supabase.functions.invoke('track-analytics', {
-        body: {
-          ...event,
-          pageUrl,
-          referrer,
-        },
-      });
-    } catch (error) {
-      // Silently fail analytics - don't break user experience
-      console.warn('Analytics tracking failed:', error);
+        await supabase.functions.invoke('track-analytics', {
+          body: {
+            ...event,
+            pageUrl,
+            referrer,
+          },
+        });
+      } catch (error) {
+        // Silently fail analytics - don't break user experience
+        console.warn('Analytics tracking failed:', error);
+      }
+    };
+    
+    // Use requestIdleCallback when available to defer analytics
+    if (typeof requestIdleCallback !== 'undefined') {
+      requestIdleCallback(() => deferredTrack(), { timeout: 2000 });
+    } else {
+      setTimeout(() => deferredTrack(), 0);
     }
   }, []);
 

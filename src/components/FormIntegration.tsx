@@ -12,8 +12,17 @@ const FormIntegration: React.FC<FormIntegrationProps> = ({ children }) => {
   const { trackPageView } = useAnalytics();
 
   useEffect(() => {
-    // Track page view on mount and route changes
-    trackPageView();
+    // Defer analytics tracking to not block critical rendering path
+    const deferredTrack = () => {
+      if (typeof requestIdleCallback !== 'undefined') {
+        requestIdleCallback(() => trackPageView(), { timeout: 1000 });
+      } else {
+        setTimeout(() => trackPageView(), 0);
+      }
+    };
+    
+    // Track page view after the component has mounted and rendered
+    deferredTrack();
   }, [trackPageView]);
 
   return <>{children}</>;
