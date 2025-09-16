@@ -5,7 +5,7 @@ Allow: /
 Disallow: /admin
 
 # Important files
-Sitemap: https://mentalspace-insight-hub.lovable.app/sitemap.xml
+Sitemap: https://coping-healing-therapy.lovable.app/sitemap.xml
 
 # Allow all major search engines
 User-agent: Googlebot
