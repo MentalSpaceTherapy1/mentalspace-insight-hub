@@ -1,10 +1,17 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.56.0";
 
-const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
+const ALLOWED_ORIGINS = new Set([
+  'http://localhost:5173',
+  'http://localhost:8080',
+  'https://coping-healing-therapy.lovable.app',
+]);
+
+const getCorsHeaders = (origin: string | null) => ({
+  'Access-Control-Allow-Origin': origin && ALLOWED_ORIGINS.has(origin) ? origin : 'https://coping-healing-therapy.lovable.app',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
-};
+  'Access-Control-Allow-Methods': 'POST, OPTIONS',
+});
 
 interface AssessmentSubmission {
   sessionId: string;
@@ -14,11 +21,43 @@ interface AssessmentSubmission {
   severity?: string;
   recommendations?: string[];
   additionalInfo?: Record<string, any>;
+  csrfToken?: string;
+}
+
+// Constant-time string compare
+function safeEqual(a: string, b: string): boolean {
+  if (a.length !== b.length) return false;
+  let result = 0;
+  for (let i = 0; i < a.length; i++) {
+    result |= a.charCodeAt(i) ^ b.charCodeAt(i);
+  }
+  return result === 0;
+}
+
+function parseCookies(cookieHeader: string | null): Record<string, string> {
+  const cookies: Record<string, string> = {};
+  if (!cookieHeader) return cookies;
+  cookieHeader.split(';').forEach(part => {
+    const [k, ...v] = part.trim().split('=');
+    cookies[k] = decodeURIComponent(v.join('='));
+  });
+  return cookies;
 }
 
 serve(async (req) => {
+  const origin = req.headers.get('origin');
+
+  // CORS preflight
   if (req.method === 'OPTIONS') {
-    return new Response(null, { headers: corsHeaders });
+    return new Response(null, { headers: getCorsHeaders(origin) });
+  }
+
+  // Enforce allowed origins for POST
+  if (!origin || !ALLOWED_ORIGINS.has(origin)) {
+    return new Response(JSON.stringify({ success: false, error: 'Origin not allowed' }), {
+      status: 403,
+      headers: { ...getCorsHeaders(origin), 'Content-Type': 'application/json' },
+    });
   }
 
   try {
@@ -28,18 +67,31 @@ serve(async (req) => {
     );
 
     const assessmentData: AssessmentSubmission = await req.json();
-    
+
+    // Optional double-submit token validation (cookie may be absent due to cross-origin)
+    const cookies = parseCookies(req.headers.get('cookie'));
+    if (cookies['csrf_token'] && assessmentData.csrfToken && !safeEqual(cookies['csrf_token'], assessmentData.csrfToken)) {
+      return new Response(JSON.stringify({ success: false, error: 'Invalid CSRF token' }), {
+        status: 403,
+        headers: { ...getCorsHeaders(origin), 'Content-Type': 'application/json' },
+      });
+    }
+
     // Get client IP for analytics
-    const clientIP = req.headers.get('x-forwarded-for') || 
-                    req.headers.get('x-real-ip') || 
-                    'unknown';
+    const forwardedFor = req.headers.get('x-forwarded-for');
+    const realIP = req.headers.get('x-real-ip');
+    let clientIP = 'unknown';
+    if (forwardedFor) {
+      clientIP = forwardedFor.split(',')[0].trim();
+    } else if (realIP) {
+      clientIP = realIP.trim();
+    }
 
     console.log('Saving assessment session:', assessmentData.sessionId);
 
     // Map human-readable assessment names to database enum values
     const getAssessmentType = (assessmentName: string): string => {
       const typeMap: { [key: string]: string } = {
-        // Direct matches to database enum values
         'anxiety': 'anxiety',
         'depression': 'depression', 
         'adhd': 'adhd',
@@ -76,20 +128,14 @@ serve(async (req) => {
       };
 
       const normalizedInput = assessmentName.toLowerCase().trim();
-      
-      // Direct match
       if (typeMap[normalizedInput]) {
         return typeMap[normalizedInput];
       }
-      
-      // Partial match for complex names
       for (const [key, value] of Object.entries(typeMap)) {
         if (normalizedInput.includes(key) || key.includes(normalizedInput)) {
           return value;
         }
       }
-      
-      // Fallback: convert to snake_case and remove special characters
       return normalizedInput
         .replace(/[^\w\s]/g, '')
         .replace(/\s+/g, '_')
@@ -97,7 +143,7 @@ serve(async (req) => {
     };
 
     const normalizedAssessmentType = getAssessmentType(assessmentData.assessmentType);
-    
+
     console.log('Original assessment type:', assessmentData.assessmentType);
     console.log('Normalized assessment type:', normalizedAssessmentType);
 
@@ -148,7 +194,7 @@ serve(async (req) => {
         message: 'Assessment saved successfully'
       }),
       {
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        headers: { ...getCorsHeaders(origin), 'Content-Type': 'application/json' },
         status: 200
       }
     );
@@ -162,7 +208,7 @@ serve(async (req) => {
         error: error.message || 'Failed to save assessment'
       }),
       {
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        headers: { ...getCorsHeaders(origin), 'Content-Type': 'application/json' },
         status: 500
       }
     );
