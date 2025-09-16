@@ -2,7 +2,6 @@ import puppeteer from 'puppeteer';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { createServer } from 'vite';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -79,16 +78,17 @@ async function prerenderRoutes() {
   console.log('🚀 Starting server-side prerendering...');
   
   // Create a preview server to serve the built files
-  const server = await createServer({
+  const { preview } = await import('vite');
+  const server = await preview({
     root: distDir,
-    server: { port: 0 }, // Use any available port
-    mode: 'production',
-    configFile: false,
-    plugins: []
+    preview: { 
+      port: 0, // Use any available port
+      host: 'localhost'
+    },
+    configFile: false
   });
   
-  await server.listen();
-  const port = server.config.server.port;
+  const port = server.config.preview.port;
   const baseUrl = `http://localhost:${port}`;
   
   console.log(`📡 Preview server started on ${baseUrl}`);
