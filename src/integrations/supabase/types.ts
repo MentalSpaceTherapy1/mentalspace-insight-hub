@@ -492,6 +492,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      check_admin_access: {
+        Args: Record<PropertyKey, never>
+        Returns: boolean
+      }
       create_initial_admin: {
         Args: { admin_email: string; admin_full_name: string }
         Returns: string
