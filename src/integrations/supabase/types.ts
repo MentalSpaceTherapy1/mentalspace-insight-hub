@@ -504,6 +504,10 @@ export type Database = {
         Args: Record<PropertyKey, never>
         Returns: boolean
       }
+      is_verified_admin: {
+        Args: Record<PropertyKey, never>
+        Returns: boolean
+      }
       promote_user_to_admin: {
         Args: { full_name?: string; user_email: string }
         Returns: string
