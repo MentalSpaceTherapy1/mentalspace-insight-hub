@@ -465,13 +465,13 @@ const CareerApplication = () => {
             </div>
             <div className="space-y-6 max-w-2xl mx-auto">
               <div className="space-y-3">
-                <Label className="text-base font-medium">Why do you want to join MentalSpace? *</Label>
+                <Label className="text-base font-medium">Why do you want to join Coping & Healing? *</Label>
                 <Textarea
                   value={formData.motivation}
                   onChange={(e) => handleInputChange("motivation", e.target.value)}
                   required
                   className="min-h-[120px] text-base bg-white border-2 hover:border-primary/50 focus:border-primary transition-all duration-200"
-                  placeholder="Tell us what motivates you to work with MentalSpace..."
+                  placeholder="Tell us what motivates you to work with Coping & Healing..."
                 />
               </div>
               <div className="space-y-3">
@@ -508,7 +508,7 @@ const CareerApplication = () => {
                     htmlFor="terms" 
                     className="text-sm font-medium cursor-pointer leading-relaxed"
                   >
-                    I agree to the terms and conditions and privacy policy. I understand that this application will be reviewed by the MentalSpace recruitment team.
+                    I agree to the terms and conditions and privacy policy. I understand that this application will be reviewed by the Coping & Healing recruitment team.
                   </Label>
                 </div>
               </div>

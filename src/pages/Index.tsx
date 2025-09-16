@@ -25,12 +25,12 @@ const Index = () => {
       "structuredData": {
         "@context": "https://schema.org",
         "@type": "WebPage",
-        "name": "MentalSpace - Professional Online Mental Health Services",
+        "name": "Coping & Healing - Professional Online Mental Health Services",
         "description": "Professional online therapy and mental health services. Connect with licensed therapists anytime, anywhere for depression, anxiety, PTSD, ADHD, and more.",
         "url": "https://mentalspace-insight-hub.lovable.app/",
         "mainEntity": {
           "@type": "MedicalBusiness",
-          "name": "MentalSpace",
+          "name": "Coping & Healing",
           "description": "Leading online therapy platform connecting users with licensed mental health professionals for comprehensive psychiatric care",
           "medicalSpecialty": [
             "Depression Treatment",
@@ -161,7 +161,7 @@ const Index = () => {
     {
       name: "Sarah Mitchell",
       role: "Marketing Manager",
-      text: "MentalSpace transformed my approach to stress and anxiety. The convenience of online sessions fits perfectly with my busy lifestyle.",
+      text: "Coping & Healing transformed my approach to stress and anxiety. The convenience of online sessions fits perfectly with my busy lifestyle.",
       rating: 5,
       avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face"
     },
@@ -194,7 +194,7 @@ const Index = () => {
           <div className="container px-4">
             <div className="mx-auto max-w-3xl text-center mb-16">
               <h2 id="coaching-process" className="mb-4 text-3xl font-bold text-foreground sm:text-4xl">
-                How Coaching Works at MentalSpace
+                How Coaching Works at Coping & Healing
               </h2>
               <p className="text-lg text-muted-foreground">
                 Start your coaching journey in three simple steps
@@ -243,7 +243,7 @@ const Index = () => {
         {/* Modern Stats Section */}
         <section className="py-16 px-4 bg-gradient-modern" aria-labelledby="company-stats">
           <div className="container mx-auto">
-            <h2 id="company-stats" className="sr-only">MentalSpace Statistics and Success Metrics</h2>
+            <h2 id="company-stats" className="sr-only">Coping & Healing Statistics and Success Metrics</h2>
             <div className="grid md:grid-cols-4 gap-8 text-center">
               <div className="animate-bounce-in">
                 <div className="text-4xl font-bold text-gradient mb-2" aria-label="10,000 plus happy clients">10K+</div>
@@ -346,7 +346,7 @@ const Index = () => {
           <div className="container mx-auto">
             <div className="text-center mb-16 animate-fade-in">
               <h2 className="text-5xl md:text-6xl font-bold mb-6 text-gradient">
-                Why Choose MentalSpace?
+                Why Choose Coping & Healing?
               </h2>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
                 Experience the future of mental health care with our innovative platform
@@ -383,7 +383,7 @@ const Index = () => {
                 Real Stories, Real Results
               </h2>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                Join thousands who have transformed their lives through MentalSpace
+                Join thousands who have transformed their lives through Coping & Healing
               </p>
             </div>
             
@@ -406,7 +406,7 @@ const Index = () => {
                       <div className="flex items-start space-x-4">
                         <ResponsiveImage 
                           src={testimonial.avatar} 
-                          alt={`${testimonial.name}, ${testimonial.role} - MentalSpace therapy success story`}
+                          alt={`${testimonial.name}, ${testimonial.role} - Coping & Healing therapy success story`}
                           className="w-16 h-16 rounded-full object-cover shadow-card"
                           width={64}
                           height={64}

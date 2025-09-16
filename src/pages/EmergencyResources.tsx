@@ -48,7 +48,7 @@ const EmergencyResources = () => {
       icon: AlertTriangle
     },
     {
-      name: "MentalSpace Crisis Support",
+      name: "Coping & Healing Crisis Support",
       number: "404 832 0102",
       description: "Our dedicated crisis support line",
       icon: Phone

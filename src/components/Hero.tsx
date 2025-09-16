@@ -38,7 +38,7 @@ const Hero = () => {
           <div className="text-center lg:text-left order-2 lg:order-1">
             <h1 className="mb-6 text-4xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-7xl">
               <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                MentalSpace:
+                Coping & Healing:
               </span>
               <br />
               Therapy Anytime. Anywhere.

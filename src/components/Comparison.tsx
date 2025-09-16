@@ -20,7 +20,7 @@ const Comparison = () => {
       <div className="container px-4">
         <div className="mx-auto max-w-4xl">
           <h2 className="mb-12 text-3xl font-bold text-center text-foreground sm:text-4xl">
-            MentalSpace vs. In-Office Therapy
+            Coping & Healing vs. In-Office Therapy
           </h2>
           
           <div className="bg-white rounded-2xl shadow-card overflow-hidden">
@@ -29,7 +29,7 @@ const Comparison = () => {
                 <h3 className="text-lg font-semibold">Features</h3>
               </div>
               <div className="p-6 text-center border-l border-white/20">
-                <h3 className="text-lg font-semibold">MentalSpace</h3>
+                <h3 className="text-lg font-semibold">Coping & Healing</h3>
               </div>
               <div className="p-6 text-center border-l border-white/20">
                 <h3 className="text-lg font-semibold">In-Office Therapy</h3>
@@ -59,7 +59,7 @@ const Comparison = () => {
           <div className="text-center mt-12">
             <Link to="/get-started">
               <Button size="lg" className="px-8 py-6 text-lg">
-                Experience the MentalSpace Advantage
+                Experience the Coping & Healing Advantage
               </Button>
             </Link>
           </div>

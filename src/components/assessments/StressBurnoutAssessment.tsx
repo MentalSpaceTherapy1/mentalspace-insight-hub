@@ -513,7 +513,7 @@ export default function StressBurnoutAssessment() {
                 Consider professional support for CBT-based stress management, mindfulness-based training, and help preparing an organizational plan.
               </p>
               <Button className="w-full">
-                Request an appointment with MentalSpace Therapy
+                Request an appointment with Coping & Healing
               </Button>
             </CardContent>
           </Card>

@@ -18,16 +18,16 @@ const FAQ = () => {
       title: "Getting Started",
       faqs: [
         {
-          question: "What is MentalSpace?",
-          answer: "MentalSpace is an online private practice company offering therapy, life coaching, and relationship coaching. Clients can communicate with therapists and certified coaches via text, audio, or video, with subscriptions starting at $49.95 a week. Live Video Sessions are also available."
+          question: "What is Coping & Healing?",
+          answer: "Coping & Healing is an online private practice company offering therapy, life coaching, and relationship coaching. Clients can communicate with therapists and certified coaches via text, audio, or video, with subscriptions starting at $49.95 a week. Live Video Sessions are also available."
         },
         {
           question: "How do I get started?",
-          answer: "Just click on Request an Appointment anywhere on MentalSpace website, answer some questions about your needs, choose a subscription plan. Our team will contact you to schedule your first appointment. A licensed therapist will conduct an in-depth assessment with you, then we will propose the best therapists and coaches that match your needs and personality."
+          answer: "Just click on Request an Appointment anywhere on Coping & Healing website, answer some questions about your needs, choose a subscription plan. Our team will contact you to schedule your first appointment. A licensed therapist will conduct an in-depth assessment with you, then we will propose the best therapists and coaches that match your needs and personality."
         },
         {
-          question: "How much does MentalSpace cost?",
-          answer: "MentalSpace offers subscriptions starting at $49.95 a week. All plans give you access to a therapist and a life coach. Various plans are available to suit your needs, with no long-term contracts. You can change or cancel your plan at any time."
+          question: "How much does Coping & Healing cost?",
+          answer: "Coping & Healing offers subscriptions starting at $49.95 a week. All plans give you access to a therapist and a life coach. Various plans are available to suit your needs, with no long-term contracts. You can change or cancel your plan at any time."
         }
       ]
     },
@@ -39,20 +39,20 @@ const FAQ = () => {
           answer: "Life Coaching: Focus on goal-oriented personal growth, development, and achievement. It addresses specific life goals, career aspirations, or personal development areas. Coaches use practical strategies and tools to help clients create actionable plans and make positive changes. The main goal is to empower individuals to reach their potential and achieve specific life objectives.\n\nIndividual Therapy: Focused on addressing specific mental or emotional problems, such as anxiety, depression, trauma, or relationship issues. Therapists explore underlying emotions, patterns, and psychological dynamics. The primary goal is to understand and resolve emotional challenges, heal psychological wounds, and foster overall mental well-being."
         },
         {
-          question: "Are MentalSpace therapists and coaches experienced?",
-          answer: "Yes. MentalSpace's network includes licensed therapists, associates, mastered level therapists, and certified coaches, ensuring quality care. Our professionals are experienced and have been carefully selected and trained to provide services on our platform."
+          question: "Are Coping & Healing therapists and coaches experienced?",
+          answer: "Yes. Coping & Healing's network includes licensed therapists, associates, mastered level therapists, and certified coaches, ensuring quality care. Our professionals are experienced and have been carefully selected and trained to provide services on our platform."
         },
         {
           question: "Can I have a Life Coach and a Therapist at the same time for the same $49.95/week subscription?",
-          answer: "Absolutely! For just $49.95/week, you can access both a Life Coach and a Therapist. Our professionals work in harmony, coordinating or alternating sessions to provide you with cohesive, personalized care. This innovative approach ensures that you receive comprehensive guidance, empowering you to overcome challenges and unlock your true potential. Experience the synergy of therapy and coaching with MentalSpace, where your growth and healing are our top priority."
+          answer: "Absolutely! For just $49.95/week, you can access both a Life Coach and a Therapist. Our professionals work in harmony, coordinating or alternating sessions to provide you with cohesive, personalized care. This innovative approach ensures that you receive comprehensive guidance, empowering you to overcome challenges and unlock your true potential. Experience the synergy of therapy and coaching with Coping & Healing, where your growth and healing are our top priority."
         },
         {
           question: "If I'm a teenager, do I need permission from my parents/guardian?",
-          answer: "If you are under 18, most U.S. states require parent/guardian consent to start therapy or coaching. MentalSpace requires parental consent through specific procedures. Our support team can guide you through the required steps."
+          answer: "If you are under 18, most U.S. states require parent/guardian consent to start therapy or coaching. Coping & Healing requires parental consent through specific procedures. Our support team can guide you through the required steps."
         },
         {
-          question: "Is MentalSpace as effective as traditional therapy?",
-          answer: "MentalSpace's unique blend of therapy, life coaching, and relationship coaching is designed to address diverse needs effectively. Our approach is backed by satisfied clients who have found success and improvement through our platform."
+          question: "Is Coping & Healing as effective as traditional therapy?",
+          answer: "Coping & Healing's unique blend of therapy, life coaching, and relationship coaching is designed to address diverse needs effectively. Our approach is backed by satisfied clients who have found success and improvement through our platform."
         }
       ]
     },
@@ -61,7 +61,7 @@ const FAQ = () => {
       faqs: [
         {
           question: "What is online couples therapy?",
-          answer: "MentalSpace's online couples therapy allows partners to connect with therapists virtually, addressing relationship challenges through live video sessions."
+          answer: "Coping & Healing's online couples therapy allows partners to connect with therapists virtually, addressing relationship challenges through live video sessions."
         },
         {
           question: "How does couples' therapy differ from relationship coaching?",

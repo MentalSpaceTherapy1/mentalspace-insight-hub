@@ -139,7 +139,7 @@ const PerinatalMoodAssessment = () => {
           "If stressors are high or you have a history of perinatal depression, consider preventive CBT/IPT sessions",
           "Re-screen in 2-4 weeks"
         ],
-        followUp: "Consider prevention consult with MentalSpace Therapy"
+        followUp: "Consider prevention consult with Coping & Healing"
       };
     } else if (score <= 9) {
       return {

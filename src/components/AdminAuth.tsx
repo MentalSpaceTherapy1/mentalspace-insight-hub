@@ -66,7 +66,7 @@ const AdminAuth = () => {
           </div>
           <CardTitle className="text-2xl">Admin Access</CardTitle>
           <CardDescription>
-            Sign in to access the MentalSpace Therapy admin dashboard
+            Sign in to access the Coping & Healing admin dashboard
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -80,7 +80,7 @@ const AdminAuth = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 disabled={isSubmitting}
-                placeholder="admin@mentalspacetherapy.com"
+                placeholder="admin@copinghealing.com"
               />
             </div>
             <div className="space-y-2">

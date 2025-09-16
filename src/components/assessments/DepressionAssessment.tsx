@@ -117,7 +117,7 @@ const DepressionAssessment = () => {
               <div>
                 <h4 className="font-semibold mb-2">If symptoms persist or worsen (2–4 weeks)</h4>
                 <ul className="list-disc list-inside space-y-1 text-sm">
-                  <li>Re-screen and consider a brief consult with MentalSpace Therapy</li>
+                  <li>Re-screen and consider a brief consult with Coping & Healing</li>
                 </ul>
               </div>
             </div>
@@ -296,8 +296,8 @@ const DepressionAssessment = () => {
               })}
             >
               {severity === "mod-severe" || severity === "severe" 
-                ? "Priority scheduling with MentalSpace Therapy"
-                : "Request an appointment with MentalSpace Therapy"
+                ? "Priority scheduling with Coping & Healing"
+                : "Request an appointment with Coping & Healing"
               }
             </Button>
           </div>

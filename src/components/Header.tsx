@@ -22,12 +22,12 @@ const Header = () => {
         <Link to="/" className="flex-shrink-0 group">
           <div className="relative">
             <ResponsiveImage
-              src="/lovable-uploads/15cbf558-6b23-4694-9684-232897817b20.png" 
-              alt="MentalSpace - Professional Online Therapy and Mental Health Services" 
+              src="/src/assets/chc-logo.png" 
+              alt="Coping & Healing - Professional Online Therapy and Mental Health Services" 
               className="max-h-12 w-auto object-contain transition-all duration-300 group-hover:scale-105"
-              width={71}
+              width={200}
               height={48}
-              sizes="71px"
+              sizes="200px"
               loading="eager"
               priority={true}
               fetchPriority="high"

@@ -17,7 +17,7 @@ const Career = () => {
       description: "Recognition and rewards for excellence in client care"
     },
     {
-      title: "Free MentalSpace Membership",
+      title: "Free Coping & Healing Membership",
       description: "Access to our platform for your own mental health needs"
     },
     {
@@ -79,15 +79,15 @@ const Career = () => {
 
   const faqs = [
     {
-      question: "What is MentalSpace?",
-      answer: "MentalSpace is an online private practice company offering therapy, life coaching, and relationship coaching with a revolutionary approach to behavioral healthcare."
+      question: "What is Coping & Healing?",
+      answer: "Coping & Healing is an online private practice company offering therapy, life coaching, and relationship coaching with a revolutionary approach to behavioral healthcare."
     },
     {
       question: "How do I request an appointment?",
       answer: "Submit your application through our Join Our Team button, and we'll guide you through our onboarding process."
     },
     {
-      question: "How does MentalSpace protect my privacy?",
+      question: "How does Coping & Healing protect my privacy?",
       answer: "We use HIPAA‑compliant systems and follow strict professional guidelines to protect both therapist and client privacy."
     }
   ];
@@ -106,7 +106,7 @@ const Career = () => {
               Provide mental wellbeing without compromising your schedule
             </p>
             <p className="text-lg mb-8 text-muted-foreground max-w-4xl mx-auto">
-              At MentalSpace, we're revolutionizing behavioral healthcare, creating unique opportunities for therapists. Join us!
+              At Coping & Healing, we're revolutionizing behavioral healthcare, creating unique opportunities for therapists. Join us!
             </p>
             <Button size="lg" className="text-lg px-8 py-6" onClick={() => navigate('/career-application')}>
               Join Our Team

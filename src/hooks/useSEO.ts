@@ -111,35 +111,35 @@ export const useSEO = ({
 // Pre-defined SEO configurations for common pages
 export const SEO_CONFIGS = {
   home: {
-    title: "MentalSpace - Online Therapy & Mental Health Services | Licensed Therapists Available 24/7",
+    title: "Coping & Healing - Online Therapy & Mental Health Services | Licensed Therapists Available 24/7",
     description: "Professional online therapy and mental health services. Connect with licensed therapists anytime, anywhere. Individual therapy, couples counseling, teen therapy, and life coaching. Most insurance accepted.",
     keywords: "online therapy, mental health, licensed therapists, counseling, psychology, depression, anxiety, couples therapy, teen therapy, life coaching",
-    ogTitle: "MentalSpace - Professional Online Therapy Services",
+    ogTitle: "Coping & Healing - Professional Online Therapy Services",
     ogDescription: "Connect with licensed therapists anytime, anywhere. Professional mental health support that fits your schedule."
   },
   onlineTherapy: {
-    title: "Online Therapy Services - Licensed Therapists | MentalSpace",
+    title: "Online Therapy Services - Licensed Therapists | Coping & Healing",
     description: "Convenient online therapy with licensed professionals. Video, phone, or text sessions available. Treat depression, anxiety, trauma, and more. Insurance accepted.",
     keywords: "online therapy, teletherapy, virtual counseling, licensed therapists, depression treatment, anxiety therapy",
     ogTitle: "Online Therapy Services - Professional & Convenient",
     ogDescription: "Get therapy that fits your schedule. Licensed therapists available for video, phone, or text sessions."
   },
   couplesTherapy: {
-    title: "Couples Therapy & Relationship Counseling Online | MentalSpace",
+    title: "Couples Therapy & Relationship Counseling Online | Coping & Healing",
     description: "Professional couples therapy and relationship counseling online. Strengthen your relationship with licensed therapists. Flexible scheduling and insurance accepted.",
     keywords: "couples therapy, relationship counseling, marriage therapy, online couples counseling, relationship problems",
     ogTitle: "Couples Therapy & Relationship Counseling Online",
     ogDescription: "Strengthen your relationship with professional couples therapy. Licensed therapists available online."
   },
   teenTherapy: {
-    title: "Teen Therapy & Adolescent Counseling Services | MentalSpace",
+    title: "Teen Therapy & Adolescent Counseling Services | Coping & Healing",
     description: "Specialized therapy for teenagers aged 13-17. Help your teen navigate challenges with licensed adolescent counselors. Online sessions available.",
     keywords: "teen therapy, adolescent counseling, teenage depression, teen anxiety, youth mental health",
     ogTitle: "Teen Therapy & Adolescent Counseling Services",
     ogDescription: "Specialized therapy for teenagers. Licensed counselors help teens navigate challenges and build resilience."
   },
   lifeCoaching: {
-    title: "Life Coaching Services Online - Personal Development | MentalSpace",
+    title: "Life Coaching Services Online - Personal Development | Coping & Healing",
     description: "Professional life coaching to help you achieve your goals. Career coaching, relationship coaching, and personal development with certified coaches.",
     keywords: "life coaching, personal development, career coaching, relationship coaching, goal setting",
     ogTitle: "Professional Life Coaching Services Online",

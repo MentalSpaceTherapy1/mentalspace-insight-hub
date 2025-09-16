@@ -293,8 +293,8 @@ const SubstanceUseAssessment = () => {
             })}
           >
             {severity === "severe" || (severity === "moderate" && functionalCollapse)
-              ? "Priority scheduling with MentalSpace Therapy"
-              : "Request an appointment with MentalSpace Therapy"
+              ? "Priority scheduling with Coping & Healing"
+              : "Request an appointment with Coping & Healing"
             }
           </Button>
         </div>

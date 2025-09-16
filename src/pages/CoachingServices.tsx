@@ -40,7 +40,7 @@ const CoachingServices = () => {
               Coaching Services
             </h1>
             <p className="text-xl md:text-2xl mb-8 text-muted-foreground max-w-4xl mx-auto">
-              At MentalSpace, we understand that sometimes you need more than therapy. You need guidance, mentorship, and a roadmap to navigate life's challenges. Our coaching services are designed to provide you with the tools and strategies to thrive in various aspects of your life.
+              At Coping & Healing, we understand that sometimes you need more than therapy. You need guidance, mentorship, and a roadmap to navigate life's challenges. Our coaching services are designed to provide you with the tools and strategies to thrive in various aspects of your life.
             </p>
             <Link to="/therapist-matching">
               <Button size="lg" className="text-lg px-8 py-6">
@@ -93,7 +93,7 @@ const CoachingServices = () => {
           <div className="container mx-auto">
             <div className="max-w-4xl mx-auto text-center">
               <blockquote className="text-2xl md:text-3xl font-light text-muted-foreground mb-6 italic">
-                "The coaching services at MentalSpace transformed my life. I've never felt more focused and driven."
+                "The coaching services at Coping & Healing transformed my life. I've never felt more focused and driven."
               </blockquote>
               <cite className="text-lg font-semibold text-primary">— Alex R.</cite>
             </div>

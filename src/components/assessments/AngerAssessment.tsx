@@ -152,7 +152,7 @@ const AngerAssessment = () => {
           "Do one values-consistent action where mild irritation would usually derail you",
           "Re-screen in 4-6 weeks if irritation grows"
         ],
-        followUp: "Consider preventive skills consult with MentalSpace Therapy"
+        followUp: "Consider preventive skills consult with Coping & Healing"
       };
     } else if (score <= 9) {
       return {

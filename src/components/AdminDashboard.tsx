@@ -92,7 +92,7 @@ const AdminDashboard = () => {
               </div>
               <div>
                 <h1 className="text-3xl font-bold text-white">Admin Dashboard</h1>
-                <p className="text-blue-200">MentalSpace Therapy Management Portal</p>
+                <p className="text-blue-200">Coping & Healing Management Portal</p>
               </div>
             </div>
           </div>

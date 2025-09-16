@@ -10,7 +10,7 @@ const Footer = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* About Section */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">MentalSpace</h3>
+            <h3 className="text-lg font-semibold">Coping & Healing</h3>
             <p className="text-sm text-muted-foreground">
               Your Trusted Online Therapy and Life/Business Coach Platform.
             </p>
@@ -179,7 +179,7 @@ const Footer = () => {
           </div>
           
           <p className="text-center text-sm text-muted-foreground">
-            Copyright 2025 | MentalSpace Therapy | All Rights Reserved.
+            Copyright 2025 | Coping & Healing | All Rights Reserved.
           </p>
         </div>
       </div>

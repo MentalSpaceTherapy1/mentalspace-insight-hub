@@ -197,7 +197,7 @@ const ContactUs = () => {
                           onCheckedChange={(checked) => handleInputChange("smsConsent", checked as boolean)}
                         />
                         <Label htmlFor="sms-consent" className="text-sm leading-relaxed">
-                          By checking this box, you agree to receive SMS/Text messages from Coping & Healing Counseling and MentalSpace Therapy. Reply STOP to unsubscribe at any time. Messages and data rates may apply. Message frequency varies.
+                          By checking this box, you agree to receive SMS/Text messages from Coping & Healing Counseling. Reply STOP to unsubscribe at any time. Messages and data rates may apply. Message frequency varies.
                         </Label>
                       </div>
 

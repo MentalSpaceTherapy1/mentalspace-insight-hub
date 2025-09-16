@@ -208,7 +208,7 @@ const AssessmentContact = () => {
                   <h4 className="font-medium text-blue-800 mb-2">Recommended Next Steps:</h4>
                   <p className="text-sm text-blue-700">
                     Based on your results, we recommend connecting with a mental health professional. 
-                    Complete the form below to schedule a consultation with MentalSpace Therapy.
+                    Complete the form below to schedule a consultation with Coping & Healing.
                   </p>
                 </div>
               )}
@@ -451,7 +451,7 @@ const AssessmentContact = () => {
                     <a href="/privacy-policy" className="text-primary hover:underline">
                       Privacy Policy
                     </a>
-                    , and consent to being contacted by MentalSpace Therapy.
+                    , and consent to being contacted by Coping & Healing.
                   </Label>
                 </div>
 

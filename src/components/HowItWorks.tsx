@@ -26,7 +26,7 @@ const HowItWorks = () => {
       <div className="container px-4">
         <div className="mx-auto max-w-3xl text-center mb-16">
           <h2 className="mb-4 text-3xl font-bold text-foreground sm:text-4xl">
-            How MentalSpace Works
+            How Coping & Healing Works
           </h2>
           <p className="text-lg text-muted-foreground">
             Getting started with therapy has never been easier
