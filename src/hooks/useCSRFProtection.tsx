@@ -1,5 +1,5 @@
-import { useState, useEffect, useCallback } from 'react';
-import { SecurityUtils } from '@/utils/encryption';
+import React, { useState, useEffect, useCallback } from 'react';
+import { SecurityUtils } from '@/utils/securityUtils';
 
 interface CSRFState {
   token: string | null;
