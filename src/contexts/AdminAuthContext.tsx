@@ -18,6 +18,8 @@ interface AdminAuthContextType {
   isAdmin: boolean;
   loading: boolean;
   error: string | null;
+  failedAttempts: number;
+  isLocked: boolean;
   signIn: (email: string, password: string) => Promise<void>;
   signOut: () => Promise<void>;
   hasRole: (requiredRole: 'super_admin' | 'admin' | 'content_manager') => boolean;
@@ -39,9 +41,17 @@ export const AdminAuthProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   const [profile, setProfile] = useState<AdminProfile | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [failedAttempts, setFailedAttempts] = useState(0);
+  const [isLocked, setIsLocked] = useState(false);
+  const [sessionTimeout, setSessionTimeout] = useState<NodeJS.Timeout | null>(null);
 
   // Cache to avoid redundant profile checks
   const profileCache = React.useRef<Map<string, AdminProfile | null>>(new Map());
+  
+  // Security constants
+  const MAX_FAILED_ATTEMPTS = 5;
+  const LOCKOUT_DURATION = 15 * 60 * 1000; // 15 minutes
+  const SESSION_TIMEOUT = 30 * 60 * 1000; // 30 minutes
 
   const checkAdminProfile = async (userId: string) => {
     // Check cache first
@@ -74,19 +84,52 @@ export const AdminAuthProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   };
 
   const signIn = async (email: string, password: string) => {
+    // Check if account is locked
+    if (isLocked) {
+      throw new Error('Account is temporarily locked due to too many failed attempts. Please try again later.');
+    }
+
     setLoading(true);
     setError(null);
 
     try {
+      // Input validation
+      if (!email || !password) {
+        throw new Error('Email and password are required');
+      }
+      
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        throw new Error('Please enter a valid email address');
+      }
+
       const { error } = await supabase.auth.signInWithPassword({
         email,
         password,
       });
 
       if (error) {
-        setError(error.message);
+        // Increment failed attempts
+        const newFailedAttempts = failedAttempts + 1;
+        setFailedAttempts(newFailedAttempts);
+        
+        // Lock account after max attempts
+        if (newFailedAttempts >= MAX_FAILED_ATTEMPTS) {
+          setIsLocked(true);
+          setTimeout(() => {
+            setIsLocked(false);
+            setFailedAttempts(0);
+          }, LOCKOUT_DURATION);
+          throw new Error('Account locked due to too many failed attempts. Please try again in 15 minutes.');
+        }
+        
+        setError(`Login failed. ${MAX_FAILED_ATTEMPTS - newFailedAttempts} attempts remaining.`);
         throw error;
       }
+      
+      // Reset failed attempts on successful login
+      setFailedAttempts(0);
+      setIsLocked(false);
+      
     } catch (error: any) {
       setError(error.message);
       throw error;
@@ -97,7 +140,18 @@ export const AdminAuthProvider: React.FC<{ children: React.ReactNode }> = ({ chi
 
   const signOut = async () => {
     try {
+      // Clear session timeout
+      if (sessionTimeout) {
+        clearTimeout(sessionTimeout);
+        setSessionTimeout(null);
+      }
+      
       await supabase.auth.signOut();
+      
+      // Clear security state
+      setFailedAttempts(0);
+      setIsLocked(false);
+      
     } catch (error) {
       console.error('Sign out error:', error);
     }
@@ -138,6 +192,20 @@ export const AdminAuthProvider: React.FC<{ children: React.ReactNode }> = ({ chi
       if (mounted) {
         setProfile(adminProfile);
         setLoading(false);
+        
+        // Set up session timeout for admin sessions
+        if (adminProfile && session) {
+          if (sessionTimeout) {
+            clearTimeout(sessionTimeout);
+          }
+          
+          const timeout = setTimeout(async () => {
+            console.log('Admin session timed out');
+            await signOut();
+          }, SESSION_TIMEOUT);
+          
+          setSessionTimeout(timeout);
+        }
       }
       
       isProcessing = false;
@@ -156,6 +224,9 @@ export const AdminAuthProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     return () => {
       mounted = false;
       subscription.unsubscribe();
+      if (sessionTimeout) {
+        clearTimeout(sessionTimeout);
+      }
     };
   }, []); // Empty dependency array is crucial
 
@@ -178,6 +249,8 @@ export const AdminAuthProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     isAdmin: !!profile,
     loading,
     error,
+    failedAttempts,
+    isLocked,
     signIn,
     signOut,
     hasRole,

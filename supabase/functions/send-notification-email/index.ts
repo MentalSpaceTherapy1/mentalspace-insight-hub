@@ -10,6 +10,7 @@ interface EmailRequest {
   type: 'contact_us' | 'therapist_matching' | 'assessment_contact';
   data: Record<string, any>;
   submissionId: string;
+  internalKey?: string; // Internal validation key
 }
 
 serve(async (req) => {
@@ -25,7 +26,19 @@ serve(async (req) => {
     }
 
     const resend = new Resend(resendApiKey);
-    const { type, data, submissionId }: EmailRequest = await req.json();
+    const { type, data, submissionId, internalKey }: EmailRequest = await req.json();
+    
+    // Security: Validate that this is an internal call
+    const expectedKey = Deno.env.get('INTERNAL_EMAIL_KEY') || 'mental-space-internal-2024';
+    if (internalKey !== expectedKey) {
+      console.log('Invalid internal key for email notification');
+      throw new Error('Unauthorized email notification request');
+    }
+    
+    // Validate input data
+    if (!type || !data || !submissionId) {
+      throw new Error('Missing required email data');
+    }
 
     console.log(`Sending ${type} notification email for submission:`, submissionId);
 

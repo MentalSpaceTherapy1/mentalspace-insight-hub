@@ -14,6 +14,8 @@ interface AssessmentSubmission {
   severity?: string;
   recommendations?: string[];
   additionalInfo?: Record<string, any>;
+  timestamp?: number;
+  honeypot?: string; // Security field - should be empty
 }
 
 serve(async (req) => {
@@ -28,6 +30,37 @@ serve(async (req) => {
     );
 
     const assessmentData: AssessmentSubmission = await req.json();
+    
+    // Security validations
+    
+    // 1. Honeypot field check
+    if (assessmentData.honeypot && assessmentData.honeypot.trim() !== '') {
+      console.log('Honeypot field detected in assessment - likely bot');
+      return new Response(
+        JSON.stringify({ success: true, message: 'Assessment saved successfully' }),
+        { headers: { ...corsHeaders, 'Content-Type': 'application/json' }, status: 200 }
+      );
+    }
+    
+    // 2. Validate session ID format (UUID-like)
+    const sessionIdPattern = /^[a-zA-Z0-9-_]{8,}$/;
+    if (!sessionIdPattern.test(assessmentData.sessionId)) {
+      throw new Error('Invalid session ID format');
+    }
+    
+    // 3. Validate assessment data
+    if (!assessmentData.assessmentType || !assessmentData.answers || typeof assessmentData.answers !== 'object') {
+      throw new Error('Invalid assessment data');
+    }
+    
+    // 4. Timestamp validation
+    if (assessmentData.timestamp) {
+      const submissionTime = Date.now() - assessmentData.timestamp;
+      if (submissionTime < 1000) { // Less than 1 second
+        console.log('Assessment submission too fast - likely automated');
+        throw new Error('Please take your time with the assessment');
+      }
+    }
     
     // Get client IP for analytics
     const clientIP = req.headers.get('x-forwarded-for') || 
