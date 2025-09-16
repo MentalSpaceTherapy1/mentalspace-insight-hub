@@ -1,6 +1,6 @@
 import { HTMLAttributes } from 'react';
 
-interface ResponsiveImageProps extends Omit<HTMLAttributes<HTMLImageElement>, 'fetchpriority'> {
+interface ResponsiveImageProps extends HTMLAttributes<HTMLImageElement> {
   src: string;
   alt: string;
   width?: number;
@@ -23,11 +23,6 @@ const ResponsiveImage = ({
   fetchPriority = 'auto',
   ...props 
 }: ResponsiveImageProps) => {
-  const imgProps = {
-    ...props,
-    ...(fetchPriority && { fetchpriority: fetchPriority })
-  } as any;
-
   return (
     <img
       src={src}
@@ -38,7 +33,8 @@ const ResponsiveImage = ({
       sizes={sizes}
       loading={priority ? 'eager' : loading}
       decoding="async"
-      {...imgProps}
+      fetchPriority={fetchPriority}
+      {...props}
       style={{
         maxWidth: '100%',
         height: 'auto',

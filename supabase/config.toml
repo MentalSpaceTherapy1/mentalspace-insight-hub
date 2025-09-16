@@ -11,6 +11,3 @@ verify_jwt = false
 
 [functions.track-analytics]
 verify_jwt = false
-
-[functions.csp-report]
-verify_jwt = false
