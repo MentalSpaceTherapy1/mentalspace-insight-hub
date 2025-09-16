@@ -2,15 +2,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { MapPin, Phone, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
-
 const Footer = () => {
-  return (
-    <footer className="bg-muted/50 border-t">
+  return <footer className="bg-muted/50 border-t">
       <div className="container mx-auto px-4 py-16">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* About Section */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Coping & Healing</h3>
+            <h3 className="text-lg font-semibold py-0 my-[2px] px-[6px] mx-0">Coping & Healing Counseling</h3>
             <p className="text-sm text-muted-foreground">
               Your Trusted Online Therapy and Life/Business Coach Platform.
             </p>
@@ -108,11 +106,7 @@ const Footer = () => {
                 Subscribe for mental health tips and insights
               </p>
               <div className="flex space-x-2">
-                <Input 
-                  type="email" 
-                  placeholder="Enter your email" 
-                  className="text-sm"
-                />
+                <Input type="email" placeholder="Enter your email" className="text-sm" />
                 <Button size="sm">Subscribe</Button>
               </div>
             </div>
@@ -183,8 +177,6 @@ const Footer = () => {
           </p>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
