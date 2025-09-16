@@ -1,6 +1,6 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.56.0";
-import { ServerEncryption, RateLimiter, InputValidator } from '../_shared/security.ts';
+import { ServerEncryption, RateLimiter, InputValidator, CSRFProtection } from '../_shared/security.ts';
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -17,6 +17,7 @@ interface AssessmentSubmission {
   additionalInfo?: Record<string, any>;
   timestamp?: number;
   honeypot?: string; // Security field - should be empty
+  csrfToken?: string; // CSRF protection token
 }
 
 serve(async (req) => {
@@ -43,7 +44,23 @@ serve(async (req) => {
       );
     }
     
-    // 2. Validate session ID format (more strict)
+    // 2. CSRF token validation (double-submit cookie)
+    const cookieHeader = req.headers.get('cookie') || '';
+    const cookieToken = cookieHeader
+      .split(';')
+      .map((s) => s.trim())
+      .find((s) => s.startsWith('csrf_token='))
+      ?.split('=')[1];
+
+    if (!assessmentData.csrfToken || !cookieToken || !CSRFProtection.validateToken(assessmentData.csrfToken, cookieToken)) {
+      console.log('CSRF validation failed');
+      return new Response(
+        JSON.stringify({ success: false, error: 'Invalid CSRF token' }),
+        { headers: { ...corsHeaders, 'Content-Type': 'application/json' }, status: 403 }
+      );
+    }
+    
+    // 3. Validate session ID format (more strict)
     const sessionIdPattern = /^[a-zA-Z0-9-_]{16,64}$/;
     if (!sessionIdPattern.test(assessmentData.sessionId)) {
       throw new Error('Invalid session ID format');

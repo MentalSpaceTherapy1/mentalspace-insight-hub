@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react';
 import { supabase } from '@/integrations/supabase/client';
+import { useCSRFProtection } from './useCSRFProtection';
 
 interface SecureAssessmentData {
   sessionId: string;
@@ -23,6 +24,8 @@ export const useSecureAssessmentSubmission = () => {
     isSuccess: false,
     error: null,
   });
+
+  const { getTokenForSubmission } = useCSRFProtection();
 
   const saveSecureAssessment = useCallback(async (assessmentData: SecureAssessmentData, startTime: number) => {
     setState({ isSubmitting: true, isSuccess: false, error: null });
@@ -54,11 +57,14 @@ export const useSecureAssessmentSubmission = () => {
         return clean;
       }, {} as Record<string, any>);
 
+      const csrfToken = getTokenForSubmission();
+
       const secureAssessmentData = {
         ...assessmentData,
         answers: sanitizedAnswers,
         timestamp: startTime,
         honeypot: '', // Ensure honeypot is empty for legitimate submissions
+        csrfToken,
       };
 
       // Validate timing (minimum 1 second for assessment completion)

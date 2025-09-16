@@ -15,6 +15,17 @@ export const useCSRFProtection = () => {
     isValid: false
   });
 
+  // Ensure CSRF cookie is set for double-submit protection
+  const setCSRFCookie = useCallback((token: string) => {
+    try {
+      const isSecure = typeof window !== 'undefined' && window.location.protocol === 'https:';
+      const maxAge = 60 * 60; // 1 hour
+      document.cookie = `csrf_token=${token}; Path=/; SameSite=Lax; ${isSecure ? 'Secure; ' : ''}Max-Age=${maxAge}`;
+    } catch (e) {
+      // ignore
+    }
+  }, []);
+
   // Generate CSRF token on component mount
   useEffect(() => {
     const generateToken = () => {
@@ -24,6 +35,8 @@ export const useCSRFProtection = () => {
       // Store token with timestamp in sessionStorage
       sessionStorage.setItem('csrf_token', token);
       sessionStorage.setItem('csrf_timestamp', timestamp.toString());
+      // Also set cookie for double-submit protection
+      setCSRFCookie(token);
       
       setCSRFState({
         token,
@@ -39,6 +52,8 @@ export const useCSRFProtection = () => {
       const tokenAge = Date.now() - parseInt(timestamp);
       // Token is valid for 1 hour
       if (tokenAge < 3600000) {
+        // Ensure cookie is set for double-submit protection
+        setCSRFCookie(existingToken);
         setCSRFState({
           token: existingToken,
           isValid: true
@@ -75,12 +90,14 @@ export const useCSRFProtection = () => {
     
     sessionStorage.setItem('csrf_token', token);
     sessionStorage.setItem('csrf_timestamp', timestamp.toString());
+    // Also set cookie for double-submit protection
+    setCSRFCookie(token);
     
     setCSRFState({
       token,
       isValid: true
     });
-  }, []);
+  }, [setCSRFCookie]);
 
   // Get token for form submission
   const getTokenForSubmission = useCallback(() => {

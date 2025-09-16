@@ -14,12 +14,12 @@ export const useSecurityHeaders = () => {
 
     // Set up Content Security Policy via meta tag with strict policies
     const csp = document.createElement('meta');
-    csp.setAttribute('http-equiv', 'Content-Security-Policy');
+    csp.setAttribute('http-equiv', 'Content-Security-Policy-Report-Only');
     
     // Define strict CSP policy without unsafe-inline
     const cspContent = [
       "default-src 'self'",
-      `script-src 'self' 'nonce-${nonce}' https://js.stripe.com https://checkout.stripe.com`,
+      `script-src 'self' https://js.stripe.com https://checkout.stripe.com`,
       "style-src 'self' https://fonts.googleapis.com",
       "font-src 'self' https://fonts.gstatic.com",
       "img-src 'self' data: https: blob:",
@@ -30,7 +30,8 @@ export const useSecurityHeaders = () => {
       "form-action 'self'",
       "frame-ancestors 'none'",
       "upgrade-insecure-requests",
-      "block-all-mixed-content"
+      "block-all-mixed-content",
+      "report-uri https://dxodauuojrpbbwldsbdj.supabase.co/functions/v1/csp-report"
     ].join('; ');
     
     csp.setAttribute('content', cspContent);

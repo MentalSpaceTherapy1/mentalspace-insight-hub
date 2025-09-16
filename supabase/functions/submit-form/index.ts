@@ -39,10 +39,20 @@ serve(async (req) => {
       );
     }
     
-    // 2. CSRF token validation
-    if (!csrfToken) {
-      console.log('Missing CSRF token');
-      throw new Error('Security validation failed');
+    // 2. CSRF token validation (double-submit cookie)
+    const cookieHeader = req.headers.get('cookie') || '';
+    const cookieToken = cookieHeader
+      .split(';')
+      .map((s) => s.trim())
+      .find((s) => s.startsWith('csrf_token='))
+      ?.split('=')[1];
+
+    if (!csrfToken || !cookieToken || !CSRFProtection.validateToken(csrfToken, cookieToken)) {
+      console.log('CSRF validation failed');
+      return new Response(
+        JSON.stringify({ success: false, error: 'Invalid CSRF token' }),
+        { headers: { ...corsHeaders, 'Content-Type': 'application/json' }, status: 403 }
+      );
     }
     
     // 3. Timestamp validation - check for too fast submissions (< 3 seconds for enhanced security)
