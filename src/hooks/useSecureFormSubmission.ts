@@ -1,5 +1,7 @@
 import { useState, useCallback } from 'react';
 import { supabase } from '@/integrations/supabase/client';
+import { useCSRFProtection } from './useCSRFProtection';
+import { SecurityUtils } from '@/utils/securityUtils';
 
 export type SecureFormType = 'therapist_matching' | 'contact_us' | 'career_application' | 'assessment_contact';
 
@@ -15,38 +17,48 @@ export const useSecureFormSubmission = () => {
     isSuccess: false,
     error: null,
   });
+  
+  const { getTokenForSubmission } = useCSRFProtection();
 
   const submitSecureForm = useCallback(async (formType: SecureFormType, formData: Record<string, any>, startTime: number) => {
     setState({ isSubmitting: true, isSuccess: false, error: null });
 
     try {
-      // Security enhancements
+      // Enhanced security enhancements
+      const sanitizedFormData = Object.keys(formData).reduce((clean, key) => {
+        if (typeof formData[key] === 'string') {
+          clean[key] = SecurityUtils.sanitizeInput(formData[key]);
+        } else {
+          clean[key] = formData[key];
+        }
+        return clean;
+      }, {} as Record<string, any>);
+
+      // Get CSRF token
+      const csrfToken = getTokenForSubmission();
+      if (!csrfToken) {
+        throw new Error('Security validation failed - please refresh the page');
+      }
+
       const secureFormData = {
         formType,
-        formData: {
-          ...formData,
-          // Remove any potential XSS content
-          ...Object.keys(formData).reduce((clean, key) => {
-            if (typeof formData[key] === 'string') {
-              clean[key] = formData[key]
-                .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '') // Remove script tags
-                .replace(/javascript:/gi, '') // Remove javascript: urls
-                .replace(/on\w+\s*=/gi, '') // Remove event handlers
-                .trim();
-            } else {
-              clean[key] = formData[key];
-            }
-            return clean;
-          }, {} as Record<string, any>)
-        },
+        formData: sanitizedFormData,
         timestamp: startTime,
         honeypot: '', // Ensure honeypot is empty for legitimate submissions
+        csrfToken, // Include CSRF token
       };
 
-      // Validate submission timing (minimum 2 seconds to fill form)
+      // Enhanced timing validation (minimum 3 seconds to fill form)
       const submissionTime = Date.now() - startTime;
-      if (submissionTime < 2000) {
+      if (submissionTime < 3000) {
         throw new Error('Please take your time filling out the form completely.');
+      }
+
+      // Check for suspicious behavior
+      const behaviorCheck = SecurityUtils.detectSuspiciousBehavior();
+      if (behaviorCheck.isSuspicious) {
+        console.warn('Suspicious behavior detected:', behaviorCheck.reasons);
+        // Still allow submission but log it
       }
 
       // Add timeout to prevent hanging

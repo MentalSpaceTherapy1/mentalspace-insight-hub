@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.56.0";
+import { ServerEncryption, CSRFProtection, RateLimiter, InputValidator } from '../_shared/security.ts';
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -11,6 +12,7 @@ interface FormSubmission {
   formData: Record<string, any>;
   timestamp?: number;
   honeypot?: string; // Security field - should be empty
+  csrfToken?: string; // CSRF protection token
 }
 
 serve(async (req) => {
@@ -24,9 +26,9 @@ serve(async (req) => {
       Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
     );
 
-    const { formType, formData, timestamp, honeypot }: FormSubmission = await req.json();
+    const { formType, formData, timestamp, honeypot, csrfToken }: FormSubmission = await req.json();
     
-    // Security validations
+    // Enhanced Security validations
     
     // 1. Honeypot field check - if filled, likely a bot
     if (honeypot && honeypot.trim() !== '') {
@@ -37,64 +39,121 @@ serve(async (req) => {
       );
     }
     
-    // 2. Timestamp validation - check for too fast submissions (< 2 seconds)
+    // 2. CSRF token validation
+    if (!csrfToken) {
+      console.log('Missing CSRF token');
+      throw new Error('Security validation failed');
+    }
+    
+    // 3. Timestamp validation - check for too fast submissions (< 3 seconds for enhanced security)
     if (timestamp) {
       const submissionTime = Date.now() - timestamp;
-      if (submissionTime < 2000) { // Less than 2 seconds
+      if (submissionTime < 3000) { // Increased to 3 seconds
         console.log('Submission too fast - likely bot:', submissionTime + 'ms');
         throw new Error('Please take your time filling out the form');
       }
     }
     
-    // 3. Basic data validation
+    // 4. Basic data validation
     if (!formType || !formData || typeof formData !== 'object') {
       throw new Error('Invalid form data');
     }
     
-    // 4. Validate required fields based on form type
-    const validateRequiredFields = (type: string, data: any) => {
-      switch (type) {
-        case 'contact_us':
-          if (!data.name || !data.email) {
-            throw new Error('Name and email are required');
-          }
-          break;
-        case 'therapist_matching':
-          if (!data.firstName || !data.lastName || !data.email) {
-            throw new Error('First name, last name, and email are required');
-          }
-          break;
-        case 'assessment_contact':
-          if (!data.name || !data.email) {
-            throw new Error('Name and email are required');
-          }
-          break;
-      }
-    };
-    
-    validateRequiredFields(formType, formData);
-    
-    // Get client IP and user agent for analytics - handle multiple IPs by taking the first one
+    // 5. Get client IP for rate limiting
     const forwardedFor = req.headers.get('x-forwarded-for');
     const realIP = req.headers.get('x-real-ip');
     let clientIP = 'unknown';
     
     if (forwardedFor) {
-      // Take the first IP from comma-separated list
       clientIP = forwardedFor.split(',')[0].trim();
     } else if (realIP) {
       clientIP = realIP.trim();
     }
+    
+    // 6. Check rate limits
+    const rateLimitResult = await RateLimiter.checkFormSubmissionLimit(supabase, clientIP, formType);
+    if (!rateLimitResult.allowed) {
+      console.log(`Rate limit exceeded for IP ${clientIP}, retry after ${rateLimitResult.retryAfter}s`);
+      return new Response(
+        JSON.stringify({ 
+          success: false, 
+          error: 'Too many submissions. Please try again later.',
+          retryAfter: rateLimitResult.retryAfter 
+        }),
+        { 
+          headers: { 
+            ...corsHeaders, 
+            'Content-Type': 'application/json',
+            'Retry-After': rateLimitResult.retryAfter?.toString() || '3600'
+          }, 
+          status: 429 
+        }
+      );
+    }
+    
+    // 7. Validate and sanitize required fields based on form type
+    const validateAndSanitizeFields = (type: string, data: any) => {
+      // Sanitize all string fields
+      const sanitizedData = { ...data };
+      Object.keys(sanitizedData).forEach(key => {
+        if (typeof sanitizedData[key] === 'string') {
+          sanitizedData[key] = InputValidator.sanitizeString(sanitizedData[key]);
+          
+          // Check for malicious content
+          if (InputValidator.containsMaliciousContent(sanitizedData[key])) {
+            throw new Error('Invalid content detected in form submission');
+          }
+        }
+      });
+      
+      // Validate required fields and formats
+      switch (type) {
+        case 'contact_us':
+          if (!sanitizedData.name || !sanitizedData.email) {
+            throw new Error('Name and email are required');
+          }
+          if (!InputValidator.isValidEmail(sanitizedData.email)) {
+            throw new Error('Invalid email format');
+          }
+          break;
+        case 'therapist_matching':
+          if (!sanitizedData.firstName || !sanitizedData.lastName || !sanitizedData.email) {
+            throw new Error('First name, last name, and email are required');
+          }
+          if (!InputValidator.isValidEmail(sanitizedData.email)) {
+            throw new Error('Invalid email format');
+          }
+          if (sanitizedData.phone && !InputValidator.isValidPhone(sanitizedData.phone)) {
+            throw new Error('Invalid phone format');
+          }
+          break;
+        case 'assessment_contact':
+          if (!sanitizedData.name || !sanitizedData.email) {
+            throw new Error('Name and email are required');
+          }
+          if (!InputValidator.isValidEmail(sanitizedData.email)) {
+            throw new Error('Invalid email format');
+          }
+          break;
+      }
+      
+      return sanitizedData;
+    };
+    
+    const sanitizedFormData = validateAndSanitizeFields(formType, formData);
     const userAgent = req.headers.get('user-agent') || 'unknown';
+    
+    // 8. Encrypt sensitive fields before database storage
+    const encryptedFormData = await ServerEncryption.encryptSensitiveFields(sanitizedFormData);
 
-    console.log(`Processing ${formType} form submission:`, formData);
+    console.log(`Processing ${formType} form submission with enhanced security`);
 
-    // Insert form submission into database
+    // Insert form submission into database with encrypted sensitive data
     const { data: submission, error } = await supabase
       .from('form_submissions')
       .insert({
         form_type: formType,
-        form_data: formData,
+        form_data: encryptedFormData,
         ip_address: clientIP,
         user_agent: userAgent,
       })
@@ -127,7 +186,7 @@ serve(async (req) => {
         emailResponse = await supabase.functions.invoke('send-notification-email', {
           body: {
             type: formType,
-            data: formData,
+            data: sanitizedFormData, // Use sanitized but unencrypted data for email
             submissionId: submission.id,
             internalKey: 'mental-space-internal-2024'
           }

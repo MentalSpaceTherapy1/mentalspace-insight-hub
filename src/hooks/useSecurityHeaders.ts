@@ -1,23 +1,26 @@
 import { useEffect } from 'react';
-import { CSPUtils } from '@/utils/encryption';
+import { CSPUtils } from '@/utils/securityUtils';
 
 /**
  * Hook to apply security headers and CSP policies
  */
 export const useSecurityHeaders = () => {
   useEffect(() => {
+    // Generate a nonce for inline scripts
+    const nonce = CSPUtils.generateScriptNonce();
+    
     // Apply security headers
     CSPUtils.applySecurityHeaders();
 
-    // Set up Content Security Policy via meta tag
+    // Set up Content Security Policy via meta tag with strict policies
     const csp = document.createElement('meta');
     csp.setAttribute('http-equiv', 'Content-Security-Policy');
     
-    // Define CSP policy - restrictive but allowing necessary resources
+    // Define strict CSP policy without unsafe-inline
     const cspContent = [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-inline' https://js.stripe.com https://checkout.stripe.com",
-      "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+      `script-src 'self' 'nonce-${nonce}' https://js.stripe.com https://checkout.stripe.com`,
+      "style-src 'self' https://fonts.googleapis.com",
       "font-src 'self' https://fonts.gstatic.com",
       "img-src 'self' data: https: blob:",
       "connect-src 'self' https://dxodauuojrpbbwldsbdj.supabase.co https://api.stripe.com",
@@ -26,11 +29,15 @@ export const useSecurityHeaders = () => {
       "base-uri 'self'",
       "form-action 'self'",
       "frame-ancestors 'none'",
-      "upgrade-insecure-requests"
+      "upgrade-insecure-requests",
+      "block-all-mixed-content"
     ].join('; ');
     
     csp.setAttribute('content', cspContent);
     document.head.appendChild(csp);
+
+    // Store nonce for use by legitimate inline scripts
+    (window as any).__CSP_NONCE__ = nonce;
 
     // Add additional security configurations
     const permissionsPolicyMeta = document.createElement('meta');
