@@ -122,22 +122,37 @@ async function prerenderRoutes() {
       const validation = validateSEOContent(html, route);
       logSEOResults(route, validation);
       
-      // Only generate non-root route files (root is handled by build)
+      // Generate static files for better hosting compatibility
       if (route !== '/') {
+        // Create both /route.html and /route/index.html for maximum compatibility
         const routePath = route;
-        const filePath = path.join(distDir, routePath + '.html');
-        const dirPath = path.dirname(filePath);
         
-        if (!fs.existsSync(dirPath)) {
-          fs.mkdirSync(dirPath, { recursive: true });
+        // Create /route.html (legacy format)
+        const legacyFilePath = path.join(distDir, routePath + '.html');
+        const legacyDirPath = path.dirname(legacyFilePath);
+        
+        if (!fs.existsSync(legacyDirPath)) {
+          fs.mkdirSync(legacyDirPath, { recursive: true });
         }
         
-        fs.writeFileSync(filePath, html);
-        console.log(`📄 Saved: ${filePath}`);
+        fs.writeFileSync(legacyFilePath, html);
         
-        // Verify file was written correctly
-        if (fs.existsSync(filePath)) {
-          const fileSize = fs.statSync(filePath).size;
+        // Create /route/index.html (modern static hosting format)
+        const modernDirPath = path.join(distDir, routePath);
+        const modernFilePath = path.join(modernDirPath, 'index.html');
+        
+        if (!fs.existsSync(modernDirPath)) {
+          fs.mkdirSync(modernDirPath, { recursive: true });
+        }
+        
+        fs.writeFileSync(modernFilePath, html);
+        console.log(`📄 Saved: ${legacyFilePath} & ${modernFilePath}`);
+        
+        // Verify files were written correctly
+        const legacyExists = fs.existsSync(legacyFilePath);
+        const modernExists = fs.existsSync(modernFilePath);
+        if (legacyExists && modernExists) {
+          const fileSize = fs.statSync(modernFilePath).size;
           console.log(`✅ Verified: ${route} (${Math.round(fileSize/1024)}KB)`);
         }
       } else {
@@ -162,7 +177,16 @@ async function prerenderRoutes() {
   
   for (const route of routes) {
     totalRoutes++;
-    const filePath = route === '/' ? path.join(distDir, 'index.html') : path.join(distDir, route + '.html');
+    let filePath;
+    
+    if (route === '/') {
+      filePath = path.join(distDir, 'index.html');
+    } else {
+      // Check modern format first, fallback to legacy
+      const modernPath = path.join(distDir, route, 'index.html');
+      const legacyPath = path.join(distDir, route + '.html');
+      filePath = fs.existsSync(modernPath) ? modernPath : legacyPath;
+    }
     
     if (fs.existsSync(filePath)) {
       const html = fs.readFileSync(filePath, 'utf-8');

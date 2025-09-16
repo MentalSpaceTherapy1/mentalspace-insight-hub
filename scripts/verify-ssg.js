@@ -70,12 +70,24 @@ let criticalIssues = [];
 
 routes.forEach(route => {
   totalRoutes++;
-  const filePath = route === '/' ? path.join(distDir, 'index.html') : path.join(distDir, route + '.html');
+  let filePath;
   
-  if (!fs.existsSync(filePath)) {
-    console.log(`❌ ${route}: File missing`);
-    criticalIssues.push(`Missing: ${route}`);
-    return;
+  if (route === '/') {
+    filePath = path.join(distDir, 'index.html');
+  } else {
+    // Check both modern (/route/index.html) and legacy (/route.html) formats
+    const modernPath = path.join(distDir, route, 'index.html');
+    const legacyPath = path.join(distDir, route + '.html');
+    
+    if (fs.existsSync(modernPath)) {
+      filePath = modernPath;
+    } else if (fs.existsSync(legacyPath)) {
+      filePath = legacyPath;
+    } else {
+      console.log(`❌ ${route}: File missing (checked both ${modernPath} and ${legacyPath})`);
+      criticalIssues.push(`Missing: ${route}`);
+      return;
+    }
   }
   
   const content = fs.readFileSync(filePath, 'utf-8');
