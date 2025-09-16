@@ -23,7 +23,7 @@ const Header = () => {
           <div className="relative">
             <ResponsiveImage
               src="/src/assets/chc-logo.png" 
-              alt="Coping & Healing - Professional Online Therapy and Mental Health Services" 
+              alt="Coping and Healing Counseling - Professional Online Therapy and Mental Health Services" 
               className="max-h-12 w-auto object-contain transition-all duration-300 group-hover:scale-105"
               width={200}
               height={48}
