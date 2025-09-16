@@ -12,8 +12,10 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { useToast } from "@/hooks/use-toast";
-import { useFormSubmission } from "@/hooks/useFormSubmission";
+import { useSecureFormSubmission } from "@/hooks/useSecureFormSubmission";
 import { useAnalytics } from "@/hooks/useAnalytics";
+import { useSecurityContext } from "@/components/SecurityProvider";
+import { SecurityHoneypot } from "@/components/SecurityHoneypot";
 import { cn } from "@/lib/utils";
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -21,10 +23,13 @@ import Footer from '@/components/Footer';
 const TherapistMatching = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
-  const { submitForm, isSubmitting, isSuccess, error } = useFormSubmission();
+  const { submitSecureForm, isSubmitting, isSuccess, error } = useSecureFormSubmission();
   const { trackFormStart } = useAnalytics();
+  const { encryptSensitiveFields, generateSessionId } = useSecurityContext();
   
   const [currentStep, setCurrentStep] = useState(1);
+  const [honeypot, setHoneypot] = useState('');
+  const [formStartTime] = useState(Date.now());
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -106,36 +111,55 @@ const TherapistMatching = () => {
       return;
     }
 
-    // Prepare form data for submission
-    const submissionData = {
-      firstName: formData.firstName,
-      lastName: formData.lastName,
-      dateOfBirth: formData.dateOfBirth?.toISOString(),
-      gender: formData.gender,
-      email: formData.email,
-      phone: formData.phone,
-      state: formData.state,
-      hasInsurance: formData.hasInsurance,
-      insuranceName: formData.hasInsurance === 'yes' ? formData.insuranceName : null,
-      customInsurance: formData.insuranceName === 'Other' ? formData.customInsurance : null,
-      timeline: formData.timeline,
-      termsAccepted: formData.termsAccepted,
-      submissionDate: new Date().toISOString()
-    };
+    // Security check - honeypot should be empty
+    if (honeypot.trim() !== '') {
+      console.warn('Honeypot field was filled, potential bot detected');
+      return;
+    }
 
-    const result = await submitForm('therapist_matching', submissionData);
-    
-    if (result.success) {
-      toast({
-        title: "Request Submitted",
-        description: "Thank you for your request. A MentalSpace Therapy coordinator will contact you soon."
-      });
-      navigate("/thank-you");
-    } else {
+    try {
+      // Prepare form data for submission
+      const submissionData = {
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        dateOfBirth: formData.dateOfBirth?.toISOString(),
+        gender: formData.gender,
+        email: formData.email,
+        phone: formData.phone,
+        state: formData.state,
+        hasInsurance: formData.hasInsurance,
+        insuranceName: formData.hasInsurance === 'yes' ? formData.insuranceName : null,
+        customInsurance: formData.insuranceName === 'Other' ? formData.customInsurance : null,
+        timeline: formData.timeline,
+        termsAccepted: formData.termsAccepted,
+        submissionDate: new Date().toISOString(),
+        sessionId: generateSessionId()
+      };
+
+      // Encrypt sensitive fields before submission
+      const encryptedData = await encryptSensitiveFields(submissionData);
+
+      const result = await submitSecureForm('therapist_matching', encryptedData, formStartTime);
+      
+      if (result.success) {
+        toast({
+          title: "Request Submitted Securely",
+          description: "Thank you for your request. A MentalSpace Therapy coordinator will contact you soon."
+        });
+        navigate("/thank-you");
+      } else {
+        toast({
+          variant: "destructive",
+          title: "Submission Failed",
+          description: result.error || "There was an error submitting your request. Please try again."
+        });
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
       toast({
         variant: "destructive",
-        title: "Submission Failed",
-        description: result.error || "There was an error submitting your request. Please try again."
+        title: "Security Error",
+        description: "There was a security error processing your request. Please refresh and try again."
       });
     }
   };
@@ -516,6 +540,7 @@ const TherapistMatching = () => {
               </p>
             </CardHeader>
             <CardContent className="space-y-8 px-6 md:px-8 pb-8">
+              <SecurityHoneypot value={honeypot} onChange={setHoneypot} />
               <div className="min-h-[400px] flex items-center justify-center">
                 {renderStep()}
               </div>
