@@ -30,7 +30,7 @@ serve(async (req) => {
     console.log(`Sending ${type} notification email for submission:`, submissionId);
 
     // Admin email - UPDATE THIS TO YOUR ACTUAL ADMIN EMAIL
-    const adminEmail = 'admin@chctherapy.com';
+    const adminEmail = 'support@chctherapy.com';
     
     let emailTemplate, subject;
 
