@@ -573,6 +573,10 @@ export type Database = {
         }
         Returns: string
       }
+      validate_admin_operation: {
+        Args: { operation_type: string }
+        Returns: boolean
+      }
     }
     Enums: {
       admin_role: "super_admin" | "admin" | "content_manager"
