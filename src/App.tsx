@@ -71,6 +71,12 @@ import SubstanceUseDisorder from "./pages/conditions/SubstanceUseDisorder";
 import Anorexia from "./pages/conditions/Anorexia";
 import CoDependency from "./pages/conditions/CoDependency";
 
+// Georgia-specific therapy pages
+import AnxietyTherapyGA from "./pages/conditions/AnxietyTherapyGA";
+import DepressionTherapyGA from "./pages/conditions/DepressionTherapyGA";
+import PTSDTherapyGA from "./pages/conditions/PTSDTherapyGA";
+import ADHDTherapyGA from "./pages/conditions/ADHDTherapyGA";
+
 const queryClient = new QueryClient();
 
 const App = () => {
@@ -152,6 +158,13 @@ const App = () => {
                 <Route path="/mental-health-library/substance-use-disorder" element={<SubstanceUseDisorder />} />
                 <Route path="/mental-health-library/anorexia" element={<Anorexia />} />
                 <Route path="/mental-health-library/codependency" element={<CoDependency />} />
+                
+                {/* Georgia-specific therapy service pages */}
+                <Route path="/anxiety-therapy-georgia" element={<AnxietyTherapyGA />} />
+                <Route path="/depression-therapy-georgia" element={<DepressionTherapyGA />} />
+                <Route path="/ptsd-therapy-georgia" element={<PTSDTherapyGA />} />
+                <Route path="/adhd-therapy-georgia" element={<ADHDTherapyGA />} />
+                
                 <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                 <Route path="/terms-conditions" element={<TermsAndConditions />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
