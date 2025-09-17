@@ -32,6 +32,15 @@ import MentalHealthTests from "./pages/MentalHealthTests";
 import AssessmentContact from "./pages/AssessmentContact";
 import ThankYou from "./pages/ThankYou";
 import Blog from "./pages/Blog";
+
+// Blog Article Pages
+import UnderstandingAnxiety from "./pages/blog/UnderstandingAnxiety";
+import DepressionAdults from "./pages/blog/DepressionAdults";
+import BenefitsOnlineTherapy from "./pages/blog/BenefitsOnlineTherapy";
+import CouplesTherapyCommunication from "./pages/blog/CouplesTherapyCommunication";
+import TeenMentalHealth from "./pages/blog/TeenMentalHealth";
+import PTSDRecovery from "./pages/blog/PTSDRecovery";
+
 import Depression from "./pages/conditions/Depression";
 import Anxiety from "./pages/conditions/Anxiety";
 import ADHD from "./pages/conditions/ADHD";
@@ -94,6 +103,15 @@ const App = () => {
                 <Route path="/assessment-contact" element={<AssessmentContact />} />
                 <Route path="/thank-you" element={<ThankYou />} />
                 <Route path="/blog" element={<Blog />} />
+                
+                {/* Blog Article Pages */}
+                <Route path="/blog/understanding-anxiety" element={<UnderstandingAnxiety />} />
+                <Route path="/blog/depression-adults" element={<DepressionAdults />} />
+                <Route path="/blog/benefits-online-therapy" element={<BenefitsOnlineTherapy />} />
+                <Route path="/blog/couples-therapy-communication" element={<CouplesTherapyCommunication />} />
+                <Route path="/blog/teen-mental-health" element={<TeenMentalHealth />} />
+                <Route path="/blog/ptsd-recovery" element={<PTSDRecovery />} />
+                
                 <Route path="/mental-health-library/depression" element={<Depression />} />
                 <Route path="/mental-health-library/anxiety" element={<Anxiety />} />
                 <Route path="/mental-health-library/adhd" element={<ADHD />} />

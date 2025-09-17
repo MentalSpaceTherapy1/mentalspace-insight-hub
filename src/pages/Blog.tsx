@@ -143,7 +143,9 @@ const Blog = () => {
                   </div>
                 </div>
                 <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors">
-                  {post.title}
+                  <Link to={`/blog/${post.slug}`} className="hover:underline">
+                    {post.title}
+                  </Link>
                 </CardTitle>
               </CardHeader>
               <CardContent>
