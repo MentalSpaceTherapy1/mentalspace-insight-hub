@@ -5,6 +5,15 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SEOHead from "@/components/SEOHead";
+
+// Import images
+import anxietyPersonImage from "@/assets/anxiety-person.jpg";
+import depressionPersonImage from "@/assets/depression-person.jpg";
+import onlineTherapyHeroImage from "@/assets/online-therapy-hero.jpg";
+import couplesTherapyHeroImage from "@/assets/couples-therapy-hero.jpg";
+import teenTherapyHeroImage from "@/assets/teen-therapy-hero.jpg";
+import ptsdPersonImage from "@/assets/ptsd-person.jpg";
 
 const Blog = () => {
   const blogPosts = [
@@ -15,7 +24,8 @@ const Blog = () => {
       category: "Anxiety",
       date: "December 20, 2024",
       readTime: "8 min read",
-      image: "/src/assets/anxiety-person.jpg"
+      image: anxietyPersonImage,
+      slug: "understanding-anxiety"
     },
     {
       id: 2,
@@ -24,7 +34,8 @@ const Blog = () => {
       category: "Depression",
       date: "December 18, 2024",
       readTime: "6 min read",
-      image: "/src/assets/depression-person.jpg"
+      image: depressionPersonImage,
+      slug: "depression-adults"
     },
     {
       id: 3,
@@ -33,7 +44,8 @@ const Blog = () => {
       category: "Therapy",
       date: "December 15, 2024",
       readTime: "5 min read",
-      image: "/src/assets/online-therapy-hero.jpg"
+      image: onlineTherapyHeroImage,
+      slug: "benefits-online-therapy"
     },
     {
       id: 4,
@@ -42,7 +54,8 @@ const Blog = () => {
       category: "Relationships",
       date: "December 12, 2024",
       readTime: "7 min read",
-      image: "/src/assets/couples-therapy-hero.jpg"
+      image: couplesTherapyHeroImage,
+      slug: "couples-therapy-communication"
     },
     {
       id: 5,
@@ -51,7 +64,8 @@ const Blog = () => {
       category: "Teen Health",
       date: "December 10, 2024",
       readTime: "6 min read",
-      image: "/src/assets/teen-therapy-hero.jpg"
+      image: teenTherapyHeroImage,
+      slug: "teen-mental-health"
     },
     {
       id: 6,
@@ -60,7 +74,8 @@ const Blog = () => {
       category: "PTSD",
       date: "December 8, 2024",
       readTime: "9 min read",
-      image: "/src/assets/ptsd-person.jpg"
+      image: ptsdPersonImage,
+      slug: "ptsd-recovery"
     }
   ];
 
@@ -76,6 +91,11 @@ const Blog = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background to-muted">
+      <SEOHead
+        title="Mental Health Blog - Expert Insights & Resources | Colorado Healing Center"
+        description="Stay informed with expert mental health insights, tips, and resources. Latest research and practical advice for your mental health journey."
+        keywords="mental health blog, therapy insights, depression help, anxiety resources, mental wellness tips"
+      />
       <Header />
       
       <main className="container mx-auto px-4 py-16">
@@ -135,9 +155,11 @@ const Blog = () => {
                     <Calendar className="h-4 w-4 mr-1" />
                     {post.date}
                   </div>
-                  <Button variant="ghost" size="sm" className="group/btn">
-                    Read More
-                    <ArrowRight className="h-4 w-4 ml-1 group-hover/btn:translate-x-1 transition-transform" />
+                  <Button variant="ghost" size="sm" className="group/btn" asChild>
+                    <Link to={`/blog/${post.slug}`}>
+                      Read More
+                      <ArrowRight className="h-4 w-4 ml-1 group-hover/btn:translate-x-1 transition-transform" />
+                    </Link>
                   </Button>
                 </div>
               </CardContent>
