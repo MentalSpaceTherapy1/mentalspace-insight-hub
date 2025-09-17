@@ -21,7 +21,6 @@ import ContactUs from "./pages/ContactUs";
 import Career from "./pages/Career";
 import EmergencyResources from "./pages/EmergencyResources";
 import GetStarted from "./pages/GetStarted";
-import InsuranceProvider from "./pages/InsuranceProvider";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import NotFound from "./pages/NotFound";
@@ -32,6 +31,17 @@ import MentalHealthTests from "./pages/MentalHealthTests";
 import AssessmentContact from "./pages/AssessmentContact";
 import ThankYou from "./pages/ThankYou";
 import Blog from "./pages/Blog";
+
+// Individual Insurance Pages
+import CareSourceInsurance from "./pages/insurance/CareSourceInsurance";
+import AmerigroupInsurance from "./pages/insurance/AmerigroupInsurance";
+import PeachStateInsurance from "./pages/insurance/PeachStateInsurance";
+import OptumInsurance from "./pages/insurance/OptumInsurance";
+import BlueCrossInsurance from "./pages/insurance/BlueCrossInsurance";
+import AetnaInsurance from "./pages/insurance/AetnaInsurance";
+import CignaInsurance from "./pages/insurance/CignaInsurance";
+import AlliantInsurance from "./pages/insurance/AlliantInsurance";
+import HumanaInsurance from "./pages/insurance/HumanaInsurance";
 
 // Blog Article Pages
 import UnderstandingAnxiety from "./pages/blog/UnderstandingAnxiety";
@@ -89,8 +99,17 @@ const App = () => {
                 <Route path="/relationship-coaching" element={<RelationshipCoaching />} />
                 <Route path="/coaching-services" element={<CoachingServices />} />
                 <Route path="/insurance" element={<Insurance />} />
-                <Route path="/insurance/:provider" element={<InsuranceProvider />} />
-                <Route path="/insurance/humana" element={<InsuranceProvider />} />
+                
+                {/* Individual Insurance Provider Pages */}
+                <Route path="/insurance/caresource" element={<CareSourceInsurance />} />
+                <Route path="/insurance/amerigroup" element={<AmerigroupInsurance />} />
+                <Route path="/insurance/peach-state" element={<PeachStateInsurance />} />
+                <Route path="/insurance/optum" element={<OptumInsurance />} />
+                <Route path="/insurance/blue-cross" element={<BlueCrossInsurance />} />
+                <Route path="/insurance/aetna" element={<AetnaInsurance />} />
+                <Route path="/insurance/cigna" element={<CignaInsurance />} />
+                <Route path="/insurance/alliant" element={<AlliantInsurance />} />
+                <Route path="/insurance/humana" element={<HumanaInsurance />} />
                 <Route path="/faq" element={<FAQ />} />
                 <Route path="/contact-us" element={<ContactUs />} />
                 <Route path="/career" element={<Career />} />
