@@ -94,6 +94,7 @@ export type Database = {
           processed_at: string | null
           processed_by: string | null
           updated_at: string
+          user_id: string | null
         }
         Insert: {
           assessment_session_id?: string | null
@@ -105,6 +106,7 @@ export type Database = {
           processed_at?: string | null
           processed_by?: string | null
           updated_at?: string
+          user_id?: string | null
         }
         Update: {
           assessment_session_id?: string | null
@@ -116,6 +118,7 @@ export type Database = {
           processed_at?: string | null
           processed_by?: string | null
           updated_at?: string
+          user_id?: string | null
         }
         Relationships: [
           {
@@ -147,6 +150,7 @@ export type Database = {
           score: number | null
           session_id: string
           severity: string | null
+          user_id: string | null
         }
         Insert: {
           additional_info?: Json | null
@@ -160,6 +164,7 @@ export type Database = {
           score?: number | null
           session_id: string
           severity?: string | null
+          user_id?: string | null
         }
         Update: {
           additional_info?: Json | null
@@ -173,6 +178,7 @@ export type Database = {
           score?: number | null
           session_id?: string
           severity?: string | null
+          user_id?: string | null
         }
         Relationships: []
       }
@@ -317,6 +323,7 @@ export type Database = {
           submission_date: string
           updated_at: string
           user_agent: string | null
+          user_id: string | null
         }
         Insert: {
           created_at?: string
@@ -331,6 +338,7 @@ export type Database = {
           submission_date?: string
           updated_at?: string
           user_agent?: string | null
+          user_id?: string | null
         }
         Update: {
           created_at?: string
@@ -345,6 +353,7 @@ export type Database = {
           submission_date?: string
           updated_at?: string
           user_agent?: string | null
+          user_id?: string | null
         }
         Relationships: [
           {

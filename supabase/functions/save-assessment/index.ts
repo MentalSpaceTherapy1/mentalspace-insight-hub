@@ -89,6 +89,34 @@ serve(async (req) => {
 
     console.log('Saving assessment session:', assessmentData.sessionId);
 
+    // Extract user_id from Authorization header if present
+    let userId: string | null = null;
+    const authHeader = req.headers.get('authorization');
+    if (authHeader?.startsWith('Bearer ')) {
+      try {
+        // Create a client for user authentication check
+        const userSupabase = createClient(
+          Deno.env.get('SUPABASE_URL') ?? '',
+          Deno.env.get('SUPABASE_ANON_KEY') ?? '',
+          {
+            global: {
+              headers: {
+                authorization: authHeader,
+              },
+            },
+          }
+        );
+        
+        const { data: { user } } = await userSupabase.auth.getUser();
+        if (user) {
+          userId = user.id;
+          console.log('Authenticated user found:', userId);
+        }
+      } catch (authError) {
+        console.log('No valid authentication found, proceeding as anonymous');
+      }
+    }
+
     // Map human-readable assessment names to database enum values
     const getAssessmentType = (assessmentName: string): string => {
       const typeMap: { [key: string]: string } = {
@@ -159,6 +187,7 @@ serve(async (req) => {
         recommendations: assessmentData.recommendations,
         additional_info: assessmentData.additionalInfo,
         ip_address: clientIP,
+        user_id: userId, // Track authenticated user or null for anonymous
       })
       .select()
       .single();

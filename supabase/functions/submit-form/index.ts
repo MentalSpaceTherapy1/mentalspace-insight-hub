@@ -87,6 +87,34 @@ serve(async (req) => {
 
     console.log(`Processing ${formType} form submission`);
 
+    // Extract user_id from Authorization header if present
+    let userId: string | null = null;
+    const authHeader = req.headers.get('authorization');
+    if (authHeader?.startsWith('Bearer ')) {
+      try {
+        // Create a client for user authentication check
+        const userSupabase = createClient(
+          Deno.env.get('SUPABASE_URL') ?? '',
+          Deno.env.get('SUPABASE_ANON_KEY') ?? '',
+          {
+            global: {
+              headers: {
+                authorization: authHeader,
+              },
+            },
+          }
+        );
+        
+        const { data: { user } } = await userSupabase.auth.getUser();
+        if (user) {
+          userId = user.id;
+          console.log('Authenticated user found:', userId);
+        }
+      } catch (authError) {
+        console.log('No valid authentication found, proceeding as anonymous');
+      }
+    }
+
     // Insert form submission into database
     const { data: submission, error } = await supabase
       .from('form_submissions')
@@ -95,6 +123,7 @@ serve(async (req) => {
         form_data: formData,
         ip_address: clientIP,
         user_agent: userAgent,
+        user_id: userId, // Track authenticated user or null for anonymous
       })
       .select()
       .single();
@@ -102,6 +131,29 @@ serve(async (req) => {
     if (error) {
       console.error('Database error:', error);
       throw error;
+    }
+
+    // Handle assessment_contact form type - also insert into assessment_contacts table
+    if (formType === 'assessment_contact') {
+      try {
+        const { error: contactError } = await supabase
+          .from('assessment_contacts')
+          .insert({
+            contact_data: formData,
+            user_id: userId, // Track authenticated user or null for anonymous
+            assessment_session_id: formData.assessmentSessionId || null,
+          });
+
+        if (contactError) {
+          console.error('Assessment contact insert error:', contactError);
+          // This is non-fatal, form submission already succeeded
+        } else {
+          console.log('Assessment contact saved successfully');
+        }
+      } catch (contactErr) {
+        console.error('Assessment contact processing error:', contactErr);
+        // Non-fatal
+      }
     }
 
     // Track analytics event
