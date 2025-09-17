@@ -181,7 +181,7 @@ const AnxietyTherapyGA = () => {
                       <ul className="space-y-2 text-sm">
                         <li className="flex items-center gap-2">
                           <DollarSign className="w-4 h-4 text-green-600" />
-                          Individual sessions: $120-180
+                          Individual sessions: $75-150
                         </li>
                         <li className="flex items-center gap-2">
                           <DollarSign className="w-4 h-4 text-green-600" />
