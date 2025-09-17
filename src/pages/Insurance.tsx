@@ -28,7 +28,7 @@ const Insurance = () => {
     {
       name: "Blue Cross Blue Shield",
       copay: "$30/$40",
-      slug: "blue-cross"
+      slug: "bluecross-blueshield"
     },
     {
       name: "Aetna",

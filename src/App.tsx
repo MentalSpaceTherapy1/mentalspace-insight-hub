@@ -105,6 +105,7 @@ const App = () => {
                 <Route path="/insurance/amerigroup" element={<AmerigroupInsurance />} />
                 <Route path="/insurance/peach-state" element={<PeachStateInsurance />} />
                 <Route path="/insurance/optum" element={<OptumInsurance />} />
+                <Route path="/insurance/bluecross-blueshield" element={<BlueCrossInsurance />} />
                 <Route path="/insurance/blue-cross" element={<BlueCrossInsurance />} />
                 <Route path="/insurance/aetna" element={<AetnaInsurance />} />
                 <Route path="/insurance/cigna" element={<CignaInsurance />} />
