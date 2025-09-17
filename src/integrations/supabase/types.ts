@@ -500,6 +500,30 @@ export type Database = {
         Args: { admin_email: string; admin_full_name: string }
         Returns: string
       }
+      get_full_admin_profiles: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          created_at: string
+          email: string
+          full_name: string
+          id: string
+          is_active: boolean
+          role: Database["public"]["Enums"]["admin_role"]
+          updated_at: string
+          user_id: string
+        }[]
+      }
+      get_secure_admin_profile: {
+        Args: { target_user_id?: string }
+        Returns: {
+          created_at: string
+          id: string
+          is_active: boolean
+          role: Database["public"]["Enums"]["admin_role"]
+          updated_at: string
+          user_id: string
+        }[]
+      }
       is_admin: {
         Args: Record<PropertyKey, never>
         Returns: boolean

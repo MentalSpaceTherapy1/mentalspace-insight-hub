@@ -5,7 +5,6 @@ import { supabase } from '@/integrations/supabase/client';
 interface AdminProfile {
   id: string;
   user_id: string;
-  email: string;
   full_name: string;
   role: 'super_admin' | 'admin' | 'content_manager';
   is_active: boolean;
@@ -50,12 +49,11 @@ export const AdminAuthProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     }
 
     try {
-      const { data: profile, error } = await supabase
-        .from('admin_profiles')
-        .select('*')
-        .eq('user_id', userId)
-        .eq('is_active', true)
-        .maybeSingle();
+      // Use secure function that doesn't expose email addresses
+      const { data: profiles, error } = await supabase
+        .rpc('get_secure_admin_profile', { target_user_id: userId });
+      
+      const profile = profiles && profiles.length > 0 ? profiles[0] : null;
 
       if (error) {
         console.error('Admin profile query error:', error);
