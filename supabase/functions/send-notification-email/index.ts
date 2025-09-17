@@ -7,7 +7,7 @@ const corsHeaders = {
 };
 
 interface EmailRequest {
-  type: 'contact_us' | 'therapist_matching' | 'assessment_contact';
+  type: string;
   data: Record<string, any>;
   submissionId: string;
 }
@@ -29,80 +29,95 @@ serve(async (req) => {
 
     console.log(`Sending ${type} notification email for submission:`, submissionId);
 
-    let emailTemplate, subject, recipient;
+    // Admin email - UPDATE THIS TO YOUR ACTUAL ADMIN EMAIL
+    const adminEmail = 'admin@chctherapy.com';
+    
+    let emailTemplate, subject;
+
+    // Generate email content based on form type
+    const formatFormData = (data: Record<string, any>): string => {
+      return Object.entries(data)
+        .map(([key, value]) => {
+          const formattedKey = key
+            .replace(/([A-Z])/g, ' $1')
+            .replace(/^./, str => str.toUpperCase())
+            .replace(/([a-z])([A-Z])/g, '$1 $2');
+          
+          if (typeof value === 'boolean') {
+            return `<p><strong>${formattedKey}:</strong> ${value ? 'Yes' : 'No'}</p>`;
+          }
+          if (Array.isArray(value)) {
+            return `<p><strong>${formattedKey}:</strong> ${value.join(', ')}</p>`;
+          }
+          return `<p><strong>${formattedKey}:</strong> ${value || 'Not provided'}</p>`;
+        })
+        .join('');
+    };
 
     switch (type) {
       case 'contact_us':
-        subject = 'New Contact Form Submission - MentalSpace Therapy';
-        recipient = 'admin@mentalspacetherapy.com'; // Update with actual admin email
+        subject = 'New Contact Form Submission - CHC Therapy';
         emailTemplate = `
           <h2>New Contact Form Submission</h2>
           <p><strong>Submission ID:</strong> ${submissionId}</p>
-          <p><strong>Name:</strong> ${data.name || 'Not provided'}</p>
-          <p><strong>Phone:</strong> ${data.phone || 'Not provided'}</p>
-          <p><strong>Email:</strong> ${data.email || 'Not provided'}</p>
-          <p><strong>Preferred Contact Time:</strong> ${data.preferredTime || 'Not specified'}</p>
-          <p><strong>Comments:</strong></p>
-          <p>${data.comments || 'No comments provided'}</p>
-          <p><strong>SMS Consent:</strong> ${data.smsConsent ? 'Yes' : 'No'}</p>
+          ${formatFormData(data)}
           <hr>
-          <p><em>Submitted via MentalSpace Therapy website</em></p>
+          <p><em>Submitted via CHC Therapy website</em></p>
         `;
         break;
 
       case 'therapist_matching':
-        subject = 'New Therapist Matching Request - MentalSpace Therapy';
-        recipient = 'admin@mentalspacetherapy.com'; // Update with actual admin email
+        subject = 'New Therapist Matching Request - CHC Therapy';
         emailTemplate = `
           <h2>New Therapist Matching Request</h2>
           <p><strong>Submission ID:</strong> ${submissionId}</p>
-          <p><strong>Name:</strong> ${data.firstName} ${data.lastName}</p>
-          <p><strong>Email:</strong> ${data.email}</p>
-          <p><strong>Phone:</strong> ${data.phone || 'Not provided'}</p>
-          <p><strong>Age:</strong> ${data.age || 'Not provided'}</p>
-          <p><strong>Gender:</strong> ${data.gender || 'Not provided'}</p>
-          <p><strong>State:</strong> ${data.state || 'Not provided'}</p>
-          <p><strong>Insurance:</strong> ${data.insurance || 'Not provided'}</p>
-          <p><strong>Therapy Type:</strong> ${data.therapyType || 'Not specified'}</p>
-          <p><strong>Previous Therapy:</strong> ${data.previousTherapy ? 'Yes' : 'No'}</p>
-          <p><strong>Specific Concerns:</strong></p>
-          <p>${data.specificConcerns || 'No specific concerns mentioned'}</p>
-          <p><strong>Goals:</strong></p>
-          <p>${data.goals || 'No goals specified'}</p>
-          <p><strong>Preferred Timeline:</strong> ${data.timeline || 'Not specified'}</p>
+          ${formatFormData(data)}
           <hr>
-          <p><em>Submitted via MentalSpace Therapy website</em></p>
+          <p><em>Submitted via CHC Therapy website</em></p>
         `;
         break;
 
       case 'assessment_contact':
-        subject = 'New Assessment Contact Request - MentalSpace Therapy';
-        recipient = 'admin@mentalspacetherapy.com'; // Update with actual admin email
+        subject = 'New Assessment Contact Request - CHC Therapy';
         emailTemplate = `
           <h2>New Assessment Contact Request</h2>
           <p><strong>Submission ID:</strong> ${submissionId}</p>
-          <p><strong>Name:</strong> ${data.name || 'Not provided'}</p>
-          <p><strong>Email:</strong> ${data.email || 'Not provided'}</p>
-          <p><strong>Phone:</strong> ${data.phone || 'Not provided'}</p>
-          <p><strong>Date of Birth:</strong> ${data.dateOfBirth || 'Not provided'}</p>
-          <p><strong>Gender:</strong> ${data.gender || 'Not provided'}</p>
-          <p><strong>State:</strong> ${data.state || 'Not provided'}</p>
-          <p><strong>Insurance:</strong> ${data.insurance || 'Not provided'}</p>
-          <p><strong>Desired Timeline:</strong> ${data.desiredTimeline || 'Not specified'}</p>
+          ${formatFormData(data)}
           <p><strong>Assessment Results:</strong> Available in admin dashboard</p>
           <hr>
           <p><em>Submitted following mental health assessment</em></p>
         `;
         break;
 
+      case 'career_application':
+        subject = 'New Career Application - CHC Therapy';
+        emailTemplate = `
+          <h2>New Career Application</h2>
+          <p><strong>Submission ID:</strong> ${submissionId}</p>
+          ${formatFormData(data)}
+          <hr>
+          <p><em>Submitted via CHC Therapy careers page</em></p>
+        `;
+        break;
+
       default:
-        throw new Error(`Unsupported email type: ${type}`);
+        // Generic template for any other form type
+        const formattedType = type.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+        subject = `New ${formattedType} Submission - CHC Therapy`;
+        emailTemplate = `
+          <h2>New ${formattedType} Submission</h2>
+          <p><strong>Submission ID:</strong> ${submissionId}</p>
+          ${formatFormData(data)}
+          <hr>
+          <p><em>Submitted via CHC Therapy website</em></p>
+        `;
+        break;
     }
 
     // Send admin notification
     const adminEmailResponse = await resend.emails.send({
-      from: 'MentalSpace Therapy <noreply@mentalspacetherapy.com>',
-      to: [recipient],
+      from: 'CHC Therapy <noreply@chctherapy.com>',
+      to: [adminEmail],
       subject: subject,
       html: emailTemplate,
     });
@@ -110,21 +125,28 @@ serve(async (req) => {
     // Send confirmation email to user if email is provided
     let userEmailResponse;
     if (data.email) {
-      const confirmationSubject = 'Thank you for contacting MentalSpace Therapy';
+      const confirmationSubject = 'Thank you for contacting CHC Therapy';
       const confirmationTemplate = `
-        <h2>Thank you for reaching out!</h2>
-        <p>Dear ${data.name || data.firstName || 'Friend'},</p>
-        <p>We have received your ${type.replace('_', ' ')} submission and will get back to you as soon as possible.</p>
-        <p>Our team typically responds within 24 hours during business days.</p>
-        <p>If you have any urgent concerns, please don't hesitate to call us directly.</p>
-        <p>Thank you for choosing MentalSpace Therapy!</p>
-        <p>Best regards,<br>The MentalSpace Therapy Team</p>
-        <hr>
-        <p><em>This is an automated confirmation. Please do not reply to this email.</em></p>
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #2563eb;">Thank you for reaching out!</h2>
+          <p>Dear ${data.name || data.firstName || 'Friend'},</p>
+          <p>We have received your submission and will get back to you as soon as possible.</p>
+          <p>Our team typically responds within 24 hours during business days.</p>
+          <p>If you have any urgent concerns, please don't hesitate to call us directly at <strong>404-832-0102</strong>.</p>
+          <p>Thank you for choosing CHC Therapy!</p>
+          <p style="margin-top: 30px;">
+            Best regards,<br>
+            <strong>The CHC Therapy Team</strong>
+          </p>
+          <hr style="margin: 30px 0; border: none; border-top: 1px solid #e5e7eb;">
+          <p style="font-size: 12px; color: #6b7280;">
+            <em>This is an automated confirmation. Please do not reply to this email.</em>
+          </p>
+        </div>
       `;
 
       userEmailResponse = await resend.emails.send({
-        from: 'MentalSpace Therapy <noreply@mentalspacetherapy.com>',
+        from: 'CHC Therapy <noreply@chctherapy.com>',
         to: [data.email],
         subject: confirmationSubject,
         html: confirmationTemplate,

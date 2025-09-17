@@ -5,6 +5,8 @@ const ALLOWED_ORIGINS = new Set([
   'http://localhost:5173',
   'http://localhost:8080',
   'https://coping-healing-therapy.lovable.app',
+  'https://chctherapy.com',
+  'https://www.chctherapy.com',
 ]);
 
 const getCorsHeaders = (origin: string | null) => ({
@@ -167,16 +169,19 @@ serve(async (req) => {
         page_url: req.headers.get('referer') || 'unknown',
       });
 
-    // Send email notification based on form type
+    // Send email notification for ALL form submissions
     try {
-      if (formType === 'contact_us' || formType === 'therapist_matching') {
-        await supabase.functions.invoke('send-notification-email', {
-          body: { type: formType, data: formData, submissionId: submission.id },
-        });
-      }
+      await supabase.functions.invoke('send-notification-email', {
+        body: { 
+          type: formType, 
+          data: formData, 
+          submissionId: submission.id 
+        },
+      });
+      console.log(`Notification email sent for ${formType} form`);
     } catch (emailError) {
       console.error('Email notification error:', emailError);
-      // Non-fatal
+      // Non-fatal - don't fail the form submission if email fails
     }
 
     console.log('Form submission successful:', submission.id);
