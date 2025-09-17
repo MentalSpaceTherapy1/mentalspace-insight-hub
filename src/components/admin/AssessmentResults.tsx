@@ -50,6 +50,7 @@ const AssessmentResults = () => {
   const [expandedSessions, setExpandedSessions] = useState<Set<string>>(new Set());
   const [expandedContacts, setExpandedContacts] = useState<Set<string>>(new Set());
   const [decryptingData, setDecryptingData] = useState<Set<string>>(new Set());
+  const [selectedSession, setSelectedSession] = useState<any>(null);
   
   // Use the secure assessment data hook
   const { sessions, isLoading: isLoadingSessions, isDecrypting, error: assessmentError, fetchAssessmentSessions, decryptAssessmentData, getAssessmentAnswers, getAssessmentAdditionalInfo } = useSecureAssessmentData();
@@ -105,7 +106,10 @@ const AssessmentResults = () => {
     return 'secondary';
   };
 
-  const exportResults = (session: AssessmentSession) => {
+  const exportResults = (session: any) => {
+    const decryptedAnswers = getAssessmentAnswers(session.id);
+    const decryptedAdditionalInfo = getAssessmentAdditionalInfo(session.id);
+
     const data = {
       sessionId: session.session_id,
       assessmentType: session.assessment_type,
@@ -113,11 +117,12 @@ const AssessmentResults = () => {
       score: session.score,
       severity: session.severity,
       recommendations: session.recommendations,
-      answers: session.answers,
-      additionalInfo: session.additional_info,
+      isEncrypted: session.is_encrypted,
+      answers: decryptedAnswers || session.answers || 'Encrypted - requires decryption',
+      additionalInfo: decryptedAdditionalInfo || session.additional_info || 'Encrypted - requires decryption',
     };
 
-    const blob = new Blob([JSON.stringify(data, null, 2)], { 
+    const blob = new Blob([JSON.stringify(data, null, 2)], {
       type: 'application/json' 
     });
     const url = URL.createObjectURL(blob);
@@ -190,10 +195,17 @@ const AssessmentResults = () => {
     return recommendations;
   };
 
-  const renderFullAssessmentDetails = (session: AssessmentSession) => {
-    const hasAnswers = session.answers && Object.keys(session.answers).length > 0;
+  const renderFullAssessmentDetails = (session: any) => {
+    const decryptedAnswers = getAssessmentAnswers(session.id);
+    const decryptedAdditionalInfo = getAssessmentAdditionalInfo(session.id);
+    
+    // Use decrypted data if available, otherwise fall back to original data
+    const answers = decryptedAnswers || session.answers;
+    const additionalInfo = decryptedAdditionalInfo || session.additional_info;
+    
+    const hasAnswers = answers && Object.keys(answers).length > 0;
     const hasRecommendations = session.recommendations && session.recommendations.length > 0;
-    const isMigrated = session.additional_info?.migrated_from_form_id;
+    const isMigrated = additionalInfo?.migrated_from_form_id;
     
     // Generate recommendations for migrated data
     const displayRecommendations = hasRecommendations 
