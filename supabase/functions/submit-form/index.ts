@@ -9,8 +9,24 @@ const ALLOWED_ORIGINS = new Set([
   'https://www.chctherapy.com',
 ]);
 
+// Allow dynamic preview domains used by Lovable while keeping production strict
+const isAllowedOrigin = (origin: string | null) => {
+  if (!origin) return false;
+  try {
+    const url = new URL(origin);
+    const hostname = url.hostname;
+    return (
+      ALLOWED_ORIGINS.has(origin) ||
+      hostname.endsWith('.lovableproject.com') ||
+      hostname.endsWith('.lovable.app')
+    );
+  } catch {
+    return false;
+  }
+};
+
 const getCorsHeaders = (origin: string | null) => ({
-  'Access-Control-Allow-Origin': origin && ALLOWED_ORIGINS.has(origin) ? origin : 'https://coping-healing-therapy.lovable.app',
+  'Access-Control-Allow-Origin': origin && isAllowedOrigin(origin) ? origin : 'https://coping-healing-therapy.lovable.app',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
   'Access-Control-Allow-Methods': 'POST, OPTIONS',
 });
@@ -49,7 +65,7 @@ serve(async (req) => {
   }
 
   // Enforce allowed origins for POST
-  if (!origin || !ALLOWED_ORIGINS.has(origin)) {
+  if (!isAllowedOrigin(origin)) {
     return new Response(JSON.stringify({ success: false, error: 'Origin not allowed' }), {
       status: 403,
       headers: { ...getCorsHeaders(origin), 'Content-Type': 'application/json' },
