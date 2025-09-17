@@ -15,6 +15,7 @@ import TeenTherapy from "./pages/TeenTherapy";
 import LifeCoaching from "./pages/LifeCoaching";
 import RelationshipCoaching from "./pages/RelationshipCoaching";
 import CoachingServices from "./pages/CoachingServices";
+import CHCServices from "./pages/CHCServices";
 import Insurance from "./pages/Insurance";
 import FAQ from "./pages/FAQ";
 import ContactUs from "./pages/ContactUs";
@@ -98,6 +99,7 @@ const App = () => {
                 <Route path="/life-coaching" element={<LifeCoaching />} />
                 <Route path="/relationship-coaching" element={<RelationshipCoaching />} />
                 <Route path="/coaching-services" element={<CoachingServices />} />
+                <Route path="/chc-services" element={<CHCServices />} />
                 <Route path="/insurance" element={<Insurance />} />
                 
                 {/* Individual Insurance Provider Pages */}
