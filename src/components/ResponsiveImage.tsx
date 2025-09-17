@@ -23,6 +23,8 @@ const ResponsiveImage = ({
   fetchPriority = 'auto',
   ...props 
 }: ResponsiveImageProps) => {
+  const { style, ...restProps } = props;
+  
   return (
     <img
       src={src}
@@ -33,12 +35,12 @@ const ResponsiveImage = ({
       sizes={sizes}
       loading={priority ? 'eager' : loading}
       decoding="async"
-      fetchPriority={fetchPriority}
-      {...props}
+      {...(fetchPriority && { fetchPriority })}
+      {...restProps}
       style={{
         maxWidth: '100%',
         height: 'auto',
-        ...props.style
+        ...style
       }}
     />
   );
