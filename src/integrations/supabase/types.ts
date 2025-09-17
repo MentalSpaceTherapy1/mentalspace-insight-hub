@@ -520,6 +520,10 @@ export type Database = {
         Args: Record<PropertyKey, never>
         Returns: boolean
       }
+      check_assessment_rate_limit: {
+        Args: Record<PropertyKey, never>
+        Returns: boolean
+      }
       create_initial_admin: {
         Args: { admin_email: string; admin_full_name: string }
         Returns: string
@@ -574,6 +578,15 @@ export type Database = {
           user_id: string
         }[]
       }
+      get_security_status: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          active_sessions: number
+          critical_alerts: number
+          last_security_event: string
+          warning_alerts: number
+        }[]
+      }
       is_admin: {
         Args: Record<PropertyKey, never>
         Returns: boolean
@@ -599,6 +612,10 @@ export type Database = {
         Returns: string
       }
       validate_admin_operation: {
+        Args: { operation_type: string }
+        Returns: boolean
+      }
+      validate_secure_admin_access: {
         Args: { operation_type: string }
         Returns: boolean
       }
