@@ -75,13 +75,20 @@ async function prerenderRoutes() {
     return;
   }
 
+  // Feature flag: opt-in prerendering to avoid CI failures
+  const prerenderEnabled = process.env.SEO_PRERENDER === '1' || process.env.ENABLE_PUPPETEER === '1';
+  if (!prerenderEnabled) {
+    console.log('⏭️ Skipping Puppeteer prerendering (enable with SEO_PRERENDER=1)');
+    return;
+  }
+
   // Detect if running in a sandboxed environment (CI/build servers)
   const isCI = process.env.CI || process.env.GITHUB_ACTIONS || process.env.VERCEL || process.env.NETLIFY;
   const isSandboxed = process.env.LOVABLE_BUILD || process.env.DOCKER_CONTAINER;
   
   if (isCI || isSandboxed) {
     console.log('🔍 Detected CI/sandboxed environment - skipping Puppeteer prerendering');
-    console.log('💡 Run "npm run seo:prerender" locally for full SEO optimization');
+    console.log('💡 Run "SEO_PRERENDER=1 node scripts/prerender.js" locally for full SEO optimization');
     return;
   }
 
