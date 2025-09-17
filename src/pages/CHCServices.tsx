@@ -4,114 +4,82 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { 
-  Heart, 
-  Users, 
-  UserCheck, 
-  Target, 
-  Brain, 
-  Shield, 
-  MessageCircle,
-  Calendar,
-  Clock,
-  CheckCircle,
-  ArrowRight,
-  Star
-} from "lucide-react";
+import { Heart, Users, UserCheck, Target, Brain, Shield, MessageCircle, Calendar, Clock, CheckCircle, ArrowRight, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 import ResponsiveImage from "@/components/ResponsiveImage";
 import therapySessionImg from "@/assets/therapy-session.jpg";
 import coupleTherapyImg from "@/assets/couple-therapy-session.jpg";
 import teenTherapyImg from "@/assets/teen-therapy-session.jpg";
 import lifeCoachingImg from "@/assets/life-coaching-session.jpg";
-
 const CHCServices = () => {
-  const mainServices = [
-    {
-      icon: <Heart className="h-8 w-8" />,
-      title: "Individual Therapy",
-      description: "One-on-one support with licensed therapists for anxiety, depression, trauma, and personal growth in a safe, confidential environment.",
-      image: therapySessionImg,
-      features: ["Anxiety & Depression", "Trauma Recovery", "Stress Management", "Personal Growth"],
-      link: "/online-therapy",
-      color: "from-primary to-primary-light"
-    },
-    {
-      icon: <Users className="h-8 w-8" />,
-      title: "Couples Therapy", 
-      description: "Enhance your relationship with professional guidance to improve communication, resolve conflicts, and strengthen emotional bonds.",
-      image: coupleTherapyImg,
-      features: ["Communication Skills", "Conflict Resolution", "Intimacy Building", "Relationship Goals"],
-      link: "/couples-therapy",
-      color: "from-secondary to-secondary-light"
-    },
-    {
-      icon: <UserCheck className="h-8 w-8" />,
-      title: "Teen Therapy",
-      description: "Specialized care for youth aged 13-17, providing a safe space to navigate adolescent challenges and build resilience.",
-      image: teenTherapyImg,
-      features: ["Identity Development", "Peer Relationships", "Academic Stress", "Family Dynamics"],
-      link: "/teen-therapy",
-      color: "from-primary to-secondary"
-    },
-    {
-      icon: <Target className="h-8 w-8" />,
-      title: "Life Coaching",
-      description: "Find balance, purpose, and joy with personalized coaching to achieve your personal and professional goals.",
-      image: lifeCoachingImg,
-      features: ["Goal Setting", "Career Guidance", "Work-Life Balance", "Personal Development"],
-      link: "/life-coaching",
-      color: "from-secondary to-primary"
-    }
-  ];
-
-  const specializedServices = [
-    {
-      title: "Mental Health Assessments",
-      description: "Comprehensive evaluations to understand your mental health needs",
-      icon: <Brain className="h-6 w-6" />,
-      link: "/mental-health-tests"
-    },
-    {
-      title: "Crisis Support",
-      description: "Immediate help available when you need it most",
-      icon: <Shield className="h-6 w-6" />,
-      link: "/emergency-resources"
-    },
-    {
-      title: "Insurance Coverage",
-      description: "We accept most major insurance plans",
-      icon: <CheckCircle className="h-6 w-6" />,
-      link: "/insurance"
-    },
-    {
-      title: "Online Therapy",
-      description: "Convenient, secure virtual sessions from anywhere",
-      icon: <MessageCircle className="h-6 w-6" />,
-      link: "/online-therapy"
-    }
-  ];
-
-  const processSteps = [
-    {
-      step: "1",
-      title: "Book Your Session",
-      description: "Schedule a convenient time that works for you"
-    },
-    {
-      step: "2", 
-      title: "Meet Your Therapist",
-      description: "Connect with a licensed professional matched to your needs"
-    },
-    {
-      step: "3",
-      title: "Begin Your Journey",
-      description: "Start your path to healing and personal growth"
-    }
-  ];
-
-  return (
-    <div className="min-h-screen bg-background">
+  const mainServices = [{
+    icon: <Heart className="h-8 w-8" />,
+    title: "Individual Therapy",
+    description: "One-on-one support with licensed therapists for anxiety, depression, trauma, and personal growth in a safe, confidential environment.",
+    image: therapySessionImg,
+    features: ["Anxiety & Depression", "Trauma Recovery", "Stress Management", "Personal Growth"],
+    link: "/online-therapy",
+    color: "from-primary to-primary-light"
+  }, {
+    icon: <Users className="h-8 w-8" />,
+    title: "Couples Therapy",
+    description: "Enhance your relationship with professional guidance to improve communication, resolve conflicts, and strengthen emotional bonds.",
+    image: coupleTherapyImg,
+    features: ["Communication Skills", "Conflict Resolution", "Intimacy Building", "Relationship Goals"],
+    link: "/couples-therapy",
+    color: "from-secondary to-secondary-light"
+  }, {
+    icon: <UserCheck className="h-8 w-8" />,
+    title: "Teen Therapy",
+    description: "Specialized care for youth aged 13-17, providing a safe space to navigate adolescent challenges and build resilience.",
+    image: teenTherapyImg,
+    features: ["Identity Development", "Peer Relationships", "Academic Stress", "Family Dynamics"],
+    link: "/teen-therapy",
+    color: "from-primary to-secondary"
+  }, {
+    icon: <Target className="h-8 w-8" />,
+    title: "Life Coaching",
+    description: "Find balance, purpose, and joy with personalized coaching to achieve your personal and professional goals.",
+    image: lifeCoachingImg,
+    features: ["Goal Setting", "Career Guidance", "Work-Life Balance", "Personal Development"],
+    link: "/life-coaching",
+    color: "from-secondary to-primary"
+  }];
+  const specializedServices = [{
+    title: "Mental Health Assessments",
+    description: "Comprehensive evaluations to understand your mental health needs",
+    icon: <Brain className="h-6 w-6" />,
+    link: "/mental-health-tests"
+  }, {
+    title: "Crisis Support",
+    description: "Immediate help available when you need it most",
+    icon: <Shield className="h-6 w-6" />,
+    link: "/emergency-resources"
+  }, {
+    title: "Insurance Coverage",
+    description: "We accept most major insurance plans",
+    icon: <CheckCircle className="h-6 w-6" />,
+    link: "/insurance"
+  }, {
+    title: "Online Therapy",
+    description: "Convenient, secure virtual sessions from anywhere",
+    icon: <MessageCircle className="h-6 w-6" />,
+    link: "/online-therapy"
+  }];
+  const processSteps = [{
+    step: "1",
+    title: "Book Your Session",
+    description: "Schedule a convenient time that works for you"
+  }, {
+    step: "2",
+    title: "Meet Your Therapist",
+    description: "Connect with a licensed professional matched to your needs"
+  }, {
+    step: "3",
+    title: "Begin Your Journey",
+    description: "Start your path to healing and personal growth"
+  }];
+  return <div className="min-h-screen bg-background">
       <Helmet>
         <title>CHC Services - Comprehensive Mental Health & Life Coaching | Coping Healing & Caring</title>
         <meta name="description" content="Discover our full range of mental health services including individual therapy, couples therapy, teen therapy, and life coaching. Professional, compassionate care tailored to your needs." />
@@ -125,15 +93,15 @@ const CHCServices = () => {
         
         <script type="application/ld+json">
           {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "MedicalBusiness",
-            "name": "Coping Healing & Caring Services",
-            "url": "https://chctherapy.com/chc-services",
-            "description": "Comprehensive mental health and life coaching services",
-            "medicalSpecialty": ["Psychology", "Mental Health", "Life Coaching"],
-            "serviceType": ["Individual Therapy", "Couples Therapy", "Teen Therapy", "Life Coaching"],
-            "areaServed": "United States"
-          })}
+          "@context": "https://schema.org",
+          "@type": "MedicalBusiness",
+          "name": "Coping Healing & Caring Services",
+          "url": "https://chctherapy.com/chc-services",
+          "description": "Comprehensive mental health and life coaching services",
+          "medicalSpecialty": ["Psychology", "Mental Health", "Life Coaching"],
+          "serviceType": ["Individual Therapy", "Couples Therapy", "Teen Therapy", "Life Coaching"],
+          "areaServed": "United States"
+        })}
         </script>
       </Helmet>
 
@@ -147,13 +115,8 @@ const CHCServices = () => {
               <Badge variant="secondary" className="mb-6 text-sm font-medium">
                 Professional Mental Health Services
               </Badge>
-              <h1 className="text-4xl md:text-6xl font-bold mb-6 text-gradient leading-tight">
-                Comprehensive CHC Services
-              </h1>
-              <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
-                At Coping Healing & Caring, we provide personalized mental health and life coaching services 
-                designed to support your unique journey toward wellness and personal growth.
-              </p>
+              <h1 className="text-4xl md:text-6xl font-bold mb-6 text-gradient leading-tight">Services</h1>
+              <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">At Coping Healing & Counseling, we provide personalized mental health and life coaching services designed to support your unique journey toward wellness and personal growth.</p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link to="/get-started">
                   <Button size="lg" className="w-full sm:w-auto">
@@ -184,18 +147,9 @@ const CHCServices = () => {
             </div>
 
             <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-              {mainServices.map((service, index) => (
-                <Card key={index} className="group overflow-hidden border-0 shadow-card hover:shadow-xl transition-all duration-300 hover:scale-[1.02] bg-white">
+              {mainServices.map((service, index) => <Card key={index} className="group overflow-hidden border-0 shadow-card hover:shadow-xl transition-all duration-300 hover:scale-[1.02] bg-white">
                   <div className="relative">
-                    <ResponsiveImage
-                      src={service.image}
-                      alt={service.title}
-                      className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                      width={400}
-                      height={192}
-                      sizes="(max-width: 1024px) 100vw, 50vw"
-                      loading="lazy"
-                    />
+                    <ResponsiveImage src={service.image} alt={service.title} className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" width={400} height={192} sizes="(max-width: 1024px) 100vw, 50vw" loading="lazy" />
                     <div className={`absolute inset-0 bg-gradient-to-t ${service.color} opacity-20 group-hover:opacity-30 transition-opacity duration-300`}></div>
                     <div className={`absolute top-4 left-4 inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br ${service.color} rounded-full text-white`}>
                       {service.icon}
@@ -211,11 +165,9 @@ const CHCServices = () => {
                     <div className="mb-6">
                       <h4 className="font-semibold mb-3 text-foreground">Key Areas:</h4>
                       <div className="flex flex-wrap gap-2">
-                        {service.features.map((feature, featureIndex) => (
-                          <Badge key={featureIndex} variant="secondary" className="text-xs">
+                        {service.features.map((feature, featureIndex) => <Badge key={featureIndex} variant="secondary" className="text-xs">
                             {feature}
-                          </Badge>
-                        ))}
+                          </Badge>)}
                       </div>
                     </div>
                     <Link to={service.link}>
@@ -225,8 +177,7 @@ const CHCServices = () => {
                       </Button>
                     </Link>
                   </CardContent>
-                </Card>
-              ))}
+                </Card>)}
             </div>
           </div>
         </section>
@@ -244,8 +195,7 @@ const CHCServices = () => {
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-              {specializedServices.map((service, index) => (
-                <Link key={index} to={service.link} className="group">
+              {specializedServices.map((service, index) => <Link key={index} to={service.link} className="group">
                   <Card className="h-full border-0 shadow-card hover:shadow-lg transition-all duration-300 hover:scale-[1.02] bg-white">
                     <CardContent className="p-6 text-center">
                       <div className="inline-flex items-center justify-center w-12 h-12 mb-4 bg-primary/10 rounded-full text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
@@ -259,8 +209,7 @@ const CHCServices = () => {
                       </p>
                     </CardContent>
                   </Card>
-                </Link>
-              ))}
+                </Link>)}
             </div>
           </div>
         </section>
@@ -278,15 +227,12 @@ const CHCServices = () => {
             </div>
 
             <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-              {processSteps.map((step, index) => (
-                <div key={index} className="text-center group">
+              {processSteps.map((step, index) => <div key={index} className="text-center group">
                   <div className="relative mb-6">
                     <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full text-white text-xl font-bold group-hover:scale-110 transition-transform duration-300">
                       {step.step}
                     </div>
-                    {index < processSteps.length - 1 && (
-                      <div className="hidden md:block absolute top-8 left-full w-full h-0.5 bg-gradient-to-r from-primary/30 to-secondary/30 -translate-y-1/2"></div>
-                    )}
+                    {index < processSteps.length - 1 && <div className="hidden md:block absolute top-8 left-full w-full h-0.5 bg-gradient-to-r from-primary/30 to-secondary/30 -translate-y-1/2"></div>}
                   </div>
                   <h3 className="text-xl font-semibold mb-3 text-foreground">
                     {step.title}
@@ -294,8 +240,7 @@ const CHCServices = () => {
                   <p className="text-muted-foreground">
                     {step.description}
                   </p>
-                </div>
-              ))}
+                </div>)}
             </div>
           </div>
         </section>
@@ -362,8 +307,6 @@ const CHCServices = () => {
       </main>
 
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default CHCServices;
