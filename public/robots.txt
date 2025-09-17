@@ -5,7 +5,7 @@ Allow: /
 Disallow: /admin
 
 # Important files
-Sitemap: https://coping-healing-therapy.lovable.app/sitemap.xml
+Sitemap: https://chctherapy.com/sitemap.xml
 
 # Allow all major search engines
 User-agent: Googlebot
