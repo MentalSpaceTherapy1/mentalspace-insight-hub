@@ -22,6 +22,15 @@ interface AssessmentSubmission {
   recommendations?: string[];
   additionalInfo?: Record<string, any>;
   csrfToken?: string;
+  // Encrypted data fields
+  encryptedAnswers?: string;
+  answersKey?: string;
+  answersIv?: string;
+  encryptedAdditionalInfo?: string;
+  additionalInfoKey?: string;
+  additionalInfoIv?: string;
+  dataHash?: string;
+  isEncrypted?: boolean;
 }
 
 // Constant-time string compare
@@ -174,21 +183,46 @@ serve(async (req) => {
 
     console.log('Original assessment type:', assessmentData.assessmentType);
     console.log('Normalized assessment type:', normalizedAssessmentType);
+    console.log('Is encrypted submission:', !!assessmentData.isEncrypted);
+
+    // Prepare database insertion with encrypted data if available
+    const insertData: any = {
+      session_id: assessmentData.sessionId,
+      assessment_type: normalizedAssessmentType,
+      score: assessmentData.score,
+      severity: assessmentData.severity,
+      recommendations: assessmentData.recommendations,
+      ip_address: clientIP,
+      user_id: userId,
+    };
+
+    // Handle encrypted vs unencrypted data
+    if (assessmentData.isEncrypted && assessmentData.encryptedAnswers) {
+      // Store encrypted data
+      insertData.encrypted_answers = assessmentData.encryptedAnswers;
+      insertData.encrypted_additional_info = assessmentData.encryptedAdditionalInfo || '';
+      insertData.encryption_iv = assessmentData.answersIv;
+      insertData.data_hash = assessmentData.dataHash;
+      insertData.is_encrypted = true;
+      
+      // For backward compatibility, store obfuscated versions in original fields
+      insertData.answers = { encrypted: true, message: 'Sensitive data encrypted for security' };
+      insertData.additional_info = { encrypted: true, message: 'Sensitive data encrypted for security' };
+      
+      console.log('Storing encrypted assessment data');
+    } else {
+      // Legacy unencrypted storage (for backward compatibility)
+      insertData.answers = assessmentData.answers;
+      insertData.additional_info = assessmentData.additionalInfo;
+      insertData.is_encrypted = false;
+      
+      console.log('Storing unencrypted assessment data (legacy mode)');
+    }
 
     // Insert assessment session into database
     const { data: session, error } = await supabase
       .from('assessment_sessions')
-      .insert({
-        session_id: assessmentData.sessionId,
-        assessment_type: normalizedAssessmentType,
-        answers: assessmentData.answers,
-        score: assessmentData.score,
-        severity: assessmentData.severity,
-        recommendations: assessmentData.recommendations,
-        additional_info: assessmentData.additionalInfo,
-        ip_address: clientIP,
-        user_id: userId, // Track authenticated user or null for anonymous
-      })
+      .insert(insertData)
       .select()
       .single();
 

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { supabase } from '@/integrations/supabase/client';
+import { encryptSensitiveData, generateDataHash } from '@/lib/encryption';
 
 interface AssessmentData {
   sessionId: string;
@@ -25,11 +26,35 @@ export const useAssessmentSubmission = () => {
   });
 
   const saveAssessment = async (assessmentData: AssessmentData) => {
-    console.log('Starting assessment submission:', assessmentData);
+    console.log('Starting secure assessment submission:', assessmentData);
     setState({ isSubmitting: true, isSuccess: false, error: null });
 
     try {
-      console.log('Invoking save-assessment function...');
+      console.log('Encrypting sensitive assessment data...');
+      
+      // Encrypt sensitive fields (answers and additional info)
+      const { encryptedData: encryptedAnswers, encryptionKey: answersKey, iv: answersIv } = 
+        await encryptSensitiveData(assessmentData.answers);
+      
+      let encryptedAdditionalInfo = '';
+      let additionalInfoKey = '';
+      let additionalInfoIv = '';
+      
+      if (assessmentData.additionalInfo) {
+        const encryptResult = await encryptSensitiveData(assessmentData.additionalInfo);
+        encryptedAdditionalInfo = encryptResult.encryptedData;
+        additionalInfoKey = encryptResult.encryptionKey;
+        additionalInfoIv = encryptResult.iv;
+      }
+      
+      // Generate data integrity hash
+      const dataToHash = JSON.stringify({
+        answers: assessmentData.answers,
+        additionalInfo: assessmentData.additionalInfo || {},
+      });
+      const dataHash = await generateDataHash(dataToHash);
+      
+      console.log('Invoking save-assessment function with encrypted data...');
       
       // Add timeout to prevent hanging
       const timeoutPromise = new Promise((_, reject) => 
@@ -37,7 +62,18 @@ export const useAssessmentSubmission = () => {
       );
       
       const savePromise = supabase.functions.invoke('save-assessment', {
-        body: assessmentData,
+        body: {
+          ...assessmentData,
+          // Include encrypted data and keys for server storage
+          encryptedAnswers,
+          answersKey,
+          answersIv,
+          encryptedAdditionalInfo,
+          additionalInfoKey,
+          additionalInfoIv,
+          dataHash,
+          isEncrypted: true,
+        },
       });
 
       const { data, error } = await Promise.race([savePromise, timeoutPromise]) as any;

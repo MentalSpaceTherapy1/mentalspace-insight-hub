@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { useSecureAssessmentData } from '@/hooks/useSecureAssessmentData';
 import { 
   Table, 
   TableBody, 
@@ -44,32 +45,41 @@ interface AssessmentContact {
 }
 
 const AssessmentResults = () => {
-  const [sessions, setSessions] = useState<AssessmentSession[]>([]);
   const [contacts, setContacts] = useState<AssessmentContact[]>([]);
   const [loading, setLoading] = useState(true);
-  const [selectedSession, setSelectedSession] = useState<AssessmentSession | null>(null);
+  const [expandedSessions, setExpandedSessions] = useState<Set<string>>(new Set());
+  const [expandedContacts, setExpandedContacts] = useState<Set<string>>(new Set());
+  const [decryptingData, setDecryptingData] = useState<Set<string>>(new Set());
+  
+  // Use the secure assessment data hook
+  const { sessions, isLoading: isLoadingSessions, isDecrypting, error: assessmentError, fetchAssessmentSessions, decryptAssessmentData, getAssessmentAnswers, getAssessmentAdditionalInfo } = useSecureAssessmentData();
+
+  const fetchContacts = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('assessment_contacts')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      if (error) throw error;
+
+      setContacts((data as AssessmentContact[]) || []);
+    } catch (error) {
+      console.error('Error fetching assessment contacts:', error);
+      toast.error('Failed to load assessment contacts');
+    }
+  };
 
   const fetchData = async () => {
+    setLoading(true);
     try {
-      const [sessionsResponse, contactsResponse] = await Promise.all([
-        supabase
-          .from('assessment_sessions')
-          .select('*')
-          .order('completed_at', { ascending: false }),
-        supabase
-          .from('assessment_contacts')
-          .select('*')
-          .order('created_at', { ascending: false })
+      await Promise.all([
+        fetchAssessmentSessions(),
+        fetchContacts()
       ]);
-
-      if (sessionsResponse.error) throw sessionsResponse.error;
-      if (contactsResponse.error) throw contactsResponse.error;
-
-      setSessions((sessionsResponse.data as AssessmentSession[]) || []);
-      setContacts((contactsResponse.data as AssessmentContact[]) || []);
     } catch (error) {
-      console.error('Error fetching assessment data:', error);
-      toast.error('Failed to load assessment data');
+      console.error('Error fetching data:', error);
+      toast.error('Failed to load data');
     } finally {
       setLoading(false);
     }
