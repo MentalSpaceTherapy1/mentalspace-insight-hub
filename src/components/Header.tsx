@@ -179,6 +179,15 @@ const Header = () => {
             </Button>
           </Link>
           
+          {/* Discrete Admin Link */}
+          <Link 
+            to="/admin" 
+            className="hidden md:block text-xs text-muted-foreground hover:text-primary transition-colors duration-200 px-2 py-1 rounded opacity-50 hover:opacity-100"
+            title="Admin Access"
+          >
+            Admin
+          </Link>
+          
           <Button 
             variant="ghost" 
             size="icon" 
