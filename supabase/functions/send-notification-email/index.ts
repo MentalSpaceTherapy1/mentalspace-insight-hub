@@ -136,25 +136,56 @@ serve(async (req) => {
     // Send confirmation email to user if email is provided
     let userEmailResponse;
     if (data.email) {
-      const confirmationSubject = 'Thank you for contacting CHC Therapy';
-      const confirmationTemplate = `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #2563eb;">Thank you for reaching out!</h2>
-          <p>Dear ${data.name || data.firstName || 'Friend'},</p>
-          <p>We have received your submission and will get back to you as soon as possible.</p>
-          <p>Our team typically responds within 24 hours during business days.</p>
-          <p>If you have any urgent concerns, please don't hesitate to call us directly at <strong>404-832-0102</strong>.</p>
-          <p>Thank you for choosing CHC Therapy!</p>
-          <p style="margin-top: 30px;">
-            Best regards,<br>
-            <strong>The CHC Therapy Team</strong>
-          </p>
-          <hr style="margin: 30px 0; border: none; border-top: 1px solid #e5e7eb;">
-          <p style="font-size: 12px; color: #6b7280;">
-            <em>This is an automated confirmation. Please do not reply to this email.</em>
-          </p>
-        </div>
-      `;
+      let confirmationSubject, confirmationTemplate;
+      
+      if (type === 'therapist_matching') {
+        // Special welcome email for therapist matching
+        confirmationSubject = 'Welcome to CHC Therapy!';
+        confirmationTemplate = `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+            <p>Hello!</p>
+            <p>My name is Brenda, I wanted to take the opportunity to welcome you to Coping & Healing Counseling (CHC). Thank you for placing your trust in us during this process. Below, I will be describing what the next steps will be:</p>
+            
+            <p><strong>Step 1:</strong> In the next 24 to 72 hours, you will receive a phone call from one of our team members to verify your information and set your first appointment.</p>
+            
+            <p><strong>Step 2:</strong> We will grant you access to your own Client Portal in our HIPPA-compliant Electronic Health Record (EHR), TherapyNotes, so you can sign and complete a few documents.</p>
+            
+            <p><strong>Step 3:</strong> The journey begins, you are attending your first appointment!</p>
+            
+            <p>Please feel free to reach out to me or any of our team members if you have any questions.</p>
+            
+            <p>Again, welcome to CHC!</p>
+            
+            <p style="margin-top: 30px;">
+              <strong>Brenda Jean-Baptiste, MA, LPC</strong><br>
+              Chief Clinical Officer (CCO) - Therapist<br>
+              Office: 404-832-0102<br>
+              Website: www.chctherapy.com
+            </p>
+          </div>
+        `;
+      } else {
+        // Default confirmation email for other forms
+        confirmationSubject = 'Thank you for contacting CHC Therapy';
+        confirmationTemplate = `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+            <h2 style="color: #2563eb;">Thank you for reaching out!</h2>
+            <p>Dear ${data.name || data.firstName || 'Friend'},</p>
+            <p>We have received your submission and will get back to you as soon as possible.</p>
+            <p>Our team typically responds within 24 hours during business days.</p>
+            <p>If you have any urgent concerns, please don't hesitate to call us directly at <strong>404-832-0102</strong>.</p>
+            <p>Thank you for choosing CHC Therapy!</p>
+            <p style="margin-top: 30px;">
+              Best regards,<br>
+              <strong>The CHC Therapy Team</strong>
+            </p>
+            <hr style="margin: 30px 0; border: none; border-top: 1px solid #e5e7eb;">
+            <p style="font-size: 12px; color: #6b7280;">
+              <em>This is an automated confirmation. Please do not reply to this email.</em>
+            </p>
+          </div>
+        `;
+      }
 
       userEmailResponse = await resend.emails.send({
         from: 'CHC Therapy <noreply@chctherapy.com>',
