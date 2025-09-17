@@ -129,13 +129,6 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "assessment_contacts_assessment_session_id_fkey"
-            columns: ["assessment_session_id"]
-            isOneToOne: false
-            referencedRelation: "user_assessment_summary"
-            referencedColumns: ["id"]
-          },
-          {
             foreignKeyName: "assessment_contacts_processed_by_fkey"
             columns: ["processed_by"]
             isOneToOne: false
@@ -520,61 +513,9 @@ export type Database = {
       }
     }
     Views: {
-      user_assessment_summary: {
-        Row: {
-          additional_info: Json | null
-          answers: Json | null
-          assessment_type: Database["public"]["Enums"]["assessment_type"] | null
-          completed_at: string | null
-          created_at: string | null
-          id: string | null
-          is_encrypted: boolean | null
-          recommendations: string[] | null
-          score: number | null
-          session_id: string | null
-          severity: string | null
-          user_id: string | null
-        }
-        Insert: {
-          additional_info?: never
-          answers?: never
-          assessment_type?:
-            | Database["public"]["Enums"]["assessment_type"]
-            | null
-          completed_at?: string | null
-          created_at?: string | null
-          id?: string | null
-          is_encrypted?: boolean | null
-          recommendations?: string[] | null
-          score?: number | null
-          session_id?: string | null
-          severity?: string | null
-          user_id?: string | null
-        }
-        Update: {
-          additional_info?: never
-          answers?: never
-          assessment_type?:
-            | Database["public"]["Enums"]["assessment_type"]
-            | null
-          completed_at?: string | null
-          created_at?: string | null
-          id?: string | null
-          is_encrypted?: boolean | null
-          recommendations?: string[] | null
-          score?: number | null
-          session_id?: string | null
-          severity?: string | null
-          user_id?: string | null
-        }
-        Relationships: []
-      }
+      [_ in never]: never
     }
     Functions: {
-      can_access_encrypted_assessment_data: {
-        Args: Record<PropertyKey, never>
-        Returns: boolean
-      }
       check_admin_access: {
         Args: Record<PropertyKey, never>
         Returns: boolean
