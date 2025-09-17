@@ -43,6 +43,17 @@ serve(async (req) => {
             .replace(/^./, str => str.toUpperCase())
             .replace(/([a-z])([A-Z])/g, '$1 $2');
           
+          // Format date of birth as M/D/Y
+          if (key === 'dateOfBirth' && value) {
+            try {
+              const date = new Date(value);
+              const formatted = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
+              return `<p><strong>${formattedKey}:</strong> ${formatted}</p>`;
+            } catch {
+              return `<p><strong>${formattedKey}:</strong> ${value}</p>`;
+            }
+          }
+          
           if (typeof value === 'boolean') {
             return `<p><strong>${formattedKey}:</strong> ${value ? 'Yes' : 'No'}</p>`;
           }
