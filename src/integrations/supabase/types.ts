@@ -517,6 +517,7 @@ export type Database = {
         Args: { target_user_id?: string }
         Returns: {
           created_at: string
+          full_name: string
           id: string
           is_active: boolean
           role: Database["public"]["Enums"]["admin_role"]
