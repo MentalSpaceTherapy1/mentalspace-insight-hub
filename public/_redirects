@@ -4,6 +4,14 @@
 # Specific redirects for common 404s (optional)
 /conditions/*   /mental-health-library/:splat   301
 
+# Old website URL redirects (301 permanent redirects)
+/career-2/    /career    301
+/amerigroup-insurance/    /insurance/amerigroup    301
+/service/    /chc-services    301
+/account/    /get-started    301
+/product/plan-1-recommended/    /get-started    301
+/plan-3/    /get-started    301
+
 # Ensure proper 404 handling for invalid URLs
 /api/*    /404.html   404
 /admin-fake/*    /404.html   404
