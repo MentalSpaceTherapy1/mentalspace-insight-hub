@@ -151,27 +151,31 @@ const DepressionTherapyGA = () => {
                       <ul className="space-y-2 text-sm">
                         <li className="flex items-center gap-2">
                           <CheckCircle className="w-4 h-4 text-green-600" />
-                          Aetna (typical copay: $20-40)
+                          Aetna (typical copay: $0-40)
                         </li>
                         <li className="flex items-center gap-2">
                           <CheckCircle className="w-4 h-4 text-green-600" />
-                          Blue Cross Blue Shield of Georgia ($15-35)
+                          Blue Cross Blue Shield of Georgia ($0-35)
                         </li>
                         <li className="flex items-center gap-2">
                           <CheckCircle className="w-4 h-4 text-green-600" />
-                          CareSource ($10-30)
+                          CareSource ($0)
                         </li>
                         <li className="flex items-center gap-2">
                           <CheckCircle className="w-4 h-4 text-green-600" />
-                          Cigna ($20-45)
+                          Cigna ($0-45)
                         </li>
                         <li className="flex items-center gap-2">
                           <CheckCircle className="w-4 h-4 text-green-600" />
-                          Humana ($15-40)
+                          Humana ($0-40)
                         </li>
                         <li className="flex items-center gap-2">
                           <CheckCircle className="w-4 h-4 text-green-600" />
-                          Peach State Health Plan ($5-25)
+                          Peach State Health Plan ($0)
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <CheckCircle className="w-4 h-4 text-green-600" />
+                          Amerigroup ($0)
                         </li>
                       </ul>
                     </div>
@@ -181,7 +185,7 @@ const DepressionTherapyGA = () => {
                       <ul className="space-y-2 text-sm">
                         <li className="flex items-center gap-2">
                           <DollarSign className="w-4 h-4 text-green-600" />
-                          Individual sessions: $120-180
+                          Individual sessions: $75-150
                         </li>
                         <li className="flex items-center gap-2">
                           <DollarSign className="w-4 h-4 text-green-600" />
