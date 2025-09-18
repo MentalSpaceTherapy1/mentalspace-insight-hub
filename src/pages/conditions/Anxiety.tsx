@@ -61,7 +61,7 @@ const Anxiety = () => {
         title="Anxiety Treatment in Georgia | Licensed Therapists & Support"
         description="Find effective anxiety treatment in Georgia. Experienced therapists specializing in anxiety disorders with flexible scheduling and insurance acceptance. Relief is possible."
         keywords="anxiety treatment Georgia, anxiety therapy Atlanta, Georgia anxiety counseling, panic attack help, social anxiety treatment"
-        canonicalUrl="https://chcgeorgia.com/mental-health-library/anxiety"
+        canonicalUrl="https://chctherapy.com/mental-health-library/anxiety"
         ogTitle="Anxiety Treatment in Georgia | Licensed Therapists & Support"
         ogDescription="Find effective anxiety treatment in Georgia. Experienced therapists specializing in anxiety disorders with flexible scheduling and insurance acceptance."
         ogImage="/therapy-hero-og.jpg"

@@ -69,7 +69,7 @@ const Depression = () => {
         title="Depression Therapy in Georgia | Expert Treatment & Support"
         description="Find compassionate depression therapy in Georgia. Licensed therapists specializing in depression treatment with insurance coverage. Get help today - you're not alone."
         keywords="depression therapy Georgia, depression treatment Atlanta, Georgia mental health, depression counseling, Georgia therapists"
-        canonicalUrl="https://chcgeorgia.com/mental-health-library/depression"
+        canonicalUrl="https://chctherapy.com/mental-health-library/depression"
         ogTitle="Depression Therapy in Georgia | Expert Treatment & Support"
         ogDescription="Find compassionate depression therapy in Georgia. Licensed therapists specializing in depression treatment with insurance coverage."
         ogImage="/therapy-hero-og.jpg"

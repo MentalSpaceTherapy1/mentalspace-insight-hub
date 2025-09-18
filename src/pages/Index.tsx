@@ -21,13 +21,13 @@ const Index = () => {
   // SEO Configuration
   useSEO({
     ...SEO_CONFIGS.home,
-    canonicalUrl: "https://coping-healing-therapy.lovable.app/",
+    canonicalUrl: "https://chctherapy.com/",
       "structuredData": {
         "@context": "https://schema.org",
         "@type": "WebPage",
         "name": "Coping & Healing - Professional Online Mental Health Services",
         "description": "Professional online therapy and mental health services. Connect with licensed therapists anytime, anywhere for depression, anxiety, PTSD, ADHD, and more.",
-        "url": "https://coping-healing-therapy.lovable.app/",
+        "url": "https://chctherapy.com/",
         "mainEntity": {
           "@type": "MedicalBusiness",
           "name": "Coping & Healing",

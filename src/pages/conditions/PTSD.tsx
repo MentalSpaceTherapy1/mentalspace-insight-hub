@@ -61,7 +61,7 @@ const PTSD = () => {
         title="PTSD Treatment in Georgia | Trauma-Informed Therapy & Support"
         description="Find specialized PTSD treatment in Georgia. Trauma-informed therapists providing EMDR, CPT, and evidence-based trauma therapy. Support for veterans and civilians."
         keywords="PTSD treatment Georgia, trauma therapy Atlanta, Georgia veterans PTSD, EMDR therapy, trauma counseling"
-        canonicalUrl="https://chcgeorgia.com/mental-health-library/ptsd"
+        canonicalUrl="https://chctherapy.com/mental-health-library/ptsd"
         ogTitle="PTSD Treatment in Georgia | Trauma-Informed Therapy & Support"
         ogDescription="Find specialized PTSD treatment in Georgia. Trauma-informed therapists providing EMDR, CPT, and evidence-based trauma therapy."
         ogImage="/therapy-hero-og.jpg"
