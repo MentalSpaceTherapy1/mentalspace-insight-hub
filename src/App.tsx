@@ -76,6 +76,14 @@ import AnxietyTherapyGA from "./pages/conditions/AnxietyTherapyGA";
 import DepressionTherapyGA from "./pages/conditions/DepressionTherapyGA";
 import PTSDTherapyGA from "./pages/conditions/PTSDTherapyGA";
 import ADHDTherapyGA from "./pages/conditions/ADHDTherapyGA";
+import OCDTherapyGA from "./pages/conditions/OCDTherapyGA";
+import BipolarTherapyGA from "./pages/conditions/BipolarTherapyGA";
+import SocialAnxietyTherapyGA from "./pages/conditions/SocialAnxietyTherapyGA";
+import PerinatalMoodTherapyGA from "./pages/conditions/PerinatalMoodTherapyGA";
+import GriefTherapyGA from "./pages/conditions/GriefTherapyGA";
+import CouplesTherapyGA from "./pages/conditions/CouplesTherapyGA";
+import TeenTherapyGA from "./pages/conditions/TeenTherapyGA";
+import LGBTQIATherapyGA from "./pages/conditions/LGBTQIATherapyGA";
 
 const queryClient = new QueryClient();
 
@@ -164,6 +172,14 @@ const App = () => {
                 <Route path="/depression-therapy-georgia" element={<DepressionTherapyGA />} />
                 <Route path="/ptsd-therapy-georgia" element={<PTSDTherapyGA />} />
                 <Route path="/adhd-therapy-georgia" element={<ADHDTherapyGA />} />
+                <Route path="/ocd-therapy-georgia" element={<OCDTherapyGA />} />
+                <Route path="/bipolar-therapy-georgia" element={<BipolarTherapyGA />} />
+                <Route path="/social-anxiety-therapy-georgia" element={<SocialAnxietyTherapyGA />} />
+                <Route path="/perinatal-mood-therapy-georgia" element={<PerinatalMoodTherapyGA />} />
+                <Route path="/grief-therapy-georgia" element={<GriefTherapyGA />} />
+                <Route path="/couples-therapy-georgia" element={<CouplesTherapyGA />} />
+                <Route path="/teen-therapy-georgia" element={<TeenTherapyGA />} />
+                <Route path="/lgbtqia-therapy-georgia" element={<LGBTQIATherapyGA />} />
                 
                 <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                 <Route path="/terms-conditions" element={<TermsAndConditions />} />
