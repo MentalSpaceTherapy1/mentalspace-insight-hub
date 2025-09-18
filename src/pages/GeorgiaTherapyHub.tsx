@@ -245,10 +245,27 @@ const GeorgiaTherapyHub = () => {
                   <CardContent>
                     <ul className="space-y-2 text-sm">
                       <li><Link to="/lowndes-county-therapy" className="text-blue-600 hover:underline">Lowndes County (Valdosta)</Link></li>
-                      <li><Link to="/thomas-county-therapy" className="text-blue-600 hover:underline">Thomas County (Thomasville)</Link></li>
+                      <li>Thomas County (Thomasville)</li>
                       <li>Colquitt, Cook, Tift Counties</li>
                       <li>Worth, Mitchell, Baker Counties</li>
                       <li>All rural South Georgia counties</li>
+                    </ul>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2 text-primary">
+                      <MapPin className="w-4 h-4" />
+                      Coastal Georgia
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="space-y-2 text-sm">
+                      <li><Link to="/chatham-county-therapy" className="text-blue-600 hover:underline">Chatham County (Savannah)</Link></li>
+                      <li>Glynn County (Brunswick)</li>
+                      <li>Camden, Liberty, McIntosh Counties</li>
+                      <li>All coastal and barrier island areas</li>
                     </ul>
                   </CardContent>
                 </Card>
@@ -263,7 +280,7 @@ const GeorgiaTherapyHub = () => {
                   <CardContent>
                     <ul className="space-y-2 text-sm">
                       <li><Link to="/hall-county-therapy" className="text-blue-600 hover:underline">Hall County (Gainesville)</Link></li>
-                      <li><Link to="/richmond-county-therapy" className="text-blue-600 hover:underline">Richmond County (Augusta)</Link></li>
+                      <li>Richmond County (Augusta)</li>
                       <li>Habersham, Rabun, Towns Counties</li>
                       <li>Clarke, Jackson, Madison Counties</li>
                       <li>All mountain and rural counties</li>
