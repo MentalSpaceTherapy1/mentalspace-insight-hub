@@ -85,6 +85,12 @@ import CouplesTherapyGA from "./pages/conditions/CouplesTherapyGA";
 import TeenTherapyGA from "./pages/conditions/TeenTherapyGA";
 import LGBTQIATherapyGA from "./pages/conditions/LGBTQIATherapyGA";
 
+// Georgia location pages
+import GeorgiaTherapyHub from "./pages/GeorgiaTherapyHub";
+import FultonCountyTherapy from "./pages/locations/FultonCountyTherapy";
+import LowndesCountyTherapy from "./pages/locations/LowndesCountyTherapy";
+import HallCountyTherapy from "./pages/locations/HallCountyTherapy";
+
 const queryClient = new QueryClient();
 
 const App = () => {
@@ -180,6 +186,12 @@ const App = () => {
                 <Route path="/couples-therapy-georgia" element={<CouplesTherapyGA />} />
                 <Route path="/teen-therapy-georgia" element={<TeenTherapyGA />} />
                 <Route path="/lgbtqia-therapy-georgia" element={<LGBTQIATherapyGA />} />
+                
+                {/* Georgia location pages */}
+                <Route path="/online-therapy-georgia" element={<GeorgiaTherapyHub />} />
+                <Route path="/fulton-county-therapy" element={<FultonCountyTherapy />} />
+                <Route path="/lowndes-county-therapy" element={<LowndesCountyTherapy />} />
+                <Route path="/hall-county-therapy" element={<HallCountyTherapy />} />
                 
                 <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                 <Route path="/terms-conditions" element={<TermsAndConditions />} />
