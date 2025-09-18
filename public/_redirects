@@ -3,3 +3,7 @@
 
 # Specific redirects for common 404s (optional)
 /conditions/*   /mental-health-library/:splat   301
+
+# Ensure proper 404 handling for invalid URLs
+/api/*    /404.html   404
+/admin-fake/*    /404.html   404

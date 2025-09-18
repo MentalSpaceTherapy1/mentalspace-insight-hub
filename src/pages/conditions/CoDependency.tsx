@@ -14,7 +14,7 @@ const CoDependency = () => {
         title="Codependency Treatment | Relationship Therapy & Recovery"
         description="Get professional help for codependency. Learn about healthy relationships, boundaries, and find specialized therapists for codependency recovery and healing."
         keywords="codependency, codependent relationships, relationship therapy, boundaries, enabling behavior, relationship counseling"
-        canonicalUrl="/mental-health-library/codependency"
+        canonicalUrl="https://chctherapy.com/mental-health-library/codependency"
       />
       <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
         <Header />

@@ -14,7 +14,7 @@ const AdjustmentDisorder = () => {
         title="Adjustment Disorder Treatment | Expert Therapy Services"
         description="Get professional help for adjustment disorder. Learn about symptoms, causes, and evidence-based treatments. Find specialized therapists to help you cope with life changes."
         keywords="adjustment disorder, life changes, stress therapy, coping skills, mental health treatment"
-        canonicalUrl="/mental-health-library/adjustment-disorder"
+        canonicalUrl="https://chctherapy.com/mental-health-library/adjustment-disorder"
       />
       <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
         <Header />

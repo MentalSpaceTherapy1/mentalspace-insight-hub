@@ -14,7 +14,7 @@ const Anorexia = () => {
         title="Anorexia Nervosa Treatment | Eating Disorder Therapy"
         description="Get professional help for anorexia nervosa. Learn about symptoms, causes, and specialized eating disorder treatments. Find qualified therapists for recovery support."
         keywords="anorexia nervosa, eating disorder treatment, anorexia therapy, eating disorder recovery, body image therapy"
-        canonicalUrl="/mental-health-library/anorexia"
+        canonicalUrl="https://chctherapy.com/mental-health-library/anorexia"
       />
       <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
         <Header />
