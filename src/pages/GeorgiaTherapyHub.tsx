@@ -232,6 +232,7 @@ const GeorgiaTherapyHub = () => {
                       <li><Link to="/cobb-county-therapy" className="text-blue-600 hover:underline">Cobb County</Link></li>
                       <li><Link to="/cherokee-county-therapy" className="text-blue-600 hover:underline">Cherokee County</Link></li>
                       <li><Link to="/forsyth-county-therapy" className="text-blue-600 hover:underline">Forsyth County</Link></li>
+                      <li><Link to="/clayton-county-therapy" className="text-blue-600 hover:underline">Clayton County</Link></li>
                     </ul>
                   </CardContent>
                 </Card>
@@ -248,7 +249,9 @@ const GeorgiaTherapyHub = () => {
                       <li><Link to="/lowndes-county-therapy" className="text-blue-600 hover:underline">Lowndes County (Valdosta)</Link></li>
                       <li><Link to="/thomas-county-therapy" className="text-blue-600 hover:underline">Thomas County (Thomasville)</Link></li>
                       <li><Link to="/colquitt-county-therapy" className="text-blue-600 hover:underline">Colquitt County (Moultrie)</Link></li>
-                      <li>Cook, Tift Counties</li>
+                      <li><Link to="/houston-county-therapy" className="text-blue-600 hover:underline">Houston County (Warner Robins)</Link></li>
+                      <li><Link to="/muscogee-county-therapy" className="text-blue-600 hover:underline">Muscogee County (Columbus)</Link></li>
+                      <li><Link to="/bibb-county-therapy" className="text-blue-600 hover:underline">Bibb County (Macon)</Link></li>
                       <li>Worth, Mitchell, Baker Counties</li>
                       <li>All rural South Georgia counties</li>
                     </ul>

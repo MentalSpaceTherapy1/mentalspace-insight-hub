@@ -102,6 +102,10 @@ import CherokeeCountyTherapy from "./pages/locations/CherokeeCountyTherapy";
 import ForsythCountyTherapy from "./pages/locations/ForsythCountyTherapy";
 import CamdenCountyTherapy from "./pages/locations/CamdenCountyTherapy";
 import ColquittCountyTherapy from "./pages/locations/ColquittCountyTherapy";
+import ClaytonCountyTherapy from "./pages/locations/ClaytonCountyTherapy";
+import HoustonCountyTherapy from "./pages/locations/HoustonCountyTherapy";
+import MuscogeeCountyTherapy from "./pages/locations/MuscogeeCountyTherapy";
+import BibbCountyTherapy from "./pages/locations/BibbCountyTherapy";
 
 const queryClient = new QueryClient();
 
@@ -216,6 +220,10 @@ const App = () => {
           <Route path="/forsyth-county-therapy" element={<ForsythCountyTherapy />} />
           <Route path="/camden-county-therapy" element={<CamdenCountyTherapy />} />
           <Route path="/colquitt-county-therapy" element={<ColquittCountyTherapy />} />
+          <Route path="/clayton-county-therapy" element={<ClaytonCountyTherapy />} />
+          <Route path="/houston-county-therapy" element={<HoustonCountyTherapy />} />
+          <Route path="/muscogee-county-therapy" element={<MuscogeeCountyTherapy />} />
+          <Route path="/bibb-county-therapy" element={<BibbCountyTherapy />} />
                 
                 <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                 <Route path="/terms-conditions" element={<TermsAndConditions />} />
