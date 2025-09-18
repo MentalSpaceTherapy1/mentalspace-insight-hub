@@ -230,7 +230,8 @@ const GeorgiaTherapyHub = () => {
                       <li><Link to="/dekalb-county-therapy" className="text-blue-600 hover:underline">DeKalb County</Link></li>
                       <li><Link to="/gwinnett-county-therapy" className="text-blue-600 hover:underline">Gwinnett County</Link></li>
                       <li><Link to="/cobb-county-therapy" className="text-blue-600 hover:underline">Cobb County</Link></li>
-                      <li>Clayton, Cherokee, Forsyth Counties</li>
+                      <li><Link to="/cherokee-county-therapy" className="text-blue-600 hover:underline">Cherokee County</Link></li>
+                      <li><Link to="/forsyth-county-therapy" className="text-blue-600 hover:underline">Forsyth County</Link></li>
                     </ul>
                   </CardContent>
                 </Card>
@@ -246,7 +247,8 @@ const GeorgiaTherapyHub = () => {
                     <ul className="space-y-2 text-sm">
                       <li><Link to="/lowndes-county-therapy" className="text-blue-600 hover:underline">Lowndes County (Valdosta)</Link></li>
                       <li><Link to="/thomas-county-therapy" className="text-blue-600 hover:underline">Thomas County (Thomasville)</Link></li>
-                      <li>Colquitt, Cook, Tift Counties</li>
+                      <li><Link to="/colquitt-county-therapy" className="text-blue-600 hover:underline">Colquitt County (Moultrie)</Link></li>
+                      <li>Cook, Tift Counties</li>
                       <li>Worth, Mitchell, Baker Counties</li>
                       <li>All rural South Georgia counties</li>
                     </ul>
@@ -264,7 +266,8 @@ const GeorgiaTherapyHub = () => {
                     <ul className="space-y-2 text-sm">
                       <li><Link to="/chatham-county-therapy" className="text-blue-600 hover:underline">Chatham County (Savannah)</Link></li>
                       <li><Link to="/glynn-county-therapy" className="text-blue-600 hover:underline">Glynn County (Brunswick)</Link></li>
-                      <li>Camden, Liberty, McIntosh Counties</li>
+                      <li><Link to="/camden-county-therapy" className="text-blue-600 hover:underline">Camden County (Kingsland)</Link></li>
+                      <li>Liberty, McIntosh Counties</li>
                       <li>All coastal and barrier island areas</li>
                     </ul>
                   </CardContent>

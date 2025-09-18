@@ -98,6 +98,10 @@ import RichmondCountyTherapy from "./pages/locations/RichmondCountyTherapy";
 import ClarkeCountyTherapy from "./pages/locations/ClarkeCountyTherapy";
 import GlynnCountyTherapy from "./pages/locations/GlynnCountyTherapy";
 import ThomasCountyTherapy from "./pages/locations/ThomasCountyTherapy";
+import CherokeeCountyTherapy from "./pages/locations/CherokeeCountyTherapy";
+import ForsythCountyTherapy from "./pages/locations/ForsythCountyTherapy";
+import CamdenCountyTherapy from "./pages/locations/CamdenCountyTherapy";
+import ColquittCountyTherapy from "./pages/locations/ColquittCountyTherapy";
 
 const queryClient = new QueryClient();
 
@@ -208,6 +212,10 @@ const App = () => {
           <Route path="/clarke-county-therapy" element={<ClarkeCountyTherapy />} />
           <Route path="/glynn-county-therapy" element={<GlynnCountyTherapy />} />
           <Route path="/thomas-county-therapy" element={<ThomasCountyTherapy />} />
+          <Route path="/cherokee-county-therapy" element={<CherokeeCountyTherapy />} />
+          <Route path="/forsyth-county-therapy" element={<ForsythCountyTherapy />} />
+          <Route path="/camden-county-therapy" element={<CamdenCountyTherapy />} />
+          <Route path="/colquitt-county-therapy" element={<ColquittCountyTherapy />} />
                 
                 <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                 <Route path="/terms-conditions" element={<TermsAndConditions />} />
