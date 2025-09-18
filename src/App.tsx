@@ -90,6 +90,10 @@ import GeorgiaTherapyHub from "./pages/GeorgiaTherapyHub";
 import FultonCountyTherapy from "./pages/locations/FultonCountyTherapy";
 import LowndesCountyTherapy from "./pages/locations/LowndesCountyTherapy";
 import HallCountyTherapy from "./pages/locations/HallCountyTherapy";
+import GwinnettCountyTherapy from "./pages/locations/GwinnettCountyTherapy";
+import CobbCountyTherapy from "./pages/locations/CobbCountyTherapy";
+import DeKalbCountyTherapy from "./pages/locations/DeKalbCountyTherapy";
+import ChathamCountyTherapy from "./pages/locations/ChathamCountyTherapy";
 
 const queryClient = new QueryClient();
 
@@ -189,9 +193,13 @@ const App = () => {
                 
                 {/* Georgia location pages */}
                 <Route path="/online-therapy-georgia" element={<GeorgiaTherapyHub />} />
-                <Route path="/fulton-county-therapy" element={<FultonCountyTherapy />} />
-                <Route path="/lowndes-county-therapy" element={<LowndesCountyTherapy />} />
-                <Route path="/hall-county-therapy" element={<HallCountyTherapy />} />
+          <Route path="/fulton-county-therapy" element={<FultonCountyTherapy />} />
+          <Route path="/lowndes-county-therapy" element={<LowndesCountyTherapy />} />
+          <Route path="/hall-county-therapy" element={<HallCountyTherapy />} />
+          <Route path="/gwinnett-county-therapy" element={<GwinnettCountyTherapy />} />
+          <Route path="/cobb-county-therapy" element={<CobbCountyTherapy />} />
+          <Route path="/dekalb-county-therapy" element={<DeKalbCountyTherapy />} />
+          <Route path="/chatham-county-therapy" element={<ChathamCountyTherapy />} />
                 
                 <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                 <Route path="/terms-conditions" element={<TermsAndConditions />} />
