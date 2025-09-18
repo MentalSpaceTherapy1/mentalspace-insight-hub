@@ -1,12 +1,36 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { CheckCircle, Shield, DollarSign, Heart, Phone, Globe } from "lucide-react";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { CheckCircle, Shield, DollarSign, Heart, Phone, Globe, AlertTriangle, CreditCard, FileText } from "lucide-react";
 import { Link } from "react-router-dom";
 import SEOHead from "@/components/SEOHead";
 import humanaImage from "@/assets/insurance-humana.jpg";
 
 const HumanaInsurance = () => {
+  const costRanges = [
+    { service: "Individual Therapy Session", cost: "$0-$30", note: "Varies by specific plan and provider" },
+    { service: "Couples/Family Therapy", cost: "$0-$30", note: "Wellness-focused pricing" },
+    { service: "Group Therapy", cost: "$0-$15", note: "Community support with wellness incentives" },
+    { service: "Psychiatric Consultation", cost: "$0-$40", note: "Integrated with primary care" }
+  ];
+
+  const faqs = [
+    {
+      question: "Do I need a referral for mental health services with Humana?",
+      answer: "Most Humana plans don't require a referral for mental health services. You can access in-network providers directly through their integrated care model."
+    },
+    {
+      question: "How does Humana's integrated care approach work?",
+      answer: "Humana coordinates your mental health care with your primary care provider for comprehensive wellness, often resulting in better outcomes and lower costs."
+    },
+    {
+      question: "Does Humana offer wellness incentives for mental health?",
+      answer: "Yes, many Humana plans offer wellness rewards and incentives for participating in mental health programs and achieving health goals."
+    }
+  ];
   const benefits = [
     {
       icon: Heart,
@@ -234,7 +258,79 @@ const HumanaInsurance = () => {
           </div>
         </section>
 
-        {/* Call to Action */}
+        {/* Cost Breakdown and Comprehensive Sections */}
+        <section className="py-20 px-4">
+          <div className="container mx-auto max-w-4xl">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+              Humana Mental Health Costs
+            </h2>
+            
+            <Alert className="mb-8">
+              <AlertTriangle className="h-4 w-4" />
+              <AlertDescription>
+                <strong>Important:</strong> Costs vary by specific plan. These are typical ranges for Humana members. Always verify with your plan details.
+              </AlertDescription>
+            </Alert>
+
+            <div className="grid md:grid-cols-2 gap-6 mb-12">
+              {costRanges.map((item, index) => (
+                <Card key={index}>
+                  <CardHeader>
+                    <CardTitle className="text-lg">{item.service}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-2xl font-bold text-green-600 mb-2">{item.cost}</div>
+                    <p className="text-sm text-muted-foreground">{item.note}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+
+            <h3 className="text-2xl font-bold mb-6">Self-Pay Options</h3>
+            <div className="grid md:grid-cols-2 gap-6 mb-12">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Self-Pay Rates</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-3">
+                    <li className="flex items-center gap-2">
+                      <DollarSign className="h-4 w-4 text-green-600" />
+                      <span>Income-based pricing as low as $75/session</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CreditCard className="h-4 w-4 text-green-600" />
+                      <span>Individual therapy: $75-150/session</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CreditCard className="h-4 w-4 text-green-600" />
+                      <span>Couples therapy: $150-200/session</span>
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader>
+                  <CardTitle>FAQ</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <Accordion type="single" collapsible className="w-full">
+                    {faqs.map((faq, index) => (
+                      <AccordionItem key={index} value={`item-${index}`}>
+                        <AccordionTrigger className="text-left text-sm">
+                          {faq.question}
+                        </AccordionTrigger>
+                        <AccordionContent className="text-sm">
+                          {faq.answer}
+                        </AccordionContent>
+                      </AccordionItem>
+                    ))}
+                  </Accordion>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
         <section className="py-20 px-4 bg-gradient-to-r from-green-600 to-teal-600">
           <div className="container mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">

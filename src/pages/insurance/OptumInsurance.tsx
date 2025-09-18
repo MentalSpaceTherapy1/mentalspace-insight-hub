@@ -1,12 +1,60 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { CheckCircle, Shield, DollarSign, Database, Lightbulb, Users } from "lucide-react";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { CheckCircle, Shield, DollarSign, Database, Lightbulb, Users, AlertTriangle, CreditCard, FileText } from "lucide-react";
 import { Link } from "react-router-dom";
 import SEOHead from "@/components/SEOHead";
 import optumImage from "@/assets/insurance-optum.jpg";
 
 const OptumInsurance = () => {
+  const costRanges = [
+    { service: "Individual Therapy Session", cost: "$0-$30", note: "Varies by specific plan and provider" },
+    { service: "Couples/Family Therapy", cost: "$0-$30", note: "May require prior authorization" },
+    { service: "Group Therapy", cost: "$0-$15", note: "Technology-enhanced group sessions" },
+    { service: "Psychiatric Consultation", cost: "$0-$40", note: "Digital health integration available" }
+  ];
+
+  const priorAuthInfo = [
+    { service: "Individual Therapy (8-12 sessions)", required: "Usually not required", note: "Initial sessions typically approved" },
+    { service: "Extended Therapy (13+ sessions)", required: "May be required", note: "Data-driven review for continued care" },
+    { service: "Intensive Outpatient Programs", required: "Required", note: "Pre-authorization with outcome tracking" },
+    { service: "Digital Therapeutics", required: "Varies", note: "Depends on specific app or platform" }
+  ];
+
+  const conditionCoverage = [
+    { condition: "Depression", link: "/conditions/depression", description: "Evidence-based therapy with outcome tracking" },
+    { condition: "Anxiety Disorders", link: "/conditions/anxiety", description: "CBT with digital support tools" },
+    { condition: "PTSD & Trauma", link: "/conditions/ptsd", description: "Trauma-focused therapy with VR options" },
+    { condition: "Bipolar Disorder", link: "/conditions/bipolar", description: "Integrated psychiatric and therapy care" },
+    { condition: "Substance Use", link: "/conditions/substance-use-disorder", description: "MAT and counseling with tech support" },
+    { condition: "ADHD", link: "/conditions/adhd", description: "Behavioral therapy with digital tracking" }
+  ];
+
+  const faqs = [
+    {
+      question: "Do I need a referral for mental health services with Optum?",
+      answer: "No, Optum members typically don't need a referral for mental health services. You can access in-network providers directly or through their digital platform."
+    },
+    {
+      question: "How many therapy sessions does Optum cover per year?",
+      answer: "Coverage varies by plan, but most Optum plans cover 12-26 sessions per year. Their data-driven approach may support extended treatment when clinically justified."
+    },
+    {
+      question: "Does Optum cover digital mental health tools?",
+      answer: "Yes, Optum covers many digital therapeutics and mental health apps as part of their innovative care approach, when prescribed by a provider."
+    },
+    {
+      question: "How does Optum's outcome tracking work?",
+      answer: "Optum uses data analytics to track treatment progress and outcomes, helping ensure you receive the most effective care for your specific situation."
+    },
+    {
+      question: "Can I access both in-person and digital mental health services?",
+      answer: "Yes, Optum's integrated approach combines traditional therapy with digital tools and resources for comprehensive mental health care."
+    }
+  ];
   const benefits = [
     {
       icon: Database,
@@ -234,6 +282,164 @@ const OptumInsurance = () => {
                 </ul>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* Cost Breakdown Section */}
+        <section className="py-20 px-4">
+          <div className="container mx-auto max-w-4xl">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+              Optum Mental Health Costs
+            </h2>
+            
+            <Alert className="mb-8">
+              <AlertTriangle className="h-4 w-4" />
+              <AlertDescription>
+                <strong>Important:</strong> Costs vary by specific plan and provider. These are typical ranges for Optum members. Always verify with your specific plan details.
+              </AlertDescription>
+            </Alert>
+
+            <div className="grid md:grid-cols-2 gap-6 mb-12">
+              {costRanges.map((item, index) => (
+                <Card key={index}>
+                  <CardHeader>
+                    <CardTitle className="text-lg">{item.service}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-2xl font-bold text-teal-600 mb-2">{item.cost}</div>
+                    <p className="text-sm text-muted-foreground">{item.note}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+
+            <h3 className="text-2xl font-bold mb-6">Prior Authorization & Visit Limits</h3>
+            <div className="space-y-4 mb-12">
+              {priorAuthInfo.map((item, index) => (
+                <Card key={index}>
+                  <CardContent className="pt-6">
+                    <div className="flex justify-between items-start mb-2">
+                      <h4 className="font-semibold">{item.service}</h4>
+                      <span className={`px-2 py-1 rounded text-sm ${
+                        item.required === "Required" ? "bg-red-100 text-red-800" :
+                        item.required === "Usually not required" ? "bg-green-100 text-green-800" :
+                        "bg-yellow-100 text-yellow-800"
+                      }`}>
+                        {item.required}
+                      </span>
+                    </div>
+                    <p className="text-sm text-muted-foreground">{item.note}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+
+            <h3 className="text-2xl font-bold mb-6">How CHC Handles Your Benefits</h3>
+            <Card className="mb-12">
+              <CardContent className="pt-6">
+                <div className="grid md:grid-cols-3 gap-6">
+                  <div className="text-center">
+                    <FileText className="h-12 w-12 mx-auto mb-4 text-teal-600" />
+                    <h4 className="font-semibold mb-2">We Check Your Benefits</h4>
+                    <p className="text-sm text-muted-foreground">Our team verifies your Optum coverage before your first session</p>
+                  </div>
+                  <div className="text-center">
+                    <DollarSign className="h-12 w-12 mx-auto mb-4 text-teal-600" />
+                    <h4 className="font-semibold mb-2">Clear Pricing</h4>
+                    <p className="text-sm text-muted-foreground">You'll know your exact copay amount before scheduling</p>
+                  </div>
+                  <div className="text-center">
+                    <CreditCard className="h-12 w-12 mx-auto mb-4 text-teal-600" />
+                    <h4 className="font-semibold mb-2">Simple Billing</h4>
+                    <p className="text-sm text-muted-foreground">We bill Optum directly - you only pay your copay</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <h3 className="text-2xl font-bold mb-6">Out-of-Network & Self-Pay Options</h3>
+            <div className="grid md:grid-cols-2 gap-6 mb-12">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Out-of-Network Coverage</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="mb-4">If CHC is out-of-network with your Optum plan:</p>
+                  <ul className="space-y-2 text-sm">
+                    <li>• Higher deductibles may apply</li>
+                    <li>• You may pay 40-60% coinsurance</li>
+                    <li>• We can provide receipts for reimbursement</li>
+                    <li>• Consider in-network options first</li>
+                  </ul>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader>
+                  <CardTitle>Self-Pay Rates</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="mb-4">If you choose to self-pay:</p>
+                  <ul className="space-y-3">
+                    <li className="flex items-center gap-2">
+                      <DollarSign className="h-4 w-4 text-green-600" />
+                      <span>Income-based pricing as low as $75/session</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CreditCard className="h-4 w-4 text-green-600" />
+                      <span>Individual therapy: $75-150/session</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CreditCard className="h-4 w-4 text-green-600" />
+                      <span>Couples therapy: $150-200/session</span>
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+
+        {/* Covered Conditions */}
+        <section className="py-20 px-4 bg-muted/50">
+          <div className="container mx-auto max-w-4xl">
+            <h2 className="text-3xl font-bold text-center mb-12">
+              Mental Health Conditions Covered by Optum
+            </h2>
+            <div className="grid md:grid-cols-2 gap-6">
+              {conditionCoverage.map((condition, index) => (
+                <Card key={index} className="hover:shadow-lg transition-shadow">
+                  <CardContent className="pt-6">
+                    <Link to={condition.link} className="block">
+                      <h3 className="font-semibold text-teal-600 mb-2 hover:underline">
+                        {condition.condition}
+                      </h3>
+                      <p className="text-sm text-muted-foreground">{condition.description}</p>
+                    </Link>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section className="py-20 px-4">
+          <div className="container mx-auto max-w-4xl">
+            <h2 className="text-3xl font-bold text-center mb-12">
+              Frequently Asked Questions - Optum
+            </h2>
+            <Accordion type="single" collapsible className="w-full">
+              {faqs.map((faq, index) => (
+                <AccordionItem key={index} value={`item-${index}`}>
+                  <AccordionTrigger className="text-left">
+                    {faq.question}
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
           </div>
         </section>
 
