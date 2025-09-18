@@ -8,47 +8,74 @@ const Insurance = () => {
     {
       name: "CareSource",
       copay: "$0/$30",
-      slug: "caresource"
+      slug: "caresource",
+      description: "As Georgia's trusted Medicaid managed care provider, CareSource offers comprehensive mental health benefits with zero barriers to access. We specialize in working with CareSource members to maximize their behavioral health benefits and ensure seamless care coordination.",
+      highlight: "Zero-cost mental health visits for most members",
+      benefit: "Same-day appointments available"
     },
     {
       name: "Amerigroup", 
       copay: "$0/$30",
-      slug: "amerigroup"
+      slug: "amerigroup",
+      description: "Amerigroup Real Solutions in Georgia provides robust mental health coverage with a focus on preventive care and early intervention. Our therapists understand Amerigroup's care management approach and work directly with your care coordinators.",
+      highlight: "No referrals needed for therapy sessions",
+      benefit: "Integrated care coordination"
     },
     {
       name: "Peach State",
       copay: "$0/$30/$40",
-      slug: "peach-state"
+      slug: "peach-state",
+      description: "Peach State Health Plan members enjoy comprehensive behavioral health benefits across Georgia. We've streamlined the authorization process to get you connected with care faster, often with immediate approval for therapy services.",
+      highlight: "Flexible copay options based on service type",
+      benefit: "Fast-track authorization process"
     },
     {
       name: "Optum",
       copay: "$0/$30",
-      slug: "optum"
+      slug: "optum",
+      description: "Optum's extensive provider network includes our experienced therapists who specialize in evidence-based treatments. Benefit from Optum's innovative telehealth platform integration and comprehensive mental health resources.",
+      highlight: "Enhanced digital health tools included",
+      benefit: "24/7 crisis support access"
     },
     {
       name: "Blue Cross Blue Shield",
       copay: "$30/$40",
-      slug: "bluecross-blueshield"
+      slug: "bluecross-blueshield",
+      description: "Blue Cross Blue Shield of Georgia members have access to our full range of therapeutic services. With one of the most comprehensive mental health benefits in the state, BCBS covers everything from individual therapy to specialized treatments.",
+      highlight: "Comprehensive coverage for all therapy types",
+      benefit: "Extended session limits available"
     },
     {
       name: "Aetna",
       copay: "$0/$30",
-      slug: "aetna"
+      slug: "aetna",
+      description: "Aetna Better Health of Georgia prioritizes accessible mental healthcare with generous session allowances and minimal administrative barriers. Our Aetna-credentialed therapists provide culturally competent care across diverse communities.",
+      highlight: "Generous annual session limits",
+      benefit: "Multilingual support available"
     },
     {
       name: "Cigna", 
       copay: "$30/$40",
-      slug: "cigna"
+      slug: "cigna",
+      description: "Cigna HealthSpring and traditional Cigna plans both offer excellent mental health benefits. We work with Cigna's case management team to ensure continuity of care and can provide detailed treatment summaries for optimal outcomes.",
+      highlight: "Coordinated care with medical providers",
+      benefit: "Detailed progress reporting"
     },
     {
       name: "Alliant Health",
       copay: "$0/$30",
-      slug: "alliant"
+      slug: "alliant",
+      description: "Alliant Health Plans members benefit from our specialized approach to community-based mental health care. With a focus on Georgia's underserved populations, we provide culturally sensitive therapy that aligns with Alliant's community health mission.",
+      highlight: "Community-focused mental health approach",
+      benefit: "Culturally sensitive care specialists"
     },
     {
       name: "Humana",
       copay: "$0/$30",
-      slug: "humana"
+      slug: "humana",
+      description: "Humana Healthy Horizons and Medicare Advantage members receive comprehensive behavioral health benefits. Our therapists are specially trained in age-appropriate care and work closely with Humana's integrated care management programs.",
+      highlight: "Specialized programs for different age groups",
+      benefit: "Medicare Advantage coordination"
     }
   ];
 
@@ -63,7 +90,7 @@ const Insurance = () => {
               Insurance Coverage
             </h1>
             <p className="text-xl md:text-2xl mb-8 text-muted-foreground max-w-4xl mx-auto">
-              Our therapists accept most insurances. At MentalSpace, we proudly serve a vast community, with our therapy services covered by numerous insurance providers. The majority of our insured clients enjoy the benefit of an average copay under $30.
+              We accept most major insurance plans throughout Georgia, making quality mental healthcare accessible and affordable. Our in-network status with leading insurance providers means you can focus on your healing journey while we handle the billing complexities.
             </p>
             <p className="text-lg text-muted-foreground">
               <strong>And more</strong> - We work with additional insurance providers not listed here. Contact us to verify your coverage.
@@ -76,28 +103,37 @@ const Insurance = () => {
           <div className="container mx-auto">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {insuranceProviders.map((provider, index) => (
-                <div key={index} className="p-8 rounded-lg border bg-card text-center">
+                <div key={index} className="p-8 rounded-lg border bg-card hover:shadow-lg transition-shadow">
                   <h3 className="text-2xl font-bold mb-4 text-primary">
                     {provider.name}
                   </h3>
-                  <p className="text-muted-foreground mb-6 leading-relaxed">
-                    Getting mental health support should be straightforward. That's why Coping & Healing Counseling is in‑network with {provider.name} and various other insurance plans. Our licensed therapists are here to guide you towards meaningful life changes.
+                  <p className="text-muted-foreground mb-4 leading-relaxed text-left">
+                    {provider.description}
                   </p>
-                  <div className="mb-6">
-                    <h4 className="text-lg font-semibold mb-2">Your copay could be as low as $0</h4>
-                    <p className="text-sm text-muted-foreground">
-                      Average {provider.name} member copay per session {provider.copay}
+                  
+                  <div className="mb-4 p-3 bg-primary/5 rounded-lg">
+                    <h4 className="text-sm font-semibold mb-1 text-primary">{provider.highlight}</h4>
+                    <p className="text-xs text-muted-foreground">
+                      Copay range: {provider.copay} per session
                     </p>
                   </div>
+                  
+                  <div className="mb-6 text-left">
+                    <div className="flex items-center gap-2 text-sm text-green-600">
+                      <div className="w-2 h-2 bg-green-600 rounded-full"></div>
+                      {provider.benefit}
+                    </div>
+                  </div>
+                  
                   <div className="space-y-3">
                     <Link to={`/insurance/${provider.slug}`}>
                       <Button className="w-full">
-                        Learn More
+                        View {provider.name} Details
                       </Button>
                     </Link>
                     <Link to="/therapist-matching">
                       <Button variant="outline" className="w-full">
-                        Request an Appointment
+                        Get Started Today
                       </Button>
                     </Link>
                   </div>
