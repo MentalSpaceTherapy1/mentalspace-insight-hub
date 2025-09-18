@@ -17,6 +17,15 @@ const HumanaInsurance = () => {
     { service: "Psychiatric Consultation", cost: "$0-$40", note: "Integrated with primary care" }
   ];
 
+  const conditionCoverage = [
+    { condition: "Depression", link: "/mental-health-library/depression", description: "Individual therapy, wellness-focused treatment" },
+    { condition: "Anxiety Disorders", link: "/mental-health-library/anxiety", description: "CBT, mindfulness, integrated care approach" },
+    { condition: "PTSD & Trauma", link: "/mental-health-library/ptsd", description: "Trauma-focused therapy, holistic healing" },
+    { condition: "Bipolar Disorder", link: "/mental-health-library/bipolar-disorder", description: "Integrated psychiatric and wellness care" },
+    { condition: "Substance Use", link: "/mental-health-library/substance-use-disorder", description: "Recovery support, wellness programs" },
+    { condition: "ADHD", link: "/mental-health-library/adhd", description: "Behavioral therapy, wellness coaching" }
+  ];
+
   const faqs = [
     {
       question: "Do I need a referral for mental health services with Humana?",
@@ -254,6 +263,29 @@ const HumanaInsurance = () => {
                   </li>
                 </ul>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Covered Conditions */}
+        <section className="py-20 px-4 bg-muted/50">
+          <div className="container mx-auto max-w-4xl">
+            <h2 className="text-3xl font-bold text-center mb-12">
+              Mental Health Conditions Covered by Humana
+            </h2>
+            <div className="grid md:grid-cols-2 gap-6">
+              {conditionCoverage.map((condition, index) => (
+                <Card key={index} className="hover:shadow-lg transition-shadow">
+                  <CardContent className="pt-6">
+                    <Link to={condition.link} className="block">
+                      <h3 className="font-semibold text-green-600 mb-2 hover:underline">
+                        {condition.condition}
+                      </h3>
+                      <p className="text-sm text-muted-foreground">{condition.description}</p>
+                    </Link>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
           </div>
         </section>

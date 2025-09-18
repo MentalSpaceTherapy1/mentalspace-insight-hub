@@ -25,12 +25,12 @@ const OptumInsurance = () => {
   ];
 
   const conditionCoverage = [
-    { condition: "Depression", link: "/conditions/depression", description: "Evidence-based therapy with outcome tracking" },
-    { condition: "Anxiety Disorders", link: "/conditions/anxiety", description: "CBT with digital support tools" },
-    { condition: "PTSD & Trauma", link: "/conditions/ptsd", description: "Trauma-focused therapy with VR options" },
-    { condition: "Bipolar Disorder", link: "/conditions/bipolar", description: "Integrated psychiatric and therapy care" },
-    { condition: "Substance Use", link: "/conditions/substance-use-disorder", description: "MAT and counseling with tech support" },
-    { condition: "ADHD", link: "/conditions/adhd", description: "Behavioral therapy with digital tracking" }
+    { condition: "Depression", link: "/mental-health-library/depression", description: "Evidence-based therapy with outcome tracking" },
+    { condition: "Anxiety Disorders", link: "/mental-health-library/anxiety", description: "CBT with digital support tools" },
+    { condition: "PTSD & Trauma", link: "/mental-health-library/ptsd", description: "Trauma-focused therapy with VR options" },
+    { condition: "Bipolar Disorder", link: "/mental-health-library/bipolar-disorder", description: "Integrated psychiatric and therapy care" },
+    { condition: "Substance Use", link: "/mental-health-library/substance-use-disorder", description: "MAT and counseling with tech support" },
+    { condition: "ADHD", link: "/mental-health-library/adhd", description: "Behavioral therapy with digital tracking" }
   ];
 
   const faqs = [

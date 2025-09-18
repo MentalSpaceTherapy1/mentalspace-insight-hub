@@ -25,12 +25,12 @@ const PeachStateInsurance = () => {
   ];
 
   const conditionCoverage = [
-    { condition: "Depression", link: "/conditions/depression-therapy-ga", description: "Individual therapy, group support, medication management" },
-    { condition: "Anxiety Disorders", link: "/conditions/anxiety-therapy-ga", description: "CBT, exposure therapy, group programs" },
-    { condition: "PTSD & Trauma", link: "/conditions/ptsd-therapy-ga", description: "Trauma-focused therapy, EMDR when authorized" },
-    { condition: "Bipolar Disorder", link: "/conditions/bipolar-therapy-ga", description: "Therapy combined with psychiatric care" },
-    { condition: "Teen Mental Health", link: "/conditions/teen-therapy-ga", description: "Adolescent counseling and family support" },
-    { condition: "Couples Therapy", link: "/conditions/couples-therapy-ga", description: "Relationship counseling for Georgia families" }
+    { condition: "Depression", link: "/depression-therapy-georgia", description: "Individual therapy, group support, medication management" },
+    { condition: "Anxiety Disorders", link: "/anxiety-therapy-georgia", description: "CBT, exposure therapy, group programs" },
+    { condition: "PTSD & Trauma", link: "/ptsd-therapy-georgia", description: "Trauma-focused therapy, EMDR when authorized" },
+    { condition: "Bipolar Disorder", link: "/bipolar-therapy-georgia", description: "Therapy combined with psychiatric care" },
+    { condition: "Teen Mental Health", link: "/teen-therapy-georgia", description: "Adolescent counseling and family support" },
+    { condition: "Couples Therapy", link: "/couples-therapy-georgia", description: "Relationship counseling for Georgia families" }
   ];
 
   const faqs = [

@@ -25,12 +25,12 @@ const AmerigroupInsurance = () => {
   ];
 
   const conditionCoverage = [
-    { condition: "Depression", link: "/conditions/depression", description: "Individual therapy, group support, medication management" },
-    { condition: "Anxiety Disorders", link: "/conditions/anxiety", description: "CBT, exposure therapy, group programs" },
-    { condition: "PTSD & Trauma", link: "/conditions/ptsd", description: "Trauma-focused therapy, EMDR when authorized" },
-    { condition: "Bipolar Disorder", link: "/conditions/bipolar", description: "Therapy combined with psychiatric care" },
-    { condition: "Substance Use", link: "/conditions/substance-use-disorder", description: "Outpatient counseling, support groups" },
-    { condition: "ADHD", link: "/conditions/adhd", description: "Behavioral therapy, family support" }
+    { condition: "Depression", link: "/mental-health-library/depression", description: "Individual therapy, group support, medication management" },
+    { condition: "Anxiety Disorders", link: "/mental-health-library/anxiety", description: "CBT, exposure therapy, group programs" },
+    { condition: "PTSD & Trauma", link: "/mental-health-library/ptsd", description: "Trauma-focused therapy, EMDR when authorized" },
+    { condition: "Bipolar Disorder", link: "/mental-health-library/bipolar-disorder", description: "Therapy combined with psychiatric care" },
+    { condition: "Substance Use", link: "/mental-health-library/substance-use-disorder", description: "Outpatient counseling, support groups" },
+    { condition: "ADHD", link: "/mental-health-library/adhd", description: "Behavioral therapy, family support" }
   ];
 
   const faqs = [
