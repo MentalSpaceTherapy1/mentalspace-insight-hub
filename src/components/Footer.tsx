@@ -63,6 +63,9 @@ const Footer = () => {
 
             <h4 className="text-md font-semibold mt-6">Resources</h4>
             <div className="space-y-2">
+              <Link to="/online-therapy-georgia" className="block text-sm text-muted-foreground hover:text-primary transition-colors">
+                Georgia Therapy Hub
+              </Link>
               <Link to="/insurance" className="block text-sm text-muted-foreground hover:text-primary transition-colors">
                 Insurance Coverage
               </Link>
