@@ -28,7 +28,7 @@ const PTSDTherapyGA = () => {
         title="Online PTSD & Trauma Therapy in Georgia | Licensed Therapists | CHC"
         description="Professional PTSD and trauma therapy in Georgia. EMDR, CPT, and trauma-focused therapy with licensed therapists. Most insurance accepted. Specialized care for veterans and trauma survivors."
         keywords="PTSD therapy Georgia, trauma therapy GA, EMDR Georgia, veterans therapy Georgia, licensed trauma therapists Georgia"
-        canonicalUrl="https://chctherapy.com/ptsd-trauma-therapy-georgia"
+        canonicalUrl="https://chctherapy.com/ptsd-therapy-georgia"
         ogTitle="Online PTSD & Trauma Therapy in Georgia | Licensed Therapists"
         ogDescription="Professional PTSD and trauma therapy in Georgia. EMDR and trauma-focused treatment with licensed therapists. Specialized care for veterans and trauma survivors."
       />

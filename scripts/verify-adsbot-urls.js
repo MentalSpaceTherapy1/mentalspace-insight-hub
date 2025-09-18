@@ -32,12 +32,12 @@ const routes = [
   '/faq',
   '/emergency-resources',
   '/privacy-policy',
-  '/terms-and-conditions',
+  '/terms-conditions',
   '/mental-health-tests',
   '/mental-health-library',
   '/blog',
   '/therapist-matching',
-  '/georgia-therapy-hub',
+  '/online-therapy-georgia',
   
   // Mental Health Library Routes
   '/mental-health-library/anxiety',
