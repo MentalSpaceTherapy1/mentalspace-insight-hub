@@ -1,0 +1,5 @@
+# Handle client-side routing for crawlers
+/*    /index.html   200
+
+# Specific redirects for common 404s (optional)
+/conditions/*   /mental-health-library/:splat   301
