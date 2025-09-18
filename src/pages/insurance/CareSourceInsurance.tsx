@@ -281,7 +281,7 @@ const CareSourceInsurance = () => {
                   <ul className="space-y-3">
                     <li className="flex items-center gap-2">
                       <DollarSign className="h-4 w-4 text-green-600" />
-                      <span>Income-based pricing as low as $40/session</span>
+                      <span>Income-based pricing as low as $75/session</span>
                     </li>
                     <li className="flex items-center gap-2">
                       <DollarSign className="h-4 w-4 text-green-600" />
@@ -306,7 +306,7 @@ const CareSourceInsurance = () => {
                   <ul className="space-y-3">
                     <li className="flex items-center gap-2">
                       <CreditCard className="h-4 w-4 text-green-600" />
-                      <span>Individual therapy: $120-180/session</span>
+                      <span>Individual therapy: $75-150/session</span>
                     </li>
                     <li className="flex items-center gap-2">
                       <CreditCard className="h-4 w-4 text-green-600" />
