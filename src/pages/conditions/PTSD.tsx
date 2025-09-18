@@ -2,13 +2,71 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import SEOHead from '@/components/SEOHead';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowLeft, Shield, Users, FileText, Stethoscope } from 'lucide-react';
+import { ArrowLeft, Shield, Users, FileText, Stethoscope, MapPin, HelpCircle, ExternalLink } from 'lucide-react';
 
 const PTSD = () => {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What trauma events commonly cause PTSD in Georgia?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "In Georgia, common PTSD triggers include car accidents on I-285 and I-75, severe weather events (tornadoes, hurricanes), military combat (high veteran population), workplace accidents, and domestic violence. Rural Georgia experiences unique trauma from agricultural accidents."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the VA cover PTSD treatment in Georgia?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, Georgia veterans receive comprehensive PTSD coverage through VA medical centers in Atlanta, Augusta, and Dublin. Services include individual therapy, group therapy, EMDR, and medication management with no copays for service-connected conditions."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How soon after trauma should I seek PTSD help in Georgia?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Seek help immediately if symptoms persist beyond one month. Georgia's crisis services are available 24/7 (1-800-715-4225). Early intervention within 3 months of trauma significantly improves treatment outcomes."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What's the best PTSD therapy available in Georgia?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Evidence-based treatments include EMDR, Cognitive Processing Therapy, and Prolonged Exposure therapy. Many Georgia therapists specialize in trauma treatment, with some offering intensive outpatient programs for faster recovery."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can PTSD affect work performance in Georgia?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, PTSD can impact concentration, memory, and emotional regulation at work. Georgia employers must provide reasonable accommodations under ADA. Employee assistance programs are available through major Georgia employers."
+        }
+      }
+    ]
+  };
+
   return (
     <div className="flex flex-col min-h-screen">
+      <SEOHead
+        title="PTSD Treatment in Georgia | Trauma-Informed Therapy & Support"
+        description="Find specialized PTSD treatment in Georgia. Trauma-informed therapists providing EMDR, CPT, and evidence-based trauma therapy. Support for veterans and civilians."
+        keywords="PTSD treatment Georgia, trauma therapy Atlanta, Georgia veterans PTSD, EMDR therapy, trauma counseling"
+        canonicalUrl="https://chcgeorgia.com/mental-health-library/ptsd"
+        ogTitle="PTSD Treatment in Georgia | Trauma-Informed Therapy & Support"
+        ogDescription="Find specialized PTSD treatment in Georgia. Trauma-informed therapists providing EMDR, CPT, and evidence-based trauma therapy."
+        ogImage="/therapy-hero-og.jpg"
+        structuredData={faqSchema}
+      />
       <Header />
       
       <main className="flex-1">
@@ -47,7 +105,7 @@ const PTSD = () => {
               </div>
               
               <p className="text-lg text-muted-foreground max-w-3xl mb-8">
-                Post-traumatic stress disorder (PTSD) is a mental health condition that's triggered by a terrifying event — either experiencing it or witnessing it. Symptoms may include flashbacks, nightmares and severe anxiety, as well as uncontrollable thoughts about the event.
+                Georgia has one of the largest veteran populations in the Southeast, with over 700,000 veterans calling our state home. Additionally, Georgia residents face unique trauma exposure from severe weather events, high-traffic accidents on major interstates, and workplace incidents. Whether you're a service member dealing with combat trauma, a civilian who experienced a car accident, or someone affected by domestic violence, Georgia's network of trauma-informed therapists understands the cultural and environmental factors that influence healing in the South.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4">
@@ -181,6 +239,149 @@ const PTSD = () => {
                     </div>
                   </CardContent>
                 </Card>
+
+                {/* How to Get Help in Georgia */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <MapPin className="w-5 h-5 text-primary" />
+                      How to Get Help in Georgia
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="prose prose-gray dark:prose-invert max-w-none">
+                    <div className="space-y-4">
+                      <div>
+                        <h4 className="font-semibold mb-2">Veterans Services</h4>
+                        <ul className="space-y-1">
+                          <li>Atlanta VA Medical Center: <strong>(404) 321-6111</strong></li>
+                          <li>Augusta VA Medical Center: <strong>(706) 733-0188</strong></li>
+                          <li>Dublin VA Medical Center: <strong>(478) 272-1210</strong></li>
+                          <li>Vet Centers in Atlanta, Augusta, Columbus, Savannah</li>
+                        </ul>
+                      </div>
+                      
+                      <div>
+                        <h4 className="font-semibold mb-2">Crisis Support</h4>
+                        <ul className="space-y-1">
+                          <li>Veterans Crisis Line: <strong>1-800-273-8255</strong> (Press 1)</li>
+                          <li>Georgia Crisis & Access Line: <strong>1-800-715-4225</strong></li>
+                          <li>National Suicide Prevention Lifeline: <strong>988</strong></li>
+                          <li>Crisis Text Line: Text HOME to <strong>741741</strong></li>
+                        </ul>
+                      </div>
+                      
+                      <div>
+                        <h4 className="font-semibold mb-2">Civilian Trauma Services</h4>
+                        <ul className="space-y-1">
+                          <li>Georgia Network to End Sexual Assault (GNESA)</li>
+                          <li>Rape crisis centers in all major Georgia cities</li>
+                          <li>Domestic violence shelters statewide</li>
+                          <li>Hospital-based trauma counseling programs</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Insurance Coverage */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <Shield className="w-5 h-5 text-primary" />
+                      Which Plans Often Cover This
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="prose prose-gray dark:prose-invert max-w-none">
+                    <div className="space-y-4">
+                      <p>Georgia insurance plans provide comprehensive PTSD treatment coverage:</p>
+                      
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                          <h4 className="font-semibold mb-2">Major Georgia Plans</h4>
+                          <ul className="space-y-1">
+                            <li><Link to="/aetna-insurance" className="text-primary hover:underline">Aetna</Link> - EMDR & trauma therapy</li>
+                            <li><Link to="/blue-cross-insurance" className="text-primary hover:underline">Blue Cross Blue Shield</Link> - Extensive trauma network</li>
+                            <li><Link to="/cigna-insurance" className="text-primary hover:underline">Cigna</Link> - Specialized PTSD programs</li>
+                            <li><strong>VA Benefits</strong> - Full coverage for veterans</li>
+                          </ul>
+                        </div>
+                        
+                        <div>
+                          <h4 className="font-semibold mb-2">Trauma Treatment Coverage</h4>
+                          <ul className="space-y-1">
+                            <li>EMDR therapy: Covered</li>
+                            <li>Individual trauma therapy: $20-50 copay</li>
+                            <li>Group therapy: $10-25 copay</li>
+                            <li>Crisis intervention: No copay</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* FAQs */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <HelpCircle className="w-5 h-5 text-primary" />
+                      Frequently Asked Questions
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-6">
+                    <div>
+                      <h4 className="font-semibold mb-2">What trauma events commonly cause PTSD in Georgia?</h4>
+                      <p className="text-muted-foreground">In Georgia, common PTSD triggers include car accidents on I-285 and I-75, severe weather events (tornadoes, hurricanes), military combat (high veteran population), workplace accidents, and domestic violence. Rural Georgia experiences unique trauma from agricultural accidents.</p>
+                    </div>
+                    
+                    <div>
+                      <h4 className="font-semibold mb-2">Does the VA cover PTSD treatment in Georgia?</h4>
+                      <p className="text-muted-foreground">Yes, Georgia veterans receive comprehensive PTSD coverage through VA medical centers in Atlanta, Augusta, and Dublin. Services include individual therapy, group therapy, EMDR, and medication management with no copays for service-connected conditions.</p>
+                    </div>
+                    
+                    <div>
+                      <h4 className="font-semibold mb-2">How soon after trauma should I seek PTSD help in Georgia?</h4>
+                      <p className="text-muted-foreground">Seek help immediately if symptoms persist beyond one month. Georgia's crisis services are available 24/7 (1-800-715-4225). Early intervention within 3 months of trauma significantly improves treatment outcomes.</p>
+                    </div>
+                    
+                    <div>
+                      <h4 className="font-semibold mb-2">What's the best PTSD therapy available in Georgia?</h4>
+                      <p className="text-muted-foreground">Evidence-based treatments include EMDR, Cognitive Processing Therapy, and Prolonged Exposure therapy. Many Georgia therapists specialize in trauma treatment, with some offering intensive outpatient programs for faster recovery.</p>
+                    </div>
+                    
+                    <div>
+                      <h4 className="font-semibold mb-2">Can PTSD affect work performance in Georgia?</h4>
+                      <p className="text-muted-foreground">Yes, PTSD can impact concentration, memory, and emotional regulation at work. Georgia employers must provide reasonable accommodations under ADA. Employee assistance programs are available through major Georgia employers.</p>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Sources */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <ExternalLink className="w-5 h-5 text-primary" />
+                      Sources & Additional Information
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-3">
+                    <div className="text-sm space-y-2">
+                      <p><strong>Last reviewed:</strong> January 2024</p>
+                      <p><strong>Next review:</strong> January 2025</p>
+                      <p><strong>Reviewed by:</strong> Licensed Clinical Social Worker, Trauma Specialist, Georgia</p>
+                    </div>
+                    
+                    <div className="pt-4 border-t">
+                      <h4 className="font-semibold mb-3">Clinical Sources:</h4>
+                      <ul className="space-y-2 text-sm">
+                        <li>• National Institute of Mental Health (NIMH): <a href="https://www.nimh.nih.gov/health/topics/post-traumatic-stress-disorder-ptsd/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">PTSD Information</a></li>
+                        <li>• American Psychological Association (APA): <a href="https://www.apa.org/topics/ptsd/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">PTSD Resources</a></li>
+                        <li>• National Center for PTSD: <a href="https://www.ptsd.va.gov/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">VA PTSD Treatment</a></li>
+                        <li>• Georgia Department of Veterans Affairs: <a href="https://veterans.georgia.gov/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Georgia Veteran Services</a></li>
+                      </ul>
+                    </div>
+                  </CardContent>
+                </Card>
               </div>
 
               {/* Sidebar */}
@@ -204,15 +405,21 @@ const PTSD = () => {
                     <CardTitle>Related Conditions</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-2">
-                    <Link to="/mental-health-library/anxiety" className="block text-primary hover:underline">
-                      Anxiety
-                    </Link>
-                    <Link to="/mental-health-library/depression" className="block text-primary hover:underline">
-                      Depression
-                    </Link>
-                    <Link to="/mental-health-library/substance-use-disorder" className="block text-primary hover:underline">
-                      Substance Use Disorder
-                    </Link>
+                     <Link to="/mental-health-library/anxiety" className="block text-primary hover:underline">
+                       Anxiety
+                     </Link>
+                     <Link to="/mental-health-library/depression" className="block text-primary hover:underline">
+                       Depression
+                     </Link>
+                     <Link to="/mental-health-library/substance-use-disorder" className="block text-primary hover:underline">
+                       Substance Use Disorder
+                     </Link>
+                     <Link to="/ptsd-therapy-georgia" className="block text-primary hover:underline">
+                       Georgia PTSD Therapy
+                     </Link>
+                     <Link to="/get-started" className="block text-primary hover:underline">
+                       Get Started Today
+                     </Link>
                   </CardContent>
                 </Card>
 

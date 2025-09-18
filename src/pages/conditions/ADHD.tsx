@@ -2,13 +2,71 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import SEOHead from '@/components/SEOHead';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowLeft, Activity, Users, FileText, Stethoscope } from 'lucide-react';
+import { ArrowLeft, Activity, Users, FileText, Stethoscope, MapPin, Shield, HelpCircle, ExternalLink } from 'lucide-react';
 
 const ADHD = () => {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How is ADHD diagnosed in Georgia?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Georgia requires comprehensive evaluation by licensed psychologists or psychiatrists. Assessment includes behavioral rating scales, cognitive testing, medical history, and school/work performance review. Many Georgia providers offer telehealth evaluations."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Georgia schools provide ADHD accommodations?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, Georgia schools offer 504 plans and IEPs for ADHD students. Accommodations include extended test time, quiet environments, movement breaks, and modified assignments. Contact your school's special education coordinator."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What ADHD medications are covered by Georgia insurance?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Most Georgia plans cover stimulants (Adderall, Ritalin, Concerta) and non-stimulants (Strattera, Wellbutrin). Generic versions typically have lower copays. Prior authorization may be required for brand-name medications."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can adults be diagnosed with ADHD in Georgia?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Absolutely. Many Georgia adults receive ADHD diagnoses later in life. Adult ADHD evaluation focuses on workplace challenges, relationship difficulties, and daily functioning. Treatment can significantly improve quality of life."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are there ADHD support groups in Georgia?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, CHADD (Children and Adults with ADHD) has active chapters in Atlanta, Augusta, and Savannah. Many therapists run ADHD support groups, and online support is available for rural Georgia residents."
+        }
+      }
+    ]
+  };
+
   return (
     <div className="flex flex-col min-h-screen">
+      <SEOHead
+        title="ADHD Treatment in Georgia | Expert Diagnosis & Therapy"
+        description="Find specialized ADHD treatment in Georgia. Licensed professionals providing comprehensive evaluation, therapy, and support for children and adults with ADHD."
+        keywords="ADHD treatment Georgia, ADHD therapy Atlanta, Georgia ADHD testing, adult ADHD diagnosis, children ADHD treatment"
+        canonicalUrl="https://chcgeorgia.com/mental-health-library/adhd"
+        ogTitle="ADHD Treatment in Georgia | Expert Diagnosis & Therapy"
+        ogDescription="Find specialized ADHD treatment in Georgia. Licensed professionals providing comprehensive evaluation, therapy, and support for children and adults with ADHD."
+        ogImage="/therapy-hero-og.jpg"
+        structuredData={faqSchema}
+      />
       <Header />
       
       <main className="flex-1">
@@ -47,8 +105,7 @@ const ADHD = () => {
               </div>
               
               <p className="text-lg text-muted-foreground max-w-3xl mb-8">
-                Attention-deficit hyperactivity disorder (ADHD) is one of the most common reasons children are referred for mental health services. 
-                While most often associated with children, there has been recent understanding that ADHD continues into adulthood for many individuals.
+                In Georgia's school systems, ADHD affects approximately 100,000 students, making it a significant focus for educational and mental health professionals statewide. From bustling Atlanta classrooms to small rural Georgia schools, educators and families are recognizing that ADHD isn't just childhood hyperactivity—it's a neurodevelopmental condition requiring comprehensive support. Georgia's strong network of pediatric specialists, school psychologists, and family therapists ensures that both children and adults receive proper diagnosis and evidence-based treatment tailored to our state's educational and cultural landscape.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4">
@@ -202,6 +259,149 @@ const ADHD = () => {
                     </div>
                   </CardContent>
                 </Card>
+
+                {/* How to Get Help in Georgia */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <MapPin className="w-5 h-5 text-primary" />
+                      How to Get Help in Georgia
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="prose prose-gray dark:prose-invert max-w-none">
+                    <div className="space-y-4">
+                      <div>
+                        <h4 className="font-semibold mb-2">ADHD Evaluation Centers</h4>
+                        <ul className="space-y-1">
+                          <li>Children's Healthcare of Atlanta (ADHD specialty clinic)</li>
+                          <li>Georgia Regents University (adult ADHD center)</li>
+                          <li>Emory Department of Psychiatry (comprehensive testing)</li>
+                          <li>Private practice psychologists throughout Georgia</li>
+                        </ul>
+                      </div>
+                      
+                      <div>
+                        <h4 className="font-semibold mb-2">School Support in Georgia</h4>
+                        <ul className="space-y-1">
+                          <li>504 Plans through Georgia Department of Education</li>
+                          <li>IEP services in all Georgia school districts</li>
+                          <li>School psychologists for evaluation and support</li>
+                          <li>ADHD accommodations (extended time, quiet spaces)</li>
+                        </ul>
+                      </div>
+                      
+                      <div>
+                        <h4 className="font-semibold mb-2">Adult ADHD Resources</h4>
+                        <ul className="space-y-1">
+                          <li>Workplace accommodations through Georgia Vocational Rehabilitation</li>
+                          <li>CHADD support groups in Atlanta, Augusta, Savannah</li>
+                          <li>Adult ADHD coaching services</li>
+                          <li>Telehealth options for rural Georgia residents</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Insurance Coverage */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <Shield className="w-5 h-5 text-primary" />
+                      Which Plans Often Cover This
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="prose prose-gray dark:prose-invert max-w-none">
+                    <div className="space-y-4">
+                      <p>Georgia insurance plans provide comprehensive ADHD treatment coverage:</p>
+                      
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                          <h4 className="font-semibold mb-2">Major Georgia Plans</h4>
+                          <ul className="space-y-1">
+                            <li><Link to="/aetna-insurance" className="text-primary hover:underline">Aetna</Link> - ADHD medication & therapy</li>
+                            <li><Link to="/blue-cross-insurance" className="text-primary hover:underline">Blue Cross Blue Shield</Link> - Testing coverage</li>
+                            <li><Link to="/cigna-insurance" className="text-primary hover:underline">Cigna</Link> - Child & adult ADHD care</li>
+                            <li><Link to="/peach-state-insurance" className="text-primary hover:underline">Peach State Health Plan</Link> - Medicaid ADHD services</li>
+                          </ul>
+                        </div>
+                        
+                        <div>
+                          <h4 className="font-semibold mb-2">Coverage Benefits</h4>
+                          <ul className="space-y-1">
+                            <li>ADHD evaluation: $50-200 copay</li>
+                            <li>Ongoing therapy: $20-40 copay</li>
+                            <li>ADHD medications: $10-50 copay</li>
+                            <li>School consultations: Often covered</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* FAQs */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <HelpCircle className="w-5 h-5 text-primary" />
+                      Frequently Asked Questions
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-6">
+                    <div>
+                      <h4 className="font-semibold mb-2">How is ADHD diagnosed in Georgia?</h4>
+                      <p className="text-muted-foreground">Georgia requires comprehensive evaluation by licensed psychologists or psychiatrists. Assessment includes behavioral rating scales, cognitive testing, medical history, and school/work performance review. Many Georgia providers offer telehealth evaluations.</p>
+                    </div>
+                    
+                    <div>
+                      <h4 className="font-semibold mb-2">Does Georgia schools provide ADHD accommodations?</h4>
+                      <p className="text-muted-foreground">Yes, Georgia schools offer 504 plans and IEPs for ADHD students. Accommodations include extended test time, quiet environments, movement breaks, and modified assignments. Contact your school's special education coordinator.</p>
+                    </div>
+                    
+                    <div>
+                      <h4 className="font-semibold mb-2">What ADHD medications are covered by Georgia insurance?</h4>
+                      <p className="text-muted-foreground">Most Georgia plans cover stimulants (Adderall, Ritalin, Concerta) and non-stimulants (Strattera, Wellbutrin). Generic versions typically have lower copays. Prior authorization may be required for brand-name medications.</p>
+                    </div>
+                    
+                    <div>
+                      <h4 className="font-semibold mb-2">Can adults be diagnosed with ADHD in Georgia?</h4>
+                      <p className="text-muted-foreground">Absolutely. Many Georgia adults receive ADHD diagnoses later in life. Adult ADHD evaluation focuses on workplace challenges, relationship difficulties, and daily functioning. Treatment can significantly improve quality of life.</p>
+                    </div>
+                    
+                    <div>
+                      <h4 className="font-semibold mb-2">Are there ADHD support groups in Georgia?</h4>
+                      <p className="text-muted-foreground">Yes, CHADD (Children and Adults with ADHD) has active chapters in Atlanta, Augusta, and Savannah. Many therapists run ADHD support groups, and online support is available for rural Georgia residents.</p>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Sources */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <ExternalLink className="w-5 h-5 text-primary" />
+                      Sources & Additional Information
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-3">
+                    <div className="text-sm space-y-2">
+                      <p><strong>Last reviewed:</strong> January 2024</p>
+                      <p><strong>Next review:</strong> January 2025</p>
+                      <p><strong>Reviewed by:</strong> Licensed Psychologist, Georgia</p>
+                    </div>
+                    
+                    <div className="pt-4 border-t">
+                      <h4 className="font-semibold mb-3">Clinical Sources:</h4>
+                      <ul className="space-y-2 text-sm">
+                        <li>• National Institute of Mental Health (NIMH): <a href="https://www.nimh.nih.gov/health/topics/attention-deficit-hyperactivity-disorder-adhd/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">ADHD Information</a></li>
+                        <li>• Centers for Disease Control and Prevention (CDC): <a href="https://www.cdc.gov/ncbddd/adhd/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">ADHD Data & Statistics</a></li>
+                        <li>• Children and Adults with ADHD (CHADD): <a href="https://chadd.org/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">ADHD Resources</a></li>
+                        <li>• Georgia Department of Education: <a href="https://www.gadoe.org/Curriculum-Instruction-and-Assessment/Special-Education-Services/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Special Education Services</a></li>
+                      </ul>
+                    </div>
+                  </CardContent>
+                </Card>
               </div>
 
               {/* Sidebar */}
@@ -225,15 +425,21 @@ const ADHD = () => {
                     <CardTitle>Related Conditions</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-2">
-                    <Link to="/mental-health-library/anxiety" className="block text-primary hover:underline">
-                      Anxiety
-                    </Link>
-                    <Link to="/mental-health-library/depression" className="block text-primary hover:underline">
-                      Depression
-                    </Link>
-                    <Link to="/mental-health-library/oppositional-defiant-disorder" className="block text-primary hover:underline">
-                      Oppositional Defiant Disorder
-                    </Link>
+                     <Link to="/mental-health-library/anxiety" className="block text-primary hover:underline">
+                       Anxiety
+                     </Link>
+                     <Link to="/mental-health-library/depression" className="block text-primary hover:underline">
+                       Depression
+                     </Link>
+                     <Link to="/mental-health-library/oppositional-defiant-disorder" className="block text-primary hover:underline">
+                       Oppositional Defiant Disorder
+                     </Link>
+                     <Link to="/adhd-therapy-georgia" className="block text-primary hover:underline">
+                       Georgia ADHD Therapy
+                     </Link>
+                     <Link to="/get-started" className="block text-primary hover:underline">
+                       Get Started Today
+                     </Link>
                   </CardContent>
                 </Card>
 
