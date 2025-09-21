@@ -532,6 +532,16 @@ export type Database = {
         Args: Record<PropertyKey, never>
         Returns: undefined
       }
+      get_admin_minimal_info: {
+        Args: { target_user_id?: string }
+        Returns: {
+          created_at: string
+          id: string
+          is_active: boolean
+          role: Database["public"]["Enums"]["admin_role"]
+          user_id: string
+        }[]
+      }
       get_admin_profile_secure: {
         Args: { profile_user_id?: string }
         Returns: {
@@ -567,6 +577,32 @@ export type Database = {
           role: Database["public"]["Enums"]["admin_role"]
           updated_at: string
           user_id: string
+        }[]
+      }
+      get_assessment_metadata_admin: {
+        Args: { session_limit?: number }
+        Returns: {
+          assessment_type: Database["public"]["Enums"]["assessment_type"]
+          created_at: string
+          id: string
+          is_encrypted: boolean
+          session_id: string
+        }[]
+      }
+      get_contact_status_only: {
+        Args: { contact_id: string }
+        Returns: {
+          id: string
+          is_processed: boolean
+          processed_at: string
+        }[]
+      }
+      get_form_submission_stats: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          form_type: Database["public"]["Enums"]["form_type"]
+          last_submission: string
+          submission_count: number
         }[]
       }
       get_full_admin_profiles: {
@@ -627,6 +663,10 @@ export type Database = {
         Args: Record<PropertyKey, never>
         Returns: boolean
       }
+      log_chat_access: {
+        Args: { session_id: string }
+        Returns: undefined
+      }
       migrate_unencrypted_assessments: {
         Args: Record<PropertyKey, never>
         Returns: undefined
@@ -644,6 +684,10 @@ export type Database = {
           severity: string
           status: string
         }[]
+      }
+      secure_data_cleanup: {
+        Args: Record<PropertyKey, never>
+        Returns: undefined
       }
       setup_first_admin: {
         Args: {
