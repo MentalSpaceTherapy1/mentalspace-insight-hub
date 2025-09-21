@@ -594,6 +594,18 @@ export type Database = {
           user_id: string
         }[]
       }
+      get_security_dashboard_data: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          active_threats: number
+          admin_access_attempts: number
+          encrypted_assessments: number
+          last_security_scan: string
+          recent_violations: number
+          total_assessments: number
+          warnings: number
+        }[]
+      }
       get_security_status: {
         Args: Record<PropertyKey, never>
         Returns: {
@@ -615,9 +627,23 @@ export type Database = {
         Args: Record<PropertyKey, never>
         Returns: boolean
       }
+      migrate_unencrypted_assessments: {
+        Args: Record<PropertyKey, never>
+        Returns: undefined
+      }
       promote_user_to_admin: {
         Args: { full_name?: string; user_email: string }
         Returns: string
+      }
+      run_security_audit: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          audit_item: string
+          description: string
+          recommendation: string
+          severity: string
+          status: string
+        }[]
       }
       setup_first_admin: {
         Args: {
