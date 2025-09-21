@@ -37,8 +37,8 @@ const TherapyOnlineInsuranceCoverage = () => {
         "url": "https://your-domain.com/chc-logo.png"
       }
     },
-    "datePublished": "2024-12-21",
-    "dateModified": "2024-12-21",
+    "datePublished": "2025-09-21",
+    "dateModified": "2025-09-21",
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https://your-domain.com/blog/therapy-online-insurance-coverage"
@@ -80,7 +80,7 @@ const TherapyOnlineInsuranceCoverage = () => {
               <div className="flex items-center gap-4 text-muted-foreground mb-6">
                 <div className="flex items-center">
                   <Calendar className="h-4 w-4 mr-1" />
-                  December 21, 2024
+                  September 21, 2025
                 </div>
                 <div className="flex items-center">
                   <Clock className="h-4 w-4 mr-1" />
