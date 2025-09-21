@@ -528,8 +528,24 @@ export type Database = {
         Args: { admin_email: string; admin_full_name: string }
         Returns: string
       }
+      enforce_data_retention: {
+        Args: Record<PropertyKey, never>
+        Returns: undefined
+      }
       get_admin_profile_secure: {
         Args: { profile_user_id?: string }
+        Returns: {
+          created_at: string
+          full_name: string
+          id: string
+          is_active: boolean
+          role: Database["public"]["Enums"]["admin_role"]
+          updated_at: string
+          user_id: string
+        }[]
+      }
+      get_admin_profile_ultra_secure: {
+        Args: { target_user_id?: string }
         Returns: {
           created_at: string
           full_name: string
@@ -610,6 +626,10 @@ export type Database = {
           admin_password: string
         }
         Returns: string
+      }
+      validate_admin_access_with_limits: {
+        Args: { operation_type: string }
+        Returns: boolean
       }
       validate_admin_operation: {
         Args: { operation_type: string }

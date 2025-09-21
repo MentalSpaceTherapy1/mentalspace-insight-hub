@@ -55,14 +55,48 @@ function parseCookies(cookieHeader: string | null): Record<string, string> {
 
 serve(async (req) => {
   const origin = req.headers.get('origin');
+  
+  // Get client IP for security logging
+  const forwardedFor = req.headers.get('x-forwarded-for');
+  const realIP = req.headers.get('x-real-ip');
+  let clientIP = 'unknown';
+  if (forwardedFor) {
+    clientIP = forwardedFor.split(',')[0].trim();
+  } else if (realIP) {
+    clientIP = realIP.trim();
+  }
 
   // CORS preflight
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: getCorsHeaders(origin) });
   }
 
-  // Enforce allowed origins for POST
+  // Enhanced origin validation with logging
   if (!origin || !ALLOWED_ORIGINS.has(origin)) {
+    console.error('Blocked request from disallowed origin:', origin, 'IP:', clientIP);
+    
+    // Log security violation
+    try {
+      const supabase = createClient(
+        Deno.env.get('SUPABASE_URL') ?? '',
+        Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
+      );
+      
+      await supabase.from('security_audit_log').insert({
+        event_type: 'blocked_origin_violation',
+        table_name: 'save_assessment_function',
+        ip_address: clientIP,
+        details: {
+          origin: origin,
+          user_agent: req.headers.get('user-agent'),
+          timestamp: new Date().toISOString(),
+          severity: 'HIGH'
+        }
+      });
+    } catch (logError) {
+      console.error('Failed to log security violation:', logError);
+    }
+    
     return new Response(JSON.stringify({ success: false, error: 'Origin not allowed' }), {
       status: 403,
       headers: { ...getCorsHeaders(origin), 'Content-Type': 'application/json' },
@@ -75,25 +109,53 @@ serve(async (req) => {
       Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
     );
 
-    const assessmentData: AssessmentSubmission = await req.json();
-
-    // Optional double-submit token validation (cookie may be absent due to cross-origin)
-    const cookies = parseCookies(req.headers.get('cookie'));
-    if (cookies['csrf_token'] && assessmentData.csrfToken && !safeEqual(cookies['csrf_token'], assessmentData.csrfToken)) {
-      return new Response(JSON.stringify({ success: false, error: 'Invalid CSRF token' }), {
-        status: 403,
+    // Enhanced request size validation
+    const contentLength = req.headers.get('content-length');
+    if (contentLength && parseInt(contentLength) > 1024 * 1024) { // 1MB limit
+      console.error('Request too large:', contentLength, 'bytes from IP:', clientIP);
+      return new Response(JSON.stringify({ success: false, error: 'Request too large' }), {
+        status: 413,
         headers: { ...getCorsHeaders(origin), 'Content-Type': 'application/json' },
       });
     }
 
-    // Get client IP for analytics
-    const forwardedFor = req.headers.get('x-forwarded-for');
-    const realIP = req.headers.get('x-real-ip');
-    let clientIP = 'unknown';
-    if (forwardedFor) {
-      clientIP = forwardedFor.split(',')[0].trim();
-    } else if (realIP) {
-      clientIP = realIP.trim();
+    let assessmentData: AssessmentSubmission;
+    try {
+      assessmentData = await req.json();
+    } catch (parseError) {
+      console.error('Invalid JSON in request from IP:', clientIP);
+      return new Response(JSON.stringify({ success: false, error: 'Invalid request format' }), {
+        status: 400,
+        headers: { ...getCorsHeaders(origin), 'Content-Type': 'application/json' },
+      });
+    }
+
+    // Enhanced input validation
+    if (!assessmentData.sessionId || !assessmentData.assessmentType) {
+      console.error('Missing required fields from IP:', clientIP);
+      return new Response(JSON.stringify({ success: false, error: 'Missing required fields' }), {
+        status: 400,
+        headers: { ...getCorsHeaders(origin), 'Content-Type': 'application/json' },
+      });
+    }
+
+    // Validate session ID format (should be UUID-like)
+    if (!/^[a-zA-Z0-9-_]{8,50}$/.test(assessmentData.sessionId)) {
+      console.error('Invalid session ID format from IP:', clientIP);
+      return new Response(JSON.stringify({ success: false, error: 'Invalid session format' }), {
+        status: 400,
+        headers: { ...getCorsHeaders(origin), 'Content-Type': 'application/json' },
+      });
+    }
+
+    // Optional double-submit token validation (cookie may be absent due to cross-origin)
+    const cookies = parseCookies(req.headers.get('cookie'));
+    if (cookies['csrf_token'] && assessmentData.csrfToken && !safeEqual(cookies['csrf_token'], assessmentData.csrfToken)) {
+      console.error('CSRF token mismatch from IP:', clientIP);
+      return new Response(JSON.stringify({ success: false, error: 'Invalid CSRF token' }), {
+        status: 403,
+        headers: { ...getCorsHeaders(origin), 'Content-Type': 'application/json' },
+      });
     }
 
     console.log('Saving assessment session:', assessmentData.sessionId);

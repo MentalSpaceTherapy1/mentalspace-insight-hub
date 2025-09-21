@@ -66,14 +66,48 @@ const decryptData = async (
 
 serve(async (req) => {
   const origin = req.headers.get('origin');
+  
+  // Get client IP for security logging
+  const forwardedFor = req.headers.get('x-forwarded-for');
+  const realIP = req.headers.get('x-real-ip');
+  let clientIP = 'unknown';
+  if (forwardedFor) {
+    clientIP = forwardedFor.split(',')[0].trim();
+  } else if (realIP) {
+    clientIP = realIP.trim();
+  }
 
   // CORS preflight
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: getCorsHeaders(origin) });
   }
 
-  // Enforce allowed origins
+  // Enhanced origin validation with logging
   if (!origin || !ALLOWED_ORIGINS.has(origin)) {
+    console.error('Blocked decrypt request from disallowed origin:', origin, 'IP:', clientIP);
+    
+    // Log critical security violation
+    try {
+      const serviceSupabase = createClient(
+        Deno.env.get('SUPABASE_URL') ?? '',
+        Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
+      );
+      
+      await serviceSupabase.from('security_audit_log').insert({
+        event_type: 'blocked_decrypt_origin_violation',
+        table_name: 'decrypt_assessment_function',
+        ip_address: clientIP,
+        details: {
+          origin: origin,
+          user_agent: req.headers.get('user-agent'),
+          timestamp: new Date().toISOString(),
+          severity: 'CRITICAL'
+        }
+      });
+    } catch (logError) {
+      console.error('Failed to log critical security violation:', logError);
+    }
+    
     return new Response(JSON.stringify({ success: false, error: 'Origin not allowed' }), {
       status: 403,
       headers: { ...getCorsHeaders(origin), 'Content-Type': 'application/json' },

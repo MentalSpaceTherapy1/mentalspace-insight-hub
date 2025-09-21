@@ -30,6 +30,20 @@ export const useAssessmentSubmission = () => {
     setState({ isSubmitting: true, isSuccess: false, error: null });
 
     try {
+      // Enhanced security validation
+      if (!window.isSecureContext) {
+        throw new Error('Secure context required for sensitive data submission');
+      }
+
+      if (!crypto || !crypto.subtle) {
+        throw new Error('Encryption services unavailable');
+      }
+
+      // Validate assessment data
+      if (!assessmentData.sessionId || !assessmentData.assessmentType || !assessmentData.answers) {
+        throw new Error('Missing required assessment data');
+      }
+
       console.log('Encrypting sensitive assessment data...');
       
       // Encrypt sensitive fields (answers and additional info)
