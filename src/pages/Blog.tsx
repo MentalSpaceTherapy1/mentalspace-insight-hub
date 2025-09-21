@@ -19,6 +19,16 @@ const Blog = () => {
   const blogPosts = [
     {
       id: 1,
+      title: "Online Therapy Covered by Insurance: Complete Guide to Affordable Mental Health Care",
+      excerpt: "Comprehensive guide to getting online therapy covered by insurance with 9+ major providers. Learn about coverage, copays, and how to start therapy today.",
+      category: "Insurance",
+      date: "December 21, 2024",
+      readTime: "12 min read",
+      image: onlineTherapyHeroImage,
+      slug: "therapy-online-insurance-coverage"
+    },
+    {
+      id: 2,
       title: "Understanding Anxiety: Signs, Symptoms, and Treatment Options",
       excerpt: "Learn about the different types of anxiety disorders and evidence-based treatment approaches that can help you manage anxiety effectively.",
       category: "Anxiety",
@@ -28,7 +38,7 @@ const Blog = () => {
       slug: "understanding-anxiety"
     },
     {
-      id: 2,
+      id: 3,
       title: "Depression in Adults: Breaking the Stigma and Finding Help",
       excerpt: "Explore the reality of adult depression, common misconceptions, and how therapy can provide a path to recovery and healing.",
       category: "Depression",
@@ -38,7 +48,7 @@ const Blog = () => {
       slug: "depression-adults"
     },
     {
-      id: 3,
+      id: 4,
       title: "The Benefits of Online Therapy: Accessible Mental Health Care",
       excerpt: "Discover how online therapy has revolutionized mental health care, making it more accessible and convenient for everyone.",
       category: "Therapy",
@@ -48,7 +58,7 @@ const Blog = () => {
       slug: "benefits-online-therapy"
     },
     {
-      id: 4,
+      id: 5,
       title: "Couples Therapy: Strengthening Relationships Through Communication",
       excerpt: "Learn how couples therapy can help partners improve communication, resolve conflicts, and build stronger relationships.",
       category: "Relationships",
@@ -58,7 +68,7 @@ const Blog = () => {
       slug: "couples-therapy-communication"
     },
     {
-      id: 5,
+      id: 6,
       title: "Teen Mental Health: Supporting Adolescents Through Challenging Times",
       excerpt: "Understanding the unique mental health challenges teens face and how therapy can provide crucial support during adolescence.",
       category: "Teen Health",
@@ -68,7 +78,7 @@ const Blog = () => {
       slug: "teen-mental-health"
     },
     {
-      id: 6,
+      id: 7,
       title: "PTSD Recovery: Healing from Trauma with Professional Support",
       excerpt: "Explore evidence-based treatments for PTSD and how therapy can help individuals process trauma and reclaim their lives.",
       category: "PTSD",
@@ -81,6 +91,7 @@ const Blog = () => {
 
   const categories = [
     "All",
+    "Insurance",
     "Anxiety",
     "Depression", 
     "Therapy",

@@ -51,6 +51,7 @@ import BenefitsOnlineTherapy from "./pages/blog/BenefitsOnlineTherapy";
 import CouplesTherapyCommunication from "./pages/blog/CouplesTherapyCommunication";
 import TeenMentalHealth from "./pages/blog/TeenMentalHealth";
 import PTSDRecovery from "./pages/blog/PTSDRecovery";
+import TherapyOnlineInsuranceCoverage from "./pages/blog/TherapyOnlineInsuranceCoverage";
 
 import Depression from "./pages/conditions/Depression";
 import Anxiety from "./pages/conditions/Anxiety";
@@ -169,6 +170,7 @@ const App = () => {
                 <Route path="/blog/couples-therapy-communication" element={<CouplesTherapyCommunication />} />
                 <Route path="/blog/teen-mental-health" element={<TeenMentalHealth />} />
                 <Route path="/blog/ptsd-recovery" element={<PTSDRecovery />} />
+                <Route path="/blog/therapy-online-insurance-coverage" element={<TherapyOnlineInsuranceCoverage />} />
                 
                 <Route path="/mental-health-library/depression" element={<Depression />} />
                 <Route path="/mental-health-library/anxiety" element={<Anxiety />} />
