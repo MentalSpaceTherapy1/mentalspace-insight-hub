@@ -14,14 +14,21 @@ import heroImage6 from "@/assets/hero-person-6.jpg";
 
 const Hero = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isLoaded, setIsLoaded] = useState(false);
   const heroImages = [heroImage1, heroImage2, heroImage3, heroImage4, heroImage5, heroImage6];
   
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
-    }, 4000); // Change every 4 seconds
+    // Add delay before starting carousel to let page settle
+    const startTimer = setTimeout(() => {
+      setIsLoaded(true);
+      const interval = setInterval(() => {
+        setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
+      }, 4000); // Change every 4 seconds
+      
+      return () => clearInterval(interval);
+    }, 1000); // 1 second delay before starting carousel
     
-    return () => clearInterval(interval);
+    return () => clearTimeout(startTimer);
   }, [heroImages.length]);
 
   return (
@@ -62,13 +69,18 @@ const Hero = () => {
           {/* Right side - Rotating Images */}
           <div className="order-1 lg:order-2 flex justify-center">
             <div className="relative w-80 h-80 lg:w-96 lg:h-96">
-              <div className="absolute inset-0 rounded-full overflow-hidden shadow-2xl">
+              {/* Loading placeholder to prevent layout shift */}
+              {!isLoaded && (
+                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/10 to-secondary/10 animate-pulse shadow-2xl" />
+              )}
+              
+              <div className="absolute inset-0 rounded-full overflow-hidden shadow-2xl" style={{ contain: 'layout style paint' }}>
                 {heroImages.map((image, index) => (
                   <ResponsiveImage
                     key={index}
                     src={image}
                     alt={`Mental health therapy success story ${index + 1} - Happy person after online therapy sessions`}
-                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
+                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ease-in-out ${
                       index === currentImageIndex ? 'opacity-100' : 'opacity-0'
                     }`}
                     width={384}
@@ -77,6 +89,9 @@ const Hero = () => {
                     loading={index === 0 ? "eager" : "lazy"}
                     priority={index === 0}
                     {...(index === 0 && { fetchPriority: 'high' as const })}
+                    style={{ 
+                      willChange: index === currentImageIndex || index === (currentImageIndex + 1) % heroImages.length ? 'opacity' : 'auto'
+                    }}
                   />
                 ))}
               </div>
