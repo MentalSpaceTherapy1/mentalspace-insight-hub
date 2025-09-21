@@ -528,6 +528,15 @@ export type Database = {
         Args: { admin_email: string; admin_full_name: string }
         Returns: string
       }
+      emergency_security_audit: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          action_required: string
+          audit_item: string
+          current_status: string
+          risk_level: string
+        }[]
+      }
       enforce_data_retention: {
         Args: Record<PropertyKey, never>
         Returns: undefined
@@ -628,6 +637,14 @@ export type Database = {
           role: Database["public"]["Enums"]["admin_role"]
           updated_at: string
           user_id: string
+        }[]
+      }
+      get_security_compliance_status: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          component: string
+          details: string
+          status: string
         }[]
       }
       get_security_dashboard_data: {
