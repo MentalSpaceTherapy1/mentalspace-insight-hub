@@ -371,6 +371,152 @@ const TherapyOnlineInsuranceCoverage = () => {
                 </p>
               </div>
 
+              {/* Related Resources Section */}
+              <Card className="mt-12">
+                <CardHeader>
+                  <CardTitle className="text-2xl">Related Resources</CardTitle>
+                  <p className="text-muted-foreground">
+                    Explore more helpful content about mental health and therapy options.
+                  </p>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid md:grid-cols-3 gap-6">
+                    {/* Related Articles */}
+                    <div>
+                      <h3 className="font-semibold mb-3 text-primary">Related Articles</h3>
+                      <ul className="space-y-2">
+                        <li>
+                          <Link 
+                            to="/blog/benefits-online-therapy" 
+                            className="text-muted-foreground hover:text-primary transition-colors hover:underline"
+                          >
+                            The Benefits of Online Therapy: Accessible Mental Health Care
+                          </Link>
+                        </li>
+                        <li>
+                          <Link 
+                            to="/blog/understanding-anxiety" 
+                            className="text-muted-foreground hover:text-primary transition-colors hover:underline"
+                          >
+                            Understanding Anxiety: Signs, Symptoms, and Treatment Options
+                          </Link>
+                        </li>
+                        <li>
+                          <Link 
+                            to="/blog/depression-adults" 
+                            className="text-muted-foreground hover:text-primary transition-colors hover:underline"
+                          >
+                            Depression in Adults: Breaking the Stigma and Finding Help
+                          </Link>
+                        </li>
+                        <li>
+                          <Link 
+                            to="/blog/couples-therapy-communication" 
+                            className="text-muted-foreground hover:text-primary transition-colors hover:underline"
+                          >
+                            Couples Therapy: Strengthening Relationships Through Communication
+                          </Link>
+                        </li>
+                      </ul>
+                    </div>
+
+                    {/* Mental Health Library */}
+                    <div>
+                      <h3 className="font-semibold mb-3 text-primary">Mental Health Library</h3>
+                      <ul className="space-y-2">
+                        <li>
+                          <Link 
+                            to="/conditions/anxiety" 
+                            className="text-muted-foreground hover:text-primary transition-colors hover:underline"
+                          >
+                            Anxiety Disorders Treatment
+                          </Link>
+                        </li>
+                        <li>
+                          <Link 
+                            to="/conditions/depression" 
+                            className="text-muted-foreground hover:text-primary transition-colors hover:underline"
+                          >
+                            Depression Treatment Options
+                          </Link>
+                        </li>
+                        <li>
+                          <Link 
+                            to="/conditions/ptsd" 
+                            className="text-muted-foreground hover:text-primary transition-colors hover:underline"
+                          >
+                            PTSD and Trauma Recovery
+                          </Link>
+                        </li>
+                        <li>
+                          <Link 
+                            to="/conditions/bipolar-disorder" 
+                            className="text-muted-foreground hover:text-primary transition-colors hover:underline"
+                          >
+                            Bipolar Disorder Management
+                          </Link>
+                        </li>
+                        <li>
+                          <Link 
+                            to="/couples-therapy" 
+                            className="text-muted-foreground hover:text-primary transition-colors hover:underline"
+                          >
+                            Couples Therapy Services
+                          </Link>
+                        </li>
+                      </ul>
+                    </div>
+
+                    {/* Free Mental Health Tests */}
+                    <div>
+                      <h3 className="font-semibold mb-3 text-primary">Free Mental Health Tests</h3>
+                      <ul className="space-y-2">
+                        <li>
+                          <Link 
+                            to="/mental-health-tests" 
+                            className="text-muted-foreground hover:text-primary transition-colors hover:underline"
+                          >
+                            Complete Mental Health Assessment
+                          </Link>
+                        </li>
+                        <li>
+                          <Link 
+                            to="/mental-health-tests#anxiety" 
+                            className="text-muted-foreground hover:text-primary transition-colors hover:underline"
+                          >
+                            Anxiety Assessment Quiz
+                          </Link>
+                        </li>
+                        <li>
+                          <Link 
+                            to="/mental-health-tests#depression" 
+                            className="text-muted-foreground hover:text-primary transition-colors hover:underline"
+                          >
+                            Depression Screening Test
+                          </Link>
+                        </li>
+                        <li>
+                          <Link 
+                            to="/mental-health-tests#ptsd" 
+                            className="text-muted-foreground hover:text-primary transition-colors hover:underline"
+                          >
+                            PTSD Symptom Checker
+                          </Link>
+                        </li>
+                        <li>
+                          <Link 
+                            to="/mental-health-tests#wellbeing" 
+                            className="text-muted-foreground hover:text-primary transition-colors hover:underline"
+                          >
+                            Overall Wellbeing Assessment
+                          </Link>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
               <div className="mt-12 pt-8 border-t border-border">
                 <h3 className="text-lg font-semibold text-foreground mb-4">Sources and Additional Resources:</h3>
                 <ul className="text-sm text-muted-foreground space-y-1">
