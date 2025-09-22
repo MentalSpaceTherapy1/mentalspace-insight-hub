@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Calendar, Clock, ArrowLeft, CheckCircle, Shield, Users, Star } from "lucide-react";
+import { Calendar, Clock, ArrowLeft, CheckCircle, Shield, Users, Star, BookOpen, Brain, ClipboardList, ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Header from "@/components/Header";
@@ -372,150 +372,207 @@ const TherapyOnlineInsuranceCoverage = () => {
               </div>
 
               {/* Related Resources Section */}
-              <Card className="mt-12">
-                <CardHeader>
-                  <CardTitle className="text-2xl">Related Resources</CardTitle>
-                  <p className="text-muted-foreground">
-                    Explore more helpful content about mental health and therapy options.
-                  </p>
-                </CardHeader>
-                <CardContent>
+              <div className="mt-12 relative">
+                {/* Background gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5 rounded-3xl blur-3xl -z-10"></div>
+                
+                <div className="relative bg-gradient-to-br from-background/80 to-muted/50 backdrop-blur-sm rounded-2xl border border-border/50 p-8">
+                  <div className="text-center mb-8">
+                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full mb-4">
+                      <Sparkles className="h-4 w-4 text-primary animate-pulse" />
+                      <span className="text-sm font-medium text-primary">Explore More</span>
+                    </div>
+                    <h2 className="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-3">
+                      Related Resources
+                    </h2>
+                    <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+                      Continue your mental health journey with these carefully curated resources
+                    </p>
+                  </div>
+
                   <div className="grid md:grid-cols-3 gap-6">
                     {/* Related Articles */}
-                    <div>
-                      <h3 className="font-semibold mb-3 text-primary">Related Articles</h3>
-                      <ul className="space-y-2">
-                        <li>
+                    <div className="group relative">
+                      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                      <div className="relative bg-card border border-border/50 rounded-xl p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 hover:border-blue-300/50">
+                        <div className="flex items-center gap-3 mb-4">
+                          <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg">
+                            <BookOpen className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+                          </div>
+                          <h3 className="font-semibold text-lg text-blue-600 dark:text-blue-400">Related Articles</h3>
+                        </div>
+                        <div className="space-y-3">
                           <Link 
                             to="/blog/benefits-online-therapy" 
-                            className="text-muted-foreground hover:text-primary transition-colors hover:underline"
+                            className="group/link flex items-start gap-2 p-3 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors"
                           >
-                            The Benefits of Online Therapy: Accessible Mental Health Care
+                            <ArrowRight className="h-4 w-4 text-blue-500 mt-0.5 group-hover/link:translate-x-1 transition-transform" />
+                            <span className="text-sm text-muted-foreground group-hover/link:text-blue-600 dark:group-hover/link:text-blue-400 font-medium">
+                              The Benefits of Online Therapy: Accessible Mental Health Care
+                            </span>
                           </Link>
-                        </li>
-                        <li>
                           <Link 
                             to="/blog/understanding-anxiety" 
-                            className="text-muted-foreground hover:text-primary transition-colors hover:underline"
+                            className="group/link flex items-start gap-2 p-3 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors"
                           >
-                            Understanding Anxiety: Signs, Symptoms, and Treatment Options
+                            <ArrowRight className="h-4 w-4 text-blue-500 mt-0.5 group-hover/link:translate-x-1 transition-transform" />
+                            <span className="text-sm text-muted-foreground group-hover/link:text-blue-600 dark:group-hover/link:text-blue-400 font-medium">
+                              Understanding Anxiety: Signs, Symptoms, and Treatment Options
+                            </span>
                           </Link>
-                        </li>
-                        <li>
                           <Link 
                             to="/blog/depression-adults" 
-                            className="text-muted-foreground hover:text-primary transition-colors hover:underline"
+                            className="group/link flex items-start gap-2 p-3 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors"
                           >
-                            Depression in Adults: Breaking the Stigma and Finding Help
+                            <ArrowRight className="h-4 w-4 text-blue-500 mt-0.5 group-hover/link:translate-x-1 transition-transform" />
+                            <span className="text-sm text-muted-foreground group-hover/link:text-blue-600 dark:group-hover/link:text-blue-400 font-medium">
+                              Depression in Adults: Breaking the Stigma and Finding Help
+                            </span>
                           </Link>
-                        </li>
-                        <li>
                           <Link 
                             to="/blog/couples-therapy-communication" 
-                            className="text-muted-foreground hover:text-primary transition-colors hover:underline"
+                            className="group/link flex items-start gap-2 p-3 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors"
                           >
-                            Couples Therapy: Strengthening Relationships Through Communication
+                            <ArrowRight className="h-4 w-4 text-blue-500 mt-0.5 group-hover/link:translate-x-1 transition-transform" />
+                            <span className="text-sm text-muted-foreground group-hover/link:text-blue-600 dark:group-hover/link:text-blue-400 font-medium">
+                              Couples Therapy: Strengthening Relationships Through Communication
+                            </span>
                           </Link>
-                        </li>
-                      </ul>
+                        </div>
+                      </div>
                     </div>
 
                     {/* Mental Health Library */}
-                    <div>
-                      <h3 className="font-semibold mb-3 text-primary">Mental Health Library</h3>
-                      <ul className="space-y-2">
-                        <li>
+                    <div className="group relative">
+                      <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                      <div className="relative bg-card border border-border/50 rounded-xl p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 hover:border-purple-300/50">
+                        <div className="flex items-center gap-3 mb-4">
+                          <div className="p-2 bg-purple-100 dark:bg-purple-900/30 rounded-lg">
+                            <Brain className="h-5 w-5 text-purple-600 dark:text-purple-400" />
+                          </div>
+                          <h3 className="font-semibold text-lg text-purple-600 dark:text-purple-400">Mental Health Library</h3>
+                        </div>
+                        <div className="space-y-3">
                           <Link 
                             to="/conditions/anxiety" 
-                            className="text-muted-foreground hover:text-primary transition-colors hover:underline"
+                            className="group/link flex items-start gap-2 p-3 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-colors"
                           >
-                            Anxiety Disorders Treatment
+                            <ArrowRight className="h-4 w-4 text-purple-500 mt-0.5 group-hover/link:translate-x-1 transition-transform" />
+                            <span className="text-sm text-muted-foreground group-hover/link:text-purple-600 dark:group-hover/link:text-purple-400 font-medium">
+                              Anxiety Disorders Treatment
+                            </span>
                           </Link>
-                        </li>
-                        <li>
                           <Link 
                             to="/conditions/depression" 
-                            className="text-muted-foreground hover:text-primary transition-colors hover:underline"
+                            className="group/link flex items-start gap-2 p-3 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-colors"
                           >
-                            Depression Treatment Options
+                            <ArrowRight className="h-4 w-4 text-purple-500 mt-0.5 group-hover/link:translate-x-1 transition-transform" />
+                            <span className="text-sm text-muted-foreground group-hover/link:text-purple-600 dark:group-hover/link:text-purple-400 font-medium">
+                              Depression Treatment Options
+                            </span>
                           </Link>
-                        </li>
-                        <li>
                           <Link 
                             to="/conditions/ptsd" 
-                            className="text-muted-foreground hover:text-primary transition-colors hover:underline"
+                            className="group/link flex items-start gap-2 p-3 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-colors"
                           >
-                            PTSD and Trauma Recovery
+                            <ArrowRight className="h-4 w-4 text-purple-500 mt-0.5 group-hover/link:translate-x-1 transition-transform" />
+                            <span className="text-sm text-muted-foreground group-hover/link:text-purple-600 dark:group-hover/link:text-purple-400 font-medium">
+                              PTSD and Trauma Recovery
+                            </span>
                           </Link>
-                        </li>
-                        <li>
                           <Link 
                             to="/conditions/bipolar-disorder" 
-                            className="text-muted-foreground hover:text-primary transition-colors hover:underline"
+                            className="group/link flex items-start gap-2 p-3 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-colors"
                           >
-                            Bipolar Disorder Management
+                            <ArrowRight className="h-4 w-4 text-purple-500 mt-0.5 group-hover/link:translate-x-1 transition-transform" />
+                            <span className="text-sm text-muted-foreground group-hover/link:text-purple-600 dark:group-hover/link:text-purple-400 font-medium">
+                              Bipolar Disorder Management
+                            </span>
                           </Link>
-                        </li>
-                        <li>
                           <Link 
                             to="/couples-therapy" 
-                            className="text-muted-foreground hover:text-primary transition-colors hover:underline"
+                            className="group/link flex items-start gap-2 p-3 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-colors"
                           >
-                            Couples Therapy Services
+                            <ArrowRight className="h-4 w-4 text-purple-500 mt-0.5 group-hover/link:translate-x-1 transition-transform" />
+                            <span className="text-sm text-muted-foreground group-hover/link:text-purple-600 dark:group-hover/link:text-purple-400 font-medium">
+                              Couples Therapy Services
+                            </span>
                           </Link>
-                        </li>
-                      </ul>
+                        </div>
+                      </div>
                     </div>
 
                     {/* Free Mental Health Tests */}
-                    <div>
-                      <h3 className="font-semibold mb-3 text-primary">Free Mental Health Tests</h3>
-                      <ul className="space-y-2">
-                        <li>
+                    <div className="group relative">
+                      <div className="absolute inset-0 bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                      <div className="relative bg-card border border-border/50 rounded-xl p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 hover:border-green-300/50">
+                        <div className="flex items-center gap-3 mb-4">
+                          <div className="p-2 bg-green-100 dark:bg-green-900/30 rounded-lg">
+                            <ClipboardList className="h-5 w-5 text-green-600 dark:text-green-400" />
+                          </div>
+                          <h3 className="font-semibold text-lg text-green-600 dark:text-green-400">Free Mental Health Tests</h3>
+                        </div>
+                        <div className="space-y-3">
                           <Link 
                             to="/mental-health-tests" 
-                            className="text-muted-foreground hover:text-primary transition-colors hover:underline"
+                            className="group/link flex items-start gap-2 p-3 rounded-lg hover:bg-green-50 dark:hover:bg-green-900/20 transition-colors"
                           >
-                            Complete Mental Health Assessment
+                            <ArrowRight className="h-4 w-4 text-green-500 mt-0.5 group-hover/link:translate-x-1 transition-transform" />
+                            <span className="text-sm text-muted-foreground group-hover/link:text-green-600 dark:group-hover/link:text-green-400 font-medium">
+                              Complete Mental Health Assessment
+                            </span>
                           </Link>
-                        </li>
-                        <li>
                           <Link 
                             to="/mental-health-tests#anxiety" 
-                            className="text-muted-foreground hover:text-primary transition-colors hover:underline"
+                            className="group/link flex items-start gap-2 p-3 rounded-lg hover:bg-green-50 dark:hover:bg-green-900/20 transition-colors"
                           >
-                            Anxiety Assessment Quiz
+                            <ArrowRight className="h-4 w-4 text-green-500 mt-0.5 group-hover/link:translate-x-1 transition-transform" />
+                            <span className="text-sm text-muted-foreground group-hover/link:text-green-600 dark:group-hover/link:text-green-400 font-medium">
+                              Anxiety Assessment Quiz
+                            </span>
                           </Link>
-                        </li>
-                        <li>
                           <Link 
                             to="/mental-health-tests#depression" 
-                            className="text-muted-foreground hover:text-primary transition-colors hover:underline"
+                            className="group/link flex items-start gap-2 p-3 rounded-lg hover:bg-green-50 dark:hover:bg-green-900/20 transition-colors"
                           >
-                            Depression Screening Test
+                            <ArrowRight className="h-4 w-4 text-green-500 mt-0.5 group-hover/link:translate-x-1 transition-transform" />
+                            <span className="text-sm text-muted-foreground group-hover/link:text-green-600 dark:group-hover/link:text-green-400 font-medium">
+                              Depression Screening Test
+                            </span>
                           </Link>
-                        </li>
-                        <li>
                           <Link 
                             to="/mental-health-tests#ptsd" 
-                            className="text-muted-foreground hover:text-primary transition-colors hover:underline"
+                            className="group/link flex items-start gap-2 p-3 rounded-lg hover:bg-green-50 dark:hover:bg-green-900/20 transition-colors"
                           >
-                            PTSD Symptom Checker
+                            <ArrowRight className="h-4 w-4 text-green-500 mt-0.5 group-hover/link:translate-x-1 transition-transform" />
+                            <span className="text-sm text-muted-foreground group-hover/link:text-green-600 dark:group-hover/link:text-green-400 font-medium">
+                              PTSD Symptom Checker
+                            </span>
                           </Link>
-                        </li>
-                        <li>
                           <Link 
                             to="/mental-health-tests#wellbeing" 
-                            className="text-muted-foreground hover:text-primary transition-colors hover:underline"
+                            className="group/link flex items-start gap-2 p-3 rounded-lg hover:bg-green-50 dark:hover:bg-green-900/20 transition-colors"
                           >
-                            Overall Wellbeing Assessment
+                            <ArrowRight className="h-4 w-4 text-green-500 mt-0.5 group-hover/link:translate-x-1 transition-transform" />
+                            <span className="text-sm text-muted-foreground group-hover/link:text-green-600 dark:group-hover/link:text-green-400 font-medium">
+                              Overall Wellbeing Assessment
+                            </span>
                           </Link>
-                        </li>
-                      </ul>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </CardContent>
-              </Card>
+
+                  {/* Call to Action */}
+                  <div className="mt-8 text-center">
+                    <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-primary to-secondary rounded-full text-white font-medium hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer">
+                      <Star className="h-4 w-4" />
+                      <span>Start Your Journey Today</span>
+                      <ArrowRight className="h-4 w-4" />
+                    </div>
+                  </div>
+                </div>
+              </div>
 
               <div className="mt-12 pt-8 border-t border-border">
                 <h3 className="text-lg font-semibold text-foreground mb-4">Sources and Additional Resources:</h3>
