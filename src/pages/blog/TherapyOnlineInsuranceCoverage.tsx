@@ -565,11 +565,13 @@ const TherapyOnlineInsuranceCoverage = () => {
 
                   {/* Call to Action */}
                   <div className="mt-8 text-center">
-                    <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-primary to-secondary rounded-full text-white font-medium hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer">
-                      <Star className="h-4 w-4" />
-                      <span>Start Your Journey Today</span>
-                      <ArrowRight className="h-4 w-4" />
-                    </div>
+                    <Link to="/therapist-matching">
+                      <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-primary to-secondary rounded-full text-white font-medium hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer">
+                        <Star className="h-4 w-4" />
+                        <span>Start Your Journey Today</span>
+                        <ArrowRight className="h-4 w-4" />
+                      </div>
+                    </Link>
                   </div>
                 </div>
               </div>
