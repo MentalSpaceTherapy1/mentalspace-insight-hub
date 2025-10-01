@@ -1,11 +1,17 @@
 import { Link } from "react-router-dom";
 import { CheckCircle, Heart, BookOpen, FileText } from "lucide-react";
+import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { trackBookAppointmentConversion } from "@/utils/googleTagManager";
 
 const ThankYou = () => {
+  // Track conversion when user lands on thank you page
+  useEffect(() => {
+    trackBookAppointmentConversion();
+  }, []);
   return (
     <div className="min-h-screen bg-gradient-to-br from-background to-muted">
       <Header />
