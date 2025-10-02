@@ -313,7 +313,7 @@ const TermsAndConditions = () => {
                         </div>
                         <div className="flex items-center space-x-3">
                           <Phone className="h-5 w-5 text-primary" />
-                          <span className="text-foreground">404 832 0102</span>
+                          <a href="tel:404-832-0102" className="text-foreground hover:text-primary transition-colors">404-832-0102</a>
                         </div>
                         <div className="flex items-center space-x-3">
                           <MapPin className="h-5 w-5 text-primary" />

@@ -168,10 +168,10 @@ const Header = () => {
         {/* Right Section */}
         <div className="flex items-center space-x-4">
           {/* Phone */}
-          <div className="hidden lg:flex items-center space-x-2 px-3 py-2 rounded-lg bg-gradient-to-r from-muted/30 to-muted/10 border border-border/30">
+          <a href="tel:404-832-0102" className="hidden lg:flex items-center space-x-2 px-3 py-2 rounded-lg bg-gradient-to-r from-muted/30 to-muted/10 border border-border/30 hover:shadow-md transition-all">
             <Phone className="h-4 w-4 text-primary" />
             <span className="text-sm font-medium text-foreground/90">404-832-0102</span>
-          </div>
+          </a>
           
           <Link to="/therapist-matching">
             <Button variant="hero" size="sm" className="shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
@@ -311,10 +311,10 @@ const Header = () => {
             >
               Contact Us
             </Link>
-            <div className="flex items-center space-x-2 px-4 py-3 rounded-lg bg-gradient-to-r from-muted/20 to-muted/10 border border-border/20 mx-4 mt-4">
+            <a href="tel:404-832-0102" className="flex items-center space-x-2 px-4 py-3 rounded-lg bg-gradient-to-r from-muted/20 to-muted/10 border border-border/20 mx-4 mt-4 hover:shadow-md transition-all">
               <Phone className="h-4 w-4 text-primary" />
               <span className="text-sm font-medium">404-832-0102</span>
-            </div>
+            </a>
           </div>
         </div>
       )}

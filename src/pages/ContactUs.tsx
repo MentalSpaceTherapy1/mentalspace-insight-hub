@@ -234,7 +234,7 @@ const ContactUs = () => {
                         </div>
                         <div>
                           <p className="font-medium">Phone</p>
-                          <p className="text-muted-foreground">404-832-0102</p>
+                          <a href="tel:404-832-0102" className="text-muted-foreground hover:text-primary transition-colors">404-832-0102</a>
                         </div>
                       </div>
                       <div className="flex items-center space-x-3">

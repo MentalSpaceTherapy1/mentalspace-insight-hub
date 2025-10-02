@@ -214,7 +214,7 @@ const FAQ = () => {
                     <div className="space-y-3 text-sm">
                       <div>
                         <p className="font-medium">Phone Support</p>
-                        <p className="text-muted-foreground">404-832-0102</p>
+                        <a href="tel:404-832-0102" className="text-muted-foreground hover:text-primary transition-colors">404-832-0102</a>
                       </div>
                       <div>
                         <p className="font-medium">Email Support</p>
