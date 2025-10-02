@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import ScrollToTop from "./components/ScrollToTop";
 import FormIntegration from "./components/FormIntegration";
+import ChatBot from "./components/ChatBot";
 import Admin from "./pages/Admin";
 // ... keep existing imports ...
 import Index from "./pages/Index";
@@ -127,6 +128,7 @@ const App = () => {
           <BrowserRouter>
             <ScrollToTop />
             <FormIntegration>
+              <ChatBot />
               <Routes>
                 <Route path="/admin" element={<Admin />} />
                 <Route path="/" element={<Index />} />
