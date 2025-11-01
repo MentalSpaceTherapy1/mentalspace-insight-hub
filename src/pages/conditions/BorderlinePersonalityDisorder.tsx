@@ -5,10 +5,17 @@ import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowLeft, Waves, Users, FileText, Stethoscope } from 'lucide-react';
+import SEOHead from '@/components/SEOHead';
 
 const BorderlinePersonalityDisorder = () => {
   return (
     <div className="flex flex-col min-h-screen">
+      <SEOHead 
+        title="Borderline Personality Disorder Treatment | BPD Therapy | Georgia"
+        description="Specialized BPD therapy in Georgia. Expert treatment for Borderline Personality Disorder with DBT and other evidence-based approaches."
+        keywords="borderline personality disorder, BPD, DBT therapy, emotional regulation, personality disorder treatment, Georgia"
+        canonicalUrl="https://chctherapy.com/conditions/borderline-personality-disorder"
+      />
       <Header />
       
       <main className="flex-1">

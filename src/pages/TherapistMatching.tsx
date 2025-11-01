@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -438,13 +438,13 @@ const TherapistMatching = () => {
                 />
                 <Label htmlFor="terms" className="text-sm leading-relaxed text-gray-700">
                   I agree to the{" "}
-                  <a href="/terms-conditions" className="text-primary hover:underline font-semibold">
+                  <Link to="/terms-conditions" className="text-primary hover:underline font-semibold">
                     Terms and Conditions
-                  </a>{" "}
+                  </Link>{" "}
                   and{" "}
-                  <a href="/privacy-policy" className="text-primary hover:underline font-semibold">
+                  <Link to="/privacy-policy" className="text-primary hover:underline font-semibold">
                     Privacy Policy
-                  </a>
+                  </Link>
                   , and consent to being contacted by MentalSpace Therapy.
                 </Label>
               </div>

@@ -5,10 +5,17 @@ import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowLeft, Split, Users, FileText, Stethoscope } from 'lucide-react';
+import SEOHead from '@/components/SEOHead';
 
 const DissociativeIdentityDisorder = () => {
   return (
     <div className="flex flex-col min-h-screen">
+      <SEOHead 
+        title="Dissociative Identity Disorder Treatment | DID Therapy | Georgia"
+        description="Specialized treatment for Dissociative Identity Disorder (DID) in Georgia. Expert trauma-informed therapy for multiple personality disorder."
+        keywords="dissociative identity disorder, DID, multiple personality disorder, trauma therapy, dissociation treatment, Georgia"
+        canonicalUrl="https://chctherapy.com/conditions/dissociative-identity-disorder"
+      />
       <Header />
       
       <main className="flex-1">

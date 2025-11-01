@@ -5,10 +5,17 @@ import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowLeft, Zap, Users, FileText, Stethoscope } from 'lucide-react';
+import SEOHead from '@/components/SEOHead';
 
 const BipolarDisorder = () => {
   return (
     <div className="flex flex-col min-h-screen">
+      <SEOHead 
+        title="Bipolar Disorder Treatment & Support | Coping & Healing Therapy"
+        description="Expert therapy for bipolar disorder in Georgia. Learn about symptoms, treatment options, and connect with licensed therapists specializing in mood disorders."
+        keywords="bipolar disorder, mood disorder therapy, mania treatment, depression treatment, Georgia mental health"
+        canonicalUrl="https://chctherapy.com/conditions/bipolar-disorder"
+      />
       <Header />
       
       <main className="flex-1">

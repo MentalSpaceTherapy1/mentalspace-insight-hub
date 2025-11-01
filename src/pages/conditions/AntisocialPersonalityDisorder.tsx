@@ -5,10 +5,17 @@ import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowLeft, UserX, Users, FileText, Stethoscope } from 'lucide-react';
+import SEOHead from '@/components/SEOHead';
 
 const AntisocialPersonalityDisorder = () => {
   return (
     <div className="flex flex-col min-h-screen">
+      <SEOHead 
+        title="Antisocial Personality Disorder Treatment | ASPD Therapy | Georgia"
+        description="Professional treatment for Antisocial Personality Disorder (ASPD) in Georgia. Learn about symptoms, therapy options, and connect with specialized therapists."
+        keywords="antisocial personality disorder, ASPD, conduct disorder, personality disorder therapy, Georgia"
+        canonicalUrl="https://chctherapy.com/conditions/antisocial-personality-disorder"
+      />
       <Header />
       
       <main className="flex-1">

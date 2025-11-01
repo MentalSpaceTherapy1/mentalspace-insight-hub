@@ -5,10 +5,17 @@ import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowLeft, Crown, Users, FileText, Stethoscope } from 'lucide-react';
+import SEOHead from '@/components/SEOHead';
 
 const NarcissisticPersonalityDisorder = () => {
   return (
     <div className="flex flex-col min-h-screen">
+      <SEOHead 
+        title="Narcissistic Personality Disorder Treatment | NPD Therapy | Georgia"
+        description="Professional NPD therapy in Georgia. Treatment for Narcissistic Personality Disorder with experienced therapists specializing in personality disorders."
+        keywords="narcissistic personality disorder, NPD, narcissism therapy, personality disorder treatment, Georgia"
+        canonicalUrl="https://chctherapy.com/conditions/narcissistic-personality-disorder"
+      />
       <Header />
       
       <main className="flex-1">

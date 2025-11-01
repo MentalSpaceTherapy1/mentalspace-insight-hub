@@ -2,6 +2,7 @@ import AdminAuth from '@/components/AdminAuth';
 import AdminDashboard from '@/components/AdminDashboard';
 import { useAdminAuth, AdminAuthProvider } from '@/contexts/AdminAuthContext';
 import { Loader2, AlertCircle } from 'lucide-react';
+import SEOHead from '@/components/SEOHead';
 
 const AdminContent = () => {
   const { isAdmin, loading, user, error } = useAdminAuth();
@@ -51,6 +52,11 @@ const AdminContent = () => {
 const Admin = () => {
   return (
     <AdminAuthProvider>
+      <SEOHead 
+        title="Admin Dashboard - Coping & Healing Therapy"
+        description="Admin access only"
+        noindex={true}
+      />
       <AdminContent />
     </AdminAuthProvider>
   );

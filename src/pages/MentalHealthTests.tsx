@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -588,10 +589,10 @@ const MentalHealthTests = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button variant="outline" asChild>
-                  <a href="/emergency-resources">Emergency Resources</a>
+                  <Link to="/emergency-resources">Emergency Resources</Link>
                 </Button>
                 <Button asChild>
-                  <a href="/get-started">Connect with a Therapist</a>
+                  <Link to="/get-started">Connect with a Therapist</Link>
                 </Button>
               </div>
             </div>

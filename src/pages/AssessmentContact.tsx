@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -15,6 +15,7 @@ import { useFormSubmission } from "@/hooks/useFormSubmission";
 import { useAssessmentSubmission } from "@/hooks/useAssessmentSubmission";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import SEOHead from "@/components/SEOHead";
 
 const AssessmentContact = () => {
   const navigate = useNavigate();
@@ -169,6 +170,11 @@ const AssessmentContact = () => {
 
   return (
     <div className="min-h-screen bg-gradient-subtle">
+      <SEOHead 
+        title="Assessment Results - Contact Us | Coping & Healing Therapy"
+        description="Schedule an appointment to discuss your mental health assessment results with our therapists."
+        noindex={true}
+      />
       <Header />
       
       <main className="container mx-auto px-4 py-8">
@@ -444,13 +450,13 @@ const AssessmentContact = () => {
                   />
                   <Label htmlFor="terms" className="text-sm leading-relaxed">
                     I agree to the{" "}
-                    <a href="/terms-conditions" className="text-primary hover:underline">
+                    <Link to="/terms-conditions" className="text-primary hover:underline">
                       Terms and Conditions
-                    </a>{" "}
+                    </Link>{" "}
                     and{" "}
-                    <a href="/privacy-policy" className="text-primary hover:underline">
+                    <Link to="/privacy-policy" className="text-primary hover:underline">
                       Privacy Policy
-                    </a>
+                    </Link>
                     , and consent to being contacted by Coping & Healing.
                   </Label>
                 </div>

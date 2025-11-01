@@ -5,10 +5,17 @@ import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowLeft, AlertTriangle, Users, FileText, Stethoscope } from 'lucide-react';
+import SEOHead from '@/components/SEOHead';
 
 const OppositionalDefiantDisorder = () => {
   return (
     <div className="flex flex-col min-h-screen">
+      <SEOHead 
+        title="Oppositional Defiant Disorder Treatment | ODD Therapy | Georgia"
+        description="Expert ODD treatment for children and teens in Georgia. Specialized therapy for Oppositional Defiant Disorder with family-centered approach."
+        keywords="oppositional defiant disorder, ODD, child behavior therapy, teen therapy, conduct disorder, Georgia"
+        canonicalUrl="https://chctherapy.com/conditions/oppositional-defiant-disorder"
+      />
       <Header />
       
       <main className="flex-1">

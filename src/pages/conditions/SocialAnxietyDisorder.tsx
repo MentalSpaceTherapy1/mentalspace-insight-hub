@@ -5,10 +5,17 @@ import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowLeft, Users2, Users, FileText, Stethoscope } from 'lucide-react';
+import SEOHead from '@/components/SEOHead';
 
 const SocialAnxietyDisorder = () => {
   return (
     <div className="flex flex-col min-h-screen">
+      <SEOHead 
+        title="Social Anxiety Disorder Treatment | Social Phobia Therapy | Georgia"
+        description="Specialized social anxiety therapy in Georgia. Overcome social phobia with expert treatment. Connect with therapists experienced in social anxiety disorder."
+        keywords="social anxiety, social phobia, public speaking anxiety, social fear, anxiety therapy, Georgia"
+        canonicalUrl="https://chctherapy.com/conditions/social-anxiety-disorder"
+      />
       <Header />
       
       <main className="flex-1">

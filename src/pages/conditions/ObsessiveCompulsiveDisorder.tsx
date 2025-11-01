@@ -5,10 +5,17 @@ import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowLeft, RefreshCw, Users, FileText, Stethoscope } from 'lucide-react';
+import SEOHead from '@/components/SEOHead';
 
 const ObsessiveCompulsiveDisorder = () => {
   return (
     <div className="flex flex-col min-h-screen">
+      <SEOHead 
+        title="OCD Treatment & Therapy | Obsessive Compulsive Disorder | Georgia"
+        description="Specialized OCD therapy in Georgia. Expert treatment for obsessive thoughts and compulsive behaviors. Connect with therapists experienced in OCD management."
+        keywords="OCD therapy, obsessive compulsive disorder treatment, compulsions, obsessions, anxiety therapy, Georgia"
+        canonicalUrl="https://chctherapy.com/conditions/obsessive-compulsive-disorder"
+      />
       <Header />
       
       <main className="flex-1">

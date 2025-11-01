@@ -5,10 +5,17 @@ import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowLeft, Zap, Users, FileText, Stethoscope } from 'lucide-react';
+import SEOHead from '@/components/SEOHead';
 
 const PanicDisorder = () => {
   return (
     <div className="flex flex-col min-h-screen">
+      <SEOHead 
+        title="Panic Disorder Treatment & Therapy | Georgia | Coping & Healing"
+        description="Expert panic disorder treatment in Georgia. Learn about panic attack symptoms, therapy options, and connect with specialized therapists for panic disorder."
+        keywords="panic disorder, panic attacks, anxiety therapy, fear treatment, Georgia mental health"
+        canonicalUrl="https://chctherapy.com/conditions/panic-disorder"
+      />
       <Header />
       
       <main className="flex-1">

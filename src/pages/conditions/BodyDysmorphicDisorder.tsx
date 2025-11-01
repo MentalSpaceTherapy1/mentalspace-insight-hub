@@ -5,10 +5,17 @@ import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowLeft, Eye, Users, FileText, Stethoscope } from 'lucide-react';
+import SEOHead from '@/components/SEOHead';
 
 const BodyDysmorphicDisorder = () => {
   return (
     <div className="flex flex-col min-h-screen">
+      <SEOHead 
+        title="Body Dysmorphic Disorder Treatment | BDD Therapy | Georgia"
+        description="Specialized BDD therapy in Georgia. Expert treatment for Body Dysmorphic Disorder with CBT and evidence-based approaches for body image concerns."
+        keywords="body dysmorphic disorder, BDD, body image therapy, appearance anxiety, CBT therapy, Georgia"
+        canonicalUrl="https://chctherapy.com/conditions/body-dysmorphic-disorder"
+      />
       <Header />
       
       <main className="flex-1">
