@@ -11,6 +11,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, HelpCircle, MessageCircle, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
 import heroImage from "@/assets/faq-hero.jpg";
+import SEOHead from "@/components/SEOHead";
 
 const FAQ = () => {
   const faqCategories = [
@@ -108,8 +109,34 @@ const FAQ = () => {
     }
   ];
 
+  // Create FAQ structured data
+  const faqStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqCategories.flatMap(category => 
+      category.faqs.map(faq => ({
+        "@type": "Question",
+        "name": faq.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faq.answer
+        }
+      }))
+    )
+  };
+
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="FAQ - Frequently Asked Questions | Coping and Healing Counseling"
+        description="Find answers to common questions about our online therapy services, insurance coverage, and mental health support. Get instant answers about therapy costs, getting started, and more."
+        keywords="therapy FAQ, online therapy questions, therapy cost, insurance coverage, mental health questions, therapy answers"
+        canonicalUrl="https://chctherapy.com/faq"
+        ogTitle="FAQ - Your Therapy Questions Answered"
+        ogDescription="Get instant answers to common questions about online therapy, insurance, costs, and getting started with mental health support."
+        ogImage="https://chctherapy.com/therapy-hero-og.jpg"
+        structuredData={faqStructuredData}
+      />
       <Header />
       <main>
         {/* Hero Section */}

@@ -8,9 +8,13 @@
 /career-2/    /career    301
 /amerigroup-insurance/    /insurance/amerigroup    301
 /service/    /chc-services    301
+/service/*    /chc-services    301
 /account/    /get-started    301
+/account/*    /get-started    301
 /product/plan-1-recommended/    /get-started    301
 /plan-3/    /get-started    301
+/trauma-series-safety-trust/    /mental-health-library    301
+/cancel-culture/    /mental-health-library    301
 
 # Ensure proper 404 handling for invalid URLs
 /api/*    /404.html   404

@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import SEOHead from "@/components/SEOHead";
 
 const Insurance = () => {
   const insuranceProviders = [
@@ -79,8 +80,27 @@ const Insurance = () => {
     }
   ];
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "MedicalBusiness",
+    "name": "Coping and Healing Counseling",
+    "description": "Online therapy services accepting major insurance providers in Georgia",
+    "paymentAccepted": insuranceProviders.map(p => p.name).join(", "),
+    "priceRange": "$0-$40 copay"
+  };
+
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="Insurance Coverage - We Accept Major Insurance Plans | Coping and Healing"
+        description="We accept CareSource, Amerigroup, Peach State, Optum, Blue Cross Blue Shield, Aetna, Cigna, Alliant Health, and Humana. Most plans cover therapy with $0-$40 copays. Verify your coverage today."
+        keywords="therapy insurance, mental health insurance coverage, CareSource therapy, Amerigroup counseling, Blue Cross therapy Georgia, Aetna mental health, insurance covered therapy"
+        canonicalUrl="https://chctherapy.com/insurance"
+        ogTitle="Insurance Coverage - Most Major Plans Accepted"
+        ogDescription="Affordable therapy with your insurance. We accept CareSource, Amerigroup, BCBS, Aetna, and more. $0-$40 copays."
+        ogImage="https://chctherapy.com/therapy-hero-og.jpg"
+        structuredData={structuredData}
+      />
       <Header />
       <main>
         {/* Hero Section */}

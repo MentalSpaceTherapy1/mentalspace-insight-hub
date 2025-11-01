@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle, Clock, Users, Brain } from "lucide-react";
+import SEOHead from "@/components/SEOHead";
 import DepressionAssessment from "@/components/assessments/DepressionAssessment";
 import AnxietyAssessment from "@/components/assessments/AnxietyAssessment";
 import PanicAssessment from "@/components/assessments/PanicAssessment";
@@ -500,6 +501,15 @@ const MentalHealthTests = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="Free Mental Health Tests & Assessments | Depression, Anxiety, ADHD Screening"
+        description="Take free, confidential mental health tests for anxiety, depression, PTSD, ADHD, and more. Clinically validated screening tools. Get instant results and personalized recommendations."
+        keywords="anxiety test, depression test, mental health assessment, ADHD screening, PTSD test, free mental health test, anxiety screening, depression screening"
+        canonicalUrl="https://chctherapy.com/mental-health-tests"
+        ogTitle="Free Mental Health Tests - Get Instant Results"
+        ogDescription="Take confidential, clinically validated mental health assessments. Screen for anxiety, depression, ADHD, PTSD, and more. Free instant results."
+        ogImage="https://chctherapy.com/therapy-hero-og.jpg"
+      />
       <Header />
       
       {/* Hero Section */}
