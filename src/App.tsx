@@ -19,6 +19,12 @@ import FreeAnxietyTestOnline from "./pages/assessments/FreeAnxietyTestOnline";
 import FreeDepressionTestOnline from "./pages/assessments/FreeDepressionTestOnline";
 import FreePTSDTestOnline from "./pages/assessments/FreePTSDTestOnline";
 import FreeADHDTestOnline from "./pages/assessments/FreeADHDTestOnline";
+
+// Location + Condition Pages
+import AnxietyTherapyAtlanta from "./pages/location-conditions/AnxietyTherapyAtlanta";
+import DepressionTherapyAtlanta from "./pages/location-conditions/DepressionTherapyAtlanta";
+import CouplesTherapyAtlanta from "./pages/location-conditions/CouplesTherapyAtlanta";
+import AnxietyTherapyAlpharetta from "./pages/location-conditions/AnxietyTherapyAlpharetta";
 import Index from "./pages/Index";
 import OnlineTherapy from "./pages/OnlineTherapy";
 import CouplesTherapy from "./pages/CouplesTherapy";
@@ -249,6 +255,12 @@ const App = () => {
                 <Route path="/free-depression-test-online" element={<FreeDepressionTestOnline />} />
                 <Route path="/free-ptsd-test-online" element={<FreePTSDTestOnline />} />
                 <Route path="/free-adhd-test-online" element={<FreeADHDTestOnline />} />
+                
+                {/* Location + Condition Combination Pages */}
+                <Route path="/anxiety-therapy-atlanta-ga" element={<AnxietyTherapyAtlanta />} />
+                <Route path="/depression-therapy-atlanta-ga" element={<DepressionTherapyAtlanta />} />
+                <Route path="/couples-therapy-atlanta-ga" element={<CouplesTherapyAtlanta />} />
+                <Route path="/anxiety-therapy-alpharetta-ga" element={<AnxietyTherapyAlpharetta />} />
                 
                 <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                 <Route path="/terms-conditions" element={<TermsAndConditions />} />
