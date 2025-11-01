@@ -5,7 +5,7 @@ import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowLeft, Heart, Users, FileText, Stethoscope, MapPin, Shield, HelpCircle, ExternalLink } from 'lucide-react';
+import { ArrowLeft, Heart, Users, FileText, Stethoscope, MapPin, Shield, HelpCircle, ExternalLink, Brain } from 'lucide-react';
 
 const Depression = () => {
   const faqSchema = {
@@ -122,6 +122,12 @@ const Depression = () => {
                 </Button>
                 <Button variant="outline" size="lg" asChild>
                   <Link to="/therapist-matching">Request an Appointment</Link>
+                </Button>
+                <Button variant="secondary" size="lg" asChild>
+                  <Link to="/mental-health-tests">
+                    <Brain className="mr-2 h-5 w-5" />
+                    Take Depression Test
+                  </Link>
                 </Button>
               </div>
             </div>

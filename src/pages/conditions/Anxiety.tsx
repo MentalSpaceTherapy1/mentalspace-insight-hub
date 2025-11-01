@@ -115,6 +115,12 @@ const Anxiety = () => {
                 <Button variant="outline" size="lg" asChild>
                   <Link to="/therapist-matching">Request an Appointment</Link>
                 </Button>
+                <Button variant="secondary" size="lg" asChild>
+                  <Link to="/mental-health-tests">
+                    <Brain className="mr-2 h-5 w-5" />
+                    Take Anxiety Test
+                  </Link>
+                </Button>
               </div>
             </div>
           </div>

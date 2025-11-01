@@ -8,7 +8,7 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
-import { CheckCircle, Calendar, Shield, DollarSign, ClipboardList, Users, Play, Star, ArrowRight, Zap, Heart, Clock } from "lucide-react";
+import { CheckCircle, Calendar, Shield, DollarSign, ClipboardList, Users, Play, Star, ArrowRight, Zap, Heart, Clock, Brain } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useSEO, SEO_CONFIGS } from "@/hooks/useSEO";
 import ResponsiveImage from "@/components/ResponsiveImage";
@@ -292,15 +292,23 @@ const Index = () => {
               <div className="animate-slide-up" style={{animationDelay: '0.2s'}}>
                 <h3 className="text-3xl font-bold mb-6">Connect with Licensed Professionals</h3>
                 <p className="text-lg text-muted-foreground mb-6">
-                  Our platform connects you with experienced, licensed therapists who specialize in your specific needs. 
+                  Our platform connects you with experienced, licensed therapists who specialize in your specific needs, including <Link to="/mental-health-library/anxiety" className="text-primary hover:underline font-medium">anxiety</Link>, <Link to="/mental-health-library/depression" className="text-primary hover:underline font-medium">depression</Link>, <Link to="/mental-health-library/ptsd" className="text-primary hover:underline font-medium">PTSD</Link>, and more. 
                   Every session is conducted in a secure, HIPAA-compliant environment.
                 </p>
-                <Link to="/therapist-matching" aria-label="Request an appointment with a licensed therapist">
-                  <Button size="lg" className="group">
-                    Request an Appointment
-                    <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
-                  </Button>
-                </Link>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Link to="/therapist-matching" aria-label="Request an appointment with a licensed therapist">
+                    <Button size="lg" className="group">
+                      Request an Appointment
+                      <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+                    </Button>
+                  </Link>
+                  <Link to="/mental-health-tests" aria-label="Take free mental health assessment">
+                    <Button size="lg" variant="outline" className="group">
+                      <Brain className="mr-2 h-5 w-5" />
+                      Take a Free Assessment
+                    </Button>
+                  </Link>
+                </div>
               </div>
             </article>
 
@@ -309,7 +317,7 @@ const Index = () => {
                 <h3 className="text-3xl font-bold mb-6">Flexible & Convenient Sessions</h3>
                 <p className="text-lg text-muted-foreground mb-6">
                   Whether you prefer video calls, phone sessions, or messaging, we adapt to your lifestyle. 
-                  Schedule sessions that work with your busy life, not against it.
+                  Schedule sessions that work with your busy life, not against it. Most major <Link to="/insurance" className="text-primary hover:underline font-medium">insurance plans accepted</Link>.
                 </p>
                 <div className="space-y-3">
                   <div className="flex items-center space-x-3">
@@ -323,6 +331,10 @@ const Index = () => {
                   <div className="flex items-center space-x-3">
                     <CheckCircle className="text-primary h-5 w-5" />
                     <span>No commute required</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <CheckCircle className="text-primary h-5 w-5" />
+                    <span><Link to="/couples-therapy" className="text-primary hover:underline">Couples therapy</Link> & <Link to="/teen-therapy" className="text-primary hover:underline">teen counseling</Link> available</span>
                   </div>
                 </div>
               </div>
