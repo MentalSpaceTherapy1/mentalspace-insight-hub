@@ -14,7 +14,7 @@ const NarcissisticPersonalityDisorder = () => {
         title="Narcissistic Personality Disorder Treatment | NPD Therapy | Georgia"
         description="Professional NPD therapy in Georgia. Treatment for Narcissistic Personality Disorder with experienced therapists specializing in personality disorders."
         keywords="narcissistic personality disorder, NPD, narcissism therapy, personality disorder treatment, Georgia"
-        canonicalUrl="https://chctherapy.com/conditions/narcissistic-personality-disorder"
+        canonicalUrl="https://chctherapy.com/mental-health-library/narcissistic-personality-disorder"
       />
       <Header />
       

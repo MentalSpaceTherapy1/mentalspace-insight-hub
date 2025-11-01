@@ -14,7 +14,7 @@ const OppositionalDefiantDisorder = () => {
         title="Oppositional Defiant Disorder Treatment | ODD Therapy | Georgia"
         description="Expert ODD treatment for children and teens in Georgia. Specialized therapy for Oppositional Defiant Disorder with family-centered approach."
         keywords="oppositional defiant disorder, ODD, child behavior therapy, teen therapy, conduct disorder, Georgia"
-        canonicalUrl="https://chctherapy.com/conditions/oppositional-defiant-disorder"
+        canonicalUrl="https://chctherapy.com/mental-health-library/oppositional-defiant-disorder"
       />
       <Header />
       

@@ -14,7 +14,7 @@ const PanicDisorder = () => {
         title="Panic Disorder Treatment & Therapy | Georgia | Coping & Healing"
         description="Expert panic disorder treatment in Georgia. Learn about panic attack symptoms, therapy options, and connect with specialized therapists for panic disorder."
         keywords="panic disorder, panic attacks, anxiety therapy, fear treatment, Georgia mental health"
-        canonicalUrl="https://chctherapy.com/conditions/panic-disorder"
+        canonicalUrl="https://chctherapy.com/mental-health-library/panic-disorder"
       />
       <Header />
       

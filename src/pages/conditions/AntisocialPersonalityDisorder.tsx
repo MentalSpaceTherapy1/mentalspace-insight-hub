@@ -14,7 +14,7 @@ const AntisocialPersonalityDisorder = () => {
         title="Antisocial Personality Disorder Treatment | ASPD Therapy | Georgia"
         description="Professional treatment for Antisocial Personality Disorder (ASPD) in Georgia. Learn about symptoms, therapy options, and connect with specialized therapists."
         keywords="antisocial personality disorder, ASPD, conduct disorder, personality disorder therapy, Georgia"
-        canonicalUrl="https://chctherapy.com/conditions/antisocial-personality-disorder"
+        canonicalUrl="https://chctherapy.com/mental-health-library/antisocial-personality-disorder"
       />
       <Header />
       

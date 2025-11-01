@@ -14,7 +14,7 @@ const DissociativeIdentityDisorder = () => {
         title="Dissociative Identity Disorder Treatment | DID Therapy | Georgia"
         description="Specialized treatment for Dissociative Identity Disorder (DID) in Georgia. Expert trauma-informed therapy for multiple personality disorder."
         keywords="dissociative identity disorder, DID, multiple personality disorder, trauma therapy, dissociation treatment, Georgia"
-        canonicalUrl="https://chctherapy.com/conditions/dissociative-identity-disorder"
+        canonicalUrl="https://chctherapy.com/mental-health-library/dissociative-identity-disorder"
       />
       <Header />
       

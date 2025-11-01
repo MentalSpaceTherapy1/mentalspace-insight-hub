@@ -14,7 +14,7 @@ const BorderlinePersonalityDisorder = () => {
         title="Borderline Personality Disorder Treatment | BPD Therapy | Georgia"
         description="Specialized BPD therapy in Georgia. Expert treatment for Borderline Personality Disorder with DBT and other evidence-based approaches."
         keywords="borderline personality disorder, BPD, DBT therapy, emotional regulation, personality disorder treatment, Georgia"
-        canonicalUrl="https://chctherapy.com/conditions/borderline-personality-disorder"
+        canonicalUrl="https://chctherapy.com/mental-health-library/borderline-personality-disorder"
       />
       <Header />
       

@@ -14,7 +14,7 @@ const ObsessiveCompulsiveDisorder = () => {
         title="OCD Treatment & Therapy | Obsessive Compulsive Disorder | Georgia"
         description="Specialized OCD therapy in Georgia. Expert treatment for obsessive thoughts and compulsive behaviors. Connect with therapists experienced in OCD management."
         keywords="OCD therapy, obsessive compulsive disorder treatment, compulsions, obsessions, anxiety therapy, Georgia"
-        canonicalUrl="https://chctherapy.com/conditions/obsessive-compulsive-disorder"
+        canonicalUrl="https://chctherapy.com/mental-health-library/obsessive-compulsive-disorder"
       />
       <Header />
       

@@ -14,7 +14,7 @@ const SocialAnxietyDisorder = () => {
         title="Social Anxiety Disorder Treatment | Social Phobia Therapy | Georgia"
         description="Specialized social anxiety therapy in Georgia. Overcome social phobia with expert treatment. Connect with therapists experienced in social anxiety disorder."
         keywords="social anxiety, social phobia, public speaking anxiety, social fear, anxiety therapy, Georgia"
-        canonicalUrl="https://chctherapy.com/conditions/social-anxiety-disorder"
+        canonicalUrl="https://chctherapy.com/mental-health-library/social-anxiety-disorder"
       />
       <Header />
       

@@ -52,7 +52,7 @@ const TherapyOnlineInsuranceCoverage = () => {
         title="Online Therapy Covered by Insurance: Complete Guide 2024 | Coping and Healing Counseling"
         description="Get online therapy covered by insurance with 9 major providers including CareSource, Aetna, BCBS, and more. Start affordable mental health care today with licensed therapists."
         keywords="online therapy insurance coverage, teletherapy insurance, mental health insurance, therapy copay, CareSource therapy, Aetna therapy, Blue Cross therapy, affordable online counseling"
-        canonicalUrl="https://your-domain.com/blog/therapy-online-insurance-coverage"
+        canonicalUrl="https://chctherapy.com/blog/therapy-online-insurance-coverage"
         ogTitle="Online Therapy Covered by Insurance: Complete Guide 2024"
         ogDescription="Get online therapy covered by 9+ insurance providers. Low copays, no referrals needed. Start mental health care today with Coping and Healing Counseling."
         ogImage={onlineTherapyHeroImage}
@@ -454,7 +454,7 @@ const TherapyOnlineInsuranceCoverage = () => {
                         </div>
                         <div className="space-y-3">
                           <Link 
-                            to="/conditions/anxiety" 
+                            to="/mental-health-library/anxiety" 
                             className="group/link flex items-start gap-2 p-3 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-colors"
                           >
                             <ArrowRight className="h-4 w-4 text-purple-500 mt-0.5 group-hover/link:translate-x-1 transition-transform" />
@@ -463,7 +463,7 @@ const TherapyOnlineInsuranceCoverage = () => {
                             </span>
                           </Link>
                           <Link 
-                            to="/conditions/depression" 
+                            to="/mental-health-library/depression" 
                             className="group/link flex items-start gap-2 p-3 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-colors"
                           >
                             <ArrowRight className="h-4 w-4 text-purple-500 mt-0.5 group-hover/link:translate-x-1 transition-transform" />
@@ -472,7 +472,7 @@ const TherapyOnlineInsuranceCoverage = () => {
                             </span>
                           </Link>
                           <Link 
-                            to="/conditions/ptsd" 
+                            to="/mental-health-library/ptsd" 
                             className="group/link flex items-start gap-2 p-3 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-colors"
                           >
                             <ArrowRight className="h-4 w-4 text-purple-500 mt-0.5 group-hover/link:translate-x-1 transition-transform" />
@@ -481,7 +481,7 @@ const TherapyOnlineInsuranceCoverage = () => {
                             </span>
                           </Link>
                           <Link 
-                            to="/conditions/bipolar-disorder" 
+                            to="/mental-health-library/bipolar-disorder" 
                             className="group/link flex items-start gap-2 p-3 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-colors"
                           >
                             <ArrowRight className="h-4 w-4 text-purple-500 mt-0.5 group-hover/link:translate-x-1 transition-transform" />

@@ -245,7 +245,7 @@ const BenefitsOnlineTherapy = () => {
                         </div>
                         <div className="space-y-3">
                           <Link 
-                            to="/conditions/anxiety" 
+                            to="/mental-health-library/anxiety" 
                             className="group/link flex items-start gap-2 p-3 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-colors"
                           >
                             <ArrowRight className="h-4 w-4 text-purple-500 mt-0.5 group-hover/link:translate-x-1 transition-transform" />
@@ -254,7 +254,7 @@ const BenefitsOnlineTherapy = () => {
                             </span>
                           </Link>
                           <Link 
-                            to="/conditions/depression" 
+                            to="/mental-health-library/depression" 
                             className="group/link flex items-start gap-2 p-3 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-colors"
                           >
                             <ArrowRight className="h-4 w-4 text-purple-500 mt-0.5 group-hover/link:translate-x-1 transition-transform" />

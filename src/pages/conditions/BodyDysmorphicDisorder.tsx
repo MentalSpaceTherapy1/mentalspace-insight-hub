@@ -14,7 +14,7 @@ const BodyDysmorphicDisorder = () => {
         title="Body Dysmorphic Disorder Treatment | BDD Therapy | Georgia"
         description="Specialized BDD therapy in Georgia. Expert treatment for Body Dysmorphic Disorder with CBT and evidence-based approaches for body image concerns."
         keywords="body dysmorphic disorder, BDD, body image therapy, appearance anxiety, CBT therapy, Georgia"
-        canonicalUrl="https://chctherapy.com/conditions/body-dysmorphic-disorder"
+        canonicalUrl="https://chctherapy.com/mental-health-library/body-dysmorphic-disorder"
       />
       <Header />
       
