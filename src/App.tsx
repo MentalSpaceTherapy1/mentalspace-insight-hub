@@ -8,7 +8,17 @@ import ScrollToTop from "./components/ScrollToTop";
 import FormIntegration from "./components/FormIntegration";
 import ChatBot from "./components/ChatBot";
 import Admin from "./pages/Admin";
-// ... keep existing imports ...
+
+// Insurance How-To Guides
+import HowToUseAetnaTherapy from "./pages/insurance-guides/HowToUseAetnaTherapy";
+import HowToUseBlueCrossTherapy from "./pages/insurance-guides/HowToUseBlueCrossTherapy";
+import HowToUseCignaTherapy from "./pages/insurance-guides/HowToUseCignaTherapy";
+
+// Assessment Landing Pages
+import FreeAnxietyTestOnline from "./pages/assessments/FreeAnxietyTestOnline";
+import FreeDepressionTestOnline from "./pages/assessments/FreeDepressionTestOnline";
+import FreePTSDTestOnline from "./pages/assessments/FreePTSDTestOnline";
+import FreeADHDTestOnline from "./pages/assessments/FreeADHDTestOnline";
 import Index from "./pages/Index";
 import OnlineTherapy from "./pages/OnlineTherapy";
 import CouplesTherapy from "./pages/CouplesTherapy";
@@ -228,6 +238,17 @@ const App = () => {
           <Route path="/houston-county-therapy" element={<HoustonCountyTherapy />} />
           <Route path="/muscogee-county-therapy" element={<MuscogeeCountyTherapy />} />
           <Route path="/bibb-county-therapy" element={<BibbCountyTherapy />} />
+                
+                {/* Insurance How-To Guides */}
+                <Route path="/how-to-use-aetna-insurance-for-therapy-georgia" element={<HowToUseAetnaTherapy />} />
+                <Route path="/how-to-use-blue-cross-insurance-for-therapy-georgia" element={<HowToUseBlueCrossTherapy />} />
+                <Route path="/how-to-use-cigna-insurance-for-therapy-georgia" element={<HowToUseCignaTherapy />} />
+                
+                {/* Assessment Landing Pages */}
+                <Route path="/free-anxiety-test-online" element={<FreeAnxietyTestOnline />} />
+                <Route path="/free-depression-test-online" element={<FreeDepressionTestOnline />} />
+                <Route path="/free-ptsd-test-online" element={<FreePTSDTestOnline />} />
+                <Route path="/free-adhd-test-online" element={<FreeADHDTestOnline />} />
                 
                 <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                 <Route path="/terms-conditions" element={<TermsAndConditions />} />

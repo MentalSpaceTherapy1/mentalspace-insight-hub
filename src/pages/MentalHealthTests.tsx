@@ -538,6 +538,70 @@ const MentalHealthTests = () => {
         </div>
       </section>
 
+      {/* Featured Assessment Landing Pages */}
+      <section className="py-16 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-4">Featured Assessments</h2>
+          <p className="text-center text-muted-foreground mb-8 max-w-2xl mx-auto">
+            Take a quick, professional-grade screening test. Clinically validated and used by therapists.
+          </p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
+            <Link to="/free-anxiety-test-online">
+              <Card className="hover:shadow-lg transition-shadow h-full border-2 border-green-200 bg-green-50/50">
+                <CardContent className="pt-6 text-center">
+                  <Brain className="h-10 w-10 text-green-600 mx-auto mb-3" />
+                  <h3 className="font-bold mb-2">Free Anxiety Test</h3>
+                  <p className="text-sm text-muted-foreground mb-3">GAD-7 • 2 minutes</p>
+                  <Button variant="outline" size="sm" className="w-full border-green-600 text-green-600">
+                    Take Test →
+                  </Button>
+                </CardContent>
+              </Card>
+            </Link>
+            
+            <Link to="/free-depression-test-online">
+              <Card className="hover:shadow-lg transition-shadow h-full border-2 border-blue-200 bg-blue-50/50">
+                <CardContent className="pt-6 text-center">
+                  <Brain className="h-10 w-10 text-blue-600 mx-auto mb-3" />
+                  <h3 className="font-bold mb-2">Free Depression Test</h3>
+                  <p className="text-sm text-muted-foreground mb-3">PHQ-9 • 5 minutes</p>
+                  <Button variant="outline" size="sm" className="w-full border-blue-600 text-blue-600">
+                    Take Test →
+                  </Button>
+                </CardContent>
+              </Card>
+            </Link>
+            
+            <Link to="/free-ptsd-test-online">
+              <Card className="hover:shadow-lg transition-shadow h-full border-2 border-rose-200 bg-rose-50/50">
+                <CardContent className="pt-6 text-center">
+                  <Brain className="h-10 w-10 text-rose-600 mx-auto mb-3" />
+                  <h3 className="font-bold mb-2">Free PTSD Test</h3>
+                  <p className="text-sm text-muted-foreground mb-3">Trauma Screening • 3 minutes</p>
+                  <Button variant="outline" size="sm" className="w-full border-rose-600 text-rose-600">
+                    Take Test →
+                  </Button>
+                </CardContent>
+              </Card>
+            </Link>
+            
+            <Link to="/free-adhd-test-online">
+              <Card className="hover:shadow-lg transition-shadow h-full border-2 border-cyan-200 bg-cyan-50/50">
+                <CardContent className="pt-6 text-center">
+                  <Brain className="h-10 w-10 text-cyan-600 mx-auto mb-3" />
+                  <h3 className="font-bold mb-2">Free ADHD Test</h3>
+                  <p className="text-sm text-muted-foreground mb-3">Adult ADHD • 3 minutes</p>
+                  <Button variant="outline" size="sm" className="w-full border-cyan-600 text-cyan-600">
+                    Take Test →
+                  </Button>
+                </CardContent>
+              </Card>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Tests Grid */}
       <section className="py-16">
         <div className="container mx-auto px-4">

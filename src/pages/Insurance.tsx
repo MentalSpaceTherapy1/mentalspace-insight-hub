@@ -156,6 +156,17 @@ const Insurance = () => {
                         Get Started Today
                       </Button>
                     </Link>
+                    
+                    {/* Add How-To Guide Links for major providers */}
+                    {(provider.slug === 'aetna' || provider.slug === 'bluecross-blueshield' || provider.slug === 'cigna') && (
+                      <Link 
+                        to={`/how-to-use-${provider.slug === 'bluecross-blueshield' ? 'blue-cross' : provider.slug}-insurance-for-therapy-georgia`}
+                      >
+                        <Button variant="outline" className="w-full text-sm">
+                          📘 How to Use {provider.name} →
+                        </Button>
+                      </Link>
+                    )}
                   </div>
                 </div>
               ))}

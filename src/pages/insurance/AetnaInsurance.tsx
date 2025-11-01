@@ -214,6 +214,18 @@ const AetnaInsurance = () => {
         {/* How CHC Handles Your Benefits */}
         <section className="py-16 px-4">
           <div className="container mx-auto max-w-4xl">
+            <div className="bg-blue-50 border-2 border-blue-200 rounded-lg p-6 mb-8">
+              <h3 className="text-xl font-bold mb-3 text-blue-800">📘 Need Help Using Your Aetna Benefits?</h3>
+              <p className="text-blue-700 mb-4">
+                New to using insurance for therapy? Check out our complete step-by-step guide:
+              </p>
+              <Link to="/how-to-use-aetna-insurance-for-therapy-georgia">
+                <Button variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-50">
+                  Read: How to Use Your Aetna Insurance for Therapy →
+                </Button>
+              </Link>
+            </div>
+            
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
               How CHC Handles Your Aetna Benefits
             </h2>
