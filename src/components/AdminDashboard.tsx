@@ -25,6 +25,7 @@ import FormSubmissions from '@/components/admin/FormSubmissions';
 import AssessmentResults from '@/components/admin/AssessmentResults';
 import ContentManager from '@/components/admin/ContentManager';
 import AnalyticsDashboard from '@/components/admin/AnalyticsDashboard';
+import SpamMonitoring from '@/components/admin/SpamMonitoring';
 import { toast } from 'sonner';
 
 const AdminDashboard = () => {
@@ -123,7 +124,7 @@ const AdminDashboard = () => {
       <div className="p-8">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-8">
           {/* Modern Tab List */}
-          <TabsList className="grid w-full grid-cols-5 lg:w-auto lg:grid-cols-none lg:inline-flex bg-white/80 backdrop-blur-lg border border-white/20 shadow-lg rounded-2xl p-2">
+          <TabsList className="grid w-full grid-cols-6 lg:w-auto lg:grid-cols-none lg:inline-flex bg-white/80 backdrop-blur-lg border border-white/20 shadow-lg rounded-2xl p-2">
             <TabsTrigger 
               value="overview" 
               className="flex items-center gap-2 rounded-xl data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-purple-600 data-[state=active]:text-white transition-all duration-300"
@@ -137,6 +138,13 @@ const AdminDashboard = () => {
             >
               <FileText className="h-4 w-4" />
               <span className="hidden sm:inline">Forms</span>
+            </TabsTrigger>
+            <TabsTrigger 
+              value="spam" 
+              className="flex items-center gap-2 rounded-xl data-[state=active]:bg-gradient-to-r data-[state=active]:from-red-500 data-[state=active]:to-orange-600 data-[state=active]:text-white transition-all duration-300"
+            >
+              <Shield className="h-4 w-4" />
+              <span className="hidden sm:inline">Spam</span>
             </TabsTrigger>
             <TabsTrigger 
               value="assessments" 
@@ -243,6 +251,10 @@ const AdminDashboard = () => {
 
           <TabsContent value="forms" className="space-y-4 animate-fade-in">
             <FormSubmissions />
+          </TabsContent>
+
+          <TabsContent value="spam" className="space-y-4 animate-fade-in">
+            <SpamMonitoring />
           </TabsContent>
 
           <TabsContent value="assessments" className="space-y-4 animate-fade-in">

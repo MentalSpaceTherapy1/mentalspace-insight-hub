@@ -84,6 +84,27 @@ serve(async (req) => {
     // Bot detection: Check for honeypot field
     if (formData.website && formData.website.trim() !== '') {
       console.log('Bot detected: honeypot field filled');
+      
+      // Log to security audit log
+      const clientIP = req.headers.get('x-forwarded-for')?.split(',')[0].trim() || 
+                       req.headers.get('x-real-ip')?.trim() || 'unknown';
+      const userAgent = req.headers.get('user-agent') || 'unknown';
+      
+      await supabase
+        .from('security_audit_log')
+        .insert({
+          event_type: 'blocked_honeypot',
+          table_name: 'form_submissions',
+          ip_address: clientIP,
+          details: {
+            form_type: formType,
+            ip_address: clientIP,
+            user_agent: userAgent,
+            timestamp: new Date().toISOString(),
+            severity: 'HIGH'
+          }
+        });
+      
       return new Response(JSON.stringify({ success: false, error: 'Invalid submission' }), {
         status: 400,
         headers: { ...getCorsHeaders(origin), 'Content-Type': 'application/json' },
@@ -95,6 +116,27 @@ serve(async (req) => {
       const fillTime = formData._submitTime - formData._formLoadTime;
       if (fillTime < 3000) {
         console.log('Bot detected: form filled too quickly', fillTime);
+        
+        const clientIP = req.headers.get('x-forwarded-for')?.split(',')[0].trim() || 
+                         req.headers.get('x-real-ip')?.trim() || 'unknown';
+        const userAgent = req.headers.get('user-agent') || 'unknown';
+        
+        await supabase
+          .from('security_audit_log')
+          .insert({
+            event_type: 'blocked_timing',
+            table_name: 'form_submissions',
+            ip_address: clientIP,
+            details: {
+              form_type: formType,
+              fill_time_ms: fillTime,
+              ip_address: clientIP,
+              user_agent: userAgent,
+              timestamp: new Date().toISOString(),
+              severity: 'HIGH'
+            }
+          });
+        
         return new Response(JSON.stringify({ success: false, error: 'Invalid submission' }), {
           status: 400,
           headers: { ...getCorsHeaders(origin), 'Content-Type': 'application/json' },
@@ -143,6 +185,25 @@ serve(async (req) => {
 
     if (!rateLimitError && recentSubmissions && recentSubmissions.length >= 3) {
       console.log('Rate limit exceeded for IP:', clientIP);
+      
+      // Log rate limit block
+      await supabase
+        .from('security_audit_log')
+        .insert({
+          event_type: 'blocked_rate_limit',
+          table_name: 'form_submissions',
+          ip_address: clientIP,
+          details: {
+            form_type: formType,
+            submission_count: recentSubmissions.length,
+            time_window: '5 minutes',
+            ip_address: clientIP,
+            user_agent: userAgent,
+            timestamp: new Date().toISOString(),
+            severity: 'MEDIUM'
+          }
+        });
+      
       return new Response(JSON.stringify({ success: false, error: 'Too many submissions. Please try again later.' }), {
         status: 429,
         headers: { ...getCorsHeaders(origin), 'Content-Type': 'application/json' },
