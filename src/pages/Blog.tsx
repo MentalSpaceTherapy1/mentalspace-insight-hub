@@ -14,6 +14,26 @@ import onlineTherapyHeroImage from "@/assets/online-therapy-hero.jpg";
 import couplesTherapyHeroImage from "@/assets/couples-therapy-hero.jpg";
 import teenTherapyHeroImage from "@/assets/teen-therapy-hero.jpg";
 import ptsdPersonImage from "@/assets/ptsd-person.jpg";
+import cbtTherapyHero from "@/assets/cbt-therapy-hero.jpg";
+import emdrTherapyHero from "@/assets/emdr-therapy-hero.jpg";
+import groupIndividualTherapyHero from "@/assets/group-individual-therapy-hero.jpg";
+import telehealthGeorgiaHero from "@/assets/telehealth-georgia-hero.jpg";
+import collegeTherapyHero from "@/assets/college-therapy-hero.jpg";
+import postpartumSupportHero from "@/assets/postpartum-support-hero.jpg";
+import mensMentalHealthHero from "@/assets/mens-mental-health-hero.jpg";
+import seniorTherapyHero from "@/assets/senior-therapy-hero.jpg";
+import marriageCounselingHero from "@/assets/marriage-counseling-hero.jpg";
+import familyTherapyHero from "@/assets/family-therapy-hero.jpg";
+import premaritalCounselingHero from "@/assets/premarital-counseling-hero.jpg";
+import workplaceBurnoutHero from "@/assets/workplace-burnout-hero.jpg";
+import careerTransitionHero from "@/assets/career-transition-hero.jpg";
+import griefTherapyHero from "@/assets/grief-therapy-hero.jpg";
+import crisisSupportHero from "@/assets/crisis-support-hero.jpg";
+import selfEsteemHero from "@/assets/self-esteem-hero.jpg";
+import mindfulnessHero from "@/assets/mindfulness-hero.jpg";
+import healthyBoundariesHero from "@/assets/healthy-boundaries-hero.jpg";
+import therapyCostHero from "@/assets/therapy-cost-hero.jpg";
+import findingTherapistHero from "@/assets/finding-therapist-hero.jpg";
 
 const Blog = () => {
   const blogPosts = [
@@ -94,7 +114,7 @@ const Blog = () => {
       category: "Therapy",
       date: "January 15, 2025",
       readTime: "10 min read",
-      image: onlineTherapyHeroImage,
+      image: cbtTherapyHero,
       slug: "cognitive-behavioral-therapy"
     },
     {
@@ -104,7 +124,7 @@ const Blog = () => {
       category: "PTSD",
       date: "January 14, 2025",
       readTime: "11 min read",
-      image: ptsdPersonImage,
+      image: emdrTherapyHero,
       slug: "emdr-therapy"
     },
     {
@@ -114,7 +134,7 @@ const Blog = () => {
       category: "Therapy",
       date: "January 13, 2025",
       readTime: "8 min read",
-      image: onlineTherapyHeroImage,
+      image: groupIndividualTherapyHero,
       slug: "group-vs-individual-therapy"
     },
     {
@@ -124,7 +144,7 @@ const Blog = () => {
       category: "Insurance",
       date: "January 12, 2025",
       readTime: "12 min read",
-      image: onlineTherapyHeroImage,
+      image: telehealthGeorgiaHero,
       slug: "telehealth-therapy-georgia"
     },
     {
@@ -134,7 +154,7 @@ const Blog = () => {
       category: "Teen Health",
       date: "January 11, 2025",
       readTime: "9 min read",
-      image: teenTherapyHeroImage,
+      image: collegeTherapyHero,
       slug: "therapy-college-students"
     },
     {
@@ -144,7 +164,7 @@ const Blog = () => {
       category: "Depression",
       date: "January 10, 2025",
       readTime: "10 min read",
-      image: depressionPersonImage,
+      image: postpartumSupportHero,
       slug: "postpartum-depression"
     },
     {
@@ -154,7 +174,7 @@ const Blog = () => {
       category: "Therapy",
       date: "January 9, 2025",
       readTime: "8 min read",
-      image: onlineTherapyHeroImage,
+      image: mensMentalHealthHero,
       slug: "mens-mental-health"
     },
     {
@@ -164,7 +184,7 @@ const Blog = () => {
       category: "Therapy",
       date: "January 8, 2025",
       readTime: "11 min read",
-      image: onlineTherapyHeroImage,
+      image: seniorTherapyHero,
       slug: "senior-mental-health"
     },
     {
@@ -174,7 +194,7 @@ const Blog = () => {
       category: "Relationships",
       date: "January 7, 2025",
       readTime: "7 min read",
-      image: couplesTherapyHeroImage,
+      image: marriageCounselingHero,
       slug: "marriage-counseling-signs"
     },
     {
@@ -184,7 +204,7 @@ const Blog = () => {
       category: "Relationships",
       date: "January 6, 2025",
       readTime: "9 min read",
-      image: couplesTherapyHeroImage,
+      image: familyTherapyHero,
       slug: "family-therapy-guide"
     },
     {
@@ -194,7 +214,7 @@ const Blog = () => {
       category: "Relationships",
       date: "January 5, 2025",
       readTime: "8 min read",
-      image: couplesTherapyHeroImage,
+      image: premaritalCounselingHero,
       slug: "premarital-counseling"
     },
     {
@@ -204,7 +224,7 @@ const Blog = () => {
       category: "Therapy",
       date: "January 4, 2025",
       readTime: "10 min read",
-      image: onlineTherapyHeroImage,
+      image: workplaceBurnoutHero,
       slug: "workplace-stress-burnout"
     },
     {
@@ -214,7 +234,7 @@ const Blog = () => {
       category: "Anxiety",
       date: "January 3, 2025",
       readTime: "8 min read",
-      image: anxietyPersonImage,
+      image: careerTransitionHero,
       slug: "career-transition-anxiety"
     },
     {
@@ -224,7 +244,7 @@ const Blog = () => {
       category: "Therapy",
       date: "January 2, 2025",
       readTime: "11 min read",
-      image: onlineTherapyHeroImage,
+      image: griefTherapyHero,
       slug: "grief-therapy-healing"
     },
     {
@@ -234,7 +254,7 @@ const Blog = () => {
       category: "Crisis",
       date: "January 1, 2025",
       readTime: "9 min read",
-      image: onlineTherapyHeroImage,
+      image: crisisSupportHero,
       slug: "suicidal-thoughts-help"
     },
     {
@@ -244,7 +264,7 @@ const Blog = () => {
       category: "Therapy",
       date: "December 31, 2024",
       readTime: "10 min read",
-      image: onlineTherapyHeroImage,
+      image: selfEsteemHero,
       slug: "building-self-esteem"
     },
     {
@@ -254,7 +274,7 @@ const Blog = () => {
       category: "Therapy",
       date: "December 30, 2024",
       readTime: "12 min read",
-      image: onlineTherapyHeroImage,
+      image: mindfulnessHero,
       slug: "mindfulness-therapy"
     },
     {
@@ -264,7 +284,7 @@ const Blog = () => {
       category: "Relationships",
       date: "December 29, 2024",
       readTime: "8 min read",
-      image: couplesTherapyHeroImage,
+      image: healthyBoundariesHero,
       slug: "setting-healthy-boundaries"
     },
     {
@@ -274,7 +294,7 @@ const Blog = () => {
       category: "Insurance",
       date: "December 28, 2024",
       readTime: "9 min read",
-      image: onlineTherapyHeroImage,
+      image: therapyCostHero,
       slug: "therapy-cost-payment-options-guide"
     },
     {
@@ -284,7 +304,7 @@ const Blog = () => {
       category: "Therapy",
       date: "December 27, 2024",
       readTime: "11 min read",
-      image: onlineTherapyHeroImage,
+      image: findingTherapistHero,
       slug: "finding-right-therapist-guide"
     }
   ];
