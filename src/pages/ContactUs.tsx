@@ -25,8 +25,13 @@ const ContactUs = () => {
     email: "",
     comments: "",
     smsConsent: false,
-    timing: ""
+    timing: "",
+    // Honeypot field - bots will fill this, humans won't see it
+    website: "",
   });
+  
+  // Track when form was loaded for time-based validation
+  const [formLoadTime] = useState(Date.now());
 
   const businessHours = [
     "Monday 08:00 am – 05:00 pm",
@@ -40,8 +45,29 @@ const ContactUs = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    // Bot detection: Check if honeypot field was filled
+    if (formData.website) {
+      // Silently fail for bots
+      console.log('Bot detected: honeypot field filled');
+      return;
+    }
+    
+    // Bot detection: Check if form was filled too quickly (less than 3 seconds)
+    const timeTaken = Date.now() - formLoadTime;
+    if (timeTaken < 3000) {
+      toast.error("Please take a moment to review your information.");
+      return;
+    }
+    
     try {
-      const result = await submitForm('contact_us', formData);
+      // Add anti-bot metadata
+      const submissionData = {
+        ...formData,
+        _formLoadTime: formLoadTime,
+        _submitTime: Date.now(),
+      };
+      
+      const result = await submitForm('contact_us', submissionData);
       
       if (result.success) {
         toast.success("Thank you for contacting us! We'll get back to you soon.", {
@@ -118,6 +144,19 @@ const ContactUs = () => {
                       <p className="text-muted-foreground">We'll get back to you within 24 hours</p>
                     </div>
                     <form onSubmit={handleSubmit} className="space-y-6">
+                      {/* Honeypot field - hidden from users, visible to bots */}
+                      <div className="absolute -left-[9999px]" aria-hidden="true">
+                        <Label htmlFor="website">Website</Label>
+                        <Input
+                          id="website"
+                          type="text"
+                          tabIndex={-1}
+                          autoComplete="off"
+                          value={formData.website}
+                          onChange={(e) => handleInputChange("website", e.target.value)}
+                        />
+                      </div>
+                      
                       <div className="grid md:grid-cols-2 gap-6">
                         <div className="space-y-2">
                           <Label htmlFor="name">Name (Required)</Label>
@@ -129,6 +168,7 @@ const ContactUs = () => {
                             value={formData.name}
                             onChange={(e) => handleInputChange("name", e.target.value)}
                             className="h-12"
+                            maxLength={100}
                           />
                         </div>
                         <div className="space-y-2">
@@ -141,6 +181,7 @@ const ContactUs = () => {
                             value={formData.phone}
                             onChange={(e) => handleInputChange("phone", e.target.value)}
                             className="h-12"
+                            maxLength={20}
                           />
                         </div>
                       </div>
@@ -155,6 +196,7 @@ const ContactUs = () => {
                           value={formData.email}
                           onChange={(e) => handleInputChange("email", e.target.value)}
                           className="h-12"
+                          maxLength={255}
                         />
                       </div>
 

@@ -81,6 +81,33 @@ serve(async (req) => {
     const body = await req.json();
     const { formType, formData, csrfToken }: FormSubmission & { csrfToken?: string } = body;
 
+    // Bot detection: Check for honeypot field
+    if (formData.website && formData.website.trim() !== '') {
+      console.log('Bot detected: honeypot field filled');
+      return new Response(JSON.stringify({ success: false, error: 'Invalid submission' }), {
+        status: 400,
+        headers: { ...getCorsHeaders(origin), 'Content-Type': 'application/json' },
+      });
+    }
+
+    // Bot detection: Check form fill time (must be at least 3 seconds)
+    if (formData._formLoadTime && formData._submitTime) {
+      const fillTime = formData._submitTime - formData._formLoadTime;
+      if (fillTime < 3000) {
+        console.log('Bot detected: form filled too quickly', fillTime);
+        return new Response(JSON.stringify({ success: false, error: 'Invalid submission' }), {
+          status: 400,
+          headers: { ...getCorsHeaders(origin), 'Content-Type': 'application/json' },
+        });
+      }
+    }
+
+    // Remove anti-bot metadata before storing
+    const cleanFormData = { ...formData };
+    delete cleanFormData._formLoadTime;
+    delete cleanFormData._submitTime;
+    delete cleanFormData.website;
+
     // Basic CSRF mitigation via Origin check done above. If you later serve from multiple domains, add them to ALLOWED_ORIGINS.
     // Optional double-submit validation when cookie is present (may be absent due to cross-origin call).
     const cookies = parseCookies(req.headers.get('cookie'));
@@ -103,7 +130,24 @@ serve(async (req) => {
     }
     const userAgent = req.headers.get('user-agent') || 'unknown';
 
-    console.log(`Processing ${formType} form submission`);
+    console.log(`Processing ${formType} form submission from IP: ${clientIP}`);
+
+    // Rate limiting: Check recent submissions from this IP
+    const fiveMinutesAgo = new Date(Date.now() - 5 * 60 * 1000).toISOString();
+    const { data: recentSubmissions, error: rateLimitError } = await supabase
+      .from('form_submissions')
+      .select('id')
+      .eq('ip_address', clientIP)
+      .eq('form_type', formType)
+      .gte('created_at', fiveMinutesAgo);
+
+    if (!rateLimitError && recentSubmissions && recentSubmissions.length >= 3) {
+      console.log('Rate limit exceeded for IP:', clientIP);
+      return new Response(JSON.stringify({ success: false, error: 'Too many submissions. Please try again later.' }), {
+        status: 429,
+        headers: { ...getCorsHeaders(origin), 'Content-Type': 'application/json' },
+      });
+    }
 
     // Extract user_id from Authorization header if present
     let userId: string | null = null;
@@ -133,12 +177,12 @@ serve(async (req) => {
       }
     }
 
-    // Insert form submission into database
+    // Insert form submission into database with clean data
     const { data: submission, error } = await supabase
       .from('form_submissions')
       .insert({
         form_type: formType,
-        form_data: formData,
+        form_data: cleanFormData,
         ip_address: clientIP,
         user_agent: userAgent,
         user_id: userId, // Track authenticated user or null for anonymous
@@ -157,9 +201,9 @@ serve(async (req) => {
         const { error: contactError } = await supabase
           .from('assessment_contacts')
           .insert({
-            contact_data: formData,
+            contact_data: cleanFormData,
             user_id: userId, // Track authenticated user or null for anonymous
-            assessment_session_id: formData.assessmentSessionId || null,
+            assessment_session_id: cleanFormData.assessmentSessionId || null,
           });
 
         if (contactError) {
@@ -190,7 +234,7 @@ serve(async (req) => {
       await supabase.functions.invoke('send-notification-email', {
         body: { 
           type: formType, 
-          data: formData, 
+          data: cleanFormData, 
           submissionId: submission.id 
         },
       });
