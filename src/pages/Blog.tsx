@@ -86,6 +86,206 @@ const Blog = () => {
       readTime: "9 min read",
       image: ptsdPersonImage,
       slug: "ptsd-recovery"
+    },
+    {
+      id: 8,
+      title: "Cognitive Behavioral Therapy: How CBT Changes Your Brain",
+      excerpt: "Discover the science behind CBT and how this evidence-based therapy approach can rewire thought patterns for lasting change.",
+      category: "Therapy",
+      date: "January 15, 2025",
+      readTime: "10 min read",
+      image: onlineTherapyHeroImage,
+      slug: "cognitive-behavioral-therapy"
+    },
+    {
+      id: 9,
+      title: "EMDR Therapy: Revolutionary Treatment for Trauma and PTSD",
+      excerpt: "Learn how Eye Movement Desensitization and Reprocessing (EMDR) helps process traumatic memories and accelerate healing.",
+      category: "PTSD",
+      date: "January 14, 2025",
+      readTime: "11 min read",
+      image: ptsdPersonImage,
+      slug: "emdr-therapy"
+    },
+    {
+      id: 10,
+      title: "Group Therapy vs Individual Therapy: Which Is Right for You?",
+      excerpt: "Compare the benefits of group and individual therapy to determine the best therapeutic approach for your mental health journey.",
+      category: "Therapy",
+      date: "January 13, 2025",
+      readTime: "8 min read",
+      image: onlineTherapyHeroImage,
+      slug: "group-vs-individual-therapy"
+    },
+    {
+      id: 11,
+      title: "Telehealth Therapy in Georgia: Complete Guide to Regulations & Coverage",
+      excerpt: "Everything you need to know about online therapy in Georgia including regulations, insurance coverage, and getting started.",
+      category: "Insurance",
+      date: "January 12, 2025",
+      readTime: "12 min read",
+      image: onlineTherapyHeroImage,
+      slug: "telehealth-therapy-georgia"
+    },
+    {
+      id: 12,
+      title: "Mental Health Support for College Students: Therapy on Campus",
+      excerpt: "Navigate academic stress, relationships, and transitions with specialized mental health support for college students.",
+      category: "Teen Health",
+      date: "January 11, 2025",
+      readTime: "9 min read",
+      image: teenTherapyHeroImage,
+      slug: "therapy-college-students"
+    },
+    {
+      id: 13,
+      title: "Postpartum Depression: Recognition, Treatment & Support",
+      excerpt: "Comprehensive guide to understanding and treating postpartum depression with effective therapeutic interventions.",
+      category: "Depression",
+      date: "January 10, 2025",
+      readTime: "10 min read",
+      image: depressionPersonImage,
+      slug: "postpartum-depression"
+    },
+    {
+      id: 14,
+      title: "Men's Mental Health: Breaking Barriers to Seeking Help",
+      excerpt: "Address the unique mental health challenges men face and why seeking therapy is a sign of strength, not weakness.",
+      category: "Therapy",
+      date: "January 9, 2025",
+      readTime: "8 min read",
+      image: onlineTherapyHeroImage,
+      slug: "mens-mental-health"
+    },
+    {
+      id: 15,
+      title: "Senior Mental Health: Therapy for Older Adults & Medicare Coverage",
+      excerpt: "Essential guide to mental health care for seniors including Medicare coverage, common challenges, and treatment options.",
+      category: "Therapy",
+      date: "January 8, 2025",
+      readTime: "11 min read",
+      image: onlineTherapyHeroImage,
+      slug: "senior-mental-health"
+    },
+    {
+      id: 16,
+      title: "Signs You Need Marriage Counseling: When to Seek Help",
+      excerpt: "Recognize the warning signs that indicate marriage counseling could strengthen your relationship before problems escalate.",
+      category: "Relationships",
+      date: "January 7, 2025",
+      readTime: "7 min read",
+      image: couplesTherapyHeroImage,
+      slug: "marriage-counseling-signs"
+    },
+    {
+      id: 17,
+      title: "Family Therapy: Improving Communication & Resolving Conflicts",
+      excerpt: "Learn how family therapy can help improve communication, resolve conflicts, and strengthen family bonds.",
+      category: "Relationships",
+      date: "January 6, 2025",
+      readTime: "9 min read",
+      image: couplesTherapyHeroImage,
+      slug: "family-therapy-guide"
+    },
+    {
+      id: 18,
+      title: "Premarital Counseling: Building a Strong Foundation for Marriage",
+      excerpt: "Discover how premarital counseling prepares couples for marriage with better communication and conflict resolution skills.",
+      category: "Relationships",
+      date: "January 5, 2025",
+      readTime: "8 min read",
+      image: couplesTherapyHeroImage,
+      slug: "premarital-counseling"
+    },
+    {
+      id: 19,
+      title: "Workplace Stress & Burnout: How Therapy Can Help Your Career",
+      excerpt: "Comprehensive guide to managing workplace stress and burnout through therapy to improve work-life balance.",
+      category: "Therapy",
+      date: "January 4, 2025",
+      readTime: "10 min read",
+      image: onlineTherapyHeroImage,
+      slug: "workplace-stress-burnout"
+    },
+    {
+      id: 20,
+      title: "Career Transition Anxiety: Managing Stress During Job Changes",
+      excerpt: "Navigate career transitions with confidence using therapeutic strategies to manage anxiety and stress during job changes.",
+      category: "Anxiety",
+      date: "January 3, 2025",
+      readTime: "8 min read",
+      image: anxietyPersonImage,
+      slug: "career-transition-anxiety"
+    },
+    {
+      id: 21,
+      title: "Grief Therapy: Healing from Loss with Professional Support",
+      excerpt: "Understand the grieving process and how therapy can help you process loss and find meaning after bereavement.",
+      category: "Therapy",
+      date: "January 2, 2025",
+      readTime: "11 min read",
+      image: onlineTherapyHeroImage,
+      slug: "grief-therapy-healing"
+    },
+    {
+      id: 22,
+      title: "Suicidal Thoughts: Getting Help & Crisis Resources",
+      excerpt: "Critical information on recognizing warning signs, getting immediate help, and supporting someone with suicidal thoughts.",
+      category: "Crisis",
+      date: "January 1, 2025",
+      readTime: "9 min read",
+      image: onlineTherapyHeroImage,
+      slug: "suicidal-thoughts-help"
+    },
+    {
+      id: 23,
+      title: "Building Self-Esteem: Therapy Techniques for Greater Confidence",
+      excerpt: "Learn evidence-based therapy techniques to build self-esteem and develop lasting confidence in your abilities.",
+      category: "Therapy",
+      date: "December 31, 2024",
+      readTime: "10 min read",
+      image: onlineTherapyHeroImage,
+      slug: "building-self-esteem"
+    },
+    {
+      id: 24,
+      title: "Mindfulness-Based Therapy: Science-Backed Techniques for Mental Wellness",
+      excerpt: "Explore mindfulness-based therapeutic approaches including MBSR, MBCT, and practical techniques for daily life.",
+      category: "Therapy",
+      date: "December 30, 2024",
+      readTime: "12 min read",
+      image: onlineTherapyHeroImage,
+      slug: "mindfulness-therapy"
+    },
+    {
+      id: 25,
+      title: "Setting Healthy Boundaries: A Therapist's Guide to Saying No",
+      excerpt: "Learn how to set healthy boundaries in relationships, work, and family with practical communication scripts.",
+      category: "Relationships",
+      date: "December 29, 2024",
+      readTime: "8 min read",
+      image: couplesTherapyHeroImage,
+      slug: "setting-healthy-boundaries"
+    },
+    {
+      id: 26,
+      title: "How Much Does Therapy Cost? Insurance, Sliding Scale & Payment Options",
+      excerpt: "Complete guide to therapy costs in Georgia including insurance coverage, sliding scale fees, and affordable options.",
+      category: "Insurance",
+      date: "December 28, 2024",
+      readTime: "9 min read",
+      image: onlineTherapyHeroImage,
+      slug: "therapy-cost-payment-options-guide"
+    },
+    {
+      id: 27,
+      title: "Finding the Right Therapist: Your Complete Matching Guide",
+      excerpt: "Expert guide to finding the right therapist including credentials, specialties, therapeutic fit, and consultation questions.",
+      category: "Therapy",
+      date: "December 27, 2024",
+      readTime: "11 min read",
+      image: onlineTherapyHeroImage,
+      slug: "finding-right-therapist-guide"
     }
   ];
 
@@ -97,7 +297,8 @@ const Blog = () => {
     "Therapy",
     "Relationships",
     "Teen Health",
-    "PTSD"
+    "PTSD",
+    "Crisis"
   ];
 
   return (

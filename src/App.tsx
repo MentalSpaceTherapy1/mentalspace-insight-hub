@@ -69,6 +69,26 @@ import CouplesTherapyCommunication from "./pages/blog/CouplesTherapyCommunicatio
 import TeenMentalHealth from "./pages/blog/TeenMentalHealth";
 import PTSDRecovery from "./pages/blog/PTSDRecovery";
 import TherapyOnlineInsuranceCoverage from "./pages/blog/TherapyOnlineInsuranceCoverage";
+import CognitiveBehavioralTherapy from "./pages/blog/CognitiveBehavioralTherapy";
+import EMDRTherapy from "./pages/blog/EMDRTherapy";
+import GroupVsIndividualTherapy from "./pages/blog/GroupVsIndividualTherapy";
+import TelehealthTherapyGeorgia from "./pages/blog/TelehealthTherapyGeorgia";
+import TherapyCollegeStudents from "./pages/blog/TherapyCollegeStudents";
+import PostpartumDepression from "./pages/blog/PostpartumDepression";
+import MensMentalHealth from "./pages/blog/MensMentalHealth";
+import SeniorMentalHealth from "./pages/blog/SeniorMentalHealth";
+import MarriageCounselingSigns from "./pages/blog/MarriageCounselingSigns";
+import FamilyTherapyGuide from "./pages/blog/FamilyTherapyGuide";
+import PremaritalCounseling from "./pages/blog/PremaritalCounseling";
+import WorkplaceStressBurnout from "./pages/blog/WorkplaceStressBurnout";
+import CareerTransitionAnxiety from "./pages/blog/CareerTransitionAnxiety";
+import GriefTherapyHealing from "./pages/blog/GriefTherapyHealing";
+import SuicidalThoughtsHelp from "./pages/blog/SuicidalThoughtsHelp";
+import BuildingSelfEsteem from "./pages/blog/BuildingSelfEsteem";
+import MindfulnessTherapy from "./pages/blog/MindfulnessTherapy";
+import SettingHealthyBoundaries from "./pages/blog/SettingHealthyBoundaries";
+import TherapyCostPaymentOptions from "./pages/blog/TherapyCostPaymentOptions";
+import FindingRightTherapist from "./pages/blog/FindingRightTherapist";
 
 import Depression from "./pages/conditions/Depression";
 import Anxiety from "./pages/conditions/Anxiety";
@@ -189,6 +209,26 @@ const App = () => {
                 <Route path="/blog/teen-mental-health" element={<TeenMentalHealth />} />
                 <Route path="/blog/ptsd-recovery" element={<PTSDRecovery />} />
                 <Route path="/blog/therapy-online-insurance-coverage" element={<TherapyOnlineInsuranceCoverage />} />
+                <Route path="/blog/cognitive-behavioral-therapy" element={<CognitiveBehavioralTherapy />} />
+                <Route path="/blog/emdr-therapy" element={<EMDRTherapy />} />
+                <Route path="/blog/group-vs-individual-therapy" element={<GroupVsIndividualTherapy />} />
+                <Route path="/blog/telehealth-therapy-georgia" element={<TelehealthTherapyGeorgia />} />
+                <Route path="/blog/therapy-college-students" element={<TherapyCollegeStudents />} />
+                <Route path="/blog/postpartum-depression" element={<PostpartumDepression />} />
+                <Route path="/blog/mens-mental-health" element={<MensMentalHealth />} />
+                <Route path="/blog/senior-mental-health" element={<SeniorMentalHealth />} />
+                <Route path="/blog/marriage-counseling-signs" element={<MarriageCounselingSigns />} />
+                <Route path="/blog/family-therapy-guide" element={<FamilyTherapyGuide />} />
+                <Route path="/blog/premarital-counseling" element={<PremaritalCounseling />} />
+                <Route path="/blog/workplace-stress-burnout" element={<WorkplaceStressBurnout />} />
+                <Route path="/blog/career-transition-anxiety" element={<CareerTransitionAnxiety />} />
+                <Route path="/blog/grief-therapy-healing" element={<GriefTherapyHealing />} />
+                <Route path="/blog/suicidal-thoughts-help" element={<SuicidalThoughtsHelp />} />
+                <Route path="/blog/building-self-esteem" element={<BuildingSelfEsteem />} />
+                <Route path="/blog/mindfulness-therapy" element={<MindfulnessTherapy />} />
+                <Route path="/blog/setting-healthy-boundaries" element={<SettingHealthyBoundaries />} />
+                <Route path="/blog/therapy-cost-payment-options-guide" element={<TherapyCostPaymentOptions />} />
+                <Route path="/blog/finding-right-therapist-guide" element={<FindingRightTherapist />} />
                 
                 <Route path="/mental-health-library/depression" element={<Depression />} />
                 <Route path="/mental-health-library/anxiety" element={<Anxiety />} />
