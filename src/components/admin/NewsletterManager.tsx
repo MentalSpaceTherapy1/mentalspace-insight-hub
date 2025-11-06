@@ -4,14 +4,143 @@ import { Card } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { Eye, Sparkles } from "lucide-react";
+import { Sparkles, Wand2, FileText, Users, Lightbulb, Heart } from "lucide-react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import trustImage from "@/assets/newsletter-trust.jpg";
 import communicationImage from "@/assets/newsletter-communication.jpg";
 import teamImage from "@/assets/newsletter-team.jpg";
 import selfcareImage from "@/assets/newsletter-selfcare.jpg";
 
+interface NewsletterTemplate {
+  id: string;
+  name: string;
+  icon: any;
+  description: string;
+  suggestedTopics: string[];
+}
+
+const templates: NewsletterTemplate[] = [
+  {
+    id: "clinical",
+    name: "Clinical Updates",
+    icon: FileText,
+    description: "Share clinical best practices, new therapeutic approaches, and evidence-based techniques",
+    suggestedTopics: ["Evidence-Based Therapy Techniques", "Clinical Documentation Best Practices", "New Treatment Modalities", "Case Study Reviews"]
+  },
+  {
+    id: "team",
+    name: "Team Announcements",
+    icon: Users,
+    description: "Internal communications, team achievements, policy updates, and organizational news",
+    suggestedTopics: ["Team Building Activities", "Policy Updates", "Staff Achievements", "Internal Process Changes"]
+  },
+  {
+    id: "research",
+    name: "Research Highlights",
+    icon: Lightbulb,
+    description: "Latest research findings, clinical studies, and industry insights",
+    suggestedTopics: ["Recent Mental Health Research", "Clinical Trial Results", "Industry Trends", "Academic Publications"]
+  },
+  {
+    id: "wellness",
+    name: "Wellness Tips",
+    icon: Heart,
+    description: "Self-care strategies, burnout prevention, and therapist wellness resources",
+    suggestedTopics: ["Therapist Self-Care", "Preventing Burnout", "Work-Life Balance", "Mindfulness for Clinicians"]
+  }
+];
+
 const NewsletterManager = () => {
   const [publishing, setPublishing] = useState(false);
+  const [generating, setGenerating] = useState(false);
+  const [selectedTemplate, setSelectedTemplate] = useState<string>("");
+  const [topic, setTopic] = useState("");
+  const [tone, setTone] = useState("professional");
+  const [targetAudience, setTargetAudience] = useState("therapists");
+  const [generatedContent, setGeneratedContent] = useState<{title: string, content: string, excerpt: string} | null>(null);
+
+  const generateNewsletter = async () => {
+    if (!topic || !selectedTemplate) {
+      toast.error("Please select a template and enter a topic");
+      return;
+    }
+
+    setGenerating(true);
+    try {
+      const { data, error } = await supabase.functions.invoke('generate-newsletter', {
+        body: {
+          topic,
+          tone,
+          targetAudience,
+          template: templates.find(t => t.id === selectedTemplate)?.name || "General"
+        }
+      });
+
+      if (error) throw error;
+
+      if (data.error) {
+        throw new Error(data.error);
+      }
+
+      setGeneratedContent(data);
+      toast.success('Newsletter generated successfully!');
+    } catch (error: any) {
+      console.error('Error generating newsletter:', error);
+      toast.error('Failed to generate newsletter: ' + error.message);
+    } finally {
+      setGenerating(false);
+    }
+  };
+
+  const publishGeneratedNewsletter = async () => {
+    if (!generatedContent) {
+      toast.error("No content to publish");
+      return;
+    }
+
+    setPublishing(true);
+    try {
+      const { data: adminData } = await supabase
+        .from('admin_profiles')
+        .select('id')
+        .limit(1)
+        .single();
+
+      if (!adminData) {
+        throw new Error("No admin profile found");
+      }
+
+      const { data, error } = await supabase
+        .from('newsletters')
+        .insert({
+          title: generatedContent.title,
+          content: generatedContent.content,
+          excerpt: generatedContent.excerpt,
+          author_id: adminData.id,
+          status: 'published',
+          published_at: new Date().toISOString(),
+          category: templates.find(t => t.id === selectedTemplate)?.name || 'Staff Updates',
+          is_pinned: false
+        })
+        .select()
+        .single();
+
+      if (error) throw error;
+
+      toast.success('Newsletter published successfully!');
+      setGeneratedContent(null);
+      setTopic("");
+      setTimeout(() => window.location.reload(), 1000);
+    } catch (error: any) {
+      console.error('Error publishing newsletter:', error);
+      toast.error('Failed to publish newsletter: ' + error.message);
+    } finally {
+      setPublishing(false);
+    }
+  };
 
   const publishClientRetentionNewsletter = async () => {
     setPublishing(true);
@@ -57,33 +186,200 @@ const NewsletterManager = () => {
 
   return (
     <div className="space-y-6">
-      {/* Header with Publish Button */}
-      <Card className="p-6 bg-gradient-to-r from-purple-600 via-pink-500 to-orange-500 text-white shadow-xl">
-        <div className="flex items-center justify-between flex-wrap gap-4">
-          <div className="flex items-center gap-3">
-            <Sparkles className="h-7 w-7 animate-pulse" />
-            <div>
-              <h3 className="text-3xl font-bold">✨ Modern Newsletter Preview</h3>
-              <p className="text-white/90 mt-1 text-lg">
-                Beautiful, colorful design with engaging visuals
-              </p>
-            </div>
-          </div>
-          <Button 
-            onClick={publishClientRetentionNewsletter}
-            disabled={publishing}
-            size="lg"
-            className="bg-white text-purple-600 hover:bg-gray-100 font-bold shadow-lg"
-          >
-            {publishing ? 'Publishing...' : '🚀 Publish Newsletter'}
-          </Button>
-        </div>
-      </Card>
+      <Tabs defaultValue="generate" className="w-full">
+        <TabsList className="grid w-full grid-cols-2">
+          <TabsTrigger value="generate">
+            <Wand2 className="h-4 w-4 mr-2" />
+            AI Generator
+          </TabsTrigger>
+          <TabsTrigger value="preview">
+            <FileText className="h-4 w-4 mr-2" />
+            Sample Preview
+          </TabsTrigger>
+        </TabsList>
 
-      {/* Newsletter Preview */}
-      <ScrollArea className="h-[700px]">
-        <NewsletterPreview />
-      </ScrollArea>
+        {/* AI Generator Tab */}
+        <TabsContent value="generate" className="space-y-6">
+          <Card className="p-6 bg-gradient-to-r from-purple-600 via-pink-500 to-orange-500 text-white shadow-xl">
+            <div className="flex items-center gap-3">
+              <Sparkles className="h-7 w-7 animate-pulse" />
+              <div>
+                <h3 className="text-3xl font-bold">AI Newsletter Generator</h3>
+                <p className="text-white/90 mt-1 text-lg">
+                  Create professional newsletters instantly with AI
+                </p>
+              </div>
+            </div>
+          </Card>
+
+          {/* Template Library */}
+          <Card className="p-6">
+            <h3 className="text-xl font-bold mb-4">📚 Template Library</h3>
+            <div className="grid md:grid-cols-2 gap-4 mb-6">
+              {templates.map((template) => (
+                <Card 
+                  key={template.id}
+                  className={`p-4 cursor-pointer transition-all hover:shadow-lg ${
+                    selectedTemplate === template.id 
+                      ? 'ring-2 ring-purple-600 bg-purple-50' 
+                      : 'hover:bg-gray-50'
+                  }`}
+                  onClick={() => setSelectedTemplate(template.id)}
+                >
+                  <div className="flex items-start gap-3">
+                    <template.icon className={`h-6 w-6 ${
+                      selectedTemplate === template.id ? 'text-purple-600' : 'text-gray-600'
+                    }`} />
+                    <div className="flex-1">
+                      <h4 className="font-bold text-lg mb-1">{template.name}</h4>
+                      <p className="text-sm text-gray-600 mb-3">{template.description}</p>
+                      <div className="flex flex-wrap gap-2">
+                        {template.suggestedTopics.slice(0, 2).map((topic, i) => (
+                          <span 
+                            key={i}
+                            className="text-xs bg-gray-200 px-2 py-1 rounded cursor-pointer hover:bg-purple-200"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setTopic(topic);
+                              setSelectedTemplate(template.id);
+                            }}
+                          >
+                            {topic}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </Card>
+              ))}
+            </div>
+
+            {/* Generation Form */}
+            {selectedTemplate && (
+              <div className="space-y-4 border-t pt-6">
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="topic">Newsletter Topic</Label>
+                    <Textarea
+                      id="topic"
+                      placeholder="E.g., Managing therapist burnout during high-caseload periods"
+                      value={topic}
+                      onChange={(e) => setTopic(e.target.value)}
+                      rows={3}
+                    />
+                  </div>
+                  <div className="space-y-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="tone">Tone</Label>
+                      <Select value={tone} onValueChange={setTone}>
+                        <SelectTrigger id="tone">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="professional">Professional</SelectItem>
+                          <SelectItem value="friendly">Friendly</SelectItem>
+                          <SelectItem value="empathetic">Empathetic</SelectItem>
+                          <SelectItem value="informative">Informative</SelectItem>
+                          <SelectItem value="motivational">Motivational</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="audience">Target Audience</Label>
+                      <Select value={targetAudience} onValueChange={setTargetAudience}>
+                        <SelectTrigger id="audience">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="therapists">Therapists</SelectItem>
+                          <SelectItem value="clinical-staff">Clinical Staff</SelectItem>
+                          <SelectItem value="administrative-team">Administrative Team</SelectItem>
+                          <SelectItem value="all-staff">All Staff</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
+                </div>
+                
+                <Button 
+                  onClick={generateNewsletter}
+                  disabled={generating || !topic}
+                  size="lg"
+                  className="w-full"
+                >
+                  {generating ? (
+                    <>
+                      <Sparkles className="h-4 w-4 mr-2 animate-spin" />
+                      Generating...
+                    </>
+                  ) : (
+                    <>
+                      <Wand2 className="h-4 w-4 mr-2" />
+                      Generate Newsletter
+                    </>
+                  )}
+                </Button>
+              </div>
+            )}
+          </Card>
+
+          {/* Generated Content Preview */}
+          {generatedContent && (
+            <Card className="p-6 bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-green-300">
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center gap-2">
+                  <Sparkles className="h-5 w-5 text-green-600" />
+                  <h3 className="text-xl font-bold text-green-900">Generated Newsletter</h3>
+                </div>
+                <Button 
+                  onClick={publishGeneratedNewsletter}
+                  disabled={publishing}
+                  className="bg-green-600 hover:bg-green-700"
+                >
+                  {publishing ? 'Publishing...' : '🚀 Publish Now'}
+                </Button>
+              </div>
+              <ScrollArea className="h-[500px] rounded-lg bg-white p-6">
+                <h2 className="text-2xl font-bold mb-2">{generatedContent.title}</h2>
+                <p className="text-gray-600 mb-4 italic">{generatedContent.excerpt}</p>
+                <div 
+                  className="prose max-w-none"
+                  dangerouslySetInnerHTML={{ __html: generatedContent.content }}
+                />
+              </ScrollArea>
+            </Card>
+          )}
+        </TabsContent>
+
+        {/* Sample Preview Tab */}
+        <TabsContent value="preview" className="space-y-6">
+          <Card className="p-6 bg-gradient-to-r from-purple-600 via-pink-500 to-orange-500 text-white shadow-xl">
+            <div className="flex items-center justify-between flex-wrap gap-4">
+              <div className="flex items-center gap-3">
+                <Sparkles className="h-7 w-7 animate-pulse" />
+                <div>
+                  <h3 className="text-3xl font-bold">Sample Newsletter Preview</h3>
+                  <p className="text-white/90 mt-1 text-lg">
+                    Beautiful, colorful design with engaging visuals
+                  </p>
+                </div>
+              </div>
+              <Button 
+                onClick={publishClientRetentionNewsletter}
+                disabled={publishing}
+                size="lg"
+                className="bg-white text-purple-600 hover:bg-gray-100 font-bold shadow-lg"
+              >
+                {publishing ? 'Publishing...' : '🚀 Publish Sample'}
+              </Button>
+            </div>
+          </Card>
+
+          <ScrollArea className="h-[700px]">
+            <NewsletterPreview />
+          </ScrollArea>
+        </TabsContent>
+      </Tabs>
     </div>
   );
 };
