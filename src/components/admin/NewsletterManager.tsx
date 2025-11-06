@@ -94,12 +94,12 @@ const NewsletterPreview = () => {
       {/* Hero Section */}
       <div className="relative h-96 rounded-2xl overflow-hidden shadow-2xl">
         <img src={trustImage} alt="Building Trust" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/70 to-black/30 flex items-end">
-          <div className="p-12 text-white">
-            <h1 className="text-5xl font-bold mb-4 animate-fade-in drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent flex items-end">
+          <div className="p-12">
+            <h1 className="text-5xl font-bold mb-4 animate-fade-in text-white" style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.9), 0 0 20px rgba(0,0,0,0.5)' }}>
               Client Retention Strategies 🎯
             </h1>
-            <p className="text-2xl text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
+            <p className="text-2xl text-white" style={{ textShadow: '2px 2px 6px rgba(0,0,0,0.9), 0 0 15px rgba(0,0,0,0.5)' }}>
               Building Long-Term Therapeutic Relationships
             </p>
           </div>
@@ -231,13 +231,21 @@ const NewsletterPreview = () => {
       {/* Team Section */}
       <div className="relative h-96 rounded-2xl overflow-hidden shadow-2xl">
         <img src={teamImage} alt="Team Collaboration" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-t from-indigo-950/95 via-indigo-900/75 to-indigo-800/30 flex items-end">
-          <div className="p-12 text-white">
-            <h2 className="text-4xl font-bold mb-3 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">💼 Team Discussion Questions</h2>
-            <div className="space-y-2 text-lg">
-              <p className="drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">• Which retention strategy resonates most with your practice style?</p>
-              <p className="drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">• What&apos;s one thing you&apos;re already doing well?</p>
-              <p className="drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">• What&apos;s one area you&apos;d like to strengthen?</p>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent flex items-end">
+          <div className="p-12">
+            <h2 className="text-4xl font-bold mb-4 text-white" style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.9), 0 0 20px rgba(0,0,0,0.5)' }}>
+              💼 Team Discussion Questions
+            </h2>
+            <div className="space-y-3 text-lg">
+              <p className="text-white" style={{ textShadow: '2px 2px 6px rgba(0,0,0,0.9), 0 0 15px rgba(0,0,0,0.5)' }}>
+                • Which retention strategy resonates most with your practice style?
+              </p>
+              <p className="text-white" style={{ textShadow: '2px 2px 6px rgba(0,0,0,0.9), 0 0 15px rgba(0,0,0,0.5)' }}>
+                • What&apos;s one thing you&apos;re already doing well?
+              </p>
+              <p className="text-white" style={{ textShadow: '2px 2px 6px rgba(0,0,0,0.9), 0 0 15px rgba(0,0,0,0.5)' }}>
+                • What&apos;s one area you&apos;d like to strengthen?
+              </p>
             </div>
           </div>
         </div>
