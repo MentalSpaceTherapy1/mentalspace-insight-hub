@@ -398,6 +398,48 @@ export type Database = {
           },
         ]
       }
+      newsletters: {
+        Row: {
+          author_id: string
+          category: string | null
+          content: string
+          created_at: string
+          excerpt: string | null
+          id: string
+          is_pinned: boolean | null
+          published_at: string | null
+          status: Database["public"]["Enums"]["content_status"]
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          author_id: string
+          category?: string | null
+          content: string
+          created_at?: string
+          excerpt?: string | null
+          id?: string
+          is_pinned?: boolean | null
+          published_at?: string | null
+          status?: Database["public"]["Enums"]["content_status"]
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          author_id?: string
+          category?: string | null
+          content?: string
+          created_at?: string
+          excerpt?: string | null
+          id?: string
+          is_pinned?: boolean | null
+          published_at?: string | null
+          status?: Database["public"]["Enums"]["content_status"]
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       resources: {
         Row: {
           author_id: string
