@@ -26,6 +26,7 @@ import AssessmentResults from '@/components/admin/AssessmentResults';
 import ContentManager from '@/components/admin/ContentManager';
 import AnalyticsDashboard from '@/components/admin/AnalyticsDashboard';
 import SpamMonitoring from '@/components/admin/SpamMonitoring';
+import NewsletterManager from '@/components/admin/NewsletterManager';
 import { toast } from 'sonner';
 
 const AdminDashboard = () => {
@@ -169,6 +170,13 @@ const AdminDashboard = () => {
                 <span className="hidden sm:inline">Content</span>
               </TabsTrigger>
             )}
+            <TabsTrigger 
+              value="newsletters" 
+              className="flex items-center gap-2 rounded-xl data-[state=active]:bg-gradient-to-r data-[state=active]:from-cyan-500 data-[state=active]:to-blue-600 data-[state=active]:text-white transition-all duration-300"
+            >
+              <FileText className="h-4 w-4" />
+              <span className="hidden sm:inline">Newsletters</span>
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="overview" className="space-y-8 animate-fade-in">
@@ -384,6 +392,10 @@ const AdminDashboard = () => {
               <ContentManager />
             </TabsContent>
           )}
+          
+          <TabsContent value="newsletters" className="space-y-4 animate-fade-in">
+            <NewsletterManager />
+          </TabsContent>
         </Tabs>
       </div>
     </div>
