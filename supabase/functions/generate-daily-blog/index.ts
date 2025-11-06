@@ -141,6 +141,17 @@ Format the response as JSON with this structure:
       article.slug = slug;
     }
 
+    // Get admin user for author_id
+    const { data: adminUser } = await supabase
+      .from('admin_profiles')
+      .select('id')
+      .limit(1)
+      .single();
+
+    if (!adminUser) {
+      throw new Error("No admin user found for author_id");
+    }
+
     // Insert into database
     const { data: newPost, error: insertError } = await supabase
       .from('blog_posts')
@@ -153,6 +164,7 @@ Format the response as JSON with this structure:
         category: article.category,
         tags: article.tags,
         author: 'CHC Therapy Team',
+        author_id: adminUser.id,
         status: 'published',
         published_at: new Date().toISOString(),
         ai_generated: true,
@@ -231,14 +243,23 @@ Format the response as JSON with this structure:
       
       if (SUPABASE_URL && SUPABASE_SERVICE_ROLE_KEY) {
         const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
-        await supabase.from('blog_posts').insert({
-          title: 'Failed Generation',
-          slug: `failed-${Date.now()}`,
-          content: 'Generation failed',
-          status: 'failed',
-          ai_generated: true,
-          generation_error: error.message,
-        });
+        const { data: adminUser } = await supabase
+          .from('admin_profiles')
+          .select('id')
+          .limit(1)
+          .single();
+        
+        if (adminUser) {
+          await supabase.from('blog_posts').insert({
+            title: 'Failed Generation',
+            slug: `failed-${Date.now()}`,
+            content: 'Generation failed',
+            author_id: adminUser.id,
+            status: 'failed',
+            ai_generated: true,
+            generation_error: error.message,
+          });
+        }
       }
     } catch (logError) {
       console.error('Error logging failure:', logError);
