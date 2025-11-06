@@ -53,7 +53,7 @@ export type Database = {
           event_data: Json | null
           event_type: string
           id: string
-          ip_address: unknown | null
+          ip_address: unknown
           page_url: string | null
           referrer: string | null
           session_id: string | null
@@ -64,7 +64,7 @@ export type Database = {
           event_data?: Json | null
           event_type: string
           id?: string
-          ip_address?: unknown | null
+          ip_address?: unknown
           page_url?: string | null
           referrer?: string | null
           session_id?: string | null
@@ -75,7 +75,7 @@ export type Database = {
           event_data?: Json | null
           event_type?: string
           id?: string
-          ip_address?: unknown | null
+          ip_address?: unknown
           page_url?: string | null
           referrer?: string | null
           session_id?: string | null
@@ -149,7 +149,7 @@ export type Database = {
           encrypted_answers: string | null
           encryption_iv: string | null
           id: string
-          ip_address: unknown | null
+          ip_address: unknown
           is_encrypted: boolean | null
           recommendations: string[] | null
           score: number | null
@@ -168,7 +168,7 @@ export type Database = {
           encrypted_answers?: string | null
           encryption_iv?: string | null
           id?: string
-          ip_address?: unknown | null
+          ip_address?: unknown
           is_encrypted?: boolean | null
           recommendations?: string[] | null
           score?: number | null
@@ -187,7 +187,7 @@ export type Database = {
           encrypted_answers?: string | null
           encryption_iv?: string | null
           id?: string
-          ip_address?: unknown | null
+          ip_address?: unknown
           is_encrypted?: boolean | null
           recommendations?: string[] | null
           score?: number | null
@@ -199,15 +199,21 @@ export type Database = {
       }
       blog_posts: {
         Row: {
+          ai_generated: boolean | null
+          author: string | null
           author_id: string
+          category: string | null
           content: string
           created_at: string
           excerpt: string | null
           featured_image_url: string | null
+          generation_error: string | null
+          generation_prompt: string | null
           id: string
           meta_description: string | null
           meta_title: string | null
           published_at: string | null
+          scheduled_for: string | null
           slug: string
           status: Database["public"]["Enums"]["content_status"]
           tags: string[] | null
@@ -215,15 +221,21 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          ai_generated?: boolean | null
+          author?: string | null
           author_id: string
+          category?: string | null
           content: string
           created_at?: string
           excerpt?: string | null
           featured_image_url?: string | null
+          generation_error?: string | null
+          generation_prompt?: string | null
           id?: string
           meta_description?: string | null
           meta_title?: string | null
           published_at?: string | null
+          scheduled_for?: string | null
           slug: string
           status?: Database["public"]["Enums"]["content_status"]
           tags?: string[] | null
@@ -231,15 +243,21 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          ai_generated?: boolean | null
+          author?: string | null
           author_id?: string
+          category?: string | null
           content?: string
           created_at?: string
           excerpt?: string | null
           featured_image_url?: string | null
+          generation_error?: string | null
+          generation_prompt?: string | null
           id?: string
           meta_description?: string | null
           meta_title?: string | null
           published_at?: string | null
+          scheduled_for?: string | null
           slug?: string
           status?: Database["public"]["Enums"]["content_status"]
           tags?: string[] | null
@@ -295,7 +313,7 @@ export type Database = {
         Row: {
           created_at: string
           id: string
-          ip_address: unknown | null
+          ip_address: unknown
           last_activity: string
           messages: Json[] | null
           session_id: string
@@ -305,7 +323,7 @@ export type Database = {
         Insert: {
           created_at?: string
           id?: string
-          ip_address?: unknown | null
+          ip_address?: unknown
           last_activity?: string
           messages?: Json[] | null
           session_id: string
@@ -315,7 +333,7 @@ export type Database = {
         Update: {
           created_at?: string
           id?: string
-          ip_address?: unknown | null
+          ip_address?: unknown
           last_activity?: string
           messages?: Json[] | null
           session_id?: string
@@ -330,7 +348,7 @@ export type Database = {
           form_data: Json
           form_type: Database["public"]["Enums"]["form_type"]
           id: string
-          ip_address: unknown | null
+          ip_address: unknown
           is_processed: boolean
           notes: string | null
           processed_at: string | null
@@ -345,7 +363,7 @@ export type Database = {
           form_data: Json
           form_type: Database["public"]["Enums"]["form_type"]
           id?: string
-          ip_address?: unknown | null
+          ip_address?: unknown
           is_processed?: boolean
           notes?: string | null
           processed_at?: string | null
@@ -360,7 +378,7 @@ export type Database = {
           form_data?: Json
           form_type?: Database["public"]["Enums"]["form_type"]
           id?: string
-          ip_address?: unknown | null
+          ip_address?: unknown
           is_processed?: boolean
           notes?: string | null
           processed_at?: string | null
@@ -447,7 +465,7 @@ export type Database = {
           details: Json | null
           event_type: string
           id: string
-          ip_address: unknown | null
+          ip_address: unknown
           table_name: string
           timestamp: string | null
           user_id: string | null
@@ -456,7 +474,7 @@ export type Database = {
           details?: Json | null
           event_type: string
           id?: string
-          ip_address?: unknown | null
+          ip_address?: unknown
           table_name: string
           timestamp?: string | null
           user_id?: string | null
@@ -465,7 +483,7 @@ export type Database = {
           details?: Json | null
           event_type?: string
           id?: string
-          ip_address?: unknown | null
+          ip_address?: unknown
           table_name?: string
           timestamp?: string | null
           user_id?: string | null
@@ -516,20 +534,14 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      check_admin_access: {
-        Args: Record<PropertyKey, never>
-        Returns: boolean
-      }
-      check_assessment_rate_limit: {
-        Args: Record<PropertyKey, never>
-        Returns: boolean
-      }
+      check_admin_access: { Args: never; Returns: boolean }
+      check_assessment_rate_limit: { Args: never; Returns: boolean }
       create_initial_admin: {
         Args: { admin_email: string; admin_full_name: string }
         Returns: string
       }
       emergency_security_audit: {
-        Args: Record<PropertyKey, never>
+        Args: never
         Returns: {
           action_required: string
           audit_item: string
@@ -537,10 +549,7 @@ export type Database = {
           risk_level: string
         }[]
       }
-      enforce_data_retention: {
-        Args: Record<PropertyKey, never>
-        Returns: undefined
-      }
+      enforce_data_retention: { Args: never; Returns: undefined }
       get_admin_minimal_info: {
         Args: { target_user_id?: string }
         Returns: {
@@ -576,7 +585,7 @@ export type Database = {
         }[]
       }
       get_all_admin_profiles_secure: {
-        Args: Record<PropertyKey, never>
+        Args: never
         Returns: {
           created_at: string
           email: string
@@ -607,7 +616,7 @@ export type Database = {
         }[]
       }
       get_form_submission_stats: {
-        Args: Record<PropertyKey, never>
+        Args: never
         Returns: {
           form_type: Database["public"]["Enums"]["form_type"]
           last_submission: string
@@ -615,7 +624,7 @@ export type Database = {
         }[]
       }
       get_full_admin_profiles: {
-        Args: Record<PropertyKey, never>
+        Args: never
         Returns: {
           created_at: string
           email: string
@@ -640,7 +649,7 @@ export type Database = {
         }[]
       }
       get_security_compliance_status: {
-        Args: Record<PropertyKey, never>
+        Args: never
         Returns: {
           component: string
           details: string
@@ -648,7 +657,7 @@ export type Database = {
         }[]
       }
       get_security_dashboard_data: {
-        Args: Record<PropertyKey, never>
+        Args: never
         Returns: {
           active_threats: number
           admin_access_attempts: number
@@ -660,7 +669,7 @@ export type Database = {
         }[]
       }
       get_security_status: {
-        Args: Record<PropertyKey, never>
+        Args: never
         Returns: {
           active_sessions: number
           critical_alerts: number
@@ -668,32 +677,17 @@ export type Database = {
           warning_alerts: number
         }[]
       }
-      is_admin: {
-        Args: Record<PropertyKey, never>
-        Returns: boolean
-      }
-      is_admin_user: {
-        Args: Record<PropertyKey, never>
-        Returns: boolean
-      }
-      is_verified_admin: {
-        Args: Record<PropertyKey, never>
-        Returns: boolean
-      }
-      log_chat_access: {
-        Args: { session_id: string }
-        Returns: undefined
-      }
-      migrate_unencrypted_assessments: {
-        Args: Record<PropertyKey, never>
-        Returns: undefined
-      }
+      is_admin: { Args: never; Returns: boolean }
+      is_admin_user: { Args: never; Returns: boolean }
+      is_verified_admin: { Args: never; Returns: boolean }
+      log_chat_access: { Args: { session_id: string }; Returns: undefined }
+      migrate_unencrypted_assessments: { Args: never; Returns: undefined }
       promote_user_to_admin: {
         Args: { full_name?: string; user_email: string }
         Returns: string
       }
       run_security_audit: {
-        Args: Record<PropertyKey, never>
+        Args: never
         Returns: {
           audit_item: string
           description: string
@@ -702,10 +696,7 @@ export type Database = {
           status: string
         }[]
       }
-      secure_data_cleanup: {
-        Args: Record<PropertyKey, never>
-        Returns: undefined
-      }
+      secure_data_cleanup: { Args: never; Returns: undefined }
       setup_first_admin: {
         Args: {
           admin_email: string
