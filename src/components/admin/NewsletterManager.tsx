@@ -94,12 +94,12 @@ const NewsletterPreview = () => {
       {/* Hero Section */}
       <div className="relative h-96 rounded-2xl overflow-hidden shadow-2xl">
         <img src={trustImage} alt="Building Trust" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-end">
+        <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/70 to-black/30 flex items-end">
           <div className="p-12 text-white">
-            <h1 className="text-5xl font-bold mb-4 animate-fade-in">
+            <h1 className="text-5xl font-bold mb-4 animate-fade-in drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
               Client Retention Strategies 🎯
             </h1>
-            <p className="text-2xl text-white/90">
+            <p className="text-2xl text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
               Building Long-Term Therapeutic Relationships
             </p>
           </div>
@@ -108,8 +108,8 @@ const NewsletterPreview = () => {
 
       {/* Welcome Section */}
       <Card className="p-8 bg-gradient-to-br from-blue-50 to-cyan-50 border-2 border-blue-200 animate-fade-in">
-        <h2 className="text-3xl font-bold text-blue-900 mb-4">👋 Welcome Team!</h2>
-        <p className="text-lg text-gray-700 leading-relaxed">
+        <h2 className="text-3xl font-bold text-blue-950 mb-4">👋 Welcome Team!</h2>
+        <p className="text-lg text-gray-800 leading-relaxed font-medium">
           In our practice, client retention is not just about business sustainability—it&apos;s about providing consistent, quality care that leads to better outcomes. Today, we&apos;re exploring evidence-based strategies to strengthen therapeutic relationships and improve retention rates.
         </p>
       </Card>
@@ -122,19 +122,19 @@ const NewsletterPreview = () => {
               <span className="text-4xl">🤝</span>
               <h2 className="text-3xl font-bold text-purple-900">Building Trust</h2>
             </div>
-            <h3 className="text-xl font-semibold text-purple-800 mb-3">First Impressions Matter</h3>
-            <ul className="space-y-3 text-gray-700">
+            <h3 className="text-xl font-semibold text-purple-900 mb-3">First Impressions Matter</h3>
+            <ul className="space-y-3 text-gray-800">
               <li className="flex items-start gap-2">
-                <span className="text-green-500 mt-1">✓</span>
-                <span><strong>Warmth and presence:</strong> Be fully present from the moment they walk in</span>
+                <span className="text-green-600 mt-1 font-bold">✓</span>
+                <span className="font-medium"><strong className="text-gray-900">Warmth and presence:</strong> Be fully present from the moment they walk in</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-green-500 mt-1">✓</span>
-                <span><strong>Clear communication:</strong> Explain your approach and what to expect</span>
+                <span className="text-green-600 mt-1 font-bold">✓</span>
+                <span className="font-medium"><strong className="text-gray-900">Clear communication:</strong> Explain your approach and what to expect</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-green-500 mt-1">✓</span>
-                <span><strong>Validate their decision:</strong> Acknowledge the courage it takes</span>
+                <span className="text-green-600 mt-1 font-bold">✓</span>
+                <span className="font-medium"><strong className="text-gray-900">Validate their decision:</strong> Acknowledge the courage it takes</span>
               </li>
             </ul>
           </Card>
@@ -150,9 +150,9 @@ const NewsletterPreview = () => {
           <span className="text-4xl">🎯</span>
           <h2 className="text-3xl font-bold text-green-900">Setting Realistic Expectations</h2>
         </div>
-        <div className="bg-white/60 backdrop-blur p-6 rounded-xl border border-green-200 mb-6">
-          <p className="text-xl font-semibold text-gray-800">
-            📊 Research shows: Clients with clear expectations are <span className="text-green-600 font-bold">3x more likely</span> to complete treatment!
+        <div className="bg-white/80 backdrop-blur p-6 rounded-xl border-2 border-green-300 mb-6">
+          <p className="text-xl font-bold text-gray-900">
+            📊 Research shows: Clients with clear expectations are <span className="text-green-700 font-extrabold">3x more likely</span> to complete treatment!
           </p>
         </div>
         <div className="grid md:grid-cols-2 gap-4">
@@ -162,10 +162,10 @@ const NewsletterPreview = () => {
             { icon: "📈", title: "Progress", text: "Ups and downs are normal—that's growth" },
             { icon: "💪", title: "Between Sessions", text: "Growth happens between meetings too" }
           ].map((item, i) => (
-            <div key={i} className="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+            <div key={i} className="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow border border-green-200">
               <div className="text-2xl mb-2">{item.icon}</div>
-              <h4 className="font-bold text-green-800 mb-1">{item.title}</h4>
-              <p className="text-gray-600 text-sm">{item.text}</p>
+              <h4 className="font-bold text-green-900 mb-1">{item.title}</h4>
+              <p className="text-gray-800 text-sm font-medium">{item.text}</p>
             </div>
           ))}
         </div>
@@ -182,17 +182,17 @@ const NewsletterPreview = () => {
             <h2 className="text-3xl font-bold text-orange-900">Consistent Communication</h2>
           </div>
           <div className="space-y-4">
-            <div className="bg-white/70 p-4 rounded-lg">
-              <h4 className="font-bold text-orange-800 mb-2">During Sessions:</h4>
-              <ul className="space-y-2 text-gray-700">
+            <div className="bg-white/90 p-4 rounded-lg border border-orange-200">
+              <h4 className="font-bold text-orange-900 mb-2">During Sessions:</h4>
+              <ul className="space-y-2 text-gray-800 font-medium">
                 <li>• Regular check-ins on therapy progress</li>
                 <li>• Celebrate even small wins</li>
                 <li>• Address concerns immediately</li>
               </ul>
             </div>
-            <div className="bg-white/70 p-4 rounded-lg">
-              <h4 className="font-bold text-orange-800 mb-2">Between Sessions:</h4>
-              <ul className="space-y-2 text-gray-700">
+            <div className="bg-white/90 p-4 rounded-lg border border-orange-200">
+              <h4 className="font-bold text-orange-900 mb-2">Between Sessions:</h4>
+              <ul className="space-y-2 text-gray-800 font-medium">
                 <li>• Appointment reminders (our system handles this!)</li>
                 <li>• Follow-up on homework</li>
                 <li>• Clear crisis support information</li>
@@ -208,9 +208,9 @@ const NewsletterPreview = () => {
           <span className="text-4xl">⚠️</span>
           <h2 className="text-3xl font-bold text-red-900">The Dropout Zone (Sessions 3-6)</h2>
         </div>
-        <div className="bg-white/70 p-6 rounded-lg mb-4">
-          <p className="text-lg text-gray-800">
-            <strong>Critical Alert:</strong> Most dropouts occur between sessions 3-6 when motivation wanes but benefits haven&apos;t fully materialized yet.
+        <div className="bg-white/90 p-6 rounded-lg mb-4 border-2 border-red-300">
+          <p className="text-lg text-gray-900 font-semibold">
+            <strong className="text-red-900">Critical Alert:</strong> Most dropouts occur between sessions 3-6 when motivation wanes but benefits haven&apos;t fully materialized yet.
           </p>
         </div>
         <div className="grid md:grid-cols-2 gap-4">
@@ -220,9 +220,9 @@ const NewsletterPreview = () => {
             { icon: "🎯", text: "Revisit goals: 'Let's review what brought you here'" },
             { icon: "✨", text: "Normalize: 'Many people feel this way around now'" }
           ].map((item, i) => (
-            <div key={i} className="bg-white p-4 rounded-lg flex items-center gap-3">
+            <div key={i} className="bg-white p-4 rounded-lg flex items-center gap-3 border border-red-200">
               <span className="text-3xl">{item.icon}</span>
-              <p className="text-gray-700">{item.text}</p>
+              <p className="text-gray-800 font-medium">{item.text}</p>
             </div>
           ))}
         </div>
@@ -231,13 +231,13 @@ const NewsletterPreview = () => {
       {/* Team Section */}
       <div className="relative h-96 rounded-2xl overflow-hidden shadow-2xl">
         <img src={teamImage} alt="Team Collaboration" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-t from-indigo-900/90 via-indigo-600/50 to-transparent flex items-end">
+        <div className="absolute inset-0 bg-gradient-to-t from-indigo-950/95 via-indigo-900/75 to-indigo-800/30 flex items-end">
           <div className="p-12 text-white">
-            <h2 className="text-4xl font-bold mb-3">💼 Team Discussion Questions</h2>
+            <h2 className="text-4xl font-bold mb-3 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">💼 Team Discussion Questions</h2>
             <div className="space-y-2 text-lg">
-              <p>• Which retention strategy resonates most with your practice style?</p>
-              <p>• What&apos;s one thing you&apos;re already doing well?</p>
-              <p>• What&apos;s one area you&apos;d like to strengthen?</p>
+              <p className="drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">• Which retention strategy resonates most with your practice style?</p>
+              <p className="drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">• What&apos;s one thing you&apos;re already doing well?</p>
+              <p className="drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">• What&apos;s one area you&apos;d like to strengthen?</p>
             </div>
           </div>
         </div>
@@ -250,21 +250,21 @@ const NewsletterPreview = () => {
             <span className="text-4xl">🧘</span>
             <h2 className="text-3xl font-bold text-indigo-900">Self-Care = Better Retention</h2>
           </div>
-          <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-4">
-            <p className="font-bold text-yellow-800">⚡ Warning: Burnout kills retention!</p>
+          <div className="bg-yellow-100 border-l-4 border-yellow-600 p-4 mb-4">
+            <p className="font-extrabold text-yellow-900 text-lg">⚡ Warning: Burnout kills retention!</p>
           </div>
-          <ul className="space-y-3 text-gray-700">
+          <ul className="space-y-3 text-gray-800">
             <li className="flex items-start gap-2">
               <span className="text-xl">🛑</span>
-              <span>Burned-out therapists are less present</span>
+              <span className="font-medium">Burned-out therapists are less present</span>
             </li>
             <li className="flex items-start gap-2">
               <span className="text-xl">👁️</span>
-              <span>Clients sense when you&apos;re not engaged</span>
+              <span className="font-medium">Clients sense when you&apos;re not engaged</span>
             </li>
             <li className="flex items-start gap-2">
               <span className="text-xl">📉</span>
-              <span>Quality of care declines</span>
+              <span className="font-medium">Quality of care declines</span>
             </li>
           </ul>
         </Card>
@@ -276,15 +276,15 @@ const NewsletterPreview = () => {
       {/* Final Thoughts */}
       <Card className="p-10 bg-gradient-to-br from-cyan-100 via-blue-100 to-purple-100 border-2 border-cyan-300">
         <div className="text-center">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">💡 Final Thoughts</h2>
-          <p className="text-xl text-gray-700 leading-relaxed mb-6">
+          <h2 className="text-4xl font-bold text-gray-950 mb-4">💡 Final Thoughts</h2>
+          <p className="text-xl text-gray-900 leading-relaxed mb-6 font-medium">
             Client retention isn&apos;t about &quot;keeping people in therapy forever&quot;—it&apos;s about creating an environment where healing can occur at its natural pace. When clients stay engaged in therapy, they&apos;re more likely to experience meaningful, lasting change.
           </p>
-          <div className="bg-white/70 p-6 rounded-xl">
-            <p className="text-2xl font-bold text-blue-900">
+          <div className="bg-white/90 p-6 rounded-xl border-2 border-blue-200">
+            <p className="text-2xl font-bold text-blue-950">
               ❤️ Every client who stays engaged is someone who&apos;s getting the help they need.
             </p>
-            <p className="text-lg text-gray-600 mt-2">That&apos;s what this work is all about.</p>
+            <p className="text-lg text-gray-800 mt-2 font-semibold">That&apos;s what this work is all about.</p>
           </div>
         </div>
       </Card>
