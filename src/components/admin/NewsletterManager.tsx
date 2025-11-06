@@ -4,11 +4,13 @@ import { Card } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { Sparkles, Wand2, FileText, Users, Lightbulb, Heart } from "lucide-react";
+import { Sparkles, Wand2, FileText, Users, Lightbulb, Heart, Calendar, Mail, BarChart3, Send } from "lucide-react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Input } from "@/components/ui/input";
+import NewsletterAnalyticsDashboard from "./NewsletterAnalyticsDashboard";
 import trustImage from "@/assets/newsletter-trust.jpg";
 import communicationImage from "@/assets/newsletter-communication.jpg";
 import teamImage from "@/assets/newsletter-team.jpg";
@@ -61,6 +63,10 @@ const NewsletterManager = () => {
   const [tone, setTone] = useState("professional");
   const [targetAudience, setTargetAudience] = useState("therapists");
   const [generatedContent, setGeneratedContent] = useState<{title: string, content: string, excerpt: string} | null>(null);
+  const [scheduledDate, setScheduledDate] = useState("");
+  const [sendEmail, setSendEmail] = useState(true);
+  const [subscriberEmail, setSubscriberEmail] = useState("");
+  const [addingSubscriber, setAddingSubscriber] = useState(false);
 
   const generateNewsletter = async () => {
     if (!topic || !selectedTemplate) {
@@ -95,9 +101,14 @@ const NewsletterManager = () => {
     }
   };
 
-  const publishGeneratedNewsletter = async () => {
+  const publishGeneratedNewsletter = async (schedule: boolean = false) => {
     if (!generatedContent) {
       toast.error("No content to publish");
+      return;
+    }
+
+    if (schedule && !scheduledDate) {
+      toast.error("Please select a scheduled date");
       return;
     }
 
@@ -113,32 +124,96 @@ const NewsletterManager = () => {
         throw new Error("No admin profile found");
       }
 
+      const isScheduled = schedule && scheduledDate;
+      const status = isScheduled ? 'scheduled' : 'published';
+      const publishedAt = isScheduled ? null : new Date().toISOString();
+
+      const newsletterData: any = {
+        title: generatedContent.title,
+        content: generatedContent.content,
+        excerpt: generatedContent.excerpt,
+        author_id: adminData.id,
+        status,
+        category: templates.find(t => t.id === selectedTemplate)?.name || 'Staff Updates',
+        is_pinned: false
+      };
+
+      if (publishedAt) {
+        newsletterData.published_at = publishedAt;
+      }
+      if (isScheduled && scheduledDate) {
+        newsletterData.scheduled_for = scheduledDate;
+      }
+
       const { data, error } = await supabase
         .from('newsletters')
-        .insert({
-          title: generatedContent.title,
-          content: generatedContent.content,
-          excerpt: generatedContent.excerpt,
-          author_id: adminData.id,
-          status: 'published',
-          published_at: new Date().toISOString(),
-          category: templates.find(t => t.id === selectedTemplate)?.name || 'Staff Updates',
-          is_pinned: false
-        })
+        .insert(newsletterData)
         .select()
         .single();
 
       if (error) throw error;
 
-      toast.success('Newsletter published successfully!');
+      // Initialize analytics if published now
+      if (!isScheduled) {
+        await supabase.from('newsletter_analytics').insert({
+          newsletter_id: data.id,
+          views: 0,
+          unique_views: 0,
+          total_engagement_time: 0,
+          average_engagement_time: 0,
+        });
+      }
+
+      // Send emails if option is selected and published now
+      if (sendEmail && !isScheduled) {
+        try {
+          await supabase.functions.invoke('send-newsletter-emails', {
+            body: { newsletterId: data.id }
+          });
+          toast.success('Newsletter published and emails sent!');
+        } catch (emailError) {
+          toast.success('Newsletter published but email sending failed');
+          console.error('Email error:', emailError);
+        }
+      } else if (isScheduled) {
+        toast.success(`Newsletter scheduled for ${new Date(scheduledDate).toLocaleDateString()}`);
+      } else {
+        toast.success('Newsletter published successfully!');
+      }
+
       setGeneratedContent(null);
       setTopic("");
+      setScheduledDate("");
       setTimeout(() => window.location.reload(), 1000);
     } catch (error: any) {
       console.error('Error publishing newsletter:', error);
       toast.error('Failed to publish newsletter: ' + error.message);
     } finally {
       setPublishing(false);
+    }
+  };
+
+  const addSubscriber = async () => {
+    if (!subscriberEmail) {
+      toast.error("Please enter an email address");
+      return;
+    }
+
+    setAddingSubscriber(true);
+    try {
+      const { error } = await supabase
+        .from('newsletter_subscribers')
+        .insert({ email: subscriberEmail, is_active: true });
+
+      if (error) throw error;
+
+      toast.success('Subscriber added successfully!');
+      setSubscriberEmail("");
+    } catch (error: any) {
+      console.error('Error adding subscriber:', error);
+      toast.error('Failed to add subscriber: ' + error.message);
+    } finally {
+      setAddingSubscriber(false);
     }
   };
 
@@ -187,10 +262,18 @@ const NewsletterManager = () => {
   return (
     <div className="space-y-6">
       <Tabs defaultValue="generate" className="w-full">
-        <TabsList className="grid w-full grid-cols-2">
+        <TabsList className="grid w-full grid-cols-4">
           <TabsTrigger value="generate">
             <Wand2 className="h-4 w-4 mr-2" />
             AI Generator
+          </TabsTrigger>
+          <TabsTrigger value="analytics">
+            <BarChart3 className="h-4 w-4 mr-2" />
+            Analytics
+          </TabsTrigger>
+          <TabsTrigger value="subscribers">
+            <Mail className="h-4 w-4 mr-2" />
+            Subscribers
           </TabsTrigger>
           <TabsTrigger value="preview">
             <FileText className="h-4 w-4 mr-2" />
@@ -331,14 +414,72 @@ const NewsletterManager = () => {
                   <Sparkles className="h-5 w-5 text-green-600" />
                   <h3 className="text-xl font-bold text-green-900">Generated Newsletter</h3>
                 </div>
-                <Button 
-                  onClick={publishGeneratedNewsletter}
-                  disabled={publishing}
-                  className="bg-green-600 hover:bg-green-700"
-                >
-                  {publishing ? 'Publishing...' : '🚀 Publish Now'}
-                </Button>
               </div>
+              
+              {/* Publish Options */}
+              <div className="mb-4 space-y-4 bg-white p-4 rounded-lg">
+                <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="checkbox"
+                      id="sendEmail"
+                      checked={sendEmail}
+                      onChange={(e) => setSendEmail(e.target.checked)}
+                      className="w-4 h-4"
+                    />
+                    <Label htmlFor="sendEmail" className="cursor-pointer">
+                      <Mail className="h-4 w-4 inline mr-1" />
+                      Send to subscribers
+                    </Label>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="scheduleDate">
+                      <Calendar className="h-4 w-4 inline mr-1" />
+                      Schedule for later (optional)
+                    </Label>
+                    <Input
+                      id="scheduleDate"
+                      type="datetime-local"
+                      value={scheduledDate}
+                      onChange={(e) => setScheduledDate(e.target.value)}
+                      min={new Date().toISOString().slice(0, 16)}
+                    />
+                  </div>
+                  <div className="flex items-end gap-2">
+                    <Button 
+                      onClick={() => publishGeneratedNewsletter(false)}
+                      disabled={publishing}
+                      className="bg-green-600 hover:bg-green-700 flex-1"
+                    >
+                      {publishing ? 'Publishing...' : (
+                        <>
+                          <Send className="h-4 w-4 mr-2" />
+                          Publish Now
+                        </>
+                      )}
+                    </Button>
+                    {scheduledDate && (
+                      <Button 
+                        onClick={() => publishGeneratedNewsletter(true)}
+                        disabled={publishing}
+                        variant="outline"
+                        className="flex-1"
+                      >
+                        {publishing ? 'Scheduling...' : (
+                          <>
+                            <Calendar className="h-4 w-4 mr-2" />
+                            Schedule
+                          </>
+                        )}
+                      </Button>
+                    )}
+                  </div>
+                </div>
+              </div>
+
               <ScrollArea className="h-[500px] rounded-lg bg-white p-6">
                 <h2 className="text-2xl font-bold mb-2">{generatedContent.title}</h2>
                 <p className="text-gray-600 mb-4 italic">{generatedContent.excerpt}</p>
@@ -349,6 +490,56 @@ const NewsletterManager = () => {
               </ScrollArea>
             </Card>
           )}
+        </TabsContent>
+
+        {/* Analytics Tab */}
+        <TabsContent value="analytics" className="space-y-6">
+          <Card className="p-6 bg-gradient-to-r from-blue-600 via-purple-500 to-pink-500 text-white shadow-xl">
+            <div className="flex items-center gap-3">
+              <BarChart3 className="h-7 w-7 animate-pulse" />
+              <div>
+                <h3 className="text-3xl font-bold">Newsletter Analytics</h3>
+                <p className="text-white/90 mt-1 text-lg">
+                  Track performance and engagement metrics
+                </p>
+              </div>
+            </div>
+          </Card>
+          <NewsletterAnalyticsDashboard />
+        </TabsContent>
+
+        {/* Subscribers Tab */}
+        <TabsContent value="subscribers" className="space-y-6">
+          <Card className="p-6 bg-gradient-to-r from-green-600 via-teal-500 to-cyan-500 text-white shadow-xl">
+            <div className="flex items-center gap-3">
+              <Mail className="h-7 w-7 animate-pulse" />
+              <div>
+                <h3 className="text-3xl font-bold">Email Subscribers</h3>
+                <p className="text-white/90 mt-1 text-lg">
+                  Manage your newsletter subscriber list
+                </p>
+              </div>
+            </div>
+          </Card>
+
+          <Card className="p-6">
+            <h3 className="text-xl font-bold mb-4">Add New Subscriber</h3>
+            <div className="flex gap-2">
+              <Input
+                type="email"
+                placeholder="Enter email address"
+                value={subscriberEmail}
+                onChange={(e) => setSubscriberEmail(e.target.value)}
+                className="flex-1"
+              />
+              <Button onClick={addSubscriber} disabled={addingSubscriber}>
+                {addingSubscriber ? 'Adding...' : 'Add Subscriber'}
+              </Button>
+            </div>
+            <p className="text-sm text-gray-600 mt-4">
+              📧 Weekly Schedule: Newsletters are automatically sent every Monday at 9:00 AM to all active subscribers
+            </p>
+          </Card>
         </TabsContent>
 
         {/* Sample Preview Tab */}

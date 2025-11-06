@@ -20,3 +20,12 @@ verify_jwt = false
 
 [functions.generate-newsletter]
 verify_jwt = false
+
+[functions.auto-publish-newsletters]
+verify_jwt = false
+
+[functions.send-newsletter-emails]
+verify_jwt = false
+
+[functions.track-newsletter-event]
+verify_jwt = false

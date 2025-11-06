@@ -398,6 +398,178 @@ export type Database = {
           },
         ]
       }
+      newsletter_analytics: {
+        Row: {
+          average_engagement_time: number | null
+          created_at: string | null
+          id: string
+          newsletter_id: string
+          total_engagement_time: number | null
+          unique_views: number | null
+          updated_at: string | null
+          views: number | null
+        }
+        Insert: {
+          average_engagement_time?: number | null
+          created_at?: string | null
+          id?: string
+          newsletter_id: string
+          total_engagement_time?: number | null
+          unique_views?: number | null
+          updated_at?: string | null
+          views?: number | null
+        }
+        Update: {
+          average_engagement_time?: number | null
+          created_at?: string | null
+          id?: string
+          newsletter_id?: string
+          total_engagement_time?: number | null
+          unique_views?: number | null
+          updated_at?: string | null
+          views?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "newsletter_analytics_newsletter_id_fkey"
+            columns: ["newsletter_id"]
+            isOneToOne: false
+            referencedRelation: "newsletters"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      newsletter_email_logs: {
+        Row: {
+          clicked_at: string | null
+          created_at: string | null
+          email: string
+          error_message: string | null
+          id: string
+          newsletter_id: string
+          opened_at: string | null
+          resend_message_id: string | null
+          sent_at: string | null
+          status: string
+          subscriber_id: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          clicked_at?: string | null
+          created_at?: string | null
+          email: string
+          error_message?: string | null
+          id?: string
+          newsletter_id: string
+          opened_at?: string | null
+          resend_message_id?: string | null
+          sent_at?: string | null
+          status?: string
+          subscriber_id?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          clicked_at?: string | null
+          created_at?: string | null
+          email?: string
+          error_message?: string | null
+          id?: string
+          newsletter_id?: string
+          opened_at?: string | null
+          resend_message_id?: string | null
+          sent_at?: string | null
+          status?: string
+          subscriber_id?: string | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "newsletter_email_logs_newsletter_id_fkey"
+            columns: ["newsletter_id"]
+            isOneToOne: false
+            referencedRelation: "newsletters"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "newsletter_email_logs_subscriber_id_fkey"
+            columns: ["subscriber_id"]
+            isOneToOne: false
+            referencedRelation: "newsletter_subscribers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      newsletter_subscribers: {
+        Row: {
+          created_at: string | null
+          email: string
+          full_name: string | null
+          id: string
+          is_active: boolean | null
+          subscribed_at: string | null
+          unsubscribed_at: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          email: string
+          full_name?: string | null
+          id?: string
+          is_active?: boolean | null
+          subscribed_at?: string | null
+          unsubscribed_at?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          email?: string
+          full_name?: string | null
+          id?: string
+          is_active?: boolean | null
+          subscribed_at?: string | null
+          unsubscribed_at?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      newsletter_view_events: {
+        Row: {
+          created_at: string | null
+          engagement_time: number | null
+          id: string
+          ip_address: unknown
+          newsletter_id: string
+          session_id: string | null
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          engagement_time?: number | null
+          id?: string
+          ip_address?: unknown
+          newsletter_id: string
+          session_id?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          engagement_time?: number | null
+          id?: string
+          ip_address?: unknown
+          newsletter_id?: string
+          session_id?: string | null
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "newsletter_view_events_newsletter_id_fkey"
+            columns: ["newsletter_id"]
+            isOneToOne: false
+            referencedRelation: "newsletters"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       newsletters: {
         Row: {
           author_id: string
@@ -676,6 +848,14 @@ export type Database = {
           role: Database["public"]["Enums"]["admin_role"]
           updated_at: string
           user_id: string
+        }[]
+      }
+      get_popular_newsletter_topics: {
+        Args: { limit_count?: number }
+        Returns: {
+          avg_engagement: number
+          topic: string
+          view_count: number
         }[]
       }
       get_secure_admin_profile: {
