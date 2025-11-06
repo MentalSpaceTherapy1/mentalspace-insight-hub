@@ -6,6 +6,8 @@ import { Badge } from "@/components/ui/badge";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
+import { supabase } from "@/integrations/supabase/client";
+import { useState, useEffect } from "react";
 
 // Import images
 import anxietyPersonImage from "@/assets/anxiety-person.jpg";
@@ -36,7 +38,27 @@ import therapyCostHero from "@/assets/therapy-cost-hero.jpg";
 import findingTherapistHero from "@/assets/finding-therapist-hero.jpg";
 
 const Blog = () => {
-  const blogPosts = [
+  const [dbPosts, setDbPosts] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const { data, error } = await supabase
+        .from('blog_posts')
+        .select('*')
+        .eq('status', 'published')
+        .order('published_at', { ascending: false });
+      
+      if (data && !error) {
+        setDbPosts(data);
+      }
+      setLoading(false);
+    };
+    
+    fetchPosts();
+  }, []);
+
+  const staticBlogPosts = [
     {
       id: 1,
       title: "Online Therapy Covered by Insurance: Complete Guide to Affordable Mental Health Care",
@@ -309,6 +331,26 @@ const Blog = () => {
     }
   ];
 
+  // Combine database posts with static posts
+  const allPosts = [
+    ...dbPosts.map(post => ({
+      id: post.id,
+      title: post.title,
+      excerpt: post.meta_description || post.excerpt || post.content?.substring(0, 150) + '...',
+      category: post.category || 'Therapy',
+      date: new Date(post.published_at).toLocaleDateString('en-US', { 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+      }),
+      readTime: `${Math.ceil(post.content?.length / 1000) || 5} min read`,
+      image: post.featured_image || post.image_url || staticBlogPosts[0].image,
+      slug: post.slug,
+      isAiGenerated: post.ai_generated
+    })),
+    ...staticBlogPosts
+  ];
+
   const categories = [
     "All",
     "Insurance",
@@ -357,7 +399,8 @@ const Blog = () => {
 
         {/* Blog Posts Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {blogPosts.map((post) => (
+          {loading && <p className="col-span-full text-center">Loading articles...</p>}
+          {allPosts.map((post) => (
             <Card key={post.id} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
               <div className="aspect-video overflow-hidden rounded-t-lg">
                 <img
