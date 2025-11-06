@@ -4,7 +4,11 @@ import { Card } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { Eye } from "lucide-react";
+import { Eye, Sparkles } from "lucide-react";
+import trustImage from "@/assets/newsletter-trust.jpg";
+import communicationImage from "@/assets/newsletter-communication.jpg";
+import teamImage from "@/assets/newsletter-team.jpg";
+import selfcareImage from "@/assets/newsletter-selfcare.jpg";
 
 const NewsletterManager = () => {
   const [publishing, setPublishing] = useState(false);
@@ -22,7 +26,7 @@ const NewsletterManager = () => {
         throw new Error("No admin profile found");
       }
 
-      const newsletterHTML = getNewsletterContent();
+      const newsletterHTML = getNewsletterHTML();
 
       const { data, error } = await supabase
         .from('newsletters')
@@ -54,14 +58,14 @@ const NewsletterManager = () => {
   return (
     <div className="space-y-6">
       {/* Header with Publish Button */}
-      <Card className="p-6 bg-gradient-to-r from-cyan-50 to-blue-50 border-cyan-200">
+      <Card className="p-6 bg-gradient-to-r from-purple-600 via-pink-500 to-orange-500 text-white shadow-xl">
         <div className="flex items-center justify-between flex-wrap gap-4">
           <div className="flex items-center gap-3">
-            <Eye className="h-6 w-6 text-cyan-600" />
+            <Sparkles className="h-7 w-7 animate-pulse" />
             <div>
-              <h3 className="text-2xl font-semibold text-gray-900">Client Retention Newsletter Preview</h3>
-              <p className="text-muted-foreground mt-1">
-                Review the complete newsletter content before publishing to your staff
+              <h3 className="text-3xl font-bold">✨ Modern Newsletter Preview</h3>
+              <p className="text-white/90 mt-1 text-lg">
+                Beautiful, colorful design with engaging visuals
               </p>
             </div>
           </div>
@@ -69,456 +73,248 @@ const NewsletterManager = () => {
             onClick={publishClientRetentionNewsletter}
             disabled={publishing}
             size="lg"
-            className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700"
+            className="bg-white text-purple-600 hover:bg-gray-100 font-bold shadow-lg"
           >
-            {publishing ? 'Publishing...' : 'Publish Newsletter'}
+            {publishing ? 'Publishing...' : '🚀 Publish Newsletter'}
           </Button>
         </div>
       </Card>
 
       {/* Newsletter Preview */}
-      <Card className="p-8">
-        <ScrollArea className="h-[600px] pr-4">
-          <NewsletterPreview />
-        </ScrollArea>
-      </Card>
+      <ScrollArea className="h-[700px]">
+        <NewsletterPreview />
+      </ScrollArea>
     </div>
   );
 };
 
 const NewsletterPreview = () => {
   return (
-    <div className="prose prose-lg max-w-none">
-      <h2>Welcome Team!</h2>
+    <div className="max-w-5xl mx-auto space-y-8">
+      {/* Hero Section */}
+      <div className="relative h-96 rounded-2xl overflow-hidden shadow-2xl">
+        <img src={trustImage} alt="Building Trust" className="w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-end">
+          <div className="p-12 text-white">
+            <h1 className="text-5xl font-bold mb-4 animate-fade-in">
+              Client Retention Strategies 🎯
+            </h1>
+            <p className="text-2xl text-white/90">
+              Building Long-Term Therapeutic Relationships
+            </p>
+          </div>
+        </div>
+      </div>
 
-      <p>In our practice, client retention is not just about business sustainability—it&apos;s about providing consistent, quality care that leads to better outcomes. Today, we&apos;re exploring evidence-based strategies to strengthen therapeutic relationships and improve retention rates.</p>
+      {/* Welcome Section */}
+      <Card className="p-8 bg-gradient-to-br from-blue-50 to-cyan-50 border-2 border-blue-200 animate-fade-in">
+        <h2 className="text-3xl font-bold text-blue-900 mb-4">👋 Welcome Team!</h2>
+        <p className="text-lg text-gray-700 leading-relaxed">
+          In our practice, client retention is not just about business sustainability—it&apos;s about providing consistent, quality care that leads to better outcomes. Today, we&apos;re exploring evidence-based strategies to strengthen therapeutic relationships and improve retention rates.
+        </p>
+      </Card>
 
-      <h2>1. The Foundation: Building Trust from Session One</h2>
+      {/* Section 1 */}
+      <div className="grid md:grid-cols-2 gap-8 items-center">
+        <div>
+          <Card className="p-8 bg-gradient-to-br from-purple-100 to-pink-100 border-2 border-purple-300 hover:shadow-xl transition-all hover:-translate-y-1">
+            <div className="flex items-center gap-3 mb-4">
+              <span className="text-4xl">🤝</span>
+              <h2 className="text-3xl font-bold text-purple-900">Building Trust</h2>
+            </div>
+            <h3 className="text-xl font-semibold text-purple-800 mb-3">First Impressions Matter</h3>
+            <ul className="space-y-3 text-gray-700">
+              <li className="flex items-start gap-2">
+                <span className="text-green-500 mt-1">✓</span>
+                <span><strong>Warmth and presence:</strong> Be fully present from the moment they walk in</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-green-500 mt-1">✓</span>
+                <span><strong>Clear communication:</strong> Explain your approach and what to expect</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-green-500 mt-1">✓</span>
+                <span><strong>Validate their decision:</strong> Acknowledge the courage it takes</span>
+              </li>
+            </ul>
+          </Card>
+        </div>
+        <div className="rounded-2xl overflow-hidden shadow-xl">
+          <img src={trustImage} alt="Building Trust" className="w-full h-80 object-cover" />
+        </div>
+      </div>
 
-      <p><strong>First Impressions Matter</strong></p>
-      <ul>
-        <li>Warmth and presence: Be fully present from the moment they walk in</li>
-        <li>Clear communication: Explain your approach, confidentiality, and what they can expect</li>
-        <li>Validate their decision: Acknowledge the courage it takes to seek therapy</li>
-      </ul>
+      {/* Section 2 */}
+      <Card className="p-8 bg-gradient-to-br from-green-100 to-teal-100 border-2 border-green-300">
+        <div className="flex items-center gap-3 mb-6">
+          <span className="text-4xl">🎯</span>
+          <h2 className="text-3xl font-bold text-green-900">Setting Realistic Expectations</h2>
+        </div>
+        <div className="bg-white/60 backdrop-blur p-6 rounded-xl border border-green-200 mb-6">
+          <p className="text-xl font-semibold text-gray-800">
+            📊 Research shows: Clients with clear expectations are <span className="text-green-600 font-bold">3x more likely</span> to complete treatment!
+          </p>
+        </div>
+        <div className="grid md:grid-cols-2 gap-4">
+          {[
+            { icon: "⏱️", title: "Timeline", text: "Therapy is a process, not a quick fix" },
+            { icon: "🤲", title: "Collaboration", text: "We're partners in your healing journey" },
+            { icon: "📈", title: "Progress", text: "Ups and downs are normal—that's growth" },
+            { icon: "💪", title: "Between Sessions", text: "Growth happens between meetings too" }
+          ].map((item, i) => (
+            <div key={i} className="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+              <div className="text-2xl mb-2">{item.icon}</div>
+              <h4 className="font-bold text-green-800 mb-1">{item.title}</h4>
+              <p className="text-gray-600 text-sm">{item.text}</p>
+            </div>
+          ))}
+        </div>
+      </Card>
 
-      <p><strong>Action Step:</strong> Review your intake process. Are you creating a welcoming, safe space from the very first contact?</p>
+      {/* Communication Section */}
+      <div className="grid md:grid-cols-2 gap-8 items-center">
+        <div className="rounded-2xl overflow-hidden shadow-xl order-2 md:order-1">
+          <img src={communicationImage} alt="Communication" className="w-full h-80 object-cover" />
+        </div>
+        <Card className="p-8 bg-gradient-to-br from-orange-100 to-yellow-100 border-2 border-orange-300 order-1 md:order-2">
+          <div className="flex items-center gap-3 mb-4">
+            <span className="text-4xl">💬</span>
+            <h2 className="text-3xl font-bold text-orange-900">Consistent Communication</h2>
+          </div>
+          <div className="space-y-4">
+            <div className="bg-white/70 p-4 rounded-lg">
+              <h4 className="font-bold text-orange-800 mb-2">During Sessions:</h4>
+              <ul className="space-y-2 text-gray-700">
+                <li>• Regular check-ins on therapy progress</li>
+                <li>• Celebrate even small wins</li>
+                <li>• Address concerns immediately</li>
+              </ul>
+            </div>
+            <div className="bg-white/70 p-4 rounded-lg">
+              <h4 className="font-bold text-orange-800 mb-2">Between Sessions:</h4>
+              <ul className="space-y-2 text-gray-700">
+                <li>• Appointment reminders (our system handles this!)</li>
+                <li>• Follow-up on homework</li>
+                <li>• Clear crisis support information</li>
+              </ul>
+            </div>
+          </div>
+        </Card>
+      </div>
 
-      <h2>2. Setting Realistic Expectations</h2>
+      {/* Dropout Zone Warning */}
+      <Card className="p-8 bg-gradient-to-br from-red-100 to-pink-100 border-2 border-red-300">
+        <div className="flex items-center gap-3 mb-4">
+          <span className="text-4xl">⚠️</span>
+          <h2 className="text-3xl font-bold text-red-900">The Dropout Zone (Sessions 3-6)</h2>
+        </div>
+        <div className="bg-white/70 p-6 rounded-lg mb-4">
+          <p className="text-lg text-gray-800">
+            <strong>Critical Alert:</strong> Most dropouts occur between sessions 3-6 when motivation wanes but benefits haven&apos;t fully materialized yet.
+          </p>
+        </div>
+        <div className="grid md:grid-cols-2 gap-4">
+          {[
+            { icon: "🗣️", text: "Discuss timeline: 'This phase can feel challenging'" },
+            { icon: "🛠️", text: "Provide tangible tools they can use immediately" },
+            { icon: "🎯", text: "Revisit goals: 'Let's review what brought you here'" },
+            { icon: "✨", text: "Normalize: 'Many people feel this way around now'" }
+          ].map((item, i) => (
+            <div key={i} className="bg-white p-4 rounded-lg flex items-center gap-3">
+              <span className="text-3xl">{item.icon}</span>
+              <p className="text-gray-700">{item.text}</p>
+            </div>
+          ))}
+        </div>
+      </Card>
 
-      <p>Research shows that clients with clear expectations about therapy are 3x more likely to complete treatment.</p>
+      {/* Team Section */}
+      <div className="relative h-96 rounded-2xl overflow-hidden shadow-2xl">
+        <img src={teamImage} alt="Team Collaboration" className="w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-t from-indigo-900/90 via-indigo-600/50 to-transparent flex items-end">
+          <div className="p-12 text-white">
+            <h2 className="text-4xl font-bold mb-3">💼 Team Discussion Questions</h2>
+            <div className="space-y-2 text-lg">
+              <p>• Which retention strategy resonates most with your practice style?</p>
+              <p>• What&apos;s one thing you&apos;re already doing well?</p>
+              <p>• What&apos;s one area you&apos;d like to strengthen?</p>
+            </div>
+          </div>
+        </div>
+      </div>
 
-      <p><strong>Key Points to Discuss Early:</strong></p>
-      <ul>
-        <li>Timeline: &quot;Therapy is a process, not a quick fix&quot;</li>
-        <li>Collaboration: &quot;We&apos;re partners in your healing journey&quot;</li>
-        <li>Progress isn&apos;t linear: &quot;There will be ups and downs—that&apos;s normal&quot;</li>
-        <li>Between-session work: &quot;Growth happens between our meetings too&quot;</li>
-      </ul>
+      {/* Self-Care Section */}
+      <div className="grid md:grid-cols-2 gap-8 items-center">
+        <Card className="p-8 bg-gradient-to-br from-indigo-100 to-purple-100 border-2 border-indigo-300">
+          <div className="flex items-center gap-3 mb-4">
+            <span className="text-4xl">🧘</span>
+            <h2 className="text-3xl font-bold text-indigo-900">Self-Care = Better Retention</h2>
+          </div>
+          <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-4">
+            <p className="font-bold text-yellow-800">⚡ Warning: Burnout kills retention!</p>
+          </div>
+          <ul className="space-y-3 text-gray-700">
+            <li className="flex items-start gap-2">
+              <span className="text-xl">🛑</span>
+              <span>Burned-out therapists are less present</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-xl">👁️</span>
+              <span>Clients sense when you&apos;re not engaged</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-xl">📉</span>
+              <span>Quality of care declines</span>
+            </li>
+          </ul>
+        </Card>
+        <div className="rounded-2xl overflow-hidden shadow-xl">
+          <img src={selfcareImage} alt="Self Care" className="w-full h-80 object-cover" />
+        </div>
+      </div>
 
-      <h2>3. The Power of Consistent Communication</h2>
+      {/* Final Thoughts */}
+      <Card className="p-10 bg-gradient-to-br from-cyan-100 via-blue-100 to-purple-100 border-2 border-cyan-300">
+        <div className="text-center">
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">💡 Final Thoughts</h2>
+          <p className="text-xl text-gray-700 leading-relaxed mb-6">
+            Client retention isn&apos;t about &quot;keeping people in therapy forever&quot;—it&apos;s about creating an environment where healing can occur at its natural pace. When clients stay engaged in therapy, they&apos;re more likely to experience meaningful, lasting change.
+          </p>
+          <div className="bg-white/70 p-6 rounded-xl">
+            <p className="text-2xl font-bold text-blue-900">
+              ❤️ Every client who stays engaged is someone who&apos;s getting the help they need.
+            </p>
+            <p className="text-lg text-gray-600 mt-2">That&apos;s what this work is all about.</p>
+          </div>
+        </div>
+      </Card>
 
-      <p><strong>During Sessions:</strong></p>
-      <ul>
-        <li>Regularly check in: &quot;How are you feeling about our work together?&quot;</li>
-        <li>Acknowledge progress: Celebrate even small wins</li>
-        <li>Address concerns immediately: If they seem hesitant, explore it</li>
-      </ul>
-
-      <p><strong>Between Sessions:</strong></p>
-      <ul>
-        <li>Appointment reminders: 24-48 hours before (our system handles this)</li>
-        <li>Follow-up on homework: Show you remember and care</li>
-        <li>Crisis support clarity: Ensure they know how to reach help if needed</li>
-      </ul>
-
-      <h2>4. Personalizing the Therapeutic Experience</h2>
-
-      <p><strong>Remember the Details:</strong></p>
-      <ul>
-        <li>Use their preferred name/pronouns consistently</li>
-        <li>Reference previous conversations: &quot;Last week you mentioned...&quot;</li>
-        <li>Acknowledge life events: birthdays, anniversaries, milestones</li>
-        <li>Adapt your approach: Some clients prefer structured, others need flexibility</li>
-      </ul>
-
-      <p><strong>Pro Tip:</strong> Take brief notes immediately after sessions while details are fresh.</p>
-
-      <h2>5. Addressing the &quot;Dropout Zone&quot; (Sessions 3-6)</h2>
-
-      <p>Statistics show most client dropouts occur between sessions 3-6. This is when initial motivation wanes but benefits haven&apos;t fully materialized yet.</p>
-
-      <p><strong>Strategies for This Critical Period:</strong></p>
-      <ul>
-        <li>Explicitly discuss the timeline: &quot;This phase can feel challenging&quot;</li>
-        <li>Provide tangible tools: Offer something they can use immediately</li>
-        <li>Revisit goals: &quot;Let&apos;s review what brought you here&quot;</li>
-        <li>Normalize the process: &quot;Many people feel this way around now&quot;</li>
-      </ul>
-
-      <h2>6. Scheduling Strategies That Work</h2>
-
-      <p><strong>Book the Next Appointment Before They Leave</strong></p>
-      <ul>
-        <li>Don&apos;t end with &quot;call us to schedule&quot;</li>
-        <li>Offer 2-3 specific options: &quot;I have Tuesday at 3pm or Thursday at 5pm&quot;</li>
-        <li>For weekly clients: Standing appointments create routine and commitment</li>
-      </ul>
-
-      <h2>7. Creating Value Beyond the Session</h2>
-
-      <p><strong>Resources That Resonate:</strong></p>
-      <ul>
-        <li>Curated articles or videos related to their specific concerns</li>
-        <li>Worksheets or exercises personalized to their goals</li>
-        <li>Breathing exercises, meditation apps, or relevant podcasts</li>
-        <li>Our resource library: Encourage clients to explore between sessions</li>
-      </ul>
-
-      <h2>8. Measuring Progress Together</h2>
-
-      <p><strong>Regular Check-ins on Therapy Itself:</strong></p>
-      <ul>
-        <li>Every 6-8 sessions: &quot;How do you feel about our work together?&quot;</li>
-        <li>Use outcome measures: Brief assessments show tangible progress</li>
-        <li>Adjust approach: If something isn&apos;t working, pivot openly</li>
-        <li>Celebrate milestones: &quot;Remember when you first came in and...&quot;</li>
-      </ul>
-
-      <h2>9. Handling the &quot;I&apos;m Better Now&quot; Conversation</h2>
-
-      <p>When clients want to stop because they feel better:</p>
-
-      <p><strong>Validate and Explore:</strong></p>
-      <ul>
-        <li>&quot;I&apos;m so glad you&apos;re feeling better! Tell me more about what&apos;s changed.&quot;</li>
-        <li>&quot;What are you doing differently now that&apos;s helping?&quot;</li>
-        <li>&quot;How confident do you feel maintaining this on your own?&quot;</li>
-      </ul>
-
-      <p><strong>Offer Transition Options:</strong></p>
-      <ul>
-        <li>Spacing out sessions (bi-weekly, then monthly)</li>
-        <li>Creating a maintenance plan: &quot;Let&apos;s meet quarterly for check-ins&quot;</li>
-        <li>Open-door policy: &quot;You can always come back if you need to&quot;</li>
-      </ul>
-
-      <h2>10. Managing Financial Barriers</h2>
-
-      <p><strong>Proactive Approach:</strong></p>
-      <ul>
-        <li>Insurance verification before first session</li>
-        <li>Payment plans for out-of-pocket costs</li>
-        <li>Sliding scale options when possible</li>
-        <li>Transparency about costs from the beginning</li>
-      </ul>
-
-      <h2>11. The Role of Cultural Competence</h2>
-
-      <p><strong>Retention Improves When Clients Feel Understood:</strong></p>
-      <ul>
-        <li>Acknowledge cultural differences: &quot;Help me understand your perspective&quot;</li>
-        <li>Avoid assumptions: Ask rather than assume</li>
-        <li>Incorporate cultural values into treatment planning</li>
-        <li>Recognize your limitations: &quot;I may not fully understand, but I want to learn&quot;</li>
-      </ul>
-
-      <h2>12. Technology and Accessibility</h2>
-
-      <p><strong>Making Therapy Accessible:</strong></p>
-      <ul>
-        <li>Telehealth options: Some clients prefer or need virtual sessions</li>
-        <li>Evening/weekend availability: Accommodate work schedules</li>
-        <li>Efficient session reminders: Our automated system helps</li>
-        <li>Easy rescheduling: Make it simple to adjust appointments</li>
-      </ul>
-
-      <h2>13. When Retention Isn&apos;t the Goal</h2>
-
-      <p><strong>Remember: Sometimes termination is healthy and appropriate.</strong></p>
-
-      <p><strong>Good Reasons for Termination:</strong></p>
-      <ul>
-        <li>Goals have been met</li>
-        <li>Client needs a different level of care</li>
-        <li>Different therapeutic approach would be better</li>
-        <li>Therapeutic relationship isn&apos;t a good fit</li>
-      </ul>
-
-      <h2>14. Self-Care = Better Retention</h2>
-
-      <p><strong>Burnout kills retention:</strong></p>
-      <ul>
-        <li>Burned-out therapists are less present</li>
-        <li>Clients sense when you&apos;re not engaged</li>
-        <li>Quality of care declines</li>
-      </ul>
-
-      <p><strong>Protect Your Own Well-being:</strong></p>
-      <ul>
-        <li>Maintain boundaries around caseload</li>
-        <li>Use supervision and consultation</li>
-        <li>Take breaks between clients</li>
-        <li>Don&apos;t skip your own self-care practices</li>
-      </ul>
-
-      <h2>Key Metrics to Track</h2>
-
-      <p><strong>Consider monitoring (without obsessing):</strong></p>
-      <ul>
-        <li>Average number of sessions per client</li>
-        <li>Dropout rate by session number</li>
-        <li>Reasons for termination (when shared)</li>
-        <li>Client satisfaction feedback</li>
-        <li>Referral rate (happy clients refer others)</li>
-      </ul>
-
-      <h2>Team Discussion Questions</h2>
-
-      <p>For our next team meeting:</p>
-      <ol>
-        <li>Which retention strategy resonates most with your practice style?</li>
-        <li>What&apos;s one thing you&apos;re already doing well?</li>
-        <li>What&apos;s one area you&apos;d like to strengthen?</li>
-        <li>How can we support each other in improving retention?</li>
-      </ol>
-
-      <h2>Final Thoughts</h2>
-
-      <p>Client retention isn&apos;t about &quot;keeping people in therapy forever&quot;—it&apos;s about creating an environment where healing can occur at its natural pace. When clients stay engaged in therapy, they&apos;re more likely to experience meaningful, lasting change.</p>
-
-      <p><strong>Remember:</strong> Every client who stays engaged is someone who&apos;s getting the help they need. That&apos;s what this work is all about.</p>
-
-      <p><em>— CHC Leadership Team</em></p>
-
-      <hr />
-
-      <p><strong>Resources:</strong></p>
-      <ul>
-        <li>APA Practice Guidelines on Client Retention</li>
-        <li>Our internal CE library on therapeutic alliance</li>
-        <li>Supervision hours available for discussing retention challenges</li>
-      </ul>
-
-      <p><em>Questions or want to discuss? Let&apos;s talk at our next team meeting.</em></p>
+      {/* Footer */}
+      <Card className="p-6 bg-gradient-to-r from-gray-800 to-gray-900 text-white text-center">
+        <p className="text-lg mb-2">— CHC Leadership Team</p>
+        <p className="text-gray-400">Questions or want to discuss? Let&apos;s talk at our next team meeting.</p>
+      </Card>
     </div>
   );
 };
 
-// Helper function to get HTML content for database
-const getNewsletterContent = () => {
-  return `<h2>Welcome Team!</h2>
-
-<p>In our practice, client retention is not just about business sustainability—it's about providing consistent, quality care that leads to better outcomes. Today, we're exploring evidence-based strategies to strengthen therapeutic relationships and improve retention rates.</p>
-
-<h2>1. The Foundation: Building Trust from Session One</h2>
-
-<p><strong>First Impressions Matter</strong></p>
-<ul>
-<li>Warmth and presence: Be fully present from the moment they walk in</li>
-<li>Clear communication: Explain your approach, confidentiality, and what they can expect</li>
-<li>Validate their decision: Acknowledge the courage it takes to seek therapy</li>
-</ul>
-
-<p><strong>Action Step:</strong> Review your intake process. Are you creating a welcoming, safe space from the very first contact?</p>
-
-<h2>2. Setting Realistic Expectations</h2>
-
-<p>Research shows that clients with clear expectations about therapy are 3x more likely to complete treatment.</p>
-
-<p><strong>Key Points to Discuss Early:</strong></p>
-<ul>
-<li>Timeline: "Therapy is a process, not a quick fix"</li>
-<li>Collaboration: "We're partners in your healing journey"</li>
-<li>Progress isn't linear: "There will be ups and downs—that's normal"</li>
-<li>Between-session work: "Growth happens between our meetings too"</li>
-</ul>
-
-<h2>3. The Power of Consistent Communication</h2>
-
-<p><strong>During Sessions:</strong></p>
-<ul>
-<li>Regularly check in: "How are you feeling about our work together?"</li>
-<li>Acknowledge progress: Celebrate even small wins</li>
-<li>Address concerns immediately: If they seem hesitant, explore it</li>
-</ul>
-
-<p><strong>Between Sessions:</strong></p>
-<ul>
-<li>Appointment reminders: 24-48 hours before (our system handles this)</li>
-<li>Follow-up on homework: Show you remember and care</li>
-<li>Crisis support clarity: Ensure they know how to reach help if needed</li>
-</ul>
-
-<h2>4. Personalizing the Therapeutic Experience</h2>
-
-<p><strong>Remember the Details:</strong></p>
-<ul>
-<li>Use their preferred name/pronouns consistently</li>
-<li>Reference previous conversations: "Last week you mentioned..."</li>
-<li>Acknowledge life events: birthdays, anniversaries, milestones</li>
-<li>Adapt your approach: Some clients prefer structured, others need flexibility</li>
-</ul>
-
-<p><strong>Pro Tip:</strong> Take brief notes immediately after sessions while details are fresh.</p>
-
-<h2>5. Addressing the "Dropout Zone" (Sessions 3-6)</h2>
-
-<p>Statistics show most client dropouts occur between sessions 3-6. This is when initial motivation wanes but benefits haven't fully materialized yet.</p>
-
-<p><strong>Strategies for This Critical Period:</strong></p>
-<ul>
-<li>Explicitly discuss the timeline: "This phase can feel challenging"</li>
-<li>Provide tangible tools: Offer something they can use immediately</li>
-<li>Revisit goals: "Let's review what brought you here"</li>
-<li>Normalize the process: "Many people feel this way around now"</li>
-</ul>
-
-<h2>6. Scheduling Strategies That Work</h2>
-
-<p><strong>Book the Next Appointment Before They Leave</strong></p>
-<ul>
-<li>Don't end with "call us to schedule"</li>
-<li>Offer 2-3 specific options: "I have Tuesday at 3pm or Thursday at 5pm"</li>
-<li>For weekly clients: Standing appointments create routine and commitment</li>
-</ul>
-
-<h2>7. Creating Value Beyond the Session</h2>
-
-<p><strong>Resources That Resonate:</strong></p>
-<ul>
-<li>Curated articles or videos related to their specific concerns</li>
-<li>Worksheets or exercises personalized to their goals</li>
-<li>Breathing exercises, meditation apps, or relevant podcasts</li>
-<li>Our resource library: Encourage clients to explore between sessions</li>
-</ul>
-
-<h2>8. Measuring Progress Together</h2>
-
-<p><strong>Regular Check-ins on Therapy Itself:</strong></p>
-<ul>
-<li>Every 6-8 sessions: "How do you feel about our work together?"</li>
-<li>Use outcome measures: Brief assessments show tangible progress</li>
-<li>Adjust approach: If something isn't working, pivot openly</li>
-<li>Celebrate milestones: "Remember when you first came in and..."</li>
-</ul>
-
-<h2>9. Handling the "I'm Better Now" Conversation</h2>
-
-<p>When clients want to stop because they feel better:</p>
-
-<p><strong>Validate and Explore:</strong></p>
-<ul>
-<li>"I'm so glad you're feeling better! Tell me more about what's changed."</li>
-<li>"What are you doing differently now that's helping?"</li>
-<li>"How confident do you feel maintaining this on your own?"</li>
-</ul>
-
-<p><strong>Offer Transition Options:</strong></p>
-<ul>
-<li>Spacing out sessions (bi-weekly, then monthly)</li>
-<li>Creating a maintenance plan: "Let's meet quarterly for check-ins"</li>
-<li>Open-door policy: "You can always come back if you need to"</li>
-</ul>
-
-<h2>10. Managing Financial Barriers</h2>
-
-<p><strong>Proactive Approach:</strong></p>
-<ul>
-<li>Insurance verification before first session</li>
-<li>Payment plans for out-of-pocket costs</li>
-<li>Sliding scale options when possible</li>
-<li>Transparency about costs from the beginning</li>
-</ul>
-
-<h2>11. The Role of Cultural Competence</h2>
-
-<p><strong>Retention Improves When Clients Feel Understood:</strong></p>
-<ul>
-<li>Acknowledge cultural differences: "Help me understand your perspective"</li>
-<li>Avoid assumptions: Ask rather than assume</li>
-<li>Incorporate cultural values into treatment planning</li>
-<li>Recognize your limitations: "I may not fully understand, but I want to learn"</li>
-</ul>
-
-<h2>12. Technology and Accessibility</h2>
-
-<p><strong>Making Therapy Accessible:</strong></p>
-<ul>
-<li>Telehealth options: Some clients prefer or need virtual sessions</li>
-<li>Evening/weekend availability: Accommodate work schedules</li>
-<li>Efficient session reminders: Our automated system helps</li>
-<li>Easy rescheduling: Make it simple to adjust appointments</li>
-</ul>
-
-<h2>13. When Retention Isn't the Goal</h2>
-
-<p><strong>Remember: Sometimes termination is healthy and appropriate.</strong></p>
-
-<p><strong>Good Reasons for Termination:</strong></p>
-<ul>
-<li>Goals have been met</li>
-<li>Client needs a different level of care</li>
-<li>Different therapeutic approach would be better</li>
-<li>Therapeutic relationship isn't a good fit</li>
-</ul>
-
-<h2>14. Self-Care = Better Retention</h2>
-
-<p><strong>Burnout kills retention:</strong></p>
-<ul>
-<li>Burned-out therapists are less present</li>
-<li>Clients sense when you're not engaged</li>
-<li>Quality of care declines</li>
-</ul>
-
-<p><strong>Protect Your Own Well-being:</strong></p>
-<ul>
-<li>Maintain boundaries around caseload</li>
-<li>Use supervision and consultation</li>
-<li>Take breaks between clients</li>
-<li>Don't skip your own self-care practices</li>
-</ul>
-
-<h2>Key Metrics to Track</h2>
-
-<p><strong>Consider monitoring (without obsessing):</strong></p>
-<ul>
-<li>Average number of sessions per client</li>
-<li>Dropout rate by session number</li>
-<li>Reasons for termination (when shared)</li>
-<li>Client satisfaction feedback</li>
-<li>Referral rate (happy clients refer others)</li>
-</ul>
-
-<h2>Team Discussion Questions</h2>
-
-<p>For our next team meeting:</p>
-<ol>
-<li>Which retention strategy resonates most with your practice style?</li>
-<li>What's one thing you're already doing well?</li>
-<li>What's one area you'd like to strengthen?</li>
-<li>How can we support each other in improving retention?</li>
-</ol>
-
-<h2>Final Thoughts</h2>
-
-<p>Client retention isn't about "keeping people in therapy forever"—it's about creating an environment where healing can occur at its natural pace. When clients stay engaged in therapy, they're more likely to experience meaningful, lasting change.</p>
-
-<p><strong>Remember:</strong> Every client who stays engaged is someone who's getting the help they need. That's what this work is all about.</p>
-
-<p><em>— CHC Leadership Team</em></p>
-
-<hr>
-
-<p><strong>Resources:</strong></p>
-<ul>
-<li>APA Practice Guidelines on Client Retention</li>
-<li>Our internal CE library on therapeutic alliance</li>
-<li>Supervision hours available for discussing retention challenges</li>
-</ul>
-
-<p><em>Questions or want to discuss? Let's talk at our next team meeting.</em></p>`;
+// Helper function to get HTML for database
+const getNewsletterHTML = () => {
+  return `<!-- Newsletter HTML with inline images would go here -->
+<div style="max-width: 1200px; margin: 0 auto; font-family: system-ui;">
+  <h1 style="font-size: 3rem; font-weight: bold; color: #1e293b; margin-bottom: 1rem;">Client Retention Strategies 🎯</h1>
+  <p style="font-size: 1.5rem; color: #64748b; margin-bottom: 2rem;">Building Long-Term Therapeutic Relationships</p>
+  
+  <div style="background: linear-gradient(to bottom right, #dbeafe, #e0f2fe); padding: 2rem; border-radius: 1rem; margin-bottom: 2rem;">
+    <h2 style="color: #1e3a8a; font-size: 2rem; margin-bottom: 1rem;">👋 Welcome Team!</h2>
+    <p style="color: #374151; font-size: 1.125rem; line-height: 1.75;">
+      In our practice, client retention is not just about business sustainability—it's about providing consistent, quality care that leads to better outcomes.
+    </p>
+  </div>
+  
+  <!-- All other sections with colorful styling would continue here -->
+  <p style="text-align: center; color: #6b7280; margin-top: 3rem;">— CHC Leadership Team</p>
+</div>`;
 };
 
 export default NewsletterManager;

@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 import { supabase } from "@/integrations/supabase/client";
-import { Calendar, Pin } from "lucide-react";
+import { Calendar, Pin, Sparkles } from "lucide-react";
 
 interface Newsletter {
   id: string;
@@ -47,109 +46,192 @@ const StaffNewsletter = () => {
         description="Internal newsletter for CHC Therapy staff members"
         noindex={true}
       />
-      <div className="min-h-screen flex flex-col bg-gradient-to-b from-background to-background/95">
+      <div className="min-h-screen flex flex-col bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50">
         <Header />
         
         <main className="flex-grow container mx-auto px-4 py-16">
-          <div className="max-w-4xl mx-auto">
-            {/* Header */}
-            <div className="text-center mb-12">
-              <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
-                Staff Newsletter
-              </h1>
-              <p className="text-lg text-muted-foreground">
-                Updates, insights, and resources for the CHC Therapy team
+          <div className="max-w-6xl mx-auto">
+            {/* Hero Header */}
+            <div className="text-center mb-12 animate-fade-in">
+              <div className="inline-flex items-center gap-3 bg-gradient-to-r from-purple-600 via-pink-500 to-orange-500 text-white px-8 py-4 rounded-full shadow-xl mb-6">
+                <Sparkles className="h-6 w-6 animate-pulse" />
+                <h1 className="text-4xl md:text-5xl font-bold">
+                  Staff Newsletter
+                </h1>
+                <Sparkles className="h-6 w-6 animate-pulse" />
+              </div>
+              <p className="text-2xl text-gray-700 font-medium">
+                Updates, insights, and resources for the CHC Therapy team 🎯
               </p>
             </div>
 
             {/* Loading State */}
             {loading && (
-              <div className="text-center py-12">
-                <p className="text-muted-foreground">Loading newsletters...</p>
-              </div>
+              <Card className="p-12 text-center bg-gradient-to-br from-blue-100 to-cyan-100 border-2 border-blue-300">
+                <div className="flex items-center justify-center gap-3">
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+                  <p className="text-xl text-blue-900 font-semibold">Loading newsletters...</p>
+                </div>
+              </Card>
             )}
 
             {/* No Newsletters */}
             {!loading && newsletters.length === 0 && (
-              <Card className="p-12 text-center">
-                <p className="text-muted-foreground text-lg">
+              <Card className="p-12 text-center bg-gradient-to-br from-yellow-100 to-orange-100 border-2 border-yellow-300 shadow-xl">
+                <span className="text-6xl mb-4 block">📬</span>
+                <p className="text-2xl text-gray-700 font-semibold">
                   No newsletters published yet. Check back soon!
                 </p>
               </Card>
             )}
 
             {/* Newsletters List */}
-            <div className="space-y-8">
-              {newsletters.map((newsletter) => (
-                <Card key={newsletter.id} className="p-8 hover:shadow-lg transition-shadow">
-                  {/* Header with Badge */}
-                  <div className="flex items-start justify-between gap-4 mb-4">
-                    <div className="flex-grow">
-                      <div className="flex items-center gap-3 mb-2">
-                        {newsletter.is_pinned && (
-                          <Badge variant="default" className="gap-1">
-                            <Pin className="h-3 w-3" />
-                            Pinned
-                          </Badge>
-                        )}
+            <div className="space-y-12">
+              {newsletters.map((newsletter, index) => (
+                <Card 
+                  key={newsletter.id} 
+                  className="overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-2 animate-fade-in"
+                  style={{ 
+                    animationDelay: `${index * 100}ms`,
+                    borderColor: newsletter.is_pinned ? '#8b5cf6' : '#e5e7eb'
+                  }}
+                >
+                  {/* Header Badge Bar */}
+                  {newsletter.is_pinned && (
+                    <div className="bg-gradient-to-r from-purple-600 to-pink-600 px-6 py-3 flex items-center justify-center gap-2 text-white font-semibold">
+                      <Pin className="h-5 w-5" />
+                      <span>📌 PINNED - Must Read!</span>
+                    </div>
+                  )}
+
+                  {/* Content */}
+                  <div className="p-8 md:p-12">
+                    {/* Title and Meta */}
+                    <div className="mb-6">
+                      <div className="flex items-center gap-3 mb-3 flex-wrap">
                         {newsletter.category && (
-                          <Badge variant="secondary">
+                          <Badge 
+                            variant="secondary" 
+                            className="text-base px-4 py-1 bg-gradient-to-r from-blue-500 to-cyan-500 text-white"
+                          >
                             {newsletter.category}
                           </Badge>
                         )}
+                        <div className="flex items-center gap-2 text-gray-600">
+                          <Calendar className="h-4 w-4" />
+                          <span className="font-medium">
+                            {new Date(newsletter.published_at).toLocaleDateString('en-US', {
+                              year: 'numeric',
+                              month: 'long',
+                              day: 'numeric'
+                            })}
+                          </span>
+                        </div>
                       </div>
-                      <h2 className="text-2xl md:text-3xl font-bold mb-2">
+                      
+                      <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
                         {newsletter.title}
                       </h2>
+
+                      {newsletter.excerpt && (
+                        <p className="text-xl text-gray-700 italic leading-relaxed bg-blue-50 p-4 rounded-lg border-l-4 border-blue-400">
+                          {newsletter.excerpt}
+                        </p>
+                      )}
                     </div>
+
+                    {/* Newsletter Content */}
+                    <div 
+                      className="newsletter-content prose prose-lg max-w-none"
+                      dangerouslySetInnerHTML={{ __html: newsletter.content }}
+                    />
                   </div>
-
-                  {/* Date */}
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
-                    <Calendar className="h-4 w-4" />
-                    <span>
-                      {new Date(newsletter.published_at).toLocaleDateString('en-US', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric'
-                      })}
-                    </span>
-                  </div>
-
-                  {/* Excerpt */}
-                  {newsletter.excerpt && (
-                    <p className="text-lg text-muted-foreground mb-6 italic">
-                      {newsletter.excerpt}
-                    </p>
-                  )}
-
-                  <Separator className="my-6" />
-
-                  {/* Content */}
-                  <div 
-                    className="prose prose-lg max-w-none dark:prose-invert"
-                    dangerouslySetInnerHTML={{ 
-                      __html: newsletter.content.replace(/\n/g, '<br />') 
-                    }}
-                  />
                 </Card>
               ))}
             </div>
 
             {/* Footer Note */}
             {!loading && newsletters.length > 0 && (
-              <div className="mt-12 p-6 bg-muted/50 rounded-lg text-center">
-                <p className="text-sm text-muted-foreground">
-                  <strong>Note:</strong> This page is for CHC Therapy staff only. 
-                  Please do not share this link publicly.
+              <Card className="mt-12 p-8 bg-gradient-to-r from-gray-800 to-gray-900 text-white text-center shadow-xl">
+                <div className="flex items-center justify-center gap-3 mb-3">
+                  <span className="text-3xl">🔒</span>
+                  <p className="text-xl font-semibold">Staff Only</p>
+                </div>
+                <p className="text-gray-300">
+                  This page is for CHC Therapy staff only. Please do not share this link publicly.
                 </p>
-              </div>
+              </Card>
             )}
           </div>
         </main>
 
         <Footer />
       </div>
+
+      <style>{`
+        .newsletter-content h2 {
+          font-size: 2rem;
+          font-weight: bold;
+          margin-top: 2rem;
+          margin-bottom: 1rem;
+          background: linear-gradient(to right, #7c3aed, #ec4899);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+        
+        .newsletter-content h3 {
+          font-size: 1.5rem;
+          font-weight: 600;
+          margin-top: 1.5rem;
+          margin-bottom: 0.75rem;
+          color: #4b5563;
+        }
+        
+        .newsletter-content p {
+          font-size: 1.125rem;
+          line-height: 1.75;
+          color: #374151;
+          margin-bottom: 1rem;
+        }
+        
+        .newsletter-content ul {
+          list-style: none;
+          padding-left: 0;
+          margin-bottom: 1.5rem;
+        }
+        
+        .newsletter-content li {
+          padding: 0.5rem 0;
+          padding-left: 1.5rem;
+          position: relative;
+          color: #4b5563;
+        }
+        
+        .newsletter-content li:before {
+          content: "✓";
+          position: absolute;
+          left: 0;
+          color: #10b981;
+          font-weight: bold;
+        }
+        
+        .newsletter-content strong {
+          color: #1f2937;
+          font-weight: 700;
+        }
+        
+        .newsletter-content hr {
+          margin: 3rem 0;
+          border: 0;
+          border-top: 2px solid #e5e7eb;
+        }
+        
+        .newsletter-content img {
+          border-radius: 1rem;
+          box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+      `}</style>
     </>
   );
 };
