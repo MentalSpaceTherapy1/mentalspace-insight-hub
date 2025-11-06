@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Header from "@/components/Header";
@@ -51,6 +52,17 @@ const StaffNewsletter = () => {
         
         <main className="flex-grow container mx-auto px-4 py-16">
           <div className="max-w-6xl mx-auto">
+            {/* Quick Link to Archive */}
+            <div className="mb-8 text-center">
+              <Button 
+                onClick={() => window.location.href = '/newsletter-archive'}
+                variant="outline"
+                className="bg-white/80 backdrop-blur hover:bg-purple-50"
+              >
+                📚 Browse Newsletter Archive
+              </Button>
+            </div>
+
             {/* Hero Header */}
             <div className="text-center mb-12 animate-fade-in">
               <div className="inline-flex items-center gap-3 bg-gradient-to-r from-purple-600 via-pink-500 to-orange-500 text-white px-8 py-4 rounded-full shadow-xl mb-6">

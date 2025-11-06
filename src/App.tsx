@@ -50,6 +50,7 @@ import AssessmentContact from "./pages/AssessmentContact";
 import ThankYou from "./pages/ThankYou";
 import Blog from "./pages/Blog";
 import StaffNewsletter from "./pages/StaffNewsletter";
+import NewsletterArchive from "./pages/NewsletterArchive";
 
 // Individual Insurance Pages
 import CareSourceInsurance from "./pages/insurance/CareSourceInsurance";
@@ -202,6 +203,7 @@ const App = () => {
                 <Route path="/thank-you" element={<ThankYou />} />
                 <Route path="/blog" element={<Blog />} />
                 <Route path="/staff-newsletter" element={<StaffNewsletter />} />
+                <Route path="/newsletter-archive" element={<NewsletterArchive />} />
                 
                 {/* Blog Article Pages */}
                 <Route path="/blog/understanding-anxiety" element={<UnderstandingAnxiety />} />

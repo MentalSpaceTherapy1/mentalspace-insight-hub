@@ -11,6 +11,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import NewsletterAnalyticsDashboard from "./NewsletterAnalyticsDashboard";
+import SubscriberManagement from "./SubscriberManagement";
 import trustImage from "@/assets/newsletter-trust.jpg";
 import communicationImage from "@/assets/newsletter-communication.jpg";
 import teamImage from "@/assets/newsletter-team.jpg";
@@ -522,24 +523,7 @@ const NewsletterManager = () => {
             </div>
           </Card>
 
-          <Card className="p-6">
-            <h3 className="text-xl font-bold mb-4">Add New Subscriber</h3>
-            <div className="flex gap-2">
-              <Input
-                type="email"
-                placeholder="Enter email address"
-                value={subscriberEmail}
-                onChange={(e) => setSubscriberEmail(e.target.value)}
-                className="flex-1"
-              />
-              <Button onClick={addSubscriber} disabled={addingSubscriber}>
-                {addingSubscriber ? 'Adding...' : 'Add Subscriber'}
-              </Button>
-            </div>
-            <p className="text-sm text-gray-600 mt-4">
-              📧 Weekly Schedule: Newsletters are automatically sent every Monday at 9:00 AM to all active subscribers
-            </p>
-          </Card>
+          <SubscriberManagement />
         </TabsContent>
 
         {/* Sample Preview Tab */}
