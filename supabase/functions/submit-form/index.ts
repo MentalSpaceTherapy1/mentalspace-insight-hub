@@ -90,6 +90,19 @@ serve(async (req) => {
                        req.headers.get('x-real-ip')?.trim() || 'unknown';
       const userAgent = req.headers.get('user-agent') || 'unknown';
       
+      // Store blocked submission
+      await supabase
+        .from('form_submissions')
+        .insert({
+          form_type: formType,
+          form_data: formData,
+          ip_address: clientIP,
+          user_agent: userAgent,
+          is_blocked: true,
+          blocked_reason: 'honeypot',
+          spam_score: 10,
+        });
+      
       await supabase
         .from('security_audit_log')
         .insert({
@@ -120,6 +133,19 @@ serve(async (req) => {
         const clientIP = req.headers.get('x-forwarded-for')?.split(',')[0].trim() || 
                          req.headers.get('x-real-ip')?.trim() || 'unknown';
         const userAgent = req.headers.get('user-agent') || 'unknown';
+        
+        // Store blocked submission
+        await supabase
+          .from('form_submissions')
+          .insert({
+            form_type: formType,
+            form_data: formData,
+            ip_address: clientIP,
+            user_agent: userAgent,
+            is_blocked: true,
+            blocked_reason: 'timing',
+            spam_score: 10,
+          });
         
         await supabase
           .from('security_audit_log')
@@ -277,6 +303,19 @@ serve(async (req) => {
 
     if (!rateLimitError && recentSubmissions && recentSubmissions.length >= 3) {
       console.log('Rate limit exceeded for IP:', clientIP);
+      
+      // Store blocked submission
+      await supabase
+        .from('form_submissions')
+        .insert({
+          form_type: formType,
+          form_data: cleanFormData,
+          ip_address: clientIP,
+          user_agent: userAgent,
+          is_blocked: true,
+          blocked_reason: 'rate_limit',
+          spam_score: 5,
+        });
       
       // Log rate limit block
       await supabase

@@ -344,45 +344,54 @@ export type Database = {
       }
       form_submissions: {
         Row: {
+          blocked_reason: string | null
           created_at: string
           form_data: Json
           form_type: Database["public"]["Enums"]["form_type"]
           id: string
           ip_address: unknown
+          is_blocked: boolean | null
           is_processed: boolean
           notes: string | null
           processed_at: string | null
           processed_by: string | null
+          spam_score: number | null
           submission_date: string
           updated_at: string
           user_agent: string | null
           user_id: string | null
         }
         Insert: {
+          blocked_reason?: string | null
           created_at?: string
           form_data: Json
           form_type: Database["public"]["Enums"]["form_type"]
           id?: string
           ip_address?: unknown
+          is_blocked?: boolean | null
           is_processed?: boolean
           notes?: string | null
           processed_at?: string | null
           processed_by?: string | null
+          spam_score?: number | null
           submission_date?: string
           updated_at?: string
           user_agent?: string | null
           user_id?: string | null
         }
         Update: {
+          blocked_reason?: string | null
           created_at?: string
           form_data?: Json
           form_type?: Database["public"]["Enums"]["form_type"]
           id?: string
           ip_address?: unknown
+          is_blocked?: boolean | null
           is_processed?: boolean
           notes?: string | null
           processed_at?: string | null
           processed_by?: string | null
+          spam_score?: number | null
           submission_date?: string
           updated_at?: string
           user_agent?: string | null
