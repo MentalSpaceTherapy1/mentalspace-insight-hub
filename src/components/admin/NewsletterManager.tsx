@@ -431,7 +431,10 @@ const NewsletterManager = () => {
                             <Button
                               size="sm"
                               variant="outline"
-                              onClick={() => setViewingNewsletter(newsletter)}
+                              onClick={() => {
+                                console.log('View clicked, newsletter:', newsletter.title);
+                                setViewingNewsletter(newsletter);
+                              }}
                             >
                               <Eye className="h-4 w-4 mr-1" />
                               View
@@ -458,9 +461,9 @@ const NewsletterManager = () => {
 
           {/* Newsletter Viewer Modal */}
           {viewingNewsletter && (
-            <Card className="p-6 mt-6 bg-white shadow-2xl">
+            <Card className="p-6 mt-6 bg-white shadow-2xl border-4 border-purple-500">
               <div className="flex items-center justify-between mb-6">
-                <h3 className="text-2xl font-bold">Newsletter Preview</h3>
+                <h3 className="text-2xl font-bold text-purple-600">📧 Newsletter Preview</h3>
                 <div className="flex gap-2">
                   <Button
                     variant="outline"
