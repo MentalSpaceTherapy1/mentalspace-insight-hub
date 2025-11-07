@@ -31,7 +31,9 @@ import {
   Clock,
   Users,
   Sparkles,
-  TrendingUp
+  TrendingUp,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
@@ -53,6 +55,8 @@ const FormSubmissions = () => {
   const [selectedSubmission, setSelectedSubmission] = useState<FormSubmission | null>(null);
   const [notes, setNotes] = useState('');
   const [processing, setProcessing] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 20;
 
   const fetchSubmissions = async () => {
     try {
@@ -147,6 +151,52 @@ const FormSubmissions = () => {
 
   const filterSubmissionsByType = (formType: string) => {
     return submissions.filter(s => s.form_type === formType);
+  };
+
+  const getPaginatedSubmissions = (subs: FormSubmission[]) => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    return subs.slice(startIndex, endIndex);
+  };
+
+  const getTotalPages = (subs: FormSubmission[]) => {
+    return Math.ceil(subs.length / itemsPerPage);
+  };
+
+  const renderPagination = (subs: FormSubmission[]) => {
+    const totalPages = getTotalPages(subs);
+    if (totalPages <= 1) return null;
+
+    return (
+      <div className="flex items-center justify-between px-4 py-4 border-t">
+        <div className="text-sm text-muted-foreground">
+          Showing {((currentPage - 1) * itemsPerPage) + 1} to {Math.min(currentPage * itemsPerPage, subs.length)} of {subs.length} submissions
+        </div>
+        <div className="flex items-center gap-2">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+            disabled={currentPage === 1}
+          >
+            <ChevronLeft className="h-4 w-4" />
+            Previous
+          </Button>
+          <div className="text-sm font-medium">
+            Page {currentPage} of {totalPages}
+          </div>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+            disabled={currentPage === totalPages}
+          >
+            Next
+            <ChevronRight className="h-4 w-4" />
+          </Button>
+        </div>
+      </div>
+    );
   };
 
   if (loading) {
@@ -260,7 +310,7 @@ const FormSubmissions = () => {
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {submissions.slice(0, 10).map((submission, index) => (
+                    {getPaginatedSubmissions(submissions).map((submission, index) => (
                       <TableRow 
                         key={submission.id} 
                         className="hover:bg-blue-50/50 transition-colors duration-200 group"
@@ -394,6 +444,7 @@ const FormSubmissions = () => {
                   </TableBody>
                 </Table>
               </div>
+              {renderPagination(submissions)}
             </CardContent>
           </Card>
         </TabsContent>
@@ -424,7 +475,7 @@ const FormSubmissions = () => {
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      {filterSubmissionsByType(formType).map((submission, subIndex) => (
+                      {getPaginatedSubmissions(filterSubmissionsByType(formType)).map((submission, subIndex) => (
                         <TableRow 
                           key={submission.id}
                           className="hover:bg-blue-50/50 transition-colors duration-200 group"
@@ -549,6 +600,7 @@ const FormSubmissions = () => {
                     </TableBody>
                   </Table>
                 </div>
+                {renderPagination(filterSubmissionsByType(formType))}
               </CardContent>
             </Card>
           </TabsContent>
