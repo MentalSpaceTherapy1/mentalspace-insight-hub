@@ -27,11 +27,20 @@ Create engaging, informative, and professional newsletter content for therapists
 Format the content in clean HTML with proper headings, paragraphs, lists, and emphasis where appropriate.
 Use modern, professional styling with sections and visual hierarchy.
 
+AVAILABLE IMAGES - Include 1-2 relevant images in your content using these URLs:
+- https://chctherapy.com/newsletter/newsletter-trust.jpg (Trust, therapeutic relationships, bonding)
+- https://chctherapy.com/newsletter/newsletter-communication.jpg (Communication, dialogue, talking)
+- https://chctherapy.com/newsletter/newsletter-team.jpg (Teamwork, collaboration, staff unity)
+- https://chctherapy.com/newsletter/newsletter-selfcare.jpg (Self-care, wellness, mindfulness)
+
+When including images, use this format:
+<img src="[URL]" alt="[descriptive alt text]" style="width: 100%; max-width: 100%; height: auto; border-radius: 1rem; margin: 2rem 0; box-shadow: 0 10px 30px -10px rgba(0,0,0,0.2);" />
+
 IMPORTANT: Return ONLY a valid JSON object with this exact structure:
 {
   "title": "An engaging, professional title for the newsletter (50-80 characters)",
   "excerpt": "A compelling 1-2 sentence excerpt (120-160 characters)",
-  "content": "Full HTML content of the newsletter"
+  "content": "Full HTML content of the newsletter with images embedded"
 }`;
 
     const userPrompt = `Create a ${tone} newsletter about: ${topic}
@@ -41,14 +50,15 @@ Template Style: ${template}
 
 Requirements:
 - Professional mental health therapy practice context
+- Include 1-2 relevant images from the available images list (choose based on topic relevance)
 - Include actionable insights and practical tips
 - Use engaging headers and clear sections
 - Add relevant emoji sparingly for visual interest
-- Structure with: Introduction, Main Content (2-3 sections), Key Takeaways, Conclusion
+- Structure with: Introduction, Image (if relevant), Main Content (2-3 sections), Image (if relevant), Key Takeaways, Conclusion
 - Make it informative yet accessible
 - Length: 600-800 words
 
-Format the HTML content with semantic tags (h2, h3, p, ul, li, strong, em).
+Format the HTML content with semantic tags (h2, h3, p, ul, li, strong, em) and embed images using <img> tags.
 Return the response as a JSON object with "title", "excerpt", and "content" fields.`;
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
