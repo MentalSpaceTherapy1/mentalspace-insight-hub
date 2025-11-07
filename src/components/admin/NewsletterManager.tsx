@@ -349,7 +349,7 @@ const NewsletterManager = () => {
         title: "CBT Essentials: Your Practical Guide to Cognitive Behavioral Therapy",
         excerpt: "A fun, engaging guide to CBT techniques that actually work—from thought records to behavioral experiments. Plus collaboration tips from your fellow therapists!",
         content: `
-<img src="https://chctherapy.com/newsletter/cbt-therapy-space.jpg" alt="Warm and inviting therapy office space with calming atmosphere" style="width: 100%; max-width: 100%; height: auto; border-radius: 1rem; margin: 2rem 0; box-shadow: 0 10px 30px -10px rgba(0,0,0,0.2);" />
+<img src="/newsletter/cbt-therapy-space.jpg" alt="Warm and inviting therapy office space with calming atmosphere" style="width: 100%; max-width: 100%; height: auto; border-radius: 1rem; margin: 2rem 0; box-shadow: 0 10px 30px -10px rgba(0,0,0,0.2);" />
 
 <h2 style="color: #2563eb; margin-top: 2rem;">🧠 Welcome to Your CBT Toolkit</h2>
 
@@ -359,7 +359,7 @@ const NewsletterManager = () => {
 
 <p>Remember the CBT triangle? It's not just a theory—it's your clients' roadmap to change. Here's why it works so beautifully:</p>
 
-<img src="https://chctherapy.com/newsletter/cbt-triangle-concept.jpg" alt="The CBT triangle showing interconnection of thoughts, feelings, and behaviors" style="width: 100%; max-width: 600px; height: auto; border-radius: 1rem; margin: 2rem auto; display: block; box-shadow: 0 10px 30px -10px rgba(0,0,0,0.2);" />
+<img src="/newsletter/cbt-triangle-concept.jpg" alt="The CBT triangle showing interconnection of thoughts, feelings, and behaviors" style="width: 100%; max-width: 600px; height: auto; border-radius: 1rem; margin: 2rem auto; display: block; box-shadow: 0 10px 30px -10px rgba(0,0,0,0.2);" />
 
 <ul style="line-height: 1.8; margin: 1.5rem 0;">
   <li><strong>Thoughts</strong> influence how we feel</li>
@@ -390,7 +390,7 @@ const NewsletterManager = () => {
 
 <h2 style="color: #2563eb; margin-top: 2.5rem;">👥 Collaboration Corner</h2>
 
-<img src="https://chctherapy.com/newsletter/cbt-therapist-collaboration.jpg" alt="Diverse group of therapists collaborating and sharing clinical insights" style="width: 100%; max-width: 100%; height: auto; border-radius: 1rem; margin: 2rem 0; box-shadow: 0 10px 30px -10px rgba(0,0,0,0.2);" />
+<img src="/newsletter/cbt-therapist-collaboration.jpg" alt="Diverse group of therapists collaborating and sharing clinical insights" style="width: 100%; max-width: 100%; height: auto; border-radius: 1rem; margin: 2rem 0; box-shadow: 0 10px 30px -10px rgba(0,0,0,0.2);" />
 
 <p>CBT works best when we work together! Here's what your colleagues are loving this month:</p>
 
