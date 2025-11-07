@@ -32,6 +32,9 @@ AVAILABLE IMAGES - Include 1-2 relevant images in your content using these URLs:
 - https://chctherapy.com/newsletter/newsletter-communication.jpg (Communication, dialogue, talking)
 - https://chctherapy.com/newsletter/newsletter-team.jpg (Teamwork, collaboration, staff unity)
 - https://chctherapy.com/newsletter/newsletter-selfcare.jpg (Self-care, wellness, mindfulness)
+- https://chctherapy.com/newsletter/newsletter-cbt-hero.jpg (Warm therapy office, calm professional setting, inviting space)
+- https://chctherapy.com/newsletter/newsletter-cbt-diagram.jpg (CBT concept, thought transformation, positive thinking diagram)
+- https://chctherapy.com/newsletter/newsletter-cbt-team.jpg (Therapists collaborating, professional teamwork, clinical consultation)
 
 When including images, use this format:
 <img src="[URL]" alt="[descriptive alt text]" style="width: 100%; max-width: 100%; height: auto; border-radius: 1rem; margin: 2rem 0; box-shadow: 0 10px 30px -10px rgba(0,0,0,0.2);" />
