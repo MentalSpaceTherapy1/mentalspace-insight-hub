@@ -186,7 +186,6 @@ const NewsletterManager = () => {
       setGeneratedContent(null);
       setTopic("");
       setScheduledDate("");
-      setTimeout(() => window.location.reload(), 1000);
     } catch (error: any) {
       console.error('Error publishing newsletter:', error);
       toast.error('Failed to publish newsletter: ' + error.message);
@@ -261,7 +260,7 @@ const NewsletterManager = () => {
         toast.warning('Newsletter published but email sending failed. Check edge function logs.');
       }
 
-      setTimeout(() => window.location.reload(), 1500);
+      
     } catch (error: any) {
       console.error('Error publishing newsletter:', error);
       toast.error('Failed to publish newsletter: ' + error.message);
