@@ -1,31 +1,35 @@
 project_id = "dxodauuojrpbbwldsbdj"
 
+# Public endpoints - keep JWT disabled but have other protections (CORS, rate limiting, honeypot)
 [functions.submit-form]
-verify_jwt = false
-
-[functions.send-notification-email]
-verify_jwt = false
-
-[functions.save-assessment]
 verify_jwt = false
 
 [functions.track-analytics]
 verify_jwt = false
 
+[functions.track-newsletter-event]
+verify_jwt = false
+
+# Semi-public endpoints - keep JWT disabled but implement strict validation
+[functions.save-assessment]
+verify_jwt = false
+
 [functions.ai-chat]
 verify_jwt = false
 
-[functions.generate-daily-blog]
-verify_jwt = false
-
+# Admin endpoints - require authentication (manual checks still required inside functions)
 [functions.generate-newsletter]
-verify_jwt = false
+verify_jwt = true
+
+[functions.generate-daily-blog]
+verify_jwt = true
 
 [functions.auto-publish-newsletters]
-verify_jwt = false
+verify_jwt = true
+
+# Service endpoints - require authentication
+[functions.send-notification-email]
+verify_jwt = true
 
 [functions.send-newsletter-emails]
-verify_jwt = false
-
-[functions.track-newsletter-event]
-verify_jwt = false
+verify_jwt = true
