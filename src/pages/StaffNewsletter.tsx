@@ -6,7 +6,9 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 import { supabase } from "@/integrations/supabase/client";
-import { Calendar, Pin, Sparkles } from "lucide-react";
+import { Calendar, Pin, Sparkles, Mail, ArrowLeft } from "lucide-react";
+import { useAdminAuth } from "@/contexts/AdminAuthContext";
+import { toast } from "sonner";
 
 interface Newsletter {
   id: string;
@@ -21,15 +23,30 @@ interface Newsletter {
 const StaffNewsletter = () => {
   const [newsletters, setNewsletters] = useState<Newsletter[]>([]);
   const [loading, setLoading] = useState(true);
+  const [resending, setResending] = useState(false);
+  const { isAdmin } = useAdminAuth();
+  
+  // Check if viewing a specific newsletter
+  const params = new URLSearchParams(window.location.search);
+  const specificNewsletterId = params.get('newsletterId');
 
   useEffect(() => {
     const fetchNewsletters = async () => {
-      const { data, error } = await supabase
+      let query = supabase
         .from('newsletters')
         .select('*')
-        .eq('status', 'published')
-        .order('is_pinned', { ascending: false })
-        .order('published_at', { ascending: false });
+        .eq('status', 'published');
+      
+      // If specific newsletter ID, fetch only that one
+      if (specificNewsletterId) {
+        query = query.eq('id', specificNewsletterId);
+      } else {
+        query = query
+          .order('is_pinned', { ascending: false })
+          .order('published_at', { ascending: false });
+      }
+      
+      const { data, error } = await query;
       
       if (data && !error) {
         setNewsletters(data);
@@ -38,19 +55,25 @@ const StaffNewsletter = () => {
     };
     
     fetchNewsletters();
-  }, []);
+  }, [specificNewsletterId]);
 
-  // Scroll to a newsletter when newsletterId is provided in the URL
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const targetId = params.get('newsletterId');
-    if (targetId && newsletters.length) {
-      const el = document.getElementById(`newsletter-${targetId}`);
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+  const handleResend = async (newsletterId: string) => {
+    setResending(true);
+    try {
+      const { error } = await supabase.functions.invoke('send-newsletter-emails', {
+        body: { newsletterId }
+      });
+
+      if (error) throw error;
+      
+      toast.success('Newsletter resent successfully to all subscribers!');
+    } catch (error) {
+      console.error('Error resending newsletter:', error);
+      toast.error('Failed to resend newsletter. Please try again.');
+    } finally {
+      setResending(false);
     }
-  }, [newsletters]);
+  };
 
   return (
     <>
@@ -63,31 +86,46 @@ const StaffNewsletter = () => {
         <Header />
         
         <main className="flex-grow container mx-auto px-4 py-16">
-          <div className="max-w-6xl mx-auto">
-            {/* Quick Link to Archive */}
-            <div className="mb-8 text-center">
-              <Button 
-                onClick={() => window.location.href = '/newsletter-archive'}
-                variant="outline"
-                className="bg-white/80 backdrop-blur hover:bg-purple-50"
-              >
-                📚 Browse Newsletter Archive
-              </Button>
-            </div>
-
-            {/* Hero Header */}
-            <div className="text-center mb-12 animate-fade-in">
-              <div className="inline-flex items-center gap-3 bg-gradient-to-r from-purple-600 via-pink-500 to-orange-500 text-white px-8 py-4 rounded-full shadow-xl mb-6">
-                <Sparkles className="h-6 w-6 animate-pulse" />
-                <h1 className="text-4xl md:text-5xl font-bold">
-                  Staff Newsletter
-                </h1>
-                <Sparkles className="h-6 w-6 animate-pulse" />
+          <div className="max-w-4xl mx-auto">
+            {/* Navigation */}
+            {specificNewsletterId ? (
+              <div className="mb-6">
+                <Button 
+                  onClick={() => window.location.href = '/staff-newsletter'}
+                  variant="outline"
+                  className="bg-white/80 backdrop-blur hover:bg-purple-50"
+                >
+                  <ArrowLeft className="h-4 w-4 mr-2" />
+                  Back to All Newsletters
+                </Button>
               </div>
-              <p className="text-2xl text-gray-700 font-medium">
-                Updates, insights, and resources for the CHC Therapy team 🎯
-              </p>
-            </div>
+            ) : (
+              <div className="mb-8 text-center">
+                <Button 
+                  onClick={() => window.location.href = '/newsletter-archive'}
+                  variant="outline"
+                  className="bg-white/80 backdrop-blur hover:bg-purple-50"
+                >
+                  📚 Browse Newsletter Archive
+                </Button>
+              </div>
+            )}
+
+            {/* Hero Header - Only show on list view */}
+            {!specificNewsletterId && (
+              <div className="text-center mb-12 animate-fade-in">
+                <div className="inline-flex items-center gap-3 bg-gradient-to-r from-purple-600 via-pink-500 to-orange-500 text-white px-8 py-4 rounded-full shadow-xl mb-6">
+                  <Sparkles className="h-6 w-6 animate-pulse" />
+                  <h1 className="text-4xl md:text-5xl font-bold">
+                    Staff Newsletter
+                  </h1>
+                  <Sparkles className="h-6 w-6 animate-pulse" />
+                </div>
+                <p className="text-2xl text-gray-700 font-medium">
+                  Updates, insights, and resources for the CHC Therapy team 🎯
+                </p>
+              </div>
+            )}
 
             {/* Loading State */}
             {loading && (
@@ -114,8 +152,7 @@ const StaffNewsletter = () => {
               {newsletters.map((newsletter, index) => (
                 <Card 
                   key={newsletter.id}
-                  id={`newsletter-${newsletter.id}`}
-                  className="overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-2 animate-fade-in"
+                  className="overflow-hidden shadow-xl border-2 animate-fade-in bg-white"
                   style={{ 
                     animationDelay: `${index * 100}ms`,
                     borderColor: newsletter.is_pinned ? '#8b5cf6' : '#e5e7eb'
@@ -132,34 +169,50 @@ const StaffNewsletter = () => {
                   {/* Content */}
                   <div className="p-8 md:p-12">
                     {/* Title and Meta */}
-                    <div className="mb-6">
-                      <div className="flex items-center gap-3 mb-3 flex-wrap">
-                        {newsletter.category && (
-                          <Badge 
-                            variant="secondary" 
-                            className="text-base px-4 py-1 bg-gradient-to-r from-blue-500 to-cyan-500 text-white"
-                          >
-                            {newsletter.category}
-                          </Badge>
-                        )}
-                        <div className="flex items-center gap-2 text-gray-600">
-                          <Calendar className="h-4 w-4" />
-                          <span className="font-medium">
-                            {new Date(newsletter.published_at).toLocaleDateString('en-US', {
-                              year: 'numeric',
-                              month: 'long',
-                              day: 'numeric'
-                            })}
-                          </span>
+                    <div className="mb-8">
+                      <div className="flex items-center justify-between gap-3 mb-4 flex-wrap">
+                        <div className="flex items-center gap-3 flex-wrap">
+                          {newsletter.category && (
+                            <Badge 
+                              variant="secondary" 
+                              className="text-sm px-3 py-1 bg-gradient-to-r from-blue-500 to-cyan-500 text-white"
+                            >
+                              {newsletter.category}
+                            </Badge>
+                          )}
+                          <div className="flex items-center gap-2 text-gray-600">
+                            <Calendar className="h-4 w-4" />
+                            <span className="text-sm font-medium">
+                              {new Date(newsletter.published_at).toLocaleDateString('en-US', {
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric'
+                              })}
+                            </span>
+                          </div>
                         </div>
+                        
+                        {/* Admin Resend Button */}
+                        {isAdmin && (
+                          <Button
+                            onClick={() => handleResend(newsletter.id)}
+                            disabled={resending}
+                            size="sm"
+                            variant="outline"
+                            className="bg-green-50 hover:bg-green-100 border-green-300"
+                          >
+                            <Mail className="h-4 w-4 mr-2" />
+                            {resending ? 'Resending...' : 'Resend Newsletter'}
+                          </Button>
+                        )}
                       </div>
                       
-                      <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
+                      <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                         {newsletter.title}
                       </h2>
 
                       {newsletter.excerpt && (
-                        <p className="text-xl text-gray-700 italic leading-relaxed bg-blue-50 p-4 rounded-lg border-l-4 border-blue-400">
+                        <p className="text-lg text-gray-700 italic leading-relaxed bg-blue-50 p-4 rounded-lg border-l-4 border-blue-400">
                           {newsletter.excerpt}
                         </p>
                       )}
