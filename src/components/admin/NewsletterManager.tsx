@@ -469,16 +469,16 @@ const NewsletterManager = () => {
 
           {/* Newsletter Viewer Modal */}
           {viewingNewsletter && (
-            <Card ref={previewRef} className="p-6 mt-6 bg-white shadow-2xl border-4 border-purple-500">
-              <div className="flex items-center justify-between mb-6">
-                <h3 className="text-2xl font-bold text-purple-600">📧 Newsletter Preview</h3>
-                <div className="flex gap-2">
+            <Card ref={previewRef} className="p-4 md:p-6 mt-6 bg-white shadow-2xl border-2 border-purple-500">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
+                <h3 className="text-xl md:text-2xl font-bold text-purple-600">📧 Newsletter Preview</h3>
+                <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
                   <Button
                     variant="outline"
                     size="sm"
                     onClick={() => handleResend(viewingNewsletter.id)}
                     disabled={resending}
-                    className="bg-green-50 hover:bg-green-100 border-green-300"
+                    className="bg-green-50 hover:bg-green-100 border-green-300 w-full sm:w-auto"
                   >
                     <Mail className="h-4 w-4 mr-2" />
                     {resending ? 'Sending...' : 'Resend to All'}
@@ -487,6 +487,7 @@ const NewsletterManager = () => {
                     variant="outline"
                     size="sm"
                     onClick={() => setViewingNewsletter(null)}
+                    className="w-full sm:w-auto"
                   >
                     Close
                   </Button>
@@ -495,20 +496,20 @@ const NewsletterManager = () => {
               
               <div className="border-t pt-6">
                 <div className="mb-6">
-                  <div className="flex items-center gap-3 mb-4">
+                  <div className="flex items-center gap-3 mb-4 flex-wrap">
                     {viewingNewsletter.category && (
-                      <span className="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm font-medium">
+                      <span className="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs sm:text-sm font-medium">
                         {viewingNewsletter.category}
                       </span>
                     )}
                     {viewingNewsletter.is_pinned && (
-                      <span className="px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-sm font-medium flex items-center gap-1">
+                      <span className="px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-xs sm:text-sm font-medium flex items-center gap-1">
                         <Pin className="h-3 w-3" />
                         Pinned
                       </span>
                     )}
                     {viewingNewsletter.published_at && !isNaN(new Date(viewingNewsletter.published_at).getTime()) && (
-                      <span className="text-sm text-gray-500">
+                      <span className="text-xs sm:text-sm text-gray-500">
                         <Calendar className="h-4 w-4 inline mr-1" />
                         {new Date(viewingNewsletter.published_at).toLocaleDateString('en-US', {
                           year: 'numeric',
@@ -519,17 +520,17 @@ const NewsletterManager = () => {
                     )}
                   </div>
                   
-                  <h2 className="text-3xl font-bold mb-4">{viewingNewsletter.title}</h2>
+                  <h2 className="text-2xl md:text-3xl font-bold mb-4">{viewingNewsletter.title}</h2>
                   
                   {viewingNewsletter.excerpt && (
-                    <p className="text-lg text-gray-600 italic bg-blue-50 p-4 rounded-lg border-l-4 border-blue-400">
+                    <p className="text-base md:text-lg text-gray-600 italic bg-blue-50 p-3 md:p-4 rounded-lg border-l-4 border-blue-400">
                       {viewingNewsletter.excerpt}
                     </p>
                   )}
                 </div>
                 
                 <div 
-                  className="newsletter-content prose prose-lg max-w-none"
+                  className="newsletter-content prose prose-sm md:prose-lg max-w-none"
                   dangerouslySetInnerHTML={{ __html: viewingNewsletter.content }}
                 />
               </div>
