@@ -9,6 +9,33 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
+// Helper function to convert relative image paths to absolute URLs and add inline styling
+const absolutizeImageSrc = (html: string): string => {
+  // Replace relative src attributes with absolute URLs
+  let processed = html.replace(
+    /src=["'](?!https?:\/\/)([^"']+)["']/gi,
+    (match, path) => {
+      // Remove leading ./ or / from path
+      const cleanPath = path.replace(/^\.?\//, '');
+      return `src="https://chctherapy.com/${cleanPath}"`;
+    }
+  );
+  
+  // Ensure all img tags have proper inline styling for email compatibility
+  processed = processed.replace(
+    /<img([^>]*?)>/gi,
+    (match, attributes) => {
+      // Only add style if it doesn't already exist
+      if (!attributes.includes('style=')) {
+        return `<img${attributes} style="max-width: 100%; height: auto; display: block;">`;
+      }
+      return match;
+    }
+  );
+  
+  return processed;
+};
+
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
@@ -87,6 +114,9 @@ serve(async (req) => {
           continue;
         }
 
+        // Process newsletter content to ensure all images have absolute URLs
+        const processedContent = absolutizeImageSrc(newsletter.content);
+
         // Create HTML email content with tracking
         const htmlContent = `
           <!DOCTYPE html>
@@ -115,7 +145,7 @@ serve(async (req) => {
               <h2>${newsletter.title}</h2>
               ${newsletter.excerpt ? `<p style="font-size: 16px; color: #666;"><em>${newsletter.excerpt}</em></p>` : ''}
               <div style="margin: 20px 0;">
-                ${newsletter.content}
+                ${processedContent}
               </div>
               <div style="text-align: center; margin-top: 30px;">
                 <a href="${newsletterUrl}?track=${logEntry.id}" class="button">Read Full Newsletter</a>

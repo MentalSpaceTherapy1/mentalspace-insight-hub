@@ -788,8 +788,7 @@ const NewsletterPreview = () => {
 
 // Helper function to get HTML for database
 const getNewsletterHTML = () => {
-  return `<!-- Newsletter HTML with inline images would go here -->
-<div style="max-width: 1200px; margin: 0 auto; font-family: system-ui;">
+  return `<div style="max-width: 1200px; margin: 0 auto; font-family: system-ui;">
   <h1 style="font-size: 3rem; font-weight: bold; color: #1e293b; margin-bottom: 1rem;">Client Retention Strategies 🎯</h1>
   <p style="font-size: 1.5rem; color: #64748b; margin-bottom: 2rem;">Building Long-Term Therapeutic Relationships</p>
   
@@ -800,8 +799,55 @@ const getNewsletterHTML = () => {
     </p>
   </div>
   
-  <!-- All other sections with colorful styling would continue here -->
-  <p style="text-align: center; color: #6b7280; margin-top: 3rem;">— CHC Leadership Team</p>
+  <img src="https://chctherapy.com/newsletter/newsletter-trust.jpg" alt="Building Trust" style="width: 100%; max-width: 100%; height: auto; border-radius: 1rem; margin-bottom: 2rem;" />
+  
+  <div style="background: linear-gradient(to bottom right, #fef3c7, #fde68a); padding: 2rem; border-radius: 1rem; margin-bottom: 2rem;">
+    <h2 style="color: #78350f; font-size: 2rem; margin-bottom: 1rem;">🤝 Building Trust from Session One</h2>
+    <p style="color: #374151; font-size: 1.125rem; line-height: 1.75;">
+      The foundation of retention is built in the first few sessions. Research shows that the therapeutic alliance is one of the strongest predictors of client retention and positive outcomes.
+    </p>
+  </div>
+  
+  <img src="https://chctherapy.com/newsletter/newsletter-communication.jpg" alt="Communication" style="width: 100%; max-width: 100%; height: auto; border-radius: 1rem; margin-bottom: 2rem;" />
+  
+  <div style="background: linear-gradient(to bottom right, #dcfce7, #bbf7d0); padding: 2rem; border-radius: 1rem; margin-bottom: 2rem;">
+    <h2 style="color: #14532d; font-size: 2rem; margin-bottom: 1rem;">📞 Consistent Communication</h2>
+    <p style="color: #374151; font-size: 1.125rem; line-height: 1.75;">
+      Clear, consistent communication helps clients feel supported between sessions and reduces no-shows.
+    </p>
+  </div>
+  
+  <img src="https://chctherapy.com/newsletter/newsletter-team.jpg" alt="Team Discussion" style="width: 100%; max-width: 100%; height: auto; border-radius: 1rem; margin-bottom: 2rem;" />
+  
+  <div style="background: linear-gradient(to bottom right, #ddd6fe, #e9d5ff); padding: 2rem; border-radius: 1rem; margin-bottom: 2rem;">
+    <h2 style="color: #5b21b6; font-size: 2rem; margin-bottom: 1rem;">💼 Team Discussion Questions</h2>
+    <ul style="color: #374151; font-size: 1.125rem; line-height: 1.75;">
+      <li>Which retention strategy resonates most with your practice style?</li>
+      <li>What's one thing you're already doing well?</li>
+      <li>What's one area you'd like to strengthen?</li>
+    </ul>
+  </div>
+  
+  <img src="https://chctherapy.com/newsletter/newsletter-selfcare.jpg" alt="Self Care" style="width: 100%; max-width: 100%; height: auto; border-radius: 1rem; margin-bottom: 2rem;" />
+  
+  <div style="background: linear-gradient(to bottom right, #e0e7ff, #ddd6fe); padding: 2rem; border-radius: 1rem; margin-bottom: 2rem;">
+    <h2 style="color: #4c1d95; font-size: 2rem; margin-bottom: 1rem;">🧘 Self-Care = Better Retention</h2>
+    <p style="color: #374151; font-size: 1.125rem; line-height: 1.75; margin-bottom: 1rem;">
+      Burned-out therapists are less present, and clients sense when you're not engaged. Quality of care declines without proper self-care.
+    </p>
+  </div>
+  
+  <div style="background: linear-gradient(to bottom right, #cffafe, #a5f3fc); padding: 2rem; border-radius: 1rem; margin-bottom: 2rem; text-align: center;">
+    <h2 style="color: #0e7490; font-size: 2rem; margin-bottom: 1rem;">💡 Final Thoughts</h2>
+    <p style="color: #374151; font-size: 1.125rem; line-height: 1.75; margin-bottom: 1rem;">
+      Client retention isn't about "keeping people in therapy forever"—it's about creating an environment where healing can occur at its natural pace.
+    </p>
+    <p style="color: #0f766e; font-size: 1.5rem; font-weight: bold;">
+      ❤️ Every client who stays engaged is someone who's getting the help they need.
+    </p>
+  </div>
+  
+  <p style="text-align: center; color: #6b7280; margin-top: 3rem; font-size: 1.125rem;">— CHC Leadership Team</p>
 </div>`;
 };
 

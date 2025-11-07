@@ -108,12 +108,22 @@ export const AdminAuthProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   useEffect(() => {
     let mounted = true;
     let isProcessing = false;
+    let loadingTimeout: NodeJS.Timeout;
 
     const handleAuthChange = async (event: string, session: Session | null) => {
-      if (!mounted || isProcessing) return;
+      if (!mounted) return;
+      
+      // Clear any existing timeout
+      if (loadingTimeout) {
+        clearTimeout(loadingTimeout);
+      }
       
       // Prevent redundant calls
-      if (event === 'SIGNED_IN' && user?.id === session?.user?.id && profile) {
+      if (event === 'SIGNED_IN' && user?.id === session?.user?.id && profile && !isProcessing) {
+        return;
+      }
+
+      if (isProcessing && event !== 'INITIAL_SESSION') {
         return;
       }
 
@@ -134,12 +144,19 @@ export const AdminAuthProvider: React.FC<{ children: React.ReactNode }> = ({ chi
       setUser(session.user);
       setSession(session);
 
-      // Check admin profile
-      const adminProfile = await checkAdminProfile(session.user.id);
-      
-      if (mounted) {
-        setProfile(adminProfile);
-        setLoading(false);
+      // Check admin profile only if session exists
+      try {
+        const adminProfile = await checkAdminProfile(session.user.id);
+        
+        if (mounted) {
+          setProfile(adminProfile);
+          setLoading(false);
+        }
+      } catch (error) {
+        console.error('Error in auth check:', error);
+        if (mounted) {
+          setLoading(false);
+        }
       }
       
       isProcessing = false;
@@ -148,15 +165,33 @@ export const AdminAuthProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     // Set up auth listener
     const { data: { subscription } } = supabase.auth.onAuthStateChange(handleAuthChange);
 
-    // Check initial session
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      if (mounted) {
-        handleAuthChange('INITIAL_SESSION', session);
+    // Safety timeout: if no auth state after 2 seconds, stop loading
+    loadingTimeout = setTimeout(() => {
+      if (mounted && loading && !user && !session) {
+        console.log('Auth timeout - no session detected');
+        setLoading(false);
       }
-    });
+    }, 2000);
+
+    // Check initial session
+    supabase.auth.getSession()
+      .then(({ data: { session } }) => {
+        if (mounted) {
+          handleAuthChange('INITIAL_SESSION', session);
+        }
+      })
+      .catch((error) => {
+        console.error('Error getting session:', error);
+        if (mounted) {
+          setLoading(false);
+        }
+      });
 
     return () => {
       mounted = false;
+      if (loadingTimeout) {
+        clearTimeout(loadingTimeout);
+      }
       subscription.unsubscribe();
     };
   }, []); // Empty dependency array is crucial
