@@ -60,7 +60,7 @@ serve(async (req) => {
     console.log(`Found ${subscribers.length} active subscribers`);
 
     const trackingBaseUrl = `${supabaseUrl}/functions/v1/track-newsletter-event`;
-    const newsletterUrl = `${Deno.env.get('SITE_URL') || 'https://connectinghealthca.com'}/staff-newsletter`;
+    const newsletterUrl = `https://chctherapy.com/staff-newsletter`;
 
     let sentCount = 0;
     let failedCount = 0;
