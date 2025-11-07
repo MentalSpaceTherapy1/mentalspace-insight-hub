@@ -21,6 +21,9 @@ verify_jwt = false
 [functions.generate-newsletter]
 verify_jwt = true
 
+[functions.save-manual-newsletter]
+verify_jwt = true
+
 [functions.generate-daily-blog]
 verify_jwt = true
 
