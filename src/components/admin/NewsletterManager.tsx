@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { Sparkles, Wand2, FileText, Users, Lightbulb, Heart, Calendar, Mail, BarChart3, Send } from "lucide-react";
+import { Sparkles, Wand2, FileText, Users, Lightbulb, Heart, Calendar, Mail, BarChart3, Send, List, ExternalLink, Pin, Eye } from "lucide-react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -57,6 +57,18 @@ const templates: NewsletterTemplate[] = [
   }
 ];
 
+interface Newsletter {
+  id: string;
+  title: string;
+  excerpt: string | null;
+  content: string;
+  status: string;
+  category: string | null;
+  is_pinned: boolean;
+  published_at: string | null;
+  created_at: string;
+}
+
 const NewsletterManager = () => {
   const { profile } = useAdminAuth();
   const [publishing, setPublishing] = useState(false);
@@ -70,6 +82,30 @@ const NewsletterManager = () => {
   const [sendEmail, setSendEmail] = useState(true);
   const [subscriberEmail, setSubscriberEmail] = useState("");
   const [addingSubscriber, setAddingSubscriber] = useState(false);
+  const [newsletters, setNewsletters] = useState<Newsletter[]>([]);
+  const [loadingNewsletters, setLoadingNewsletters] = useState(false);
+
+  useEffect(() => {
+    fetchNewsletters();
+  }, []);
+
+  const fetchNewsletters = async () => {
+    setLoadingNewsletters(true);
+    try {
+      const { data, error } = await supabase
+        .from('newsletters')
+        .select('*')
+        .order('created_at', { ascending: false });
+      
+      if (error) throw error;
+      setNewsletters(data || []);
+    } catch (error: any) {
+      console.error('Error fetching newsletters:', error);
+      toast.error('Failed to load newsletters');
+    } finally {
+      setLoadingNewsletters(false);
+    }
+  };
 
   const generateNewsletter = async () => {
     if (!topic || !selectedTemplate) {
@@ -186,6 +222,7 @@ const NewsletterManager = () => {
       setGeneratedContent(null);
       setTopic("");
       setScheduledDate("");
+      fetchNewsletters(); // Refresh the list
     } catch (error: any) {
       console.error('Error publishing newsletter:', error);
       toast.error('Failed to publish newsletter: ' + error.message);
@@ -260,7 +297,7 @@ const NewsletterManager = () => {
         toast.warning('Newsletter published but email sending failed. Check edge function logs.');
       }
 
-      
+      fetchNewsletters(); // Refresh the list
     } catch (error: any) {
       console.error('Error publishing newsletter:', error);
       toast.error('Failed to publish newsletter: ' + error.message);
@@ -271,8 +308,12 @@ const NewsletterManager = () => {
 
   return (
     <div className="space-y-6">
-      <Tabs defaultValue="generate" className="w-full">
-        <TabsList className="grid w-full grid-cols-4">
+      <Tabs defaultValue="manage" className="w-full">
+        <TabsList className="grid w-full grid-cols-5">
+          <TabsTrigger value="manage">
+            <List className="h-4 w-4 mr-2" />
+            Manage
+          </TabsTrigger>
           <TabsTrigger value="generate">
             <Wand2 className="h-4 w-4 mr-2" />
             AI Generator
@@ -290,6 +331,91 @@ const NewsletterManager = () => {
             Sample Preview
           </TabsTrigger>
         </TabsList>
+
+        {/* Manage Newsletters Tab */}
+        <TabsContent value="manage" className="space-y-6">
+          <Card className="p-6">
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-2xl font-bold">All Newsletters</h3>
+              <Button onClick={fetchNewsletters} variant="outline" size="sm">
+                Refresh
+              </Button>
+            </div>
+
+            {loadingNewsletters ? (
+              <div className="text-center py-12">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600 mx-auto"></div>
+                <p className="mt-4 text-gray-600">Loading newsletters...</p>
+              </div>
+            ) : newsletters.length === 0 ? (
+              <div className="text-center py-12 bg-gray-50 rounded-lg">
+                <FileText className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                <p className="text-gray-600">No newsletters found</p>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                {newsletters.map((newsletter) => (
+                  <Card 
+                    key={newsletter.id}
+                    className="p-4 hover:shadow-lg transition-all"
+                  >
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 mb-2">
+                          {newsletter.is_pinned && (
+                            <Pin className="h-4 w-4 text-purple-600" />
+                          )}
+                          <h4 className="font-bold text-lg">{newsletter.title}</h4>
+                        </div>
+                        
+                        {newsletter.excerpt && (
+                          <p className="text-gray-600 text-sm mb-3">{newsletter.excerpt}</p>
+                        )}
+                        
+                        <div className="flex flex-wrap gap-2 items-center text-sm text-gray-500">
+                          <span className={`px-2 py-1 rounded text-xs font-medium ${
+                            newsletter.status === 'published' 
+                              ? 'bg-green-100 text-green-700' 
+                              : newsletter.status === 'scheduled'
+                              ? 'bg-blue-100 text-blue-700'
+                              : 'bg-gray-100 text-gray-700'
+                          }`}>
+                            {newsletter.status.toUpperCase()}
+                          </span>
+                          
+                          {newsletter.category && (
+                            <span className="px-2 py-1 bg-purple-100 text-purple-700 rounded text-xs">
+                              {newsletter.category}
+                            </span>
+                          )}
+                          
+                          {newsletter.published_at && (
+                            <span>
+                              Published: {new Date(newsletter.published_at).toLocaleDateString()}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                      
+                      <div className="flex gap-2">
+                        {newsletter.status === 'published' && (
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={() => window.open(`/staff-newsletter?newsletterId=${newsletter.id}`, '_blank')}
+                          >
+                            <Eye className="h-4 w-4 mr-1" />
+                            View
+                          </Button>
+                        )}
+                      </div>
+                    </div>
+                  </Card>
+                ))}
+              </div>
+            )}
+          </Card>
+        </TabsContent>
 
         {/* AI Generator Tab */}
         <TabsContent value="generate" className="space-y-6">
