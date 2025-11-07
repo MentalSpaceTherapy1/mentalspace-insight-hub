@@ -26,6 +26,16 @@ export const trackBookAppointmentConversion = () => {
   }
 };
 
+// Track Therapist Matching conversion
+export const trackTherapistMatchingConversion = () => {
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('event', 'conversion', {
+      'send_to': 'AW-11045234292/iXyFCPn4jKYbEPTM45Ip'
+    });
+    console.log('Therapist matching conversion tracked');
+  }
+};
+
 // Generic conversion tracking function
 export const trackConversion = (conversionId: string) => {
   if (typeof window !== 'undefined' && window.gtag) {

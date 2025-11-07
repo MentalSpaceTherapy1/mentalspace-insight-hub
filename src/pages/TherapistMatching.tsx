@@ -14,6 +14,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { useToast } from "@/hooks/use-toast";
 import { useFormSubmission } from "@/hooks/useFormSubmission";
 import { useAnalytics } from "@/hooks/useAnalytics";
+import { trackTherapistMatchingConversion } from "@/utils/googleTagManager";
 import { cn } from "@/lib/utils";
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -126,6 +127,9 @@ const TherapistMatching = () => {
     const result = await submitForm('therapist_matching', submissionData);
     
     if (result.success) {
+      // Track Google Ads conversion
+      trackTherapistMatchingConversion();
+      
       toast({
         title: "Request Submitted",
         description: "Thank you for your request. A MentalSpace Therapy coordinator will contact you soon."
