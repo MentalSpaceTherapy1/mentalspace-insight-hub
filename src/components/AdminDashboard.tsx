@@ -25,6 +25,7 @@ import FormSubmissions from '@/components/admin/FormSubmissions';
 import AssessmentResults from '@/components/admin/AssessmentResults';
 import ContentManager from '@/components/admin/ContentManager';
 import AnalyticsDashboard from '@/components/admin/AnalyticsDashboard';
+import ConversionAnalyticsDashboard from '@/components/admin/ConversionAnalyticsDashboard';
 import SpamMonitoring from '@/components/admin/SpamMonitoring';
 import NewsletterManager from '@/components/admin/NewsletterManager';
 import { toast } from 'sonner';
@@ -155,6 +156,13 @@ const AdminDashboard = () => {
               <span className="hidden sm:inline">Assessments</span>
             </TabsTrigger>
             <TabsTrigger 
+              value="conversions" 
+              className="flex items-center gap-2 rounded-xl data-[state=active]:bg-gradient-to-r data-[state=active]:from-emerald-500 data-[state=active]:to-teal-600 data-[state=active]:text-white transition-all duration-300"
+            >
+              <TrendingUp className="h-4 w-4" />
+              <span className="hidden sm:inline">Conversions</span>
+            </TabsTrigger>
+            <TabsTrigger 
               value="cache" 
               className="flex items-center gap-2 rounded-xl data-[state=active]:bg-gradient-to-r data-[state=active]:from-pink-500 data-[state=active]:to-rose-600 data-[state=active]:text-white transition-all duration-300"
             >
@@ -267,6 +275,10 @@ const AdminDashboard = () => {
 
           <TabsContent value="assessments" className="space-y-4 animate-fade-in">
             <AssessmentResults />
+          </TabsContent>
+
+          <TabsContent value="conversions" className="space-y-4 animate-fade-in">
+            <ConversionAnalyticsDashboard />
           </TabsContent>
 
           <TabsContent value="cache" className="space-y-6 animate-fade-in">
