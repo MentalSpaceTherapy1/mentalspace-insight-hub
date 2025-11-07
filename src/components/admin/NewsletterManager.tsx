@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -87,9 +87,17 @@ const NewsletterManager = () => {
   const [viewingNewsletter, setViewingNewsletter] = useState<Newsletter | null>(null);
   const [resending, setResending] = useState(false);
 
+  const previewRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     fetchNewsletters();
   }, []);
+
+  useEffect(() => {
+    if (viewingNewsletter && previewRef.current) {
+      previewRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [viewingNewsletter]);
 
   const fetchNewsletters = async () => {
     setLoadingNewsletters(true);
@@ -461,7 +469,7 @@ const NewsletterManager = () => {
 
           {/* Newsletter Viewer Modal */}
           {viewingNewsletter && (
-            <Card className="p-6 mt-6 bg-white shadow-2xl border-4 border-purple-500">
+            <Card ref={previewRef} className="p-6 mt-6 bg-white shadow-2xl border-4 border-purple-500">
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-2xl font-bold text-purple-600">📧 Newsletter Preview</h3>
                 <div className="flex gap-2">
@@ -499,14 +507,16 @@ const NewsletterManager = () => {
                         Pinned
                       </span>
                     )}
-                    <span className="text-sm text-gray-500">
-                      <Calendar className="h-4 w-4 inline mr-1" />
-                      {new Date(viewingNewsletter.published_at || '').toLocaleDateString('en-US', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric'
-                      })}
-                    </span>
+                    {viewingNewsletter.published_at && !isNaN(new Date(viewingNewsletter.published_at).getTime()) && (
+                      <span className="text-sm text-gray-500">
+                        <Calendar className="h-4 w-4 inline mr-1" />
+                        {new Date(viewingNewsletter.published_at).toLocaleDateString('en-US', {
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric'
+                        })}
+                      </span>
+                    )}
                   </div>
                   
                   <h2 className="text-3xl font-bold mb-4">{viewingNewsletter.title}</h2>
