@@ -25,7 +25,14 @@ serve(async (req) => {
     const systemPrompt = `You are a professional newsletter writer for a mental health therapy practice (CHC). 
 Create engaging, informative, and professional newsletter content for therapists and staff.
 Format the content in clean HTML with proper headings, paragraphs, lists, and emphasis where appropriate.
-Use modern, professional styling with sections and visual hierarchy.`;
+Use modern, professional styling with sections and visual hierarchy.
+
+IMPORTANT: Return ONLY a valid JSON object with this exact structure:
+{
+  "title": "An engaging, professional title for the newsletter (50-80 characters)",
+  "excerpt": "A compelling 1-2 sentence excerpt (120-160 characters)",
+  "content": "Full HTML content of the newsletter"
+}`;
 
     const userPrompt = `Create a ${tone} newsletter about: ${topic}
 
@@ -41,7 +48,8 @@ Requirements:
 - Make it informative yet accessible
 - Length: 600-800 words
 
-Format as clean HTML with semantic tags (h2, h3, p, ul, li, strong, em).`;
+Format the HTML content with semantic tags (h2, h3, p, ul, li, strong, em).
+Return the response as a JSON object with "title", "excerpt", and "content" fields.`;
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
@@ -72,25 +80,40 @@ Format as clean HTML with semantic tags (h2, h3, p, ul, li, strong, em).`;
     }
 
     const data = await response.json();
-    const content = data.choices?.[0]?.message?.content;
+    const aiResponse = data.choices?.[0]?.message?.content;
 
-    if (!content) {
+    if (!aiResponse) {
       console.error("No content in AI response:", data);
       throw new Error("No content generated");
     }
 
     console.log("Newsletter generated successfully");
 
-    // Generate a title from the topic
-    const title = `${topic.split(' ').map((word: string) => 
-      word.charAt(0).toUpperCase() + word.slice(1)
-    ).join(' ')}`;
+    // Parse the JSON response from AI
+    let parsedResponse;
+    try {
+      // Try to extract JSON from the response (in case AI adds markdown code blocks)
+      const jsonMatch = aiResponse.match(/\{[\s\S]*\}/);
+      if (jsonMatch) {
+        parsedResponse = JSON.parse(jsonMatch[0]);
+      } else {
+        parsedResponse = JSON.parse(aiResponse);
+      }
+    } catch (parseError) {
+      console.error("Failed to parse AI response as JSON:", parseError);
+      // Fallback: treat the whole response as content
+      parsedResponse = {
+        title: topic.slice(0, 80),
+        excerpt: `${tone.charAt(0).toUpperCase() + tone.slice(1)} insights on ${topic.slice(0, 100)} for ${targetAudience}.`,
+        content: aiResponse
+      };
+    }
 
     return new Response(
       JSON.stringify({ 
-        content,
-        title,
-        excerpt: `${tone.charAt(0).toUpperCase() + tone.slice(1)} insights on ${topic} for ${targetAudience}.`
+        content: parsedResponse.content,
+        title: parsedResponse.title,
+        excerpt: parsedResponse.excerpt
       }),
       { headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
