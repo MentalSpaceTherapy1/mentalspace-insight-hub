@@ -786,68 +786,167 @@ const NewsletterPreview = () => {
   );
 };
 
-// Helper function to get HTML for database
+// Helper function to get HTML for database - matches the rich preview exactly
 const getNewsletterHTML = () => {
-  return `<div style="max-width: 1200px; margin: 0 auto; font-family: system-ui;">
-  <h1 style="font-size: 3rem; font-weight: bold; color: #1e293b; margin-bottom: 1rem;">Client Retention Strategies 🎯</h1>
-  <p style="font-size: 1.5rem; color: #64748b; margin-bottom: 2rem;">Building Long-Term Therapeutic Relationships</p>
+  return `<div style="max-width: 1200px; margin: 0 auto; font-family: system-ui, -apple-system, sans-serif;">
   
-  <div style="background: linear-gradient(to bottom right, #dbeafe, #e0f2fe); padding: 2rem; border-radius: 1rem; margin-bottom: 2rem;">
-    <h2 style="color: #1e3a8a; font-size: 2rem; margin-bottom: 1rem;">👋 Welcome Team!</h2>
-    <p style="color: #374151; font-size: 1.125rem; line-height: 1.75;">
-      In our practice, client retention is not just about business sustainability—it's about providing consistent, quality care that leads to better outcomes.
+  <!-- Welcome Section -->
+  <div style="background: linear-gradient(to bottom right, #dbeafe, #e0f2fe); padding: 2rem; border-radius: 1rem; margin-bottom: 2rem; border: 2px solid #bfdbfe;">
+    <h2 style="color: #1e3a8a; font-size: 2rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+      <span style="font-size: 2.5rem;">👋</span> Welcome Team!
+    </h2>
+    <p style="color: #374151; font-size: 1.125rem; line-height: 1.75; margin: 0;">
+      In our practice, client retention is not just about business sustainability—it's about providing consistent, quality care that leads to better outcomes. Today, we're exploring evidence-based strategies to strengthen therapeutic relationships and improve retention rates.
     </p>
   </div>
-  
-  <img src="https://chctherapy.com/newsletter/newsletter-trust.jpg" alt="Building Trust" style="width: 100%; max-width: 100%; height: auto; border-radius: 1rem; margin-bottom: 2rem;" />
-  
-  <div style="background: linear-gradient(to bottom right, #fef3c7, #fde68a); padding: 2rem; border-radius: 1rem; margin-bottom: 2rem;">
-    <h2 style="color: #78350f; font-size: 2rem; margin-bottom: 1rem;">🤝 Building Trust from Session One</h2>
-    <p style="color: #374151; font-size: 1.125rem; line-height: 1.75;">
-      The foundation of retention is built in the first few sessions. Research shows that the therapeutic alliance is one of the strongest predictors of client retention and positive outcomes.
+
+  <!-- Trust Section -->
+  <div style="position: relative; height: 400px; border-radius: 1rem; overflow: hidden; margin-bottom: 2rem; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);">
+    <img src="https://chctherapy.com/newsletter/newsletter-trust.jpg" alt="Building Trust" style="width: 100%; height: 100%; object-fit: cover;" />
+    <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 60%, transparent 100%); display: flex; align-items: flex-end;">
+      <div style="padding: 3rem;">
+        <h2 style="color: white; font-size: 2.5rem; font-weight: bold; margin-bottom: 1rem; text-shadow: 2px 2px 8px rgba(0,0,0,0.9);">
+          🤝 Building Trust from Session One
+        </h2>
+        <p style="color: white; font-size: 1.25rem; line-height: 1.75; text-shadow: 2px 2px 6px rgba(0,0,0,0.9); margin: 0;">
+          The foundation of retention is built in the first few sessions. Research shows that the therapeutic alliance is one of the strongest predictors of client retention and positive outcomes.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- First Impressions Card -->
+  <div style="background: linear-gradient(to bottom right, #f3e8ff, #e9d5ff); padding: 2rem; border-radius: 1rem; margin-bottom: 2rem; border: 2px solid #d8b4fe;">
+    <h3 style="color: #6b21a8; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5rem;">First Impressions Matter</h3>
+    <div style="display: grid; gap: 1rem;">
+      <div style="background: white; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #a855f7;">
+        <p style="color: #374151; font-size: 1.125rem; margin: 0;">
+          <strong style="color: #6b21a8;">Warmth and presence:</strong> Be fully present from the moment they walk in
+        </p>
+      </div>
+      <div style="background: white; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #a855f7;">
+        <p style="color: #374151; font-size: 1.125rem; margin: 0;">
+          <strong style="color: #6b21a8;">Clear communication:</strong> Explain your approach and what to expect
+        </p>
+      </div>
+      <div style="background: white; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #a855f7;">
+        <p style="color: #374151; font-size: 1.125rem; margin: 0;">
+          <strong style="color: #6b21a8;">Active listening:</strong> Make them feel heard and understood
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Communication Section -->
+  <div style="position: relative; height: 400px; border-radius: 1rem; overflow: hidden; margin-bottom: 2rem; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);">
+    <img src="https://chctherapy.com/newsletter/newsletter-communication.jpg" alt="Communication" style="width: 100%; height: 100%; object-fit: cover;" />
+    <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 60%, transparent 100%); display: flex; align-items: flex-end;">
+      <div style="padding: 3rem;">
+        <h2 style="color: white; font-size: 2.5rem; font-weight: bold; margin-bottom: 1rem; text-shadow: 2px 2px 8px rgba(0,0,0,0.9);">
+          📞 Consistent Communication
+        </h2>
+        <p style="color: white; font-size: 1.25rem; line-height: 1.75; text-shadow: 2px 2px 6px rgba(0,0,0,0.9); margin: 0;">
+          Clear, consistent communication helps clients feel supported between sessions and reduces no-shows.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mid-Treatment Drop-off -->
+  <div style="background: linear-gradient(to bottom right, #fee2e2, #fecaca); padding: 2rem; border-radius: 1rem; margin-bottom: 2rem; border: 2px solid #fca5a5;">
+    <h3 style="color: #991b1b; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5rem;">⚠️ Watch for Mid-Treatment Drop-off</h3>
+    <div style="background: #fef2f2; padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1rem;">
+      <p style="color: #7f1d1d; font-size: 1.25rem; font-weight: bold; margin: 0;">
+        <span style="font-size: 1.5rem;">⚡</span> Critical period: Sessions 6-12
+      </p>
+    </div>
+    <div style="display: grid; gap: 1rem;">
+      <div style="background: white; padding: 1rem; border-radius: 0.5rem; display: flex; align-items: center; gap: 0.75rem;">
+        <span style="font-size: 1.5rem;">🎯</span>
+        <p style="color: #374151; font-size: 1.125rem; font-weight: 500; margin: 0;">Revisit goals: "Let's review what brought you here"</p>
+      </div>
+      <div style="background: white; padding: 1rem; border-radius: 0.5rem; display: flex; align-items: center; gap: 0.75rem;">
+        <span style="font-size: 1.5rem;">✨</span>
+        <p style="color: #374151; font-size: 1.125rem; font-weight: 500; margin: 0;">Normalize: "Many people feel this way around now"</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Team Section -->
+  <div style="position: relative; height: 400px; border-radius: 1rem; overflow: hidden; margin-bottom: 2rem; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);">
+    <img src="https://chctherapy.com/newsletter/newsletter-team.jpg" alt="Team Collaboration" style="width: 100%; height: 100%; object-fit: cover;" />
+    <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 60%, transparent 100%); display: flex; align-items: flex-end;">
+      <div style="padding: 3rem;">
+        <h2 style="color: white; font-size: 2.5rem; font-weight: bold; margin-bottom: 1rem; text-shadow: 2px 2px 8px rgba(0,0,0,0.9);">
+          💼 Team Discussion Questions
+        </h2>
+        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+          <p style="color: white; font-size: 1.125rem; text-shadow: 2px 2px 6px rgba(0,0,0,0.9); margin: 0;">
+            • Which retention strategy resonates most with your practice style?
+          </p>
+          <p style="color: white; font-size: 1.125rem; text-shadow: 2px 2px 6px rgba(0,0,0,0.9); margin: 0;">
+            • What's one thing you're already doing well?
+          </p>
+          <p style="color: white; font-size: 1.125rem; text-shadow: 2px 2px 6px rgba(0,0,0,0.9); margin: 0;">
+            • What's one area you'd like to strengthen?
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Self-Care Section with Image -->
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; margin-bottom: 2rem;">
+    <div style="background: linear-gradient(to bottom right, #e0e7ff, #ddd6fe); padding: 2rem; border-radius: 1rem; border: 2px solid #c4b5fd;">
+      <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+        <span style="font-size: 2.5rem;">🧘</span>
+        <h3 style="color: #4c1d95; font-size: 2rem; font-weight: bold; margin: 0;">Self-Care = Better Retention</h3>
+      </div>
+      <div style="background: #fef3c7; border-left: 4px solid #ca8a04; padding: 1rem; margin-bottom: 1rem;">
+        <p style="color: #78350f; font-size: 1.125rem; font-weight: bold; margin: 0;">
+          <span style="font-size: 1.25rem;">⚡</span> Warning: Burnout kills retention!
+        </p>
+      </div>
+      <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75rem;">
+        <li style="display: flex; align-items: flex-start; gap: 0.5rem;">
+          <span style="font-size: 1.25rem;">🛑</span>
+          <span style="color: #374151; font-size: 1.125rem; font-weight: 500;">Burned-out therapists are less present</span>
+        </li>
+        <li style="display: flex; align-items: flex-start; gap: 0.5rem;">
+          <span style="font-size: 1.25rem;">👁️</span>
+          <span style="color: #374151; font-size: 1.125rem; font-weight: 500;">Clients sense when you're not engaged</span>
+        </li>
+        <li style="display: flex; align-items: flex-start; gap: 0.5rem;">
+          <span style="font-size: 1.25rem;">📉</span>
+          <span style="color: #374151; font-size: 1.125rem; font-weight: 500;">Quality of care declines</span>
+        </li>
+      </ul>
+    </div>
+    <div style="border-radius: 1rem; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);">
+      <img src="https://chctherapy.com/newsletter/newsletter-selfcare.jpg" alt="Self Care" style="width: 100%; height: 320px; object-fit: cover;" />
+    </div>
+  </div>
+
+  <!-- Final Thoughts -->
+  <div style="background: linear-gradient(to bottom right, #cffafe, #a5f3fc); padding: 2.5rem; border-radius: 1rem; margin-bottom: 2rem; border: 2px solid #67e8f9; text-align: center;">
+    <h2 style="color: #0e7490; font-size: 2.5rem; font-weight: bold; margin-bottom: 1.5rem;">💡 Final Thoughts</h2>
+    <p style="color: #374151; font-size: 1.25rem; line-height: 1.75; margin-bottom: 1.5rem;">
+      Client retention isn't about "keeping people in therapy forever"—it's about creating an environment where healing can occur at its natural pace. When clients stay engaged in therapy, they're more likely to experience meaningful, lasting change.
     </p>
+    <div style="background: white; padding: 1.5rem; border-radius: 0.75rem; border: 2px solid #06b6d4;">
+      <p style="color: #0f766e; font-size: 1.5rem; font-weight: bold; margin: 0;">
+        ❤️ Every client who stays engaged is someone who's getting the help they need.
+      </p>
+      <p style="color: #374151; font-size: 1.125rem; margin-top: 0.5rem; font-weight: 600;">That's what this work is all about.</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div style="background: linear-gradient(to right, #1f2937, #111827); padding: 1.5rem; border-radius: 0.5rem; text-align: center; color: white;">
+    <p style="font-size: 1.125rem; margin-bottom: 0.5rem;">— CHC Leadership Team</p>
+    <p style="color: #9ca3af; margin: 0;">Questions or want to discuss? Let's talk at our next team meeting.</p>
   </div>
   
-  <img src="https://chctherapy.com/newsletter/newsletter-communication.jpg" alt="Communication" style="width: 100%; max-width: 100%; height: auto; border-radius: 1rem; margin-bottom: 2rem;" />
-  
-  <div style="background: linear-gradient(to bottom right, #dcfce7, #bbf7d0); padding: 2rem; border-radius: 1rem; margin-bottom: 2rem;">
-    <h2 style="color: #14532d; font-size: 2rem; margin-bottom: 1rem;">📞 Consistent Communication</h2>
-    <p style="color: #374151; font-size: 1.125rem; line-height: 1.75;">
-      Clear, consistent communication helps clients feel supported between sessions and reduces no-shows.
-    </p>
-  </div>
-  
-  <img src="https://chctherapy.com/newsletter/newsletter-team.jpg" alt="Team Discussion" style="width: 100%; max-width: 100%; height: auto; border-radius: 1rem; margin-bottom: 2rem;" />
-  
-  <div style="background: linear-gradient(to bottom right, #ddd6fe, #e9d5ff); padding: 2rem; border-radius: 1rem; margin-bottom: 2rem;">
-    <h2 style="color: #5b21b6; font-size: 2rem; margin-bottom: 1rem;">💼 Team Discussion Questions</h2>
-    <ul style="color: #374151; font-size: 1.125rem; line-height: 1.75;">
-      <li>Which retention strategy resonates most with your practice style?</li>
-      <li>What's one thing you're already doing well?</li>
-      <li>What's one area you'd like to strengthen?</li>
-    </ul>
-  </div>
-  
-  <img src="https://chctherapy.com/newsletter/newsletter-selfcare.jpg" alt="Self Care" style="width: 100%; max-width: 100%; height: auto; border-radius: 1rem; margin-bottom: 2rem;" />
-  
-  <div style="background: linear-gradient(to bottom right, #e0e7ff, #ddd6fe); padding: 2rem; border-radius: 1rem; margin-bottom: 2rem;">
-    <h2 style="color: #4c1d95; font-size: 2rem; margin-bottom: 1rem;">🧘 Self-Care = Better Retention</h2>
-    <p style="color: #374151; font-size: 1.125rem; line-height: 1.75; margin-bottom: 1rem;">
-      Burned-out therapists are less present, and clients sense when you're not engaged. Quality of care declines without proper self-care.
-    </p>
-  </div>
-  
-  <div style="background: linear-gradient(to bottom right, #cffafe, #a5f3fc); padding: 2rem; border-radius: 1rem; margin-bottom: 2rem; text-align: center;">
-    <h2 style="color: #0e7490; font-size: 2rem; margin-bottom: 1rem;">💡 Final Thoughts</h2>
-    <p style="color: #374151; font-size: 1.125rem; line-height: 1.75; margin-bottom: 1rem;">
-      Client retention isn't about "keeping people in therapy forever"—it's about creating an environment where healing can occur at its natural pace.
-    </p>
-    <p style="color: #0f766e; font-size: 1.5rem; font-weight: bold;">
-      ❤️ Every client who stays engaged is someone who's getting the help they need.
-    </p>
-  </div>
-  
-  <p style="text-align: center; color: #6b7280; margin-top: 3rem; font-size: 1.125rem;">— CHC Leadership Team</p>
 </div>`;
 };
 
