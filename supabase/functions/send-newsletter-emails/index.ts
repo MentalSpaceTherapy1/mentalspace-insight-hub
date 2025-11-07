@@ -135,7 +135,7 @@ serve(async (req) => {
 
         // Send email via Resend
         const emailResponse = await resend.emails.send({
-          from: "CHC Staff Newsletter <newsletter@connectinghealthca.com>",
+          from: "CHC Staff Newsletter <support@chctherapy.com>",
           to: [subscriber.email],
           subject: `${newsletter.category || 'Newsletter'}: ${newsletter.title}`,
           html: htmlContent,
