@@ -87,7 +87,7 @@ serve(async (req) => {
     console.log(`Found ${subscribers.length} active subscribers`);
 
     const trackingBaseUrl = `${supabaseUrl}/functions/v1/track-newsletter-event`;
-    const newsletterUrl = `https://chctherapy.com/staff-newsletter`;
+    const newsletterUrl = `https://chctherapy.com/staff-newsletter?newsletterId=${newsletterId}`;
 
     let sentCount = 0;
     let failedCount = 0;
@@ -148,7 +148,7 @@ serve(async (req) => {
                 ${processedContent}
               </div>
               <div style="text-align: center; margin-top: 30px;">
-                <a href="${newsletterUrl}?track=${logEntry.id}" class="button">Read Full Newsletter</a>
+                <a href="${newsletterUrl}&track=${logEntry.id}" class="button">Read Full Newsletter</a>
               </div>
             </div>
             <div class="footer">

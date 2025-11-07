@@ -40,6 +40,18 @@ const StaffNewsletter = () => {
     fetchNewsletters();
   }, []);
 
+  // Scroll to a newsletter when newsletterId is provided in the URL
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const targetId = params.get('newsletterId');
+    if (targetId && newsletters.length) {
+      const el = document.getElementById(`newsletter-${targetId}`);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  }, [newsletters]);
+
   return (
     <>
       <SEOHead
@@ -101,7 +113,8 @@ const StaffNewsletter = () => {
             <div className="space-y-12">
               {newsletters.map((newsletter, index) => (
                 <Card 
-                  key={newsletter.id} 
+                  key={newsletter.id}
+                  id={`newsletter-${newsletter.id}`}
                   className="overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-2 animate-fade-in"
                   style={{ 
                     animationDelay: `${index * 100}ms`,
