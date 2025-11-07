@@ -166,13 +166,16 @@ const NewsletterManager = () => {
       // Send emails if option is selected and published now
       if (sendEmail && !isScheduled) {
         try {
-          await supabase.functions.invoke('send-newsletter-emails', {
+          const { error: emailError } = await supabase.functions.invoke('send-newsletter-emails', {
             body: { newsletterId: data.id }
           });
-          toast.success('Newsletter published and emails sent!');
-        } catch (emailError) {
-          toast.success('Newsletter published but email sending failed');
-          console.error('Email error:', emailError);
+          
+          if (emailError) throw emailError;
+          
+          toast.success('Newsletter published and emails sent to subscribers!');
+        } catch (emailError: any) {
+          console.error('Email sending error:', emailError);
+          toast.warning('Newsletter published but email sending failed. Check edge function logs.');
         }
       } else if (isScheduled) {
         toast.success(`Newsletter scheduled for ${new Date(scheduledDate).toLocaleDateString()}`);
@@ -244,8 +247,21 @@ const NewsletterManager = () => {
 
       if (error) throw error;
 
-      toast.success('Newsletter published successfully!');
-      setTimeout(() => window.location.reload(), 1000);
+      // Send emails to subscribers
+      try {
+        const { error: emailError } = await supabase.functions.invoke('send-newsletter-emails', {
+          body: { newsletterId: data.id }
+        });
+
+        if (emailError) throw emailError;
+        
+        toast.success('Newsletter published and emails sent to subscribers!');
+      } catch (emailError: any) {
+        console.error('Email sending error:', emailError);
+        toast.warning('Newsletter published but email sending failed. Check edge function logs.');
+      }
+
+      setTimeout(() => window.location.reload(), 1500);
     } catch (error: any) {
       console.error('Error publishing newsletter:', error);
       toast.error('Failed to publish newsletter: ' + error.message);
