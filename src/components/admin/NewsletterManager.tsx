@@ -553,30 +553,28 @@ const NewsletterManager = () => {
                       </div>
                       
                       <div className="flex gap-2">
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          onClick={() => {
+                            console.log('View clicked, newsletter:', newsletter.title);
+                            setViewingNewsletter(newsletter);
+                          }}
+                        >
+                          <Eye className="h-4 w-4 mr-1" />
+                          View
+                        </Button>
                         {newsletter.status === 'published' && (
-                          <>
-                            <Button
-                              size="sm"
-                              variant="outline"
-                              onClick={() => {
-                                console.log('View clicked, newsletter:', newsletter.title);
-                                setViewingNewsletter(newsletter);
-                              }}
-                            >
-                              <Eye className="h-4 w-4 mr-1" />
-                              View
-                            </Button>
-                            <Button
-                              size="sm"
-                              variant="outline"
-                              onClick={() => handleResend(newsletter.id)}
-                              disabled={resending}
-                              className="bg-green-50 hover:bg-green-100 border-green-300"
-                            >
-                              <Mail className="h-4 w-4 mr-1" />
-                              {resending ? 'Sending...' : 'Resend'}
-                            </Button>
-                          </>
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={() => handleResend(newsletter.id)}
+                            disabled={resending}
+                            className="bg-green-50 hover:bg-green-100 border-green-300"
+                          >
+                            <Mail className="h-4 w-4 mr-1" />
+                            {resending ? 'Sending...' : 'Resend'}
+                          </Button>
                         )}
                       </div>
                     </div>
