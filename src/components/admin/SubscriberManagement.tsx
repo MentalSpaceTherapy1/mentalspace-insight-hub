@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { Trash2, Mail, User } from "lucide-react";
+import { Trash2, Mail, User, Edit } from "lucide-react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
 interface Subscriber {
@@ -23,6 +23,10 @@ const SubscriberManagement = () => {
   const [lastName, setLastName] = useState("");
   const [loading, setLoading] = useState(false);
   const [fetchingSubscribers, setFetchingSubscribers] = useState(true);
+  const [editingSubscriber, setEditingSubscriber] = useState<Subscriber | null>(null);
+  const [editEmail, setEditEmail] = useState("");
+  const [editFirstName, setEditFirstName] = useState("");
+  const [editLastName, setEditLastName] = useState("");
 
   useEffect(() => {
     fetchSubscribers();
@@ -103,6 +107,59 @@ const SubscriberManagement = () => {
     } catch (error: any) {
       console.error('Error removing subscriber:', error);
       toast.error('Failed to remove subscriber');
+    }
+  };
+
+  const startEditSubscriber = (subscriber: Subscriber) => {
+    setEditingSubscriber(subscriber);
+    setEditEmail(subscriber.email);
+    const nameParts = subscriber.full_name?.split(' ') || [];
+    setEditFirstName(nameParts[0] || '');
+    setEditLastName(nameParts.slice(1).join(' ') || '');
+  };
+
+  const cancelEdit = () => {
+    setEditingSubscriber(null);
+    setEditEmail("");
+    setEditFirstName("");
+    setEditLastName("");
+  };
+
+  const updateSubscriber = async () => {
+    if (!editingSubscriber || !editEmail) {
+      toast.error("Email is required");
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const fullName = `${editFirstName} ${editLastName}`.trim() || null;
+      
+      const { error } = await supabase
+        .from('newsletter_subscribers')
+        .update({ 
+          email: editEmail, 
+          full_name: fullName 
+        })
+        .eq('id', editingSubscriber.id);
+
+      if (error) {
+        if (error.code === '23505') {
+          toast.error('This email is already subscribed');
+        } else {
+          throw error;
+        }
+        return;
+      }
+
+      toast.success('Subscriber updated successfully!');
+      cancelEdit();
+      fetchSubscribers();
+    } catch (error: any) {
+      console.error('Error updating subscriber:', error);
+      toast.error('Failed to update subscriber: ' + error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -192,14 +249,30 @@ const SubscriberManagement = () => {
                       {new Date(subscriber.subscribed_at).toLocaleDateString()}
                     </TableCell>
                     <TableCell className="text-right">
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => removeSubscriber(subscriber.id)}
-                        className="text-red-600 hover:text-red-700 hover:bg-red-50"
-                      >
-                        <Trash2 className="h-4 w-4" />
-                      </Button>
+                      <div className="flex items-center justify-end gap-2">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            startEditSubscriber(subscriber);
+                          }}
+                          className="hover:bg-primary/10"
+                        >
+                          <Edit className="h-4 w-4" />
+                        </Button>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            removeSubscriber(subscriber.id);
+                          }}
+                          className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                        >
+                          <Trash2 className="h-4 w-4" />
+                        </Button>
+                      </div>
                     </TableCell>
                   </TableRow>
                 ))}
@@ -208,6 +281,50 @@ const SubscriberManagement = () => {
           </div>
         )}
       </Card>
+
+      {editingSubscriber && (
+        <Card className="p-6">
+          <h3 className="text-xl font-bold mb-4">Edit Subscriber</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+            <div className="space-y-2">
+              <Label htmlFor="editFirstName">First Name</Label>
+              <Input
+                id="editFirstName"
+                placeholder="John"
+                value={editFirstName}
+                onChange={(e) => setEditFirstName(e.target.value)}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="editLastName">Last Name</Label>
+              <Input
+                id="editLastName"
+                placeholder="Doe"
+                value={editLastName}
+                onChange={(e) => setEditLastName(e.target.value)}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="editEmail">Email Address *</Label>
+              <Input
+                id="editEmail"
+                type="email"
+                placeholder="john.doe@example.com"
+                value={editEmail}
+                onChange={(e) => setEditEmail(e.target.value)}
+              />
+            </div>
+          </div>
+          <div className="flex gap-2">
+            <Button onClick={updateSubscriber} disabled={loading}>
+              {loading ? 'Updating...' : 'Save Changes'}
+            </Button>
+            <Button variant="outline" onClick={cancelEdit} disabled={loading}>
+              Cancel
+            </Button>
+          </div>
+        </Card>
+      )}
     </div>
   );
 };
