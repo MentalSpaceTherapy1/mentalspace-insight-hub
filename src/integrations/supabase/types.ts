@@ -858,6 +858,10 @@ export type Database = {
           view_count: number
         }[]
       }
+      get_recent_blocked_attempts: {
+        Args: { limit_count?: number }
+        Returns: Json
+      }
       get_secure_admin_profile: {
         Args: { target_user_id?: string }
         Returns: {
@@ -899,6 +903,8 @@ export type Database = {
           warning_alerts: number
         }[]
       }
+      get_spam_statistics: { Args: never; Returns: Json }
+      get_submission_patterns: { Args: { hours_back?: number }; Returns: Json }
       is_admin: { Args: never; Returns: boolean }
       is_admin_user: { Args: never; Returns: boolean }
       is_verified_admin: { Args: never; Returns: boolean }

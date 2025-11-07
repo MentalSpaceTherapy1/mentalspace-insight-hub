@@ -144,6 +144,98 @@ serve(async (req) => {
       }
     }
 
+    // Content-based spam detection
+    const messageContent = (formData.message || formData.details || formData.description || '').toLowerCase();
+    
+    // Spam indicators
+    const spamPatterns = {
+      // Sales/marketing keywords
+      sales: /\b(seo services?|digital marketing|web design services?|link building|ranking|outreach|partnership|collaboration|business proposal|increase (sales|traffic|revenue))\b/i,
+      // Generic salesy phrases
+      generic: /\b(hope this (email|message) finds you|wanted to reach out|i came across your|offering (our|my) services?|help (you|your business))\b/i,
+      // URLs (legitimate users rarely include URLs in contact forms)
+      urls: /(https?:\/\/|www\.)[^\s]+/gi,
+      // Email addresses in message body (often spam)
+      emails: /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g,
+      // Excessive caps or exclamation
+      excessive: /([A-Z\s]{20,}|!{3,})/,
+      // Common spam phrases
+      spam: /\b(click here|limited time|act now|special offer|guaranteed|100%|free quote|no obligation)\b/i
+    };
+
+    let spamScore = 0;
+    const spamReasons: string[] = [];
+
+    // Check each pattern
+    if (spamPatterns.sales.test(messageContent)) {
+      spamScore += 3;
+      spamReasons.push('sales_keywords');
+    }
+    if (spamPatterns.generic.test(messageContent)) {
+      spamScore += 2;
+      spamReasons.push('generic_sales_language');
+    }
+    if (spamPatterns.urls.test(messageContent)) {
+      spamScore += 4;
+      spamReasons.push('contains_urls');
+    }
+    if (spamPatterns.emails.test(messageContent)) {
+      spamScore += 2;
+      spamReasons.push('contains_email');
+    }
+    if (spamPatterns.excessive.test(messageContent)) {
+      spamScore += 1;
+      spamReasons.push('excessive_formatting');
+    }
+    if (spamPatterns.spam.test(messageContent)) {
+      spamScore += 3;
+      spamReasons.push('spam_phrases');
+    }
+
+    // Block if spam score is too high
+    if (spamScore >= 4) {
+      console.log('Content spam detected. Score:', spamScore, 'Reasons:', spamReasons);
+      
+      const clientIP = req.headers.get('x-forwarded-for')?.split(',')[0].trim() || 
+                       req.headers.get('x-real-ip')?.trim() || 'unknown';
+      const userAgent = req.headers.get('user-agent') || 'unknown';
+      
+      // Store blocked submission for analysis
+      await supabase
+        .from('form_submissions')
+        .insert({
+          form_type: formType,
+          form_data: formData,
+          ip_address: clientIP,
+          user_agent: userAgent,
+          is_blocked: true,
+          blocked_reason: 'content_spam',
+          spam_score: spamScore,
+        });
+      
+      await supabase
+        .from('security_audit_log')
+        .insert({
+          event_type: 'blocked_content_spam',
+          table_name: 'form_submissions',
+          ip_address: clientIP,
+          details: {
+            form_type: formType,
+            spam_score: spamScore,
+            spam_reasons: spamReasons,
+            ip_address: clientIP,
+            user_agent: userAgent,
+            timestamp: new Date().toISOString(),
+            severity: 'MEDIUM'
+          }
+        });
+      
+      return new Response(JSON.stringify({ success: false, error: 'Invalid submission' }), {
+        status: 400,
+        headers: { ...getCorsHeaders(origin), 'Content-Type': 'application/json' },
+      });
+    }
+
     // Remove anti-bot metadata before storing
     const cleanFormData = { ...formData };
     delete cleanFormData._formLoadTime;
