@@ -16,6 +16,7 @@ import trustImage from "@/assets/newsletter-trust.jpg";
 import communicationImage from "@/assets/newsletter-communication.jpg";
 import teamImage from "@/assets/newsletter-team.jpg";
 import selfcareImage from "@/assets/newsletter-selfcare.jpg";
+import { useAdminAuth } from "@/contexts/AdminAuthContext";
 
 interface NewsletterTemplate {
   id: string;
@@ -57,6 +58,7 @@ const templates: NewsletterTemplate[] = [
 ];
 
 const NewsletterManager = () => {
+  const { profile } = useAdminAuth();
   const [publishing, setPublishing] = useState(false);
   const [generating, setGenerating] = useState(false);
   const [selectedTemplate, setSelectedTemplate] = useState<string>("");
@@ -113,17 +115,13 @@ const NewsletterManager = () => {
       return;
     }
 
+    if (!profile) {
+      toast.error("Admin profile not found. Please refresh and try again.");
+      return;
+    }
+
     setPublishing(true);
     try {
-      const { data: adminData } = await supabase
-        .from('admin_profiles')
-        .select('id')
-        .limit(1)
-        .single();
-
-      if (!adminData) {
-        throw new Error("No admin profile found");
-      }
 
       const isScheduled = schedule && scheduledDate;
       const status = isScheduled ? 'scheduled' : 'published';
@@ -133,7 +131,7 @@ const NewsletterManager = () => {
         title: generatedContent.title,
         content: generatedContent.content,
         excerpt: generatedContent.excerpt,
-        author_id: adminData.id,
+        author_id: profile.id,
         status,
         category: templates.find(t => t.id === selectedTemplate)?.name || 'Staff Updates',
         is_pinned: false
@@ -219,17 +217,13 @@ const NewsletterManager = () => {
   };
 
   const publishClientRetentionNewsletter = async () => {
+    if (!profile) {
+      toast.error("Admin profile not found. Please refresh and try again.");
+      return;
+    }
+
     setPublishing(true);
     try {
-      const { data: adminData } = await supabase
-        .from('admin_profiles')
-        .select('id')
-        .limit(1)
-        .single();
-
-      if (!adminData) {
-        throw new Error("No admin profile found");
-      }
 
       const newsletterHTML = getNewsletterHTML();
 
@@ -239,7 +233,7 @@ const NewsletterManager = () => {
           title: 'Client Retention Strategies: Building Long-Term Therapeutic Relationships',
           content: newsletterHTML,
           excerpt: 'Comprehensive guide for CHC therapists on evidence-based client retention strategies—from building trust in the first session to creating lasting therapeutic relationships.',
-          author_id: adminData.id,
+          author_id: profile.id,
           status: 'published',
           published_at: new Date().toISOString(),
           category: 'Clinical Practice',
