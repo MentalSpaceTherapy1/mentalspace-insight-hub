@@ -7,6 +7,13 @@ import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { Trash2, Mail, User, Edit } from "lucide-react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { z } from "zod";
+
+const subscriberSchema = z.object({
+  email: z.string().trim().email({ message: "Invalid email address" }).max(255, { message: "Email must be less than 255 characters" }),
+  firstName: z.string().trim().max(100, { message: "First name must be less than 100 characters" }).optional(),
+  lastName: z.string().trim().max(100, { message: "Last name must be less than 100 characters" }).optional(),
+});
 
 interface Subscriber {
   id: string;
@@ -52,19 +59,22 @@ const SubscriberManagement = () => {
   };
 
   const addSubscriber = async () => {
-    if (!email) {
-      toast.error("Email is required");
-      return;
-    }
-
-    setLoading(true);
     try {
+      const validation = subscriberSchema.safeParse({ email, firstName, lastName });
+      
+      if (!validation.success) {
+        const firstError = validation.error.issues[0];
+        toast.error(firstError.message);
+        return;
+      }
+
+      setLoading(true);
       const fullName = `${firstName} ${lastName}`.trim() || null;
       
       const { error } = await supabase
         .from('newsletter_subscribers')
         .insert({ 
-          email, 
+          email: validation.data.email, 
           full_name: fullName,
           is_active: true 
         });
@@ -85,7 +95,7 @@ const SubscriberManagement = () => {
       fetchSubscribers();
     } catch (error: any) {
       console.error('Error adding subscriber:', error);
-      toast.error('Failed to add subscriber: ' + error.message);
+      toast.error('Failed to add subscriber');
     } finally {
       setLoading(false);
     }
@@ -126,19 +136,31 @@ const SubscriberManagement = () => {
   };
 
   const updateSubscriber = async () => {
-    if (!editingSubscriber || !editEmail) {
-      toast.error("Email is required");
+    if (!editingSubscriber) {
+      toast.error("No subscriber selected");
       return;
     }
 
-    setLoading(true);
     try {
+      const validation = subscriberSchema.safeParse({ 
+        email: editEmail, 
+        firstName: editFirstName, 
+        lastName: editLastName 
+      });
+      
+      if (!validation.success) {
+        const firstError = validation.error.issues[0];
+        toast.error(firstError.message);
+        return;
+      }
+
+      setLoading(true);
       const fullName = `${editFirstName} ${editLastName}`.trim() || null;
       
       const { error } = await supabase
         .from('newsletter_subscribers')
         .update({ 
-          email: editEmail, 
+          email: validation.data.email, 
           full_name: fullName 
         })
         .eq('id', editingSubscriber.id);
@@ -157,7 +179,7 @@ const SubscriberManagement = () => {
       fetchSubscribers();
     } catch (error: any) {
       console.error('Error updating subscriber:', error);
-      toast.error('Failed to update subscriber: ' + error.message);
+      toast.error('Failed to update subscriber');
     } finally {
       setLoading(false);
     }
