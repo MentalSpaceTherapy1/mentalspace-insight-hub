@@ -6,9 +6,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 import { supabase } from "@/integrations/supabase/client";
-import { Calendar, Pin, Sparkles, Mail, ArrowLeft } from "lucide-react";
-import { useAdminAuth } from "@/contexts/AdminAuthContext";
-import { toast } from "sonner";
+import { Calendar, Pin, Sparkles } from "lucide-react";
 
 interface Newsletter {
   id: string;
@@ -23,8 +21,6 @@ interface Newsletter {
 const StaffNewsletter = () => {
   const [newsletters, setNewsletters] = useState<Newsletter[]>([]);
   const [loading, setLoading] = useState(true);
-  const [resending, setResending] = useState(false);
-  const { isAdmin } = useAdminAuth();
   
   // Check if viewing a specific newsletter
   const params = new URLSearchParams(window.location.search);
@@ -57,24 +53,6 @@ const StaffNewsletter = () => {
     fetchNewsletters();
   }, [specificNewsletterId]);
 
-  const handleResend = async (newsletterId: string) => {
-    setResending(true);
-    try {
-      const { error } = await supabase.functions.invoke('send-newsletter-emails', {
-        body: { newsletterId }
-      });
-
-      if (error) throw error;
-      
-      toast.success('Newsletter resent successfully to all subscribers!');
-    } catch (error) {
-      console.error('Error resending newsletter:', error);
-      toast.error('Failed to resend newsletter. Please try again.');
-    } finally {
-      setResending(false);
-    }
-  };
-
   return (
     <>
       <SEOHead
@@ -88,18 +66,19 @@ const StaffNewsletter = () => {
         <main className="flex-grow container mx-auto px-4 py-16">
           <div className="max-w-4xl mx-auto">
             {/* Navigation */}
-            {specificNewsletterId ? (
+            {specificNewsletterId && (
               <div className="mb-6">
                 <Button 
                   onClick={() => window.location.href = '/staff-newsletter'}
                   variant="outline"
                   className="bg-white/80 backdrop-blur hover:bg-purple-50"
                 >
-                  <ArrowLeft className="h-4 w-4 mr-2" />
-                  Back to All Newsletters
+                  ← Back to All Newsletters
                 </Button>
               </div>
-            ) : (
+            )}
+            
+            {!specificNewsletterId && (
               <div className="mb-8 text-center">
                 <Button 
                   onClick={() => window.location.href = '/newsletter-archive'}
@@ -191,20 +170,6 @@ const StaffNewsletter = () => {
                             </span>
                           </div>
                         </div>
-                        
-                        {/* Admin Resend Button */}
-                        {isAdmin && (
-                          <Button
-                            onClick={() => handleResend(newsletter.id)}
-                            disabled={resending}
-                            size="sm"
-                            variant="outline"
-                            className="bg-green-50 hover:bg-green-100 border-green-300"
-                          >
-                            <Mail className="h-4 w-4 mr-2" />
-                            {resending ? 'Resending...' : 'Resend Newsletter'}
-                          </Button>
-                        )}
                       </div>
                       
                       <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">

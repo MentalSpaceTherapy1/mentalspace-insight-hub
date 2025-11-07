@@ -84,6 +84,8 @@ const NewsletterManager = () => {
   const [addingSubscriber, setAddingSubscriber] = useState(false);
   const [newsletters, setNewsletters] = useState<Newsletter[]>([]);
   const [loadingNewsletters, setLoadingNewsletters] = useState(false);
+  const [viewingNewsletter, setViewingNewsletter] = useState<Newsletter | null>(null);
+  const [resending, setResending] = useState(false);
 
   useEffect(() => {
     fetchNewsletters();
@@ -255,48 +257,74 @@ const NewsletterManager = () => {
     }
   };
 
-  const publishClientRetentionNewsletter = async () => {
-    if (!profile) {
-      toast.error("Admin profile not found. Please refresh and try again.");
-      return;
-    }
+  const handleResend = async (newsletterId: string) => {
+    setResending(true);
+    try {
+      const { error } = await supabase.functions.invoke('send-newsletter-emails', {
+        body: { newsletterId }
+      });
 
+      if (error) throw error;
+      
+      toast.success('Newsletter resent successfully to all subscribers!');
+    } catch (error) {
+      console.error('Error resending newsletter:', error);
+      toast.error('Failed to resend newsletter. Please try again.');
+    } finally {
+      setResending(false);
+    }
+  };
+
+  const publishClientRetentionNewsletter = async () => {
     setPublishing(true);
     try {
+      const newsletterData = {
+        title: "Client Retention Strategies - Building Long-Term Therapeutic Relationships",
+        excerpt: "Essential strategies for maintaining strong client relationships and improving retention rates",
+        content: `
+          <h2>🎯 Understanding Client Retention</h2>
+          <p>Client retention is a critical component of a successful therapy practice. Research shows that clients who remain in therapy for longer periods achieve better outcomes and contribute to practice stability.</p>
 
-      const newsletterHTML = getNewsletterHTML();
+          <h3>Key Retention Strategies:</h3>
+          <ul>
+            <li><strong>Consistent Communication:</strong> Regular check-ins between sessions via secure messaging</li>
+            <li><strong>Progress Tracking:</strong> Help clients visualize their growth and achievements</li>
+            <li><strong>Personalized Care Plans:</strong> Tailored approaches that evolve with client needs</li>
+            <li><strong>Flexible Scheduling:</strong> Accommodate client schedules to reduce barriers</li>
+          </ul>
 
-      const { data, error } = await supabase
+          <h2>💡 Building Therapeutic Alliance</h2>
+          <p>The therapeutic relationship is the strongest predictor of positive outcomes. Focus on:</p>
+          <ul>
+            <li>Active listening and validation</li>
+            <li>Cultural competence and sensitivity</li>
+            <li>Transparent communication about treatment progress</li>
+            <li>Collaborative goal-setting</li>
+          </ul>
+
+          <h2>📊 Measuring Success</h2>
+          <p>Track these metrics to understand your retention:</p>
+          <ul>
+            <li>Average client tenure</li>
+            <li>Session attendance rates</li>
+            <li>Client satisfaction scores</li>
+            <li>Referral rates</li>
+          </ul>
+        `,
+        category: "Clinical Best Practices",
+        status: 'published' as const,
+        is_pinned: false,
+        published_at: new Date().toISOString(),
+        author_id: profile?.user_id || ''
+      };
+
+      const { error } = await supabase
         .from('newsletters')
-        .insert({
-          title: 'Client Retention Strategies: Building Long-Term Therapeutic Relationships',
-          content: newsletterHTML,
-          excerpt: 'Comprehensive guide for CHC therapists on evidence-based client retention strategies—from building trust in the first session to creating lasting therapeutic relationships.',
-          author_id: profile.id,
-          status: 'published',
-          published_at: new Date().toISOString(),
-          category: 'Clinical Practice',
-          is_pinned: true
-        })
-        .select()
-        .single();
+        .insert([newsletterData]);
 
       if (error) throw error;
 
-      // Send emails to subscribers
-      try {
-        const { error: emailError } = await supabase.functions.invoke('send-newsletter-emails', {
-          body: { newsletterId: data.id }
-        });
-
-        if (emailError) throw emailError;
-        
-        toast.success('Newsletter published and emails sent to subscribers!');
-      } catch (emailError: any) {
-        console.error('Email sending error:', emailError);
-        toast.warning('Newsletter published but email sending failed. Check edge function logs.');
-      }
-
+      toast.success('Newsletter published successfully!');
       fetchNewsletters(); // Refresh the list
     } catch (error: any) {
       console.error('Error publishing newsletter:', error);
@@ -399,14 +427,26 @@ const NewsletterManager = () => {
                       
                       <div className="flex gap-2">
                         {newsletter.status === 'published' && (
-                          <Button
-                            size="sm"
-                            variant="outline"
-                            onClick={() => window.open(`/staff-newsletter?newsletterId=${newsletter.id}`, '_blank')}
-                          >
-                            <Eye className="h-4 w-4 mr-1" />
-                            View
-                          </Button>
+                          <>
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              onClick={() => setViewingNewsletter(newsletter)}
+                            >
+                              <Eye className="h-4 w-4 mr-1" />
+                              View
+                            </Button>
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              onClick={() => handleResend(newsletter.id)}
+                              disabled={resending}
+                              className="bg-green-50 hover:bg-green-100 border-green-300"
+                            >
+                              <Mail className="h-4 w-4 mr-1" />
+                              {resending ? 'Sending...' : 'Resend'}
+                            </Button>
+                          </>
                         )}
                       </div>
                     </div>
@@ -415,6 +455,73 @@ const NewsletterManager = () => {
               </div>
             )}
           </Card>
+
+          {/* Newsletter Viewer Modal */}
+          {viewingNewsletter && (
+            <Card className="p-6 mt-6 bg-white shadow-2xl">
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-2xl font-bold">Newsletter Preview</h3>
+                <div className="flex gap-2">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => handleResend(viewingNewsletter.id)}
+                    disabled={resending}
+                    className="bg-green-50 hover:bg-green-100 border-green-300"
+                  >
+                    <Mail className="h-4 w-4 mr-2" />
+                    {resending ? 'Sending...' : 'Resend to All'}
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setViewingNewsletter(null)}
+                  >
+                    Close
+                  </Button>
+                </div>
+              </div>
+              
+              <div className="border-t pt-6">
+                <div className="mb-6">
+                  <div className="flex items-center gap-3 mb-4">
+                    {viewingNewsletter.category && (
+                      <span className="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm font-medium">
+                        {viewingNewsletter.category}
+                      </span>
+                    )}
+                    {viewingNewsletter.is_pinned && (
+                      <span className="px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-sm font-medium flex items-center gap-1">
+                        <Pin className="h-3 w-3" />
+                        Pinned
+                      </span>
+                    )}
+                    <span className="text-sm text-gray-500">
+                      <Calendar className="h-4 w-4 inline mr-1" />
+                      {new Date(viewingNewsletter.published_at || '').toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                      })}
+                    </span>
+                  </div>
+                  
+                  <h2 className="text-3xl font-bold mb-4">{viewingNewsletter.title}</h2>
+                  
+                  {viewingNewsletter.excerpt && (
+                    <p className="text-lg text-gray-600 italic bg-blue-50 p-4 rounded-lg border-l-4 border-blue-400">
+                      {viewingNewsletter.excerpt}
+                    </p>
+                  )}
+                </div>
+                
+                <div 
+                  className="newsletter-content prose prose-lg max-w-none"
+                  dangerouslySetInnerHTML={{ __html: viewingNewsletter.content }}
+                />
+              </div>
+            </Card>
+          )}
         </TabsContent>
 
         {/* AI Generator Tab */}
