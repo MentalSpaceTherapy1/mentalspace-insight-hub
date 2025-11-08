@@ -26,12 +26,21 @@ const ContactUs = () => {
     comments: "",
     smsConsent: false,
     timing: "",
-    // Honeypot field - bots will fill this, humans won't see it
+    // Multiple honeypot fields - bots will fill these, humans won't see them
     website: "",
+    company: "",
+    position: "",
   });
   
   // Track when form was loaded for time-based validation
   const [formLoadTime] = useState(Date.now());
+  const [interactionCount, setInteractionCount] = useState(0);
+  const [jsChallenge] = useState(() => {
+    // Simple JS challenge that bots might fail
+    const a = Math.floor(Math.random() * 10) + 1;
+    const b = Math.floor(Math.random() * 10) + 1;
+    return { a, b, answer: a + b };
+  });
 
   const businessHours = [
     "Monday 08:00 am – 05:00 pm",
@@ -45,17 +54,32 @@ const ContactUs = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Bot detection: Check if honeypot field was filled
-    if (formData.website) {
+    // Bot detection: Check if any honeypot field was filled
+    if (formData.website || formData.company || formData.position) {
       // Silently fail for bots
       console.log('Bot detected: honeypot field filled');
+      toast.error("There was an error. Please try again.");
       return;
     }
     
-    // Bot detection: Check if form was filled too quickly (less than 3 seconds)
+    // Bot detection: Check if form was filled too quickly (less than 5 seconds)
     const timeTaken = Date.now() - formLoadTime;
-    if (timeTaken < 3000) {
+    if (timeTaken < 5000) {
       toast.error("Please take a moment to review your information.");
+      return;
+    }
+    
+    // Bot detection: Check if user interacted with form
+    if (interactionCount < 3) {
+      toast.error("Please fill out the form completely.");
+      return;
+    }
+    
+    // Validate email domain (block common disposable email providers)
+    const disposableDomains = ['tempmail.com', 'guerrillamail.com', 'mailinator.com', '10minutemail.com', 'throwaway.email'];
+    const emailDomain = formData.email.split('@')[1]?.toLowerCase();
+    if (disposableDomains.includes(emailDomain)) {
+      toast.error("Please use a valid email address.");
       return;
     }
     
@@ -65,6 +89,8 @@ const ContactUs = () => {
         ...formData,
         _formLoadTime: formLoadTime,
         _submitTime: Date.now(),
+        _interactionCount: interactionCount,
+        _jsChallenge: jsChallenge.answer,
       };
       
       const result = await submitForm('contact_us', submissionData);
@@ -91,6 +117,8 @@ const ContactUs = () => {
 
   const handleInputChange = (field: string, value: string | boolean) => {
     setFormData(prev => ({ ...prev, [field]: value }));
+    // Track user interactions
+    setInteractionCount(prev => prev + 1);
   };
 
   return (
@@ -144,7 +172,7 @@ const ContactUs = () => {
                       <p className="text-muted-foreground">We'll get back to you within 24 hours</p>
                     </div>
                     <form onSubmit={handleSubmit} className="space-y-6">
-                      {/* Honeypot field - hidden from users, visible to bots */}
+                      {/* Honeypot fields - hidden from users, visible to bots */}
                       <div className="absolute -left-[9999px]" aria-hidden="true">
                         <Label htmlFor="website">Website</Label>
                         <Input
@@ -156,6 +184,31 @@ const ContactUs = () => {
                           onChange={(e) => handleInputChange("website", e.target.value)}
                         />
                       </div>
+                      <div className="absolute -left-[9999px]" aria-hidden="true">
+                        <Label htmlFor="company">Company</Label>
+                        <Input
+                          id="company"
+                          type="text"
+                          tabIndex={-1}
+                          autoComplete="off"
+                          value={formData.company}
+                          onChange={(e) => handleInputChange("company", e.target.value)}
+                        />
+                      </div>
+                      <div className="absolute -left-[9999px]" aria-hidden="true">
+                        <Label htmlFor="position">Position</Label>
+                        <Input
+                          id="position"
+                          type="text"
+                          tabIndex={-1}
+                          autoComplete="off"
+                          value={formData.position}
+                          onChange={(e) => handleInputChange("position", e.target.value)}
+                        />
+                      </div>
+                      
+                      {/* Hidden JS challenge field */}
+                      <input type="hidden" name="challenge" value={jsChallenge.answer} />
                       
                       <div className="grid md:grid-cols-2 gap-6">
                         <div className="space-y-2">

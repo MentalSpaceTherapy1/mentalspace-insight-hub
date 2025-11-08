@@ -81,8 +81,50 @@ serve(async (req) => {
     const body = await req.json();
     const { formType, formData, csrfToken }: FormSubmission & { csrfToken?: string } = body;
 
-    // Bot detection: Check for honeypot field
-    if (formData.website && formData.website.trim() !== '') {
+    // Get client IP first for all checks
+    const forwardedFor = req.headers.get('x-forwarded-for');
+    const realIP = req.headers.get('x-real-ip');
+    let clientIP = 'unknown';
+    if (forwardedFor) {
+      clientIP = forwardedFor.split(',')[0].trim();
+    } else if (realIP) {
+      clientIP = realIP.trim();
+    }
+    const userAgent = req.headers.get('user-agent') || 'unknown';
+
+    // Check IP blacklist first
+    const { data: blacklistedIP } = await supabase
+      .from('ip_blacklist')
+      .select('id, reason')
+      .eq('ip_address', clientIP)
+      .eq('is_active', true)
+      .maybeSingle();
+
+    if (blacklistedIP) {
+      console.log('Blocked: IP is blacklisted', clientIP);
+      
+      await supabase
+        .from('form_submissions')
+        .insert({
+          form_type: formType,
+          form_data: formData,
+          ip_address: clientIP,
+          user_agent: userAgent,
+          is_blocked: true,
+          blocked_reason: 'ip_blacklisted',
+          spam_score: 10,
+        });
+      
+      return new Response(JSON.stringify({ success: false, error: 'Access denied' }), {
+        status: 403,
+        headers: { ...getCorsHeaders(origin), 'Content-Type': 'application/json' },
+      });
+    }
+
+    // Bot detection: Check for any honeypot field
+    if ((formData.website && formData.website.trim() !== '') || 
+        (formData.company && formData.company.trim() !== '') ||
+        (formData.position && formData.position.trim() !== '')) {
       console.log('Bot detected: honeypot field filled');
       
       // Log to security audit log
@@ -124,10 +166,10 @@ serve(async (req) => {
       });
     }
 
-    // Bot detection: Check form fill time (must be at least 3 seconds)
+    // Bot detection: Check form fill time (must be at least 5 seconds)
     if (formData._formLoadTime && formData._submitTime) {
       const fillTime = formData._submitTime - formData._formLoadTime;
-      if (fillTime < 3000) {
+      if (fillTime < 5000) {
         console.log('Bot detected: form filled too quickly', fillTime);
         
         const clientIP = req.headers.get('x-forwarded-for')?.split(',')[0].trim() || 
@@ -170,15 +212,43 @@ serve(async (req) => {
       }
     }
 
+    // Bot detection: Check interaction count
+    if (formData._interactionCount && formData._interactionCount < 3) {
+      console.log('Bot detected: insufficient interactions');
+      
+      const clientIP = req.headers.get('x-forwarded-for')?.split(',')[0].trim() || 
+                       req.headers.get('x-real-ip')?.trim() || 'unknown';
+      const userAgent = req.headers.get('user-agent') || 'unknown';
+      
+      await supabase
+        .from('form_submissions')
+        .insert({
+          form_type: formType,
+          form_data: formData,
+          ip_address: clientIP,
+          user_agent: userAgent,
+          is_blocked: true,
+          blocked_reason: 'insufficient_interaction',
+          spam_score: 8,
+        });
+      
+      return new Response(JSON.stringify({ success: false, error: 'Invalid submission' }), {
+        status: 400,
+        headers: { ...getCorsHeaders(origin), 'Content-Type': 'application/json' },
+      });
+    }
+
     // Content-based spam detection
-    const messageContent = (formData.message || formData.details || formData.description || '').toLowerCase();
+    const messageContent = (formData.message || formData.comments || formData.details || formData.description || '').toLowerCase();
+    const nameContent = (formData.name || '').toLowerCase();
+    const emailContent = (formData.email || '').toLowerCase();
     
-    // Spam indicators
+    // Enhanced spam indicators
     const spamPatterns = {
       // Sales/marketing keywords
-      sales: /\b(seo services?|digital marketing|web design services?|link building|ranking|outreach|partnership|collaboration|business proposal|increase (sales|traffic|revenue))\b/i,
+      sales: /\b(seo services?|digital marketing|web design services?|link building|ranking|outreach|partnership opportunity|collaboration opportunity|business proposal|increase (sales|traffic|revenue)|guest post|backlink|promote your|advertise|marketing agency|grow your business)\b/i,
       // Generic salesy phrases
-      generic: /\b(hope this (email|message) finds you|wanted to reach out|i came across your|offering (our|my) services?|help (you|your business))\b/i,
+      generic: /\b(hope this (email|message) finds you|wanted to reach out|i came across your|offering (our|my) services?|help (you|your business)|interested in working|looking to partner|would like to discuss)\b/i,
       // URLs (legitimate users rarely include URLs in contact forms)
       urls: /(https?:\/\/|www\.)[^\s]+/gi,
       // Email addresses in message body (often spam)
@@ -186,7 +256,13 @@ serve(async (req) => {
       // Excessive caps or exclamation
       excessive: /([A-Z\s]{20,}|!{3,})/,
       // Common spam phrases
-      spam: /\b(click here|limited time|act now|special offer|guaranteed|100%|free quote|no obligation)\b/i
+      spam: /\b(click here|limited time|act now|special offer|guaranteed|100%|free quote|no obligation|risk free|call now|order now|buy now|get started today)\b/i,
+      // Crypto/investment spam
+      crypto: /\b(bitcoin|cryptocurrency|forex|trading|investment|profit|roi|passive income)\b/i,
+      // Generic spam names
+      spamNames: /\b(john|mike|david|james|robert|mary|jennifer)\s+(smith|johnson|williams|brown|jones|davis)\b/i,
+      // Disposable email domains
+      disposable: /@(tempmail|guerrillamail|mailinator|10minutemail|throwaway|trashmail|yopmail|fakeinbox)\./i,
     };
 
     let spamScore = 0;
@@ -194,33 +270,60 @@ serve(async (req) => {
 
     // Check each pattern
     if (spamPatterns.sales.test(messageContent)) {
-      spamScore += 3;
+      spamScore += 4;
       spamReasons.push('sales_keywords');
     }
     if (spamPatterns.generic.test(messageContent)) {
-      spamScore += 2;
+      spamScore += 3;
       spamReasons.push('generic_sales_language');
     }
     if (spamPatterns.urls.test(messageContent)) {
-      spamScore += 4;
+      spamScore += 5;
       spamReasons.push('contains_urls');
     }
     if (spamPatterns.emails.test(messageContent)) {
-      spamScore += 2;
+      spamScore += 3;
       spamReasons.push('contains_email');
     }
     if (spamPatterns.excessive.test(messageContent)) {
-      spamScore += 1;
+      spamScore += 2;
       spamReasons.push('excessive_formatting');
     }
     if (spamPatterns.spam.test(messageContent)) {
-      spamScore += 3;
+      spamScore += 4;
       spamReasons.push('spam_phrases');
     }
+    if (spamPatterns.crypto.test(messageContent)) {
+      spamScore += 5;
+      spamReasons.push('crypto_investment');
+    }
+    if (spamPatterns.spamNames.test(nameContent)) {
+      spamScore += 2;
+      spamReasons.push('generic_name');
+    }
+    if (spamPatterns.disposable.test(emailContent)) {
+      spamScore += 6;
+      spamReasons.push('disposable_email');
+    }
 
-    // Block if spam score is too high
-    if (spamScore >= 4) {
+    // Block if spam score is too high (lowered threshold)
+    if (spamScore >= 3) {
       console.log('Content spam detected. Score:', spamScore, 'Reasons:', spamReasons);
+      
+      // Auto-blacklist IPs with high spam scores
+      if (spamScore >= 8) {
+        await supabase
+          .from('ip_blacklist')
+          .upsert({
+            ip_address: clientIP,
+            reason: `Auto-blocked: High spam score (${spamScore}) - ${spamReasons.join(', ')}`,
+            is_active: true,
+            blocked_until: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(), // 7 days
+          }, {
+            onConflict: 'ip_address',
+          });
+        console.log('IP auto-blacklisted:', clientIP);
+      }
       
       const clientIP = req.headers.get('x-forwarded-for')?.split(',')[0].trim() || 
                        req.headers.get('x-real-ip')?.trim() || 'unknown';
@@ -266,7 +369,11 @@ serve(async (req) => {
     const cleanFormData = { ...formData };
     delete cleanFormData._formLoadTime;
     delete cleanFormData._submitTime;
+    delete cleanFormData._interactionCount;
+    delete cleanFormData._jsChallenge;
     delete cleanFormData.website;
+    delete cleanFormData.company;
+    delete cleanFormData.position;
 
     // Basic CSRF mitigation via Origin check done above. If you later serve from multiple domains, add them to ALLOWED_ORIGINS.
     // Optional double-submit validation when cookie is present (may be absent due to cross-origin call).
@@ -279,30 +386,34 @@ serve(async (req) => {
       });
     }
 
-    // Get client IP and user agent
-    const forwardedFor = req.headers.get('x-forwarded-for');
-    const realIP = req.headers.get('x-real-ip');
-    let clientIP = 'unknown';
-    if (forwardedFor) {
-      clientIP = forwardedFor.split(',')[0].trim();
-    } else if (realIP) {
-      clientIP = realIP.trim();
-    }
-    const userAgent = req.headers.get('user-agent') || 'unknown';
-
     console.log(`Processing ${formType} form submission from IP: ${clientIP}`);
 
-    // Rate limiting: Check recent submissions from this IP
-    const fiveMinutesAgo = new Date(Date.now() - 5 * 60 * 1000).toISOString();
+    // Stricter rate limiting: Check recent submissions from this IP
+    const tenMinutesAgo = new Date(Date.now() - 10 * 60 * 1000).toISOString();
     const { data: recentSubmissions, error: rateLimitError } = await supabase
       .from('form_submissions')
       .select('id')
       .eq('ip_address', clientIP)
       .eq('form_type', formType)
-      .gte('created_at', fiveMinutesAgo);
+      .gte('created_at', tenMinutesAgo);
 
-    if (!rateLimitError && recentSubmissions && recentSubmissions.length >= 3) {
+    if (!rateLimitError && recentSubmissions && recentSubmissions.length >= 2) {
       console.log('Rate limit exceeded for IP:', clientIP);
+      
+      // Auto-blacklist IPs that hit rate limit multiple times
+      if (recentSubmissions.length >= 5) {
+        await supabase
+          .from('ip_blacklist')
+          .upsert({
+            ip_address: clientIP,
+            reason: `Auto-blocked: Excessive rate limit violations (${recentSubmissions.length} attempts)`,
+            is_active: true,
+            blocked_until: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(), // 30 days
+          }, {
+            onConflict: 'ip_address',
+          });
+        console.log('IP auto-blacklisted for rate limit abuse:', clientIP);
+      }
       
       // Store blocked submission
       await supabase

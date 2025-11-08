@@ -407,6 +407,36 @@ export type Database = {
           },
         ]
       }
+      ip_blacklist: {
+        Row: {
+          blocked_until: string | null
+          created_at: string
+          id: string
+          ip_address: string
+          is_active: boolean
+          reason: string
+          updated_at: string
+        }
+        Insert: {
+          blocked_until?: string | null
+          created_at?: string
+          id?: string
+          ip_address: string
+          is_active?: boolean
+          reason: string
+          updated_at?: string
+        }
+        Update: {
+          blocked_until?: string | null
+          created_at?: string
+          id?: string
+          ip_address?: string
+          is_active?: boolean
+          reason?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       newsletter_analytics: {
         Row: {
           average_engagement_time: number | null
@@ -773,6 +803,7 @@ export type Database = {
         }[]
       }
       enforce_data_retention: { Args: never; Returns: undefined }
+      expire_ip_blacklist: { Args: never; Returns: undefined }
       get_admin_minimal_info: {
         Args: { target_user_id?: string }
         Returns: {
