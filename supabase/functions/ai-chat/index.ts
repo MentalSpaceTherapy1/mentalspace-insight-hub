@@ -1,13 +1,48 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 
-const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+const ALLOWED_ORIGINS = new Set([
+  'http://localhost:5173',
+  'http://localhost:8080',
+  'https://coping-healing-therapy.lovable.app',
+  'https://chctherapy.com',
+  'https://www.chctherapy.com',
+]);
+
+const isAllowedOrigin = (origin: string | null) => {
+  if (!origin) return false;
+  try {
+    const url = new URL(origin);
+    const hostname = url.hostname;
+    return (
+      ALLOWED_ORIGINS.has(origin) ||
+      hostname.endsWith('.lovableproject.com') ||
+      hostname.endsWith('.lovable.app')
+    );
+  } catch {
+    return false;
+  }
 };
 
+const getCorsHeaders = (origin: string | null) => ({
+  'Access-Control-Allow-Origin': origin && isAllowedOrigin(origin) ? origin : 'https://chctherapy.com',
+  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+});
+
 serve(async (req) => {
+  const origin = req.headers.get('origin');
+  const corsHeaders = getCorsHeaders(origin);
+
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
+  }
+
+  // Validate origin for non-OPTIONS requests
+  if (!isAllowedOrigin(origin)) {
+    console.warn('Blocked request from disallowed origin:', origin);
+    return new Response(
+      JSON.stringify({ error: 'Origin not allowed' }),
+      { status: 403, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+    );
   }
 
   try {
