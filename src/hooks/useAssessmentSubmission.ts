@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { encryptSensitiveData, generateDataHash } from '@/lib/encryption';
+import { trackAssessmentCompletion } from '@/utils/googleTagManager';
 
 interface AssessmentData {
   sessionId: string;
@@ -105,6 +106,10 @@ export const useAssessmentSubmission = () => {
       }
 
       console.log('Assessment saved successfully:', data);
+      
+      // Track successful assessment completion
+      trackAssessmentCompletion(assessmentData.assessmentType);
+      
       setState({ isSubmitting: false, isSuccess: true, error: null });
       return { success: true, sessionId: data.sessionId, databaseId: data.databaseId };
 

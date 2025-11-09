@@ -1,5 +1,11 @@
 import { useState } from 'react';
 import { supabase } from '@/integrations/supabase/client';
+import { 
+  trackFormSubmission,
+  trackBookAppointmentConversion,
+  trackTherapistMatchingConversion,
+  trackInsuranceFormConversion
+} from '@/utils/googleTagManager';
 
 export type FormType = 'therapist_matching' | 'contact_us' | 'career_application' | 'assessment_contact';
 
@@ -47,6 +53,22 @@ export const useFormSubmission = () => {
       }
 
       console.log('Form submitted successfully:', data);
+      
+      // Track conversion based on form type
+      switch (formType) {
+        case 'therapist_matching':
+          trackTherapistMatchingConversion();
+          break;
+        case 'contact_us':
+          trackBookAppointmentConversion();
+          break;
+        case 'assessment_contact':
+          trackBookAppointmentConversion();
+          break;
+        default:
+          trackFormSubmission(formType);
+      }
+      
       setState({ isSubmitting: false, isSuccess: true, error: null });
       return { success: true, submissionId: data.submissionId };
 
