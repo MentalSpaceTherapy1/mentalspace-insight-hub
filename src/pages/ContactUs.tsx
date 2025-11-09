@@ -14,6 +14,15 @@ import heroImage from "@/assets/contact-us-hero.jpg";
 import { useFormSubmission } from "@/hooks/useFormSubmission";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { toast } from "sonner";
+import { 
+  generateEnhancedChallenge, 
+  generateProofOfWork, 
+  solveProofOfWork,
+  generateCSRFToken,
+  type EnhancedChallenge,
+  type ProofOfWork,
+  type CSRFToken
+} from "@/lib/securityUtils";
 
 const ContactUs = () => {
   const navigate = useNavigate();
@@ -35,12 +44,37 @@ const ContactUs = () => {
   // Track when form was loaded for time-based validation
   const [formLoadTime] = useState(Date.now());
   const [interactionCount, setInteractionCount] = useState(0);
-  const [jsChallenge] = useState(() => {
-    // Simple JS challenge that bots might fail
-    const a = Math.floor(Math.random() * 10) + 1;
-    const b = Math.floor(Math.random() * 10) + 1;
-    return { a, b, answer: a + b };
-  });
+  
+  // Enhanced JS Challenge
+  const [enhancedChallenge] = useState<{ challenge: any; solution: EnhancedChallenge }>(() => 
+    generateEnhancedChallenge()
+  );
+  
+  // Proof of Work Challenge
+  const [proofOfWork] = useState<ProofOfWork>(() => generateProofOfWork(3));
+  const [powSolution, setPowSolution] = useState<string>("");
+  
+  // CSRF Token
+  const [csrfToken, setCSRFToken] = useState<CSRFToken | null>(null);
+  
+  // Initialize security measures on mount
+  useEffect(() => {
+    const initSecurity = async () => {
+      // Generate CSRF token
+      const token = await generateCSRFToken();
+      setCSRFToken(token);
+      
+      // Solve proof of work in background
+      try {
+        const solution = await solveProofOfWork(proofOfWork);
+        setPowSolution(solution);
+      } catch (err) {
+        console.error('PoW failed:', err);
+      }
+    };
+    
+    initSecurity();
+  }, [proofOfWork]);
 
   const businessHours = [
     "Monday 08:00 am – 05:00 pm",
@@ -56,7 +90,6 @@ const ContactUs = () => {
     
     // Bot detection: Check if any honeypot field was filled
     if (formData.website || formData.company || formData.position) {
-      // Silently fail for bots
       console.log('Bot detected: honeypot field filled');
       toast.error("There was an error. Please try again.");
       return;
@@ -75,6 +108,18 @@ const ContactUs = () => {
       return;
     }
     
+    // Validate Proof of Work
+    if (!powSolution) {
+      toast.error("Security validation in progress. Please wait a moment.");
+      return;
+    }
+    
+    // Validate CSRF Token
+    if (!csrfToken) {
+      toast.error("Security validation failed. Please refresh the page.");
+      return;
+    }
+    
     // Validate email domain (block common disposable email providers)
     const disposableDomains = ['tempmail.com', 'guerrillamail.com', 'mailinator.com', '10minutemail.com', 'throwaway.email'];
     const emailDomain = formData.email.split('@')[1]?.toLowerCase();
@@ -84,13 +129,19 @@ const ContactUs = () => {
     }
     
     try {
-      // Add anti-bot metadata
+      // Add all security challenges to submission
       const submissionData = {
         ...formData,
         _formLoadTime: formLoadTime,
         _submitTime: Date.now(),
         _interactionCount: interactionCount,
-        _jsChallenge: jsChallenge.answer,
+        _enhancedChallenge: enhancedChallenge.solution,
+        _proofOfWork: {
+          challenge: proofOfWork.challenge,
+          difficulty: proofOfWork.difficulty,
+          solution: powSolution
+        },
+        _csrfToken: csrfToken,
       };
       
       const result = await submitForm('contact_us', submissionData);
@@ -100,7 +151,6 @@ const ContactUs = () => {
           description: "You'll receive a confirmation email shortly."
         });
         
-        // Navigate to thank you page
         navigate("/thank-you");
       } else {
         toast.error("There was an error submitting your message. Please try again.");
@@ -207,8 +257,10 @@ const ContactUs = () => {
                         />
                       </div>
                       
-                      {/* Hidden JS challenge field */}
-                      <input type="hidden" name="challenge" value={jsChallenge.answer} />
+                      {/* Hidden security challenge fields */}
+                      <input type="hidden" name="enhanced_challenge" value={JSON.stringify(enhancedChallenge.solution)} />
+                      <input type="hidden" name="pow_solution" value={powSolution} />
+                      <input type="hidden" name="csrf_token" value={csrfToken?.token || ''} />
                       
                       <div className="grid md:grid-cols-2 gap-6">
                         <div className="space-y-2">

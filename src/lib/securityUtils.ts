@@ -197,3 +197,205 @@ export class RateLimiter {
  * Global rate limiter instance
  */
 export const globalRateLimiter = new RateLimiter();
+
+/**
+ * Enhanced JavaScript Challenge - Advanced bot detection
+ */
+export interface EnhancedChallenge {
+  canvasFingerprint: string;
+  computationResult: number;
+  timestamp: number;
+  entropy: number;
+}
+
+export const generateEnhancedChallenge = (): { challenge: any; solution: EnhancedChallenge } => {
+  // Canvas fingerprinting
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+  let canvasFingerprint = 'no-canvas';
+  
+  if (ctx) {
+    ctx.textBaseline = 'top';
+    ctx.font = '14px Arial';
+    ctx.fillStyle = '#f60';
+    ctx.fillRect(125, 1, 62, 20);
+    ctx.fillStyle = '#069';
+    ctx.fillText('Browser Fingerprint', 2, 15);
+    canvasFingerprint = canvas.toDataURL().slice(-50);
+  }
+  
+  // Complex computation
+  const a = Math.floor(Math.random() * 50) + 10;
+  const b = Math.floor(Math.random() * 50) + 10;
+  const c = Math.floor(Math.random() * 10) + 1;
+  const computationResult = (a * b) + c;
+  
+  // Entropy measurement (randomness from timing)
+  const entropy = performance.now() % 1000;
+  
+  return {
+    challenge: { a, b, c },
+    solution: {
+      canvasFingerprint,
+      computationResult,
+      timestamp: Date.now(),
+      entropy: Math.floor(entropy)
+    }
+  };
+};
+
+export const validateEnhancedChallenge = (
+  submitted: EnhancedChallenge,
+  expected: EnhancedChallenge,
+  maxAge: number = 300000 // 5 minutes
+): boolean => {
+  // Check timestamp
+  if (Date.now() - submitted.timestamp > maxAge) {
+    return false;
+  }
+  
+  // Check computation
+  if (submitted.computationResult !== expected.computationResult) {
+    return false;
+  }
+  
+  // Canvas fingerprint should match
+  if (submitted.canvasFingerprint !== expected.canvasFingerprint) {
+    return false;
+  }
+  
+  return true;
+};
+
+/**
+ * Proof of Work Challenge - Computational puzzle
+ */
+export interface ProofOfWork {
+  challenge: string;
+  difficulty: number;
+  solution?: string;
+}
+
+export const generateProofOfWork = (difficulty: number = 4): ProofOfWork => {
+  const challenge = generateSecureToken(16);
+  return { challenge, difficulty };
+};
+
+export const solveProofOfWork = async (pow: ProofOfWork): Promise<string> => {
+  const { challenge, difficulty } = pow;
+  let nonce = 0;
+  const target = '0'.repeat(difficulty);
+  
+  while (true) {
+    const attempt = `${challenge}:${nonce}`;
+    const hashBuffer = await crypto.subtle.digest(
+      'SHA-256',
+      new TextEncoder().encode(attempt)
+    );
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    
+    if (hashHex.startsWith(target)) {
+      return nonce.toString();
+    }
+    
+    nonce++;
+    
+    // Prevent infinite loops
+    if (nonce > 1000000) {
+      throw new Error('Proof of work failed');
+    }
+  }
+};
+
+export const verifyProofOfWork = async (
+  challenge: string,
+  difficulty: number,
+  solution: string
+): Promise<boolean> => {
+  try {
+    const attempt = `${challenge}:${solution}`;
+    const hashBuffer = await crypto.subtle.digest(
+      'SHA-256',
+      new TextEncoder().encode(attempt)
+    );
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    const target = '0'.repeat(difficulty);
+    
+    return hashHex.startsWith(target);
+  } catch {
+    return false;
+  }
+};
+
+/**
+ * Time-based CSRF Token Generation
+ */
+export interface CSRFToken {
+  token: string;
+  timestamp: number;
+  signature: string;
+}
+
+export const generateCSRFToken = async (): Promise<CSRFToken> => {
+  const token = generateSecureToken(32);
+  const timestamp = Date.now();
+  
+  // Create signature using Web Crypto API
+  const data = `${token}:${timestamp}`;
+  const encoder = new TextEncoder();
+  const dataBuffer = encoder.encode(data);
+  
+  // Generate a key from browser fingerprint
+  const fingerprint = navigator.userAgent + navigator.language;
+  const keyMaterial = await crypto.subtle.digest('SHA-256', encoder.encode(fingerprint));
+  const key = await crypto.subtle.importKey(
+    'raw',
+    keyMaterial,
+    { name: 'HMAC', hash: 'SHA-256' },
+    false,
+    ['sign']
+  );
+  
+  const signatureBuffer = await crypto.subtle.sign('HMAC', key, dataBuffer);
+  const signatureArray = Array.from(new Uint8Array(signatureBuffer));
+  const signature = signatureArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  
+  return { token, timestamp, signature };
+};
+
+export const validateCSRFToken = async (
+  csrfToken: CSRFToken,
+  maxAge: number = 3600000 // 1 hour
+): Promise<boolean> => {
+  // Check token age
+  if (Date.now() - csrfToken.timestamp > maxAge) {
+    return false;
+  }
+  
+  try {
+    // Recreate signature
+    const data = `${csrfToken.token}:${csrfToken.timestamp}`;
+    const encoder = new TextEncoder();
+    const dataBuffer = encoder.encode(data);
+    
+    const fingerprint = navigator.userAgent + navigator.language;
+    const keyMaterial = await crypto.subtle.digest('SHA-256', encoder.encode(fingerprint));
+    const key = await crypto.subtle.importKey(
+      'raw',
+      keyMaterial,
+      { name: 'HMAC', hash: 'SHA-256' },
+      false,
+      ['sign']
+    );
+    
+    const signatureBuffer = await crypto.subtle.sign('HMAC', key, dataBuffer);
+    const signatureArray = Array.from(new Uint8Array(signatureBuffer));
+    const expectedSignature = signatureArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    
+    return expectedSignature === csrfToken.signature;
+  } catch {
+    return false;
+  }
+};

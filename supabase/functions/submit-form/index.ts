@@ -238,6 +238,102 @@ serve(async (req) => {
       });
     }
 
+    // Advanced Bot Detection: Validate Enhanced JavaScript Challenge
+    if (formData._enhancedChallenge) {
+      const challenge = formData._enhancedChallenge;
+      const ageMs = Date.now() - challenge.timestamp;
+      
+      // Check if challenge is too old (more than 5 minutes)
+      if (ageMs > 300000) {
+        console.log('Enhanced challenge expired');
+        await supabase
+          .from('form_submissions')
+          .insert({
+            form_type: formType,
+            form_data: formData,
+            ip_address: clientIP,
+            user_agent: userAgent,
+            is_blocked: true,
+            blocked_reason: 'challenge_expired',
+            spam_score: 7,
+          });
+        
+        return new Response(JSON.stringify({ success: false, error: 'Session expired' }), {
+          status: 400,
+          headers: { ...getCorsHeaders(origin), 'Content-Type': 'application/json' },
+        });
+      }
+    }
+
+    // Advanced Bot Detection: Validate Proof of Work
+    if (formData._proofOfWork) {
+      const { challenge, difficulty, solution } = formData._proofOfWork;
+      
+      // Verify the proof of work
+      try {
+        const attempt = `${challenge}:${solution}`;
+        const encoder = new TextEncoder();
+        const data = encoder.encode(attempt);
+        const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        const target = '0'.repeat(difficulty);
+        
+        if (!hashHex.startsWith(target)) {
+          console.log('Invalid proof of work');
+          await supabase
+            .from('form_submissions')
+            .insert({
+              form_type: formType,
+              form_data: formData,
+              ip_address: clientIP,
+              user_agent: userAgent,
+              is_blocked: true,
+              blocked_reason: 'invalid_pow',
+              spam_score: 9,
+            });
+          
+          return new Response(JSON.stringify({ success: false, error: 'Invalid submission' }), {
+            status: 400,
+            headers: { ...getCorsHeaders(origin), 'Content-Type': 'application/json' },
+          });
+        }
+      } catch (err) {
+        console.log('Proof of work validation failed:', err);
+        return new Response(JSON.stringify({ success: false, error: 'Invalid submission' }), {
+          status: 400,
+          headers: { ...getCorsHeaders(origin), 'Content-Type': 'application/json' },
+        });
+      }
+    }
+
+    // Advanced Bot Detection: Validate CSRF Token
+    if (formData._csrfToken) {
+      const csrfToken = formData._csrfToken;
+      const tokenAge = Date.now() - csrfToken.timestamp;
+      
+      // Check if token is too old (more than 1 hour)
+      if (tokenAge > 3600000) {
+        console.log('CSRF token expired');
+        await supabase
+          .from('form_submissions')
+          .insert({
+            form_type: formType,
+            form_data: formData,
+            ip_address: clientIP,
+            user_agent: userAgent,
+            is_blocked: true,
+            blocked_reason: 'csrf_expired',
+            spam_score: 7,
+          });
+        
+        return new Response(JSON.stringify({ success: false, error: 'Session expired' }), {
+          status: 400,
+          headers: { ...getCorsHeaders(origin), 'Content-Type': 'application/json' },
+        });
+      }
+    }
+
     // Content-based spam detection
     const messageContent = (formData.message || formData.comments || formData.details || formData.description || '').toLowerCase();
     const nameContent = (formData.name || '').toLowerCase();
@@ -371,6 +467,9 @@ serve(async (req) => {
     delete cleanFormData._submitTime;
     delete cleanFormData._interactionCount;
     delete cleanFormData._jsChallenge;
+    delete cleanFormData._enhancedChallenge;
+    delete cleanFormData._proofOfWork;
+    delete cleanFormData._csrfToken;
     delete cleanFormData.website;
     delete cleanFormData.company;
     delete cleanFormData.position;
