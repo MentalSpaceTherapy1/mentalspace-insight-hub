@@ -334,6 +334,100 @@ serve(async (req) => {
       }
     }
 
+    // reCAPTCHA Verification
+    if (formData._recaptchaToken) {
+      console.log('[Submit Form] Verifying reCAPTCHA...');
+      try {
+        const recaptchaSecret = Deno.env.get('RECAPTCHA_SECRET_KEY');
+        if (!recaptchaSecret) {
+          console.error('[Submit Form] RECAPTCHA_SECRET_KEY not configured');
+        } else {
+          const recaptchaResponse = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: `secret=${recaptchaSecret}&response=${formData._recaptchaToken}&remoteip=${clientIP}`
+          });
+
+          const recaptchaResult = await recaptchaResponse.json();
+          console.log('[Submit Form] reCAPTCHA result:', { 
+            success: recaptchaResult.success, 
+            score: recaptchaResult.score,
+            errorCodes: recaptchaResult['error-codes']
+          });
+
+          if (!recaptchaResult.success) {
+            console.warn('[Submit Form] reCAPTCHA verification failed');
+            await supabase
+              .from('form_submissions')
+              .insert({
+                form_type: formType,
+                form_data: formData,
+                ip_address: clientIP,
+                user_agent: userAgent,
+                is_blocked: true,
+                blocked_reason: 'recaptcha_failed',
+                spam_score: 10,
+              });
+            
+            await supabase
+              .from('security_audit_log')
+              .insert({
+                event_type: 'blocked_recaptcha',
+                table_name: 'form_submissions',
+                ip_address: clientIP,
+                details: {
+                  form_type: formType,
+                  error_codes: recaptchaResult['error-codes'],
+                  timestamp: new Date().toISOString(),
+                  severity: 'HIGH'
+                }
+              });
+            
+            return new Response(JSON.stringify({ success: false, error: 'reCAPTCHA verification failed' }), {
+              status: 400,
+              headers: { ...getCorsHeaders(origin), 'Content-Type': 'application/json' },
+            });
+          }
+
+          // Optional: Check score for v3 (if using v3 instead of v2)
+          if (recaptchaResult.score !== undefined && recaptchaResult.score < 0.5) {
+            console.warn('[Submit Form] Low reCAPTCHA score:', recaptchaResult.score);
+            await supabase
+              .from('form_submissions')
+              .insert({
+                form_type: formType,
+                form_data: formData,
+                ip_address: clientIP,
+                user_agent: userAgent,
+                is_blocked: true,
+                blocked_reason: 'low_recaptcha_score',
+                spam_score: 8,
+              });
+            
+            return new Response(JSON.stringify({ success: false, error: 'reCAPTCHA score too low' }), {
+              status: 400,
+              headers: { ...getCorsHeaders(origin), 'Content-Type': 'application/json' },
+            });
+          }
+        }
+      } catch (error) {
+        console.error('[Submit Form] reCAPTCHA verification error:', error);
+        // Don't block submission on reCAPTCHA service errors, but log it
+        await supabase
+          .from('security_audit_log')
+          .insert({
+            event_type: 'recaptcha_error',
+            table_name: 'form_submissions',
+            ip_address: clientIP,
+            details: {
+              error: String(error),
+              timestamp: new Date().toISOString(),
+              severity: 'LOW'
+            }
+          });
+      }
+    }
+
     // Content-based spam detection
     const messageContent = (formData.message || formData.comments || formData.details || formData.description || '').toLowerCase();
     const nameContent = (formData.name || '').toLowerCase();
@@ -470,6 +564,7 @@ serve(async (req) => {
     delete cleanFormData._enhancedChallenge;
     delete cleanFormData._proofOfWork;
     delete cleanFormData._csrfToken;
+    delete cleanFormData._recaptchaToken;
     delete cleanFormData.website;
     delete cleanFormData.company;
     delete cleanFormData.position;

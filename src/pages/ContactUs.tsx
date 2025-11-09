@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -14,6 +14,7 @@ import heroImage from "@/assets/contact-us-hero.jpg";
 import { useFormSubmission } from "@/hooks/useFormSubmission";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { toast } from "sonner";
+import ReCAPTCHA from 'react-google-recaptcha';
 import { 
   generateEnhancedChallenge, 
   generateProofOfWork, 
@@ -56,6 +57,9 @@ const ContactUs = () => {
   
   // CSRF Token
   const [csrfToken, setCSRFToken] = useState<CSRFToken | null>(null);
+  
+  // reCAPTCHA ref
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
   
   // Initialize security measures on mount
   useEffect(() => {
@@ -127,6 +131,14 @@ const ContactUs = () => {
       toast.error("Please use a valid email address.");
       return;
     }
+
+    // Get reCAPTCHA token
+    const recaptchaToken = await recaptchaRef.current?.executeAsync();
+    if (!recaptchaToken) {
+      toast.error("Please complete the reCAPTCHA verification.");
+      recaptchaRef.current?.reset();
+      return;
+    }
     
     try {
       // Add all security challenges to submission
@@ -142,6 +154,7 @@ const ContactUs = () => {
           solution: powSolution
         },
         _csrfToken: csrfToken,
+        _recaptchaToken: recaptchaToken,
       };
       
       const result = await submitForm('contact_us', submissionData);
@@ -154,9 +167,11 @@ const ContactUs = () => {
         navigate("/thank-you");
       } else {
         toast.error("There was an error submitting your message. Please try again.");
+        recaptchaRef.current?.reset();
       }
     } catch (err) {
       toast.error("There was an error submitting your message. Please try again.");
+      recaptchaRef.current?.reset();
     }
   };
 
@@ -346,6 +361,15 @@ const ContactUs = () => {
                         <Label htmlFor="sms-consent" className="text-sm leading-relaxed">
                           By checking this box, you agree to receive SMS/Text messages from Coping & Healing Counseling. Reply STOP to unsubscribe at any time. Messages and data rates may apply. Message frequency varies.
                         </Label>
+                      </div>
+
+                      {/* reCAPTCHA */}
+                      <div className="flex justify-center">
+                        <ReCAPTCHA
+                          ref={recaptchaRef}
+                          size="invisible"
+                          sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY || ''}
+                        />
                       </div>
 
                       <Button type="submit" className="w-full group" size="lg" disabled={isSubmitting}>

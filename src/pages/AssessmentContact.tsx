@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -16,6 +16,7 @@ import { useAssessmentSubmission } from "@/hooks/useAssessmentSubmission";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import SEOHead from "@/components/SEOHead";
+import ReCAPTCHA from 'react-google-recaptcha';
 
 const AssessmentContact = () => {
   const navigate = useNavigate();
@@ -24,6 +25,7 @@ const AssessmentContact = () => {
   const { submitForm, isSubmitting: isSubmittingContact } = useFormSubmission();
   const { saveAssessment, isSubmitting: isSavingAssessment } = useAssessmentSubmission();
   const { trackFormStart } = useAnalytics();
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
   
   // Get assessment results from navigation state
   const assessmentResults = location.state as {
@@ -107,6 +109,14 @@ const AssessmentContact = () => {
       return;
     }
 
+    // Get reCAPTCHA token
+    const recaptchaToken = await recaptchaRef.current?.executeAsync();
+    if (!recaptchaToken) {
+      toast.error("Please complete the reCAPTCHA verification.");
+      recaptchaRef.current?.reset();
+      return;
+    }
+
     try {
       // First save the assessment data if it exists
       if (assessmentResults) {
@@ -125,6 +135,7 @@ const AssessmentContact = () => {
       // Then submit the contact form
       const result = await submitForm('assessment_contact', {
         ...formData,
+        _recaptchaToken: recaptchaToken,
         assessmentData: assessmentResults ? {
           type: assessmentResults.assessmentType,
           score: assessmentResults.score,
@@ -137,9 +148,11 @@ const AssessmentContact = () => {
         navigate('/thank-you');
       } else {
         toast.error("There was an error submitting your information. Please try again.");
+        recaptchaRef.current?.reset();
       }
     } catch (err) {
       toast.error("There was an error submitting your information. Please try again.");
+      recaptchaRef.current?.reset();
     }
   };
 
@@ -467,6 +480,15 @@ const AssessmentContact = () => {
                     <strong>Crisis Support:</strong> If you feel unsafe or have thoughts of harming yourself, 
                     call/text/chat 988 (24/7 Suicide & Crisis Lifeline). In an emergency, call 911.
                   </p>
+                </div>
+
+                {/* reCAPTCHA */}
+                <div className="flex justify-center">
+                  <ReCAPTCHA
+                    ref={recaptchaRef}
+                    size="invisible"
+                    sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY || ''}
+                  />
                 </div>
 
                 {/* Submit Button */}
