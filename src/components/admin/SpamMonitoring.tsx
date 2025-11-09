@@ -25,32 +25,32 @@ import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 
 interface SpamStats {
-  total_submissions_24h: number;
-  blocked_honeypot_24h: number;
-  blocked_timing_24h: number;
-  blocked_rate_limit_24h: number;
+  total_submissions: number;
+  honeypot_blocked: number;
+  timing_blocked: number;
+  rate_limit_blocked: number;
   suspicious_ips: number;
   top_spam_ips: Array<{
     ip_address: string;
-    attempt_count: number;
-    block_reasons: string[];
+    blocked_count: number;
+    block_reason: string;
   }>;
 }
 
 interface BlockedAttempt {
   id: string;
-  timestamp: string;
-  event_type: string;
+  created_at: string;
   ip_address: string;
   user_agent: string;
-  block_reason: string;
+  blocked_reason: string;
   form_type: string;
+  form_data?: any;
 }
 
 interface SubmissionPattern {
-  hour_bucket: string;
-  submission_count: number;
-  blocked_count: number;
+  hour: string;
+  successful: number;
+  blocked: number;
   unique_ips: number;
 }
 
@@ -104,13 +104,13 @@ const SpamMonitoring = () => {
 
   const getTotalBlocked = () => {
     if (!stats) return 0;
-    return stats.blocked_honeypot_24h + stats.blocked_timing_24h + stats.blocked_rate_limit_24h;
+    return stats.honeypot_blocked + stats.timing_blocked + stats.rate_limit_blocked;
   };
 
   const getBlockRate = () => {
-    if (!stats || stats.total_submissions_24h === 0) return 0;
+    if (!stats || stats.total_submissions === 0) return 0;
     const totalBlocked = getTotalBlocked();
-    return ((totalBlocked / (stats.total_submissions_24h + totalBlocked)) * 100).toFixed(1);
+    return ((totalBlocked / (stats.total_submissions + totalBlocked)) * 100).toFixed(1);
   };
 
   if (loading) {
@@ -164,7 +164,7 @@ const SpamMonitoring = () => {
                 <Activity className="h-5 w-5 text-white" />
               </div>
             </div>
-            <div className="text-3xl font-bold text-white mb-2">{stats?.total_submissions_24h || 0}</div>
+            <div className="text-3xl font-bold text-white mb-2">{stats?.total_submissions || 0}</div>
             <p className="text-white/80 text-sm font-medium">Legitimate Submissions</p>
             <div className="mt-3 flex items-center text-white/70 text-xs">
               <Clock className="h-3 w-3 mr-1" />
@@ -215,7 +215,7 @@ const SpamMonitoring = () => {
                 <Clock className="h-5 w-5 text-white" />
               </div>
             </div>
-            <div className="text-3xl font-bold text-white mb-2">{stats?.blocked_honeypot_24h || 0}</div>
+            <div className="text-3xl font-bold text-white mb-2">{stats?.honeypot_blocked || 0}</div>
             <p className="text-white/80 text-sm font-medium">Honeypot Catches</p>
             <div className="mt-3 flex items-center text-white/70 text-xs">
               <Shield className="h-3 w-3 mr-1" />
@@ -243,7 +243,7 @@ const SpamMonitoring = () => {
             <div className="p-6 rounded-xl bg-gradient-to-br from-red-50 to-red-100 border border-red-200">
               <div className="flex items-center justify-between mb-3">
                 <h4 className="font-semibold text-red-900">Honeypot Field</h4>
-                <Badge className="bg-red-600 text-white">{stats?.blocked_honeypot_24h || 0}</Badge>
+                <Badge className="bg-red-600 text-white">{stats?.honeypot_blocked || 0}</Badge>
               </div>
               <p className="text-sm text-red-700">
                 Invisible field that only bots fill out. Highly effective against automated submissions.
@@ -253,7 +253,7 @@ const SpamMonitoring = () => {
             <div className="p-6 rounded-xl bg-gradient-to-br from-orange-50 to-orange-100 border border-orange-200">
               <div className="flex items-center justify-between mb-3">
                 <h4 className="font-semibold text-orange-900">Time-Based</h4>
-                <Badge className="bg-orange-600 text-white">{stats?.blocked_timing_24h || 0}</Badge>
+                <Badge className="bg-orange-600 text-white">{stats?.timing_blocked || 0}</Badge>
               </div>
               <p className="text-sm text-orange-700">
                 Detects forms submitted too quickly (under 3 seconds). Catches automated bots.
@@ -263,7 +263,7 @@ const SpamMonitoring = () => {
             <div className="p-6 rounded-xl bg-gradient-to-br from-yellow-50 to-yellow-100 border border-yellow-200">
               <div className="flex items-center justify-between mb-3">
                 <h4 className="font-semibold text-yellow-900">Rate Limiting</h4>
-                <Badge className="bg-yellow-600 text-white">{stats?.blocked_rate_limit_24h || 0}</Badge>
+                <Badge className="bg-yellow-600 text-white">{stats?.rate_limit_blocked || 0}</Badge>
               </div>
               <p className="text-sm text-yellow-700">
                 Blocks IPs with more than 3 submissions per 5 minutes. Prevents spam floods.
@@ -310,17 +310,13 @@ const SpamMonitoring = () => {
                       </TableCell>
                       <TableCell>
                         <Badge className="bg-gradient-to-r from-red-500 to-orange-600 text-white">
-                          {ip.attempt_count} attempts
+                          {ip.blocked_count} attempts
                         </Badge>
                       </TableCell>
                       <TableCell>
-                        <div className="flex flex-wrap gap-2">
-                          {ip.block_reasons.map((reason, idx) => (
-                            <Badge key={idx} variant="outline" className="text-xs">
-                              {reason.replace('blocked_', '')}
-                            </Badge>
-                          ))}
-                        </div>
+                        <Badge variant="outline" className="text-xs">
+                          {ip.block_reason}
+                        </Badge>
                       </TableCell>
                     </TableRow>
                   ))}
@@ -378,7 +374,7 @@ const SpamMonitoring = () => {
                         <div className="flex items-center gap-2">
                           <Clock className="h-4 w-4 text-gray-400" />
                           <span className="text-sm">
-                            {new Date(attempt.timestamp).toLocaleString()}
+                            {new Date(attempt.created_at).toLocaleString()}
                           </span>
                         </div>
                       </TableCell>
@@ -393,7 +389,7 @@ const SpamMonitoring = () => {
                           className="bg-gradient-to-r from-red-50 to-orange-50 border-red-200 text-red-700"
                         >
                           <XCircle className="h-3 w-3 mr-1" />
-                          {attempt.block_reason}
+                          {attempt.blocked_reason}
                         </Badge>
                       </TableCell>
                       <TableCell>
@@ -431,18 +427,18 @@ const SpamMonitoring = () => {
         <CardContent className="p-6">
           <div className="space-y-3">
             {patterns.slice(0, 12).map((pattern, index) => {
-              const total = pattern.submission_count + pattern.blocked_count;
-              const successRate = total > 0 ? ((pattern.submission_count / total) * 100).toFixed(0) : 100;
+              const total = pattern.successful + pattern.blocked;
+              const successRate = total > 0 ? ((pattern.successful / total) * 100).toFixed(0) : 100;
               
               return (
                 <div key={index} className="space-y-2">
                   <div className="flex items-center justify-between text-sm">
                     <span className="font-medium text-gray-700">
-                      {new Date(pattern.hour_bucket).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                      {pattern.hour}
                     </span>
                     <div className="flex items-center gap-4">
-                      <span className="text-green-600">{pattern.submission_count} success</span>
-                      <span className="text-red-600">{pattern.blocked_count} blocked</span>
+                      <span className="text-green-600">{pattern.successful} success</span>
+                      <span className="text-red-600">{pattern.blocked} blocked</span>
                       <span className="text-gray-500">{pattern.unique_ips} IPs</span>
                     </div>
                   </div>
