@@ -60,6 +60,7 @@ const ContactUs = () => {
   
   // reCAPTCHA ref
   const recaptchaRef = useRef<ReCAPTCHA>(null);
+  const recaptchaSiteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
   
   // Initialize security measures on mount
   useEffect(() => {
@@ -132,12 +133,15 @@ const ContactUs = () => {
       return;
     }
 
-    // Get reCAPTCHA token
-    const recaptchaToken = await recaptchaRef.current?.executeAsync();
-    if (!recaptchaToken) {
-      toast.error("Please complete the reCAPTCHA verification.");
-      recaptchaRef.current?.reset();
-      return;
+    // Get reCAPTCHA token (only if configured)
+    let recaptchaToken = null;
+    if (recaptchaSiteKey) {
+      recaptchaToken = await recaptchaRef.current?.executeAsync();
+      if (!recaptchaToken) {
+        toast.error("Please complete the reCAPTCHA verification.");
+        recaptchaRef.current?.reset();
+        return;
+      }
     }
     
     try {
@@ -363,14 +367,16 @@ const ContactUs = () => {
                         </Label>
                       </div>
 
-                      {/* reCAPTCHA */}
-                      <div className="flex justify-center">
-                        <ReCAPTCHA
-                          ref={recaptchaRef}
-                          size="invisible"
-                          sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY || ''}
-                        />
-                      </div>
+                      {/* reCAPTCHA - only render if site key is configured */}
+                      {recaptchaSiteKey && (
+                        <div className="flex justify-center">
+                          <ReCAPTCHA
+                            ref={recaptchaRef}
+                            size="invisible"
+                            sitekey={recaptchaSiteKey}
+                          />
+                        </div>
+                      )}
 
                       <Button type="submit" className="w-full group" size="lg" disabled={isSubmitting}>
                         {isSubmitting ? "Sending..." : "Send Message"}
