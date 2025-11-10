@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
@@ -18,6 +18,16 @@ import { trackTherapistMatchingConversion } from "@/utils/googleTagManager";
 import { cn } from "@/lib/utils";
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import ReCAPTCHA from 'react-google-recaptcha';
+import { 
+  generateEnhancedChallenge, 
+  generateProofOfWork, 
+  solveProofOfWork,
+  generateCSRFToken,
+  type EnhancedChallenge,
+  type ProofOfWork,
+  type CSRFToken
+} from "@/lib/securityUtils";
 
 const TherapistMatching = () => {
   const navigate = useNavigate();
@@ -38,8 +48,51 @@ const TherapistMatching = () => {
     insuranceName: "",
     customInsurance: "",
     timeline: "",
-    termsAccepted: false
+    termsAccepted: false,
+    // Honeypot fields - bots will fill these
+    website: "",
+    company: "",
+    position: "",
   });
+
+  // Track when form was loaded for time-based validation
+  const [formLoadTime] = useState(Date.now());
+  const [interactionCount, setInteractionCount] = useState(0);
+  
+  // Enhanced JS Challenge
+  const [enhancedChallenge] = useState<{ challenge: any; solution: EnhancedChallenge }>(() => 
+    generateEnhancedChallenge()
+  );
+  
+  // Proof of Work Challenge
+  const [proofOfWork] = useState<ProofOfWork>(() => generateProofOfWork(3));
+  const [powSolution, setPowSolution] = useState<string>("");
+  
+  // CSRF Token
+  const [csrfToken, setCSRFToken] = useState<CSRFToken | null>(null);
+  
+  // reCAPTCHA ref
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
+  const recaptchaSiteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
+  
+  // Initialize security measures on mount
+  useEffect(() => {
+    const initSecurity = async () => {
+      // Generate CSRF token
+      const token = await generateCSRFToken();
+      setCSRFToken(token);
+      
+      // Solve proof of work in background
+      try {
+        const solution = await solveProofOfWork(proofOfWork);
+        setPowSolution(solution);
+      } catch (err) {
+        console.error('PoW failed:', err);
+      }
+    };
+    
+    initSecurity();
+  }, [proofOfWork]);
 
   // Track form start on mount
   useEffect(() => {
@@ -95,6 +148,8 @@ const TherapistMatching = () => {
       ...prev,
       [field]: value
     }));
+    // Track user interactions
+    setInteractionCount(prev => prev + 1);
   };
 
   const handleSubmit = async () => {
@@ -107,7 +162,86 @@ const TherapistMatching = () => {
       return;
     }
 
-    // Prepare form data for submission
+    // Bot detection: Check if any honeypot field was filled
+    if (formData.website || formData.company || formData.position) {
+      console.log('Bot detected: honeypot field filled');
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "There was an error. Please try again."
+      });
+      return;
+    }
+    
+    // Bot detection: Check if form was filled too quickly (less than 10 seconds)
+    const timeTaken = Date.now() - formLoadTime;
+    if (timeTaken < 10000) {
+      toast({
+        variant: "destructive",
+        title: "Please Slow Down",
+        description: "Please take a moment to review your information."
+      });
+      return;
+    }
+    
+    // Bot detection: Check if user interacted with form
+    if (interactionCount < 5) {
+      toast({
+        variant: "destructive",
+        title: "Incomplete Form",
+        description: "Please fill out the form completely."
+      });
+      return;
+    }
+    
+    // Validate Proof of Work
+    if (!powSolution) {
+      toast({
+        variant: "destructive",
+        title: "Security Check",
+        description: "Security validation in progress. Please wait a moment."
+      });
+      return;
+    }
+    
+    // Validate CSRF Token
+    if (!csrfToken) {
+      toast({
+        variant: "destructive",
+        title: "Security Error",
+        description: "Security validation failed. Please refresh the page."
+      });
+      return;
+    }
+    
+    // Validate email domain (block common disposable email providers)
+    const disposableDomains = ['tempmail.com', 'guerrillamail.com', 'mailinator.com', '10minutemail.com', 'throwaway.email'];
+    const emailDomain = formData.email.split('@')[1]?.toLowerCase();
+    if (disposableDomains.includes(emailDomain)) {
+      toast({
+        variant: "destructive",
+        title: "Invalid Email",
+        description: "Please use a valid email address."
+      });
+      return;
+    }
+
+    // Get reCAPTCHA token (only if configured)
+    let recaptchaToken = null;
+    if (recaptchaSiteKey) {
+      recaptchaToken = await recaptchaRef.current?.executeAsync();
+      if (!recaptchaToken) {
+        toast({
+          variant: "destructive",
+          title: "Verification Failed",
+          description: "Please complete the reCAPTCHA verification."
+        });
+        recaptchaRef.current?.reset();
+        return;
+      }
+    }
+
+    // Prepare form data for submission with security measures
     const submissionData = {
       firstName: formData.firstName,
       lastName: formData.lastName,
@@ -121,7 +255,18 @@ const TherapistMatching = () => {
       customInsurance: formData.insuranceName === 'Other' ? formData.customInsurance : null,
       timeline: formData.timeline,
       termsAccepted: formData.termsAccepted,
-      submissionDate: new Date().toISOString()
+      submissionDate: new Date().toISOString(),
+      _formLoadTime: formLoadTime,
+      _submitTime: Date.now(),
+      _interactionCount: interactionCount,
+      _enhancedChallenge: enhancedChallenge.solution,
+      _proofOfWork: {
+        challenge: proofOfWork.challenge,
+        difficulty: proofOfWork.difficulty,
+        solution: powSolution
+      },
+      _csrfToken: csrfToken,
+      _recaptchaToken: recaptchaToken,
     };
 
     const result = await submitForm('therapist_matching', submissionData);
@@ -141,6 +286,7 @@ const TherapistMatching = () => {
         title: "Submission Failed",
         description: result.error || "There was an error submitting your request. Please try again."
       });
+      recaptchaRef.current?.reset();
     }
   };
 
@@ -520,6 +666,57 @@ const TherapistMatching = () => {
               </p>
             </CardHeader>
             <CardContent className="space-y-8 px-6 md:px-8 pb-8">
+              {/* Honeypot fields - hidden from users, visible to bots */}
+              <div className="absolute -left-[9999px]" aria-hidden="true">
+                <Label htmlFor="website">Website</Label>
+                <Input
+                  id="website"
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={formData.website}
+                  onChange={(e) => handleInputChange("website", e.target.value)}
+                />
+              </div>
+              <div className="absolute -left-[9999px]" aria-hidden="true">
+                <Label htmlFor="company">Company</Label>
+                <Input
+                  id="company"
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={formData.company}
+                  onChange={(e) => handleInputChange("company", e.target.value)}
+                />
+              </div>
+              <div className="absolute -left-[9999px]" aria-hidden="true">
+                <Label htmlFor="position">Position</Label>
+                <Input
+                  id="position"
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={formData.position}
+                  onChange={(e) => handleInputChange("position", e.target.value)}
+                />
+              </div>
+              
+              {/* Hidden security challenge fields */}
+              <input type="hidden" name="enhanced_challenge" value={JSON.stringify(enhancedChallenge.solution)} />
+              <input type="hidden" name="pow_solution" value={powSolution} />
+              <input type="hidden" name="csrf_token" value={csrfToken?.token || ''} />
+              
+              {/* reCAPTCHA - only render if site key is configured */}
+              {recaptchaSiteKey && (
+                <div style={{ position: 'absolute', left: '-9999px' }}>
+                  <ReCAPTCHA
+                    ref={recaptchaRef}
+                    size="invisible"
+                    sitekey={recaptchaSiteKey}
+                  />
+                </div>
+              )}
+              
               <div className="min-h-[400px] flex items-center justify-center">
                 {renderStep()}
               </div>
