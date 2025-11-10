@@ -7,6 +7,7 @@ declare global {
       track: (event: string, properties?: Record<string, any>) => void;
       page: () => void;
     };
+    uetq?: any[];
   }
 }
 
@@ -27,6 +28,13 @@ export const trackInsuranceFormConversion = () => {
     });
     console.log('TikTok: Insurance form conversion tracked');
   }
+  
+  // Microsoft UET tracking
+  if (typeof window !== 'undefined' && window.uetq) {
+    window.uetq = window.uetq || [];
+    window.uetq.push("event", "contact", {});
+    console.log('UET: Insurance form conversion tracked');
+  }
 };
 
 // Track Book Appointment conversion
@@ -46,6 +54,13 @@ export const trackBookAppointmentConversion = () => {
     });
     console.log('TikTok: Appointment booking conversion tracked');
   }
+  
+  // Microsoft UET tracking
+  if (typeof window !== 'undefined' && window.uetq) {
+    window.uetq = window.uetq || [];
+    window.uetq.push("event", "contact", {});
+    console.log('UET: Appointment booking conversion tracked');
+  }
 };
 
 // Track Therapist Matching conversion
@@ -64,6 +79,13 @@ export const trackTherapistMatchingConversion = () => {
       content_name: 'Find Your Therapist Match'
     });
     console.log('TikTok: Therapist matching conversion tracked');
+  }
+  
+  // Microsoft UET tracking
+  if (typeof window !== 'undefined' && window.uetq) {
+    window.uetq = window.uetq || [];
+    window.uetq.push("event", "contact", {});
+    console.log('UET: Therapist matching conversion tracked');
   }
 };
 
@@ -85,6 +107,13 @@ export const trackAssessmentCompletion = (assessmentType: string) => {
     });
     console.log('TikTok: Assessment completion tracked:', assessmentType);
   }
+  
+  // Microsoft UET tracking
+  if (typeof window !== 'undefined' && window.uetq) {
+    window.uetq = window.uetq || [];
+    window.uetq.push("event", "contact", {});
+    console.log('UET: Assessment completion tracked:', assessmentType);
+  }
 };
 
 // Track General Form Submission
@@ -104,6 +133,13 @@ export const trackFormSubmission = (formType: string) => {
       content_name: formType
     });
     console.log('TikTok: Form submission tracked:', formType);
+  }
+  
+  // Microsoft UET tracking
+  if (typeof window !== 'undefined' && window.uetq) {
+    window.uetq = window.uetq || [];
+    window.uetq.push("event", "contact", {});
+    console.log('UET: Form submission tracked:', formType);
   }
 };
 
