@@ -54,19 +54,23 @@ export const useFormSubmission = () => {
 
       console.log('Form submitted successfully:', data);
       
-      // Track conversion based on form type
+      // Extract email and phone for enhanced conversion tracking
+      const email = formData.email as string | undefined;
+      const phone = formData.phone as string | undefined;
+      
+      // Track conversion based on form type with enhanced data
       switch (formType) {
         case 'therapist_matching':
-          trackTherapistMatchingConversion();
+          await trackTherapistMatchingConversion(email, phone);
           break;
         case 'contact_us':
-          trackBookAppointmentConversion();
+          await trackBookAppointmentConversion(email, phone);
           break;
         case 'assessment_contact':
-          trackBookAppointmentConversion();
+          await trackBookAppointmentConversion(email, phone);
           break;
         default:
-          trackFormSubmission(formType);
+          await trackFormSubmission(formType, email, phone);
       }
       
       setState({ isSubmitting: false, isSuccess: true, error: null });

@@ -11,8 +11,39 @@ declare global {
   }
 }
 
+// Hash data for enhanced conversions (SHA-256)
+const hashData = async (data: string): Promise<string> => {
+  const encoder = new TextEncoder();
+  const dataBuffer = encoder.encode(data.toLowerCase().trim());
+  const hashBuffer = await crypto.subtle.digest('SHA-256', dataBuffer);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+};
+
+// Set UET enhanced conversion data
+const setUETEnhancedData = async (email?: string, phone?: string) => {
+  if (typeof window !== 'undefined' && window.uetq && (email || phone)) {
+    const pidData: Record<string, string> = {};
+    
+    if (email) {
+      pidData.em = await hashData(email);
+    }
+    
+    if (phone) {
+      // Remove all non-numeric characters from phone
+      const cleanPhone = phone.replace(/\D/g, '');
+      pidData.ph = await hashData(cleanPhone);
+    }
+    
+    window.uetq.push('set', pidData);
+    console.log('UET: Enhanced conversion data set', { hasEmail: !!email, hasPhone: !!phone });
+  }
+};
+
 // Track Insurance Form conversion
-export const trackInsuranceFormConversion = () => {
+export const trackInsuranceFormConversion = async (email?: string, phone?: string) => {
+  // Set enhanced conversion data first
+  await setUETEnhancedData(email, phone);
   if (typeof window !== 'undefined' && window.gtag) {
     window.gtag('event', 'conversion', {
       'send_to': 'AW-11045234292/zlfWCLKSxYcYEPTM45Ip'
@@ -38,7 +69,9 @@ export const trackInsuranceFormConversion = () => {
 };
 
 // Track Book Appointment conversion
-export const trackBookAppointmentConversion = () => {
+export const trackBookAppointmentConversion = async (email?: string, phone?: string) => {
+  // Set enhanced conversion data first
+  await setUETEnhancedData(email, phone);
   if (typeof window !== 'undefined' && window.gtag) {
     window.gtag('event', 'conversion', {
       'send_to': 'AW-11045234292/jjv7CNjnqKUbEPTM45Ip'
@@ -64,7 +97,9 @@ export const trackBookAppointmentConversion = () => {
 };
 
 // Track Therapist Matching conversion
-export const trackTherapistMatchingConversion = () => {
+export const trackTherapistMatchingConversion = async (email?: string, phone?: string) => {
+  // Set enhanced conversion data first
+  await setUETEnhancedData(email, phone);
   if (typeof window !== 'undefined' && window.gtag) {
     window.gtag('event', 'conversion', {
       'send_to': 'AW-11045234292/iXyFCPn4jKYbEPTM45Ip'
@@ -117,7 +152,9 @@ export const trackAssessmentCompletion = (assessmentType: string) => {
 };
 
 // Track General Form Submission
-export const trackFormSubmission = (formType: string) => {
+export const trackFormSubmission = async (formType: string, email?: string, phone?: string) => {
+  // Set enhanced conversion data first
+  await setUETEnhancedData(email, phone);
   if (typeof window !== 'undefined' && window.gtag) {
     window.gtag('event', 'form_submit', {
       'event_category': 'form',
