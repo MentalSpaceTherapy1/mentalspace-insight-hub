@@ -226,18 +226,15 @@ const TherapistMatching = () => {
       return;
     }
 
-    // Get reCAPTCHA token (only if configured)
-    let recaptchaToken = null;
-    if (recaptchaSiteKey) {
-      recaptchaToken = await recaptchaRef.current?.executeAsync();
-      if (!recaptchaToken) {
-        toast({
-          variant: "destructive",
-          title: "Verification Failed",
-          description: "Please complete the reCAPTCHA verification."
-        });
-        recaptchaRef.current?.reset();
-        return;
+    // Get reCAPTCHA token (attempt, but do not block if unavailable)
+    let recaptchaToken: string | null = null;
+    if (recaptchaSiteKey && recaptchaRef.current) {
+      try {
+        recaptchaToken = await recaptchaRef.current.executeAsync();
+      } catch (err) {
+        console.warn('reCAPTCHA execution failed, proceeding without token', err);
+      } finally {
+        try { recaptchaRef.current.reset(); } catch {}
       }
     }
 
