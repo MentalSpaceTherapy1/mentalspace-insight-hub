@@ -162,15 +162,9 @@ const TherapistMatching = () => {
       return;
     }
 
-    // Bot detection: Check if any honeypot field was filled
+    // Honeypot detected: flag but do not block (password managers may autofill)
     if (formData.website || formData.company || formData.position) {
-      console.log('Bot detected: honeypot field filled');
-      toast({
-        variant: "destructive",
-        title: "Error",
-        description: "There was an error. Please try again."
-      });
-      return;
+      console.warn('Honeypot field filled - continuing and flagging server-side');
     }
     
     // Bot detection: Check if form was filled too quickly (less than 10 seconds)
@@ -668,9 +662,18 @@ const TherapistMatching = () => {
                 <Label htmlFor="website">Website</Label>
                 <Input
                   id="website"
+                  name="hp_website"
                   type="text"
                   tabIndex={-1}
                   autoComplete="off"
+                  inputMode="none"
+                  autoCorrect="off"
+                  autoCapitalize="off"
+                  spellCheck={false}
+                  readOnly
+                  data-lpignore="true"
+                  data-form-type="other"
+                  aria-hidden="true"
                   value={formData.website}
                   onChange={(e) => handleInputChange("website", e.target.value)}
                 />
@@ -679,9 +682,18 @@ const TherapistMatching = () => {
                 <Label htmlFor="company">Company</Label>
                 <Input
                   id="company"
+                  name="hp_company"
                   type="text"
                   tabIndex={-1}
                   autoComplete="off"
+                  inputMode="none"
+                  autoCorrect="off"
+                  autoCapitalize="off"
+                  spellCheck={false}
+                  readOnly
+                  data-lpignore="true"
+                  data-form-type="other"
+                  aria-hidden="true"
                   value={formData.company}
                   onChange={(e) => handleInputChange("company", e.target.value)}
                 />
@@ -690,9 +702,18 @@ const TherapistMatching = () => {
                 <Label htmlFor="position">Position</Label>
                 <Input
                   id="position"
+                  name="hp_position"
                   type="text"
                   tabIndex={-1}
                   autoComplete="off"
+                  inputMode="none"
+                  autoCorrect="off"
+                  autoCapitalize="off"
+                  spellCheck={false}
+                  readOnly
+                  data-lpignore="true"
+                  data-form-type="other"
+                  aria-hidden="true"
                   value={formData.position}
                   onChange={(e) => handleInputChange("position", e.target.value)}
                 />

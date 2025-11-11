@@ -121,48 +121,21 @@ serve(async (req) => {
       });
     }
 
-    // Bot detection: Check for any honeypot field
-    if ((formData.website && formData.website.trim() !== '') || 
+    // Bot signal: Honeypot fields (do NOT auto-block to avoid password manager false positives)
+    const honeypotFilled = ((formData.website && formData.website.trim() !== '') || 
         (formData.company && formData.company.trim() !== '') ||
-        (formData.position && formData.position.trim() !== '')) {
-      console.log('Bot detected: honeypot field filled');
-      
-      // Log to security audit log
-      const clientIP = req.headers.get('x-forwarded-for')?.split(',')[0].trim() || 
-                       req.headers.get('x-real-ip')?.trim() || 'unknown';
-      const userAgent = req.headers.get('user-agent') || 'unknown';
-      
-      // Store blocked submission
-      await supabase
-        .from('form_submissions')
-        .insert({
-          form_type: formType,
-          form_data: formData,
-          ip_address: clientIP,
-          user_agent: userAgent,
-          is_blocked: true,
-          blocked_reason: 'honeypot',
-          spam_score: 10,
-        });
-      
-      await supabase
-        .from('security_audit_log')
-        .insert({
-          event_type: 'blocked_honeypot',
-          table_name: 'form_submissions',
-          ip_address: clientIP,
-          details: {
-            form_type: formType,
-            ip_address: clientIP,
-            user_agent: userAgent,
-            timestamp: new Date().toISOString(),
-            severity: 'HIGH'
-          }
-        });
-      
-      return new Response(JSON.stringify({ success: false, error: 'Invalid submission' }), {
-        status: 400,
-        headers: { ...getCorsHeaders(origin), 'Content-Type': 'application/json' },
+        (formData.position && formData.position.trim() !== ''));
+    if (honeypotFilled) {
+      console.log('Honeypot filled - flagging submission but continuing');
+      // Optional: lightweight audit log without blocking
+      const hpIP = req.headers.get('x-forwarded-for')?.split(',')[0].trim() || 
+                   req.headers.get('x-real-ip')?.trim() || 'unknown';
+      const hpUA = req.headers.get('user-agent') || 'unknown';
+      await supabase.from('security_audit_log').insert({
+        event_type: 'honeypot_flag',
+        table_name: 'form_submissions',
+        ip_address: hpIP,
+        details: { form_type: formType, ip_address: hpIP, user_agent: hpUA, timestamp: new Date().toISOString(), severity: 'LOW' }
       });
     }
 
@@ -457,6 +430,12 @@ serve(async (req) => {
 
     let spamScore = 0;
     const spamReasons: string[] = [];
+
+    // Consider honeypot as a soft signal only (to avoid autofill false positives)
+    if (honeypotFilled) {
+      spamScore += 2; // combine with other indicators before blocking
+      spamReasons.push('honeypot');
+    }
 
     // Check each pattern
     if (spamPatterns.sales.test(messageContent)) {
