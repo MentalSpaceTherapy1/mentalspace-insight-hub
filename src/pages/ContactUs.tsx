@@ -180,11 +180,11 @@ const ContactUs = () => {
         
         navigate("/contact-thank-you");
       } else {
-        toast.error("There was an error submitting your message. Please try again.");
+        toast.error(result.error || "There was an error submitting your message. Please try again.");
         recaptchaRef.current?.reset();
       }
-    } catch (err) {
-      toast.error("There was an error submitting your message. Please try again.");
+    } catch (err: any) {
+      toast.error(err?.message || "There was an error submitting your message. Please try again.");
       recaptchaRef.current?.reset();
     }
   };
