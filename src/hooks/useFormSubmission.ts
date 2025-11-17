@@ -64,7 +64,9 @@ export const useFormSubmission = () => {
           await trackTherapistMatchingConversion(email, phone);
           break;
         case 'contact_us':
-          await trackBookAppointmentConversion(email, phone);
+          // Contact Us form - just track form submission, no conversion
+          // Conversion tracking happens on ThankYou page for therapist matching only
+          await trackFormSubmission(formType, email, phone);
           break;
         case 'assessment_contact':
           await trackBookAppointmentConversion(email, phone);

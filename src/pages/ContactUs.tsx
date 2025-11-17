@@ -168,7 +168,7 @@ const ContactUs = () => {
           description: "You'll receive a confirmation email shortly."
         });
         
-        navigate("/thank-you");
+        navigate("/contact-thank-you");
       } else {
         toast.error("There was an error submitting your message. Please try again.");
         recaptchaRef.current?.reset();
