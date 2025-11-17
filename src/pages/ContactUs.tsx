@@ -102,31 +102,17 @@ const ContactUs = () => {
     e.preventDefault();
     console.log('[ContactUs] Submit clicked');
     
-    // Bot detection: Check if any honeypot field was filled (with extra conditions to avoid autofill false positives)
+    // Client-side hints only (do not block submission — server enforces security)
     const honeypotFilled = Boolean(formData.hpWebsite || formData.hpCompany || formData.hpPosition);
     const timeTaken = Date.now() - formLoadTime;
-    if (honeypotFilled && (interactionCount < 2 || timeTaken < 3000)) {
-      console.log('Bot detected: honeypot field filled', {
-        hpWebsite: formData.hpWebsite,
-        hpCompany: formData.hpCompany,
-        hpPosition: formData.hpPosition,
-        interactionCount,
-        timeTaken,
-      });
-      toast.error("There was an error. Please try again.");
-      return;
+    if (honeypotFilled) {
+      console.warn('[ContactUs] Honeypot filled (client hint). Proceeding to server for final decision.');
     }
-    
-    // Bot detection: Check if form was filled too quickly (less than 5 seconds)
-    if (timeTaken < 5000) {
-      toast.error("Please take a moment to review your information.");
-      return;
+    if (timeTaken < 1500) {
+      console.warn('[ContactUs] Fast fill (client hint). Proceeding to server for final decision.');
     }
-    
-    // Bot detection: Check if user interacted with form
-    if (interactionCount < 3) {
-      toast.error("Please fill out the form completely.");
-      return;
+    if (interactionCount < 1) {
+      console.warn('[ContactUs] Low interaction (client hint). Proceeding to server for final decision.');
     }
     
     // Validate Proof of Work
@@ -166,6 +152,10 @@ const ContactUs = () => {
       // Add all security challenges to submission
       const submissionData = {
         ...formData,
+        // Map honeypots to server-recognized keys for auditing (server treats them as soft signals)
+        website: formData.hpWebsite,
+        company: formData.hpCompany,
+        position: formData.hpPosition,
         _formLoadTime: formLoadTime,
         _submitTime: Date.now(),
         _interactionCount: interactionCount,
