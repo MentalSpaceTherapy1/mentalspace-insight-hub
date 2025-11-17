@@ -45,6 +45,8 @@ const ContactUs = () => {
   // Track when form was loaded for time-based validation
   const [formLoadTime] = useState(Date.now());
   const [interactionCount, setInteractionCount] = useState(0);
+  const minWaitMs = 5000; // minimum wait to deter bots
+  const [timeReady, setTimeReady] = useState(false);
   
   // Enhanced JS Challenge
   const [enhancedChallenge] = useState<{ challenge: any; solution: EnhancedChallenge }>(() => 
@@ -80,6 +82,12 @@ const ContactUs = () => {
     
     initSecurity();
   }, [proofOfWork]);
+
+  // Enable submit only after minimum wait time
+  useEffect(() => {
+    const t = setTimeout(() => setTimeReady(true), minWaitMs);
+    return () => clearTimeout(t);
+  }, [minWaitMs]);
 
   const businessHours = [
     "Monday 08:00 am – 05:00 pm",
@@ -190,6 +198,9 @@ const ContactUs = () => {
     // Track user interactions
     setInteractionCount(prev => prev + 1);
   };
+
+  const securityReady = Boolean(csrfToken && powSolution);
+  const canSubmit = securityReady && timeReady && !isSubmitting;
 
   return (
     <div className="min-h-screen bg-background">
@@ -379,8 +390,14 @@ const ContactUs = () => {
                         </div>
                       )}
 
-                      <Button type="submit" className="w-full group" size="lg" disabled={isSubmitting}>
-                        {isSubmitting ? "Sending..." : "Send Message"}
+                      {!canSubmit && (
+                        <p className="text-sm text-muted-foreground text-center">
+                          Preparing secure form… This can take up to a few seconds.
+                        </p>
+                      )}
+
+                      <Button type="submit" className="w-full group" size="lg" disabled={!canSubmit}>
+                        {isSubmitting ? "Sending..." : !securityReady || !timeReady ? "Preparing…" : "Send Message"}
                         <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
                       </Button>
                     </form>
