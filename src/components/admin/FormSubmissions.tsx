@@ -47,6 +47,9 @@ interface FormSubmission {
   notes?: string;
   processed_at?: string;
   processed_by?: string;
+  is_blocked?: boolean;
+  blocked_reason?: string;
+  spam_score?: number;
 }
 
 const FormSubmissions = () => {
@@ -305,6 +308,7 @@ const FormSubmissions = () => {
                       <TableHead className="font-semibold text-gray-700">Type</TableHead>
                       <TableHead className="font-semibold text-gray-700">Date</TableHead>
                       <TableHead className="font-semibold text-gray-700">Contact</TableHead>
+                      <TableHead className="font-semibold text-gray-700">Security</TableHead>
                       <TableHead className="font-semibold text-gray-700">Status</TableHead>
                       <TableHead className="font-semibold text-gray-700">Actions</TableHead>
                     </TableRow>
@@ -313,7 +317,11 @@ const FormSubmissions = () => {
                     {getPaginatedSubmissions(submissions).map((submission, index) => (
                       <TableRow 
                         key={submission.id} 
-                        className="hover:bg-blue-50/50 transition-colors duration-200 group"
+                        className={`transition-colors duration-200 group ${
+                          submission.is_blocked 
+                            ? 'bg-red-50/50 hover:bg-red-100/50 border-l-4 border-l-red-500' 
+                            : 'hover:bg-blue-50/50'
+                        }`}
                         style={{animationDelay: `${index * 0.1}s`}}
                       >
                         <TableCell>
@@ -334,6 +342,31 @@ const FormSubmissions = () => {
                           <span className="font-medium text-gray-800">
                             {submission.form_data.name || submission.form_data.firstName || submission.form_data.email || 'Unknown'}
                           </span>
+                        </TableCell>
+                        <TableCell>
+                          {submission.is_blocked ? (
+                            <div className="space-y-1">
+                              <Badge className="bg-red-600 text-white shadow-md hover:bg-red-700 font-semibold">
+                                🚫 BLOCKED - SPAM
+                              </Badge>
+                              <div className="text-xs space-y-0.5 mt-1">
+                                <div className="flex items-center gap-1">
+                                  <span className="font-semibold text-red-700">Score:</span>
+                                  <span className="text-red-600">{submission.spam_score || 0}/10</span>
+                                </div>
+                                {submission.blocked_reason && (
+                                  <div className="flex items-center gap-1">
+                                    <span className="font-semibold text-red-700">Reason:</span>
+                                    <span className="text-red-600 capitalize">{submission.blocked_reason.replace(/_/g, ' ')}</span>
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+                          ) : (
+                            <Badge className="bg-green-600 text-white shadow-sm">
+                              ✓ Clean
+                            </Badge>
+                          )}
                         </TableCell>
                         <TableCell>
                           <Badge 
