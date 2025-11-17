@@ -36,10 +36,10 @@ const ContactUs = () => {
     comments: "",
     smsConsent: false,
     timing: "",
-    // Multiple honeypot fields - bots will fill these, humans won't see them
-    website: "",
-    company: "",
-    position: "",
+    // Honeypots (renamed to avoid autofill heuristics)
+    hpWebsite: "",
+    hpCompany: "",
+    hpPosition: "",
   });
   
   // Track when form was loaded for time-based validation
@@ -101,15 +101,22 @@ const ContactUs = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Bot detection: Check if any honeypot field was filled
-    if (formData.website || formData.company || formData.position) {
-      console.log('Bot detected: honeypot field filled');
+    // Bot detection: Check if any honeypot field was filled (with extra conditions to avoid autofill false positives)
+    const honeypotFilled = Boolean(formData.hpWebsite || formData.hpCompany || formData.hpPosition);
+    const timeTaken = Date.now() - formLoadTime;
+    if (honeypotFilled && (interactionCount < 2 || timeTaken < 3000)) {
+      console.log('Bot detected: honeypot field filled', {
+        hpWebsite: formData.hpWebsite,
+        hpCompany: formData.hpCompany,
+        hpPosition: formData.hpPosition,
+        interactionCount,
+        timeTaken,
+      });
       toast.error("There was an error. Please try again.");
       return;
     }
     
     // Bot detection: Check if form was filled too quickly (less than 5 seconds)
-    const timeTaken = Date.now() - formLoadTime;
     if (timeTaken < 5000) {
       toast.error("Please take a moment to review your information.");
       return;
@@ -261,8 +268,8 @@ const ContactUs = () => {
                           type="text"
                           tabIndex={-1}
                           autoComplete="off"
-                          value={formData.website}
-                          onChange={(e) => handleInputChange("website", e.target.value)}
+                          value={formData.hpWebsite}
+                          onChange={(e) => handleInputChange("hpWebsite", e.target.value)}
                         />
                       </div>
                       <div className="absolute -left-[9999px]" aria-hidden="true">
