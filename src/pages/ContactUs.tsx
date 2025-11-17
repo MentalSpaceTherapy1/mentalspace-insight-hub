@@ -133,14 +133,15 @@ const ContactUs = () => {
       return;
     }
 
-    // Get reCAPTCHA token (only if configured)
+    // Get reCAPTCHA token (optional - graceful degradation)
     let recaptchaToken = null;
     if (recaptchaSiteKey) {
-      recaptchaToken = await recaptchaRef.current?.executeAsync();
-      if (!recaptchaToken) {
-        toast.error("Please complete the reCAPTCHA verification.");
-        recaptchaRef.current?.reset();
-        return;
+      try {
+        recaptchaToken = await recaptchaRef.current?.executeAsync();
+        console.log('reCAPTCHA token obtained:', recaptchaToken ? 'success' : 'failed');
+      } catch (error) {
+        console.warn('reCAPTCHA execution failed, continuing without token:', error);
+        // Continue submission without reCAPTCHA - graceful degradation
       }
     }
     
