@@ -278,9 +278,9 @@ const ContactUs = () => {
                           id="company"
                           type="text"
                           tabIndex={-1}
-                          autoComplete="off"
-                          value={formData.company}
-                          onChange={(e) => handleInputChange("company", e.target.value)}
+                          autoComplete="new-password"
+                          value={formData.hpCompany}
+                          onChange={(e) => handleInputChange("hpCompany", e.target.value)}
                         />
                       </div>
                       <div className="absolute -left-[9999px]" aria-hidden="true">
@@ -289,9 +289,9 @@ const ContactUs = () => {
                           id="position"
                           type="text"
                           tabIndex={-1}
-                          autoComplete="off"
-                          value={formData.position}
-                          onChange={(e) => handleInputChange("position", e.target.value)}
+                          autoComplete="new-password"
+                          value={formData.hpPosition}
+                          onChange={(e) => handleInputChange("hpPosition", e.target.value)}
                         />
                       </div>
                       
