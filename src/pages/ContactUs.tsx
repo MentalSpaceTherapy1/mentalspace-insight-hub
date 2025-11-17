@@ -100,6 +100,7 @@ const ContactUs = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log('[ContactUs] Submit clicked');
     
     // Bot detection: Check if any honeypot field was filled (with extra conditions to avoid autofill false positives)
     const honeypotFilled = Boolean(formData.hpWebsite || formData.hpCompany || formData.hpPosition);
@@ -149,13 +150,14 @@ const ContactUs = () => {
     }
 
     // Get reCAPTCHA token (optional - graceful degradation)
+    console.log('[ContactUs] Preparing reCAPTCHA...');
     let recaptchaToken = null;
     if (recaptchaSiteKey) {
       try {
         recaptchaToken = await recaptchaRef.current?.executeAsync();
-        console.log('reCAPTCHA token obtained:', recaptchaToken ? 'success' : 'failed');
+        console.log('[ContactUs] reCAPTCHA token:', recaptchaToken ? 'obtained' : 'missing');
       } catch (error) {
-        console.warn('reCAPTCHA execution failed, continuing without token:', error);
+        console.warn('[ContactUs] reCAPTCHA execution failed, continuing without token:', error);
         // Continue submission without reCAPTCHA - graceful degradation
       }
     }
@@ -176,8 +178,10 @@ const ContactUs = () => {
         _csrfToken: csrfToken,
         _recaptchaToken: recaptchaToken,
       };
-      
+
+      console.log('[ContactUs] Invoking submitForm(contact_us) with data:', submissionData);
       const result = await submitForm('contact_us', submissionData);
+      console.log('[ContactUs] submitForm result:', result);
       
       if (result.success) {
         toast.success("Thank you for contacting us! We'll get back to you soon.", {
