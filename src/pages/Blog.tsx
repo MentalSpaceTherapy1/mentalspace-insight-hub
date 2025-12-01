@@ -302,10 +302,10 @@ const Blog = () => {
     {
       id: 25,
       title: "Setting Healthy Boundaries: A Therapist's Guide to Saying No",
-      excerpt: "Learn how to set healthy boundaries in relationships, work, and family with practical communication scripts.",
+      excerpt: "Navigate the holidays with less stress—learn to set boundaries with family, manage expectations, and protect your well-being.",
       category: "Relationships",
       date: "December 29, 2024",
-      readTime: "8 min read",
+      readTime: "14 min read",
       image: healthyBoundariesHero,
       slug: "setting-healthy-boundaries"
     },
