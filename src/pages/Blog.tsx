@@ -343,13 +343,17 @@ const Blog = () => {
         month: 'long', 
         day: 'numeric' 
       }),
+      dateObj: new Date(post.published_at),
       readTime: `${Math.ceil(post.content?.length / 1000) || 5} min read`,
       image: post.featured_image || post.image_url || staticBlogPosts[0].image,
       slug: post.slug,
       isAiGenerated: post.ai_generated
     })),
-    ...staticBlogPosts
-  ];
+    ...staticBlogPosts.map(post => ({
+      ...post,
+      dateObj: new Date(post.date)
+    }))
+  ].sort((a, b) => b.dateObj.getTime() - a.dateObj.getTime());
 
   const categories = [
     "All",
