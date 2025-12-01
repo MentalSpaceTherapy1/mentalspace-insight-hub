@@ -304,7 +304,7 @@ const Blog = () => {
       title: "Setting Healthy Boundaries: A Therapist's Guide to Saying No",
       excerpt: "Navigate the holidays with less stress—learn to set boundaries with family, manage expectations, and protect your well-being.",
       category: "Relationships",
-      date: "December 29, 2024",
+      date: "December 1, 2025",
       readTime: "14 min read",
       image: healthyBoundariesHero,
       slug: "setting-healthy-boundaries"
