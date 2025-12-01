@@ -403,10 +403,106 @@
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     
-    <div id="root"></div>
+    <div id="root">
+      <!-- Static SEO Content - Will be replaced by React on hydration -->
+      <header class="header-critical">
+        <div class="container flex items-center justify-between py-16">
+          <h2>Coping & Healing</h2>
+          <nav>
+            <a href="/" class="btn-primary">Home</a>
+            <a href="/online-therapy" class="btn-primary">Services</a>
+            <a href="/therapist-matching" class="btn-primary">Get Started</a>
+          </nav>
+        </div>
+      </header>
+      
+      <main>
+        <section class="container py-16 lg:py-24">
+          <div class="grid lg:grid-cols-2 gap-8 items-center">
+            <div>
+              <h1>Professional Online Therapy & Mental Health Services</h1>
+              <p class="mb-6">Connect with licensed therapists anytime, anywhere. Individual therapy, couples counseling, teen therapy, and life coaching. Most insurance accepted.</p>
+              <div class="flex space-x-4">
+                <a href="/therapist-matching" class="btn-primary">Request an Appointment</a>
+                <a href="/mental-health-tests" class="btn-primary">Take Free Assessment</a>
+              </div>
+            </div>
+            <div>
+              <img src="/src/assets/hero-person-1.jpg" alt="Licensed therapist providing professional online mental health counseling" class="hero-image" width="384" height="384" loading="eager" fetchpriority="high" />
+            </div>
+          </div>
+        </section>
+
+        <section class="container py-16">
+          <h2 class="mb-8">Our Mental Health Services</h2>
+          <div class="grid md:grid-cols-2 gap-8">
+            <div>
+              <h3>Individual Therapy</h3>
+              <p>Professional one-on-one therapy for <a href="/mental-health-library/depression">depression</a>, <a href="/mental-health-library/anxiety">anxiety</a>, <a href="/mental-health-library/ptsd">PTSD</a>, <a href="/mental-health-library/adhd">ADHD</a>, and more.</p>
+            </div>
+            <div>
+              <h3>Couples Therapy</h3>
+              <p>Strengthen your relationship with <a href="/couples-therapy">expert couples counseling</a> and marriage therapy services.</p>
+            </div>
+            <div>
+              <h3>Teen Therapy</h3>
+              <p>Specialized mental health support for <a href="/teen-therapy">teenagers and adolescents</a> dealing with life challenges.</p>
+            </div>
+            <div>
+              <h3>Life Coaching</h3>
+              <p>Professional <a href="/life-coaching">life coaching services</a> to help you achieve your personal and professional goals.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="container py-16">
+          <h2 class="mb-6">Why Choose Coping & Healing?</h2>
+          <ul>
+            <li><strong>Licensed Therapists:</strong> All our therapists are fully licensed mental health professionals</li>
+            <li><strong>Insurance Accepted:</strong> We accept most major insurance plans including Aetna, Blue Cross, Cigna, and more</li>
+            <li><strong>24/7 Availability:</strong> Connect with your therapist anytime that works for your schedule</li>
+            <li><strong>100% Secure:</strong> HIPAA-compliant platform ensuring your privacy and confidentiality</li>
+            <li><strong>Evidence-Based:</strong> We use proven therapeutic approaches like CBT, EMDR, and DBT</li>
+          </ul>
+        </section>
+
+        <section class="container py-16">
+          <h2 class="mb-6">Common Mental Health Conditions We Treat</h2>
+          <p>Our licensed therapists provide specialized treatment for:</p>
+          <ul>
+            <li><a href="/mental-health-library/depression">Depression Treatment</a> - Evidence-based therapy for clinical depression</li>
+            <li><a href="/mental-health-library/anxiety">Anxiety Disorders</a> - Treatment for GAD, panic disorder, and social anxiety</li>
+            <li><a href="/mental-health-library/ptsd">PTSD & Trauma</a> - EMDR therapy and trauma-focused counseling</li>
+            <li><a href="/mental-health-library/adhd">ADHD Support</a> - Assessment and therapeutic support for ADHD</li>
+            <li><a href="/mental-health-library/bipolar-disorder">Bipolar Disorder</a> - Mood stabilization and psychiatric support</li>
+            <li><a href="/mental-health-library/ocd">OCD Treatment</a> - Exposure therapy and cognitive behavioral interventions</li>
+          </ul>
+        </section>
+
+        <section class="container py-16">
+          <h2 class="mb-6">Get Started Today</h2>
+          <p>Take the first step toward better mental health. Our compassionate therapists are here to support you.</p>
+          <div class="flex space-x-4 mb-6">
+            <a href="/therapist-matching" class="btn-primary">Request an Appointment</a>
+            <a href="/contact-us" class="btn-primary">Contact Us</a>
+          </div>
+          <p>Questions? Visit our <a href="/faq">FAQ page</a> or learn more about <a href="/insurance">insurance coverage</a>.</p>
+        </section>
+      </main>
+
+      <footer class="container py-16">
+        <p>&copy; 2024 Coping & Healing Counseling. Professional online therapy and mental health services.</p>
+        <nav>
+          <a href="/privacy-policy">Privacy Policy</a> | 
+          <a href="/terms-conditions">Terms & Conditions</a> | 
+          <a href="/blog">Mental Health Blog</a> | 
+          <a href="/mental-health-tests">Free Assessments</a>
+        </nav>
+      </footer>
+    </div>
     <noscript>
       <div class="loading-placeholder">
-        <p>JavaScript is required to run this application. Please enable JavaScript in your browser.</p>
+        <p>JavaScript is required for the full interactive experience. Please enable JavaScript in your browser.</p>
       </div>
     </noscript>
     <script type="module" src="/src/main.tsx"></script>
