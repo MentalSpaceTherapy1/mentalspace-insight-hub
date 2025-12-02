@@ -57,6 +57,7 @@ export const AdminAuthProvider: React.FC<{ children: React.ReactNode }> = ({ chi
       
       if (error) {
         console.error('Admin profile query error:', error);
+        // User is not an admin or doesn't have access
         profileCache.current.set(userId, null);
         return null;
       }
@@ -70,6 +71,7 @@ export const AdminAuthProvider: React.FC<{ children: React.ReactNode }> = ({ chi
       return profile;
     } catch (error) {
       console.error('Error checking admin profile:', error);
+      // On any error, assume user is not an admin
       profileCache.current.set(userId, null);
       return null;
     }
@@ -165,13 +167,13 @@ export const AdminAuthProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     // Set up auth listener
     const { data: { subscription } } = supabase.auth.onAuthStateChange(handleAuthChange);
 
-    // Safety timeout: if no auth state after 2 seconds, stop loading
+    // Safety timeout: if loading for too long, force stop
     loadingTimeout = setTimeout(() => {
-      if (mounted && loading && !user && !session) {
-        console.log('Auth timeout - no session detected');
+      if (mounted && loading) {
+        console.log('Auth timeout - forcing loading to stop after 3 seconds');
         setLoading(false);
       }
-    }, 2000);
+    }, 3000);
 
     // Check initial session
     supabase.auth.getSession()
