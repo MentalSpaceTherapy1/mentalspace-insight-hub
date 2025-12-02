@@ -127,7 +127,7 @@ const AdminDashboard = () => {
       <div className="p-8">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-8">
           {/* Modern Tab List */}
-          <TabsList className="grid w-full grid-cols-7 lg:w-auto lg:grid-cols-none lg:inline-flex bg-white/80 backdrop-blur-lg border border-white/20 shadow-lg rounded-2xl p-2">
+          <TabsList className="grid w-full grid-cols-4 md:grid-cols-5 lg:w-auto lg:grid-cols-none lg:inline-flex bg-white/80 backdrop-blur-lg border border-white/20 shadow-lg rounded-2xl p-2">
             <TabsTrigger 
               value="overview" 
               className="flex items-center gap-2 rounded-xl data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-purple-600 data-[state=active]:text-white transition-all duration-300"
