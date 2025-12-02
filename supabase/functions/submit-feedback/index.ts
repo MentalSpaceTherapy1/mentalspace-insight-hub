@@ -26,10 +26,11 @@ serve(async (req) => {
     const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
     const supabase = createClient(supabaseUrl, supabaseKey);
 
-    // Get client IP
-    const clientIP = req.headers.get('x-forwarded-for') || 
-                     req.headers.get('x-real-ip') || 
-                     'unknown';
+    // Get client IP (extract first IP from X-Forwarded-For chain)
+    const forwardedFor = req.headers.get('x-forwarded-for');
+    const clientIP = forwardedFor 
+      ? forwardedFor.split(',')[0].trim() 
+      : (req.headers.get('x-real-ip') || 'unknown');
 
     // Save feedback to database
     const { data: feedbackData, error: feedbackError } = await supabase
