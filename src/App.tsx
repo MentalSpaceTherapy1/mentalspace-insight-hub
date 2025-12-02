@@ -52,6 +52,7 @@ import ContactThankYou from "./pages/ContactThankYou";
 import Blog from "./pages/Blog";
 import StaffNewsletter from "./pages/StaffNewsletter";
 import NewsletterArchive from "./pages/NewsletterArchive";
+import ClientFeedback from "./pages/ClientFeedback";
 
 // Individual Insurance Pages
 import CareSourceInsurance from "./pages/insurance/CareSourceInsurance";
@@ -206,6 +207,7 @@ const App = () => {
                 <Route path="/blog" element={<Blog />} />
                 <Route path="/staff-newsletter" element={<StaffNewsletter />} />
                 <Route path="/newsletter-archive" element={<NewsletterArchive />} />
+                <Route path="/feedback" element={<ClientFeedback />} />
                 
                 {/* Blog Article Pages */}
                 <Route path="/blog/understanding-anxiety" element={<UnderstandingAnxiety />} />

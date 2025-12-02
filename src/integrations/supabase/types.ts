@@ -342,6 +342,71 @@ export type Database = {
         }
         Relationships: []
       }
+      client_feedback: {
+        Row: {
+          client_email: string | null
+          client_name: string | null
+          client_phone: string | null
+          created_at: string
+          feedback_text: string | null
+          google_review_sent: boolean
+          google_review_sent_at: string | null
+          id: string
+          ip_address: unknown
+          is_processed: boolean
+          notes: string | null
+          processed_at: string | null
+          processed_by: string | null
+          rating: number
+          updated_at: string
+          willing_to_review: boolean
+        }
+        Insert: {
+          client_email?: string | null
+          client_name?: string | null
+          client_phone?: string | null
+          created_at?: string
+          feedback_text?: string | null
+          google_review_sent?: boolean
+          google_review_sent_at?: string | null
+          id?: string
+          ip_address?: unknown
+          is_processed?: boolean
+          notes?: string | null
+          processed_at?: string | null
+          processed_by?: string | null
+          rating: number
+          updated_at?: string
+          willing_to_review?: boolean
+        }
+        Update: {
+          client_email?: string | null
+          client_name?: string | null
+          client_phone?: string | null
+          created_at?: string
+          feedback_text?: string | null
+          google_review_sent?: boolean
+          google_review_sent_at?: string | null
+          id?: string
+          ip_address?: unknown
+          is_processed?: boolean
+          notes?: string | null
+          processed_at?: string | null
+          processed_by?: string | null
+          rating?: number
+          updated_at?: string
+          willing_to_review?: boolean
+        }
+        Relationships: [
+          {
+            foreignKeyName: "client_feedback_processed_by_fkey"
+            columns: ["processed_by"]
+            isOneToOne: false
+            referencedRelation: "admin_profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       form_submissions: {
         Row: {
           blocked_reason: string | null
