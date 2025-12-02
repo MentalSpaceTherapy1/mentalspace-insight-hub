@@ -891,6 +891,18 @@ export type Database = {
           user_id: string
         }[]
       }
+      get_admin_profile_simple: {
+        Args: { profile_user_id?: string }
+        Returns: {
+          created_at: string
+          full_name: string
+          id: string
+          is_active: boolean
+          role: Database["public"]["Enums"]["admin_role"]
+          updated_at: string
+          user_id: string
+        }[]
+      }
       get_admin_profile_ultra_secure: {
         Args: { target_user_id?: string }
         Returns: {

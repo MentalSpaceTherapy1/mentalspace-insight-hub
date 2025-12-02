@@ -51,9 +51,9 @@ export const AdminAuthProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     try {
       console.log('Checking admin profile for user:', userId);
       
-      // Use secure function that doesn't expose email addresses
+      // Use simpler function without transaction issues
       const { data, error } = await supabase
-        .rpc('get_secure_admin_profile', { target_user_id: userId });
+        .rpc('get_admin_profile_simple', { profile_user_id: userId });
       
       if (error) {
         console.error('Admin profile query error:', error);
