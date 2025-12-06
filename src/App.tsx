@@ -43,6 +43,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import NotFound from "./pages/NotFound";
 import TherapistMatching from "./pages/TherapistMatching";
+import GoogleAdsLanding from "./pages/GoogleAdsLanding";
 import CareerApplication from "./pages/CareerApplication";
 import MentalHealthLibrary from "./pages/MentalHealthLibrary";
 import MentalHealthTests from "./pages/MentalHealthTests";
@@ -198,6 +199,7 @@ const App = () => {
                 <Route path="/career-application" element={<CareerApplication />} />
                 <Route path="/emergency-resources" element={<EmergencyResources />} />
                 <Route path="/get-started" element={<GetStarted />} />
+                <Route path="/start" element={<GoogleAdsLanding />} />
                 <Route path="/therapist-matching" element={<TherapistMatching />} />
                 <Route path="/mental-health-library" element={<MentalHealthLibrary />} />
                 <Route path="/mental-health-tests" element={<MentalHealthTests />} />
