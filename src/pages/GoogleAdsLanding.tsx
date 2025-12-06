@@ -4,33 +4,21 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card } from '@/components/ui/card';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import SEOHead from '@/components/SEOHead';
 import { useFormSubmission } from '@/hooks/useFormSubmission';
 import { useToast } from '@/hooks/use-toast';
-import { 
-  Shield, 
-  Clock, 
-  Video, 
-  CheckCircle2, 
-  Phone,
-  Star,
-  ArrowRight,
-  Heart
-} from 'lucide-react';
+import { Shield, Clock, Video, CheckCircle2, Phone, Star, ArrowRight, Heart } from 'lucide-react';
 import chcLogo from '@/assets/chc-logo.png';
-
 const GoogleAdsLanding = () => {
   const navigate = useNavigate();
-  const { toast } = useToast();
-  const { submitForm, isSubmitting } = useFormSubmission();
-  
+  const {
+    toast
+  } = useToast();
+  const {
+    submitForm,
+    isSubmitting
+  } = useFormSubmission();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -39,15 +27,18 @@ const GoogleAdsLanding = () => {
     appointmentPreference: '',
     concern: ''
   });
-
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    const {
+      name,
+      value
+    } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
   };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
     if (!formData.name || !formData.email || !formData.phone || !formData.state) {
       toast({
         title: "Please fill in all required fields",
@@ -55,7 +46,6 @@ const GoogleAdsLanding = () => {
       });
       return;
     }
-
     const result = await submitForm('therapist_matching', {
       firstName: formData.name.split(' ')[0],
       lastName: formData.name.split(' ').slice(1).join(' ') || '',
@@ -66,7 +56,6 @@ const GoogleAdsLanding = () => {
       concerns: formData.concern,
       source: 'google_ads_landing'
     });
-
     if (result.success) {
       navigate('/thank-you');
     } else {
@@ -77,25 +66,15 @@ const GoogleAdsLanding = () => {
       });
     }
   };
-
-  return (
-    <>
-      <SEOHead
-        title="Online Therapy in Georgia | Free Consultation | CHC"
-        description="Start online therapy in Georgia today. Insurance accepted, same-week appointments available. Licensed therapists ready to help. Free consultation."
-        keywords="online therapy Georgia, teletherapy GA, virtual counseling, mental health support, therapist near me"
-        canonicalUrl="https://chctherapy.com/start"
-      />
+  return <>
+      <SEOHead title="Online Therapy in Georgia | Free Consultation | CHC" description="Start online therapy in Georgia today. Insurance accepted, same-week appointments available. Licensed therapists ready to help. Free consultation." keywords="online therapy Georgia, teletherapy GA, virtual counseling, mental health support, therapist near me" canonicalUrl="https://chctherapy.com/start" />
       
       <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-accent/10">
         {/* Minimal Header */}
         <header className="py-4 px-6 border-b border-border/50 bg-background/80 backdrop-blur-sm">
           <div className="max-w-6xl mx-auto flex items-center justify-between">
             <img src={chcLogo} alt="CHC Therapy" className="h-10 w-auto" />
-            <a 
-              href="tel:+14048320102" 
-              className="flex items-center gap-2 text-primary font-semibold hover:text-primary/80 transition-colors"
-            >
+            <a href="tel:+14048320102" className="flex items-center gap-2 text-primary font-semibold hover:text-primary/80 transition-colors">
               <Phone className="h-5 w-5" />
               <span className="hidden sm:inline">(404) 832-0102</span>
             </a>
@@ -135,7 +114,7 @@ const GoogleAdsLanding = () => {
                     </div>
                     <div>
                       <p className="font-semibold text-foreground">Insurance Accepted</p>
-                      <p className="text-sm text-muted-foreground">Caresource, Amerigroup, Peach State</p>
+                      <p className="text-sm text-muted-foreground">Caresource, Amerigroup, Peach State and more.</p>
                     </div>
                   </div>
                   
@@ -163,20 +142,13 @@ const GoogleAdsLanding = () => {
                 {/* Social Proof */}
                 <div className="flex items-center gap-4 p-4 rounded-xl bg-card/50 border border-border/30">
                   <div className="flex -space-x-2">
-                    {[1, 2, 3, 4].map((i) => (
-                      <div 
-                        key={i} 
-                        className="w-10 h-10 rounded-full bg-gradient-to-br from-primary/20 to-accent/20 border-2 border-background flex items-center justify-center"
-                      >
+                    {[1, 2, 3, 4].map(i => <div key={i} className="w-10 h-10 rounded-full bg-gradient-to-br from-primary/20 to-accent/20 border-2 border-background flex items-center justify-center">
                         <Heart className="h-4 w-4 text-primary" />
-                      </div>
-                    ))}
+                      </div>)}
                   </div>
                   <div>
                     <div className="flex items-center gap-1">
-                      {[1, 2, 3, 4, 5].map((i) => (
-                        <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                      ))}
+                      {[1, 2, 3, 4, 5].map(i => <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />)}
                     </div>
                     <p className="text-sm text-muted-foreground">
                       Trusted by <span className="font-semibold text-foreground">500+</span> Georgia families
@@ -188,14 +160,9 @@ const GoogleAdsLanding = () => {
                 <div className="space-y-3">
                   <p className="font-medium text-foreground">We can help with:</p>
                   <div className="flex flex-wrap gap-2">
-                    {['Anxiety', 'Depression', 'PTSD', 'ADHD', 'Bipolar', 'Stress', 'Grief', 'Relationships', 'Trauma', 'Life Changes', 'Self-Esteem', 'Family Issues'].map((item) => (
-                      <span 
-                        key={item} 
-                        className="px-3 py-1 rounded-full bg-secondary text-secondary-foreground text-sm"
-                      >
+                    {['Anxiety', 'Depression', 'PTSD', 'ADHD', 'Bipolar', 'Stress', 'Grief', 'Relationships', 'Trauma', 'Life Changes', 'Self-Esteem', 'Family Issues'].map(item => <span key={item} className="px-3 py-1 rounded-full bg-secondary text-secondary-foreground text-sm">
                         {item}
-                      </span>
-                    ))}
+                      </span>)}
                   </div>
                 </div>
               </div>
@@ -214,45 +181,22 @@ const GoogleAdsLanding = () => {
 
                   <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
-                      <Input
-                        name="name"
-                        placeholder="Your full name *"
-                        value={formData.name}
-                        onChange={handleInputChange}
-                        className="h-12 text-base"
-                        required
-                      />
+                      <Input name="name" placeholder="Your full name *" value={formData.name} onChange={handleInputChange} className="h-12 text-base" required />
                     </div>
                     
                     <div>
-                      <Input
-                        name="email"
-                        type="email"
-                        placeholder="Email address *"
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        className="h-12 text-base"
-                        required
-                      />
+                      <Input name="email" type="email" placeholder="Email address *" value={formData.email} onChange={handleInputChange} className="h-12 text-base" required />
                     </div>
                     
                     <div>
-                      <Input
-                        name="phone"
-                        type="tel"
-                        placeholder="Phone number *"
-                        value={formData.phone}
-                        onChange={handleInputChange}
-                        className="h-12 text-base"
-                        required
-                      />
+                      <Input name="phone" type="tel" placeholder="Phone number *" value={formData.phone} onChange={handleInputChange} className="h-12 text-base" required />
                     </div>
                     
                     <div>
-                      <Select
-                        value={formData.state}
-                        onValueChange={(value) => setFormData(prev => ({ ...prev, state: value }))}
-                      >
+                      <Select value={formData.state} onValueChange={value => setFormData(prev => ({
+                      ...prev,
+                      state: value
+                    }))}>
                         <SelectTrigger className="h-12 text-base">
                           <SelectValue placeholder="State *" />
                         </SelectTrigger>
@@ -313,10 +257,10 @@ const GoogleAdsLanding = () => {
                     </div>
                     
                     <div>
-                      <Select
-                        value={formData.appointmentPreference}
-                        onValueChange={(value) => setFormData(prev => ({ ...prev, appointmentPreference: value }))}
-                      >
+                      <Select value={formData.appointmentPreference} onValueChange={value => setFormData(prev => ({
+                      ...prev,
+                      appointmentPreference: value
+                    }))}>
                         <SelectTrigger className="h-12 text-base">
                           <SelectValue placeholder="When would you like to start? (optional)" />
                         </SelectTrigger>
@@ -330,29 +274,14 @@ const GoogleAdsLanding = () => {
                     </div>
                     
                     <div>
-                      <Textarea
-                        name="concern"
-                        placeholder="What brings you to therapy? (optional)"
-                        value={formData.concern}
-                        onChange={handleInputChange}
-                        className="min-h-[80px] text-base resize-none"
-                      />
+                      <Textarea name="concern" placeholder="What brings you to therapy? (optional)" value={formData.concern} onChange={handleInputChange} className="min-h-[80px] text-base resize-none" />
                     </div>
 
-                    <Button 
-                      type="submit" 
-                      size="lg" 
-                      className="w-full h-14 text-lg font-semibold group"
-                      disabled={isSubmitting}
-                    >
-                      {isSubmitting ? (
-                        'Submitting...'
-                      ) : (
-                        <>
+                    <Button type="submit" size="lg" className="w-full h-14 text-lg font-semibold group" disabled={isSubmitting}>
+                      {isSubmitting ? 'Submitting...' : <>
                           Get My Free Consultation
                           <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                        </>
-                      )}
+                        </>}
                     </Button>
                   </form>
 
@@ -373,10 +302,7 @@ const GoogleAdsLanding = () => {
 
                 {/* Mobile CTA */}
                 <div className="mt-4 lg:hidden">
-                  <a 
-                    href="tel:+14048320102"
-                    className="flex items-center justify-center gap-2 w-full p-4 rounded-xl bg-secondary text-secondary-foreground font-semibold"
-                  >
+                  <a href="tel:+14048320102" className="flex items-center justify-center gap-2 w-full p-4 rounded-xl bg-secondary text-secondary-foreground font-semibold">
                     <Phone className="h-5 w-5" />
                     Or call us: (404) 832-0102
                   </a>
@@ -398,8 +324,6 @@ const GoogleAdsLanding = () => {
           </div>
         </footer>
       </div>
-    </>
-  );
+    </>;
 };
-
 export default GoogleAdsLanding;
