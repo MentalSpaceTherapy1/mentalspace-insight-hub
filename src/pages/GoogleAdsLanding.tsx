@@ -135,7 +135,7 @@ const GoogleAdsLanding = () => {
                     </div>
                     <div>
                       <p className="font-semibold text-foreground">Insurance Accepted</p>
-                      <p className="text-sm text-muted-foreground">Most plans covered</p>
+                      <p className="text-sm text-muted-foreground">Caresource, Amerigroup, Peach State</p>
                     </div>
                   </div>
                   
@@ -188,7 +188,7 @@ const GoogleAdsLanding = () => {
                 <div className="space-y-3">
                   <p className="font-medium text-foreground">We can help with:</p>
                   <div className="flex flex-wrap gap-2">
-                    {['Anxiety', 'Depression', 'Stress', 'Relationships', 'Trauma', 'Life Changes'].map((item) => (
+                    {['Anxiety', 'Depression', 'PTSD', 'ADHD', 'Bipolar', 'Stress', 'Grief', 'Relationships', 'Trauma', 'Life Changes', 'Self-Esteem', 'Family Issues'].map((item) => (
                       <span 
                         key={item} 
                         className="px-3 py-1 rounded-full bg-secondary text-secondary-foreground text-sm"
