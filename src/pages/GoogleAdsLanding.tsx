@@ -253,7 +253,7 @@ const GoogleAdsLanding = () => {
                         value={formData.state}
                         onValueChange={(value) => setFormData(prev => ({ ...prev, state: value }))}
                       >
-                        <SelectTrigger className="h-12 text-base text-muted-foreground data-[state=open]:text-foreground [&>span[data-placeholder]]:text-muted-foreground [&>span:not([data-placeholder])]:text-foreground">
+                        <SelectTrigger className="h-12 text-base">
                           <SelectValue placeholder="State *" />
                         </SelectTrigger>
                         <SelectContent className="max-h-[300px] bg-popover">
@@ -317,7 +317,7 @@ const GoogleAdsLanding = () => {
                         value={formData.appointmentPreference}
                         onValueChange={(value) => setFormData(prev => ({ ...prev, appointmentPreference: value }))}
                       >
-                        <SelectTrigger className="h-12 text-base text-muted-foreground data-[state=open]:text-foreground [&>span[data-placeholder]]:text-muted-foreground [&>span:not([data-placeholder])]:text-foreground">
+                        <SelectTrigger className="h-12 text-base">
                           <SelectValue placeholder="When would you like to start? (optional)" />
                         </SelectTrigger>
                         <SelectContent className="bg-popover">
