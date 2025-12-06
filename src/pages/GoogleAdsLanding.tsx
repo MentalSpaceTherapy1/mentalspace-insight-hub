@@ -4,6 +4,13 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card } from '@/components/ui/card';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import SEOHead from '@/components/SEOHead';
 import { useFormSubmission } from '@/hooks/useFormSubmission';
 import { useToast } from '@/hooks/use-toast';
@@ -28,6 +35,8 @@ const GoogleAdsLanding = () => {
     name: '',
     email: '',
     phone: '',
+    state: '',
+    appointmentPreference: '',
     concern: ''
   });
 
@@ -39,7 +48,7 @@ const GoogleAdsLanding = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!formData.name || !formData.email || !formData.phone) {
+    if (!formData.name || !formData.email || !formData.phone || !formData.state) {
       toast({
         title: "Please fill in all required fields",
         variant: "destructive"
@@ -52,6 +61,8 @@ const GoogleAdsLanding = () => {
       lastName: formData.name.split(' ').slice(1).join(' ') || '',
       email: formData.email,
       phone: formData.phone,
+      state: formData.state,
+      appointmentPreference: formData.appointmentPreference,
       concerns: formData.concern,
       source: 'google_ads_landing'
     });
@@ -82,11 +93,11 @@ const GoogleAdsLanding = () => {
           <div className="max-w-6xl mx-auto flex items-center justify-between">
             <img src={chcLogo} alt="CHC Therapy" className="h-10 w-auto" />
             <a 
-              href="tel:+14044507988" 
+              href="tel:+14048320102" 
               className="flex items-center gap-2 text-primary font-semibold hover:text-primary/80 transition-colors"
             >
               <Phone className="h-5 w-5" />
-              <span className="hidden sm:inline">(404) 450-7988</span>
+              <span className="hidden sm:inline">(404) 832-0102</span>
             </a>
           </div>
         </header>
@@ -238,6 +249,43 @@ const GoogleAdsLanding = () => {
                     </div>
                     
                     <div>
+                      <Select
+                        value={formData.state}
+                        onValueChange={(value) => setFormData(prev => ({ ...prev, state: value }))}
+                      >
+                        <SelectTrigger className="h-12 text-base">
+                          <SelectValue placeholder="State *" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="GA">Georgia</SelectItem>
+                          <SelectItem value="AL">Alabama</SelectItem>
+                          <SelectItem value="FL">Florida</SelectItem>
+                          <SelectItem value="SC">South Carolina</SelectItem>
+                          <SelectItem value="TN">Tennessee</SelectItem>
+                          <SelectItem value="NC">North Carolina</SelectItem>
+                          <SelectItem value="other">Other</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    
+                    <div>
+                      <Select
+                        value={formData.appointmentPreference}
+                        onValueChange={(value) => setFormData(prev => ({ ...prev, appointmentPreference: value }))}
+                      >
+                        <SelectTrigger className="h-12 text-base">
+                          <SelectValue placeholder="When would you like to start? (optional)" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="asap">As soon as possible</SelectItem>
+                          <SelectItem value="this_week">This week</SelectItem>
+                          <SelectItem value="next_week">Next week</SelectItem>
+                          <SelectItem value="flexible">I'm flexible</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    
+                    <div>
                       <Textarea
                         name="concern"
                         placeholder="What brings you to therapy? (optional)"
@@ -282,11 +330,11 @@ const GoogleAdsLanding = () => {
                 {/* Mobile CTA */}
                 <div className="mt-4 lg:hidden">
                   <a 
-                    href="tel:+14044507988"
+                    href="tel:+14048320102"
                     className="flex items-center justify-center gap-2 w-full p-4 rounded-xl bg-secondary text-secondary-foreground font-semibold"
                   >
                     <Phone className="h-5 w-5" />
-                    Or call us: (404) 450-7988
+                    Or call us: (404) 832-0102
                   </a>
                 </div>
               </div>
