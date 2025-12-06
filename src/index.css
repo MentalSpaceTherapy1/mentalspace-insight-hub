@@ -271,4 +271,9 @@ All colors MUST be HSL.
     content: '';
     @apply absolute inset-0 rounded-lg bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-teal-500/20 blur-sm;
   }
+
+  /* Fix Select placeholder color to match input placeholders */
+  [data-placeholder] {
+    color: hsl(var(--muted-foreground)) !important;
+  }
 }
