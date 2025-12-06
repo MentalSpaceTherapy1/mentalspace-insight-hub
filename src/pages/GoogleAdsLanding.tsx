@@ -160,7 +160,7 @@ const GoogleAdsLanding = () => {
                 <div className="space-y-3">
                   <p className="font-medium text-foreground">We can help with:</p>
                   <div className="flex flex-wrap gap-2">
-                    {['Anxiety', 'Depression', 'PTSD', 'ADHD', 'Bipolar', 'Stress', 'Grief', 'Relationships', 'Trauma', 'Life Changes', 'Self-Esteem', 'Family Issues'].map(item => <span key={item} className="px-3 py-1 rounded-full bg-secondary text-secondary-foreground text-sm">
+                    {['Anxiety', 'Depression', 'PTSD', 'ADHD', 'Bipolar', 'Stress', 'Grief', 'Relationships', 'Trauma', 'Life Changes', 'Self-Esteem', 'Family Issues', 'And More'].map(item => <span key={item} className="px-3 py-1 rounded-full bg-secondary text-secondary-foreground text-sm">
                         {item}
                       </span>)}
                   </div>
