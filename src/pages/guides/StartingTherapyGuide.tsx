@@ -1,31 +1,146 @@
+import { Link } from 'react-router-dom';
 import PillarPageTemplate from '@/components/PillarPageTemplate';
 
 const StartingTherapyGuide = () => {
   return (
     <PillarPageTemplate
-      title="Complete Guide to Starting Therapy"
-      subtitle="Everything you need to know about beginning your mental health journey"
-      description="Learn how to start therapy, what to expect in your first session, how to find the right therapist, and tips for getting the most out of counseling. A complete beginner's guide."
+      title="The Complete Guide to Starting Therapy"
+      subtitle="Everything you need to know about beginning your mental health journey—from finding the right therapist to preparing for your first session."
+      description="Everything you need to know about starting therapy. Learn what to expect, how to find the right therapist, and prepare for your first session. Free consultation."
       canonicalUrl="https://chctherapy.com/guides/starting-therapy"
-      publishedDate="2024-12-01"
-      updatedDate="2024-12-11"
+      publishedDate="2025-01-15"
+      updatedDate="2025-01-15"
       readTime={15}
-      keywords="starting therapy, first therapy session, how to start counseling, therapy for beginners, what to expect in therapy"
+      keywords="start therapy, starting therapy, how to start therapy, first therapy session, find a therapist"
       relatedServices={[
         { title: "Online Therapy", url: "/online-therapy" },
-        { title: "Get Started", url: "/get-started" },
-        { title: "Therapist Matching", url: "/therapist-matching" }
+        { title: "Anxiety Therapy", url: "/anxiety-therapy-georgia" },
+        { title: "Depression Therapy", url: "/depression-therapy-georgia" },
+        { title: "Couples Therapy", url: "/couples-therapy" }
       ]}
       relatedArticles={[
         { title: "Finding the Right Therapist", url: "/blog/finding-right-therapist-guide" },
         { title: "Benefits of Online Therapy", url: "/blog/benefits-online-therapy" },
-        { title: "Therapy Cost & Payment Guide", url: "/blog/therapy-cost-payment-options-guide" }
+        { title: "Understanding Anxiety", url: "/blog/understanding-anxiety" },
+        { title: "Therapy Costs Guide", url: "/blog/therapy-cost-payment-options-guide" }
       ]}
     >
-      <div className="text-center py-16 text-muted-foreground">
-        <p className="text-2xl font-semibold text-foreground mb-4">Coming Soon</p>
-        <p>This comprehensive guide is currently being developed by our clinical team.</p>
-        <p className="mt-4">Check back soon for expert information on starting your therapy journey.</p>
+      {/* Section 1: Is Therapy Right for You? */}
+      <h2 id="is-therapy-right-for-you">Is Therapy Right for You?</h2>
+      <p>
+        Starting therapy is a significant step, and if you're reading this guide, you're already showing courage by considering it. The truth is, therapy isn't just for people in crisis—it's for anyone who wants to better understand themselves, improve their relationships, or develop healthier ways of coping with life's challenges.
+      </p>
+      <p>
+        You might benefit from therapy if you're dealing with persistent stress, navigating a major life transition, struggling with anxiety or depression, or simply feeling "stuck" without knowing why. Therapy provides a safe, confidential space to explore your thoughts and feelings with a trained professional who can offer guidance and support.
+      </p>
+      <p>
+        Many people wait until they're overwhelmed before seeking help, but therapy can be just as valuable for prevention and personal growth as it is for crisis intervention. Think of it like going to the gym for your mental health—you don't need to be injured to benefit from exercise, and you don't need to be in crisis to benefit from therapy.
+      </p>
+      <p>
+        If you've been wondering whether therapy might help, that curiosity itself is often a sign that it could.
+      </p>
+
+      {/* Section 2: Signs You Might Benefit from Therapy */}
+      <h2 id="signs-you-might-benefit">Signs You Might Benefit from Therapy</h2>
+      <p>
+        While everyone's situation is unique, there are common signs that suggest therapy could be helpful:
+      </p>
+      
+      <h3>Emotional signs:</h3>
+      <ul>
+        <li>Persistent feelings of sadness, hopelessness, or emptiness</li>
+        <li>Anxiety that interferes with daily activities</li>
+        <li>Overwhelming stress that doesn't seem to improve</li>
+        <li>Mood swings or emotional reactions that feel out of proportion</li>
+        <li>Feelings of worthlessness or excessive guilt</li>
+      </ul>
+
+      <h3>Behavioral signs:</h3>
+      <ul>
+        <li>Withdrawing from friends, family, or activities you once enjoyed</li>
+        <li>Changes in sleep patterns—sleeping too much or too little</li>
+        <li>Changes in appetite or weight</li>
+        <li>Difficulty concentrating or making decisions</li>
+        <li>Using alcohol, drugs, or other substances to cope</li>
+      </ul>
+
+      <h3>Life circumstance signs:</h3>
+      <ul>
+        <li>Going through a major life transition (divorce, job loss, move, new baby)</li>
+        <li>Experiencing grief or loss</li>
+        <li>Relationship conflicts that you can't resolve on your own</li>
+        <li>Trauma or difficult experiences from your past affecting your present</li>
+        <li>Feeling stuck in patterns you want to change</li>
+      </ul>
+
+      <p>
+        You don't need to check every box on this list to benefit from therapy. Even one or two of these signs can indicate that professional support could help you feel better and function more effectively.
+      </p>
+
+      {/* Section 3: Types of Mental Health Professionals */}
+      <h2 id="types-of-mental-health-professionals">Types of Mental Health Professionals</h2>
+      <p>
+        Understanding the different types of mental health professionals can help you find the right fit for your needs.
+      </p>
+
+      <h3>Therapists and Counselors (LPC, LCSW, LMFT)</h3>
+      <p>
+        Licensed Professional Counselors (LPC), Licensed Clinical Social Workers (LCSW), and Licensed Marriage and Family Therapists (LMFT) provide talk therapy for individuals, couples, and families. They help you work through emotional challenges, develop coping strategies, and achieve personal goals. This is the most common type of mental health provider and is often what people mean when they say "therapist."
+      </p>
+
+      <h3>Psychologists (PhD, PsyD)</h3>
+      <p>
+        Psychologists hold doctoral degrees and can provide therapy as well as psychological testing and assessments. They're particularly helpful if you need a formal diagnosis or specialized testing for conditions like ADHD or learning disabilities.
+      </p>
+
+      <h3>Psychiatrists (MD, DO)</h3>
+      <p>
+        Psychiatrists are medical doctors who specialize in mental health. They can diagnose conditions, provide therapy, and prescribe medication. If you think you might benefit from medication for anxiety, depression, or other conditions, a psychiatrist can help.
+      </p>
+
+      <h3>Which professional is right for you?</h3>
+      <p>
+        For most people seeking talk therapy, a licensed therapist or counselor is an excellent choice. At <Link to="/therapist-matching" className="text-primary hover:underline">Coping and Healing Counseling</Link>, our team includes licensed professionals experienced in treating a wide range of concerns. If medication might be helpful, we can coordinate with psychiatrists to ensure you receive comprehensive care. Visit our <Link to="/faq" className="text-primary hover:underline">FAQ page</Link> for more information about therapist credentials.
+      </p>
+
+      {/* Section 4: Common Types of Therapy */}
+      <h2 id="common-types-of-therapy">Common Types of Therapy</h2>
+      <p>
+        Different therapy approaches work better for different concerns. Here are the most common types you might encounter:
+      </p>
+
+      <h3>Cognitive Behavioral Therapy (CBT)</h3>
+      <p>
+        <Link to="/blog/cognitive-behavioral-therapy" className="text-primary hover:underline">CBT</Link> is one of the most widely researched and effective forms of therapy. It focuses on the connection between your thoughts, feelings, and behaviors. By identifying and changing negative thought patterns, you can shift how you feel and act. CBT is particularly effective for anxiety, depression, and phobias.
+      </p>
+
+      <h3>EMDR (Eye Movement Desensitization and Reprocessing)</h3>
+      <p>
+        <Link to="/blog/emdr-therapy" className="text-primary hover:underline">EMDR</Link> is a specialized therapy designed to help people heal from trauma and PTSD. It uses guided eye movements or other forms of bilateral stimulation to help your brain process traumatic memories. Many people experience significant relief in fewer sessions than traditional talk therapy.
+      </p>
+
+      <h3>Dialectical Behavior Therapy (DBT)</h3>
+      <p>
+        DBT combines cognitive-behavioral techniques with mindfulness practices. It's especially helpful for people who experience intense emotions, struggle with self-harm, or have borderline personality disorder. DBT teaches skills for emotional regulation, distress tolerance, and interpersonal effectiveness.
+      </p>
+
+      <h3>Psychodynamic Therapy</h3>
+      <p>
+        This approach explores how your past experiences, particularly from childhood, influence your current thoughts, feelings, and behaviors. It's helpful for understanding deep-seated patterns and gaining insight into unconscious motivations.
+      </p>
+
+      <h3>Couples and Family Therapy</h3>
+      <p>
+        These approaches focus on relationships rather than individuals. <Link to="/couples-therapy" className="text-primary hover:underline">Couples therapy</Link> helps partners improve communication, resolve conflicts, and strengthen their connection. Family therapy addresses dynamics within the family system.
+      </p>
+
+      <p>
+        Your therapist will work with you to determine which approach—or combination of approaches—best fits your needs and goals. Many therapists integrate techniques from multiple modalities.
+      </p>
+
+      {/* PLACEHOLDER: Sections 5-13 will be added in Parts 2 and 3 */}
+      <div className="my-12 p-6 bg-muted/50 rounded-xl text-center">
+        <p className="text-muted-foreground italic">Content continues below... (Sections 5-13 coming in next update)</p>
       </div>
     </PillarPageTemplate>
   );
