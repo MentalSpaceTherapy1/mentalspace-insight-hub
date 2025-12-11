@@ -410,26 +410,54 @@ const EMDRTherapy = () => {
 
         <section className="py-16">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold mb-8 text-center text-foreground">Related Articles</h2>
-            <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-              <Link to="/blog/ptsd-recovery" className="group">
-                <div className="border border-border rounded-lg p-6 hover:shadow-lg transition-shadow">
-                  <h3 className="text-xl font-semibold mb-2 group-hover:text-primary text-foreground">PTSD Recovery Guide</h3>
-                  <p className="text-muted-foreground text-sm">Comprehensive information about PTSD treatment and recovery.</p>
-                </div>
-              </Link>
-              <Link to="/blog/understanding-anxiety" className="group">
-                <div className="border border-border rounded-lg p-6 hover:shadow-lg transition-shadow">
-                  <h3 className="text-xl font-semibold mb-2 group-hover:text-primary text-foreground">Understanding Anxiety</h3>
-                  <p className="text-muted-foreground text-sm">Learn about anxiety disorders and treatment options.</p>
-                </div>
-              </Link>
-              <Link to="/blog/benefits-online-therapy" className="group">
-                <div className="border border-border rounded-lg p-6 hover:shadow-lg transition-shadow">
-                  <h3 className="text-xl font-semibold mb-2 group-hover:text-primary text-foreground">Online Therapy Benefits</h3>
-                  <p className="text-muted-foreground text-sm">Discover how telehealth makes trauma therapy more accessible.</p>
-                </div>
-              </Link>
+            <h2 className="text-3xl font-bold mb-8 text-center text-foreground">Related Resources</h2>
+            
+            <div className="mb-12">
+              <h3 className="text-xl font-semibold mb-4 text-center text-muted-foreground">Our Trauma Therapy Services</h3>
+              <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                <Link to="/ptsd-therapy-georgia" className="group">
+                  <div className="border border-primary/20 bg-primary/5 rounded-lg p-6 hover:shadow-lg transition-shadow">
+                    <h4 className="text-xl font-semibold mb-2 group-hover:text-primary text-foreground">PTSD Therapy in Georgia</h4>
+                    <p className="text-muted-foreground text-sm">Specialized PTSD treatment including EMDR throughout Georgia.</p>
+                  </div>
+                </Link>
+                <Link to="/online-therapy" className="group">
+                  <div className="border border-primary/20 bg-primary/5 rounded-lg p-6 hover:shadow-lg transition-shadow">
+                    <h4 className="text-xl font-semibold mb-2 group-hover:text-primary text-foreground">Online Therapy Services</h4>
+                    <p className="text-muted-foreground text-sm">Access trauma therapy from the comfort of your home.</p>
+                  </div>
+                </Link>
+                <Link to="/mental-health-library/ptsd" className="group">
+                  <div className="border border-primary/20 bg-primary/5 rounded-lg p-6 hover:shadow-lg transition-shadow">
+                    <h4 className="text-xl font-semibold mb-2 group-hover:text-primary text-foreground">Understanding PTSD</h4>
+                    <p className="text-muted-foreground text-sm">Learn about PTSD symptoms, causes, and treatment options.</p>
+                  </div>
+                </Link>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-semibold mb-4 text-center text-muted-foreground">Related Articles</h3>
+              <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                <Link to="/blog/ptsd-recovery" className="group">
+                  <div className="border border-border rounded-lg p-6 hover:shadow-lg transition-shadow">
+                    <h4 className="text-xl font-semibold mb-2 group-hover:text-primary text-foreground">PTSD Recovery Guide</h4>
+                    <p className="text-muted-foreground text-sm">Comprehensive information about PTSD treatment and recovery.</p>
+                  </div>
+                </Link>
+                <Link to="/blog/understanding-anxiety" className="group">
+                  <div className="border border-border rounded-lg p-6 hover:shadow-lg transition-shadow">
+                    <h4 className="text-xl font-semibold mb-2 group-hover:text-primary text-foreground">Understanding Anxiety</h4>
+                    <p className="text-muted-foreground text-sm">Learn about anxiety disorders and treatment options.</p>
+                  </div>
+                </Link>
+                <Link to="/blog/benefits-online-therapy" className="group">
+                  <div className="border border-border rounded-lg p-6 hover:shadow-lg transition-shadow">
+                    <h4 className="text-xl font-semibold mb-2 group-hover:text-primary text-foreground">Online Therapy Benefits</h4>
+                    <p className="text-muted-foreground text-sm">Discover how telehealth makes trauma therapy more accessible.</p>
+                  </div>
+                </Link>
+              </div>
             </div>
           </div>
         </section>
