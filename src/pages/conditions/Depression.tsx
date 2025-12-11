@@ -421,6 +421,12 @@ const Depression = () => {
                      <Link to="/depression-therapy-georgia" className="block text-primary hover:underline">
                        Georgia Depression Therapy
                      </Link>
+                     <Link to="/online-therapy" className="block text-primary hover:underline">
+                       Online Therapy
+                     </Link>
+                     <Link to="/faq" className="block text-primary hover:underline">
+                       FAQ
+                     </Link>
                      <Link to="/get-started" className="block text-primary hover:underline">
                        Get Started Today
                      </Link>
