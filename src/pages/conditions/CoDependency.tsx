@@ -6,8 +6,15 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 import codependencyPersonImage from "@/assets/codependency-person.jpg";
+import { generateMedicalWebPageSchema } from "@/utils/schemaGenerators";
 
 const CoDependency = () => {
+  const medicalWebPageSchema = generateMedicalWebPageSchema(
+    "Codependency",
+    "Get professional help for codependency. Learn about healthy relationships, boundaries, and find specialized therapists for codependency recovery and healing.",
+    "https://chctherapy.com/mental-health-library/codependency"
+  );
+
   return (
     <>
       <SEOHead 
@@ -15,6 +22,7 @@ const CoDependency = () => {
         description="Get professional help for codependency. Learn about healthy relationships, boundaries, and find specialized therapists for codependency recovery and healing."
         keywords="codependency, codependent relationships, relationship therapy, boundaries, enabling behavior, relationship counseling"
         canonicalUrl="https://chctherapy.com/mental-health-library/codependency"
+        structuredData={medicalWebPageSchema}
       />
       <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
         <Header />

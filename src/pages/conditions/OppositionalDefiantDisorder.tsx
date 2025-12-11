@@ -6,8 +6,15 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowLeft, AlertTriangle, Users, FileText, Stethoscope } from 'lucide-react';
 import SEOHead from '@/components/SEOHead';
+import { generateMedicalWebPageSchema } from '@/utils/schemaGenerators';
 
 const OppositionalDefiantDisorder = () => {
+  const medicalWebPageSchema = generateMedicalWebPageSchema(
+    "Oppositional Defiant Disorder",
+    "Expert ODD treatment for children and teens in Georgia. Specialized therapy for Oppositional Defiant Disorder with family-centered approach.",
+    "https://chctherapy.com/mental-health-library/oppositional-defiant-disorder"
+  );
+
   return (
     <div className="flex flex-col min-h-screen">
       <SEOHead 
@@ -15,6 +22,7 @@ const OppositionalDefiantDisorder = () => {
         description="Expert ODD treatment for children and teens in Georgia. Specialized therapy for Oppositional Defiant Disorder with family-centered approach."
         keywords="oppositional defiant disorder, ODD, child behavior therapy, teen therapy, conduct disorder, Georgia"
         canonicalUrl="https://chctherapy.com/mental-health-library/oppositional-defiant-disorder"
+        structuredData={medicalWebPageSchema}
       />
       <Header />
       

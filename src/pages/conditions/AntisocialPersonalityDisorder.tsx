@@ -6,8 +6,15 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowLeft, UserX, Users, FileText, Stethoscope } from 'lucide-react';
 import SEOHead from '@/components/SEOHead';
+import { generateMedicalWebPageSchema } from '@/utils/schemaGenerators';
 
 const AntisocialPersonalityDisorder = () => {
+  const medicalWebPageSchema = generateMedicalWebPageSchema(
+    "Antisocial Personality Disorder",
+    "Professional treatment for Antisocial Personality Disorder (ASPD) in Georgia. Learn about symptoms, therapy options, and connect with specialized therapists.",
+    "https://chctherapy.com/mental-health-library/antisocial-personality-disorder"
+  );
+
   return (
     <div className="flex flex-col min-h-screen">
       <SEOHead 
@@ -15,6 +22,7 @@ const AntisocialPersonalityDisorder = () => {
         description="Professional treatment for Antisocial Personality Disorder (ASPD) in Georgia. Learn about symptoms, therapy options, and connect with specialized therapists."
         keywords="antisocial personality disorder, ASPD, conduct disorder, personality disorder therapy, Georgia"
         canonicalUrl="https://chctherapy.com/mental-health-library/antisocial-personality-disorder"
+        structuredData={medicalWebPageSchema}
       />
       <Header />
       

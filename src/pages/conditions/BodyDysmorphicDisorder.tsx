@@ -6,8 +6,15 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowLeft, Eye, Users, FileText, Stethoscope } from 'lucide-react';
 import SEOHead from '@/components/SEOHead';
+import { generateMedicalWebPageSchema } from '@/utils/schemaGenerators';
 
 const BodyDysmorphicDisorder = () => {
+  const medicalWebPageSchema = generateMedicalWebPageSchema(
+    "Body Dysmorphic Disorder",
+    "Specialized BDD therapy in Georgia. Expert treatment for Body Dysmorphic Disorder with CBT and evidence-based approaches for body image concerns.",
+    "https://chctherapy.com/mental-health-library/body-dysmorphic-disorder"
+  );
+
   return (
     <div className="flex flex-col min-h-screen">
       <SEOHead 
@@ -15,6 +22,7 @@ const BodyDysmorphicDisorder = () => {
         description="Specialized BDD therapy in Georgia. Expert treatment for Body Dysmorphic Disorder with CBT and evidence-based approaches for body image concerns."
         keywords="body dysmorphic disorder, BDD, body image therapy, appearance anxiety, CBT therapy, Georgia"
         canonicalUrl="https://chctherapy.com/mental-health-library/body-dysmorphic-disorder"
+        structuredData={medicalWebPageSchema}
       />
       <Header />
       

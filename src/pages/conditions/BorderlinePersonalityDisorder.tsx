@@ -6,8 +6,15 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowLeft, Waves, Users, FileText, Stethoscope } from 'lucide-react';
 import SEOHead from '@/components/SEOHead';
+import { generateMedicalWebPageSchema } from '@/utils/schemaGenerators';
 
 const BorderlinePersonalityDisorder = () => {
+  const medicalWebPageSchema = generateMedicalWebPageSchema(
+    "Borderline Personality Disorder",
+    "Specialized BPD therapy in Georgia. Expert treatment for Borderline Personality Disorder with DBT and other evidence-based approaches.",
+    "https://chctherapy.com/mental-health-library/borderline-personality-disorder"
+  );
+
   return (
     <div className="flex flex-col min-h-screen">
       <SEOHead 
@@ -15,6 +22,7 @@ const BorderlinePersonalityDisorder = () => {
         description="Specialized BPD therapy in Georgia. Expert treatment for Borderline Personality Disorder with DBT and other evidence-based approaches."
         keywords="borderline personality disorder, BPD, DBT therapy, emotional regulation, personality disorder treatment, Georgia"
         canonicalUrl="https://chctherapy.com/mental-health-library/borderline-personality-disorder"
+        structuredData={medicalWebPageSchema}
       />
       <Header />
       
