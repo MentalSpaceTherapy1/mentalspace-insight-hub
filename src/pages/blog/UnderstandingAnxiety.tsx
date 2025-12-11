@@ -5,14 +5,29 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 import anxietyPersonImage from "@/assets/anxiety-person.jpg";
+import { generateArticleSchema } from "@/utils/schemaGenerators";
 
 const UnderstandingAnxiety = () => {
+  const articleSchema = generateArticleSchema(
+    "Understanding Anxiety: Signs, Symptoms, and Treatment Options",
+    "Learn about the different types of anxiety disorders and evidence-based treatment approaches that can help you manage anxiety effectively.",
+    "https://chctherapy.com/blog/understanding-anxiety",
+    "2024-12-20",
+    "2024-12-20",
+    "https://chctherapy.com/therapy-hero-og.jpg"
+  );
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-background to-muted">
       <SEOHead
         title="Understanding Anxiety: Signs, Symptoms, and Treatment Options"
         description="Learn about the different types of anxiety disorders and evidence-based treatment approaches that can help you manage anxiety effectively."
         keywords="anxiety disorders, anxiety symptoms, anxiety treatment, mental health, therapy"
+        canonicalUrl="https://chctherapy.com/blog/understanding-anxiety"
+        ogTitle="Understanding Anxiety: Signs, Symptoms, and Treatment Options"
+        ogDescription="Learn about the different types of anxiety disorders and evidence-based treatment approaches that can help you manage anxiety effectively."
+        ogImage="https://chctherapy.com/therapy-hero-og.jpg"
+        structuredData={articleSchema}
       />
       <Header />
       

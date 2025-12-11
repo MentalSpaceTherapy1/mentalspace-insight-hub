@@ -21,8 +21,14 @@ import {
   Calendar,
   Building
 } from 'lucide-react';
+import { generateCountyBusinessSchema } from '@/utils/schemaGenerators';
 
 const FultonCountyTherapy = () => {
+  const countySchema = generateCountyBusinessSchema(
+    "Fulton",
+    "Professional online therapy serving Fulton County and Atlanta, GA. Licensed therapists accepting Aetna, CareSource, Peach State. Video and phone sessions available.",
+    "https://chctherapy.com/fulton-county-therapy"
+  );
   return (
     <div className="flex flex-col min-h-screen">
       <SEOHead
@@ -32,6 +38,7 @@ const FultonCountyTherapy = () => {
         canonicalUrl="https://chctherapy.com/fulton-county-therapy"
         ogTitle="Online Therapy in Fulton County, GA | Atlanta Therapists"
         ogDescription="Professional online therapy serving Fulton County and Atlanta. Licensed therapists, most insurance accepted, same-week availability."
+        structuredData={countySchema}
       />
       
       <Header />
