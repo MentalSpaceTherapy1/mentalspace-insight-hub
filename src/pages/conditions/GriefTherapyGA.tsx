@@ -22,8 +22,16 @@ import {
   Calendar,
   Heart
 } from 'lucide-react';
+import { generateMedicalBusinessSchema } from '@/utils/schemaGenerators';
 
 const GriefTherapyGA = () => {
+  const medicalBusinessSchema = generateMedicalBusinessSchema(
+    "Grief Therapy Georgia",
+    "Get grief therapy in Georgia with licensed therapists. Bereavement counseling and loss support. Video, phone & text sessions. Most insurance accepted.",
+    "https://chctherapy.com/grief-therapy-georgia",
+    ["Grief Therapy", "Bereavement Counseling", "Loss Support", "Complicated Grief Treatment"]
+  );
+
   return (
     <div className="flex flex-col min-h-screen">
       <SEOHead
@@ -33,6 +41,7 @@ const GriefTherapyGA = () => {
         canonicalUrl="https://chctherapy.com/grief-therapy-georgia"
         ogTitle="Online Grief Therapy in Georgia | Licensed Therapists"
         ogDescription="Professional grief therapy in Georgia. Compassionate support for loss and bereavement. Most insurance accepted. Start your healing journey today."
+        structuredData={medicalBusinessSchema}
       />
       
       <Header />

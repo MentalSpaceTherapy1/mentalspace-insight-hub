@@ -20,8 +20,16 @@ import {
   Brain,
   Zap
 } from 'lucide-react';
+import { generateMedicalBusinessSchema } from '@/utils/schemaGenerators';
 
 const PTSDTherapyGA = () => {
+  const medicalBusinessSchema = generateMedicalBusinessSchema(
+    "PTSD & Trauma Therapy Georgia",
+    "Professional PTSD and trauma therapy in Georgia. EMDR, CPT, and trauma-focused therapy with licensed therapists. Most insurance accepted. Specialized care for veterans and trauma survivors.",
+    "https://chctherapy.com/ptsd-therapy-georgia",
+    ["PTSD Therapy", "EMDR", "Trauma-Focused CBT", "CPT", "Veterans Therapy"]
+  );
+
   return (
     <div className="flex flex-col min-h-screen">
       <SEOHead
@@ -31,6 +39,7 @@ const PTSDTherapyGA = () => {
         canonicalUrl="https://chctherapy.com/ptsd-therapy-georgia"
         ogTitle="Online PTSD & Trauma Therapy in Georgia | Licensed Therapists"
         ogDescription="Professional PTSD and trauma therapy in Georgia. EMDR and trauma-focused treatment with licensed therapists. Specialized care for veterans and trauma survivors."
+        structuredData={medicalBusinessSchema}
       />
       
       <Header />

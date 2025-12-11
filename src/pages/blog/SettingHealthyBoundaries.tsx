@@ -3,8 +3,16 @@ import SEOHead from "@/components/SEOHead";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import { generateArticleSchema } from "@/utils/schemaGenerators";
 
 const SettingHealthyBoundaries = () => {
+  const articleSchema = generateArticleSchema(
+    "Setting Healthy Boundaries: A Therapist's Guide to Saying No",
+    "Learn how to set healthy boundaries in relationships, work, and family. Practical communication scripts and therapy techniques for better boundaries.",
+    "https://chctherapy.com/blog/setting-healthy-boundaries-guide",
+    "2024-11-15"
+  );
+
   return (
     <>
       <SEOHead
@@ -12,6 +20,7 @@ const SettingHealthyBoundaries = () => {
         description="Learn how to set healthy boundaries in relationships, work, and family. Practical communication scripts and therapy techniques for better boundaries."
         keywords="setting boundaries, healthy boundaries therapy, learning to say no, boundary setting"
         canonicalUrl="https://chctherapy.com/blog/setting-healthy-boundaries-guide"
+        structuredData={articleSchema}
       />
       <Header />
       <main className="min-h-screen bg-background">

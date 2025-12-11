@@ -3,8 +3,16 @@ import SEOHead from "@/components/SEOHead";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import { generateArticleSchema } from "@/utils/schemaGenerators";
 
 const GriefTherapyHealing = () => {
+  const articleSchema = generateArticleSchema(
+    "Dealing with Grief: How Therapy Helps You Process Loss & Heal",
+    "Comprehensive guide to grief therapy covering stages of grief, complicated grief, bereavement support, and healing after loss.",
+    "https://chctherapy.com/blog/grief-therapy-healing-loss",
+    "2024-11-15"
+  );
+
   return (
     <>
       <SEOHead
@@ -12,6 +20,7 @@ const GriefTherapyHealing = () => {
         description="Comprehensive guide to grief therapy covering stages of grief, complicated grief, bereavement support, and healing after loss."
         keywords="grief therapy, grief counseling, bereavement support, loss therapy, coping with grief"
         canonicalUrl="https://chctherapy.com/blog/grief-therapy-healing-loss"
+        structuredData={articleSchema}
       />
       <Header />
       <main className="min-h-screen bg-background">

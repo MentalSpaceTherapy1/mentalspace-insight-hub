@@ -3,8 +3,16 @@ import SEOHead from "@/components/SEOHead";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import { generateArticleSchema } from "@/utils/schemaGenerators";
 
 const SuicidalThoughtsHelp = () => {
+  const articleSchema = generateArticleSchema(
+    "Suicidal Thoughts: Warning Signs, How to Get Help & Crisis Resources",
+    "Critical guide to recognizing suicide warning signs, how to help someone in crisis, and immediate resources. If you're in crisis, call 988 now.",
+    "https://chctherapy.com/blog/suicidal-thoughts-crisis-help",
+    "2024-11-15"
+  );
+
   return (
     <>
       <SEOHead
@@ -12,6 +20,7 @@ const SuicidalThoughtsHelp = () => {
         description="Critical guide to recognizing suicide warning signs, how to help someone in crisis, and immediate resources. If you're in crisis, call 988 now."
         keywords="suicidal thoughts help, suicide prevention, mental health crisis, crisis resources"
         canonicalUrl="https://chctherapy.com/blog/suicidal-thoughts-crisis-help"
+        structuredData={articleSchema}
       />
       <Header />
       <main className="min-h-screen bg-background">

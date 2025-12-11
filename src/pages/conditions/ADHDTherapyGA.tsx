@@ -21,8 +21,16 @@ import {
   Brain,
   Target
 } from 'lucide-react';
+import { generateMedicalBusinessSchema } from '@/utils/schemaGenerators';
 
 const ADHDTherapyGA = () => {
+  const medicalBusinessSchema = generateMedicalBusinessSchema(
+    "ADHD Therapy Georgia",
+    "ADHD therapy for adults and teens in Georgia. Licensed therapists specializing in ADHD treatment, coaching, and coping strategies. Most insurance accepted.",
+    "https://chctherapy.com/adhd-therapy-georgia",
+    ["ADHD Therapy", "ADHD Coaching", "Executive Function Training", "CBT for ADHD"]
+  );
+
   return (
     <div className="flex flex-col min-h-screen">
       <SEOHead
@@ -32,6 +40,7 @@ const ADHDTherapyGA = () => {
         canonicalUrl="https://chctherapy.com/adhd-therapy-georgia"
         ogTitle="Online ADHD Therapy in Georgia | Adults & Teens | Licensed Therapists"
         ogDescription="Professional ADHD therapy for adults and teens in Georgia. Licensed therapists specializing in ADHD treatment and coping strategies. Most insurance accepted."
+        structuredData={medicalBusinessSchema}
       />
       
       <Header />

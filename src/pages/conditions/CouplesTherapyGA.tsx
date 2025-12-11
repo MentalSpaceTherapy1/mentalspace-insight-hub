@@ -22,8 +22,16 @@ import {
   Calendar,
   Heart
 } from 'lucide-react';
+import { generateMedicalBusinessSchema } from '@/utils/schemaGenerators';
 
 const CouplesTherapyGA = () => {
+  const medicalBusinessSchema = generateMedicalBusinessSchema(
+    "Couples Therapy Georgia",
+    "Get couples therapy in Georgia with licensed therapists. Relationship counseling and marriage therapy. Video, phone & text sessions. Most insurance accepted.",
+    "https://chctherapy.com/couples-therapy-georgia",
+    ["Couples Therapy", "Marriage Counseling", "EFT Therapy", "Relationship Counseling"]
+  );
+
   return (
     <div className="flex flex-col min-h-screen">
       <SEOHead
@@ -33,6 +41,7 @@ const CouplesTherapyGA = () => {
         canonicalUrl="https://chctherapy.com/couples-therapy-georgia"
         ogTitle="Online Couples Therapy in Georgia | Licensed Therapists"
         ogDescription="Professional couples therapy in Georgia. Strengthen your relationship with expert therapists. Most insurance accepted. Start healing together today."
+        structuredData={medicalBusinessSchema}
       />
       
       <Header />

@@ -22,8 +22,16 @@ import {
   Calendar,
   Heart
 } from 'lucide-react';
+import { generateMedicalBusinessSchema } from '@/utils/schemaGenerators';
 
 const LGBTQIATherapyGA = () => {
+  const medicalBusinessSchema = generateMedicalBusinessSchema(
+    "LGBTQIA+ Affirming Therapy Georgia",
+    "Get LGBTQIA+ affirming therapy in Georgia with licensed therapists. Gender identity, sexual orientation, and minority stress support. Video, phone & text sessions.",
+    "https://chctherapy.com/lgbtqia-therapy-georgia",
+    ["LGBTQIA+ Affirming Therapy", "Gender Identity Support", "Minority Stress Therapy", "Coming Out Support"]
+  );
+
   return (
     <div className="flex flex-col min-h-screen">
       <SEOHead
@@ -33,6 +41,7 @@ const LGBTQIATherapyGA = () => {
         canonicalUrl="https://chctherapy.com/lgbtqia-therapy-georgia"
         ogTitle="Online LGBTQIA+ Therapy in Georgia | Affirming Licensed Therapists"
         ogDescription="Professional LGBTQIA+ affirming therapy in Georgia. Safe, supportive mental health care for sexual and gender minorities. Most insurance accepted."
+        structuredData={medicalBusinessSchema}
       />
       
       <Header />

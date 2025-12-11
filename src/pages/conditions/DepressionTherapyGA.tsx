@@ -21,8 +21,16 @@ import {
   Calendar,
   Brain
 } from 'lucide-react';
+import { generateMedicalBusinessSchema } from '@/utils/schemaGenerators';
 
 const DepressionTherapyGA = () => {
+  const medicalBusinessSchema = generateMedicalBusinessSchema(
+    "Depression Therapy Georgia",
+    "Professional depression therapy in Georgia with licensed therapists. Video, phone & text sessions available. Most insurance accepted. Evidence-based treatment for GA residents.",
+    "https://chctherapy.com/depression-therapy-georgia",
+    ["Depression Therapy", "CBT for Depression", "Behavioral Activation", "Interpersonal Therapy"]
+  );
+
   return (
     <div className="flex flex-col min-h-screen">
       <SEOHead
@@ -32,6 +40,7 @@ const DepressionTherapyGA = () => {
         canonicalUrl="https://chctherapy.com/depression-therapy-georgia"
         ogTitle="Online Depression Therapy in Georgia | Licensed Therapists"
         ogDescription="Professional depression therapy in Georgia. Licensed therapists available for video, phone or text sessions. Most insurance accepted."
+        structuredData={medicalBusinessSchema}
       />
       
       <Header />

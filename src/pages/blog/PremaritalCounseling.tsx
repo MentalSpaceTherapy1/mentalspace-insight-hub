@@ -3,8 +3,16 @@ import SEOHead from "@/components/SEOHead";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import { generateArticleSchema } from "@/utils/schemaGenerators";
 
 const PremaritalCounseling = () => {
+  const articleSchema = generateArticleSchema(
+    "Premarital Counseling: Building a Strong Foundation for Marriage",
+    "Expert guide to premarital counseling covering topics, benefits, timing, and how pre-wedding therapy strengthens relationships.",
+    "https://chctherapy.com/blog/premarital-counseling-guide",
+    "2024-11-15"
+  );
+
   return (
     <>
       <SEOHead
@@ -12,6 +20,7 @@ const PremaritalCounseling = () => {
         description="Expert guide to premarital counseling covering topics, benefits, timing, and how pre-wedding therapy strengthens relationships."
         keywords="premarital counseling, pre-wedding therapy, marriage preparation, premarital therapy"
         canonicalUrl="https://chctherapy.com/blog/premarital-counseling-guide"
+        structuredData={articleSchema}
       />
       <Header />
       <main className="min-h-screen bg-background">

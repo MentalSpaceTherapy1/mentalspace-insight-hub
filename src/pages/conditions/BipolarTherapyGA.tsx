@@ -21,8 +21,16 @@ import {
   DollarSign,
   Calendar
 } from 'lucide-react';
+import { generateMedicalBusinessSchema } from '@/utils/schemaGenerators';
 
 const BipolarTherapyGA = () => {
+  const medicalBusinessSchema = generateMedicalBusinessSchema(
+    "Bipolar Disorder Therapy Georgia",
+    "Get bipolar disorder therapy in Georgia with licensed therapists. DBT, CBT, and mood stabilization support. Video, phone & text sessions. Most insurance accepted.",
+    "https://chctherapy.com/bipolar-therapy-georgia",
+    ["Bipolar Disorder Therapy", "DBT", "Mood Stabilization", "CBT for Bipolar"]
+  );
+
   return (
     <div className="flex flex-col min-h-screen">
       <SEOHead
@@ -32,6 +40,7 @@ const BipolarTherapyGA = () => {
         canonicalUrl="https://chctherapy.com/bipolar-therapy-georgia"
         ogTitle="Online Bipolar Disorder Therapy in Georgia | Licensed Therapists"
         ogDescription="Professional bipolar disorder therapy in Georgia. Mood stabilization experts available 24/7. Most insurance accepted. Start your healing journey today."
+        structuredData={medicalBusinessSchema}
       />
       
       <Header />

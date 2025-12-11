@@ -3,8 +3,16 @@ import SEOHead from "@/components/SEOHead";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import { generateArticleSchema } from "@/utils/schemaGenerators";
 
 const FamilyTherapyGuide = () => {
+  const articleSchema = generateArticleSchema(
+    "Family Therapy: Healing Relationships & Improving Communication",
+    "Complete guide to family therapy covering benefits, when families need counseling, systemic approaches, and how to improve family dynamics.",
+    "https://chctherapy.com/blog/family-therapy-guide",
+    "2024-11-15"
+  );
+
   return (
     <>
       <SEOHead
@@ -12,6 +20,7 @@ const FamilyTherapyGuide = () => {
         description="Complete guide to family therapy covering benefits, when families need counseling, systemic approaches, and how to improve family dynamics."
         keywords="family therapy benefits, family counseling, family communication, family therapy guide"
         canonicalUrl="https://chctherapy.com/blog/family-therapy-guide"
+        structuredData={articleSchema}
       />
       <Header />
       <main className="min-h-screen bg-background">

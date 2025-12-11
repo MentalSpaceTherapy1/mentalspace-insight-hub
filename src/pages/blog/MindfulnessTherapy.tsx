@@ -3,8 +3,16 @@ import SEOHead from "@/components/SEOHead";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import { generateArticleSchema } from "@/utils/schemaGenerators";
 
 const MindfulnessTherapy = () => {
+  const articleSchema = generateArticleSchema(
+    "Mindfulness-Based Therapy: Techniques for Anxiety, Depression & Stress",
+    "Complete guide to mindfulness therapy including MBSR, MBCT, scientific evidence, and practical mindfulness techniques for mental health.",
+    "https://chctherapy.com/blog/mindfulness-based-therapy-guide",
+    "2024-11-15"
+  );
+
   return (
     <>
       <SEOHead
@@ -12,6 +20,7 @@ const MindfulnessTherapy = () => {
         description="Complete guide to mindfulness therapy including MBSR, MBCT, scientific evidence, and practical mindfulness techniques for mental health."
         keywords="mindfulness therapy, mindfulness for anxiety, meditation therapy, MBSR, MBCT"
         canonicalUrl="https://chctherapy.com/blog/mindfulness-based-therapy-guide"
+        structuredData={articleSchema}
       />
       <Header />
       <main className="min-h-screen bg-background">

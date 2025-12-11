@@ -22,8 +22,16 @@ import {
   Calendar,
   GraduationCap
 } from 'lucide-react';
+import { generateMedicalBusinessSchema } from '@/utils/schemaGenerators';
 
 const TeenTherapyGA = () => {
+  const medicalBusinessSchema = generateMedicalBusinessSchema(
+    "Teen Therapy Georgia",
+    "Get teen therapy in Georgia with licensed adolescent specialists. Anxiety, depression, and behavioral support for teens 13-18. Video, phone & text sessions.",
+    "https://chctherapy.com/teen-therapy-georgia",
+    ["Teen Therapy", "Adolescent Counseling", "Teen Anxiety Therapy", "Teen Depression Therapy"]
+  );
+
   return (
     <div className="flex flex-col min-h-screen">
       <SEOHead
@@ -33,6 +41,7 @@ const TeenTherapyGA = () => {
         canonicalUrl="https://chctherapy.com/teen-therapy-georgia"
         ogTitle="Online Teen Therapy in Georgia | Licensed Adolescent Therapists"
         ogDescription="Professional teen therapy in Georgia. Support for adolescent mental health challenges. Most insurance accepted. Start your teen's healing journey today."
+        structuredData={medicalBusinessSchema}
       />
       
       <Header />
