@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
+import { generateCountyBusinessSchema } from '@/utils/schemaGenerators';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -35,6 +36,11 @@ const HoustonCountyTherapy = () => {
         canonicalUrl="https://chctherapy.com/houston-county-therapy"
         ogTitle="Online Therapy in Houston County (Warner Robins), GA | Air Force Base Support"
         ogDescription="Licensed online therapy in Houston County, Warner Robins. Robins AFB family support, military deployment therapy, aerospace worker wellness."
+        structuredData={generateCountyBusinessSchema(
+          'Houston',
+          'Professional online therapy in Houston County, Warner Robins GA. Licensed therapists for Robins Air Force Base families, military deployment support, aerospace workers.',
+          'https://chctherapy.com/houston-county-therapy'
+        )}
       />
       
       <Header />

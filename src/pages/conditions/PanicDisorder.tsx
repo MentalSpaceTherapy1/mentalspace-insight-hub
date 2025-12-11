@@ -6,8 +6,15 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowLeft, Zap, Users, FileText, Stethoscope } from 'lucide-react';
 import SEOHead from '@/components/SEOHead';
+import { generateMedicalWebPageSchema } from '@/utils/schemaGenerators';
 
 const PanicDisorder = () => {
+  const medicalSchema = generateMedicalWebPageSchema(
+    'Panic Disorder',
+    'Expert panic disorder treatment in Georgia. Learn about panic attack symptoms, therapy options, and connect with specialized therapists for panic disorder.',
+    'https://chctherapy.com/mental-health-library/panic-disorder'
+  );
+
   return (
     <div className="flex flex-col min-h-screen">
       <SEOHead 
@@ -15,6 +22,7 @@ const PanicDisorder = () => {
         description="Expert panic disorder treatment in Georgia. Learn about panic attack symptoms, therapy options, and connect with specialized therapists for panic disorder."
         keywords="panic disorder, panic attacks, anxiety therapy, fear treatment, Georgia mental health"
         canonicalUrl="https://chctherapy.com/mental-health-library/panic-disorder"
+        structuredData={medicalSchema}
       />
       <Header />
       

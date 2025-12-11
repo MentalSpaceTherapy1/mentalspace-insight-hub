@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
+import { generateCountyBusinessSchema } from '@/utils/schemaGenerators';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -32,6 +33,11 @@ const LowndesCountyTherapy = () => {
         canonicalUrl="https://chctherapy.com/lowndes-county-therapy"
         ogTitle="Online Therapy in Lowndes County, GA | Valdosta Therapists"
         ogDescription="Professional online therapy serving Lowndes County and Valdosta. Licensed therapists, most insurance accepted, phone sessions for rural areas."
+        structuredData={generateCountyBusinessSchema(
+          'Lowndes',
+          'Find online therapy in Lowndes County and Valdosta, GA. Licensed therapists accepting CareSource, Peach State, Amerigroup. Phone and video sessions for rural South Georgia.',
+          'https://chctherapy.com/lowndes-county-therapy'
+        )}
       />
       
       <Header />

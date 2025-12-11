@@ -7,6 +7,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { CheckCircle, Shield, DollarSign, Zap, Brain, Award, AlertTriangle, FileText, CreditCard, Phone, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
 import SEOHead from "@/components/SEOHead";
+import { generateWebPageSchema } from "@/utils/schemaGenerators";
 import aetnaImage from "@/assets/insurance-aetna.jpg";
 
 const AetnaInsurance = () => {

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
+import { generateCountyBusinessSchema } from '@/utils/schemaGenerators';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -35,6 +36,11 @@ const ClarkeCountyTherapy = () => {
         canonicalUrl="https://chctherapy.com/clarke-county-therapy"
         ogTitle="Online Therapy in Clarke County (Athens), GA | UGA Student Support"
         ogDescription="Licensed online therapy in Clarke County, Athens. UGA student support, academic stress, family therapy, insurance accepted."
+        structuredData={generateCountyBusinessSchema(
+          'Clarke',
+          'Professional online therapy in Clarke County, Athens GA. Licensed therapists for UGA students, faculty, families. College stress, academic anxiety, transition support.',
+          'https://chctherapy.com/clarke-county-therapy'
+        )}
       />
       
       <Header />

@@ -6,8 +6,15 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowLeft, Zap, Users, FileText, Stethoscope } from 'lucide-react';
 import SEOHead from '@/components/SEOHead';
+import { generateMedicalWebPageSchema } from '@/utils/schemaGenerators';
 
 const BipolarDisorder = () => {
+  const medicalSchema = generateMedicalWebPageSchema(
+    'Bipolar Disorder',
+    'Expert therapy for bipolar disorder in Georgia. Learn about symptoms, treatment options, and connect with licensed therapists specializing in mood disorders.',
+    'https://chctherapy.com/mental-health-library/bipolar-disorder'
+  );
+
   return (
     <div className="flex flex-col min-h-screen">
       <SEOHead 
@@ -15,6 +22,7 @@ const BipolarDisorder = () => {
         description="Expert therapy for bipolar disorder in Georgia. Learn about symptoms, treatment options, and connect with licensed therapists specializing in mood disorders."
         keywords="bipolar disorder, mood disorder therapy, mania treatment, depression treatment, Georgia mental health"
         canonicalUrl="https://chctherapy.com/mental-health-library/bipolar-disorder"
+        structuredData={medicalSchema}
       />
       <Header />
       

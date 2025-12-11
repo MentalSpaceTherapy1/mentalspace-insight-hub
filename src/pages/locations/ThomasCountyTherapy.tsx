@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
+import { generateCountyBusinessSchema } from '@/utils/schemaGenerators';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -35,6 +36,11 @@ const ThomasCountyTherapy = () => {
         canonicalUrl="https://chctherapy.com/thomas-county-therapy"
         ogTitle="Online Therapy in Thomas County (Thomasville), GA | Rural Mental Health"
         ogDescription="Licensed online therapy in Thomas County, Thomasville. Rural family support, agricultural stress, small town community mental health."
+        structuredData={generateCountyBusinessSchema(
+          'Thomas',
+          'Professional online therapy in Thomas County, Thomasville GA. Licensed therapists for farming families, rural communities. Agricultural stress, small town mental health support.',
+          'https://chctherapy.com/thomas-county-therapy'
+        )}
       />
       
       <Header />

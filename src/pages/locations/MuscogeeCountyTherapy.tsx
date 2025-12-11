@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
+import { generateCountyBusinessSchema } from '@/utils/schemaGenerators';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -35,6 +36,11 @@ const MuscogeeCountyTherapy = () => {
         canonicalUrl="https://chctherapy.com/muscogee-county-therapy"
         ogTitle="Online Therapy in Muscogee County (Columbus), GA | Fort Benning Military Support"
         ogDescription="Licensed online therapy in Muscogee County, Columbus. Fort Benning family support, military deployment therapy, student counseling, manufacturing worker wellness."
+        structuredData={generateCountyBusinessSchema(
+          'Muscogee',
+          'Professional online therapy in Muscogee County, Columbus GA. Licensed therapists for Fort Benning families, military deployment support, manufacturing workers, Columbus State students.',
+          'https://chctherapy.com/muscogee-county-therapy'
+        )}
       />
       
       <Header />

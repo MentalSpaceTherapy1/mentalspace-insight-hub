@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
+import { generateCountyBusinessSchema } from '@/utils/schemaGenerators';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -32,6 +33,11 @@ const HallCountyTherapy = () => {
         canonicalUrl="https://chctherapy.com/hall-county-therapy"
         ogTitle="Online Therapy in Hall County, GA | Gainesville Therapists"
         ogDescription="Professional online therapy serving Hall County and Gainesville. Licensed therapists, most insurance accepted, mountain-friendly phone sessions."
+        structuredData={generateCountyBusinessSchema(
+          'Hall',
+          'Find online therapy in Hall County and Gainesville, GA. Licensed therapists accepting CareSource, Peach State, Amerigroup. Video and phone sessions for North Georgia.',
+          'https://chctherapy.com/hall-county-therapy'
+        )}
       />
       
       <Header />

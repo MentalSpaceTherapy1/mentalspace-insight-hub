@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
+import { generateCountyBusinessSchema } from '@/utils/schemaGenerators';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -35,6 +36,11 @@ const CherokeeCountyTherapy = () => {
         canonicalUrl="https://chctherapy.com/cherokee-county-therapy"
         ogTitle="Online Therapy in Cherokee County (Woodstock), GA | Suburban Family Support"
         ogDescription="Licensed online therapy in Cherokee County, Woodstock. Suburban family support, commuter stress, teen therapy, insurance accepted."
+        structuredData={generateCountyBusinessSchema(
+          'Cherokee',
+          'Professional online therapy in Cherokee County, Woodstock GA. Licensed therapists for suburban families, commuters, teens. Work-life balance, parenting stress support.',
+          'https://chctherapy.com/cherokee-county-therapy'
+        )}
       />
       
       <Header />
