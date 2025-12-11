@@ -136,6 +136,17 @@ import LGBTQIATherapyGA from "./pages/conditions/LGBTQIATherapyGA";
 
 // Georgia location pages
 import GeorgiaTherapyHub from "./pages/GeorgiaTherapyHub";
+
+// Guides / Pillar Pages
+import GuidesIndex from "./pages/guides/GuidesIndex";
+import StartingTherapyGuide from "./pages/guides/StartingTherapyGuide";
+import AnxietyGuide from "./pages/guides/AnxietyGuide";
+import DepressionGuide from "./pages/guides/DepressionGuide";
+import CouplesCounselingGuide from "./pages/guides/CouplesCounselingGuide";
+import TraumaPTSDGuide from "./pages/guides/TraumaPTSDGuide";
+import TherapyCostGuide from "./pages/guides/TherapyCostGuide";
+import OnlineTherapyGuide from "./pages/guides/OnlineTherapyGuide";
+import FindingTherapistGuide from "./pages/guides/FindingTherapistGuide";
 import FultonCountyTherapy from "./pages/locations/FultonCountyTherapy";
 import LowndesCountyTherapy from "./pages/locations/LowndesCountyTherapy";
 import HallCountyTherapy from "./pages/locations/HallCountyTherapy";
@@ -213,6 +224,18 @@ const App = () => {
                 <Route path="/thank-you" element={<ThankYou />} />
                 <Route path="/contact-thank-you" element={<ContactThankYou />} />
                 <Route path="/blog" element={<Blog />} />
+                
+                {/* Guides / Pillar Pages */}
+                <Route path="/guides" element={<GuidesIndex />} />
+                <Route path="/guides/starting-therapy" element={<StartingTherapyGuide />} />
+                <Route path="/guides/anxiety" element={<AnxietyGuide />} />
+                <Route path="/guides/depression" element={<DepressionGuide />} />
+                <Route path="/guides/couples-counseling" element={<CouplesCounselingGuide />} />
+                <Route path="/guides/trauma-ptsd" element={<TraumaPTSDGuide />} />
+                <Route path="/guides/therapy-cost" element={<TherapyCostGuide />} />
+                <Route path="/guides/online-therapy" element={<OnlineTherapyGuide />} />
+                <Route path="/guides/finding-therapist" element={<FindingTherapistGuide />} />
+                
                 <Route path="/staff-newsletter" element={<StaffNewsletter />} />
                 <Route path="/newsletter-archive" element={<NewsletterArchive />} />
                 <Route path="/feedback" element={<ClientFeedback />} />
