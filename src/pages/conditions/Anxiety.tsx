@@ -6,8 +6,14 @@ import SEOHead from '@/components/SEOHead';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowLeft, Brain, Users, FileText, Stethoscope, MapPin, Shield, HelpCircle, ExternalLink } from 'lucide-react';
+import { generateMedicalWebPageSchema, combineSchemas } from '@/utils/schemaGenerators';
 
 const Anxiety = () => {
+  const medicalWebPageSchema = generateMedicalWebPageSchema(
+    "Anxiety",
+    "Find effective anxiety treatment in Georgia. Experienced therapists specializing in anxiety disorders with flexible scheduling and insurance acceptance.",
+    "https://chctherapy.com/mental-health-library/anxiety"
+  );
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -55,6 +61,9 @@ const Anxiety = () => {
     ]
   };
 
+  // Combine FAQPage schema with MedicalWebPage schema
+  const combinedSchema = combineSchemas(faqSchema, medicalWebPageSchema);
+
   return (
     <div className="flex flex-col min-h-screen">
       <SEOHead
@@ -64,8 +73,8 @@ const Anxiety = () => {
         canonicalUrl="https://chctherapy.com/mental-health-library/anxiety"
         ogTitle="Anxiety Treatment in Georgia | Licensed Therapists & Support"
         ogDescription="Find effective anxiety treatment in Georgia. Experienced therapists specializing in anxiety disorders with flexible scheduling and insurance acceptance."
-        ogImage="/therapy-hero-og.jpg"
-        structuredData={faqSchema}
+        ogImage="https://chctherapy.com/therapy-hero-og.jpg"
+        structuredData={combinedSchema}
       />
       <Header />
       

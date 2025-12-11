@@ -9,7 +9,7 @@ interface SEOHeadProps {
   ogDescription?: string;
   ogImage?: string;
   ogType?: string;
-  structuredData?: object;
+  structuredData?: object | object[];
   noindex?: boolean;
 }
 
@@ -49,11 +49,16 @@ const SEOHead = ({
       {ogImage && <meta name="twitter:image" content={ogImage} />}
       
       {/* Structured Data */}
-      {structuredData && (
+      {structuredData && !Array.isArray(structuredData) && (
         <script type="application/ld+json">
           {JSON.stringify(structuredData)}
         </script>
       )}
+      {structuredData && Array.isArray(structuredData) && structuredData.map((schema, index) => (
+        <script key={index} type="application/ld+json">
+          {JSON.stringify(schema)}
+        </script>
+      ))}
     </Helmet>
   );
 };

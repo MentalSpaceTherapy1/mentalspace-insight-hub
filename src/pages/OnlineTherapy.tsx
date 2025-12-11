@@ -1,11 +1,27 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SEOHead from "@/components/SEOHead";
 import { Button } from "@/components/ui/button";
 import { CheckCircle, Clock, Shield, Users, Heart, DollarSign, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import heroImage from "@/assets/online-therapy-hero.jpg";
+import { generateMedicalBusinessSchema } from "@/utils/schemaGenerators";
 
 const OnlineTherapy = () => {
+  const medicalBusinessSchema = generateMedicalBusinessSchema(
+    "Online Therapy",
+    "Professional online therapy and teletherapy services throughout Georgia. Connect with licensed therapists from home via secure video.",
+    "https://chctherapy.com/online-therapy",
+    [
+      "Online Individual Therapy",
+      "Online Couples Therapy",
+      "Online Teen Therapy",
+      "Online Family Therapy",
+      "Anxiety Therapy",
+      "Depression Therapy",
+      "PTSD Therapy"
+    ]
+  );
   const advantages = [
     {
       icon: CheckCircle,
@@ -56,6 +72,16 @@ const OnlineTherapy = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="Online Therapy & Teletherapy in Georgia | CHC Therapy"
+        description="Professional online therapy throughout Georgia. Connect with licensed therapists from home via secure video. Anxiety, depression, couples counseling & more."
+        keywords="online therapy Georgia, teletherapy, virtual therapy, online counseling, telehealth therapy"
+        canonicalUrl="https://chctherapy.com/online-therapy"
+        ogTitle="Online Therapy & Teletherapy in Georgia | CHC Therapy"
+        ogDescription="Professional online therapy throughout Georgia. Connect with licensed therapists from home via secure video."
+        ogImage="https://chctherapy.com/therapy-hero-og.jpg"
+        structuredData={medicalBusinessSchema}
+      />
       <Header />
       <main>
         {/* Hero Section */}

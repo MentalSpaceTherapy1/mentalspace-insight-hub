@@ -8,8 +8,15 @@ import { CheckCircle, Shield, DollarSign, Users, Clock, Heart, AlertTriangle, Fi
 import { Link } from "react-router-dom";
 import SEOHead from "@/components/SEOHead";
 import careSourceImage from "@/assets/insurance-caresource.jpg";
+import { generateWebPageSchema } from "@/utils/schemaGenerators";
 
 const CareSourceInsurance = () => {
+  const webPageSchema = generateWebPageSchema(
+    "CareSource Mental Health Coverage Guide 2024",
+    "Complete CareSource Medicaid mental health benefits guide. $0 copays, no referrals needed, unlimited visits. Start therapy today with CareSource coverage.",
+    "https://chctherapy.com/insurance/caresource",
+    "CareSource Insurance Coverage for Therapy"
+  );
   const costRanges = [
     {
       planType: "CareSource Georgia Medicaid",
@@ -102,6 +109,10 @@ const CareSourceInsurance = () => {
         title="CareSource Mental Health Coverage Guide 2024 | Medicaid Therapy Benefits | CHC"
         description="Complete CareSource Medicaid mental health benefits guide. $0 copays, no referrals needed, unlimited visits. Start therapy today with CareSource coverage."
         keywords="CareSource insurance, Medicaid mental health, CareSource therapy benefits, $0 copay therapy, CareSource Georgia"
+        canonicalUrl="https://chctherapy.com/insurance/caresource"
+        ogTitle="CareSource Mental Health Coverage Guide 2024"
+        ogDescription="Complete CareSource Medicaid mental health benefits guide. $0 copays, no referrals needed, unlimited visits."
+        structuredData={webPageSchema}
       />
       <Header />
       <main>
