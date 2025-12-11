@@ -6,13 +6,13 @@ import { Button } from '@/components/ui/button';
 const AnxietyGuide = () => {
   const midCta = (
     <div className="bg-gradient-to-r from-primary/10 to-secondary/10 rounded-2xl p-8 text-center">
-      <h3 className="text-2xl font-bold text-foreground mb-4">Struggling with Anxiety?</h3>
+      <h3 className="text-2xl font-bold text-foreground mb-4">Ready to Find Relief from Anxiety?</h3>
       <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
-        You don't have to face anxiety alone. Our licensed therapists specialize in evidence-based anxiety treatment. Schedule your free consultation today.
+        You don't have to manage anxiety alone. Our Georgia-licensed therapists specialize in anxiety treatment and can help you develop effective coping strategies. Schedule your free consultation today.
       </p>
       <Link to="/therapist-matching">
         <Button variant="hero" size="lg">
-          Get Matched with a Therapist
+          Get Started with Anxiety Treatment
           <ChevronRight className="ml-2 h-5 w-5" />
         </Button>
       </Link>
@@ -21,9 +21,9 @@ const AnxietyGuide = () => {
 
   const endCta = (
     <div className="bg-gradient-to-br from-primary/10 via-secondary/10 to-primary/5 rounded-2xl p-8 md:p-10 text-center border border-primary/20">
-      <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">Take the First Step Toward Relief</h3>
+      <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">Take the First Step Toward Freedom from Anxiety</h3>
       <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-        Anxiety is treatable, and you deserve to feel better. Schedule a free consultation with one of our anxiety specialists and start your journey to calm. Appointments available within 24 hours.
+        Anxiety is treatable, and you don't have to face it alone. Our compassionate, experienced therapists are here to help you find relief and reclaim your life. Schedule your free consultation today—appointments available within 24 hours.
       </p>
       <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
         <Link to="/therapist-matching">
@@ -32,9 +32,9 @@ const AnxietyGuide = () => {
             <ChevronRight className="ml-2 h-5 w-5" />
           </Button>
         </Link>
-        <a href="tel:404-832-0102" className="text-primary hover:underline font-medium">
-          Or call us at (404) 832-0102
-        </a>
+        <Link to="/free-anxiety-test-online" className="text-primary hover:underline font-medium">
+          Take our free anxiety test
+        </Link>
       </div>
     </div>
   );
@@ -52,16 +52,18 @@ const AnxietyGuide = () => {
       midCta={midCta}
       endCta={endCta}
       relatedServices={[
-        { title: "Online Therapy", url: "/online-therapy" },
         { title: "Anxiety Therapy in Georgia", url: "/anxiety-therapy-georgia" },
-        { title: "Depression Therapy", url: "/depression-therapy-georgia" },
+        { title: "Online Therapy", url: "/online-therapy" },
+        { title: "Teen Therapy", url: "/teen-therapy-georgia" },
         { title: "PTSD Therapy", url: "/ptsd-therapy-georgia" }
       ]}
       relatedArticles={[
         { title: "Understanding Anxiety", url: "/blog/understanding-anxiety" },
-        { title: "CBT Therapy Guide", url: "/blog/cognitive-behavioral-therapy" },
+        { title: "Cognitive Behavioral Therapy", url: "/blog/cognitive-behavioral-therapy" },
         { title: "EMDR Therapy", url: "/blog/emdr-therapy" },
-        { title: "Mindfulness & Therapy", url: "/blog/mindfulness-therapy" }
+        { title: "Mindfulness Therapy", url: "/blog/mindfulness-therapy" },
+        { title: "Trauma & PTSD Guide", url: "/guides/trauma-ptsd" },
+        { title: "Starting Therapy Guide", url: "/guides/starting-therapy" }
       ]}
     >
       {/* Section 1: What Is Anxiety? */}
@@ -573,10 +575,192 @@ const AnxietyGuide = () => {
         </p>
       </section>
 
-      {/* PLACEHOLDER: Sections 11-13 will be added in Part 3 */}
-      <div className="my-12 p-6 bg-muted/50 rounded-xl text-center">
-        <p className="text-muted-foreground italic">Content continues below... (Sections 11-13 coming in next update)</p>
-      </div>
+      {/* Section 11: Living with Anxiety: Long-Term Management */}
+      <section className="mb-12 pb-10 border-b border-border/40">
+        <h2 id="long-term-management">Living with Anxiety: Long-Term Management</h2>
+        <p>
+          Recovery from anxiety isn't about eliminating it entirely—some anxiety is a normal, even useful part of life. Instead, the goal is learning to manage anxiety so it no longer controls you.
+        </p>
+
+        <div className="bg-gradient-to-r from-primary/5 to-secondary/5 border border-primary/20 rounded-xl p-6 my-6">
+          <h3 className="mt-0 text-primary">What recovery looks like</h3>
+          <p className="mb-2">Successful anxiety management means:</p>
+          <ul className="mb-0">
+            <li>Anxiety no longer dictates your decisions</li>
+            <li>You can face feared situations, even if uncomfortable</li>
+            <li>Physical symptoms are less frequent and intense</li>
+            <li>You have reliable coping tools that work for you</li>
+            <li>Anxiety doesn't prevent you from living the life you want</li>
+          </ul>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-6 my-6">
+          <div className="bg-card border border-border/50 rounded-xl p-6">
+            <h3 className="mt-0">Maintaining progress</h3>
+            <p className="mb-2 text-sm">After therapy, many people continue practices that help maintain their gains:</p>
+            <ul className="mb-0 text-sm">
+              <li>Regular exercise and stress management</li>
+              <li>Ongoing use of coping techniques learned in therapy</li>
+              <li>Mindfulness or meditation practice</li>
+              <li>Healthy sleep habits</li>
+              <li>Periodic "booster" therapy sessions as needed</li>
+            </ul>
+          </div>
+
+          <div className="bg-card border border-border/50 rounded-xl p-6">
+            <h3 className="mt-0">Setbacks are normal</h3>
+            <p className="mb-0 text-sm">
+              Recovery isn't linear. Stressful life events may temporarily increase anxiety, and old symptoms may resurface occasionally. This doesn't mean treatment failed—it's a normal part of the process. Having a plan for managing setbacks helps you navigate them without losing ground.
+            </p>
+          </div>
+        </div>
+
+        <h3>Building a supportive environment</h3>
+        <p>Long-term success is easier with support:</p>
+        <ul>
+          <li>Educate loved ones about anxiety so they can help appropriately</li>
+          <li>Build connections with people who understand what you're experiencing</li>
+          <li>Create routines and environments that support your mental health</li>
+          <li>Know when to reach out for professional help if symptoms return</li>
+        </ul>
+        <p>
+          Recovery is possible. With effective treatment and ongoing self-care, most people with anxiety disorders lead full, satisfying lives.
+        </p>
+      </section>
+
+      {/* Section 12: Anxiety and Related Conditions */}
+      <section className="mb-12 pb-10 border-b border-border/40">
+        <h2 id="related-conditions">Anxiety and Related Conditions</h2>
+        <p>
+          Anxiety often doesn't occur in isolation. Understanding related conditions can help you get comprehensive care.
+        </p>
+
+        <div className="space-y-4 my-6">
+          <div className="bg-card border border-border/50 rounded-xl p-6">
+            <h3 className="mt-0 text-primary">Anxiety and Depression</h3>
+            <p className="mb-0">
+              Anxiety and <Link to="/mental-health-library/depression" className="text-primary hover:underline">depression</Link> frequently co-occur—about 60% of people with anxiety also experience depression. Symptoms can overlap (sleep problems, difficulty concentrating, fatigue), and each condition can worsen the other. The good news is that many treatments, including <Link to="/blog/cognitive-behavioral-therapy" className="text-primary hover:underline">CBT</Link>, effectively address both. If you're experiencing symptoms of both anxiety and depression, mention this when seeking treatment. Addressing both conditions together leads to better outcomes.
+            </p>
+          </div>
+
+          <div className="bg-card border border-border/50 rounded-xl p-6">
+            <h3 className="mt-0 text-primary">Anxiety and Trauma</h3>
+            <p className="mb-0">
+              Many anxiety disorders have roots in traumatic experiences. <Link to="/mental-health-library/ptsd" className="text-primary hover:underline">PTSD</Link> is an anxiety-related condition that develops after trauma, but other anxiety disorders can also be triggered or worsened by past experiences. If trauma is a factor, approaches like <Link to="/blog/emdr-therapy" className="text-primary hover:underline">EMDR</Link> may be particularly helpful. Learn more in our <Link to="/guides/trauma-ptsd" className="text-primary hover:underline">trauma and PTSD guide</Link>.
+            </p>
+          </div>
+
+          <div className="bg-card border border-border/50 rounded-xl p-6">
+            <h3 className="mt-0 text-primary">Anxiety and Substance Use</h3>
+            <p className="mb-0">
+              People with anxiety sometimes turn to alcohol or drugs for temporary relief, which can lead to substance use problems. Conversely, substance use can trigger or worsen anxiety. If you're struggling with both, look for treatment that addresses anxiety and substance use together.
+            </p>
+          </div>
+
+          <div className="bg-card border border-border/50 rounded-xl p-6">
+            <h3 className="mt-0 text-primary">Anxiety and Physical Health</h3>
+            <p className="mb-0">
+              Anxiety has real effects on physical health, including increased risk for heart disease, digestive problems, chronic pain, and weakened immune function. Managing anxiety isn't just about feeling better emotionally—it's about protecting your overall health.
+            </p>
+          </div>
+        </div>
+
+        <p>
+          If you're experiencing multiple concerns, a comprehensive evaluation can help ensure all your needs are addressed. At <Link to="/therapist-matching" className="text-primary hover:underline">Coping and Healing Counseling</Link>, we take a holistic view of mental health and can help coordinate your care.
+        </p>
+      </section>
+
+      {/* Section 13: Anxiety Treatment at Coping and Healing Counseling */}
+      <section className="mb-12">
+        <h2 id="anxiety-treatment-chc">Anxiety Treatment at Coping and Healing Counseling</h2>
+        <p>
+          If anxiety is affecting your life, our team at Coping and Healing Counseling is here to help.
+        </p>
+
+        <div className="bg-gradient-to-br from-primary/5 via-secondary/5 to-primary/5 border border-primary/20 rounded-xl p-6 my-6">
+          <h3 className="mt-0 text-primary">Our approach to anxiety treatment</h3>
+          <p className="mb-2">We believe effective anxiety treatment should be:</p>
+          <ul className="mb-0">
+            <li><strong>Personalized:</strong> We tailor treatment to your specific type of anxiety, symptoms, and goals</li>
+            <li><strong>Evidence-based:</strong> We use proven approaches like CBT, exposure therapy, and EMDR</li>
+            <li><strong>Compassionate:</strong> We create a safe, non-judgmental space where you can be honest about your struggles</li>
+            <li><strong>Practical:</strong> We focus on skills and strategies you can use in daily life</li>
+          </ul>
+        </div>
+
+        <h3>What to expect</h3>
+        <p>When you work with us for anxiety treatment:</p>
+        <ol>
+          <li>We start with a thorough assessment to understand your anxiety and its impact</li>
+          <li>Together, we develop a treatment plan tailored to your needs</li>
+          <li>You'll learn concrete skills to manage anxiety symptoms</li>
+          <li>We'll address underlying factors contributing to your anxiety</li>
+          <li>We'll support you in gradually facing feared situations</li>
+          <li>We'll help you build confidence and reclaim your life from anxiety</li>
+        </ol>
+
+        <h3>Our services</h3>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3 my-4">
+          <Link to="/online-therapy" className="bg-card border border-border/50 rounded-lg p-4 hover:border-primary/50 transition-colors">
+            <span className="font-medium text-foreground">Individual therapy</span>
+            <span className="block text-sm text-muted-foreground">for anxiety disorders</span>
+          </Link>
+          <Link to="/anxiety-therapy-georgia" className="bg-card border border-border/50 rounded-lg p-4 hover:border-primary/50 transition-colors">
+            <span className="font-medium text-foreground">Specialized treatment</span>
+            <span className="block text-sm text-muted-foreground">for Georgia residents</span>
+          </Link>
+          <Link to="/couples-therapy" className="bg-card border border-border/50 rounded-lg p-4 hover:border-primary/50 transition-colors">
+            <span className="font-medium text-foreground">Couples therapy</span>
+            <span className="block text-sm text-muted-foreground">when anxiety affects relationships</span>
+          </Link>
+          <Link to="/teen-therapy-georgia" className="bg-card border border-border/50 rounded-lg p-4 hover:border-primary/50 transition-colors">
+            <span className="font-medium text-foreground">Teen therapy</span>
+            <span className="block text-sm text-muted-foreground">for adolescents with anxiety</span>
+          </Link>
+          <Link to="/online-therapy" className="bg-card border border-border/50 rounded-lg p-4 hover:border-primary/50 transition-colors">
+            <span className="font-medium text-foreground">Online therapy</span>
+            <span className="block text-sm text-muted-foreground">available throughout Georgia</span>
+          </Link>
+        </div>
+
+        <h3>Getting started is easy</h3>
+        <div className="grid md:grid-cols-2 gap-4 my-4">
+          <div className="flex items-start gap-3">
+            <span className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold shrink-0">✓</span>
+            <div>
+              <strong>Free consultation:</strong> <Link to="/therapist-matching" className="text-primary hover:underline">Schedule a free consultation</Link> to discuss your needs
+            </div>
+          </div>
+          <div className="flex items-start gap-3">
+            <span className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold shrink-0">✓</span>
+            <div>
+              <strong>Quick appointments:</strong> Most clients get an appointment within 24 hours
+            </div>
+          </div>
+          <div className="flex items-start gap-3">
+            <span className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold shrink-0">✓</span>
+            <div>
+              <strong>Insurance accepted:</strong> Including <Link to="/insurance/caresource" className="text-primary hover:underline">CareSource</Link>, <Link to="/insurance/amerigroup" className="text-primary hover:underline">Amerigroup</Link>, <Link to="/insurance/aetna" className="text-primary hover:underline">Aetna</Link>, <Link to="/insurance/bluecross-blueshield" className="text-primary hover:underline">BlueCross BlueShield</Link>, and <Link to="/insurance" className="text-primary hover:underline">more</Link>
+            </div>
+          </div>
+          <div className="flex items-start gap-3">
+            <span className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold shrink-0">✓</span>
+            <div>
+              <strong>Georgia Medicaid:</strong> Accepted through CareSource, Amerigroup, and Peach State
+            </div>
+          </div>
+          <div className="flex items-start gap-3">
+            <span className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold shrink-0">✓</span>
+            <div>
+              <strong>Flexible hours:</strong> We're available 7am-7pm, 7 days a week
+            </div>
+          </div>
+        </div>
+
+        <p className="text-lg font-medium text-primary mt-6">
+          You don't have to let anxiety control your life. Help is available, and recovery is possible.
+        </p>
+      </section>
     </PillarPageTemplate>
   );
 };
