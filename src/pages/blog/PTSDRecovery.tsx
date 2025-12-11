@@ -5,14 +5,26 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 import ptsdPersonImage from "@/assets/ptsd-person.jpg";
+import { generateArticleSchema } from "@/utils/schemaGenerators";
 
 const PTSDRecovery = () => {
+  const articleSchema = generateArticleSchema(
+    "PTSD Recovery: Healing from Trauma with Professional Support",
+    "Explore evidence-based treatments for PTSD and how therapy can help individuals process trauma and reclaim their lives.",
+    "https://chctherapy.com/blog/ptsd-recovery",
+    "2024-12-05",
+    "2024-12-05",
+    "https://chctherapy.com/therapy-hero-og.jpg"
+  );
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-background to-muted">
       <SEOHead
         title="PTSD Recovery: Healing from Trauma with Professional Support"
         description="Explore evidence-based treatments for PTSD and how therapy can help individuals process trauma and reclaim their lives."
         keywords="PTSD recovery, trauma therapy, post traumatic stress disorder, trauma treatment, PTSD healing"
+        canonicalUrl="https://chctherapy.com/blog/ptsd-recovery"
+        structuredData={articleSchema}
       />
       <Header />
       

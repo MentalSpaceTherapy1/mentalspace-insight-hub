@@ -5,14 +5,26 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 import depressionPersonImage from "@/assets/depression-person.jpg";
+import { generateArticleSchema } from "@/utils/schemaGenerators";
 
 const DepressionAdults = () => {
+  const articleSchema = generateArticleSchema(
+    "Depression in Adults: Breaking the Stigma and Finding Help",
+    "Explore the reality of adult depression, common misconceptions, and how therapy can provide a path to recovery and healing.",
+    "https://chctherapy.com/blog/depression-adults",
+    "2024-12-18",
+    "2024-12-18",
+    "https://chctherapy.com/therapy-hero-og.jpg"
+  );
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-background to-muted">
       <SEOHead
         title="Depression in Adults: Breaking the Stigma and Finding Help"
         description="Explore the reality of adult depression, common misconceptions, and how therapy can provide a path to recovery and healing."
         keywords="adult depression, depression symptoms, depression treatment, mental health stigma, therapy"
+        canonicalUrl="https://chctherapy.com/blog/depression-adults"
+        structuredData={articleSchema}
       />
       <Header />
       

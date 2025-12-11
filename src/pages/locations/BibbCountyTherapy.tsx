@@ -24,8 +24,15 @@ import {
   Stethoscope,
   Home
 } from 'lucide-react';
+import { generateCountyBusinessSchema } from '@/utils/schemaGenerators';
 
 const BibbCountyTherapy = () => {
+  const countySchema = generateCountyBusinessSchema(
+    "Bibb",
+    "Professional online therapy in Bibb County, Macon GA. Licensed therapists for Mercer University students, medical workers, central Georgia families.",
+    "https://chctherapy.com/bibb-county-therapy"
+  );
+
   return (
     <div className="flex flex-col min-h-screen">
       <SEOHead
@@ -35,6 +42,7 @@ const BibbCountyTherapy = () => {
         canonicalUrl="https://chctherapy.com/bibb-county-therapy"
         ogTitle="Online Therapy in Bibb County (Macon), GA | Medical & Educational Support"
         ogDescription="Licensed online therapy in Bibb County, Macon. Mercer University student support, medical worker wellness, central Georgia family therapy."
+        structuredData={countySchema}
       />
       
       <Header />

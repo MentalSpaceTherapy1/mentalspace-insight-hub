@@ -21,8 +21,15 @@ import {
   Building,
   Sun
 } from 'lucide-react';
+import { generateCountyBusinessSchema } from '@/utils/schemaGenerators';
 
 const ChathamCountyTherapy = () => {
+  const countySchema = generateCountyBusinessSchema(
+    "Chatham",
+    "Online therapy in Chatham County and Savannah, GA. Licensed therapists serving coastal Georgia. Hurricane trauma, military family support, historic district residents.",
+    "https://chctherapy.com/chatham-county-therapy"
+  );
+
   return (
     <div className="flex flex-col min-h-screen">
       <SEOHead
@@ -32,6 +39,7 @@ const ChathamCountyTherapy = () => {
         canonicalUrl="https://chctherapy.com/chatham-county-therapy"
         ogTitle="Online Therapy in Chatham County, GA | Savannah Coastal Mental Health"
         ogDescription="Professional online therapy serving Savannah and coastal Georgia. Specialized hurricane trauma recovery and military family support."
+        structuredData={countySchema}
       />
       
       <Header />

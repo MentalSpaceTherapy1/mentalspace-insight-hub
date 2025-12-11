@@ -24,8 +24,15 @@ import {
   GraduationCap,
   Factory
 } from 'lucide-react';
+import { generateCountyBusinessSchema } from '@/utils/schemaGenerators';
 
 const RichmondCountyTherapy = () => {
+  const countySchema = generateCountyBusinessSchema(
+    "Richmond",
+    "Professional online therapy in Richmond County, Augusta GA. Licensed therapists accepting insurance, same-week appointments. Military family support & medical worker wellness.",
+    "https://chctherapy.com/richmond-county-therapy"
+  );
+
   return (
     <div className="flex flex-col min-h-screen">
       <SEOHead
@@ -35,6 +42,7 @@ const RichmondCountyTherapy = () => {
         canonicalUrl="https://chctherapy.com/richmond-county-therapy"
         ogTitle="Online Therapy in Richmond County (Augusta), GA | Licensed Therapists"
         ogDescription="Licensed online therapy in Richmond County, Augusta. Military family support, medical worker wellness, insurance accepted."
+        structuredData={countySchema}
       />
       
       <Header />

@@ -5,14 +5,26 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 import onlineTherapyHeroImage from "@/assets/online-therapy-hero.jpg";
+import { generateArticleSchema } from "@/utils/schemaGenerators";
 
 const BenefitsOnlineTherapy = () => {
+  const articleSchema = generateArticleSchema(
+    "The Benefits of Online Therapy: Accessible Mental Health Care",
+    "Discover how online therapy has revolutionized mental health care, making it more accessible and convenient for everyone.",
+    "https://chctherapy.com/blog/benefits-online-therapy",
+    "2024-12-15",
+    "2024-12-15",
+    "https://chctherapy.com/therapy-hero-og.jpg"
+  );
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-background to-muted">
       <SEOHead
         title="The Benefits of Online Therapy: Accessible Mental Health Care"
         description="Discover how online therapy has revolutionized mental health care, making it more accessible and convenient for everyone."
         keywords="online therapy, teletherapy, virtual therapy, accessible mental health, therapy benefits"
+        canonicalUrl="https://chctherapy.com/blog/benefits-online-therapy"
+        structuredData={articleSchema}
       />
       <Header />
       

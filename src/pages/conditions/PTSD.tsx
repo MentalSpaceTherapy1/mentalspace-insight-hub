@@ -6,8 +6,15 @@ import SEOHead from '@/components/SEOHead';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowLeft, Shield, Users, FileText, Stethoscope, MapPin, HelpCircle, ExternalLink } from 'lucide-react';
+import { generateMedicalWebPageSchema, combineSchemas } from '@/utils/schemaGenerators';
 
 const PTSD = () => {
+  const medicalWebPageSchema = generateMedicalWebPageSchema(
+    "PTSD",
+    "Find specialized PTSD treatment in Georgia. Trauma-informed therapists providing EMDR, CPT, and evidence-based trauma therapy.",
+    "https://chctherapy.com/mental-health-library/ptsd"
+  );
+
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -55,6 +62,8 @@ const PTSD = () => {
     ]
   };
 
+  const combinedSchema = combineSchemas(faqSchema, medicalWebPageSchema);
+
   return (
     <div className="flex flex-col min-h-screen">
       <SEOHead
@@ -65,7 +74,7 @@ const PTSD = () => {
         ogTitle="PTSD Treatment in Georgia | Trauma-Informed Therapy & Support"
         ogDescription="Find specialized PTSD treatment in Georgia. Trauma-informed therapists providing EMDR, CPT, and evidence-based trauma therapy."
         ogImage="/therapy-hero-og.jpg"
-        structuredData={faqSchema}
+        structuredData={combinedSchema}
       />
       <Header />
       

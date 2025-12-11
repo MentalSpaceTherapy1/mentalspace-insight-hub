@@ -6,8 +6,15 @@ import SEOHead from '@/components/SEOHead';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowLeft, Heart, Users, FileText, Stethoscope, MapPin, Shield, HelpCircle, ExternalLink, Brain } from 'lucide-react';
+import { generateMedicalWebPageSchema, combineSchemas } from '@/utils/schemaGenerators';
 
 const Depression = () => {
+  const medicalWebPageSchema = generateMedicalWebPageSchema(
+    "Depression",
+    "Find compassionate depression therapy in Georgia. Licensed therapists specializing in depression treatment with insurance coverage.",
+    "https://chctherapy.com/mental-health-library/depression"
+  );
+
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -63,6 +70,8 @@ const Depression = () => {
     ]
   };
 
+  const combinedSchema = combineSchemas(faqSchema, medicalWebPageSchema);
+
   return (
     <div className="flex flex-col min-h-screen">
       <SEOHead
@@ -73,7 +82,7 @@ const Depression = () => {
         ogTitle="Depression Therapy in Georgia | Expert Treatment & Support"
         ogDescription="Find compassionate depression therapy in Georgia. Licensed therapists specializing in depression treatment with insurance coverage."
         ogImage="/therapy-hero-og.jpg"
-        structuredData={faqSchema}
+        structuredData={combinedSchema}
       />
       <Header />
       

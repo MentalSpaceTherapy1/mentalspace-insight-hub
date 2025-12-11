@@ -5,14 +5,26 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 import teenTherapyHeroImage from "@/assets/teen-therapy-hero.jpg";
+import { generateArticleSchema } from "@/utils/schemaGenerators";
 
 const TeenMentalHealth = () => {
+  const articleSchema = generateArticleSchema(
+    "Teen Mental Health: Supporting Adolescents Through Challenging Times",
+    "Understanding the unique mental health challenges teens face and how therapy can provide crucial support during adolescence.",
+    "https://chctherapy.com/blog/teen-mental-health",
+    "2024-12-10",
+    "2024-12-10",
+    "https://chctherapy.com/therapy-hero-og.jpg"
+  );
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-background to-muted">
       <SEOHead
         title="Teen Mental Health: Supporting Adolescents Through Challenging Times"
         description="Understanding the unique mental health challenges teens face and how therapy can provide crucial support during adolescence."
         keywords="teen mental health, adolescent therapy, teenage depression, teen anxiety, youth counseling"
+        canonicalUrl="https://chctherapy.com/blog/teen-mental-health"
+        structuredData={articleSchema}
       />
       <Header />
       
