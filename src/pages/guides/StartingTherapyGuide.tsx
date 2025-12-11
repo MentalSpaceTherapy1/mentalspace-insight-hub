@@ -1,7 +1,24 @@
 import { Link } from 'react-router-dom';
+import { ChevronRight } from 'lucide-react';
 import PillarPageTemplate from '@/components/PillarPageTemplate';
+import { Button } from '@/components/ui/button';
 
 const StartingTherapyGuide = () => {
+  const midCta = (
+    <div className="bg-gradient-to-r from-primary/10 to-secondary/10 rounded-2xl p-8 text-center">
+      <h3 className="text-2xl font-bold text-foreground mb-4">Ready to Take the First Step?</h3>
+      <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
+        Schedule your free consultation with a CHC therapist today. We'll help you find the right fit and answer any questions you have about starting therapy.
+      </p>
+      <Link to="/therapist-matching">
+        <Button variant="hero" size="lg">
+          Schedule Free Consultation
+          <ChevronRight className="ml-2 h-5 w-5" />
+        </Button>
+      </Link>
+    </div>
+  );
+
   return (
     <PillarPageTemplate
       title="The Complete Guide to Starting Therapy"
@@ -12,6 +29,7 @@ const StartingTherapyGuide = () => {
       updatedDate="2025-01-15"
       readTime={15}
       keywords="start therapy, starting therapy, how to start therapy, first therapy session, find a therapist"
+      midCta={midCta}
       relatedServices={[
         { title: "Online Therapy", url: "/online-therapy" },
         { title: "Anxiety Therapy", url: "/anxiety-therapy-georgia" },
@@ -138,9 +156,148 @@ const StartingTherapyGuide = () => {
         Your therapist will work with you to determine which approach—or combination of approaches—best fits your needs and goals. Many therapists integrate techniques from multiple modalities.
       </p>
 
-      {/* PLACEHOLDER: Sections 5-13 will be added in Parts 2 and 3 */}
+      {/* Section 5: How to Find the Right Therapist */}
+      <h2 id="how-to-find-the-right-therapist">How to Find the Right Therapist</h2>
+      <p>
+        Finding the right therapist is one of the most important steps in your mental health journey. The relationship between you and your therapist—often called the "therapeutic alliance"—is one of the strongest predictors of successful outcomes.
+      </p>
+
+      <h3>Consider your specific needs</h3>
+      <p>
+        Start by thinking about what you want to address in therapy. Are you dealing with anxiety, depression, relationship issues, or trauma? Look for therapists who specialize in your area of concern. A therapist experienced in treating your specific challenges will have the tools and knowledge to help you most effectively.
+      </p>
+
+      <h3>Check credentials and experience</h3>
+      <p>
+        Ensure any therapist you're considering is licensed in your state. In Georgia, look for credentials like LPC (Licensed Professional Counselor), LCSW (Licensed Clinical Social Worker), or LMFT (Licensed Marriage and Family Therapist). Don't hesitate to ask about their experience with your particular concerns.
+      </p>
+
+      <h3>Consider practical factors</h3>
+      <p>Think about what matters most to you:</p>
+      <ul>
+        <li>Do you prefer <Link to="/online-therapy" className="text-primary hover:underline">online therapy</Link> or in-person sessions?</li>
+        <li>What days and times work for your schedule?</li>
+        <li>Is the therapist's location convenient (if meeting in person)?</li>
+        <li>Do they accept your <Link to="/insurance" className="text-primary hover:underline">insurance</Link>?</li>
+      </ul>
+
+      <h3>Trust your instincts about fit</h3>
+      <p>
+        A good therapeutic relationship feels safe and supportive. You should feel heard, respected, and comfortable being honest. It's okay if the first therapist you try isn't the right fit—finding the right match sometimes takes a few tries.
+      </p>
+      <p>
+        At <Link to="/therapist-matching" className="text-primary hover:underline">Coping and Healing Counseling</Link>, we offer a free consultation to help match you with a therapist who fits your needs, preferences, and goals.
+      </p>
+
+      {/* Section 6: Questions to Ask a Potential Therapist */}
+      <h2 id="questions-to-ask-a-therapist">Questions to Ask a Potential Therapist</h2>
+      <p>
+        Before committing to a therapist, it's helpful to ask questions during an initial consultation. Here are important questions to consider:
+      </p>
+
+      <h3>About their experience:</h3>
+      <ul>
+        <li>"What experience do you have treating [your specific concern]?"</li>
+        <li>"How long have you been practicing?"</li>
+        <li>"What therapy approaches do you typically use?"</li>
+      </ul>
+
+      <h3>About the process:</h3>
+      <ul>
+        <li>"What does a typical session look like?"</li>
+        <li>"How often would we meet?"</li>
+        <li>"How do you measure progress?"</li>
+        <li>"How will we know when I'm ready to end therapy?"</li>
+      </ul>
+
+      <h3>About logistics:</h3>
+      <ul>
+        <li>"What are your fees?"</li>
+        <li>"Do you accept my insurance?"</li>
+        <li>"What is your cancellation policy?"</li>
+        <li>"Do you offer online sessions?"</li>
+      </ul>
+
+      <h3>About fit:</h3>
+      <ul>
+        <li>"How would you approach my specific situation?"</li>
+        <li>"What can I expect in our first few sessions?"</li>
+      </ul>
+
+      <p>
+        A good therapist will welcome your questions and answer them openly. If a therapist seems dismissive of your concerns or unwilling to explain their approach, that may be a sign they're not the right fit.
+      </p>
+
+      {/* Section 7: Understanding Therapy Costs */}
+      <h2 id="understanding-therapy-costs">Understanding Therapy Costs</h2>
+      <p>
+        Cost is a common concern when considering therapy, but there are more options than you might think to make it affordable.
+      </p>
+
+      <h3>Insurance coverage</h3>
+      <p>
+        Many insurance plans cover mental health services. At Coping and Healing Counseling, we accept most major insurance providers including CareSource, Amerigroup, Peach State, Optum, BlueCross BlueShield, Aetna, Cigna, Alliant, Humana, and others. Your out-of-pocket cost depends on your specific plan—many clients pay only a copay of $0-50 per session.
+      </p>
+      <p>
+        Check our <Link to="/insurance" className="text-primary hover:underline">insurance page</Link> for details on specific providers, or <Link to="/contact-us" className="text-primary hover:underline">contact us</Link> to verify your benefits.
+      </p>
+
+      <h3>Georgia Medicaid</h3>
+      <p>
+        If you have Georgia Medicaid through CareSource, Amerigroup, or Peach State, you likely have coverage for mental health services at little to no cost. We proudly accept Georgia Medicaid and believe everyone deserves access to quality mental health care.
+      </p>
+
+      <h3>Self-pay options</h3>
+      <p>
+        For those without insurance or who prefer not to use it, Coping and Healing Counseling offers therapy at $75 per week with a minimum purchase of 4 sessions. This transparent pricing makes budgeting for your mental health straightforward.
+      </p>
+
+      <h3>Free consultation</h3>
+      <p>
+        We offer a free initial consultation so you can learn about our services, ask questions, and get matched with a therapist—all before committing financially. <Link to="/therapist-matching" className="text-primary hover:underline">Schedule your free consultation</Link> to get started.
+      </p>
+      <p>
+        For a deeper dive into paying for therapy, see our <Link to="/guides/therapy-cost" className="text-primary hover:underline">complete guide to therapy costs</Link>.
+      </p>
+
+      {/* Section 8: Preparing for Your First Session */}
+      <h2 id="preparing-for-your-first-session">Preparing for Your First Session</h2>
+      <p>
+        A little preparation can help you get the most out of your first therapy session. Here's how to set yourself up for success:
+      </p>
+
+      <h3>Practical preparations:</h3>
+      <ul>
+        <li>Have your insurance card ready (if applicable)</li>
+        <li>Make a list of any medications you're currently taking</li>
+        <li>Find a private, quiet space if you're doing an <Link to="/online-therapy" className="text-primary hover:underline">online session</Link></li>
+        <li>Test your technology in advance for telehealth appointments</li>
+        <li>Plan to arrive (or log on) a few minutes early</li>
+      </ul>
+
+      <h3>Mental preparations:</h3>
+      <ul>
+        <li>Think about what you want to address—you don't need a perfect script, just a general idea</li>
+        <li>Consider writing down a few key points you want to share</li>
+        <li>Prepare any questions you have for your therapist</li>
+        <li>Remind yourself that it's okay to feel nervous</li>
+      </ul>
+
+      <h3>What you don't need to do:</h3>
+      <ul>
+        <li>You don't need to have everything figured out</li>
+        <li>You don't need to share your entire life story in the first session</li>
+        <li>You don't need to "perform" or present yourself a certain way</li>
+        <li>You don't need to know exactly what you want from therapy yet</li>
+      </ul>
+
+      <p>
+        The first session is about getting started and building a foundation. Your therapist will guide the conversation and help you feel comfortable. There's no pressure to dive into deep or painful topics before you're ready.
+      </p>
+
+      {/* PLACEHOLDER: Sections 9-13 will be added in Part 3 */}
       <div className="my-12 p-6 bg-muted/50 rounded-xl text-center">
-        <p className="text-muted-foreground italic">Content continues below... (Sections 5-13 coming in next update)</p>
+        <p className="text-muted-foreground italic">Content continues below... (Sections 9-13 coming in next update)</p>
       </div>
     </PillarPageTemplate>
   );
