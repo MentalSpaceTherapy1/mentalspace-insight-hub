@@ -19,6 +19,26 @@ const StartingTherapyGuide = () => {
     </div>
   );
 
+  const endCta = (
+    <div className="bg-gradient-to-br from-primary/10 via-secondary/10 to-primary/5 rounded-2xl p-8 md:p-10 text-center border border-primary/20">
+      <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">Start Your Therapy Journey Today</h3>
+      <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
+        Taking the first step is often the hardest part—but you don't have to do it alone. Schedule your free consultation and get matched with a therapist who understands your needs. Appointments available within 24 hours.
+      </p>
+      <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <Link to="/therapist-matching">
+          <Button variant="hero" size="lg">
+            Schedule Free Consultation
+            <ChevronRight className="ml-2 h-5 w-5" />
+          </Button>
+        </Link>
+        <a href="tel:404-832-0102" className="text-primary hover:underline font-medium">
+          Or call us at (404) 832-0102
+        </a>
+      </div>
+    </div>
+  );
+
   return (
     <PillarPageTemplate
       title="The Complete Guide to Starting Therapy"
@@ -30,6 +50,7 @@ const StartingTherapyGuide = () => {
       readTime={15}
       keywords="start therapy, starting therapy, how to start therapy, first therapy session, find a therapist"
       midCta={midCta}
+      endCta={endCta}
       relatedServices={[
         { title: "Online Therapy", url: "/online-therapy" },
         { title: "Anxiety Therapy", url: "/anxiety-therapy-georgia" },
@@ -363,10 +384,240 @@ const StartingTherapyGuide = () => {
         </p>
       </section>
 
-      {/* PLACEHOLDER: Sections 9-13 will be added in Part 3 */}
-      <div className="my-12 p-6 bg-muted/50 rounded-xl text-center">
-        <p className="text-muted-foreground italic">Content continues below... (Sections 9-13 coming in next update)</p>
-      </div>
+      {/* Section 9: What to Expect in Your First Session */}
+      <section className="mb-12 pb-10 border-b border-border/40">
+        <h2 id="what-to-expect-first-session">What to Expect in Your First Session</h2>
+        <p>
+          Your first therapy session might feel a bit different from what you've seen in movies or TV. Here's what actually happens:
+        </p>
+
+        <div className="space-y-4 my-6">
+          <div className="bg-card border border-border/50 rounded-xl p-5">
+            <h3 className="mt-0 text-primary">Paperwork and intake</h3>
+            <p className="mb-0">
+              You'll typically complete some paperwork before or at the beginning of your first session. This includes consent forms, privacy information, and a questionnaire about your history and current concerns. If you're doing <Link to="/online-therapy" className="text-primary hover:underline">online therapy</Link>, you may complete these forms electronically beforehand.
+            </p>
+          </div>
+
+          <div className="bg-card border border-border/50 rounded-xl p-5">
+            <h3 className="mt-0 text-primary">Getting to know each other</h3>
+            <p className="mb-0">
+              Your therapist will introduce themselves and explain how they work. They'll ask about what brought you to therapy, your background, and what you're hoping to achieve. This isn't an interrogation—it's a conversation to help your therapist understand you and your needs.
+            </p>
+          </div>
+
+          <div className="bg-card border border-border/50 rounded-xl p-5">
+            <h3 className="mt-0 text-primary">Discussing your goals</h3>
+            <p className="mb-0">
+              Together, you'll start to identify what you want to work on. Your goals might be specific ("I want to reduce my panic attacks") or more general ("I want to feel happier"). Your therapist will help you clarify and refine these goals over time.
+            </p>
+          </div>
+
+          <div className="bg-card border border-border/50 rounded-xl p-5">
+            <h3 className="mt-0 text-primary">Asking questions</h3>
+            <p className="mb-0">
+              This is your time too. Feel free to ask your therapist anything—about their approach, what to expect going forward, or how the process works. A good therapist welcomes your questions.
+            </p>
+          </div>
+
+          <div className="bg-card border border-border/50 rounded-xl p-5">
+            <h3 className="mt-0 text-primary">Wrapping up</h3>
+            <p className="mb-0">
+              At the end of the session, you'll typically schedule your next appointment and briefly discuss what you'll focus on moving forward. You might also receive some "homework" or things to think about before your next session.
+            </p>
+          </div>
+        </div>
+
+        <div className="bg-primary/5 border border-primary/20 rounded-xl p-5 mt-6">
+          <p className="mb-0">
+            <strong>Remember:</strong> It's completely normal to feel nervous, emotional, or even uncertain after your first session. These feelings usually settle as you build a relationship with your therapist.
+          </p>
+        </div>
+      </section>
+
+      {/* Section 10: What to Talk About in Therapy */}
+      <section className="mb-12 pb-10 border-b border-border/40">
+        <h2 id="what-to-talk-about">What to Talk About in Therapy</h2>
+        <p>
+          One of the most common concerns people have is "What do I even talk about?" The good news is there's no wrong answer.
+        </p>
+
+        <div className="bg-muted/30 rounded-xl p-6 my-6">
+          <h3 className="mt-0">You can talk about:</h3>
+          <ul className="mb-0 grid md:grid-cols-2 gap-2">
+            <li>What's bothering you right now—stress, anxiety, sadness, anger, confusion</li>
+            <li>Specific situations or events that are affecting you</li>
+            <li>Relationships—with partners, family, friends, or coworkers</li>
+            <li>Patterns you've noticed in your thoughts, feelings, or behaviors</li>
+            <li>Your past, including childhood experiences or previous trauma</li>
+            <li>Your hopes, dreams, and goals for the future</li>
+            <li>Things you're grateful for or proud of</li>
+            <li>Literally anything on your mind</li>
+          </ul>
+        </div>
+
+        <h3>Your therapist will guide you</h3>
+        <p>
+          You don't need to show up with an agenda. Your therapist is trained to ask questions that help you explore what matters most. If you're not sure where to start, simply say that—"I'm not sure what to talk about today" is a perfectly valid opening.
+        </p>
+
+        <h3>It's okay to go at your own pace</h3>
+        <p>
+          You're in control of what you share and when. You don't have to discuss painful topics before you're ready. Building trust takes time, and a good therapist will never pressure you to share more than you're comfortable with.
+        </p>
+
+        <h3>Silence is okay too</h3>
+        <p>
+          Therapy isn't about filling every moment with words. Sometimes the most valuable insights come after a pause. Don't feel pressured to keep talking constantly.
+        </p>
+      </section>
+
+      {/* Section 11: How to Know If Therapy Is Working */}
+      <section className="mb-12 pb-10 border-b border-border/40">
+        <h2 id="how-to-know-therapy-working">How to Know If Therapy Is Working</h2>
+        <p>
+          Progress in therapy doesn't always look the way you might expect. Here are signs that therapy is working:
+        </p>
+
+        <div className="bg-gradient-to-br from-primary/5 to-secondary/5 rounded-xl p-6 my-6 border border-primary/10">
+          <h3 className="mt-0">You might notice:</h3>
+          <ul className="mb-0">
+            <li>Increased self-awareness—understanding why you think, feel, or act certain ways</li>
+            <li>Better coping skills when stress or difficult emotions arise</li>
+            <li>Improved relationships or communication with others</li>
+            <li>Feeling heard and understood</li>
+            <li>Gradual shifts in negative thought patterns</li>
+            <li>More moments of calm, hope, or contentment</li>
+            <li>Taking actions toward your goals</li>
+          </ul>
+        </div>
+
+        <h3>It may feel harder before it feels better</h3>
+        <p>
+          Therapy sometimes involves examining painful experiences or challenging long-held beliefs. This can temporarily increase discomfort before leading to relief and growth. This is normal and often a sign that meaningful work is happening.
+        </p>
+
+        <h3>Progress isn't linear</h3>
+        <p>
+          You'll have good weeks and hard weeks. Some sessions will feel like breakthroughs; others might feel frustrating. This is all part of the process. What matters is the overall trajectory over time.
+        </p>
+
+        <h3>Communicate with your therapist</h3>
+        <p>
+          If you're unsure whether therapy is helping, talk to your therapist about it. They can help you identify progress you might not have noticed and adjust the approach if needed. Therapy is a collaboration—your feedback makes it more effective.
+        </p>
+
+        <h3>Give it time</h3>
+        <p>
+          Most people start to notice some benefits within 6-8 sessions, though this varies depending on what you're working on. Deeper or more long-standing issues may take longer to address. Be patient with yourself and the process.
+        </p>
+      </section>
+
+      {/* Section 12: Online vs. In-Person Therapy */}
+      <section className="mb-12 pb-10 border-b border-border/40">
+        <h2 id="online-vs-in-person-therapy">Online vs. In-Person Therapy</h2>
+        <p>
+          One decision you'll need to make is whether to do therapy online or in person. Both are effective—it comes down to your preferences and circumstances.
+        </p>
+
+        <div className="grid md:grid-cols-2 gap-6 my-6">
+          <div className="bg-card border border-primary/30 rounded-xl p-6">
+            <h3 className="mt-0 text-primary">Benefits of online therapy:</h3>
+            <ul className="mb-0 space-y-2">
+              <li><strong>Convenience:</strong> Attend sessions from home, work, or anywhere private</li>
+              <li><strong>Accessibility:</strong> No commute, parking, or travel time</li>
+              <li><strong>Flexibility:</strong> Easier to fit into busy schedules</li>
+              <li><strong>Comfort:</strong> Being in your own space can help some people open up more easily</li>
+              <li><strong>Access:</strong> Reach therapists throughout Georgia regardless of where you live</li>
+            </ul>
+          </div>
+
+          <div className="bg-card border border-border/50 rounded-xl p-6">
+            <h3 className="mt-0">When in-person might be preferred:</h3>
+            <ul className="mb-0 space-y-2">
+              <li>You prefer face-to-face interaction</li>
+              <li>Your home environment isn't private or quiet enough</li>
+              <li>You're working on issues that benefit from in-person connection</li>
+              <li>You find video calls draining or impersonal</li>
+            </ul>
+          </div>
+        </div>
+
+        <h3>The research is clear</h3>
+        <p>
+          Studies consistently show that <Link to="/online-therapy" className="text-primary hover:underline">online therapy</Link> is just as effective as in-person therapy for most concerns, including anxiety, depression, PTSD, and relationship issues. The quality of the therapeutic relationship matters more than the medium.
+        </p>
+
+        <h3>At Coping and Healing Counseling</h3>
+        <p>
+          We offer <Link to="/online-therapy-georgia" className="text-primary hover:underline">telehealth services throughout Georgia</Link>, making quality mental health care accessible no matter where you live in the state. Our secure, HIPAA-compliant platform ensures your sessions are private and protected.
+        </p>
+        <p>
+          For more information, see our <Link to="/guides/online-therapy" className="text-primary hover:underline">complete guide to online therapy</Link>.
+        </p>
+      </section>
+
+      {/* Section 13: Getting Started with Coping and Healing Counseling */}
+      <section className="mb-8">
+        <h2 id="getting-started-with-chc">Getting Started with Coping and Healing Counseling</h2>
+        <p>
+          You've made it through this guide, which means you're seriously considering taking care of your mental health. We're here to make the next step easy.
+        </p>
+
+        <h3>Here's how to get started with CHC:</h3>
+
+        <div className="space-y-4 my-6">
+          <div className="flex gap-4 items-start bg-card border border-border/50 rounded-xl p-5">
+            <span className="flex-shrink-0 w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold">1</span>
+            <div>
+              <h4 className="font-semibold text-foreground mt-0 mb-1">Schedule a free consultation</h4>
+              <p className="mb-0 text-muted-foreground">
+                <Link to="/therapist-matching" className="text-primary hover:underline">Contact us</Link> to schedule a free consultation. This is a no-pressure conversation where you can ask questions, share what you're looking for, and learn about our services.
+              </p>
+            </div>
+          </div>
+
+          <div className="flex gap-4 items-start bg-card border border-border/50 rounded-xl p-5">
+            <span className="flex-shrink-0 w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold">2</span>
+            <div>
+              <h4 className="font-semibold text-foreground mt-0 mb-1">Get matched with a therapist</h4>
+              <p className="mb-0 text-muted-foreground">
+                Based on your needs, preferences, and goals, we'll match you with a licensed therapist who specializes in your area of concern. We take the guesswork out of finding the right fit.
+              </p>
+            </div>
+          </div>
+
+          <div className="flex gap-4 items-start bg-card border border-border/50 rounded-xl p-5">
+            <span className="flex-shrink-0 w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold">3</span>
+            <div>
+              <h4 className="font-semibold text-foreground mt-0 mb-1">Book your first appointment</h4>
+              <p className="mb-0 text-muted-foreground">
+                Most new clients can get an appointment within 24 hours on business days. We know that when you're ready to start, waiting is hard.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-muted/30 rounded-xl p-6 my-6">
+          <h3 className="mt-0">What we offer:</h3>
+          <ul className="grid md:grid-cols-2 gap-2 mb-0">
+            <li>Licensed, experienced therapists</li>
+            <li><Link to="/online-therapy" className="text-primary hover:underline">Online therapy</Link> available throughout Georgia</li>
+            <li>Most major insurance accepted including <Link to="/insurance/caresource" className="text-primary hover:underline">CareSource</Link>, <Link to="/insurance/amerigroup" className="text-primary hover:underline">Amerigroup</Link>, <Link to="/insurance/aetna" className="text-primary hover:underline">Aetna</Link>, <Link to="/insurance/bluecross-blueshield" className="text-primary hover:underline">BlueCross BlueShield</Link>, and <Link to="/insurance" className="text-primary hover:underline">more</Link></li>
+            <li>Georgia Medicaid accepted</li>
+            <li>Self-pay option: $75/week (minimum 4 sessions)</li>
+            <li>Flexible hours: 7am-7pm, 7 days a week</li>
+            <li><Link to="/couples-therapy" className="text-primary hover:underline">Couples</Link> and <Link to="/teen-therapy" className="text-primary hover:underline">teen therapy</Link> available</li>
+          </ul>
+        </div>
+
+        <div className="bg-primary/5 border border-primary/20 rounded-xl p-6 mt-6">
+          <h3 className="mt-0">You don't have to have it all figured out</h3>
+          <p className="mb-0">
+            Starting therapy is about taking a single step forward. You don't need to know exactly what you want to work on or have your concerns perfectly articulated. Just show up—we'll figure out the rest together.
+          </p>
+        </div>
+      </section>
     </PillarPageTemplate>
   );
 };
