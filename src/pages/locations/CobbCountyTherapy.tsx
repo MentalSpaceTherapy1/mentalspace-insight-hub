@@ -21,8 +21,15 @@ import {
   Building,
   Heart
 } from 'lucide-react';
+import { generateCountyBusinessSchema } from '@/utils/schemaGenerators';
 
 const CobbCountyTherapy = () => {
+  const countySchema = generateCountyBusinessSchema(
+    "Cobb",
+    "Online therapy in Cobb County, GA. Licensed therapists in Marietta, Kennesaw, Smyrna, Acworth. Corporate employee programs, executive stress management.",
+    "https://chctherapy.com/cobb-county-therapy"
+  );
+
   return (
     <div className="flex flex-col min-h-screen">
       <SEOHead
@@ -32,6 +39,7 @@ const CobbCountyTherapy = () => {
         canonicalUrl="https://chctherapy.com/cobb-county-therapy"
         ogTitle="Online Therapy in Cobb County, GA | Executive & Corporate Support"
         ogDescription="Professional online therapy serving Cobb County professionals and families. Specialized corporate and executive mental health services."
+        structuredData={countySchema}
       />
       
       <Header />

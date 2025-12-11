@@ -21,8 +21,15 @@ import {
   Globe,
   School
 } from 'lucide-react';
+import { generateCountyBusinessSchema } from '@/utils/schemaGenerators';
 
 const GwinnettCountyTherapy = () => {
+  const countySchema = generateCountyBusinessSchema(
+    "Gwinnett",
+    "Online therapy in Gwinnett County, GA. Licensed therapists in Lawrenceville, Duluth, Norcross, Sugar Hill. Multilingual support, teen therapy, family counseling.",
+    "https://chctherapy.com/gwinnett-county-therapy"
+  );
+
   return (
     <div className="flex flex-col min-h-screen">
       <SEOHead
@@ -32,6 +39,7 @@ const GwinnettCountyTherapy = () => {
         canonicalUrl="https://chctherapy.com/gwinnett-county-therapy"
         ogTitle="Online Therapy in Gwinnett County, GA | Multilingual Support"
         ogDescription="Professional online therapy serving Gwinnett County's diverse communities. Spanish, Korean, and other language support available."
+        structuredData={countySchema}
       />
       
       <Header />

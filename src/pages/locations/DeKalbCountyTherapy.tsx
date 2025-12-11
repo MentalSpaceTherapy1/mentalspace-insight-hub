@@ -21,8 +21,15 @@ import {
   Building,
   Palette
 } from 'lucide-react';
+import { generateCountyBusinessSchema } from '@/utils/schemaGenerators';
 
 const DeKalbCountyTherapy = () => {
+  const countySchema = generateCountyBusinessSchema(
+    "DeKalb",
+    "Online therapy in DeKalb County, GA. Licensed therapists in Decatur, Brookhaven, Tucker, Stone Mountain. LGBTQIA+ affirming, creative arts therapy.",
+    "https://chctherapy.com/dekalb-county-therapy"
+  );
+
   return (
     <div className="flex flex-col min-h-screen">
       <SEOHead
@@ -32,6 +39,7 @@ const DeKalbCountyTherapy = () => {
         canonicalUrl="https://chctherapy.com/dekalb-county-therapy"
         ogTitle="Online Therapy in DeKalb County, GA | LGBTQIA+ & Arts Therapy"
         ogDescription="Progressive, affirming online therapy serving DeKalb County's diverse communities. LGBTQIA+ specialists and creative arts therapy available."
+        structuredData={countySchema}
       />
       
       <Header />

@@ -6,8 +6,15 @@ import SEOHead from '@/components/SEOHead';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowLeft, Activity, Users, FileText, Stethoscope, MapPin, Shield, HelpCircle, ExternalLink } from 'lucide-react';
+import { generateMedicalWebPageSchema, combineSchemas } from '@/utils/schemaGenerators';
 
 const ADHD = () => {
+  const medicalWebPageSchema = generateMedicalWebPageSchema(
+    "ADHD",
+    "Find specialized ADHD treatment in Georgia. Licensed professionals providing comprehensive evaluation, therapy, and support for children and adults with ADHD.",
+    "https://chctherapy.com/mental-health-library/adhd"
+  );
+
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -55,6 +62,8 @@ const ADHD = () => {
     ]
   };
 
+  const combinedSchema = combineSchemas(faqSchema, medicalWebPageSchema);
+
   return (
     <div className="flex flex-col min-h-screen">
       <SEOHead
@@ -65,7 +74,7 @@ const ADHD = () => {
         ogTitle="ADHD Treatment in Georgia | Expert Diagnosis & Therapy"
         ogDescription="Find specialized ADHD treatment in Georgia. Licensed professionals providing comprehensive evaluation, therapy, and support for children and adults with ADHD."
         ogImage="/therapy-hero-og.jpg"
-        structuredData={faqSchema}
+        structuredData={combinedSchema}
       />
       <Header />
       

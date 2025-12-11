@@ -5,14 +5,26 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 import couplesTherapyHeroImage from "@/assets/couples-therapy-hero.jpg";
+import { generateArticleSchema } from "@/utils/schemaGenerators";
 
 const CouplesTherapyCommunication = () => {
+  const articleSchema = generateArticleSchema(
+    "Couples Therapy: Strengthening Relationships Through Communication",
+    "Learn how couples therapy can help partners improve communication, resolve conflicts, and build stronger relationships.",
+    "https://chctherapy.com/blog/couples-therapy-communication",
+    "2024-12-12",
+    "2024-12-12",
+    "https://chctherapy.com/therapy-hero-og.jpg"
+  );
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-background to-muted">
       <SEOHead
         title="Couples Therapy: Strengthening Relationships Through Communication"
         description="Learn how couples therapy can help partners improve communication, resolve conflicts, and build stronger relationships."
         keywords="couples therapy, relationship communication, marriage counseling, relationship problems, conflict resolution"
+        canonicalUrl="https://chctherapy.com/blog/couples-therapy-communication"
+        structuredData={articleSchema}
       />
       <Header />
       
