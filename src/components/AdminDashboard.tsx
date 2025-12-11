@@ -17,7 +17,8 @@ import {
   Sparkles,
   Zap,
   Shield,
-  Activity
+  Activity,
+  AlertCircle
 } from 'lucide-react';
 import { useAdminAuth } from '@/contexts/AdminAuthContext';
 import { clearAuthCache, clearAllCache, clearBrowserCache } from '@/utils/cacheUtils';
@@ -29,6 +30,7 @@ import ConversionAnalyticsDashboard from '@/components/admin/ConversionAnalytics
 import SpamMonitoring from '@/components/admin/SpamMonitoring';
 import NewsletterManager from '@/components/admin/NewsletterManager';
 import FeedbackManagement from '@/components/admin/FeedbackManagement';
+import InvalidClickReport from '@/components/admin/InvalidClickReport';
 import { toast } from 'sonner';
 
 const AdminDashboard = () => {
@@ -192,6 +194,13 @@ const AdminDashboard = () => {
             >
               <MessageSquare className="h-4 w-4" />
               <span className="hidden sm:inline">Feedback</span>
+            </TabsTrigger>
+            <TabsTrigger 
+              value="invalid-clicks" 
+              className="flex items-center gap-2 rounded-xl data-[state=active]:bg-gradient-to-r data-[state=active]:from-red-500 data-[state=active]:to-rose-600 data-[state=active]:text-white transition-all duration-300"
+            >
+              <AlertCircle className="h-4 w-4" />
+              <span className="hidden sm:inline">Invalid Clicks</span>
             </TabsTrigger>
           </TabsList>
 
@@ -419,6 +428,10 @@ const AdminDashboard = () => {
 
           <TabsContent value="feedback" className="space-y-4 animate-fade-in">
             <FeedbackManagement />
+          </TabsContent>
+
+          <TabsContent value="invalid-clicks" className="space-y-4 animate-fade-in">
+            <InvalidClickReport />
           </TabsContent>
         </Tabs>
       </div>
