@@ -52,6 +52,58 @@ const TherapyCostPaymentOptions = () => {
               <Link to="/get-started"><Button size="lg" variant="outline" className="bg-white/10 hover:bg-white/20">Get Started</Button></Link>
             </div>
           </section>
+
+          <section className="mb-12">
+            <h2 className="text-3xl font-bold mb-6">Related Resources</h2>
+            
+            <div className="mb-8">
+              <h3 className="text-xl font-semibold mb-4 text-muted-foreground">Insurance & Payment Information</h3>
+              <div className="grid md:grid-cols-3 gap-4">
+                <Link to="/insurance" className="group">
+                  <div className="border border-primary/20 bg-primary/5 rounded-lg p-4 hover:shadow-lg transition-shadow">
+                    <h4 className="text-lg font-semibold mb-2 group-hover:text-primary">Insurance We Accept</h4>
+                    <p className="text-muted-foreground text-sm">View all accepted insurance providers.</p>
+                  </div>
+                </Link>
+                <Link to="/online-therapy" className="group">
+                  <div className="border border-primary/20 bg-primary/5 rounded-lg p-4 hover:shadow-lg transition-shadow">
+                    <h4 className="text-lg font-semibold mb-2 group-hover:text-primary">Online Therapy</h4>
+                    <p className="text-muted-foreground text-sm">Convenient, affordable teletherapy options.</p>
+                  </div>
+                </Link>
+                <Link to="/faq" className="group">
+                  <div className="border border-primary/20 bg-primary/5 rounded-lg p-4 hover:shadow-lg transition-shadow">
+                    <h4 className="text-lg font-semibold mb-2 group-hover:text-primary">FAQ</h4>
+                    <p className="text-muted-foreground text-sm">Common questions about therapy costs.</p>
+                  </div>
+                </Link>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-semibold mb-4 text-muted-foreground">Related Articles</h3>
+              <div className="grid md:grid-cols-3 gap-4">
+                <Link to="/blog/benefits-online-therapy" className="group">
+                  <div className="border border-border rounded-lg p-4 hover:shadow-lg transition-shadow">
+                    <h4 className="text-lg font-semibold mb-2 group-hover:text-primary">Benefits of Online Therapy</h4>
+                    <p className="text-muted-foreground text-sm">How telehealth can save time and money.</p>
+                  </div>
+                </Link>
+                <Link to="/blog/therapy-online-insurance-coverage" className="group">
+                  <div className="border border-border rounded-lg p-4 hover:shadow-lg transition-shadow">
+                    <h4 className="text-lg font-semibold mb-2 group-hover:text-primary">Insurance Coverage Guide</h4>
+                    <p className="text-muted-foreground text-sm">Understanding your insurance benefits.</p>
+                  </div>
+                </Link>
+                <Link to="/blog/finding-right-therapist" className="group">
+                  <div className="border border-border rounded-lg p-4 hover:shadow-lg transition-shadow">
+                    <h4 className="text-lg font-semibold mb-2 group-hover:text-primary">Finding the Right Therapist</h4>
+                    <p className="text-muted-foreground text-sm">Tips for choosing the best fit for you.</p>
+                  </div>
+                </Link>
+              </div>
+            </div>
+          </section>
         </article>
       </main>
       <Footer />

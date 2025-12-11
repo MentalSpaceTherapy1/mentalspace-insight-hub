@@ -239,6 +239,61 @@ const CouplesTherapy = () => {
           </div>
         </section>
 
+        {/* Related Resources */}
+        <section className="py-16 px-4 bg-white">
+          <div className="container mx-auto">
+            <h2 className="text-3xl font-bold mb-8 text-center">Related Resources</h2>
+            
+            <div className="mb-12">
+              <h3 className="text-xl font-semibold mb-4 text-center text-muted-foreground">Our Relationship Services</h3>
+              <div className="grid md:grid-cols-3 gap-4 max-w-4xl mx-auto">
+                <Link to="/couples-therapy-georgia" className="group">
+                  <div className="border border-primary/20 bg-primary/5 rounded-lg p-4 hover:shadow-lg transition-shadow text-center">
+                    <h4 className="font-semibold group-hover:text-primary">Couples Therapy in Georgia</h4>
+                    <p className="text-muted-foreground text-sm mt-1">Professional relationship counseling statewide.</p>
+                  </div>
+                </Link>
+                <Link to="/online-therapy" className="group">
+                  <div className="border border-primary/20 bg-primary/5 rounded-lg p-4 hover:shadow-lg transition-shadow text-center">
+                    <h4 className="font-semibold group-hover:text-primary">Online Therapy</h4>
+                    <p className="text-muted-foreground text-sm mt-1">Convenient couples sessions from home.</p>
+                  </div>
+                </Link>
+                <Link to="/insurance" className="group">
+                  <div className="border border-primary/20 bg-primary/5 rounded-lg p-4 hover:shadow-lg transition-shadow text-center">
+                    <h4 className="font-semibold group-hover:text-primary">Insurance Options</h4>
+                    <p className="text-muted-foreground text-sm mt-1">We accept most major insurance plans.</p>
+                  </div>
+                </Link>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-semibold mb-4 text-center text-muted-foreground">Helpful Articles</h3>
+              <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                <Link to="/blog/couples-therapy-communication" className="group">
+                  <div className="border border-border rounded-lg p-4 hover:shadow-lg transition-shadow">
+                    <h4 className="font-semibold mb-2 group-hover:text-primary">Communication in Couples Therapy</h4>
+                    <p className="text-muted-foreground text-sm">How therapy improves communication.</p>
+                  </div>
+                </Link>
+                <Link to="/blog/marriage-counseling-signs" className="group">
+                  <div className="border border-border rounded-lg p-4 hover:shadow-lg transition-shadow">
+                    <h4 className="font-semibold mb-2 group-hover:text-primary">Signs You Need Marriage Counseling</h4>
+                    <p className="text-muted-foreground text-sm">10 warning signs to watch for.</p>
+                  </div>
+                </Link>
+                <Link to="/blog/premarital-counseling" className="group">
+                  <div className="border border-border rounded-lg p-4 hover:shadow-lg transition-shadow">
+                    <h4 className="font-semibold mb-2 group-hover:text-primary">Premarital Counseling Guide</h4>
+                    <p className="text-muted-foreground text-sm">Preparing for a strong marriage.</p>
+                  </div>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Call to Action */}
         <section className="py-24 px-4 bg-gradient-to-br from-primary via-primary to-secondary relative overflow-hidden">
           <div className="absolute inset-0 opacity-30" style={{

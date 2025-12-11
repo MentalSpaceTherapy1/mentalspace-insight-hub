@@ -172,12 +172,64 @@ const GriefTherapyHealing = () => {
               Coping and Healing Counseling provides compassionate grief therapy to help you process loss and find healing. Professional support can make all the difference.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Link to="/conditions/grief-therapy-ga">
+              <Link to="/grief-therapy-georgia">
                 <Button size="lg" variant="secondary">Learn About Grief Therapy</Button>
               </Link>
               <Link to="/get-started">
                 <Button size="lg" variant="outline" className="bg-white/10 hover:bg-white/20">Schedule Consultation</Button>
               </Link>
+            </div>
+          </section>
+
+          <section className="mb-12">
+            <h2 className="text-3xl font-bold mb-6">Related Resources</h2>
+            
+            <div className="mb-8">
+              <h3 className="text-xl font-semibold mb-4 text-muted-foreground">Our Grief Support Services</h3>
+              <div className="grid md:grid-cols-3 gap-4">
+                <Link to="/grief-therapy-georgia" className="group">
+                  <div className="border border-primary/20 bg-primary/5 rounded-lg p-4 hover:shadow-lg transition-shadow">
+                    <h4 className="text-lg font-semibold mb-2 group-hover:text-primary">Grief Therapy in Georgia</h4>
+                    <p className="text-muted-foreground text-sm">Professional grief counseling throughout Georgia.</p>
+                  </div>
+                </Link>
+                <Link to="/online-therapy" className="group">
+                  <div className="border border-primary/20 bg-primary/5 rounded-lg p-4 hover:shadow-lg transition-shadow">
+                    <h4 className="text-lg font-semibold mb-2 group-hover:text-primary">Online Therapy</h4>
+                    <p className="text-muted-foreground text-sm">Access grief support from the comfort of home.</p>
+                  </div>
+                </Link>
+                <Link to="/mental-health-library/depression" className="group">
+                  <div className="border border-primary/20 bg-primary/5 rounded-lg p-4 hover:shadow-lg transition-shadow">
+                    <h4 className="text-lg font-semibold mb-2 group-hover:text-primary">Depression & Grief</h4>
+                    <p className="text-muted-foreground text-sm">Understanding the connection between grief and depression.</p>
+                  </div>
+                </Link>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-semibold mb-4 text-muted-foreground">Related Articles</h3>
+              <div className="grid md:grid-cols-3 gap-4">
+                <Link to="/blog/depression-adults" className="group">
+                  <div className="border border-border rounded-lg p-4 hover:shadow-lg transition-shadow">
+                    <h4 className="text-lg font-semibold mb-2 group-hover:text-primary">Depression in Adults</h4>
+                    <p className="text-muted-foreground text-sm">Recognizing and treating depression.</p>
+                  </div>
+                </Link>
+                <Link to="/blog/setting-healthy-boundaries" className="group">
+                  <div className="border border-border rounded-lg p-4 hover:shadow-lg transition-shadow">
+                    <h4 className="text-lg font-semibold mb-2 group-hover:text-primary">Setting Healthy Boundaries</h4>
+                    <p className="text-muted-foreground text-sm">Protecting your emotional space during grief.</p>
+                  </div>
+                </Link>
+                <Link to="/blog/mindfulness-therapy" className="group">
+                  <div className="border border-border rounded-lg p-4 hover:shadow-lg transition-shadow">
+                    <h4 className="text-lg font-semibold mb-2 group-hover:text-primary">Mindfulness Therapy</h4>
+                    <p className="text-muted-foreground text-sm">Mindfulness techniques for processing grief.</p>
+                  </div>
+                </Link>
+              </div>
             </div>
           </section>
         </article>

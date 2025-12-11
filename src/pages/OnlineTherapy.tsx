@@ -199,6 +199,63 @@ const OnlineTherapy = () => {
           </div>
         </section>
 
+        {/* Related Resources */}
+        <section className="py-16 px-4 bg-muted/30">
+          <div className="container mx-auto">
+            <h2 className="text-3xl font-bold mb-8 text-center">Related Resources</h2>
+            
+            <div className="mb-12">
+              <h3 className="text-xl font-semibold mb-4 text-center text-muted-foreground">Conditions We Treat Online</h3>
+              <div className="grid md:grid-cols-4 gap-4 max-w-5xl mx-auto">
+                <Link to="/anxiety-therapy-georgia" className="group">
+                  <div className="border border-primary/20 bg-primary/5 rounded-lg p-4 hover:shadow-lg transition-shadow text-center">
+                    <h4 className="font-semibold group-hover:text-primary">Anxiety Therapy</h4>
+                  </div>
+                </Link>
+                <Link to="/depression-therapy-georgia" className="group">
+                  <div className="border border-primary/20 bg-primary/5 rounded-lg p-4 hover:shadow-lg transition-shadow text-center">
+                    <h4 className="font-semibold group-hover:text-primary">Depression Therapy</h4>
+                  </div>
+                </Link>
+                <Link to="/ptsd-therapy-georgia" className="group">
+                  <div className="border border-primary/20 bg-primary/5 rounded-lg p-4 hover:shadow-lg transition-shadow text-center">
+                    <h4 className="font-semibold group-hover:text-primary">PTSD Therapy</h4>
+                  </div>
+                </Link>
+                <Link to="/couples-therapy-georgia" className="group">
+                  <div className="border border-primary/20 bg-primary/5 rounded-lg p-4 hover:shadow-lg transition-shadow text-center">
+                    <h4 className="font-semibold group-hover:text-primary">Couples Therapy</h4>
+                  </div>
+                </Link>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-semibold mb-4 text-center text-muted-foreground">Helpful Articles</h3>
+              <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                <Link to="/blog/benefits-online-therapy" className="group">
+                  <div className="border border-border rounded-lg p-4 hover:shadow-lg transition-shadow bg-card">
+                    <h4 className="font-semibold mb-2 group-hover:text-primary">Benefits of Online Therapy</h4>
+                    <p className="text-muted-foreground text-sm">Discover why telehealth is so effective.</p>
+                  </div>
+                </Link>
+                <Link to="/blog/telehealth-therapy-georgia" className="group">
+                  <div className="border border-border rounded-lg p-4 hover:shadow-lg transition-shadow bg-card">
+                    <h4 className="font-semibold mb-2 group-hover:text-primary">Telehealth in Georgia</h4>
+                    <p className="text-muted-foreground text-sm">What to know about online therapy in GA.</p>
+                  </div>
+                </Link>
+                <Link to="/blog/finding-right-therapist" className="group">
+                  <div className="border border-border rounded-lg p-4 hover:shadow-lg transition-shadow bg-card">
+                    <h4 className="font-semibold mb-2 group-hover:text-primary">Finding the Right Therapist</h4>
+                    <p className="text-muted-foreground text-sm">Tips for choosing your ideal match.</p>
+                  </div>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Call to Action */}
         <section className="py-20 px-4 bg-gradient-to-r from-primary to-secondary">
           <div className="container mx-auto text-center">
