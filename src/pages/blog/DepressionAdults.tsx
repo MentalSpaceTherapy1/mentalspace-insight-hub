@@ -237,34 +237,34 @@ const DepressionAdults = () => {
                           <div className="p-2 bg-purple-100 dark:bg-purple-900/30 rounded-lg">
                             <Brain className="h-5 w-5 text-purple-600 dark:text-purple-400" />
                           </div>
-                          <h3 className="font-semibold text-lg text-purple-600 dark:text-purple-400">Mental Health Library</h3>
+                          <h3 className="font-semibold text-lg text-purple-600 dark:text-purple-400">Georgia Services</h3>
                         </div>
                         <div className="space-y-3">
                           <Link 
-                            to="/mental-health-library/depression" 
+                            to="/depression-therapy-georgia" 
                             className="group/link flex items-start gap-2 p-3 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-colors"
                           >
                             <ArrowRight className="h-4 w-4 text-purple-500 mt-0.5 group-hover/link:translate-x-1 transition-transform" />
                             <span className="text-sm text-muted-foreground group-hover/link:text-purple-600 dark:group-hover/link:text-purple-400 font-medium">
-                              Depression Treatment Options
+                              Depression Therapy in Georgia
                             </span>
                           </Link>
                           <Link 
-                            to="/mental-health-library/anxiety" 
+                            to="/online-therapy" 
                             className="group/link flex items-start gap-2 p-3 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-colors"
                           >
                             <ArrowRight className="h-4 w-4 text-purple-500 mt-0.5 group-hover/link:translate-x-1 transition-transform" />
                             <span className="text-sm text-muted-foreground group-hover/link:text-purple-600 dark:group-hover/link:text-purple-400 font-medium">
-                              Anxiety Disorders Treatment
+                              Online Therapy Services
                             </span>
                           </Link>
                           <Link 
-                            to="/mental-health-library/bipolar-disorder" 
+                            to="/faq" 
                             className="group/link flex items-start gap-2 p-3 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-colors"
                           >
                             <ArrowRight className="h-4 w-4 text-purple-500 mt-0.5 group-hover/link:translate-x-1 transition-transform" />
                             <span className="text-sm text-muted-foreground group-hover/link:text-purple-600 dark:group-hover/link:text-purple-400 font-medium">
-                              Bipolar Disorder Management
+                              Frequently Asked Questions
                             </span>
                           </Link>
                         </div>

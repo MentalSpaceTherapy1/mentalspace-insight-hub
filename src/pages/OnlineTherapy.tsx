@@ -207,12 +207,12 @@ const OnlineTherapy = () => {
             <div className="mb-12">
               <h3 className="text-xl font-semibold mb-4 text-center text-muted-foreground">Conditions We Treat Online</h3>
               <div className="grid md:grid-cols-4 gap-4 max-w-5xl mx-auto">
-                <Link to="/anxiety-therapy-georgia" className="group">
+                <Link to="/mental-health-library/anxiety" className="group">
                   <div className="border border-primary/20 bg-primary/5 rounded-lg p-4 hover:shadow-lg transition-shadow text-center">
-                    <h4 className="font-semibold group-hover:text-primary">Anxiety Therapy</h4>
+                    <h4 className="font-semibold group-hover:text-primary">Anxiety Treatment</h4>
                   </div>
                 </Link>
-                <Link to="/depression-therapy-georgia" className="group">
+                <Link to="/mental-health-library/depression" className="group">
                   <div className="border border-primary/20 bg-primary/5 rounded-lg p-4 hover:shadow-lg transition-shadow text-center">
                     <h4 className="font-semibold group-hover:text-primary">Depression Therapy</h4>
                   </div>
@@ -225,6 +225,30 @@ const OnlineTherapy = () => {
                 <Link to="/couples-therapy-georgia" className="group">
                   <div className="border border-primary/20 bg-primary/5 rounded-lg p-4 hover:shadow-lg transition-shadow text-center">
                     <h4 className="font-semibold group-hover:text-primary">Couples Therapy</h4>
+                  </div>
+                </Link>
+              </div>
+            </div>
+
+            <div className="mb-12">
+              <h3 className="text-xl font-semibold mb-4 text-center text-muted-foreground">Helpful Information</h3>
+              <div className="grid md:grid-cols-3 gap-4 max-w-4xl mx-auto">
+                <Link to="/insurance" className="group">
+                  <div className="border border-primary/20 bg-primary/5 rounded-lg p-4 hover:shadow-lg transition-shadow text-center">
+                    <h4 className="font-semibold group-hover:text-primary">Insurance We Accept</h4>
+                    <p className="text-muted-foreground text-sm mt-1">View accepted insurance plans.</p>
+                  </div>
+                </Link>
+                <Link to="/faq" className="group">
+                  <div className="border border-primary/20 bg-primary/5 rounded-lg p-4 hover:shadow-lg transition-shadow text-center">
+                    <h4 className="font-semibold group-hover:text-primary">FAQs</h4>
+                    <p className="text-muted-foreground text-sm mt-1">Common questions answered.</p>
+                  </div>
+                </Link>
+                <Link to="/mental-health-tests" className="group">
+                  <div className="border border-primary/20 bg-primary/5 rounded-lg p-4 hover:shadow-lg transition-shadow text-center">
+                    <h4 className="font-semibold group-hover:text-primary">Free Mental Health Tests</h4>
+                    <p className="text-muted-foreground text-sm mt-1">Confidential self-assessments.</p>
                   </div>
                 </Link>
               </div>
