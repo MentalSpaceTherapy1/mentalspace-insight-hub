@@ -13,6 +13,12 @@ import Admin from "./pages/Admin";
 import HowToUseAetnaTherapy from "./pages/insurance-guides/HowToUseAetnaTherapy";
 import HowToUseBlueCrossTherapy from "./pages/insurance-guides/HowToUseBlueCrossTherapy";
 import HowToUseCignaTherapy from "./pages/insurance-guides/HowToUseCignaTherapy";
+import HowToUseAmerigroupTherapy from "./pages/insurance-guides/HowToUseAmerigroupTherapy";
+import HowToUseCareSourceTherapy from "./pages/insurance-guides/HowToUseCareSourceTherapy";
+import HowToUseHumanaTherapy from "./pages/insurance-guides/HowToUseHumanaTherapy";
+import HowToUseOptumTherapy from "./pages/insurance-guides/HowToUseOptumTherapy";
+import HowToUsePeachStateTherapy from "./pages/insurance-guides/HowToUsePeachStateTherapy";
+import HowToUseAlliantTherapy from "./pages/insurance-guides/HowToUseAlliantTherapy";
 
 // Assessment Landing Pages
 import FreeAnxietyTestOnline from "./pages/assessments/FreeAnxietyTestOnline";
@@ -299,6 +305,12 @@ const App = () => {
                 <Route path="/how-to-use-aetna-insurance-for-therapy-georgia" element={<HowToUseAetnaTherapy />} />
                 <Route path="/how-to-use-blue-cross-insurance-for-therapy-georgia" element={<HowToUseBlueCrossTherapy />} />
                 <Route path="/how-to-use-cigna-insurance-for-therapy-georgia" element={<HowToUseCignaTherapy />} />
+                <Route path="/how-to-use-amerigroup-insurance-for-therapy-georgia" element={<HowToUseAmerigroupTherapy />} />
+                <Route path="/how-to-use-caresource-insurance-for-therapy-georgia" element={<HowToUseCareSourceTherapy />} />
+                <Route path="/how-to-use-humana-insurance-for-therapy-georgia" element={<HowToUseHumanaTherapy />} />
+                <Route path="/how-to-use-optum-insurance-for-therapy-georgia" element={<HowToUseOptumTherapy />} />
+                <Route path="/how-to-use-peach-state-insurance-for-therapy-georgia" element={<HowToUsePeachStateTherapy />} />
+                <Route path="/how-to-use-alliant-insurance-for-therapy-georgia" element={<HowToUseAlliantTherapy />} />
                 
                 {/* Assessment Landing Pages */}
                 <Route path="/free-anxiety-test-online" element={<FreeAnxietyTestOnline />} />
