@@ -6,8 +6,15 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 import substancePersonImage from "@/assets/substance-person.jpg";
+import { generateMedicalWebPageSchema } from "@/utils/schemaGenerators";
 
 const SubstanceUseDisorder = () => {
+  const medicalWebPageSchema = generateMedicalWebPageSchema(
+    "Substance Use Disorder",
+    "Get professional help for substance use disorder. Learn about addiction recovery, evidence-based treatments, and find specialized therapists for lasting recovery.",
+    "https://chctherapy.com/mental-health-library/substance-use-disorder"
+  );
+
   return (
     <>
       <SEOHead 
@@ -15,6 +22,7 @@ const SubstanceUseDisorder = () => {
         description="Get professional help for substance use disorder. Learn about addiction recovery, evidence-based treatments, and find specialized therapists for lasting recovery."
         keywords="substance use disorder, addiction treatment, recovery therapy, drug addiction, alcohol addiction, addiction counseling"
         canonicalUrl="https://chctherapy.com/mental-health-library/substance-use-disorder"
+        structuredData={medicalWebPageSchema}
       />
       <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
         <Header />

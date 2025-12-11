@@ -6,8 +6,15 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 import adjustmentPersonImage from "@/assets/adjustment-person.jpg";
+import { generateMedicalWebPageSchema } from "@/utils/schemaGenerators";
 
 const AdjustmentDisorder = () => {
+  const medicalWebPageSchema = generateMedicalWebPageSchema(
+    "Adjustment Disorder",
+    "Get professional help for adjustment disorder. Learn about symptoms, causes, and evidence-based treatments. Find specialized therapists to help you cope with life changes.",
+    "https://chctherapy.com/mental-health-library/adjustment-disorder"
+  );
+
   return (
     <>
       <SEOHead 
@@ -15,6 +22,7 @@ const AdjustmentDisorder = () => {
         description="Get professional help for adjustment disorder. Learn about symptoms, causes, and evidence-based treatments. Find specialized therapists to help you cope with life changes."
         keywords="adjustment disorder, life changes, stress therapy, coping skills, mental health treatment"
         canonicalUrl="https://chctherapy.com/mental-health-library/adjustment-disorder"
+        structuredData={medicalWebPageSchema}
       />
       <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
         <Header />

@@ -6,8 +6,15 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowLeft, Crown, Users, FileText, Stethoscope } from 'lucide-react';
 import SEOHead from '@/components/SEOHead';
+import { generateMedicalWebPageSchema } from '@/utils/schemaGenerators';
 
 const NarcissisticPersonalityDisorder = () => {
+  const medicalWebPageSchema = generateMedicalWebPageSchema(
+    "Narcissistic Personality Disorder",
+    "Professional NPD therapy in Georgia. Treatment for Narcissistic Personality Disorder with experienced therapists specializing in personality disorders.",
+    "https://chctherapy.com/mental-health-library/narcissistic-personality-disorder"
+  );
+
   return (
     <div className="flex flex-col min-h-screen">
       <SEOHead 
@@ -15,6 +22,7 @@ const NarcissisticPersonalityDisorder = () => {
         description="Professional NPD therapy in Georgia. Treatment for Narcissistic Personality Disorder with experienced therapists specializing in personality disorders."
         keywords="narcissistic personality disorder, NPD, narcissism therapy, personality disorder treatment, Georgia"
         canonicalUrl="https://chctherapy.com/mental-health-library/narcissistic-personality-disorder"
+        structuredData={medicalWebPageSchema}
       />
       <Header />
       

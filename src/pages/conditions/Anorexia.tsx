@@ -6,8 +6,15 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 import anorexiaPersonImage from "@/assets/anorexia-person.jpg";
+import { generateMedicalWebPageSchema } from "@/utils/schemaGenerators";
 
 const Anorexia = () => {
+  const medicalWebPageSchema = generateMedicalWebPageSchema(
+    "Anorexia Nervosa",
+    "Get professional help for anorexia nervosa. Learn about symptoms, causes, and specialized eating disorder treatments. Find qualified therapists for recovery support.",
+    "https://chctherapy.com/mental-health-library/anorexia"
+  );
+
   return (
     <>
       <SEOHead 
@@ -15,6 +22,7 @@ const Anorexia = () => {
         description="Get professional help for anorexia nervosa. Learn about symptoms, causes, and specialized eating disorder treatments. Find qualified therapists for recovery support."
         keywords="anorexia nervosa, eating disorder treatment, anorexia therapy, eating disorder recovery, body image therapy"
         canonicalUrl="https://chctherapy.com/mental-health-library/anorexia"
+        structuredData={medicalWebPageSchema}
       />
       <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
         <Header />

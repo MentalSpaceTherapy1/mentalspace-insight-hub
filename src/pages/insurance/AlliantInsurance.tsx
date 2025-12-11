@@ -5,6 +5,7 @@ import { CheckCircle, Shield, DollarSign, Handshake, Star, Clock } from "lucide-
 import { Link } from "react-router-dom";
 import SEOHead from "@/components/SEOHead";
 import alliantImage from "@/assets/insurance-alliant.jpg";
+import { generateWebPageSchema } from "@/utils/schemaGenerators";
 
 const AlliantInsurance = () => {
   const benefits = [
@@ -57,12 +58,20 @@ const AlliantInsurance = () => {
     "Adolescent and teen mental health services"
   ];
 
+  const webPageSchema = generateWebPageSchema(
+    "Alliant Health Insurance Mental Health Coverage",
+    "Alliant Health members receive partnership-focused mental health coverage with quality excellence. Learn about your Alliant therapy benefits and member-centered care.",
+    "https://chctherapy.com/insurance/alliant",
+    "Alliant Health Insurance Coverage for Therapy"
+  );
+
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
         title="Alliant Health Insurance Mental Health Coverage | Colorado Healing Center"
         description="Alliant Health members receive partnership-focused mental health coverage with quality excellence. Learn about your Alliant therapy benefits and member-centered care."
         keywords="Alliant Health insurance, mental health coverage, partnership care, quality therapy, member-centered treatment"
+        structuredData={webPageSchema}
       />
       <Header />
       <main>
