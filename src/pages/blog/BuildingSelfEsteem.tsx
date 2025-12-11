@@ -3,8 +3,16 @@ import SEOHead from "@/components/SEOHead";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import { generateArticleSchema } from "@/utils/schemaGenerators";
 
 const BuildingSelfEsteem = () => {
+  const articleSchema = generateArticleSchema(
+    "Building Self-Esteem: Therapy Techniques for Greater Confidence",
+    "Learn how therapy builds self-esteem and confidence. Explore CBT techniques, causes of low self-worth, and practical strategies for improvement.",
+    "https://chctherapy.com/blog/building-self-esteem-therapy",
+    "2024-11-15"
+  );
+
   return (
     <>
       <SEOHead
@@ -12,6 +20,7 @@ const BuildingSelfEsteem = () => {
         description="Learn how therapy builds self-esteem and confidence. Explore CBT techniques, causes of low self-worth, and practical strategies for improvement."
         keywords="building self-esteem, confidence therapy, self-worth counseling, low self-esteem treatment"
         canonicalUrl="https://chctherapy.com/blog/building-self-esteem-therapy"
+        structuredData={articleSchema}
       />
       <Header />
       <main className="min-h-screen bg-background">

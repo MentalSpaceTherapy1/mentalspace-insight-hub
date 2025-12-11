@@ -3,8 +3,16 @@ import SEOHead from "@/components/SEOHead";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import { generateArticleSchema } from "@/utils/schemaGenerators";
 
 const CareerTransitionAnxiety = () => {
+  const articleSchema = generateArticleSchema(
+    "Career Transition Anxiety: Managing Change with Professional Support",
+    "Navigate career changes, job transitions, and unemployment stress with therapy. Expert guidance on managing career anxiety and impostor syndrome.",
+    "https://chctherapy.com/blog/career-transition-anxiety-therapy",
+    "2024-11-15"
+  );
+
   return (
     <>
       <SEOHead
@@ -12,6 +20,7 @@ const CareerTransitionAnxiety = () => {
         description="Navigate career changes, job transitions, and unemployment stress with therapy. Expert guidance on managing career anxiety and impostor syndrome."
         keywords="career transition therapy, job change anxiety, career counseling, unemployment stress"
         canonicalUrl="https://chctherapy.com/blog/career-transition-anxiety-therapy"
+        structuredData={articleSchema}
       />
       <Header />
       <main className="min-h-screen bg-background">

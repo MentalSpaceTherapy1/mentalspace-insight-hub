@@ -3,8 +3,16 @@ import SEOHead from "@/components/SEOHead";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import { generateArticleSchema } from "@/utils/schemaGenerators";
 
 const MarriageCounselingSigns = () => {
+  const articleSchema = generateArticleSchema(
+    "Signs You Need Marriage Counseling: When to Seek Help",
+    "Recognize the warning signs that indicate marriage counseling could strengthen your relationship before problems escalate.",
+    "https://chctherapy.com/blog/marriage-counseling-signs",
+    "2024-11-15"
+  );
+
   return (
     <>
       <SEOHead
@@ -12,6 +20,7 @@ const MarriageCounselingSigns = () => {
         description="Recognize the warning signs that indicate marriage counseling could strengthen your relationship before problems escalate."
         keywords="marriage counseling signs, when to seek couples therapy, relationship help, marriage problems"
         canonicalUrl="https://chctherapy.com/blog/marriage-counseling-signs"
+        structuredData={articleSchema}
       />
       <Header />
       <main className="min-h-screen bg-background">

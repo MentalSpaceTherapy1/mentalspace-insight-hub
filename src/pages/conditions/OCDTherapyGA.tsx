@@ -21,8 +21,16 @@ import {
   DollarSign,
   Calendar
 } from 'lucide-react';
+import { generateMedicalBusinessSchema } from '@/utils/schemaGenerators';
 
 const OCDTherapyGA = () => {
+  const medicalBusinessSchema = generateMedicalBusinessSchema(
+    "OCD Therapy Georgia",
+    "Get OCD therapy in Georgia with licensed therapists. ERP and CBT specialists available. Video, phone & text sessions. Most insurance accepted.",
+    "https://chctherapy.com/ocd-therapy-georgia",
+    ["OCD Therapy", "ERP Therapy", "CBT for OCD", "Obsessive-Compulsive Disorder Treatment"]
+  );
+
   return (
     <div className="flex flex-col min-h-screen">
       <SEOHead
@@ -32,6 +40,7 @@ const OCDTherapyGA = () => {
         canonicalUrl="https://chctherapy.com/ocd-therapy-georgia"
         ogTitle="Online OCD Therapy in Georgia | Licensed Therapists"
         ogDescription="Professional OCD therapy in Georgia. ERP and CBT specialists available 24/7. Most insurance accepted. Start your healing journey today."
+        structuredData={medicalBusinessSchema}
       />
       
       <Header />

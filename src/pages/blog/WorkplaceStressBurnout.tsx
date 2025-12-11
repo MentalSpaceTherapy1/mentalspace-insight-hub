@@ -3,8 +3,16 @@ import SEOHead from "@/components/SEOHead";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import { generateArticleSchema } from "@/utils/schemaGenerators";
 
 const WorkplaceStressBurnout = () => {
+  const articleSchema = generateArticleSchema(
+    "Workplace Stress & Burnout: How Therapy Can Help Your Career",
+    "Comprehensive guide to managing workplace stress and burnout through therapy. Learn to set boundaries, improve work-life balance, and thrive professionally.",
+    "https://chctherapy.com/blog/workplace-stress-burnout-therapy",
+    "2024-11-15"
+  );
+
   return (
     <>
       <SEOHead
@@ -12,6 +20,7 @@ const WorkplaceStressBurnout = () => {
         description="Comprehensive guide to managing workplace stress and burnout through therapy. Learn to set boundaries, improve work-life balance, and thrive professionally."
         keywords="workplace stress therapy, burnout treatment, work-life balance counseling, career stress"
         canonicalUrl="https://chctherapy.com/blog/workplace-stress-burnout-therapy"
+        structuredData={articleSchema}
       />
       <Header />
       <main className="min-h-screen bg-background">

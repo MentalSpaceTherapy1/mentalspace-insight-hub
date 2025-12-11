@@ -21,8 +21,16 @@ import {
   DollarSign,
   Calendar
 } from 'lucide-react';
+import { generateMedicalBusinessSchema } from '@/utils/schemaGenerators';
 
 const AnxietyTherapyGA = () => {
+  const medicalBusinessSchema = generateMedicalBusinessSchema(
+    "Anxiety Therapy Georgia",
+    "Get anxiety therapy in Georgia with licensed therapists. Video, phone & text sessions available. Most insurance accepted. Specialized care for GA residents.",
+    "https://chctherapy.com/anxiety-therapy-georgia",
+    ["Anxiety Therapy", "CBT for Anxiety", "EMDR", "Mindfulness Therapy"]
+  );
+
   return (
     <div className="flex flex-col min-h-screen">
       <SEOHead
@@ -32,6 +40,7 @@ const AnxietyTherapyGA = () => {
         canonicalUrl="https://chctherapy.com/anxiety-therapy-georgia"
         ogTitle="Online Anxiety Therapy in Georgia | Licensed Therapists"
         ogDescription="Professional anxiety therapy in Georgia. Licensed therapists available 24/7. Most insurance accepted. Start your healing journey today."
+        structuredData={medicalBusinessSchema}
       />
       
       <Header />

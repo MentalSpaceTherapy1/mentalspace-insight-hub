@@ -21,8 +21,16 @@ import {
   DollarSign,
   Calendar
 } from 'lucide-react';
+import { generateMedicalBusinessSchema } from '@/utils/schemaGenerators';
 
 const SocialAnxietyTherapyGA = () => {
+  const medicalBusinessSchema = generateMedicalBusinessSchema(
+    "Social Anxiety Therapy Georgia",
+    "Get social anxiety therapy in Georgia with licensed therapists. CBT and exposure therapy specialists. Video, phone & text sessions. Most insurance accepted.",
+    "https://chctherapy.com/social-anxiety-therapy-georgia",
+    ["Social Anxiety Therapy", "CBT for Social Phobia", "Exposure Therapy", "Social Skills Training"]
+  );
+
   return (
     <div className="flex flex-col min-h-screen">
       <SEOHead
@@ -32,6 +40,7 @@ const SocialAnxietyTherapyGA = () => {
         canonicalUrl="https://chctherapy.com/social-anxiety-therapy-georgia"
         ogTitle="Online Social Anxiety Therapy in Georgia | Licensed Therapists"
         ogDescription="Professional social anxiety therapy in Georgia. Overcome social fears with expert therapists. Most insurance accepted. Start your journey today."
+        structuredData={medicalBusinessSchema}
       />
       
       <Header />

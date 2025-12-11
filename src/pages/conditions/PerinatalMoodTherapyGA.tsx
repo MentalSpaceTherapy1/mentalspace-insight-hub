@@ -22,8 +22,16 @@ import {
   Calendar,
   Heart
 } from 'lucide-react';
+import { generateMedicalBusinessSchema } from '@/utils/schemaGenerators';
 
 const PerinatalMoodTherapyGA = () => {
+  const medicalBusinessSchema = generateMedicalBusinessSchema(
+    "Perinatal Mood & Anxiety Therapy Georgia",
+    "Get perinatal mood and anxiety therapy in Georgia. Postpartum depression and anxiety specialists. Video, phone & text sessions. Most insurance accepted.",
+    "https://chctherapy.com/perinatal-mood-therapy-georgia",
+    ["Postpartum Depression Therapy", "Prenatal Anxiety Therapy", "Perinatal Mental Health", "Maternal Mood Support"]
+  );
+
   return (
     <div className="flex flex-col min-h-screen">
       <SEOHead
@@ -33,6 +41,7 @@ const PerinatalMoodTherapyGA = () => {
         canonicalUrl="https://chctherapy.com/perinatal-mood-therapy-georgia"
         ogTitle="Online Perinatal Mood & Anxiety Therapy in Georgia | Licensed Therapists"
         ogDescription="Professional perinatal mental health therapy in Georgia. Support for pregnancy and postpartum mood disorders. Most insurance accepted."
+        structuredData={medicalBusinessSchema}
       />
       
       <Header />
