@@ -307,6 +307,41 @@ serve(async (req) => {
       }
     }
 
+    // reCAPTCHA Verification - MANDATORY (block if missing)
+    if (!formData._recaptchaToken) {
+      console.log('BLOCKED: Missing reCAPTCHA token');
+      
+      await supabase
+        .from('form_submissions')
+        .insert({
+          form_type: formType,
+          form_data: formData,
+          ip_address: clientIP,
+          user_agent: userAgent,
+          is_blocked: true,
+          blocked_reason: 'missing_recaptcha',
+          spam_score: 10,
+        });
+      
+      await supabase
+        .from('security_audit_log')
+        .insert({
+          event_type: 'blocked_missing_recaptcha',
+          table_name: 'form_submissions',
+          ip_address: clientIP,
+          details: {
+            form_type: formType,
+            timestamp: new Date().toISOString(),
+            severity: 'HIGH'
+          }
+        });
+      
+      return new Response(JSON.stringify({ success: false, error: 'Security verification required' }), {
+        status: 400,
+        headers: { ...getCorsHeaders(origin), 'Content-Type': 'application/json' },
+      });
+    }
+    
     // reCAPTCHA Verification
     if (formData._recaptchaToken) {
       console.log('[Submit Form] Verifying reCAPTCHA...');

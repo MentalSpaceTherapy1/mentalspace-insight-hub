@@ -135,7 +135,7 @@ const ContactUs = () => {
       return;
     }
 
-    // Get reCAPTCHA token (optional - graceful degradation)
+    // Get reCAPTCHA token - MANDATORY
     console.log('[ContactUs] Preparing reCAPTCHA...');
     let recaptchaToken = null;
     if (recaptchaSiteKey) {
@@ -143,9 +143,14 @@ const ContactUs = () => {
         recaptchaToken = await recaptchaRef.current?.executeAsync();
         console.log('[ContactUs] reCAPTCHA token:', recaptchaToken ? 'obtained' : 'missing');
       } catch (error) {
-        console.warn('[ContactUs] reCAPTCHA execution failed, continuing without token:', error);
-        // Continue submission without reCAPTCHA - graceful degradation
+        console.warn('[ContactUs] reCAPTCHA execution failed:', error);
       }
+    }
+    
+    // Block submission if no reCAPTCHA token (MANDATORY)
+    if (!recaptchaToken) {
+      toast.error("Security verification required. Please refresh the page and try again.");
+      return;
     }
     
     try {

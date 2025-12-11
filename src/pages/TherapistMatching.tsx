@@ -220,16 +220,26 @@ const TherapistMatching = () => {
       return;
     }
 
-    // Get reCAPTCHA token (attempt, but do not block if unavailable)
+    // Get reCAPTCHA token - MANDATORY
     let recaptchaToken: string | null = null;
     if (recaptchaSiteKey && recaptchaRef.current) {
       try {
         recaptchaToken = await recaptchaRef.current.executeAsync();
       } catch (err) {
-        console.warn('reCAPTCHA execution failed, proceeding without token', err);
+        console.warn('reCAPTCHA execution failed', err);
       } finally {
         try { recaptchaRef.current.reset(); } catch {}
       }
+    }
+    
+    // Block submission if no reCAPTCHA token (MANDATORY)
+    if (!recaptchaToken) {
+      toast({
+        variant: "destructive",
+        title: "Security Verification Required",
+        description: "Please complete the security verification. If this persists, try refreshing the page."
+      });
+      return;
     }
 
     // Prepare form data for submission with security measures
