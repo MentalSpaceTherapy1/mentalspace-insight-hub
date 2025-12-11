@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
+import { generateCountyBusinessSchema } from '@/utils/schemaGenerators';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -35,6 +36,11 @@ const ColquittCountyTherapy = () => {
         canonicalUrl="https://chctherapy.com/colquitt-county-therapy"
         ogTitle="Online Therapy in Colquitt County (Moultrie), GA | Agricultural Community Support"
         ogDescription="Licensed online therapy in Colquitt County, Moultrie. Agricultural family support, farm stress therapy, rural community mental health."
+        structuredData={generateCountyBusinessSchema(
+          'Colquitt',
+          'Professional online therapy in Colquitt County, Moultrie GA. Licensed therapists for farming families, agricultural workers, rural communities. Farm stress, rural mental health.',
+          'https://chctherapy.com/colquitt-county-therapy'
+        )}
       />
       
       <Header />

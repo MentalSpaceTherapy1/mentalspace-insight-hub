@@ -3,8 +3,16 @@ import SEOHead from "@/components/SEOHead";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import { generateArticleSchema } from "@/utils/schemaGenerators";
 
 const FindingRightTherapist = () => {
+  const articleSchema = generateArticleSchema(
+    "Finding the Right Therapist: Your Complete Matching Guide",
+    "Expert guide to finding the right therapist. Learn about credentials, specialties, therapeutic fit, and questions to ask in consultations.",
+    "https://chctherapy.com/blog/finding-right-therapist-guide",
+    "2024-03-10"
+  );
+
   return (
     <>
       <SEOHead
@@ -12,6 +20,7 @@ const FindingRightTherapist = () => {
         description="Expert guide to finding the right therapist. Learn about credentials, specialties, therapeutic fit, and questions to ask in consultations."
         keywords="finding a therapist, how to choose a therapist, therapist matching, therapy guide"
         canonicalUrl="https://chctherapy.com/blog/finding-right-therapist-guide"
+        structuredData={articleSchema}
       />
       <Header />
       <main className="min-h-screen bg-background">

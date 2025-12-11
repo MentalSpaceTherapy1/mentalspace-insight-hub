@@ -6,8 +6,15 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowLeft, Users2, Users, FileText, Stethoscope } from 'lucide-react';
 import SEOHead from '@/components/SEOHead';
+import { generateMedicalWebPageSchema } from '@/utils/schemaGenerators';
 
 const SocialAnxietyDisorder = () => {
+  const medicalSchema = generateMedicalWebPageSchema(
+    'Social Anxiety Disorder',
+    'Specialized social anxiety therapy in Georgia. Overcome social phobia with expert treatment. Connect with therapists experienced in social anxiety disorder.',
+    'https://chctherapy.com/mental-health-library/social-anxiety-disorder'
+  );
+
   return (
     <div className="flex flex-col min-h-screen">
       <SEOHead 
@@ -15,6 +22,7 @@ const SocialAnxietyDisorder = () => {
         description="Specialized social anxiety therapy in Georgia. Overcome social phobia with expert treatment. Connect with therapists experienced in social anxiety disorder."
         keywords="social anxiety, social phobia, public speaking anxiety, social fear, anxiety therapy, Georgia"
         canonicalUrl="https://chctherapy.com/mental-health-library/social-anxiety-disorder"
+        structuredData={medicalSchema}
       />
       <Header />
       

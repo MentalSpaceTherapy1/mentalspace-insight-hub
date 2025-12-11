@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
+import { generateCountyBusinessSchema } from '@/utils/schemaGenerators';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -35,6 +36,11 @@ const GlynnCountyTherapy = () => {
         canonicalUrl="https://chctherapy.com/glynn-county-therapy"
         ogTitle="Online Therapy in Glynn County (Brunswick), GA | Coastal Mental Health"
         ogDescription="Licensed online therapy in Glynn County, Brunswick. Coastal family support, hurricane trauma, maritime worker wellness, insurance accepted."
+        structuredData={generateCountyBusinessSchema(
+          'Glynn',
+          'Professional online therapy in Glynn County, Brunswick GA. Licensed therapists for coastal families, retirees, maritime workers. Hurricane trauma, seasonal mental health support.',
+          'https://chctherapy.com/glynn-county-therapy'
+        )}
       />
       
       <Header />

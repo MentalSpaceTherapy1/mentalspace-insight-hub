@@ -3,8 +3,16 @@ import SEOHead from "@/components/SEOHead";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import { generateArticleSchema } from "@/utils/schemaGenerators";
 
 const TherapyCostPaymentOptions = () => {
+  const articleSchema = generateArticleSchema(
+    "How Much Does Therapy Cost? Insurance, Sliding Scale & Payment Options",
+    "Complete guide to therapy costs in Georgia including insurance coverage, sliding scale fees, and affordable counseling options.",
+    "https://chctherapy.com/blog/therapy-cost-payment-options-guide",
+    "2024-03-15"
+  );
+
   return (
     <>
       <SEOHead
@@ -12,6 +20,7 @@ const TherapyCostPaymentOptions = () => {
         description="Complete guide to therapy costs in Georgia including insurance coverage, sliding scale fees, and affordable counseling options."
         keywords="therapy cost, how much is therapy, therapy payment options, affordable counseling"
         canonicalUrl="https://chctherapy.com/blog/therapy-cost-payment-options-guide"
+        structuredData={articleSchema}
       />
       <Header />
       <main className="min-h-screen bg-background">

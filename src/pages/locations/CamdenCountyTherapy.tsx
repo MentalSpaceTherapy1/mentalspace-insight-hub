@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
+import { generateCountyBusinessSchema } from '@/utils/schemaGenerators';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -35,6 +36,11 @@ const CamdenCountyTherapy = () => {
         canonicalUrl="https://chctherapy.com/camden-county-therapy"
         ogTitle="Online Therapy in Camden County (Kingsland), GA | Military Family Support"
         ogDescription="Licensed online therapy in Camden County, Kingsland. Kings Bay Naval Base family support, military deployment therapy, coastal mental health."
+        structuredData={generateCountyBusinessSchema(
+          'Camden',
+          'Professional online therapy in Camden County, Kingsland GA. Licensed therapists for Kings Bay Naval Base families, military deployment support, coastal community mental health.',
+          'https://chctherapy.com/camden-county-therapy'
+        )}
       />
       
       <Header />

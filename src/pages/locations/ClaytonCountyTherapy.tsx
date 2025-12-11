@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
+import { generateCountyBusinessSchema } from '@/utils/schemaGenerators';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -35,6 +36,11 @@ const ClaytonCountyTherapy = () => {
         canonicalUrl="https://chctherapy.com/clayton-county-therapy"
         ogTitle="Online Therapy in Clayton County (Jonesboro), GA | Diverse Community Support"
         ogDescription="Licensed online therapy in Clayton County, Jonesboro. Diverse community support, cultural sensitivity, airport worker wellness."
+        structuredData={generateCountyBusinessSchema(
+          'Clayton',
+          'Professional online therapy in Clayton County, Jonesboro GA. Licensed therapists for diverse families, airport workers, suburban communities. Cultural sensitivity, family support.',
+          'https://chctherapy.com/clayton-county-therapy'
+        )}
       />
       
       <Header />

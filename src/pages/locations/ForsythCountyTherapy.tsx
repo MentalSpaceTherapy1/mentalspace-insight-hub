@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
+import { generateCountyBusinessSchema } from '@/utils/schemaGenerators';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -35,6 +36,11 @@ const ForsythCountyTherapy = () => {
         canonicalUrl="https://chctherapy.com/forsyth-county-therapy"
         ogTitle="Online Therapy in Forsyth County (Cumming), GA | Lake Lanier Family Support"
         ogDescription="Licensed online therapy in Forsyth County, Cumming. Lake Lanier family support, teen pressure, affluent community mental health."
+        structuredData={generateCountyBusinessSchema(
+          'Forsyth',
+          'Professional online therapy in Forsyth County, Cumming GA. Licensed therapists for lakefront families, affluent communities. Teen pressure, parenting stress, family dynamics.',
+          'https://chctherapy.com/forsyth-county-therapy'
+        )}
       />
       
       <Header />

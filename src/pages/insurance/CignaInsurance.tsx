@@ -7,6 +7,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { CheckCircle, Shield, DollarSign, Globe, Stethoscope, Target, AlertTriangle, CreditCard, FileText } from "lucide-react";
 import { Link } from "react-router-dom";
 import SEOHead from "@/components/SEOHead";
+import { generateWebPageSchema } from "@/utils/schemaGenerators";
 import cignaImage from "@/assets/insurance-cigna.jpg";
 
 const CignaInsurance = () => {
