@@ -14,13 +14,19 @@ const CouplesCounselingGuide = () => {
       keywords="couples therapy guide, marriage counseling, couples counseling, relationship therapy, when to get couples therapy, how couples therapy works, couples therapy near me"
       relatedServices={[
         { title: "Couples Therapy", url: "/couples-therapy" },
-        { title: "Relationship Coaching", url: "/relationship-coaching" },
-        { title: "Couples Therapy in Georgia", url: "/couples-therapy-georgia" }
+        { title: "Couples Therapy in Georgia", url: "/couples-therapy-georgia" },
+        { title: "Online Therapy", url: "/online-therapy" }
       ]}
       relatedArticles={[
-        { title: "Signs You Need Marriage Counseling", url: "/blog/marriage-counseling-signs" },
         { title: "Couples Therapy Communication", url: "/blog/couples-therapy-communication" },
-        { title: "Premarital Counseling", url: "/blog/premarital-counseling" }
+        { title: "Signs You Need Marriage Counseling", url: "/blog/marriage-counseling-signs" },
+        { title: "Premarital Counseling", url: "/blog/premarital-counseling" },
+        { title: "Setting Healthy Boundaries", url: "/blog/setting-healthy-boundaries" }
+      ]}
+      relatedGuides={[
+        { title: "Starting Therapy Guide", url: "/guides/starting-therapy" },
+        { title: "Therapy Cost Guide", url: "/guides/therapy-cost" },
+        { title: "Finding a Therapist", url: "/guides/finding-therapist" }
       ]}
     >
       {/* Section 1: What Is Couples Therapy? */}
@@ -614,7 +620,203 @@ const CouplesCounselingGuide = () => {
         </div>
       </section>
 
-      {/* Placeholder for sections 11-13 - to be added in Part 3 */}
+      {/* Section 11: Tips for Getting the Most from Couples Therapy */}
+      <section className="mb-12">
+        <h2 id="tips-for-couples-therapy" className="text-2xl md:text-3xl font-bold text-foreground mb-6">Tips for Getting the Most from Couples Therapy</h2>
+        
+        <p className="text-muted-foreground mb-6">
+          Couples therapy requires effort from both partners to be successful. Here's how to maximize your investment:
+        </p>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Commit fully to the process</h3>
+        <ul className="list-disc pl-6 space-y-2 text-muted-foreground mb-6">
+          <li>Attend every session—consistency matters</li>
+          <li>Be present mentally, not just physically</li>
+          <li>Complete homework and practice between sessions</li>
+          <li>Give therapy adequate time to work (at least 8-12 sessions)</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Take responsibility for your part</h3>
+        <ul className="list-disc pl-6 space-y-2 text-muted-foreground mb-6">
+          <li>Focus on what you can change, not just what your partner should change</li>
+          <li>Acknowledge your own contributions to problems</li>
+          <li>Be willing to examine your behavior honestly</li>
+          <li>Avoid the blame game—it keeps you stuck</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Be honest and vulnerable</h3>
+        <ul className="list-disc pl-6 space-y-2 text-muted-foreground mb-6">
+          <li>Share your true feelings, even when it's uncomfortable</li>
+          <li>Don't hold back important information from your therapist</li>
+          <li>Talk about what you really need, not just surface complaints</li>
+          <li>Let your guard down, even if it feels risky</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Listen to understand, not to respond</h3>
+        <ul className="list-disc pl-6 space-y-2 text-muted-foreground mb-6">
+          <li>Practice truly hearing your partner's perspective</li>
+          <li>Ask clarifying questions instead of defending yourself</li>
+          <li>Try to understand the feelings beneath their words</li>
+          <li>Validate their experience even when you see things differently</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Practice outside of sessions</h3>
+        <ul className="list-disc pl-6 space-y-2 text-muted-foreground mb-6">
+          <li>Use new communication skills in daily life</li>
+          <li>Have the conversations your therapist suggests</li>
+          <li>Notice your patterns and try to interrupt negative cycles</li>
+          <li>Celebrate small improvements and progress</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Be patient</h3>
+        <ul className="list-disc pl-6 space-y-2 text-muted-foreground mb-6">
+          <li>Change takes time—don't expect overnight transformation</li>
+          <li>There may be setbacks; they're part of the process</li>
+          <li>Trust that consistent effort leads to improvement</li>
+          <li>Remember why you started when things get hard</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Maintain realistic expectations</h3>
+        <ul className="list-disc pl-6 space-y-2 text-muted-foreground mb-4">
+          <li>Therapy won't make your partner into a different person</li>
+          <li>Some issues may not be fully resolved</li>
+          <li>The goal is a healthier relationship, not a perfect one</li>
+          <li>Success means better communication and connection, not the absence of all conflict</li>
+        </ul>
+        
+        <p className="text-muted-foreground">
+          The couples who see the best results are those who approach therapy as a team, committed to doing the work together.
+        </p>
+      </section>
+
+      {/* Section 12: When Couples Therapy Leads to Separation */}
+      <section className="mb-12">
+        <h2 id="when-therapy-leads-to-separation" className="text-2xl md:text-3xl font-bold text-foreground mb-6">When Couples Therapy Leads to Separation</h2>
+        
+        <p className="text-muted-foreground mb-6">
+          Sometimes couples therapy reveals that ending the relationship is the healthiest path forward. This doesn't mean therapy failed—it means it did its job of bringing clarity.
+        </p>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Signs the relationship may not be salvageable</h3>
+        <ul className="list-disc pl-6 space-y-2 text-muted-foreground mb-6">
+          <li>One or both partners have already emotionally checked out</li>
+          <li>Core values or life goals are fundamentally incompatible</li>
+          <li>Patterns of abuse, addiction, or betrayal continue despite intervention</li>
+          <li>One partner is unwilling to do the work</li>
+          <li>You've both tried extensively and the relationship isn't improving</li>
+          <li>Staying together is causing more harm than good</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">How therapy helps with separation</h3>
+        <p className="text-muted-foreground mb-4">
+          If you decide to end your relationship, therapy can help you:
+        </p>
+        <ul className="list-disc pl-6 space-y-2 text-muted-foreground mb-6">
+          <li>Make the decision with clarity and confidence</li>
+          <li>Communicate the decision to your partner and family</li>
+          <li>Process grief and difficult emotions</li>
+          <li>Separate amicably, reducing conflict and pain</li>
+          <li>Co-parent effectively if children are involved</li>
+          <li>Learn from the relationship to do better in the future</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Especially important with children</h3>
+        <p className="text-muted-foreground mb-4">
+          When kids are involved, how you handle separation matters enormously. Couples therapy can help you:
+        </p>
+        <ul className="list-disc pl-6 space-y-2 text-muted-foreground mb-6">
+          <li>Put children's needs first</li>
+          <li>Develop a cooperative co-parenting relationship</li>
+          <li>Shield children from parental conflict</li>
+          <li>Communicate age-appropriately with your kids</li>
+          <li>Create stability during a time of change</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Moving forward</h3>
+        <p className="text-muted-foreground">
+          Whether you stay together or separate, couples therapy provides valuable insights about yourself and relationships. Many people continue with individual therapy to process the experience and prepare for healthier relationships in the future. If you're unsure whether to work on your relationship or end it, discernment counseling can help you gain clarity before committing to either path.
+        </p>
+      </section>
+
+      {/* Section 13: Couples Therapy at CHC */}
+      <section className="mb-12">
+        <h2 id="couples-therapy-at-chc" className="text-2xl md:text-3xl font-bold text-foreground mb-6">Couples Therapy at Coping and Healing Counseling</h2>
+        
+        <p className="text-muted-foreground mb-6">
+          If you're ready to invest in your relationship, our team at Coping and Healing Counseling is here to help.
+        </p>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Our approach to couples therapy</h3>
+        <p className="text-muted-foreground mb-4">
+          We believe effective couples counseling should be:
+        </p>
+        <ul className="list-disc pl-6 space-y-2 text-muted-foreground mb-6">
+          <li><strong>Balanced:</strong> We don't take sides—both partners feel heard and respected</li>
+          <li><strong>Evidence-based:</strong> We use proven approaches like Emotionally Focused Therapy and Gottman Method principles</li>
+          <li><strong>Practical:</strong> We focus on concrete skills you can use immediately</li>
+          <li><strong>Compassionate:</strong> We create a safe space for vulnerability and honesty</li>
+          <li><strong>Goal-oriented:</strong> We work toward the outcomes that matter to you</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">What to expect</h3>
+        <p className="text-muted-foreground mb-4">
+          When you work with us:
+        </p>
+        <ol className="list-decimal pl-6 space-y-2 text-muted-foreground mb-6">
+          <li>We start with a thorough assessment of your relationship history and current challenges</li>
+          <li>We may meet with each partner individually to understand both perspectives</li>
+          <li>Together, we establish clear goals for therapy</li>
+          <li>You'll learn communication and conflict resolution skills</li>
+          <li>We'll help you understand and change negative patterns</li>
+          <li>We'll guide you toward deeper connection and intimacy</li>
+          <li>We'll support you whether you're rebuilding or transitioning</li>
+        </ol>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Our services</h3>
+        <ul className="list-disc pl-6 space-y-2 text-muted-foreground mb-6">
+          <li><Link to="/couples-therapy" className="text-primary hover:text-primary/80 underline">Couples therapy</Link> for married and unmarried partners</li>
+          <li><Link to="/couples-therapy-georgia" className="text-primary hover:text-primary/80 underline">Online couples therapy</Link> throughout Georgia</li>
+          <li>Premarital counseling for engaged couples</li>
+          <li>Affair recovery and trust rebuilding</li>
+          <li>Communication skills training</li>
+          <li>Discernment counseling for those uncertain about their relationship's future</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Getting started is easy</h3>
+        <ul className="list-disc pl-6 space-y-2 text-muted-foreground mb-4">
+          <li><strong>Free consultation:</strong> <Link to="/therapist-matching" className="text-primary hover:text-primary/80 underline">Schedule a free consultation</Link> to discuss your situation</li>
+          <li><strong>Quick appointments:</strong> Most couples get an appointment within 24 hours</li>
+          <li><strong>Insurance accepted:</strong> We accept most major insurance including <Link to="/insurance/caresource" className="text-primary hover:text-primary/80 underline">CareSource</Link>, <Link to="/insurance/amerigroup" className="text-primary hover:text-primary/80 underline">Amerigroup</Link>, <Link to="/insurance/aetna" className="text-primary hover:text-primary/80 underline">Aetna</Link>, <Link to="/insurance/bluecross" className="text-primary hover:text-primary/80 underline">BlueCross BlueShield</Link>, and <Link to="/insurance" className="text-primary hover:text-primary/80 underline">more</Link></li>
+          <li><strong>Georgia Medicaid:</strong> Accepted through CareSource, Amerigroup, and Peach State</li>
+          <li><strong>Self-pay option:</strong> $75/week (minimum 4 sessions)</li>
+          <li><strong>Flexible hours:</strong> 7am-7pm, 7 days a week</li>
+          <li><strong>Online convenience:</strong> Attend sessions together from anywhere in Georgia</li>
+        </ul>
+        
+        <p className="text-muted-foreground">
+          Your relationship is worth investing in. Let us help you build something stronger.
+        </p>
+      </section>
+
+      {/* Final CTA */}
+      <section className="my-12 p-8 bg-primary/10 rounded-2xl border border-primary/30">
+        <div className="text-center max-w-2xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">Take the First Step Toward a Stronger Relationship</h2>
+          <p className="text-muted-foreground mb-6">
+            Whether you're facing a crisis or simply want to improve your connection, our compassionate couples therapists are here to help. Schedule your free consultation today—appointments available within 24 hours.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Link to="/therapist-matching">
+              <button className="bg-primary text-primary-foreground px-8 py-3 rounded-full font-semibold hover:bg-primary/90 transition-colors">
+                Schedule Free Consultation
+              </button>
+            </Link>
+            <Link to="/couples-therapy" className="text-primary hover:text-primary/80 underline font-medium">
+              Learn more about couples therapy
+            </Link>
+          </div>
+        </div>
+      </section>
     </PillarPageTemplate>
   );
 };
