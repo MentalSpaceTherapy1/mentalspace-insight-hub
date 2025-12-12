@@ -15,14 +15,21 @@ const DepressionGuide = () => {
       readTime={20}
       keywords="depression guide, depression symptoms, depression causes, depression treatment, major depressive disorder, clinical depression, depression therapy, signs of depression"
       relatedServices={[
+        { title: "Depression Therapy in Georgia", url: "/depression-therapy-georgia" },
         { title: "Online Therapy", url: "/online-therapy" },
-        { title: "Depression Therapy in Georgia", url: "/depression-therapy-georgia" }
+        { title: "Couples Therapy", url: "/couples-therapy" },
+        { title: "Teen Therapy", url: "/teen-therapy-georgia" }
       ]}
       relatedArticles={[
         { title: "Depression in Adults", url: "/blog/depression-adults" },
         { title: "CBT for Depression", url: "/blog/cognitive-behavioral-therapy" },
-        { title: "Starting Therapy Guide", url: "/guides/starting-therapy" },
-        { title: "Finding a Therapist", url: "/guides/finding-therapist" }
+        { title: "Grief and Healing", url: "/blog/grief-therapy-healing" },
+        { title: "Postpartum Depression", url: "/blog/postpartum-depression" }
+      ]}
+      relatedGuides={[
+        { title: "Anxiety Guide", url: "/guides/anxiety" },
+        { title: "Trauma & PTSD Guide", url: "/guides/trauma-ptsd" },
+        { title: "Starting Therapy Guide", url: "/guides/starting-therapy" }
       ]}
       midCta={
         <div className="bg-gradient-to-r from-primary/10 to-secondary/10 rounded-2xl p-8 text-center my-12">
@@ -599,6 +606,211 @@ const DepressionGuide = () => {
         <p className="text-muted-foreground">
           At Coping and Healing Counseling, we offer <Link to="/therapist-matching" className="text-primary hover:underline">free consultations</Link> to help you determine the best path forward. Most clients can get an appointment within 24 hours.
         </p>
+      </section>
+
+      {/* Section 11: Living with Depression: Long-Term Recovery */}
+      <section className="mb-12">
+        <h2 id="long-term-recovery" className="text-2xl md:text-3xl font-bold text-foreground mb-6">Living with Depression: Long-Term Recovery</h2>
+        
+        <p className="text-muted-foreground mb-6">
+          Recovery from depression is possible, though it often looks different than people expect. Here's what to know about the journey:
+        </p>
+        
+        <div className="mb-6">
+          <h3 className="text-xl font-semibold text-foreground mb-3">What recovery looks like</h3>
+          <p className="text-muted-foreground mb-3">
+            Recovery doesn't necessarily mean never feeling sad again. It means:
+          </p>
+          <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
+            <li>Symptoms no longer dominate your daily life</li>
+            <li>You can function at work, in relationships, and in self-care</li>
+            <li>You experience a range of emotions, including positive ones</li>
+            <li>You have tools to manage difficult days</li>
+            <li>Depression no longer defines who you are</li>
+          </ul>
+        </div>
+        
+        <div className="mb-6">
+          <h3 className="text-xl font-semibold text-foreground mb-3">Recovery takes time</h3>
+          <p className="text-muted-foreground">
+            With treatment, many people start feeling better within a few weeks, though full recovery often takes several months. Be patient with yourself—healing isn't linear, and setbacks don't mean failure.
+          </p>
+        </div>
+        
+        <div className="mb-6">
+          <h3 className="text-xl font-semibold text-foreground mb-3">Preventing relapse</h3>
+          <p className="text-muted-foreground mb-3">
+            Depression can recur, especially if you've had multiple episodes. Strategies to reduce relapse risk include:
+          </p>
+          <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
+            <li>Continuing therapy even after you feel better (maintenance phase)</li>
+            <li>Staying on medication for the recommended duration (often 6-12 months after symptoms improve)</li>
+            <li>Maintaining healthy lifestyle habits (exercise, sleep, social connection)</li>
+            <li>Monitoring for early warning signs</li>
+            <li>Having a plan for what to do if symptoms return</li>
+            <li>Considering MBCT (Mindfulness-Based Cognitive Therapy), which is specifically designed to prevent relapse</li>
+          </ul>
+        </div>
+        
+        <div className="mb-6">
+          <h3 className="text-xl font-semibold text-foreground mb-3">Building a life beyond depression</h3>
+          <p className="text-muted-foreground mb-3">
+            Recovery is about more than symptom reduction—it's about building a meaningful life. This might include:
+          </p>
+          <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
+            <li>Reconnecting with activities and people you'd withdrawn from</li>
+            <li>Setting new goals and pursuing interests</li>
+            <li>Developing a stronger sense of self and values</li>
+            <li>Using what you've learned to help others</li>
+          </ul>
+        </div>
+        
+        <div className="mb-6">
+          <h3 className="text-xl font-semibold text-foreground mb-3">Setbacks happen</h3>
+          <p className="text-muted-foreground">
+            Stressful life events may trigger depressive symptoms even after recovery. This doesn't mean treatment failed. If symptoms return, reach out to your therapist promptly—early intervention leads to faster recovery.
+          </p>
+        </div>
+      </section>
+
+      {/* Section 12: Depression and Related Conditions */}
+      <section className="mb-12">
+        <h2 id="related-conditions" className="text-2xl md:text-3xl font-bold text-foreground mb-6">Depression and Related Conditions</h2>
+        
+        <p className="text-muted-foreground mb-6">
+          Depression often co-occurs with other conditions. Understanding these connections ensures comprehensive care.
+        </p>
+        
+        <div className="mb-6">
+          <h3 className="text-xl font-semibold text-foreground mb-3">Depression and Anxiety</h3>
+          <p className="text-muted-foreground">
+            Depression and <Link to="/mental-health-library/anxiety" className="text-primary hover:underline">anxiety</Link> frequently occur together—about 60% of people with depression also have anxiety symptoms. The conditions share some features (sleep problems, difficulty concentrating) and can worsen each other. Fortunately, many treatments—including <Link to="/blog/cognitive-behavioral-therapy" className="text-primary hover:underline">CBT</Link>—effectively address both. Learn more in our <Link to="/guides/anxiety" className="text-primary hover:underline">anxiety guide</Link>.
+          </p>
+        </div>
+        
+        <div className="mb-6">
+          <h3 className="text-xl font-semibold text-foreground mb-3">Depression and Trauma</h3>
+          <p className="text-muted-foreground">
+            Traumatic experiences significantly increase the risk for depression. When depression is rooted in trauma, treatments like <Link to="/blog/emdr-therapy" className="text-primary hover:underline">EMDR</Link> may be particularly helpful. Our <Link to="/guides/trauma-ptsd" className="text-primary hover:underline">trauma and PTSD guide</Link> explores this connection further.
+          </p>
+        </div>
+        
+        <div className="mb-6">
+          <h3 className="text-xl font-semibold text-foreground mb-3">Depression and Grief</h3>
+          <p className="text-muted-foreground">
+            Grief and depression share many symptoms, and complicated grief can develop into depression. While grief is a normal response to loss, if symptoms persist beyond what's expected or severely impair functioning, professional support can help. Learn more about <Link to="/blog/grief-therapy-healing" className="text-primary hover:underline">grief therapy</Link>.
+          </p>
+        </div>
+        
+        <div className="mb-6">
+          <h3 className="text-xl font-semibold text-foreground mb-3">Depression and Chronic Illness</h3>
+          <p className="text-muted-foreground">
+            Living with chronic health conditions increases depression risk, and depression can worsen physical health outcomes. Managing both conditions together leads to better results for each.
+          </p>
+        </div>
+        
+        <div className="mb-6">
+          <h3 className="text-xl font-semibold text-foreground mb-3">Depression and Substance Use</h3>
+          <p className="text-muted-foreground">
+            People with depression sometimes turn to alcohol or drugs for relief, which ultimately worsens depression. If you're dealing with both, integrated treatment that addresses both conditions is most effective.
+          </p>
+        </div>
+        
+        <div className="mb-6">
+          <h3 className="text-xl font-semibold text-foreground mb-3">Depression and Relationships</h3>
+          <p className="text-muted-foreground">
+            Depression strains relationships, and relationship problems can trigger or worsen depression. <Link to="/couples-therapy" className="text-primary hover:underline">Couples therapy</Link> can help when depression is affecting your partnership.
+          </p>
+        </div>
+        
+        <p className="text-muted-foreground">
+          If you're experiencing depression alongside another condition, mention this when seeking treatment. Addressing all concerns together leads to better outcomes.
+        </p>
+      </section>
+
+      {/* Section 13: Depression Treatment at Coping and Healing Counseling */}
+      <section className="mb-12">
+        <h2 id="treatment-at-chc" className="text-2xl md:text-3xl font-bold text-foreground mb-6">Depression Treatment at Coping and Healing Counseling</h2>
+        
+        <p className="text-muted-foreground mb-6">
+          If depression is affecting your life, our team at Coping and Healing Counseling is here to help you recover.
+        </p>
+        
+        <div className="mb-6">
+          <h3 className="text-xl font-semibold text-foreground mb-3">Our approach to depression treatment</h3>
+          <p className="text-muted-foreground mb-3">
+            We believe effective depression treatment should be:
+          </p>
+          <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
+            <li><strong>Personalized:</strong> We tailor treatment to your specific symptoms, history, and goals</li>
+            <li><strong>Evidence-based:</strong> We use proven approaches like CBT, behavioral activation, and interpersonal therapy</li>
+            <li><strong>Compassionate:</strong> We create a warm, non-judgmental space where you can be honest about your struggles</li>
+            <li><strong>Holistic:</strong> We consider all aspects of your life that may be contributing to depression</li>
+            <li><strong>Collaborative:</strong> We work with you as a partner in your recovery</li>
+          </ul>
+        </div>
+        
+        <div className="mb-6">
+          <h3 className="text-xl font-semibold text-foreground mb-3">What to expect</h3>
+          <p className="text-muted-foreground mb-3">
+            When you work with us for depression treatment:
+          </p>
+          <ol className="list-decimal pl-6 space-y-2 text-muted-foreground">
+            <li>We start with a thorough assessment to understand your depression and its impact on your life</li>
+            <li>Together, we develop a treatment plan tailored to your specific needs</li>
+            <li>You'll learn skills to challenge negative thinking and increase positive activities</li>
+            <li>We'll explore underlying factors that may be contributing to your depression</li>
+            <li>We'll support you in rebuilding the life depression has taken from you</li>
+            <li>We'll help you develop strategies to maintain recovery and prevent relapse</li>
+          </ol>
+        </div>
+        
+        <div className="mb-6">
+          <h3 className="text-xl font-semibold text-foreground mb-3">Our services</h3>
+          <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
+            <li><Link to="/online-therapy" className="text-primary hover:underline">Individual therapy</Link> for depression</li>
+            <li><Link to="/depression-therapy-georgia" className="text-primary hover:underline">Specialized treatment</Link> for Georgia residents</li>
+            <li><Link to="/couples-therapy" className="text-primary hover:underline">Couples therapy</Link> when depression affects relationships</li>
+            <li><Link to="/teen-therapy-georgia" className="text-primary hover:underline">Teen therapy</Link> for adolescents with depression</li>
+            <li><Link to="/blog/postpartum-depression" className="text-primary hover:underline">Postpartum support</Link> for new parents</li>
+            <li><Link to="/online-therapy" className="text-primary hover:underline">Online therapy</Link> available throughout Georgia</li>
+          </ul>
+        </div>
+        
+        <div className="mb-6">
+          <h3 className="text-xl font-semibold text-foreground mb-3">Getting started is easy</h3>
+          <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
+            <li><strong>Free consultation:</strong> <Link to="/therapist-matching" className="text-primary hover:underline">Schedule a free consultation</Link> to discuss your needs and learn about our approach</li>
+            <li><strong>Quick appointments:</strong> Most clients get an appointment within 24 hours</li>
+            <li><strong>Insurance accepted:</strong> We accept most major insurance including <Link to="/insurance/caresource" className="text-primary hover:underline">CareSource</Link>, <Link to="/insurance/amerigroup" className="text-primary hover:underline">Amerigroup</Link>, <Link to="/insurance/peach-state" className="text-primary hover:underline">Peach State</Link>, <Link to="/insurance/aetna" className="text-primary hover:underline">Aetna</Link>, <Link to="/insurance/bluecross" className="text-primary hover:underline">BlueCross BlueShield</Link>, and <Link to="/insurance" className="text-primary hover:underline">more</Link></li>
+            <li><strong>Georgia Medicaid:</strong> Accepted through CareSource, Amerigroup, and Peach State</li>
+            <li><strong>Self-pay option:</strong> $75/week (minimum 4 sessions)</li>
+            <li><strong>Flexible hours:</strong> 7am-7pm, 7 days a week</li>
+          </ul>
+        </div>
+        
+        <p className="text-muted-foreground">
+          Depression is treatable, and you deserve to feel better. We're here to help you get there.
+        </p>
+      </section>
+
+      {/* Final CTA Section */}
+      <section className="bg-gradient-to-br from-primary/5 via-secondary/5 to-primary/10 rounded-2xl p-8 md:p-12 text-center">
+        <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">Take the First Step Toward Feeling Like Yourself Again</h2>
+        <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
+          Depression doesn't have to define your life. Our experienced, compassionate therapists are ready to help you find relief and rediscover joy. Schedule your free consultation today—appointments available within 24 hours.
+        </p>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <Link to="/therapist-matching">
+            <Button variant="hero" size="lg">
+              Schedule Free Consultation
+              <ChevronRight className="ml-2 h-5 w-5" />
+            </Button>
+          </Link>
+          <Link to="/free-depression-test-online" className="text-primary hover:underline font-medium">
+            Take our free depression test →
+          </Link>
+        </div>
       </section>
     </PillarPageTemplate>
   );
