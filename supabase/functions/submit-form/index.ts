@@ -596,13 +596,15 @@ serve(async (req) => {
 
     console.log(`Processing ${formType} form submission from IP: ${clientIP}`);
 
-    // Stricter rate limiting: Check recent submissions from this IP
+    // Stricter rate limiting: Check recent SUCCESSFUL submissions from this IP
+    // Only count non-blocked submissions to prevent lockouts from security check failures
     const tenMinutesAgo = new Date(Date.now() - 10 * 60 * 1000).toISOString();
     const { data: recentSubmissions, error: rateLimitError } = await supabase
       .from('form_submissions')
       .select('id')
       .eq('ip_address', clientIP)
       .eq('form_type', formType)
+      .eq('is_blocked', false)
       .gte('created_at', tenMinutesAgo);
 
     if (!rateLimitError && recentSubmissions && recentSubmissions.length >= 2) {
