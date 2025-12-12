@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 import PillarPageTemplate from '@/components/PillarPageTemplate';
+import { Button } from '@/components/ui/button';
+import { ChevronRight } from 'lucide-react';
 
 const DepressionGuide = () => {
   return (
@@ -22,6 +24,20 @@ const DepressionGuide = () => {
         { title: "Starting Therapy Guide", url: "/guides/starting-therapy" },
         { title: "Finding a Therapist", url: "/guides/finding-therapist" }
       ]}
+      midCta={
+        <div className="bg-gradient-to-r from-primary/10 to-secondary/10 rounded-2xl p-8 text-center my-12">
+          <h3 className="text-2xl font-bold text-foreground mb-4">You Don't Have to Face Depression Alone</h3>
+          <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
+            Our compassionate therapists specialize in depression treatment and are here to help you find your way back to feeling like yourself. Take the first step today.
+          </p>
+          <Link to="/therapist-matching">
+            <Button variant="hero" size="lg">
+              Schedule Free Consultation
+              <ChevronRight className="ml-2 h-5 w-5" />
+            </Button>
+          </Link>
+        </div>
+      }
     >
       {/* Section 1: What Is Depression? */}
       <section className="mb-12">
@@ -250,6 +266,338 @@ const DepressionGuide = () => {
         
         <p className="text-muted-foreground">
           Understanding what contributed to your depression can inform treatment, but identifying a cause isn't necessary to benefit from therapy. Effective treatments work regardless of why depression developed.
+        </p>
+      </section>
+
+      {/* Section 6: How Depression Is Diagnosed */}
+      <section className="mb-12">
+        <h2 id="how-depression-is-diagnosed" className="text-2xl md:text-3xl font-bold text-foreground mb-6">How Depression Is Diagnosed</h2>
+        
+        <p className="text-muted-foreground mb-6">
+          If you think you might have depression, getting a proper evaluation is the first step toward feeling better. Here's what to expect:
+        </p>
+        
+        <div className="mb-6">
+          <h3 className="text-xl font-semibold text-foreground mb-3">Self-assessment</h3>
+          <p className="text-muted-foreground">
+            Many people start by taking a screening tool to evaluate their symptoms. Our <Link to="/free-depression-test-online" className="text-primary hover:underline">free depression test</Link> can help you understand whether your symptoms suggest depression. While these tests aren't diagnostic, they can help you decide whether to seek professional evaluation.
+          </p>
+        </div>
+        
+        <div className="mb-6">
+          <h3 className="text-xl font-semibold text-foreground mb-3">Professional evaluation</h3>
+          <p className="text-muted-foreground mb-3">
+            A mental health professional will conduct a comprehensive assessment that typically includes:
+          </p>
+          <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
+            <li>A detailed conversation about your symptoms, when they started, and how severe they are</li>
+            <li>Questions about your medical history, current medications, and substance use</li>
+            <li>Discussion of your family mental health history</li>
+            <li>Evaluation of how symptoms are affecting your work, relationships, and daily functioning</li>
+            <li>Assessment for other conditions that may co-occur with depression, such as anxiety</li>
+            <li>Ruling out medical conditions that can cause depression-like symptoms (thyroid disorders, vitamin deficiencies)</li>
+          </ul>
+        </div>
+        
+        <div className="mb-6">
+          <h3 className="text-xl font-semibold text-foreground mb-3">Diagnostic criteria</h3>
+          <p className="text-muted-foreground">
+            Mental health professionals use the DSM-5 (Diagnostic and Statistical Manual of Mental Disorders) to diagnose depression. For major depressive disorder, you must have at least five symptoms (including depressed mood or loss of interest) present most of the day, nearly every day, for at least two weeks.
+          </p>
+        </div>
+        
+        <div className="mb-6">
+          <h3 className="text-xl font-semibold text-foreground mb-3">Why diagnosis matters</h3>
+          <p className="text-muted-foreground">
+            An accurate diagnosis ensures you receive appropriate treatment. Different types of depression may respond better to different approaches, and distinguishing depression from other conditions (like bipolar disorder) is crucial for effective care.
+          </p>
+        </div>
+        
+        <p className="text-muted-foreground">
+          If you've been struggling with depression symptoms, don't wait—<Link to="/therapist-matching" className="text-primary hover:underline">reach out to a professional</Link> who can provide a thorough evaluation and guide you toward the right treatment.
+        </p>
+      </section>
+
+      {/* Section 7: Treatment Options for Depression */}
+      <section className="mb-12">
+        <h2 id="treatment-options" className="text-2xl md:text-3xl font-bold text-foreground mb-6">Treatment Options for Depression</h2>
+        
+        <p className="text-muted-foreground mb-6">
+          Depression is highly treatable. With appropriate care, most people experience significant improvement, and many achieve full remission of symptoms.
+        </p>
+        
+        <div className="mb-6">
+          <h3 className="text-xl font-semibold text-foreground mb-3">Psychotherapy (Talk Therapy)</h3>
+          <p className="text-muted-foreground">
+            Therapy is a first-line treatment for depression and is effective for all severity levels. Working with a trained therapist, you'll explore the roots of your depression, develop healthier thinking patterns, and learn coping skills. Unlike medication, therapy addresses underlying causes and provides lasting benefits that continue after treatment ends.
+          </p>
+        </div>
+        
+        <div className="mb-6">
+          <h3 className="text-xl font-semibold text-foreground mb-3">Medication</h3>
+          <p className="text-muted-foreground mb-3">
+            Antidepressant medications can be effective, especially for moderate to severe depression. Common types include:
+          </p>
+          <ul className="list-disc pl-6 space-y-2 text-muted-foreground mb-3">
+            <li>SSRIs (Selective Serotonin Reuptake Inhibitors) — most commonly prescribed</li>
+            <li>SNRIs (Serotonin-Norepinephrine Reuptake Inhibitors)</li>
+            <li>Bupropion</li>
+            <li>Tricyclic antidepressants</li>
+            <li>MAOIs (Monoamine Oxidase Inhibitors)</li>
+          </ul>
+          <p className="text-muted-foreground">
+            Medications typically take 4-6 weeks to reach full effectiveness. Finding the right medication may require trying more than one. Medication works best when combined with therapy.
+          </p>
+        </div>
+        
+        <div className="mb-6">
+          <h3 className="text-xl font-semibold text-foreground mb-3">Combination treatment</h3>
+          <p className="text-muted-foreground">
+            Research consistently shows that combining therapy and medication is more effective than either alone for moderate to severe depression. Your treatment plan should be tailored to your specific situation.
+          </p>
+        </div>
+        
+        <div className="mb-6">
+          <h3 className="text-xl font-semibold text-foreground mb-3">Lifestyle interventions</h3>
+          <p className="text-muted-foreground mb-3">
+            Lifestyle changes can significantly support depression recovery:
+          </p>
+          <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
+            <li>Regular exercise (proven to have antidepressant effects)</li>
+            <li>Consistent sleep schedule</li>
+            <li>Balanced nutrition</li>
+            <li>Limiting alcohol (a depressant)</li>
+            <li>Social connection</li>
+            <li>Sunlight exposure or light therapy (especially for seasonal depression)</li>
+          </ul>
+        </div>
+        
+        <div className="mb-6">
+          <h3 className="text-xl font-semibold text-foreground mb-3">Other treatments</h3>
+          <p className="text-muted-foreground mb-3">
+            For treatment-resistant depression, additional options include:
+          </p>
+          <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
+            <li>TMS (Transcranial Magnetic Stimulation)</li>
+            <li>ECT (Electroconvulsive Therapy)</li>
+            <li>Ketamine therapy</li>
+          </ul>
+        </div>
+        
+        <p className="text-muted-foreground">
+          At <Link to="/therapist-matching" className="text-primary hover:underline">Coping and Healing Counseling</Link>, we work with you to develop a personalized treatment approach based on your symptoms, preferences, and circumstances.
+        </p>
+      </section>
+
+      {/* Section 8: Therapy Approaches for Depression */}
+      <section className="mb-12">
+        <h2 id="therapy-approaches" className="text-2xl md:text-3xl font-bold text-foreground mb-6">Therapy Approaches for Depression</h2>
+        
+        <p className="text-muted-foreground mb-6">
+          Several therapeutic approaches have strong evidence for treating depression. Understanding your options helps you make informed decisions about your care.
+        </p>
+        
+        <div className="mb-6">
+          <h3 className="text-xl font-semibold text-foreground mb-3">Cognitive Behavioral Therapy (CBT)</h3>
+          <p className="text-muted-foreground mb-3">
+            <Link to="/blog/cognitive-behavioral-therapy" className="text-primary hover:underline">CBT</Link> is one of the most researched and effective treatments for depression. It focuses on the relationship between thoughts, feelings, and behaviors. In CBT, you'll learn to:
+          </p>
+          <ul className="list-disc pl-6 space-y-2 text-muted-foreground mb-3">
+            <li>Identify negative thought patterns that contribute to depression</li>
+            <li>Challenge and reframe distorted thinking</li>
+            <li>Develop more balanced, realistic perspectives</li>
+            <li>Increase activities that bring pleasure or accomplishment</li>
+            <li>Build problem-solving skills</li>
+          </ul>
+          <p className="text-muted-foreground">
+            Research shows CBT is as effective as medication for many people, with benefits that last longer after treatment ends.
+          </p>
+        </div>
+        
+        <div className="mb-6">
+          <h3 className="text-xl font-semibold text-foreground mb-3">Behavioral Activation</h3>
+          <p className="text-muted-foreground">
+            This approach focuses specifically on increasing engagement with positive activities. Depression often leads to withdrawal, which worsens mood, creating a vicious cycle. Behavioral activation breaks this cycle by gradually increasing meaningful activities, even when motivation is low.
+          </p>
+        </div>
+        
+        <div className="mb-6">
+          <h3 className="text-xl font-semibold text-foreground mb-3">Interpersonal Therapy (IPT)</h3>
+          <p className="text-muted-foreground">
+            IPT focuses on improving relationships and communication patterns that may contribute to depression. It addresses four key areas: grief, role transitions, role disputes (conflicts), and interpersonal deficits. IPT is particularly helpful when depression is linked to relationship issues or life changes.
+          </p>
+        </div>
+        
+        <div className="mb-6">
+          <h3 className="text-xl font-semibold text-foreground mb-3">Psychodynamic Therapy</h3>
+          <p className="text-muted-foreground">
+            This approach explores how past experiences, especially from childhood, shape current patterns of thinking and relating. It can help you understand deep-rooted patterns and gain insight into unconscious factors contributing to depression.
+          </p>
+        </div>
+        
+        <div className="mb-6">
+          <h3 className="text-xl font-semibold text-foreground mb-3">Mindfulness-Based Cognitive Therapy (MBCT)</h3>
+          <p className="text-muted-foreground">
+            MBCT combines cognitive therapy with <Link to="/blog/mindfulness-therapy" className="text-primary hover:underline">mindfulness practices</Link>. It's particularly effective for preventing relapse in people who've had multiple depressive episodes. You'll learn to observe thoughts without getting caught up in them and develop a different relationship with negative thinking.
+          </p>
+        </div>
+        
+        <div className="mb-6">
+          <h3 className="text-xl font-semibold text-foreground mb-3">EMDR (Eye Movement Desensitization and Reprocessing)</h3>
+          <p className="text-muted-foreground">
+            When depression is rooted in trauma, <Link to="/blog/emdr-therapy" className="text-primary hover:underline">EMDR</Link> can be highly effective. It helps the brain process traumatic memories that may be fueling depression.
+          </p>
+        </div>
+        
+        <p className="text-muted-foreground">
+          Your therapist will recommend the approach—or combination of approaches—best suited to your situation and preferences.
+        </p>
+      </section>
+
+      {/* Section 9: Self-Care Strategies for Depression */}
+      <section className="mb-12">
+        <h2 id="self-care-strategies" className="text-2xl md:text-3xl font-bold text-foreground mb-6">Self-Care Strategies for Depression</h2>
+        
+        <p className="text-muted-foreground mb-6">
+          While professional treatment is important, there are also things you can do on your own to support recovery. These strategies work best alongside therapy, not as replacements for it.
+        </p>
+        
+        <div className="mb-6">
+          <h3 className="text-xl font-semibold text-foreground mb-3">Get moving</h3>
+          <p className="text-muted-foreground">
+            Exercise is one of the most powerful natural antidepressants. Research shows regular physical activity can be as effective as medication for mild to moderate depression. You don't need intense workouts—even a 30-minute walk can help. Start small and build gradually.
+          </p>
+        </div>
+        
+        <div className="mb-6">
+          <h3 className="text-xl font-semibold text-foreground mb-3">Prioritize sleep</h3>
+          <p className="text-muted-foreground mb-3">
+            Depression often disrupts sleep, and poor sleep worsens depression. Practice good sleep hygiene:
+          </p>
+          <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
+            <li>Keep a consistent sleep schedule (even on weekends)</li>
+            <li>Create a relaxing bedtime routine</li>
+            <li>Avoid screens before bed</li>
+            <li>Limit caffeine, especially after noon</li>
+            <li>Make your bedroom dark, quiet, and cool</li>
+          </ul>
+        </div>
+        
+        <div className="mb-6">
+          <h3 className="text-xl font-semibold text-foreground mb-3">Maintain social connections</h3>
+          <p className="text-muted-foreground">
+            Depression makes you want to isolate, but isolation worsens depression. Push yourself to maintain contact with supportive people, even when you don't feel like it. You don't need to talk about depression—just being around others helps.
+          </p>
+        </div>
+        
+        <div className="mb-6">
+          <h3 className="text-xl font-semibold text-foreground mb-3">Structure your days</h3>
+          <p className="text-muted-foreground mb-3">
+            Depression thrives in unstructured time. Create a simple daily routine that includes:
+          </p>
+          <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
+            <li>Regular wake and sleep times</li>
+            <li>Basic self-care (showering, eating)</li>
+            <li>At least one activity outside the house</li>
+            <li>Something that gives you a sense of accomplishment</li>
+            <li>Something that brings even small pleasure</li>
+          </ul>
+        </div>
+        
+        <div className="mb-6">
+          <h3 className="text-xl font-semibold text-foreground mb-3">Be kind to yourself</h3>
+          <p className="text-muted-foreground mb-3">
+            Depression comes with harsh self-criticism. Practice self-compassion:
+          </p>
+          <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
+            <li>Talk to yourself as you would a friend</li>
+            <li>Acknowledge that depression is hard and you're doing your best</li>
+            <li>Celebrate small victories</li>
+            <li>Let go of perfectionism</li>
+          </ul>
+        </div>
+        
+        <div className="mb-6">
+          <h3 className="text-xl font-semibold text-foreground mb-3">Limit alcohol and substances</h3>
+          <p className="text-muted-foreground">
+            Alcohol is a depressant that worsens mood over time. While it may provide temporary relief, it interferes with sleep, depletes serotonin, and can interact with medications. The same applies to recreational drugs.
+          </p>
+        </div>
+        
+        <div className="mb-6">
+          <h3 className="text-xl font-semibold text-foreground mb-3">Get sunlight</h3>
+          <p className="text-muted-foreground">
+            Exposure to natural light helps regulate mood-related brain chemistry. Try to get outside during daylight hours, especially in the morning. For seasonal depression, a light therapy box may help.
+          </p>
+        </div>
+        
+        <p className="text-muted-foreground">
+          These strategies support recovery but aren't substitutes for professional treatment if you have clinical depression.
+        </p>
+      </section>
+
+      {/* Section 10: When to Seek Professional Help */}
+      <section className="mb-12">
+        <h2 id="when-to-seek-help" className="text-2xl md:text-3xl font-bold text-foreground mb-6">When to Seek Professional Help</h2>
+        
+        <p className="text-muted-foreground mb-6">
+          Depression is a serious condition that benefits from professional treatment. Consider seeking help if:
+        </p>
+        
+        <div className="mb-6">
+          <h3 className="text-xl font-semibold text-foreground mb-3">Your symptoms persist</h3>
+          <p className="text-muted-foreground">
+            If you've been experiencing depression symptoms most days for two weeks or more, professional support can help. Don't wait until things get worse.
+          </p>
+        </div>
+        
+        <div className="mb-6">
+          <h3 className="text-xl font-semibold text-foreground mb-3">Daily life is affected</h3>
+          <p className="text-muted-foreground">
+            When depression interferes with your ability to work, maintain relationships, care for yourself, or meet responsibilities, it's time to reach out.
+          </p>
+        </div>
+        
+        <div className="mb-6">
+          <h3 className="text-xl font-semibold text-foreground mb-3">Self-help isn't enough</h3>
+          <p className="text-muted-foreground">
+            If you've been trying to manage on your own—exercising, reaching out to friends, practicing self-care—but symptoms persist, professional treatment can make a real difference.
+          </p>
+        </div>
+        
+        <div className="mb-6">
+          <h3 className="text-xl font-semibold text-foreground mb-3">You're having trouble functioning</h3>
+          <p className="text-muted-foreground">
+            Difficulty getting out of bed, neglecting basic hygiene, calling in sick to work, or withdrawing completely from others are signs that professional help is needed.
+          </p>
+        </div>
+        
+        <div className="mb-6">
+          <h3 className="text-xl font-semibold text-foreground mb-3">You're using unhealthy coping mechanisms</h3>
+          <p className="text-muted-foreground">
+            If you're turning to alcohol, drugs, food, or other unhealthy behaviors to cope with depression, therapy can help you develop healthier strategies.
+          </p>
+        </div>
+        
+        <div className="mb-6 p-6 bg-destructive/10 border border-destructive/20 rounded-xl">
+          <h3 className="text-xl font-semibold text-foreground mb-3">You're having thoughts of suicide or self-harm</h3>
+          <p className="text-muted-foreground mb-4">
+            If you're thinking about hurting yourself or ending your life, please reach out immediately:
+          </p>
+          <ul className="list-disc pl-6 space-y-2 text-muted-foreground mb-4">
+            <li><strong>Call or text 988</strong> (Suicide & Crisis Lifeline)</li>
+            <li><strong>Text HOME to 741741</strong> (Crisis Text Line)</li>
+            <li>Go to your nearest emergency room</li>
+            <li>Visit our <Link to="/emergency-resources" className="text-primary hover:underline">emergency resources page</Link></li>
+          </ul>
+        </div>
+        
+        <p className="text-muted-foreground mb-4">
+          You don't have to be in crisis to deserve help. If depression is affecting your quality of life, that's reason enough to seek support.
+        </p>
+        
+        <p className="text-muted-foreground">
+          At Coping and Healing Counseling, we offer <Link to="/therapist-matching" className="text-primary hover:underline">free consultations</Link> to help you determine the best path forward. Most clients can get an appointment within 24 hours.
         </p>
       </section>
     </PillarPageTemplate>
