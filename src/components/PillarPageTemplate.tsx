@@ -25,6 +25,7 @@ interface PillarPageTemplateProps {
   endCta?: ReactNode;
   relatedArticles?: RelatedItem[];
   relatedServices?: RelatedItem[];
+  relatedGuides?: RelatedItem[];
   ogImage?: string;
   keywords?: string;
 }
@@ -48,6 +49,7 @@ const PillarPageTemplate = ({
   endCta,
   relatedArticles = [],
   relatedServices = [],
+  relatedGuides = [],
   ogImage,
   keywords
 }: PillarPageTemplateProps) => {
@@ -238,7 +240,7 @@ const PillarPageTemplate = ({
                     </div>
 
                     {/* Related Resources - Desktop Sidebar */}
-                    {(relatedArticles.length > 0 || relatedServices.length > 0) && (
+                    {(relatedArticles.length > 0 || relatedServices.length > 0 || relatedGuides.length > 0) && (
                       <div className="bg-card border border-border/50 rounded-xl p-6 mt-6 hidden lg:block">
                         <h3 className="font-semibold text-foreground mb-4">Related Resources</h3>
                         
@@ -262,10 +264,29 @@ const PillarPageTemplate = ({
                         )}
                         
                         {relatedArticles.length > 0 && (
-                          <div>
+                          <div className="mb-4">
                             <h4 className="text-xs uppercase tracking-wide text-muted-foreground mb-2">Articles</h4>
                             <ul className="space-y-2">
                               {relatedArticles.map((item, index) => (
+                                <li key={index}>
+                                  <Link
+                                    to={item.url}
+                                    className="text-sm text-primary hover:underline flex items-center gap-1"
+                                  >
+                                    <ChevronRight className="h-3 w-3" />
+                                    {item.title}
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+                        
+                        {relatedGuides.length > 0 && (
+                          <div>
+                            <h4 className="text-xs uppercase tracking-wide text-muted-foreground mb-2">Guides</h4>
+                            <ul className="space-y-2">
+                              {relatedGuides.map((item, index) => (
                                 <li key={index}>
                                   <Link
                                     to={item.url}
@@ -325,6 +346,16 @@ const PillarPageTemplate = ({
                           className="block p-4 bg-card border border-border/50 rounded-xl hover:border-primary/50 transition-colors"
                         >
                           <span className="text-xs uppercase tracking-wide text-muted-foreground">Article</span>
+                          <p className="font-medium text-foreground mt-1">{item.title}</p>
+                        </Link>
+                      ))}
+                      {relatedGuides.map((item, index) => (
+                        <Link
+                          key={`guide-${index}`}
+                          to={item.url}
+                          className="block p-4 bg-card border border-border/50 rounded-xl hover:border-primary/50 transition-colors"
+                        >
+                          <span className="text-xs uppercase tracking-wide text-muted-foreground">Guide</span>
                           <p className="font-medium text-foreground mt-1">{item.title}</p>
                         </Link>
                       ))}

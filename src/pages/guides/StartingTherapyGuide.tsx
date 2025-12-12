@@ -603,7 +603,7 @@ const StartingTherapyGuide = () => {
           <ul className="grid md:grid-cols-2 gap-2 mb-0">
             <li>Licensed, experienced therapists</li>
             <li><Link to="/online-therapy" className="text-primary hover:underline">Online therapy</Link> available throughout Georgia</li>
-            <li>Most major insurance accepted including <Link to="/insurance/caresource" className="text-primary hover:underline">CareSource</Link>, <Link to="/insurance/amerigroup" className="text-primary hover:underline">Amerigroup</Link>, <Link to="/insurance/aetna" className="text-primary hover:underline">Aetna</Link>, <Link to="/insurance/bluecross-blueshield" className="text-primary hover:underline">BlueCross BlueShield</Link>, and <Link to="/insurance" className="text-primary hover:underline">more</Link></li>
+            <li>Most major insurance accepted including <Link to="/insurance/caresource" className="text-primary hover:underline">CareSource</Link>, <Link to="/insurance/amerigroup" className="text-primary hover:underline">Amerigroup</Link>, <Link to="/insurance/aetna" className="text-primary hover:underline">Aetna</Link>, <Link to="/insurance/bluecross" className="text-primary hover:underline">BlueCross BlueShield</Link>, and <Link to="/insurance" className="text-primary hover:underline">more</Link></li>
             <li>Georgia Medicaid accepted</li>
             <li>Self-pay option: $75/week (minimum 4 sessions)</li>
             <li>Flexible hours: 7am-7pm, 7 days a week</li>
