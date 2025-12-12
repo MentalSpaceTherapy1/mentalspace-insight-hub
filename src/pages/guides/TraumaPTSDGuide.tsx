@@ -235,7 +235,267 @@ const TraumaPTSDGuide = () => {
         The brain can change. Through effective treatment, the brain can form new pathways, reduce overactivity in the fear center, and improve the connection between thinking and feeling parts of the brain. Healing is not just possible—it's backed by science.
       </p>
 
-      {/* Placeholder for sections 6-13 - to be added in Parts 2 and 3 */}
+      {/* Section 6: Treatment Options for Trauma and PTSD */}
+      <h2 id="treatment-options">Treatment Options for Trauma and PTSD</h2>
+      <p>
+        Trauma and PTSD are highly treatable. With the right support, most people experience significant improvement in symptoms and quality of life.
+      </p>
+
+      <h3>Psychotherapy (Talk Therapy)</h3>
+      <p>
+        Therapy is the primary treatment for trauma and PTSD. Trauma-focused therapies help you process traumatic memories, reduce symptoms, and develop healthy coping strategies. Several evidence-based approaches have strong track records for treating trauma.
+      </p>
+
+      <h3>Medication</h3>
+      <p>While therapy is the foundation of trauma treatment, medication can help manage specific symptoms:</p>
+      <ul>
+        <li>SSRIs (like sertraline and paroxetine) are FDA-approved for PTSD</li>
+        <li>Other antidepressants may reduce depression and anxiety symptoms</li>
+        <li>Prazosin can help with trauma-related nightmares</li>
+        <li>Short-term use of anti-anxiety medications in some cases</li>
+      </ul>
+      <p>Medication works best in combination with therapy, not as a replacement for it.</p>
+
+      <h3>Complementary approaches</h3>
+      <p>Many people find additional support through:</p>
+      <ul>
+        <li>Mindfulness and meditation practices</li>
+        <li>Yoga and body-based practices</li>
+        <li>Support groups with other survivors</li>
+        <li>Art or music therapy</li>
+        <li>Acupuncture</li>
+        <li>Exercise</li>
+      </ul>
+
+      <h3>Factors that support recovery</h3>
+      <ul>
+        <li>Starting treatment rather than waiting</li>
+        <li>Having social support</li>
+        <li>Developing healthy coping skills</li>
+        <li>Addressing related issues (depression, substance use)</li>
+        <li>Building safety and stability in your current life</li>
+      </ul>
+      <p>
+        At <Link to="/therapist-matching" className="text-primary hover:underline">Coping and Healing Counseling</Link>, we specialize in trauma treatment and will work with you to find the approach that fits your needs.
+      </p>
+
+      {/* Section 7: Trauma-Focused Therapy Approaches */}
+      <h2 id="trauma-focused-therapy">Trauma-Focused Therapy Approaches</h2>
+      <p>
+        Several therapeutic approaches have strong evidence for treating trauma and PTSD. Understanding your options helps you make informed decisions about your care.
+      </p>
+
+      <h3>EMDR (Eye Movement Desensitization and Reprocessing)</h3>
+      <p>
+        <Link to="/blog/emdr-therapy" className="text-primary hover:underline">EMDR</Link> is one of the most effective treatments for trauma. It uses bilateral stimulation (typically eye movements) while you focus on traumatic memories, helping your brain process and integrate these experiences. Many people experience significant relief in fewer sessions than traditional talk therapy.
+      </p>
+      <p>How EMDR works:</p>
+      <ul>
+        <li>You focus on a traumatic memory while following the therapist's finger movements (or other bilateral stimulation)</li>
+        <li>This appears to help the brain process the memory similarly to what happens during REM sleep</li>
+        <li>Over time, the memory becomes less distressing and more integrated into your past</li>
+        <li>You can remember what happened without being overwhelmed by it</li>
+      </ul>
+
+      <h3>Cognitive Processing Therapy (CPT)</h3>
+      <p>
+        CPT helps you examine and change unhelpful thoughts related to your trauma. Many trauma survivors develop beliefs like "It was my fault," "I can't trust anyone," or "The world is completely dangerous." CPT helps you identify these "stuck points" and develop more balanced, realistic perspectives.
+      </p>
+
+      <h3>Prolonged Exposure (PE)</h3>
+      <p>
+        PE involves gradually confronting trauma-related memories and situations you've been avoiding. By facing these in a safe, controlled way, you learn that:
+      </p>
+      <ul>
+        <li>The memories themselves aren't dangerous</li>
+        <li>Anxiety decreases naturally over time (habituation)</li>
+        <li>You can handle more than you thought</li>
+      </ul>
+
+      <h3>Trauma-Focused CBT</h3>
+      <p>
+        This approach combines cognitive behavioral techniques with trauma-specific interventions. It's particularly well-researched for children and adolescents but effective for adults too. Learn more about <Link to="/blog/cognitive-behavioral-therapy" className="text-primary hover:underline">CBT approaches</Link>.
+      </p>
+
+      <h3>Somatic Experiencing</h3>
+      <p>
+        This body-based approach focuses on releasing trauma stored in the body. It helps you become aware of physical sensations and complete the self-protective responses that were interrupted during trauma.
+      </p>
+
+      <h3>Internal Family Systems (IFS)</h3>
+      <p>
+        IFS views the mind as made up of different "parts," some of which carry trauma. Treatment involves developing a relationship with these parts and helping them release their burdens.
+      </p>
+      <p>
+        Your therapist will recommend the approach best suited to your specific trauma, symptoms, and preferences. Many therapists integrate techniques from multiple approaches.
+      </p>
+
+      {/* Section 8: Healing from Childhood Trauma */}
+      <h2 id="childhood-trauma">Healing from Childhood Trauma</h2>
+      <p>
+        Childhood trauma has unique impacts because it occurs while the brain and sense of self are still developing. Understanding these effects is the first step toward healing.
+      </p>
+
+      <h3>How childhood trauma differs</h3>
+      <p>
+        When trauma occurs in childhood, it doesn't just create bad memories—it shapes how the brain develops, how you see yourself, and how you relate to others. Children who experience trauma may develop:
+      </p>
+      <ul>
+        <li>Difficulty regulating emotions</li>
+        <li>Problems with attachment and relationships</li>
+        <li>Negative core beliefs about themselves and the world</li>
+        <li>Challenges with identity and sense of self</li>
+        <li>Physical health issues that persist into adulthood</li>
+      </ul>
+
+      <h3>Adverse Childhood Experiences (ACEs)</h3>
+      <p>
+        Research on ACEs has shown that childhood trauma—including abuse, neglect, and household dysfunction—has lasting effects on physical and mental health. The more ACEs a person experiences, the higher their risk for health problems, mental illness, and social difficulties later in life.
+      </p>
+
+      <h3>It's not your fault</h3>
+      <p>
+        If you experienced childhood trauma, it's important to understand: what happened to you was not your fault, and your responses to trauma—however they manifested—were survival strategies. Behaviors that may have helped you survive childhood can become problematic in adulthood, but they make sense in context.
+      </p>
+
+      <h3>Healing is possible</h3>
+      <p>The brain remains capable of change throughout life. Effective trauma therapy can help you:</p>
+      <ul>
+        <li>Process traumatic memories from childhood</li>
+        <li>Develop secure attachment patterns</li>
+        <li>Challenge negative beliefs formed in childhood</li>
+        <li>Build emotional regulation skills you didn't learn early</li>
+        <li>Grieve what you lost or never had</li>
+        <li>Develop a more compassionate relationship with yourself</li>
+      </ul>
+
+      <h3>Therapeutic approaches for childhood trauma</h3>
+      <p>
+        Complex trauma from childhood often requires longer-term therapy that addresses attachment, identity, and emotional regulation alongside trauma processing. Approaches like EMDR, IFS, and attachment-focused therapies can be particularly helpful.
+      </p>
+      <p>
+        If you're dealing with the effects of childhood trauma, know that it's never too late to heal. Our therapists at <Link to="/therapist-matching" className="text-primary hover:underline">CHC</Link> have experience helping adults work through early trauma.
+      </p>
+
+      {/* Section 9: Supporting a Loved One with Trauma */}
+      <h2 id="supporting-loved-ones">Supporting a Loved One with Trauma</h2>
+      <p>
+        If someone you care about has experienced trauma, you may feel unsure how to help. Here's guidance for being supportive.
+      </p>
+
+      <h3>Do:</h3>
+      <ul>
+        <li><strong>Believe them:</strong> If they share their experience, believe them without questioning or minimizing</li>
+        <li><strong>Listen without judgment:</strong> Let them share at their own pace without pressing for details</li>
+        <li><strong>Validate their feelings:</strong> "That sounds really difficult" is more helpful than trying to fix or explain</li>
+        <li><strong>Be patient:</strong> Healing takes time and isn't linear; expect ups and downs</li>
+        <li><strong>Respect their choices:</strong> Let them make decisions about their healing, including whether to seek therapy</li>
+        <li><strong>Offer practical support:</strong> Help with daily tasks when they're struggling</li>
+        <li><strong>Educate yourself:</strong> Learn about trauma and PTSD to better understand their experience</li>
+        <li><strong>Take care of yourself:</strong> Supporting someone with trauma can be draining; you need support too</li>
+      </ul>
+
+      <h3>Don't:</h3>
+      <ul>
+        <li><strong>Don't pressure them to talk:</strong> Let them share when they're ready</li>
+        <li><strong>Don't ask for details:</strong> Graphic questions can be retraumatizing</li>
+        <li><strong>Don't minimize:</strong> Avoid "It could have been worse" or "Just try to move on"</li>
+        <li><strong>Don't take it personally:</strong> Symptoms like irritability or withdrawal aren't about you</li>
+        <li><strong>Don't try to "fix" them:</strong> Your job is to support, not to cure</li>
+        <li><strong>Don't make promises you can't keep:</strong> Be reliable and consistent</li>
+      </ul>
+
+      <h3>Encourage professional help</h3>
+      <p>While your support matters, trauma often requires professional treatment. You might say:</p>
+      <ul>
+        <li>"I'm here for you, and I also wonder if talking to a professional might help"</li>
+        <li>"You don't have to go through this alone—there are people trained to help with exactly this"</li>
+        <li>"I found some information about trauma therapy if you're ever interested"</li>
+      </ul>
+
+      <h3>When there's immediate danger</h3>
+      <p>
+        If your loved one is in crisis, experiencing suicidal thoughts, or in danger, help them access emergency resources. Visit our <Link to="/emergency-resources" className="text-primary hover:underline">emergency resources page</Link> or call 988 (Suicide & Crisis Lifeline).
+      </p>
+
+      {/* Section 10: Self-Help Strategies for Trauma Survivors */}
+      <h2 id="self-help-strategies">Self-Help Strategies for Trauma Survivors</h2>
+      <p>
+        While professional treatment is important for trauma recovery, there are also strategies you can use to support your healing journey.
+      </p>
+
+      <h3>Ground yourself when triggered</h3>
+      <p>When trauma symptoms arise, grounding techniques can help you return to the present:</p>
+      <ul>
+        <li>5-4-3-2-1 technique: Name 5 things you see, 4 you hear, 3 you can touch, 2 you smell, 1 you taste</li>
+        <li>Focus on your breath: Slow, deep breaths activate your parasympathetic nervous system</li>
+        <li>Feel your feet: Press them into the ground and focus on the sensation</li>
+        <li>Hold something cold: Ice or cold water can interrupt a flashback</li>
+        <li>Name where you are: "I am in my living room. It is 2025. I am safe."</li>
+      </ul>
+
+      <h3>Build safety and stability</h3>
+      <p>Recovery requires a foundation of safety:</p>
+      <ul>
+        <li>Create physical safety in your environment</li>
+        <li>Establish routines that provide predictability</li>
+        <li>Set boundaries with people who aren't safe</li>
+        <li>Develop a support system of people you trust</li>
+      </ul>
+
+      <h3>Practice self-care</h3>
+      <p>Trauma depletes your resources. Replenish them:</p>
+      <ul>
+        <li>Prioritize sleep (though this can be challenging with trauma)</li>
+        <li>Move your body—exercise helps regulate the nervous system</li>
+        <li>Eat regular, nourishing meals</li>
+        <li>Limit alcohol and caffeine, which can worsen symptoms</li>
+        <li>Spend time in nature when possible</li>
+      </ul>
+
+      <h3>Manage triggers</h3>
+      <ul>
+        <li>Identify your triggers—what sets off symptoms?</li>
+        <li>Develop a plan for when you encounter triggers</li>
+        <li>Remember: being triggered doesn't mean you're going backward</li>
+        <li>Use coping skills before, during, and after triggering situations</li>
+      </ul>
+
+      <h3>Connect with others</h3>
+      <p>Trauma often creates isolation. Counter this by:</p>
+      <ul>
+        <li>Reaching out to supportive people, even when it's hard</li>
+        <li>Considering a support group for trauma survivors</li>
+        <li>Being honest with trusted people about what you're going through</li>
+        <li>Accepting help when offered</li>
+      </ul>
+
+      <h3>Be patient and compassionate with yourself</h3>
+      <ul>
+        <li>Healing isn't linear—expect setbacks</li>
+        <li>Your trauma responses make sense given what you've been through</li>
+        <li>Talk to yourself as you would a friend</li>
+        <li>Celebrate small victories</li>
+      </ul>
+      <p>
+        These strategies support recovery but aren't substitutes for professional treatment when trauma significantly impacts your life.
+      </p>
+
+      {/* Mid-Content CTA */}
+      <div className="my-12 p-8 bg-primary/5 rounded-2xl border border-primary/20 text-center">
+        <h3 className="text-2xl font-semibold text-foreground mb-4">Ready to Begin Your Healing Journey?</h3>
+        <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
+          Our trauma-specialized therapists use evidence-based approaches like EMDR to help you process difficult experiences and reclaim your life. Schedule your free consultation today.
+        </p>
+        <Link
+          to="/therapist-matching"
+          className="inline-flex items-center justify-center px-8 py-3 bg-primary text-primary-foreground font-medium rounded-lg hover:bg-primary/90 transition-colors"
+        >
+          Schedule Free Consultation
+        </Link>
+      </div>
+
+      {/* Placeholder for sections 11-13 - to be added in Part 3 */}
     </PillarPageTemplate>
   );
 };
