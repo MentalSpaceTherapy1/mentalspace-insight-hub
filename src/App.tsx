@@ -103,6 +103,7 @@ import FindingRightTherapist from "./pages/blog/FindingRightTherapist";
 import AnxietyAttackVsPanicAttack from "./pages/blog/AnxietyAttackVsPanicAttack";
 import HowToCalmAnxietyQuickly from "./pages/blog/HowToCalmAnxietyQuickly";
 import HighFunctioningDepression from "./pages/blog/HighFunctioningDepression";
+import SocialAnxietySymptomsTreatment from "./pages/blog/SocialAnxietySymptomsTreatment";
 
 import Depression from "./pages/conditions/Depression";
 import Anxiety from "./pages/conditions/Anxiety";
@@ -274,6 +275,7 @@ const App = () => {
                 <Route path="/blog/anxiety-attack-vs-panic-attack" element={<AnxietyAttackVsPanicAttack />} />
                 <Route path="/blog/how-to-calm-anxiety-quickly" element={<HowToCalmAnxietyQuickly />} />
                 <Route path="/blog/high-functioning-depression" element={<HighFunctioningDepression />} />
+                <Route path="/blog/social-anxiety-symptoms-treatment" element={<SocialAnxietySymptomsTreatment />} />
                 
                 <Route path="/mental-health-library/depression" element={<Depression />} />
                 <Route path="/mental-health-library/anxiety" element={<Anxiety />} />
