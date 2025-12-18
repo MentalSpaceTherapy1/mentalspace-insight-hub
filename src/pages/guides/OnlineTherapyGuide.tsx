@@ -14,18 +14,20 @@ const OnlineTherapyGuide = () => {
       keywords="online therapy guide, teletherapy, virtual counseling, telehealth therapy, is online therapy effective, how does online therapy work, teletherapy benefits"
       relatedServices={[
         { title: "Online Therapy", url: "/online-therapy" },
-        { title: "Anxiety Therapy in Georgia", url: "/anxiety-therapy-georgia" },
-        { title: "Depression Therapy in Georgia", url: "/depression-therapy-georgia" }
+        { title: "Online Therapy in Georgia", url: "/online-therapy-georgia" },
+        { title: "Anxiety Therapy", url: "/anxiety-therapy-georgia" },
+        { title: "Depression Therapy", url: "/depression-therapy-georgia" }
       ]}
       relatedArticles={[
         { title: "Benefits of Online Therapy", url: "/blog/benefits-online-therapy" },
         { title: "Telehealth Therapy in Georgia", url: "/blog/telehealth-therapy-georgia" },
-        { title: "Insurance for Online Therapy", url: "/blog/therapy-online-insurance-coverage" }
+        { title: "Insurance Coverage for Online Therapy", url: "/blog/therapy-online-insurance-coverage" },
+        { title: "Finding the Right Therapist", url: "/blog/finding-right-therapist-guide" }
       ]}
       relatedGuides={[
         { title: "Starting Therapy Guide", url: "/guides/starting-therapy" },
-        { title: "Finding a Therapist Guide", url: "/guides/finding-therapist" },
-        { title: "Therapy Cost Guide", url: "/guides/therapy-cost" }
+        { title: "Therapy Cost Guide", url: "/guides/therapy-cost" },
+        { title: "Finding a Therapist Guide", url: "/guides/finding-therapist" }
       ]}
     >
       {/* Section 1: What Is Online Therapy? */}
@@ -633,6 +635,220 @@ const OnlineTherapyGuide = () => {
         >
           Schedule Free Consultation
         </Link>
+      </section>
+
+      {/* Section 11: Online Therapy for Specific Concerns */}
+      <section className="mb-12">
+        <h2 id="online-therapy-for-specific-concerns" className="text-3xl font-bold text-foreground mb-6">Online Therapy for Specific Concerns</h2>
+        
+        <p className="text-lg text-muted-foreground mb-6">
+          Online therapy effectively treats a wide range of mental health concerns. Here's how it applies to specific issues:
+        </p>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Anxiety disorders</h3>
+        <p className="text-lg text-muted-foreground mb-6">
+          Online therapy is particularly well-suited for <Link to="/anxiety-therapy-georgia" className="text-primary hover:underline">anxiety treatment</Link>. Many anxious clients find it easier to start therapy from the safety of home. Exposure therapy, a key treatment for anxiety, can even be more practical online—you can do real-world exposures in your actual environment rather than simulating them in an office.
+        </p>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Depression</h3>
+        <p className="text-lg text-muted-foreground mb-6">
+          <Link to="/depression-therapy-georgia" className="text-primary hover:underline">Depression therapy</Link> translates seamlessly to online format. The behavioral activation techniques central to depression treatment—scheduling activities, tracking mood—integrate naturally with at-home sessions. For those whose depression makes leaving home difficult, online therapy removes a significant barrier.
+        </p>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Trauma and PTSD</h3>
+        <p className="text-lg text-muted-foreground mb-6">
+          <Link to="/blog/emdr-therapy" className="text-primary hover:underline">EMDR</Link> and other trauma treatments are effectively delivered online. Many trauma survivors actually prefer the added sense of safety and control that comes from being in their own space. Virtual EMDR uses the same eye movement techniques, with therapists guiding movements on screen.
+        </p>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Couples therapy</h3>
+        <p className="text-lg text-muted-foreground mb-6">
+          <Link to="/couples-therapy-georgia" className="text-primary hover:underline">Online couples counseling</Link> allows both partners to attend more easily, especially when coordinating two schedules around travel to an office. Each partner can join from the same location or different locations if needed (though same location is usually preferred).
+        </p>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Teen therapy</h3>
+        <p className="text-lg text-muted-foreground mb-6">
+          <Link to="/teen-therapy-georgia" className="text-primary hover:underline">Online therapy for teens</Link> often resonates well with digital natives who are comfortable with video communication. It can feel less intimidating than going to an office, and parents don't need to arrange transportation.
+        </p>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Work-related stress and burnout</h3>
+        <p className="text-lg text-muted-foreground mb-6">
+          For professionals dealing with workplace stress, online therapy during lunch breaks or immediately after work—without commute time—makes consistent attendance more feasible.
+        </p>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Relationship issues</h3>
+        <p className="text-lg text-muted-foreground mb-6">
+          Individual therapy for relationship concerns works well online. You have privacy to discuss sensitive issues without worrying about being overheard in a waiting room.
+        </p>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Grief and loss</h3>
+        <p className="text-lg text-muted-foreground mb-6">
+          Processing grief benefits from the comfort of being in your own space, surrounded by meaningful objects and memories. Online grief therapy allows for this while still providing professional support.
+        </p>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Life transitions</h3>
+        <p className="text-lg text-muted-foreground mb-6">
+          Whether you're navigating career changes, relocation, new parenthood, or retirement, online therapy provides consistent support through times when your schedule and location may be in flux.
+        </p>
+        
+        <p className="text-lg text-muted-foreground">
+          At <Link to="/therapist-matching" className="text-primary hover:underline">CHC</Link>, our therapists are experienced in treating all these concerns through our secure online platform.
+        </p>
+      </section>
+
+      {/* Section 12: Online Therapy in Georgia */}
+      <section className="mb-12">
+        <h2 id="online-therapy-in-georgia" className="text-3xl font-bold text-foreground mb-6">Online Therapy in Georgia</h2>
+        
+        <p className="text-lg text-muted-foreground mb-6">
+          If you're in Georgia, you have excellent options for online therapy.
+        </p>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Licensing and location:</h3>
+        <p className="text-lg text-muted-foreground mb-4">
+          Therapists must be licensed in the state where the client is located during the session. This means:
+        </p>
+        <ul className="list-disc list-inside text-lg text-muted-foreground mb-6 space-y-2">
+          <li>You must be physically in Georgia during your session</li>
+          <li>Your therapist must be licensed in Georgia</li>
+          <li>If you travel out of state, you may need to pause sessions or find coverage</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Statewide access:</h3>
+        <p className="text-lg text-muted-foreground mb-4">
+          One major benefit of online therapy is access to qualified therapists regardless of where you live in Georgia:
+        </p>
+        <ul className="list-disc list-inside text-lg text-muted-foreground mb-6 space-y-2">
+          <li>Rural areas with limited local mental health providers</li>
+          <li>Suburbs without specialized therapists nearby</li>
+          <li>Cities where the best-fit therapist may be across town</li>
+          <li>Anywhere in the state—from Savannah to Rome, Atlanta to Albany</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Areas we serve:</h3>
+        <p className="text-lg text-muted-foreground mb-4">
+          At Coping and Healing Counseling, our <Link to="/online-therapy-georgia" className="text-primary hover:underline">online therapy services</Link> reach all of Georgia:
+        </p>
+        <ul className="list-disc list-inside text-lg text-muted-foreground mb-6 space-y-2">
+          <li>Metro Atlanta and surrounding counties (<Link to="/fulton-county-therapy" className="text-primary hover:underline">Fulton</Link>, <Link to="/gwinnett-county-therapy" className="text-primary hover:underline">Gwinnett</Link>, <Link to="/cobb-county-therapy" className="text-primary hover:underline">Cobb</Link>, <Link to="/dekalb-county-therapy" className="text-primary hover:underline">DeKalb</Link>)</li>
+          <li>Coastal Georgia (<Link to="/chatham-county-therapy" className="text-primary hover:underline">Chatham County</Link>, <Link to="/glynn-county-therapy" className="text-primary hover:underline">Glynn County</Link>)</li>
+          <li>Middle Georgia (<Link to="/bibb-county-therapy" className="text-primary hover:underline">Bibb County</Link>, <Link to="/houston-county-therapy" className="text-primary hover:underline">Houston County</Link>)</li>
+          <li>South Georgia (<Link to="/lowndes-county-therapy" className="text-primary hover:underline">Lowndes County</Link>, <Link to="/thomas-county-therapy" className="text-primary hover:underline">Thomas County</Link>)</li>
+          <li>Northeast Georgia (<Link to="/hall-county-therapy" className="text-primary hover:underline">Hall County</Link>, <Link to="/clarke-county-therapy" className="text-primary hover:underline">Clarke County</Link>)</li>
+          <li>And every county in between</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Georgia Medicaid coverage:</h3>
+        <p className="text-lg text-muted-foreground mb-6">
+          If you have Georgia Medicaid through <Link to="/insurance/caresource" className="text-primary hover:underline">CareSource</Link>, <Link to="/insurance/amerigroup" className="text-primary hover:underline">Amerigroup</Link>, or <Link to="/insurance/peach-state" className="text-primary hover:underline">Peach State</Link>, online therapy is covered. You can access quality mental health care from anywhere in the state at little to no cost.
+        </p>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Finding quality online therapy in Georgia:</h3>
+        <p className="text-lg text-muted-foreground mb-4">
+          When searching for an online therapist in Georgia, look for:
+        </p>
+        <ul className="list-disc list-inside text-lg text-muted-foreground mb-6 space-y-2">
+          <li>Valid Georgia licensure (LPC, LCSW, LMFT, or psychologist)</li>
+          <li>Experience with your specific concerns</li>
+          <li>HIPAA-compliant telehealth platform</li>
+          <li>Clear policies on fees, cancellations, and emergencies</li>
+          <li>Good reviews or personal recommendations</li>
+        </ul>
+        
+        <p className="text-lg text-muted-foreground">
+          Or skip the search—<Link to="/therapist-matching" className="text-primary hover:underline">schedule a free consultation with CHC</Link> and we'll match you with a qualified Georgia-licensed therapist.
+        </p>
+      </section>
+
+      {/* Section 13: Online Therapy at Coping and Healing Counseling */}
+      <section className="mb-12">
+        <h2 id="online-therapy-at-chc" className="text-3xl font-bold text-foreground mb-6">Online Therapy at Coping and Healing Counseling</h2>
+        
+        <p className="text-lg text-muted-foreground mb-6">
+          At Coping and Healing Counseling, we've made online therapy a cornerstone of our practice because we believe everyone in Georgia deserves access to quality mental health care.
+        </p>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Our online therapy services:</h3>
+        <ul className="list-disc list-inside text-lg text-muted-foreground mb-6 space-y-2">
+          <li>Individual therapy for adults</li>
+          <li><Link to="/teen-therapy-georgia" className="text-primary hover:underline">Teen therapy</Link> for adolescents</li>
+          <li><Link to="/couples-therapy-georgia" className="text-primary hover:underline">Couples counseling</Link></li>
+          <li><Link to="/anxiety-therapy-georgia" className="text-primary hover:underline">Anxiety treatment</Link></li>
+          <li><Link to="/depression-therapy-georgia" className="text-primary hover:underline">Depression therapy</Link></li>
+          <li><Link to="/ptsd-therapy-georgia" className="text-primary hover:underline">PTSD and trauma therapy</Link></li>
+          <li>And more</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Why clients choose CHC for online therapy:</h3>
+        
+        <h4 className="text-lg font-medium text-foreground mb-2">Experienced therapists:</h4>
+        <p className="text-lg text-muted-foreground mb-4">
+          Our licensed professionals are trained in delivering effective online care. They know how to build rapport through a screen and adapt therapeutic techniques for the virtual environment.
+        </p>
+        
+        <h4 className="text-lg font-medium text-foreground mb-2">Easy-to-use platform:</h4>
+        <p className="text-lg text-muted-foreground mb-4">
+          Our secure, HIPAA-compliant platform requires no special software. Just click the link we send you and you're connected. We'll walk you through the technology before your first session.
+        </p>
+        
+        <h4 className="text-lg font-medium text-foreground mb-2">Georgia-wide coverage:</h4>
+        <p className="text-lg text-muted-foreground mb-4">
+          No matter where you are in Georgia, you can access our services. Rural or urban, you get the same quality care.
+        </p>
+        
+        <h4 className="text-lg font-medium text-foreground mb-2">Flexible scheduling:</h4>
+        <p className="text-lg text-muted-foreground mb-4">
+          With online sessions, we can offer more appointment times. Our hours are 7am-7pm, 7 days a week—including times that accommodate work schedules.
+        </p>
+        
+        <h4 className="text-lg font-medium text-foreground mb-2">Insurance accepted:</h4>
+        <p className="text-lg text-muted-foreground mb-4">
+          We accept most major insurance plans including <Link to="/insurance/caresource" className="text-primary hover:underline">CareSource</Link>, <Link to="/insurance/amerigroup" className="text-primary hover:underline">Amerigroup</Link>, <Link to="/insurance/peach-state" className="text-primary hover:underline">Peach State</Link>, <Link to="/insurance/aetna" className="text-primary hover:underline">Aetna</Link>, <Link to="/insurance/bluecross-blueshield" className="text-primary hover:underline">BlueCross BlueShield</Link>, <Link to="/insurance/cigna" className="text-primary hover:underline">Cigna</Link>, <Link to="/insurance/humana" className="text-primary hover:underline">Humana</Link>, and <Link to="/insurance" className="text-primary hover:underline">more</Link>.
+        </p>
+        
+        <h4 className="text-lg font-medium text-foreground mb-2">Affordable self-pay:</h4>
+        <p className="text-lg text-muted-foreground mb-6">
+          No insurance? Our rate is $75/week (minimum 4 sessions)—making therapy accessible without coverage.
+        </p>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Getting started:</h3>
+        <ol className="list-decimal list-inside text-lg text-muted-foreground mb-6 space-y-2">
+          <li><Link to="/therapist-matching" className="text-primary hover:underline">Schedule a free consultation</Link></li>
+          <li>We'll verify your insurance and explain your costs</li>
+          <li>Get matched with a therapist who fits your needs</li>
+          <li>Receive your secure link and simple instructions</li>
+          <li>Attend your first session from anywhere in Georgia</li>
+        </ol>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Our commitment:</h3>
+        <p className="text-lg text-muted-foreground mb-4">
+          Online therapy isn't a lesser alternative—for many people, it's the better choice. We're committed to providing the same excellent care virtually that you'd receive in person.
+        </p>
+        
+        <p className="text-lg text-muted-foreground">
+          Ready to experience the convenience of online therapy? <Link to="/therapist-matching" className="text-primary hover:underline">Schedule your free consultation</Link> today.
+        </p>
+      </section>
+
+      {/* Final CTA */}
+      <section className="my-12 bg-primary/10 border border-primary/30 rounded-xl p-8 text-center">
+        <h2 className="text-2xl font-bold text-foreground mb-4">Start Online Therapy Today</h2>
+        <p className="text-lg text-muted-foreground mb-6 max-w-2xl mx-auto">
+          Quality mental health care from the comfort of your home. Our Georgia-licensed therapists are ready to help you—wherever you are in the state. Schedule your free consultation and get an appointment within 24 hours.
+        </p>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <Link 
+            to="/therapist-matching" 
+            className="inline-flex items-center justify-center px-8 py-3 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-primary/90 transition-colors"
+          >
+            Schedule Free Consultation
+          </Link>
+          <Link 
+            to="/online-therapy" 
+            className="text-primary hover:underline font-medium"
+          >
+            Learn about our services →
+          </Link>
+        </div>
       </section>
     </PillarPageTemplate>
   );
