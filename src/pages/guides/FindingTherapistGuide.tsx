@@ -335,6 +335,285 @@ const FindingTherapistGuide = () => {
           Trust your gut. If something feels off, keep looking.
         </p>
       </section>
+
+      {/* Section 7: Evaluating Fit - The First Session */}
+      <section className="mb-12">
+        <h2 id="evaluating-fit-the-first-session" className="text-3xl font-bold text-foreground mb-6">Evaluating Fit: The First Session</h2>
+        
+        <p className="text-lg text-muted-foreground mb-6">
+          Your first session is a chance to evaluate whether this therapist might be right for you. Here's what to pay attention to.
+        </p>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">What to expect in a first session:</h3>
+        <p className="text-lg text-muted-foreground mb-4">The first session is usually an assessment or intake. Your therapist will:</p>
+        <ul className="list-disc list-inside text-lg text-muted-foreground mb-6 space-y-2">
+          <li>Ask about what brought you to therapy</li>
+          <li>Learn about your history and background</li>
+          <li>Discuss your goals for treatment</li>
+          <li>Explain their approach and how they work</li>
+          <li>Answer your questions</li>
+          <li>Begin to establish rapport</li>
+        </ul>
+        <p className="text-lg text-muted-foreground mb-6">
+          You're not expected to share everything immediately. This is the start of a relationship, not an interrogation.
+        </p>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Signs the fit might be good:</h3>
+        <ul className="list-disc list-inside text-lg text-muted-foreground mb-6 space-y-2">
+          <li>You feel heard and understood</li>
+          <li>The therapist seems genuinely interested in you</li>
+          <li>You feel comfortable enough to be honest</li>
+          <li>Their communication style works for you</li>
+          <li>You feel hopeful or relieved after the session</li>
+          <li>Their approach makes sense for your concerns</li>
+          <li>They explain things clearly</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Signs the fit might not be right:</h3>
+        <ul className="list-disc list-inside text-lg text-muted-foreground mb-6 space-y-2">
+          <li>You feel judged or dismissed</li>
+          <li>The therapist does most of the talking</li>
+          <li>You don't feel comfortable being honest</li>
+          <li>Their style feels too cold or too casual</li>
+          <li>You leave feeling worse without any context for why</li>
+          <li>Something feels "off" that you can't quite explain</li>
+          <li>They seem distracted or unengaged</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Give it a fair chance:</h3>
+        <p className="text-lg text-muted-foreground mb-6">
+          One session isn't always enough to judge. Therapy can feel uncomfortable at first—you're sharing personal things with a stranger. Distinguish between "uncomfortable because therapy is hard" and "uncomfortable because this person isn't right for me."
+        </p>
+        <p className="text-lg text-muted-foreground mb-6">
+          Many therapists recommend giving it 2-3 sessions before deciding about fit, unless there are clear red flags.
+        </p>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">It's okay to keep looking:</h3>
+        <p className="text-lg text-muted-foreground">
+          If after a few sessions you don't feel a connection, it's okay to try someone else. A good therapist won't be offended—they want you to get help, even if it's not with them. You can simply say, "I appreciate your time, but I don't think we're the right fit."
+        </p>
+      </section>
+
+      {/* Section 8: What If Your First Choice Isn't Available? */}
+      <section className="mb-12">
+        <h2 id="what-if-your-first-choice-isnt-available" className="text-3xl font-bold text-foreground mb-6">What If Your First Choice Isn't Available?</h2>
+        
+        <p className="text-lg text-muted-foreground mb-6">
+          It's common to encounter obstacles when looking for a therapist. Here's how to handle common situations.
+        </p>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Long waitlists:</h3>
+        <p className="text-lg text-muted-foreground mb-4">Many therapists, especially specialists, have waitlists. If you encounter this:</p>
+        <ul className="list-disc list-inside text-lg text-muted-foreground mb-6 space-y-2">
+          <li>Ask to be put on the waitlist while you continue searching</li>
+          <li>Ask if they have colleagues they'd recommend</li>
+          <li>Consider whether a similar therapist with availability might work</li>
+          <li>Look at practices rather than individual therapists (practices often have more availability)</li>
+          <li>Consider <Link to="/online-therapy" className="text-primary hover:underline">online therapy</Link>, which often has shorter waits</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Insurance limitations:</h3>
+        <p className="text-lg text-muted-foreground mb-4">If your insurance network is limited:</p>
+        <ul className="list-disc list-inside text-lg text-muted-foreground mb-6 space-y-2">
+          <li>Check if out-of-network benefits might cover part of the cost</li>
+          <li>Ask therapists about sliding scale fees</li>
+          <li>Look into community mental health centers</li>
+          <li>Consider that investing in the right therapist may be worth the extra cost</li>
+          <li>See our <Link to="/guides/therapy-cost" className="text-primary hover:underline">guide to therapy costs</Link> for more options</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Can't find a specialist:</h3>
+        <p className="text-lg text-muted-foreground mb-4">If you need specialized treatment (like EMDR for trauma) but can't find someone:</p>
+        <ul className="list-disc list-inside text-lg text-muted-foreground mb-6 space-y-2">
+          <li>Expand your geographic search with <Link to="/online-therapy" className="text-primary hover:underline">online therapy</Link></li>
+          <li>Look for therapists trained in the technique even if it's not their main focus</li>
+          <li>Ask potential therapists if they could get additional training or consultation</li>
+          <li>Start with a generalist and get a referral when ready for specialized work</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Location challenges:</h3>
+        <p className="text-lg text-muted-foreground mb-4">If you live in an area with few therapists:</p>
+        <ul className="list-disc list-inside text-lg text-muted-foreground mb-6 space-y-2">
+          <li>Online therapy opens up your options significantly</li>
+          <li>Some therapists will do phone sessions</li>
+          <li>Consider periodic in-person visits with a specialist combined with local support</li>
+          <li>Community mental health centers serve many areas</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">No one feels right:</h3>
+        <p className="text-lg text-muted-foreground mb-4">If you've talked to several therapists and none feel like a fit:</p>
+        <ul className="list-disc list-inside text-lg text-muted-foreground mb-6 space-y-2">
+          <li>Reflect on what's missing—can you identify patterns in what doesn't work?</li>
+          <li>Consider whether anxiety about therapy itself might be affecting your judgment</li>
+          <li>Talk to one more therapist and be explicit about what hasn't worked before</li>
+          <li>Ask for recommendations from people who know you</li>
+        </ul>
+        
+        <p className="text-lg text-muted-foreground">
+          At <Link to="/therapist-matching" className="text-primary hover:underline">Coping and Healing Counseling</Link>, we offer free consultations specifically to help with matching. We'll learn about your needs and connect you with a therapist likely to be a good fit—taking the guesswork out of the process.
+        </p>
+      </section>
+
+      {/* Section 9: Special Considerations for Finding a Therapist */}
+      <section className="mb-12">
+        <h2 id="special-considerations" className="text-3xl font-bold text-foreground mb-6">Special Considerations for Finding a Therapist</h2>
+        
+        <p className="text-lg text-muted-foreground mb-6">
+          Different situations may require specific considerations in your therapist search.
+        </p>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Finding a therapist for your teen:</h3>
+        <ul className="list-disc list-inside text-lg text-muted-foreground mb-6 space-y-2">
+          <li>Look for therapists who specialize in adolescents</li>
+          <li>Consider your teen's preferences (gender, style)</li>
+          <li>Discuss confidentiality—what will be shared with parents</li>
+          <li>Look for someone who can relate to teens without being condescending</li>
+          <li><Link to="/teen-therapy-georgia" className="text-primary hover:underline">Teen therapy</Link> requires different skills than adult therapy</li>
+          <li>Involve your teen in the selection when possible</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Finding a couples therapist:</h3>
+        <ul className="list-disc list-inside text-lg text-muted-foreground mb-6 space-y-2">
+          <li>Look for someone trained in couples work (not all therapists are)</li>
+          <li>Check credentials like Gottman training or EFT certification</li>
+          <li>Both partners should feel comfortable with the therapist</li>
+          <li>Be wary of therapists who take sides</li>
+          <li>Read our <Link to="/guides/couples-counseling" className="text-primary hover:underline">couples counseling guide</Link> for more details</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Finding a trauma specialist:</h3>
+        <ul className="list-disc list-inside text-lg text-muted-foreground mb-6 space-y-2">
+          <li>Look for specific training in trauma treatment (EMDR, CPT, PE)</li>
+          <li>Ask about their experience with your type of trauma</li>
+          <li>Ensure they understand trauma-informed care</li>
+          <li>See our <Link to="/guides/trauma-ptsd" className="text-primary hover:underline">trauma and PTSD guide</Link> for more information</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Cultural considerations:</h3>
+        <ul className="list-disc list-inside text-lg text-muted-foreground mb-6 space-y-2">
+          <li>Consider whether cultural background matters to you</li>
+          <li>Look for therapists with experience with your community</li>
+          <li>Many directories allow filtering by cultural competencies</li>
+          <li>It's okay to prioritize finding someone who understands your experience</li>
+          <li>Ask about their experience working with people from your background</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">LGBTQ+ considerations:</h3>
+        <ul className="list-disc list-inside text-lg text-muted-foreground mb-6 space-y-2">
+          <li>Look for therapists who specifically indicate LGBTQ+ affirming practice</li>
+          <li>Consider whether you want someone within the community</li>
+          <li>Ask about their training and experience</li>
+          <li>Trust your gut about whether they truly understand</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Neurodivergent considerations:</h3>
+        <ul className="list-disc list-inside text-lg text-muted-foreground mb-6 space-y-2">
+          <li>Look for therapists experienced with ADHD, autism, etc.</li>
+          <li>Ask about their understanding and approach</li>
+          <li>Consider whether you want someone who is also neurodivergent</li>
+          <li>Ensure they won't try to "fix" the way your brain works</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Religious/spiritual considerations:</h3>
+        <ul className="list-disc list-inside text-lg text-muted-foreground mb-6 space-y-2">
+          <li>If faith is important, look for therapists who share or respect your beliefs</li>
+          <li>Christian counseling, Jewish family services, and other faith-based options exist</li>
+          <li>Secular therapists can still be respectful of your spirituality</li>
+          <li>Clarify whether you want faith integrated into treatment or simply respected</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Financial constraints:</h3>
+        <ul className="list-disc list-inside text-lg text-muted-foreground mb-6 space-y-2">
+          <li>Look into sliding scale options</li>
+          <li>Check community mental health centers</li>
+          <li>Use our <Link to="/guides/therapy-cost" className="text-primary hover:underline">therapy cost guide</Link> for affordable options</li>
+          <li>Consider that student therapists (supervised) offer lower rates</li>
+          <li>Some nonprofits offer free or low-cost services</li>
+        </ul>
+      </section>
+
+      {/* Section 10: How Long to Give It Before Deciding */}
+      <section className="mb-12">
+        <h2 id="how-long-to-give-it" className="text-3xl font-bold text-foreground mb-6">How Long to Give It Before Deciding</h2>
+        
+        <p className="text-lg text-muted-foreground mb-6">
+          A common question is how long to try with a therapist before deciding whether it's working.
+        </p>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">The short answer:</h3>
+        <p className="text-lg text-muted-foreground mb-6">
+          Give it 3-6 sessions before making a judgment about fit, unless there are serious red flags.
+        </p>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Why so long?</h3>
+        <ul className="list-disc list-inside text-lg text-muted-foreground mb-6 space-y-2">
+          <li>Therapy takes time to build trust</li>
+          <li>The first sessions are often assessment, not treatment</li>
+          <li>Early discomfort is normal—you're doing hard things</li>
+          <li>Progress isn't always immediately visible</li>
+          <li>Your therapist needs time to understand you</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Session-by-session expectations:</h3>
+        
+        <h4 className="text-lg font-medium text-foreground mb-2">Sessions 1-2:</h4>
+        <p className="text-lg text-muted-foreground mb-4">
+          Assessment and getting to know each other. You're building initial rapport and setting goals. Judgment call: Do I feel comfortable enough to continue?
+        </p>
+        
+        <h4 className="text-lg font-medium text-foreground mb-2">Sessions 3-4:</h4>
+        <p className="text-lg text-muted-foreground mb-4">
+          Beginning real work. The relationship is developing and you're starting to address concerns. Question to ask: Do I feel understood? Is there a connection forming?
+        </p>
+        
+        <h4 className="text-lg font-medium text-foreground mb-2">Sessions 5-6:</h4>
+        <p className="text-lg text-muted-foreground mb-4">
+          Treatment underway. You should have a sense of how therapy will feel with this person. Evaluation point: Am I gaining something from this? Do I trust this person?
+        </p>
+        
+        <h4 className="text-lg font-medium text-foreground mb-2">After 6 sessions:</h4>
+        <p className="text-lg text-muted-foreground mb-6">
+          You should have enough information to decide. It's okay if you're not "better" yet—that takes time—but you should feel like you're in good hands and making some progress.
+        </p>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">When to leave sooner:</h3>
+        <p className="text-lg text-muted-foreground mb-4">Don't wait 6 sessions if:</p>
+        <ul className="list-disc list-inside text-lg text-muted-foreground mb-6 space-y-2">
+          <li>The therapist violates ethical boundaries</li>
+          <li>You feel unsafe or deeply uncomfortable</li>
+          <li>The therapist is dismissive, judgmental, or invalidating</li>
+          <li>There's a fundamental mismatch that won't change</li>
+          <li>Your gut strongly says this isn't right</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">When to stay longer:</h3>
+        <p className="text-lg text-muted-foreground mb-4">Consider more time if:</p>
+        <ul className="list-disc list-inside text-lg text-muted-foreground mb-6 space-y-2">
+          <li>You're working on deep-seated issues that take time</li>
+          <li>You've had difficulty connecting with therapists before</li>
+          <li>Progress is slow but present</li>
+          <li>You trust your therapist even when sessions are hard</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Having the conversation:</h3>
+        <p className="text-lg text-muted-foreground">
+          If you're unsure, talk to your therapist about it. A good therapist welcomes feedback and can discuss whether you're a good fit or whether a referral might be better.
+        </p>
+      </section>
+
+      {/* Mid-Content CTA */}
+      <section className="my-12 bg-primary/5 border border-primary/20 rounded-xl p-8 text-center">
+        <h2 className="text-2xl font-bold text-foreground mb-4">Take the Guesswork Out of Finding a Therapist</h2>
+        <p className="text-lg text-muted-foreground mb-6 max-w-2xl mx-auto">
+          At CHC, we match you with a therapist based on your specific needs, concerns, and preferences. Schedule a free consultation and let us help you find the right fit.
+        </p>
+        <Link 
+          to="/therapist-matching" 
+          className="inline-flex items-center justify-center px-8 py-3 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-primary/90 transition-colors"
+        >
+          Get Matched with a Therapist
+        </Link>
+      </section>
     </PillarPageTemplate>
   );
 };
