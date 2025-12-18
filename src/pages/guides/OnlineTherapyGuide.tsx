@@ -294,6 +294,346 @@ const OnlineTherapyGuide = () => {
           For most people, the benefits of online therapy outweigh the drawbacks. The key is determining what works best for your individual situation.
         </p>
       </section>
+
+      {/* Section 6: What You Need for Online Therapy */}
+      <section className="mb-12">
+        <h2 id="what-you-need-for-online-therapy" className="text-3xl font-bold text-foreground mb-6">What You Need for Online Therapy</h2>
+        
+        <p className="text-lg text-muted-foreground mb-6">
+          Setting yourself up for successful online therapy sessions requires some basic preparation.
+        </p>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Technology requirements:</h3>
+        
+        <h4 className="text-lg font-medium text-foreground mb-2">Device:</h4>
+        <ul className="list-disc list-inside text-lg text-muted-foreground mb-4 space-y-2">
+          <li>Smartphone, tablet, laptop, or desktop computer</li>
+          <li>Built-in or external camera</li>
+          <li>Built-in or external microphone</li>
+          <li>Speakers or headphones (headphones recommended for privacy)</li>
+        </ul>
+        
+        <h4 className="text-lg font-medium text-foreground mb-2">Internet:</h4>
+        <ul className="list-disc list-inside text-lg text-muted-foreground mb-4 space-y-2">
+          <li>Stable broadband connection</li>
+          <li>Minimum 1.5 Mbps download/upload speed for video (higher is better)</li>
+          <li>Wired connection is more reliable than WiFi when possible</li>
+          <li>Have a backup plan (mobile data) in case of outages</li>
+        </ul>
+        
+        <h4 className="text-lg font-medium text-foreground mb-2">Software:</h4>
+        <ul className="list-disc list-inside text-lg text-muted-foreground mb-6 space-y-2">
+          <li>Updated web browser (Chrome, Firefox, Safari, Edge)</li>
+          <li>Some platforms may require downloading an app</li>
+          <li>Your therapist will provide specific instructions</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Environment requirements:</h3>
+        
+        <h4 className="text-lg font-medium text-foreground mb-2">Privacy:</h4>
+        <ul className="list-disc list-inside text-lg text-muted-foreground mb-4 space-y-2">
+          <li>A room where you can close the door</li>
+          <li>Space where others cannot overhear</li>
+          <li>Freedom from interruptions for 45-60 minutes</li>
+          <li>Consider using a white noise machine outside the door</li>
+        </ul>
+        
+        <h4 className="text-lg font-medium text-foreground mb-2">Comfort:</h4>
+        <ul className="list-disc list-inside text-lg text-muted-foreground mb-6 space-y-2">
+          <li>Comfortable seating</li>
+          <li>Good lighting on your face (avoid backlighting from windows)</li>
+          <li>Camera at eye level when possible</li>
+          <li>Minimal visual distractions in your background</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Practical considerations:</h3>
+        <ul className="list-disc list-inside text-lg text-muted-foreground mb-6 space-y-2">
+          <li>Charge your device or have it plugged in</li>
+          <li>Close other applications to improve performance</li>
+          <li>Turn off notifications during session</li>
+          <li>Have tissues, water, and anything else you might need nearby</li>
+          <li>Keep your therapist's phone number handy as backup</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">If you don't have ideal conditions:</h3>
+        <p className="text-lg text-muted-foreground mb-4">
+          Don't let imperfect circumstances stop you from getting help:
+        </p>
+        <ul className="list-disc list-inside text-lg text-muted-foreground mb-4 space-y-2">
+          <li>Car in a parking lot can work if home isn't private</li>
+          <li>Office with a closed door during lunch</li>
+          <li>Library study rooms (with headphones)</li>
+          <li>Discuss options with your therapist—they're used to helping clients find solutions</li>
+        </ul>
+        
+        <p className="text-lg text-muted-foreground">
+          At <Link to="/contact-us" className="text-primary hover:underline">CHC</Link>, we'll help you troubleshoot any setup challenges before your first session.
+        </p>
+      </section>
+
+      {/* Section 7: Is Online Therapy Private and Secure? */}
+      <section className="mb-12">
+        <h2 id="is-online-therapy-private-and-secure" className="text-3xl font-bold text-foreground mb-6">Is Online Therapy Private and Secure?</h2>
+        
+        <p className="text-lg text-muted-foreground mb-6">
+          Privacy is a valid concern when conducting therapy over the internet. Here's what you should know:
+        </p>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">HIPAA compliance:</h3>
+        <p className="text-lg text-muted-foreground mb-4">
+          Legitimate online therapy providers use HIPAA-compliant platforms designed to protect your health information. This means:
+        </p>
+        <ul className="list-disc list-inside text-lg text-muted-foreground mb-6 space-y-2">
+          <li>Video sessions are encrypted end-to-end</li>
+          <li>Data is stored securely</li>
+          <li>Platforms meet federal privacy standards</li>
+          <li>Your sessions cannot be accessed by unauthorized parties</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">What therapists do to protect you:</h3>
+        <ul className="list-disc list-inside text-lg text-muted-foreground mb-6 space-y-2">
+          <li>Use only approved, secure platforms (not regular Zoom, Skype, or FaceTime)</li>
+          <li>Take sessions from private locations</li>
+          <li>Use password-protected meetings</li>
+          <li>Follow the same confidentiality rules as in-person therapy</li>
+          <li>Secure electronic health records</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">What you can do:</h3>
+        <ul className="list-disc list-inside text-lg text-muted-foreground mb-6 space-y-2">
+          <li>Use a private, secure WiFi network (avoid public WiFi)</li>
+          <li>Use headphones so only you can hear</li>
+          <li>Find a private space where you won't be overheard</li>
+          <li>Don't record sessions without explicit consent</li>
+          <li>Log out of the platform after sessions</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Your rights:</h3>
+        <ul className="list-disc list-inside text-lg text-muted-foreground mb-6 space-y-2">
+          <li>Your therapy records are protected by law</li>
+          <li>Your therapist cannot share information without your consent (with limited exceptions for safety)</li>
+          <li>You can ask your therapist about their specific privacy practices</li>
+          <li>HIPAA violations are taken seriously with significant penalties</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Limitations of confidentiality:</h3>
+        <p className="text-lg text-muted-foreground mb-4">
+          The same limits apply online as in-person. Therapists must break confidentiality if:
+        </p>
+        <ul className="list-disc list-inside text-lg text-muted-foreground mb-6 space-y-2">
+          <li>There's imminent risk of harm to self or others</li>
+          <li>Child or elder abuse is suspected</li>
+          <li>A court orders disclosure</li>
+          <li>Other specific legal requirements apply</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">At Coping and Healing Counseling:</h3>
+        <p className="text-lg text-muted-foreground">
+          We use secure, HIPAA-compliant platforms for all online sessions. Your privacy is protected by the same professional and legal standards as in-person therapy. Learn more on our <Link to="/privacy-policy" className="text-primary hover:underline">privacy policy</Link> page.
+        </p>
+      </section>
+
+      {/* Section 8: Does Insurance Cover Online Therapy? */}
+      <section className="mb-12">
+        <h2 id="does-insurance-cover-online-therapy" className="text-3xl font-bold text-foreground mb-6">Does Insurance Cover Online Therapy?</h2>
+        
+        <p className="text-lg text-muted-foreground mb-6">
+          The good news is that insurance coverage for online therapy has expanded significantly.
+        </p>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Current coverage landscape:</h3>
+        <ul className="list-disc list-inside text-lg text-muted-foreground mb-6 space-y-2">
+          <li>Most major insurance plans now cover telehealth mental health services</li>
+          <li>Many plans cover online therapy at the same rate as in-person visits</li>
+          <li>The COVID-19 pandemic prompted permanent policy changes expanding telehealth coverage</li>
+          <li>Medicare and Medicaid now cover many telehealth services</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">What's typically covered:</h3>
+        <ul className="list-disc list-inside text-lg text-muted-foreground mb-6 space-y-2">
+          <li>Video therapy sessions with licensed providers</li>
+          <li>Psychiatric consultations via telehealth</li>
+          <li>Follow-up medication management appointments</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Factors that affect coverage:</h3>
+        <ul className="list-disc list-inside text-lg text-muted-foreground mb-6 space-y-2">
+          <li>Your specific insurance plan</li>
+          <li>Whether the provider is in-network</li>
+          <li>The state where you're located during the session</li>
+          <li>Your plan's general mental health benefits</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">How to verify your telehealth coverage:</h3>
+        <ol className="list-decimal list-inside text-lg text-muted-foreground mb-4 space-y-2">
+          <li>Call the member services number on your insurance card</li>
+          <li>Ask specifically about telehealth/telemedicine mental health benefits</li>
+          <li>Questions to ask:</li>
+        </ol>
+        <ul className="list-disc list-inside text-lg text-muted-foreground mb-6 space-y-2 ml-6">
+          <li>Is online/video therapy covered under my plan?</li>
+          <li>Is the coverage the same as in-person visits?</li>
+          <li>Do I need to use specific platforms or providers?</li>
+          <li>Are there any restrictions on telehealth services?</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Georgia Medicaid and online therapy:</h3>
+        <p className="text-lg text-muted-foreground mb-6">
+          Georgia Medicaid (through <Link to="/insurance/caresource" className="text-primary hover:underline">CareSource</Link>, <Link to="/insurance/amerigroup" className="text-primary hover:underline">Amerigroup</Link>, and <Link to="/insurance/peach-state" className="text-primary hover:underline">Peach State</Link>) covers telehealth mental health services. If you have Georgia Medicaid, you can access online therapy at little to no cost.
+        </p>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">At CHC:</h3>
+        <p className="text-lg text-muted-foreground">
+          We accept the same insurance for online therapy as we do for any services. Your copay is typically the same whether you're seen virtually or in person. We're in-network with most major insurance providers—<Link to="/insurance" className="text-primary hover:underline">view our full list</Link> or <Link to="/contact-us" className="text-primary hover:underline">contact us</Link> to verify your benefits.
+        </p>
+      </section>
+
+      {/* Section 9: Online Therapy vs. In-Person: How to Choose */}
+      <section className="mb-12">
+        <h2 id="online-therapy-vs-in-person" className="text-3xl font-bold text-foreground mb-6">Online Therapy vs. In-Person: How to Choose</h2>
+        
+        <p className="text-lg text-muted-foreground mb-6">
+          Both online and in-person therapy are effective. Here's how to decide which is right for you.
+        </p>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Choose online therapy if:</h3>
+        <ul className="list-disc list-inside text-lg text-muted-foreground mb-6 space-y-2">
+          <li>You have a busy schedule with little time for commuting</li>
+          <li>You live far from qualified therapists</li>
+          <li>You have mobility limitations or chronic health issues</li>
+          <li>You feel more comfortable in your own environment</li>
+          <li>You travel frequently and want consistency</li>
+          <li>You prefer the convenience and flexibility</li>
+          <li>Social anxiety makes office visits difficult</li>
+          <li>You lack reliable transportation</li>
+          <li>You have childcare challenges</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Choose in-person therapy if:</h3>
+        <ul className="list-disc list-inside text-lg text-muted-foreground mb-6 space-y-2">
+          <li>You strongly prefer face-to-face interaction</li>
+          <li>You don't have reliable internet or technology</li>
+          <li>Your home environment isn't private enough</li>
+          <li>You find technology stressful or distracting</li>
+          <li>You're dealing with severe crisis requiring close support</li>
+          <li>You want physical separation between therapy and home</li>
+          <li>Certain assessments or treatments require in-person presence</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Consider a hybrid approach:</h3>
+        <p className="text-lg text-muted-foreground mb-4">
+          Many people find that combining online and in-person sessions works well:
+        </p>
+        <ul className="list-disc list-inside text-lg text-muted-foreground mb-6 space-y-2">
+          <li>Start in-person to establish the relationship, then transition online</li>
+          <li>Do mostly online with occasional in-person sessions</li>
+          <li>Use in-person for intensive work, online for maintenance</li>
+          <li>Switch based on your schedule week to week</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Questions to ask yourself:</h3>
+        <ul className="list-disc list-inside text-lg text-muted-foreground mb-6 space-y-2">
+          <li>Do I have a private space for online sessions?</li>
+          <li>Am I comfortable with video technology?</li>
+          <li>What matters more to me—convenience or in-person connection?</li>
+          <li>What does my schedule realistically allow?</li>
+          <li>Have I had positive experiences with video calls in other contexts?</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">The most important factor:</h3>
+        <p className="text-lg text-muted-foreground mb-4">
+          Research consistently shows that the quality of the therapeutic relationship matters more than the format. A good therapist you connect with—whether online or in-person—will help you make progress.
+        </p>
+        
+        <p className="text-lg text-muted-foreground">
+          At <Link to="/online-therapy" className="text-primary hover:underline">Coping and Healing Counseling</Link>, we offer telehealth throughout Georgia. Many of our clients appreciate the flexibility to choose what works best for them.
+        </p>
+      </section>
+
+      {/* Section 10: Tips for Successful Online Therapy Sessions */}
+      <section className="mb-12">
+        <h2 id="tips-for-successful-online-therapy" className="text-3xl font-bold text-foreground mb-6">Tips for Successful Online Therapy Sessions</h2>
+        
+        <p className="text-lg text-muted-foreground mb-6">
+          Get the most from your online therapy experience with these practical tips.
+        </p>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Before your session:</h3>
+        <ul className="list-disc list-inside text-lg text-muted-foreground mb-6 space-y-2">
+          <li>Test your technology in advance</li>
+          <li>Charge your device or plug it in</li>
+          <li>Find your private, quiet space</li>
+          <li>Close unnecessary applications and browser tabs</li>
+          <li>Turn off notifications on your device</li>
+          <li>Have water, tissues, and any needed items nearby</li>
+          <li>Give yourself a few minutes to transition and settle</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">During your session:</h3>
+        <ul className="list-disc list-inside text-lg text-muted-foreground mb-6 space-y-2">
+          <li>Position the camera at eye level</li>
+          <li>Look at the camera when speaking (not your own image)</li>
+          <li>Sit in good lighting—face a window or lamp</li>
+          <li>Speak clearly and at a moderate pace</li>
+          <li>Don't worry about brief pauses or lags—they're normal</li>
+          <li>If you can't hear or see clearly, speak up immediately</li>
+          <li>Stay engaged—minimize multitasking temptations</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Creating the right environment:</h3>
+        <ul className="list-disc list-inside text-lg text-muted-foreground mb-6 space-y-2">
+          <li>Use headphones for privacy and better audio</li>
+          <li>Choose a neutral background or use a virtual background</li>
+          <li>Minimize visual distractions (TV off, clutter out of frame)</li>
+          <li>Consider a "do not disturb" sign on your door</li>
+          <li>Inform household members of your session time</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">If technical issues occur:</h3>
+        <ul className="list-disc list-inside text-lg text-muted-foreground mb-6 space-y-2">
+          <li>Stay calm—glitches happen to everyone</li>
+          <li>Have your therapist's phone number ready</li>
+          <li>Rejoin the video call if disconnected</li>
+          <li>Switch to phone if video fails completely</li>
+          <li>Your therapist is experienced in handling technical hiccups</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">After your session:</h3>
+        <ul className="list-disc list-inside text-lg text-muted-foreground mb-6 space-y-2">
+          <li>Give yourself a few minutes to decompress</li>
+          <li>Journal or reflect on what came up</li>
+          <li>Practice any skills discussed</li>
+          <li>Complete any homework assignments</li>
+          <li>Note topics you want to address next time</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Building rapport through a screen:</h3>
+        <ul className="list-disc list-inside text-lg text-muted-foreground mb-4 space-y-2">
+          <li>Be present—treat it like you're in the same room</li>
+          <li>Make eye contact by looking at the camera</li>
+          <li>Allow yourself to be expressive—gestures and facial expressions still communicate</li>
+          <li>Share your reactions—your therapist can't read the room as easily</li>
+          <li>Give feedback if something isn't working</li>
+        </ul>
+        
+        <p className="text-lg text-muted-foreground">
+          With a little practice, online therapy can feel as natural and effective as being in the same room with your therapist.
+        </p>
+      </section>
+
+      {/* Mid-Content CTA */}
+      <section className="my-12 bg-primary/5 border border-primary/20 rounded-xl p-8 text-center">
+        <h2 className="text-2xl font-bold text-foreground mb-4">Ready to Try Online Therapy?</h2>
+        <p className="text-lg text-muted-foreground mb-6 max-w-2xl mx-auto">
+          Experience the convenience of therapy from anywhere in Georgia. Our licensed therapists provide the same quality care online as in-person. Schedule your free consultation today.
+        </p>
+        <Link 
+          to="/therapist-matching" 
+          className="inline-flex items-center justify-center px-8 py-3 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-primary/90 transition-colors"
+        >
+          Schedule Free Consultation
+        </Link>
+      </section>
     </PillarPageTemplate>
   );
 };
