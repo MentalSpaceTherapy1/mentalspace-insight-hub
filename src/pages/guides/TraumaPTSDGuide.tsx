@@ -13,13 +13,21 @@ const TraumaPTSDGuide = () => {
       readTime={24}
       keywords="trauma guide, PTSD guide, PTSD symptoms, trauma therapy, EMDR therapy, trauma treatment, post-traumatic stress disorder, healing from trauma, trauma recovery"
       relatedServices={[
+        { title: "PTSD Therapy in Georgia", url: "/ptsd-therapy-georgia" },
         { title: "Online Therapy", url: "/online-therapy" },
-        { title: "PTSD Therapy in Georgia", url: "/ptsd-therapy-georgia" }
+        { title: "Anxiety Therapy", url: "/anxiety-therapy-georgia" },
+        { title: "Depression Therapy", url: "/depression-therapy-georgia" }
       ]}
       relatedArticles={[
-        { title: "PTSD Recovery", url: "/blog/ptsd-recovery" },
         { title: "EMDR Therapy", url: "/blog/emdr-therapy" },
-        { title: "PTSD Information", url: "/mental-health-library/ptsd" }
+        { title: "PTSD Recovery Guide", url: "/blog/ptsd-recovery" },
+        { title: "Understanding Anxiety", url: "/blog/understanding-anxiety" },
+        { title: "Cognitive Behavioral Therapy", url: "/blog/cognitive-behavioral-therapy" }
+      ]}
+      relatedGuides={[
+        { title: "Anxiety Guide", url: "/guides/anxiety" },
+        { title: "Depression Guide", url: "/guides/depression" },
+        { title: "Starting Therapy Guide", url: "/guides/starting-therapy" }
       ]}
     >
       {/* Section 1: What Is Trauma? */}
@@ -495,7 +503,187 @@ const TraumaPTSDGuide = () => {
         </Link>
       </div>
 
-      {/* Placeholder for sections 11-13 - to be added in Part 3 */}
+      {/* Section 11: When to Seek Professional Help for Trauma */}
+      <h2 id="when-to-seek-help">When to Seek Professional Help for Trauma</h2>
+      <p>
+        While some people recover from traumatic experiences on their own, others benefit significantly from professional support. Consider seeking help if:
+      </p>
+
+      <h3>Symptoms persist</h3>
+      <p>
+        If you're still experiencing significant trauma symptoms more than a month after the event—flashbacks, nightmares, hypervigilance, avoidance—professional treatment can help.
+      </p>
+
+      <h3>Daily life is affected</h3>
+      <p>
+        When trauma symptoms interfere with your ability to work, maintain relationships, care for yourself, or enjoy life, it's time to reach out.
+      </p>
+
+      <h3>You're avoiding more and more</h3>
+      <p>
+        If your world is getting smaller—avoiding places, people, activities, or situations because of trauma—therapy can help you reclaim your life.
+      </p>
+
+      <h3>You're using unhealthy coping mechanisms</h3>
+      <p>
+        If you're turning to alcohol, drugs, food, self-harm, or other unhealthy behaviors to manage trauma symptoms, professional support can help you develop healthier strategies.
+      </p>
+
+      <h3>Relationships are suffering</h3>
+      <p>
+        When trauma affects your ability to connect with others, trust people, or maintain healthy relationships, therapy can help.
+      </p>
+
+      <h3>You're experiencing depression or anxiety</h3>
+      <p>
+        Trauma often leads to or worsens depression and <Link to="/mental-health-library/anxiety" className="text-primary hover:underline">anxiety</Link>. If you're experiencing symptoms of these conditions alongside trauma, comprehensive treatment is important.
+      </p>
+
+      <h3>You're having thoughts of suicide or self-harm</h3>
+      <p>If trauma has led to thoughts of hurting yourself, please reach out immediately:</p>
+      <ul>
+        <li>Call or text 988 (Suicide & Crisis Lifeline)</li>
+        <li>Text HOME to 741741 (Crisis Text Line)</li>
+        <li>Go to your nearest emergency room</li>
+        <li>Visit our <Link to="/emergency-resources" className="text-primary hover:underline">emergency resources page</Link></li>
+      </ul>
+
+      <h3>You want support</h3>
+      <p>
+        You don't need to be in crisis to benefit from trauma therapy. If you've experienced trauma and want help processing it, that's reason enough to seek support.
+      </p>
+      <p>
+        At <Link to="/therapist-matching" className="text-primary hover:underline">Coping and Healing Counseling</Link>, we offer free consultations to help you determine if trauma therapy is right for you.
+      </p>
+
+      {/* Section 12: The Path to Recovery */}
+      <h2 id="path-to-recovery">The Path to Recovery</h2>
+      <p>
+        Recovery from trauma is possible. Understanding what the journey looks like can help you navigate it with realistic expectations.
+      </p>
+
+      <h3>What recovery looks like</h3>
+      <p>Trauma recovery doesn't mean forgetting what happened or never being affected by it again. Instead, recovery means:</p>
+      <ul>
+        <li>Memories of the trauma no longer overwhelm you</li>
+        <li>You can think about what happened without being flooded by emotions</li>
+        <li>Triggers are less frequent and less intense</li>
+        <li>You feel safe in your body and in the world</li>
+        <li>You can engage in relationships and activities again</li>
+        <li>The trauma becomes part of your past, not the center of your present</li>
+        <li>You've made meaning from your experience</li>
+      </ul>
+
+      <h3>Stages of trauma recovery</h3>
+      <p>While everyone's path is different, trauma recovery often moves through stages:</p>
+      <ol className="list-decimal pl-6 space-y-2">
+        <li><strong>Safety and stabilization:</strong> Establishing safety, developing coping skills, and building resources before processing trauma</li>
+        <li><strong>Processing trauma:</strong> Working through traumatic memories using approaches like EMDR or CPT</li>
+        <li><strong>Reconnection and integration:</strong> Rebuilding your life, relationships, and sense of self; finding meaning and purpose</li>
+      </ol>
+      <p>
+        These stages aren't always linear—you may move back and forth between them, especially during stressful times.
+      </p>
+
+      <h3>How long does recovery take?</h3>
+      <p>There's no standard timeline for trauma recovery. Factors that affect duration include:</p>
+      <ul>
+        <li>The type and severity of trauma</li>
+        <li>Whether trauma was single-incident or ongoing</li>
+        <li>Your support system</li>
+        <li>Other life stressors</li>
+        <li>Previous mental health history</li>
+        <li>The type of treatment you receive</li>
+      </ul>
+      <p>
+        Some people experience significant improvement in a few months of treatment; others benefit from longer-term support. Your therapist will help you assess progress along the way.
+      </p>
+
+      <h3>Post-traumatic growth</h3>
+      <p>Many trauma survivors eventually experience what's called "post-traumatic growth"—positive psychological change that results from struggling with highly challenging life circumstances. This might include:</p>
+      <ul>
+        <li>Greater appreciation for life</li>
+        <li>Deeper relationships</li>
+        <li>Recognition of personal strength</li>
+        <li>New possibilities and paths</li>
+        <li>Spiritual or existential growth</li>
+      </ul>
+      <p>
+        Post-traumatic growth doesn't minimize the pain of trauma—it acknowledges that some people find unexpected meaning and transformation through their healing journey.
+      </p>
+
+      {/* Section 13: Trauma and PTSD Treatment at Coping and Healing Counseling */}
+      <h2 id="treatment-at-chc">Trauma and PTSD Treatment at Coping and Healing Counseling</h2>
+      <p>
+        If you're struggling with the effects of trauma, our team at Coping and Healing Counseling is here to help you heal.
+      </p>
+
+      <h3>Our approach to trauma treatment</h3>
+      <p>We believe effective trauma therapy should be:</p>
+      <ul>
+        <li><strong>Safe:</strong> We prioritize creating a secure therapeutic environment where you feel in control</li>
+        <li><strong>Evidence-based:</strong> We use proven treatments like <Link to="/blog/emdr-therapy" className="text-primary hover:underline">EMDR</Link>, CPT, and trauma-focused CBT</li>
+        <li><strong>Individualized:</strong> We tailor treatment to your specific trauma, symptoms, and goals</li>
+        <li><strong>Paced appropriately:</strong> We don't push you faster than you're ready to go</li>
+        <li><strong>Holistic:</strong> We address how trauma affects your whole life—body, mind, relationships, and spirit</li>
+        <li><strong>Empowering:</strong> Our goal is to help you develop your own capacity for healing</li>
+      </ul>
+
+      <h3>What to expect</h3>
+      <p>When you work with us for trauma treatment:</p>
+      <ol className="list-decimal pl-6 space-y-2">
+        <li>We start with a thorough assessment of your trauma history and current symptoms</li>
+        <li>We develop a treatment plan tailored to your needs and goals</li>
+        <li>We focus first on safety, stabilization, and building coping skills</li>
+        <li>When you're ready, we use evidence-based approaches to process traumatic memories</li>
+        <li>We support you in rebuilding your life and relationships</li>
+        <li>We help you develop skills to maintain your gains long-term</li>
+      </ol>
+
+      <h3>Our services</h3>
+      <ul>
+        <li><Link to="/ptsd-therapy-georgia" className="text-primary hover:underline">PTSD therapy</Link> for Georgia residents</li>
+        <li><Link to="/blog/emdr-therapy" className="text-primary hover:underline">EMDR therapy</Link> for trauma processing</li>
+        <li>Treatment for childhood trauma and complex PTSD</li>
+        <li><Link to="/online-therapy" className="text-primary hover:underline">Online trauma therapy</Link> throughout Georgia</li>
+        <li>Support for anxiety and <Link to="/mental-health-library/depression" className="text-primary hover:underline">depression</Link> related to trauma</li>
+        <li>Help for secondary and vicarious trauma</li>
+      </ul>
+
+      <h3>Getting started is easy</h3>
+      <ul>
+        <li><strong>Free consultation:</strong> <Link to="/therapist-matching" className="text-primary hover:underline">Schedule a free consultation</Link> to discuss your situation</li>
+        <li><strong>Quick appointments:</strong> Most clients get an appointment within 24 hours</li>
+        <li><strong>Insurance accepted:</strong> We accept most major insurance including <Link to="/insurance/caresource" className="text-primary hover:underline">CareSource</Link>, <Link to="/insurance/amerigroup" className="text-primary hover:underline">Amerigroup</Link>, <Link to="/insurance/aetna" className="text-primary hover:underline">Aetna</Link>, <Link to="/insurance/bluecross-blueshield" className="text-primary hover:underline">BlueCross BlueShield</Link>, and <Link to="/insurance" className="text-primary hover:underline">more</Link></li>
+        <li><strong>Georgia Medicaid:</strong> Accepted through CareSource, Amerigroup, and Peach State</li>
+        <li><strong>Self-pay option:</strong> $75/week (minimum 4 sessions)</li>
+        <li><strong>Flexible hours:</strong> 7am-7pm, 7 days a week</li>
+      </ul>
+      <p>
+        You don't have to carry the weight of trauma alone. Healing is possible, and we're here to support you every step of the way.
+      </p>
+
+      {/* Final CTA */}
+      <div className="my-12 p-8 bg-primary/10 rounded-2xl border border-primary/30 text-center">
+        <h3 className="text-2xl font-semibold text-foreground mb-4">Take the First Step Toward Healing</h3>
+        <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
+          Trauma doesn't have to define your life. Our compassionate, specialized therapists are here to help you process difficult experiences and reclaim your sense of safety and peace. Schedule your free consultation today—appointments available within 24 hours.
+        </p>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <Link
+            to="/therapist-matching"
+            className="inline-flex items-center justify-center px-8 py-3 bg-primary text-primary-foreground font-medium rounded-lg hover:bg-primary/90 transition-colors"
+          >
+            Schedule Free Consultation
+          </Link>
+          <Link
+            to="/blog/emdr-therapy"
+            className="text-primary hover:underline font-medium"
+          >
+            Learn more about EMDR therapy →
+          </Link>
+        </div>
+      </div>
     </PillarPageTemplate>
   );
 };
