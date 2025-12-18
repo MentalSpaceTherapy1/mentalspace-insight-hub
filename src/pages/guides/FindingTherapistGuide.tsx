@@ -13,14 +13,16 @@ const FindingTherapistGuide = () => {
       readTime={15}
       keywords="find a therapist, how to find a therapist, choosing a therapist, therapist credentials, questions to ask therapist, right therapist for me, finding mental health provider"
       relatedServices={[
-        { title: "Therapist Matching", url: "/therapist-matching" },
         { title: "Online Therapy", url: "/online-therapy" },
+        { title: "Anxiety Therapy", url: "/anxiety-therapy-georgia" },
+        { title: "Depression Therapy", url: "/depression-therapy-georgia" },
         { title: "Couples Therapy", url: "/couples-therapy" }
       ]}
       relatedArticles={[
         { title: "Finding the Right Therapist", url: "/blog/finding-right-therapist-guide" },
-        { title: "CBT Therapy Explained", url: "/blog/cognitive-behavioral-therapy" },
-        { title: "FAQ", url: "/faq" }
+        { title: "Benefits of Online Therapy", url: "/blog/benefits-online-therapy" },
+        { title: "Understanding Anxiety", url: "/blog/understanding-anxiety" },
+        { title: "CBT Therapy", url: "/blog/cognitive-behavioral-therapy" }
       ]}
       relatedGuides={[
         { title: "Starting Therapy Guide", url: "/guides/starting-therapy" },
@@ -613,6 +615,205 @@ const FindingTherapistGuide = () => {
         >
           Get Matched with a Therapist
         </Link>
+      </section>
+
+      {/* Section 11: What to Do If Therapy Isn't Working */}
+      <section className="mb-12">
+        <h2 id="what-to-do-if-therapy-isnt-working" className="text-3xl font-bold text-foreground mb-6">What to Do If Therapy Isn't Working</h2>
+        
+        <p className="text-lg text-muted-foreground mb-6">
+          Sometimes therapy doesn't seem to be helping. Before giving up, consider these steps.
+        </p>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">First, assess what "not working" means:</h3>
+        <ul className="list-disc list-inside text-lg text-muted-foreground mb-6 space-y-2">
+          <li>Are you not feeling better? (Progress can be slow and non-linear)</li>
+          <li>Do you dread sessions? (Some discomfort is normal; dread is a warning sign)</li>
+          <li>Is there no connection with your therapist?</li>
+          <li>Are you not learning anything or gaining insight?</li>
+          <li>Have you been going for months without any change?</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Talk to your therapist:</h3>
+        <p className="text-lg text-muted-foreground mb-4">
+          The most important step is bringing this up with your therapist. It might feel awkward, but good therapists welcome this conversation. You might say:
+        </p>
+        <ul className="list-disc list-inside text-lg text-muted-foreground mb-6 space-y-2">
+          <li>"I'm not sure therapy is helping. Can we talk about that?"</li>
+          <li>"I feel stuck. What do you think is going on?"</li>
+          <li>"I'm wondering if we should try a different approach."</li>
+        </ul>
+        <p className="text-lg text-muted-foreground mb-6">
+          This conversation can lead to adjustments that make therapy more effective—changing techniques, focusing on different issues, or increasing/decreasing session frequency.
+        </p>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Consider these possibilities:</h3>
+        
+        <h4 className="text-lg font-medium text-foreground mb-2">The approach isn't right:</h4>
+        <p className="text-lg text-muted-foreground mb-4">
+          Different problems respond to different treatments. If you're doing insight-oriented therapy but need skills-based work (or vice versa), the approach may need to change.
+        </p>
+        
+        <h4 className="text-lg font-medium text-foreground mb-2">You're avoiding the real issues:</h4>
+        <p className="text-lg text-muted-foreground mb-4">
+          Sometimes therapy stalls because we're not addressing what really needs attention. Are you holding back about something important?
+        </p>
+        
+        <h4 className="text-lg font-medium text-foreground mb-2">External factors are interfering:</h4>
+        <p className="text-lg text-muted-foreground mb-4">
+          Are you practicing skills between sessions? Is your life situation making it hard to focus on therapy? Are substances, relationships, or other factors undermining progress?
+        </p>
+        
+        <h4 className="text-lg font-medium text-foreground mb-2">It's the wrong fit:</h4>
+        <p className="text-lg text-muted-foreground mb-4">
+          Despite best efforts, some therapist-client pairs don't click. This isn't anyone's fault—fit is personal and unpredictable.
+        </p>
+        
+        <h4 className="text-lg font-medium text-foreground mb-2">You need a different level of care:</h4>
+        <p className="text-lg text-muted-foreground mb-6">
+          Some situations require more intensive treatment—intensive outpatient programs, psychiatric care, or specialized facilities. A good therapist will recognize this and refer appropriately.
+        </p>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Give feedback:</h3>
+        <p className="text-lg text-muted-foreground">
+          Even if you ultimately switch therapists, providing honest feedback helps your current therapist and helps you clarify what you need going forward.
+        </p>
+      </section>
+
+      {/* Section 12: Switching Therapists */}
+      <section className="mb-12">
+        <h2 id="switching-therapists" className="text-3xl font-bold text-foreground mb-6">Switching Therapists</h2>
+        
+        <p className="text-lg text-muted-foreground mb-6">
+          If you've decided your current therapist isn't right, here's how to make a smooth transition.
+        </p>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">It's okay to switch:</h3>
+        <p className="text-lg text-muted-foreground mb-6">
+          Changing therapists is common and nothing to feel guilty about. Therapists understand that fit matters, and they want you to get help even if it's not with them. You don't owe anyone an explanation beyond "I've decided to try a different approach."
+        </p>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">How to end with your current therapist:</h3>
+        
+        <h4 className="text-lg font-medium text-foreground mb-2">Option 1: Have a conversation</h4>
+        <p className="text-lg text-muted-foreground mb-4">
+          If you're comfortable, tell your therapist you're moving on. This allows for a proper ending to the therapeutic relationship, transfer of relevant information to your new therapist, feedback that might help the therapist, and closure for both of you.
+        </p>
+        <p className="text-lg text-muted-foreground mb-4">
+          You might say: "I've appreciated our work together, but I've decided to try working with someone else. Thank you for your help."
+        </p>
+        
+        <h4 className="text-lg font-medium text-foreground mb-2">Option 2: Brief notification</h4>
+        <p className="text-lg text-muted-foreground mb-4">
+          If a conversation feels too difficult, a brief message (email, portal, phone) is acceptable: "I've decided not to continue therapy at this time. Thank you for your help."
+        </p>
+        
+        <h4 className="text-lg font-medium text-foreground mb-2">Option 3: Cancellation without explanation</h4>
+        <p className="text-lg text-muted-foreground mb-6">
+          While not ideal, you can simply cancel future appointments. You're not obligated to explain your decision to anyone.
+        </p>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">What about your records?</h3>
+        <ul className="list-disc list-inside text-lg text-muted-foreground mb-6 space-y-2">
+          <li>You can request your records be transferred to a new therapist</li>
+          <li>Sign a release authorizing the transfer</li>
+          <li>Your new therapist can coordinate this</li>
+          <li>Records are yours—you're entitled to them</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Starting fresh:</h3>
+        <p className="text-lg text-muted-foreground mb-4">When beginning with a new therapist:</p>
+        <ul className="list-disc list-inside text-lg text-muted-foreground mb-6 space-y-2">
+          <li>Share what worked and didn't work before</li>
+          <li>Be clear about what you're looking for this time</li>
+          <li>Don't assume it will be the same experience</li>
+          <li>Give the new relationship a fair chance</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Don't let one bad experience stop you:</h3>
+        <p className="text-lg text-muted-foreground">
+          Finding the right therapist sometimes takes a few tries. A poor experience with one therapist doesn't mean therapy won't work for you—it means you haven't found the right person yet.
+        </p>
+      </section>
+
+      {/* Section 13: Finding a Therapist at Coping and Healing Counseling */}
+      <section className="mb-12">
+        <h2 id="finding-a-therapist-at-chc" className="text-3xl font-bold text-foreground mb-6">Finding a Therapist at Coping and Healing Counseling</h2>
+        
+        <p className="text-lg text-muted-foreground mb-6">
+          At Coping and Healing Counseling, we've designed our process to make finding the right therapist simple.
+        </p>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Our matching process:</h3>
+        <p className="text-lg text-muted-foreground mb-4">We don't leave finding the right fit to chance. When you contact us:</p>
+        <ol className="list-decimal list-inside text-lg text-muted-foreground mb-6 space-y-2">
+          <li><strong>Free consultation:</strong> We start with a free conversation to understand your needs, concerns, preferences, and goals.</li>
+          <li><strong>Personalized matching:</strong> Based on what you share, we match you with a therapist whose expertise, style, and availability fit your situation.</li>
+          <li><strong>Quick start:</strong> Most clients get an appointment within 24 hours. No long waitlists.</li>
+          <li><strong>Ongoing fit:</strong> If your first match isn't quite right, we'll work with you to find a better fit—no extra cost, no hassle.</li>
+        </ol>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Our therapists:</h3>
+        <p className="text-lg text-muted-foreground mb-4">Our team includes licensed professionals with diverse backgrounds and specialties:</p>
+        <ul className="list-disc list-inside text-lg text-muted-foreground mb-6 space-y-2">
+          <li>Anxiety and depression experts</li>
+          <li>Trauma specialists trained in <Link to="/blog/emdr-therapy" className="text-primary hover:underline">EMDR</Link></li>
+          <li>Couples and relationship therapists</li>
+          <li>Teen and adolescent counselors</li>
+          <li>Therapists with various cultural competencies</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">What sets us apart:</h3>
+        <ul className="list-disc list-inside text-lg text-muted-foreground mb-6 space-y-2">
+          <li><strong>Georgia-wide access:</strong> <Link to="/online-therapy" className="text-primary hover:underline">Online therapy</Link> throughout the state</li>
+          <li><strong>Insurance friendly:</strong> We accept most major insurance including <Link to="/insurance/caresource" className="text-primary hover:underline">CareSource</Link>, <Link to="/insurance/amerigroup" className="text-primary hover:underline">Amerigroup</Link>, <Link to="/insurance/peach-state" className="text-primary hover:underline">Peach State</Link>, <Link to="/insurance/aetna" className="text-primary hover:underline">Aetna</Link>, <Link to="/insurance/bluecross-blueshield" className="text-primary hover:underline">BlueCross BlueShield</Link>, <Link to="/insurance/cigna" className="text-primary hover:underline">Cigna</Link>, <Link to="/insurance/humana" className="text-primary hover:underline">Humana</Link>, and <Link to="/insurance" className="text-primary hover:underline">more</Link></li>
+          <li><strong>Medicaid accepted:</strong> Georgia Medicaid through CareSource, Amerigroup, and Peach State</li>
+          <li><strong>Affordable self-pay:</strong> $75/week (minimum 4 sessions) without insurance</li>
+          <li><strong>Flexible scheduling:</strong> 7am-7pm, 7 days a week</li>
+          <li><strong>No long waits:</strong> Appointments available within 24 hours</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Services we offer:</h3>
+        <ul className="list-disc list-inside text-lg text-muted-foreground mb-6 space-y-2">
+          <li>Individual therapy for <Link to="/anxiety-therapy-georgia" className="text-primary hover:underline">anxiety</Link>, <Link to="/depression-therapy-georgia" className="text-primary hover:underline">depression</Link>, <Link to="/ptsd-therapy-georgia" className="text-primary hover:underline">trauma</Link>, and more</li>
+          <li><Link to="/couples-therapy-georgia" className="text-primary hover:underline">Couples counseling</Link></li>
+          <li><Link to="/teen-therapy-georgia" className="text-primary hover:underline">Teen therapy</Link></li>
+          <li><Link to="/online-therapy-georgia" className="text-primary hover:underline">Online therapy</Link> throughout Georgia</li>
+        </ul>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">Getting started is easy:</h3>
+        <ol className="list-decimal list-inside text-lg text-muted-foreground mb-6 space-y-2">
+          <li><Link to="/therapist-matching" className="text-primary hover:underline">Schedule your free consultation</Link></li>
+          <li>Tell us about your needs and preferences</li>
+          <li>Get matched with a therapist</li>
+          <li>Book your first appointment (often within 24 hours)</li>
+        </ol>
+        
+        <p className="text-lg text-muted-foreground">
+          Finding the right therapist shouldn't be stressful. Let us do the matching for you.
+        </p>
+      </section>
+
+      {/* Final CTA */}
+      <section className="my-12 bg-primary/10 border border-primary/30 rounded-xl p-8 text-center">
+        <h2 className="text-2xl font-bold text-foreground mb-4">Ready to Find Your Therapist?</h2>
+        <p className="text-lg text-muted-foreground mb-6 max-w-2xl mx-auto">
+          Skip the endless searching. Schedule a free consultation and we'll match you with a therapist who fits your needs, your schedule, and your budget. Appointments available within 24 hours.
+        </p>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <Link 
+            to="/therapist-matching" 
+            className="inline-flex items-center justify-center px-8 py-3 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-primary/90 transition-colors"
+          >
+            Schedule Free Consultation
+          </Link>
+          <Link 
+            to="/online-therapy" 
+            className="text-primary hover:underline font-medium"
+          >
+            Learn about our services →
+          </Link>
+        </div>
       </section>
     </PillarPageTemplate>
   );
