@@ -112,8 +112,11 @@ const Insurance = () => {
             <p className="text-xl md:text-2xl mb-8 text-muted-foreground max-w-4xl mx-auto">
               We accept most major insurance plans throughout Georgia, making quality mental healthcare accessible and affordable. Our in-network status with leading insurance providers means you can focus on your healing journey while we handle the billing complexities.
             </p>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-lg text-muted-foreground mb-4">
               <strong>And more</strong> - We work with additional insurance providers not listed here. Contact us to verify your coverage.
+            </p>
+            <p className="text-base text-muted-foreground">
+              <Link to="/guides/therapy-cost" className="text-primary hover:underline font-medium">Read our complete guide to therapy costs and insurance →</Link>
             </p>
           </div>
         </section>

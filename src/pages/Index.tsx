@@ -8,7 +8,7 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
-import { CheckCircle, Calendar, Shield, DollarSign, ClipboardList, Users, Play, Star, ArrowRight, Zap, Heart, Clock, Brain } from "lucide-react";
+import { CheckCircle, Calendar, Shield, DollarSign, ClipboardList, Users, Play, Star, ArrowRight, Zap, Heart, Clock, Brain, BookOpen } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useSEO, SEO_CONFIGS } from "@/hooks/useSEO";
 import ResponsiveImage from "@/components/ResponsiveImage";
@@ -450,6 +450,52 @@ const Index = () => {
                   Start Your Journey Today
                   <ArrowRight className="ml-2" />
                 </Button>
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Helpful Guides Section */}
+        <section className="py-20 px-4 bg-background">
+          <div className="container mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gradient">
+                Helpful Guides & Resources
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                Free comprehensive guides to help you understand mental health and make informed decisions about therapy.
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto mb-8">
+              <Link to="/guides/starting-therapy" className="group p-6 bg-card border border-border rounded-xl hover:border-primary/50 hover:shadow-lg transition-all">
+                <BookOpen className="h-8 w-8 text-primary mb-3" />
+                <h3 className="font-semibold mb-2 group-hover:text-primary transition-colors">Starting Therapy</h3>
+                <p className="text-sm text-muted-foreground">Everything you need to know to begin your therapy journey.</p>
+              </Link>
+              
+              <Link to="/guides/anxiety" className="group p-6 bg-card border border-border rounded-xl hover:border-primary/50 hover:shadow-lg transition-all">
+                <Brain className="h-8 w-8 text-primary mb-3" />
+                <h3 className="font-semibold mb-2 group-hover:text-primary transition-colors">Understanding Anxiety</h3>
+                <p className="text-sm text-muted-foreground">Learn about symptoms, types, and effective treatments.</p>
+              </Link>
+              
+              <Link to="/guides/depression" className="group p-6 bg-card border border-border rounded-xl hover:border-primary/50 hover:shadow-lg transition-all">
+                <Heart className="h-8 w-8 text-primary mb-3" />
+                <h3 className="font-semibold mb-2 group-hover:text-primary transition-colors">Understanding Depression</h3>
+                <p className="text-sm text-muted-foreground">Signs, causes, and how therapy can help you recover.</p>
+              </Link>
+              
+              <Link to="/guides/therapy-cost" className="group p-6 bg-card border border-border rounded-xl hover:border-primary/50 hover:shadow-lg transition-all">
+                <DollarSign className="h-8 w-8 text-primary mb-3" />
+                <h3 className="font-semibold mb-2 group-hover:text-primary transition-colors">Therapy Costs & Insurance</h3>
+                <p className="text-sm text-muted-foreground">Understand costs, coverage, and make therapy affordable.</p>
+              </Link>
+            </div>
+            
+            <div className="text-center">
+              <Link to="/guides" className="inline-flex items-center text-primary font-medium hover:underline">
+                View All Guides <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </div>
           </div>
