@@ -109,6 +109,7 @@ import ComplexPTSDvsPTSD from "./pages/blog/ComplexPTSDvsPTSD";
 import ChildhoodTraumaEffectsAdults from "./pages/blog/ChildhoodTraumaEffectsAdults";
 import RebuildingTrustAfterInfidelity from "./pages/blog/RebuildingTrustAfterInfidelity";
 import HowToKnowTherapyIsWorking from "./pages/blog/HowToKnowTherapyIsWorking";
+import TherapyConfidentiality from "./pages/blog/TherapyConfidentiality";
 
 import Depression from "./pages/conditions/Depression";
 import Anxiety from "./pages/conditions/Anxiety";
@@ -286,6 +287,7 @@ const App = () => {
                 <Route path="/blog/childhood-trauma-effects-adults" element={<ChildhoodTraumaEffectsAdults />} />
                 <Route path="/blog/rebuilding-trust-after-infidelity" element={<RebuildingTrustAfterInfidelity />} />
                 <Route path="/blog/how-to-know-therapy-is-working" element={<HowToKnowTherapyIsWorking />} />
+                <Route path="/blog/therapy-confidentiality" element={<TherapyConfidentiality />} />
                 
                 <Route path="/mental-health-library/depression" element={<Depression />} />
                 <Route path="/mental-health-library/anxiety" element={<Anxiety />} />
