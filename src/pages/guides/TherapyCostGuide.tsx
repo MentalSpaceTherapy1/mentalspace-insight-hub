@@ -345,6 +345,373 @@ const TherapyCostGuide = () => {
           Understanding these terms helps you predict your costs and avoid surprises. If you have questions about your specific benefits, <Link to="/contact-us" className="text-primary hover:underline">contact us</Link>—we're happy to help.
         </p>
       </section>
+      {/* Section 6: How to Use Your Insurance for Therapy */}
+      <section className="mb-12">
+        <h2 id="how-to-use-your-insurance-for-therapy" className="text-3xl font-bold text-foreground mb-6">How to Use Your Insurance for Therapy</h2>
+        
+        <p className="text-lg text-muted-foreground mb-6">
+          Navigating insurance for mental health services doesn't have to be complicated. Here's a step-by-step guide.
+        </p>
+
+        <h3 className="text-xl font-semibold text-foreground mb-4">Step 1: Verify your benefits</h3>
+        <p className="text-muted-foreground mb-4">Before scheduling, understand what your plan covers:</p>
+        <ul className="list-disc pl-6 mb-6 space-y-2 text-muted-foreground">
+          <li>Call the member services number on your insurance card</li>
+          <li>Ask about outpatient mental health benefits</li>
+          <li>Confirm your copay, deductible, and any session limits</li>
+          <li>Ask if you need pre-authorization</li>
+        </ul>
+        <p className="text-muted-foreground mb-6">
+          Or let us help—at <Link to="/contact-us" className="text-primary hover:underline">CHC</Link>, we offer free benefit verification.
+        </p>
+
+        <h3 className="text-xl font-semibold text-foreground mb-4">Step 2: Find an in-network provider</h3>
+        <p className="text-muted-foreground mb-4">Using in-network providers saves you money:</p>
+        <ul className="list-disc pl-6 mb-6 space-y-2 text-muted-foreground">
+          <li>Check your insurance company's provider directory online</li>
+          <li>Call member services and ask for in-network therapists</li>
+          <li>When you find a provider you're interested in, confirm they're still in-network (directories can be outdated)</li>
+        </ul>
+
+        <h3 className="text-xl font-semibold text-foreground mb-4">Step 3: Schedule your appointment</h3>
+        <p className="text-muted-foreground mb-4">When scheduling:</p>
+        <ul className="list-disc pl-6 mb-6 space-y-2 text-muted-foreground">
+          <li>Provide your insurance information</li>
+          <li>Ask about any upfront costs</li>
+          <li>Confirm the provider will bill your insurance directly</li>
+        </ul>
+
+        <h3 className="text-xl font-semibold text-foreground mb-4">Step 4: Attend your session</h3>
+        <p className="text-muted-foreground mb-4">At your appointment:</p>
+        <ul className="list-disc pl-6 mb-6 space-y-2 text-muted-foreground">
+          <li>Bring your insurance card</li>
+          <li>Be prepared to pay your copay at the time of service</li>
+          <li>Complete any required paperwork</li>
+        </ul>
+
+        <h3 className="text-xl font-semibold text-foreground mb-4">Step 5: Review your Explanation of Benefits (EOB)</h3>
+        <p className="text-muted-foreground mb-4">After your session, you'll receive an EOB from your insurance:</p>
+        <ul className="list-disc pl-6 mb-6 space-y-2 text-muted-foreground">
+          <li>This is not a bill—it's a summary of how the claim was processed</li>
+          <li>Review it to ensure accuracy</li>
+          <li>If something seems wrong, contact your insurance company</li>
+        </ul>
+
+        <h3 className="text-xl font-semibold text-foreground mb-4">Common issues and solutions:</h3>
+        <ul className="list-disc pl-6 mb-6 space-y-2 text-muted-foreground">
+          <li><strong>Claim denied:</strong> Ask why and whether you can appeal</li>
+          <li><strong>Higher-than-expected cost:</strong> Verify you're seeing an in-network provider</li>
+          <li><strong>Surprise bill:</strong> Contact your insurance company and the provider's billing department</li>
+        </ul>
+
+        <h3 className="text-xl font-semibold text-foreground mb-4">At CHC:</h3>
+        <p className="text-lg text-muted-foreground">
+          We handle insurance billing directly, so you can focus on your therapy rather than paperwork. We'll verify your benefits, submit claims, and help you understand your costs upfront.
+        </p>
+      </section>
+
+      {/* Section 7: Therapy Without Insurance: Self-Pay Options */}
+      <section className="mb-12">
+        <h2 id="therapy-without-insurance-self-pay-options" className="text-3xl font-bold text-foreground mb-6">Therapy Without Insurance: Self-Pay Options</h2>
+        
+        <p className="text-lg text-muted-foreground mb-6">
+          If you don't have insurance or prefer not to use it, you still have options for affordable therapy.
+        </p>
+
+        <h3 className="text-xl font-semibold text-foreground mb-4">Why some people choose self-pay:</h3>
+        <ul className="list-disc pl-6 mb-6 space-y-2 text-muted-foreground">
+          <li>No insurance or inadequate mental health coverage</li>
+          <li>Prefer to keep therapy private (insurance requires a diagnosis on record)</li>
+          <li>Want to choose any therapist, not just in-network providers</li>
+          <li>Have a high-deductible plan where they'd pay out-of-pocket anyway</li>
+        </ul>
+
+        <h3 className="text-xl font-semibold text-foreground mb-4">Self-pay rates vary widely:</h3>
+        <ul className="list-disc pl-6 mb-6 space-y-2 text-muted-foreground">
+          <li>National average: $100-$200 per session</li>
+          <li>Can range from $60 to $300+ depending on location, credentials, and specialty</li>
+          <li>At Coping and Healing Counseling: $75/week (minimum 4 sessions)</li>
+        </ul>
+
+        <h3 className="text-xl font-semibold text-foreground mb-4">Ways to make self-pay affordable:</h3>
+        
+        <div className="space-y-4 mb-6">
+          <div>
+            <h4 className="text-lg font-semibold text-foreground mb-2">Sliding scale fees</h4>
+            <p className="text-muted-foreground">Many therapists offer reduced rates based on your income. Don't be afraid to ask—therapists want to help and often have flexibility.</p>
+          </div>
+
+          <div>
+            <h4 className="text-lg font-semibold text-foreground mb-2">Community mental health centers</h4>
+            <p className="text-muted-foreground">These offer services on a sliding scale based on ability to pay, sometimes as low as $5-$20 per session.</p>
+          </div>
+
+          <div>
+            <h4 className="text-lg font-semibold text-foreground mb-2">Training clinics</h4>
+            <p className="text-muted-foreground">University counseling programs offer low-cost therapy provided by supervised graduate students. Quality is often excellent.</p>
+          </div>
+
+          <div>
+            <h4 className="text-lg font-semibold text-foreground mb-2">Employee Assistance Programs (EAP)</h4>
+            <p className="text-muted-foreground">Many employers offer free short-term counseling through EAPs—typically 3-8 sessions at no cost. Check with your HR department.</p>
+          </div>
+
+          <div>
+            <h4 className="text-lg font-semibold text-foreground mb-2">Open Path Collective</h4>
+            <p className="text-muted-foreground">A nonprofit that connects people with therapists who offer sessions for $30-$80.</p>
+          </div>
+
+          <div>
+            <h4 className="text-lg font-semibold text-foreground mb-2">Group therapy</h4>
+            <p className="text-muted-foreground">Often more affordable than individual therapy and can be just as effective for many concerns.</p>
+          </div>
+
+          <div>
+            <h4 className="text-lg font-semibold text-foreground mb-2">Online therapy platforms</h4>
+            <p className="text-muted-foreground">Some offer lower rates than traditional in-person therapy, though quality varies.</p>
+          </div>
+        </div>
+
+        <h3 className="text-xl font-semibold text-foreground mb-4">At CHC:</h3>
+        <p className="text-lg text-muted-foreground">
+          Our self-pay rate of $75/week makes therapy accessible without insurance. We require a minimum purchase of 4 sessions, but this investment can lead to meaningful change. <Link to="/contact-us" className="text-primary hover:underline">Contact us</Link> to discuss self-pay options.
+        </p>
+      </section>
+
+      {/* Section 8: What Is a Superbill? */}
+      <section className="mb-12">
+        <h2 id="what-is-a-superbill" className="text-3xl font-bold text-foreground mb-6">What Is a Superbill?</h2>
+        
+        <p className="text-lg text-muted-foreground mb-6">
+          If you see an out-of-network therapist, you may be able to get partial reimbursement from your insurance using a superbill.
+        </p>
+
+        <h3 className="text-xl font-semibold text-foreground mb-4">What is a superbill?</h3>
+        <p className="text-muted-foreground mb-4">
+          A superbill is a detailed receipt provided by your therapist that includes all the information your insurance needs to process an out-of-network claim:
+        </p>
+        <ul className="list-disc pl-6 mb-6 space-y-2 text-muted-foreground">
+          <li>Provider's name, credentials, and NPI number</li>
+          <li>Provider's tax ID</li>
+          <li>Your name and date of birth</li>
+          <li>Date of service</li>
+          <li>CPT codes (procedure codes describing the service)</li>
+          <li>Diagnosis codes (ICD-10)</li>
+          <li>Amount paid</li>
+        </ul>
+
+        <h3 className="text-xl font-semibold text-foreground mb-4">How to use a superbill:</h3>
+        
+        <div className="space-y-4 mb-6">
+          <div>
+            <h4 className="text-lg font-semibold text-foreground mb-2">Step 1: Pay your therapist</h4>
+            <p className="text-muted-foreground">With out-of-network providers, you typically pay the full session fee at the time of service.</p>
+          </div>
+
+          <div>
+            <h4 className="text-lg font-semibold text-foreground mb-2">Step 2: Request a superbill</h4>
+            <p className="text-muted-foreground">Ask your therapist for a superbill after each session or monthly.</p>
+          </div>
+
+          <div>
+            <h4 className="text-lg font-semibold text-foreground mb-2">Step 3: Submit to insurance</h4>
+            <p className="text-muted-foreground mb-2">Send the superbill to your insurance company. This can usually be done:</p>
+            <ul className="list-disc pl-6 space-y-1 text-muted-foreground">
+              <li>Through your insurance company's website or app</li>
+              <li>By mail to the claims address on your insurance card</li>
+              <li>Via fax (some insurers still use this)</li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-lg font-semibold text-foreground mb-2">Step 4: Receive reimbursement</h4>
+            <p className="text-muted-foreground mb-2">If approved, your insurance will reimburse you directly. The amount depends on:</p>
+            <ul className="list-disc pl-6 space-y-1 text-muted-foreground">
+              <li>Your out-of-network benefits</li>
+              <li>Whether you've met your deductible</li>
+              <li>Your plan's "usual and customary" rate for the service</li>
+            </ul>
+          </div>
+        </div>
+
+        <h3 className="text-xl font-semibold text-foreground mb-4">What to expect:</h3>
+        <ul className="list-disc pl-6 mb-6 space-y-2 text-muted-foreground">
+          <li>Processing typically takes 2-6 weeks</li>
+          <li>Reimbursement is usually 50-80% of the "allowed amount" (not necessarily what you paid)</li>
+          <li>You'll receive an EOB explaining the decision</li>
+        </ul>
+
+        <h3 className="text-xl font-semibold text-foreground mb-4">Important considerations:</h3>
+        <ul className="list-disc pl-6 mb-6 space-y-2 text-muted-foreground">
+          <li>Not all plans have out-of-network benefits—check first</li>
+          <li>The reimbursement may be less than you expect</li>
+          <li>You must meet your out-of-network deductible first</li>
+          <li>Keep copies of everything you submit</li>
+        </ul>
+
+        <h3 className="text-xl font-semibold text-foreground mb-4">At CHC:</h3>
+        <p className="text-lg text-muted-foreground">
+          Because we're in-network with most major insurers, most clients don't need to deal with superbills. But if you have out-of-network benefits and see a provider outside our network, superbills can help offset costs.
+        </p>
+      </section>
+
+      {/* Section 9: Is Therapy Worth the Cost? */}
+      <section className="mb-12">
+        <h2 id="is-therapy-worth-the-cost" className="text-3xl font-bold text-foreground mb-6">Is Therapy Worth the Cost?</h2>
+        
+        <p className="text-lg text-muted-foreground mb-6">
+          When considering therapy costs, it's helpful to think about the value you receive in return.
+        </p>
+
+        <h3 className="text-xl font-semibold text-foreground mb-4">The cost of not getting help:</h3>
+        <p className="text-muted-foreground mb-4">Untreated mental health conditions can lead to significant costs:</p>
+        <ul className="list-disc pl-6 mb-6 space-y-2 text-muted-foreground">
+          <li><strong>Lost productivity:</strong> Depression alone costs the U.S. economy over $200 billion annually in lost productivity</li>
+          <li><strong>Medical costs:</strong> Mental health issues often manifest as physical symptoms, leading to unnecessary medical visits and tests</li>
+          <li><strong>Relationship costs:</strong> Damaged relationships can lead to divorce, which is financially devastating</li>
+          <li><strong>Career impact:</strong> Untreated anxiety or depression can limit career advancement and earning potential</li>
+          <li><strong>Substance use:</strong> Self-medicating with alcohol or drugs creates additional costs and problems</li>
+          <li><strong>Reduced quality of life:</strong> The toll on your happiness and wellbeing has real value</li>
+        </ul>
+
+        <h3 className="text-xl font-semibold text-foreground mb-4">Research on therapy's return on investment:</h3>
+        <p className="text-muted-foreground mb-4">Studies show that therapy provides significant returns:</p>
+        <ul className="list-disc pl-6 mb-6 space-y-2 text-muted-foreground">
+          <li>For every $1 spent on treating common mental health conditions, there's a $4 return in improved health and productivity</li>
+          <li>Effective treatment reduces medical costs, sick days, and disability claims</li>
+          <li>Many people see improvements in work performance and relationships that have financial benefits</li>
+        </ul>
+
+        <h3 className="text-xl font-semibold text-foreground mb-4">Therapy compared to other investments:</h3>
+        <p className="text-muted-foreground mb-4">Consider what you spend on:</p>
+        <ul className="list-disc pl-6 mb-6 space-y-2 text-muted-foreground">
+          <li>Monthly gym membership: $30-$100+</li>
+          <li>Daily coffee: $100-$150+ per month</li>
+          <li>Streaming services: $50-$100+ per month</li>
+          <li>A single car repair: $500-$2,000+</li>
+        </ul>
+        <p className="text-muted-foreground mb-6">
+          Therapy at CHC costs $75/week—comparable to many routine expenses, but with the potential to transform your life.
+        </p>
+
+        <h3 className="text-xl font-semibold text-foreground mb-4">Tangible outcomes from therapy:</h3>
+        <p className="text-muted-foreground mb-4">People who complete therapy often report:</p>
+        <ul className="list-disc pl-6 mb-6 space-y-2 text-muted-foreground">
+          <li>Better job performance and career advancement</li>
+          <li>Improved relationships with partners, family, and friends</li>
+          <li>Reduced medical visits and medication needs</li>
+          <li>Better sleep and physical health</li>
+          <li>Increased confidence and life satisfaction</li>
+          <li>Better parenting and family dynamics</li>
+          <li>Reduced reliance on unhealthy coping mechanisms</li>
+        </ul>
+
+        <h3 className="text-xl font-semibold text-foreground mb-4">The question isn't just "Can I afford therapy?"</h3>
+        <p className="text-lg text-muted-foreground">
+          It's also "Can I afford not to address what's holding me back?" Investing in your mental health is investing in yourself, your relationships, your career, and your future.
+        </p>
+      </section>
+
+      {/* Section 10: Financial Assistance and Low-Cost Options */}
+      <section className="mb-12">
+        <h2 id="financial-assistance-and-low-cost-options" className="text-3xl font-bold text-foreground mb-6">Financial Assistance and Low-Cost Options</h2>
+        
+        <p className="text-lg text-muted-foreground mb-6">
+          If cost is a barrier to getting therapy, several options can help make mental health care more accessible.
+        </p>
+
+        <h3 className="text-xl font-semibold text-foreground mb-4">Georgia-specific resources:</h3>
+        
+        <div className="space-y-4 mb-6">
+          <div>
+            <h4 className="text-lg font-semibold text-foreground mb-2">Georgia Medicaid</h4>
+            <p className="text-muted-foreground">If you qualify based on income, Medicaid provides comprehensive mental health coverage at little to no cost. Apply through Georgia Gateway.</p>
+          </div>
+
+          <div>
+            <h4 className="text-lg font-semibold text-foreground mb-2">PeachCare for Kids</h4>
+            <p className="text-muted-foreground">Georgia's CHIP program provides health coverage for uninsured children in families who earn too much for Medicaid but can't afford private insurance.</p>
+          </div>
+
+          <div>
+            <h4 className="text-lg font-semibold text-foreground mb-2">Community Service Boards (CSBs)</h4>
+            <p className="text-muted-foreground">Georgia's network of public mental health providers offers services on a sliding scale. Find your local CSB through the Georgia Department of Behavioral Health and Developmental Disabilities.</p>
+          </div>
+        </div>
+
+        <h3 className="text-xl font-semibold text-foreground mb-4">National resources:</h3>
+        
+        <div className="space-y-4 mb-6">
+          <div>
+            <h4 className="text-lg font-semibold text-foreground mb-2">Open Path Collective</h4>
+            <p className="text-muted-foreground">A nonprofit network of therapists offering sessions for $30-$80. Visit openpathcollective.org.</p>
+          </div>
+
+          <div>
+            <h4 className="text-lg font-semibold text-foreground mb-2">SAMHSA National Helpline</h4>
+            <p className="text-muted-foreground">Free, confidential, 24/7 treatment referral service. Call 1-800-662-4357.</p>
+          </div>
+
+          <div>
+            <h4 className="text-lg font-semibold text-foreground mb-2">NAMI Georgia</h4>
+            <p className="text-muted-foreground">The National Alliance on Mental Illness offers support groups and can help connect you with resources.</p>
+          </div>
+        </div>
+
+        <h3 className="text-xl font-semibold text-foreground mb-4">Crisis services (always free):</h3>
+        <ul className="list-disc pl-6 mb-6 space-y-2 text-muted-foreground">
+          <li>988 Suicide & Crisis Lifeline: Call or text 988</li>
+          <li>Crisis Text Line: Text HOME to 741741</li>
+          <li>Visit our <Link to="/emergency-resources" className="text-primary hover:underline">emergency resources page</Link></li>
+        </ul>
+
+        <h3 className="text-xl font-semibold text-foreground mb-4">Other options:</h3>
+        
+        <div className="space-y-4 mb-6">
+          <div>
+            <h4 className="text-lg font-semibold text-foreground mb-2">Employee Assistance Programs (EAP)</h4>
+            <p className="text-muted-foreground">Check if your employer offers free counseling sessions through an EAP.</p>
+          </div>
+
+          <div>
+            <h4 className="text-lg font-semibold text-foreground mb-2">University training clinics</h4>
+            <p className="text-muted-foreground">Graduate programs in psychology and counseling offer low-cost therapy provided by supervised trainees.</p>
+          </div>
+
+          <div>
+            <h4 className="text-lg font-semibold text-foreground mb-2">Federally Qualified Health Centers (FQHCs)</h4>
+            <p className="text-muted-foreground">Community health centers offer mental health services on a sliding scale based on income.</p>
+          </div>
+
+          <div>
+            <h4 className="text-lg font-semibold text-foreground mb-2">Religious organizations</h4>
+            <p className="text-muted-foreground">Some churches and religious organizations offer free or low-cost counseling.</p>
+          </div>
+        </div>
+
+        <h3 className="text-xl font-semibold text-foreground mb-4">Online support:</h3>
+        <p className="text-muted-foreground mb-6">
+          While not a replacement for therapy, free resources like support groups, apps, and online communities can provide additional support.
+        </p>
+
+        <h3 className="text-xl font-semibold text-foreground mb-4">At Coping and Healing Counseling:</h3>
+        <p className="text-lg text-muted-foreground">
+          We accept Georgia Medicaid and most major insurance plans. Our self-pay rate of $75/week is designed to be accessible. <Link to="/therapist-matching" className="text-primary hover:underline">Contact us</Link> to discuss your options—we're committed to helping you access care.
+        </p>
+      </section>
+
+      {/* Mid-Content CTA */}
+      <section className="mb-12 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-2xl p-8 text-center">
+        <h3 className="text-2xl font-bold text-foreground mb-4">Not Sure About Your Coverage?</h3>
+        <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
+          We offer free benefit verification to help you understand your costs before you start. Our team will check your insurance and explain your options—no obligation.
+        </p>
+        <Link to="/therapist-matching">
+          <button className="inline-flex items-center justify-center rounded-md bg-primary px-6 py-3 text-base font-medium text-primary-foreground shadow hover:bg-primary/90 transition-colors">
+            Verify My Benefits
+          </button>
+        </Link>
+      </section>
     </PillarPageTemplate>
   );
 };
