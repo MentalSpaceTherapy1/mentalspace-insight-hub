@@ -1,10 +1,30 @@
+# robots.txt for chctherapy.com
+# Last updated: 2025-12-18
+
 User-agent: *
 Allow: /
 
-# Block admin areas
-Disallow: /admin
+# Explicitly allow all public content
+Allow: /guides/
+Allow: /blog/
+Allow: /mental-health-library/
+Allow: /insurance/
+Allow: /faq
+Allow: /therapist-matching
+Allow: /online-therapy
+Allow: /couples-therapy
+Allow: /teen-therapy
+Allow: /contact-us
+Allow: /get-started
 
-# Important files
+# Block admin and private areas
+Disallow: /admin
+Disallow: /admin/
+Disallow: /api/
+Disallow: /_next/
+Disallow: /private/
+
+# Sitemap location
 Sitemap: https://chctherapy.com/sitemap.xml
 
 # Allow all major search engines
@@ -20,5 +40,5 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
-# Crawl-delay for respectful crawling
+# Crawl-delay for respectful crawling (optional, some bots ignore this)
 Crawl-delay: 1
