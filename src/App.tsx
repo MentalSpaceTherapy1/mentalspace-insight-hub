@@ -100,6 +100,7 @@ import MindfulnessTherapy from "./pages/blog/MindfulnessTherapy";
 import SettingHealthyBoundaries from "./pages/blog/SettingHealthyBoundaries";
 import TherapyCostPaymentOptions from "./pages/blog/TherapyCostPaymentOptions";
 import FindingRightTherapist from "./pages/blog/FindingRightTherapist";
+import AnxietyAttackVsPanicAttack from "./pages/blog/AnxietyAttackVsPanicAttack";
 
 import Depression from "./pages/conditions/Depression";
 import Anxiety from "./pages/conditions/Anxiety";
@@ -268,6 +269,7 @@ const App = () => {
                 <Route path="/blog/setting-healthy-boundaries" element={<SettingHealthyBoundaries />} />
                 <Route path="/blog/therapy-cost-payment-options-guide" element={<TherapyCostPaymentOptions />} />
                 <Route path="/blog/finding-right-therapist-guide" element={<FindingRightTherapist />} />
+                <Route path="/blog/anxiety-attack-vs-panic-attack" element={<AnxietyAttackVsPanicAttack />} />
                 
                 <Route path="/mental-health-library/depression" element={<Depression />} />
                 <Route path="/mental-health-library/anxiety" element={<Anxiety />} />
