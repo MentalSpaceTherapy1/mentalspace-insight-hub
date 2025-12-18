@@ -13,13 +13,21 @@ const TherapyCostGuide = () => {
       readTime={14}
       keywords="therapy cost, how much does therapy cost, insurance for therapy, Medicaid therapy Georgia, affordable therapy, mental health insurance coverage"
       relatedServices={[
-        { title: "Insurance Information", url: "/insurance" },
         { title: "Online Therapy", url: "/online-therapy" },
-        { title: "Get Started", url: "/therapist-matching" }
+        { title: "Anxiety Therapy in Georgia", url: "/anxiety-therapy-georgia" },
+        { title: "Depression Therapy in Georgia", url: "/depression-therapy-georgia" },
+        { title: "Couples Therapy", url: "/couples-therapy" }
       ]}
       relatedArticles={[
         { title: "Therapy Cost & Payment Options", url: "/blog/therapy-cost-payment-options-guide" },
+        { title: "Benefits of Online Therapy", url: "/blog/benefits-online-therapy" },
+        { title: "Finding the Right Therapist", url: "/blog/finding-right-therapist-guide" },
         { title: "Insurance Coverage for Online Therapy", url: "/blog/therapy-online-insurance-coverage" }
+      ]}
+      relatedGuides={[
+        { title: "Starting Therapy Guide", url: "/guides/starting-therapy" },
+        { title: "Online Therapy Guide", url: "/guides/online-therapy" },
+        { title: "Finding a Therapist Guide", url: "/guides/finding-therapist" }
       ]}
     >
       {/* Section 1: How Much Does Therapy Cost? */}
@@ -711,6 +719,211 @@ const TherapyCostGuide = () => {
             Verify My Benefits
           </button>
         </Link>
+      </section>
+
+      {/* Section 11: Questions to Ask About Therapy Costs */}
+      <section className="mb-12">
+        <h2 id="questions-to-ask-about-therapy-costs" className="text-3xl font-bold text-foreground mb-6">Questions to Ask About Therapy Costs</h2>
+        
+        <p className="text-lg text-muted-foreground mb-6">
+          Before starting therapy, ask these questions to avoid surprises and understand your financial commitment.
+        </p>
+
+        <h3 className="text-xl font-semibold text-foreground mb-4">Questions for your insurance company:</h3>
+        <ul className="list-disc pl-6 mb-6 space-y-2 text-muted-foreground">
+          <li>Do I have outpatient mental health benefits?</li>
+          <li>What is my copay or coinsurance for therapy sessions?</li>
+          <li>Do I have a separate deductible for mental health services?</li>
+          <li>Is there a limit on the number of sessions covered per year?</li>
+          <li>Do I need a referral or pre-authorization?</li>
+          <li>Is [specific provider/practice] in-network?</li>
+          <li>What are my out-of-network benefits, if any?</li>
+        </ul>
+
+        <h3 className="text-xl font-semibold text-foreground mb-4">Questions for the therapy practice:</h3>
+        <ul className="list-disc pl-6 mb-6 space-y-2 text-muted-foreground">
+          <li>What are your session fees?</li>
+          <li>Do you accept my insurance?</li>
+          <li>Are you in-network with my specific plan?</li>
+          <li>Will you bill insurance directly, or do I pay and submit for reimbursement?</li>
+          <li>What is my estimated out-of-pocket cost per session?</li>
+          <li>Do you offer sliding scale fees or payment plans?</li>
+          <li>What is your cancellation policy and any associated fees?</li>
+          <li>Do you offer superbills for out-of-network reimbursement?</li>
+        </ul>
+
+        <h3 className="text-xl font-semibold text-foreground mb-4">Questions to ask yourself:</h3>
+        <ul className="list-disc pl-6 mb-6 space-y-2 text-muted-foreground">
+          <li>What can I realistically afford per week or month?</li>
+          <li>Is my mental health worth adjusting my budget for?</li>
+          <li>What expenses could I reduce to prioritize therapy?</li>
+          <li>Would less frequent sessions (biweekly) be more sustainable?</li>
+          <li>Are there other options (group therapy, online platforms) that might fit my budget better?</li>
+        </ul>
+
+        <h3 className="text-xl font-semibold text-foreground mb-4">Red flags to watch for:</h3>
+        <ul className="list-disc pl-6 mb-6 space-y-2 text-muted-foreground">
+          <li>Practices that won{"'"}t discuss costs upfront</li>
+          <li>Vague answers about insurance and billing</li>
+          <li>Pressure to commit before understanding costs</li>
+          <li>Fees that seem significantly higher than average without clear justification</li>
+        </ul>
+
+        <p className="text-lg text-muted-foreground">
+          At <Link to="/contact-us" className="text-primary hover:underline">Coping and Healing Counseling</Link>, we believe in transparency. We{"'"}ll help you understand your costs before your first session so there are no surprises.
+        </p>
+      </section>
+
+      {/* Section 12: Making Therapy Affordable: Practical Tips */}
+      <section className="mb-12">
+        <h2 id="making-therapy-affordable-practical-tips" className="text-3xl font-bold text-foreground mb-6">Making Therapy Affordable: Practical Tips</h2>
+        
+        <p className="text-lg text-muted-foreground mb-6">
+          Even with insurance, therapy costs can add up. Here are strategies to make mental health care fit your budget.
+        </p>
+
+        <h3 className="text-xl font-semibold text-foreground mb-4">Maximize your insurance benefits:</h3>
+        <ul className="list-disc pl-6 mb-6 space-y-2 text-muted-foreground">
+          <li>Always use in-network providers when possible</li>
+          <li>Schedule sessions strategically around your deductible reset</li>
+          <li>Use your FSA or HSA to pay with pre-tax dollars</li>
+          <li>Check if your plan covers telehealth at the same rate as in-person</li>
+        </ul>
+
+        <h3 className="text-xl font-semibold text-foreground mb-4">Use tax-advantaged accounts:</h3>
+        <ul className="list-disc pl-6 mb-6 space-y-2 text-muted-foreground">
+          <li><strong>FSA (Flexible Spending Account):</strong> Pre-tax dollars for medical expenses; use it or lose it each year</li>
+          <li><strong>HSA (Health Savings Account):</strong> Pre-tax dollars that roll over; must have a high-deductible health plan</li>
+          <li>Therapy copays and self-pay fees qualify as eligible expenses</li>
+        </ul>
+
+        <h3 className="text-xl font-semibold text-foreground mb-4">Optimize session frequency:</h3>
+        <ul className="list-disc pl-6 mb-6 space-y-2 text-muted-foreground">
+          <li>Start weekly, then transition to biweekly as you improve</li>
+          <li>Consider monthly "maintenance" sessions once stable</li>
+          <li>Discuss with your therapist what frequency makes clinical and financial sense</li>
+        </ul>
+
+        <h3 className="text-xl font-semibold text-foreground mb-4">Consider alternatives:</h3>
+        <ul className="list-disc pl-6 mb-6 space-y-2 text-muted-foreground">
+          <li>Group therapy is often less expensive than individual</li>
+          <li><Link to="/online-therapy" className="text-primary hover:underline">Online therapy</Link> may have lower overhead costs</li>
+          <li>Some therapists offer shorter "check-in" sessions at reduced rates</li>
+          <li>Intensive short-term therapy may cost more per session but fewer sessions overall</li>
+        </ul>
+
+        <h3 className="text-xl font-semibold text-foreground mb-4">Budget for therapy:</h3>
+        <ul className="list-disc pl-6 mb-6 space-y-2 text-muted-foreground">
+          <li>Treat therapy as a fixed expense like rent or utilities</li>
+          <li>Identify areas to cut back (dining out, subscriptions, impulse purchases)</li>
+          <li>Calculate the weekly or monthly cost and plan accordingly</li>
+          <li>Remember: therapy is temporary, but the benefits last</li>
+        </ul>
+
+        <h3 className="text-xl font-semibold text-foreground mb-4">Communicate with your therapist:</h3>
+        <ul className="list-disc pl-6 mb-6 space-y-2 text-muted-foreground">
+          <li>Be honest about financial constraints</li>
+          <li>Ask about sliding scale options</li>
+          <li>Discuss if your concerns could be addressed in fewer sessions</li>
+          <li>Let them know if cost is affecting your ability to continue</li>
+        </ul>
+
+        <h3 className="text-xl font-semibold text-foreground mb-4">Take advantage of free resources:</h3>
+        <ul className="list-disc pl-6 mb-6 space-y-2 text-muted-foreground">
+          <li>Use free mental health apps between sessions</li>
+          <li>Attend free support groups for additional support</li>
+          <li>Practice skills learned in therapy on your own</li>
+          <li>Read self-help books your therapist recommends</li>
+        </ul>
+
+        <h3 className="text-xl font-semibold text-foreground mb-4">At CHC:</h3>
+        <p className="text-lg text-muted-foreground">
+          Our $75/week self-pay rate and acceptance of most insurance plans, including Georgia Medicaid, reflects our commitment to making therapy accessible. We{"'"}ll work with you to find an arrangement that fits your budget.
+        </p>
+      </section>
+
+      {/* Section 13: Getting Started with Affordable Therapy at CHC */}
+      <section className="mb-12">
+        <h2 id="getting-started-with-affordable-therapy-at-chc" className="text-3xl font-bold text-foreground mb-6">Getting Started with Affordable Therapy at CHC</h2>
+        
+        <p className="text-lg text-muted-foreground mb-6">
+          At Coping and Healing Counseling, we{"'"}re committed to making mental health care accessible and affordable.
+        </p>
+
+        <h3 className="text-xl font-semibold text-foreground mb-4">Our pricing:</h3>
+        <ul className="list-disc pl-6 mb-6 space-y-2 text-muted-foreground">
+          <li><strong>With insurance:</strong> Typical copays range from $0-$50 depending on your plan</li>
+          <li><strong>Georgia Medicaid:</strong> $0-$3 per visit through CareSource, Amerigroup, or Peach State</li>
+          <li><strong>Self-pay:</strong> $75/week (minimum 4 sessions)</li>
+        </ul>
+
+        <h3 className="text-xl font-semibold text-foreground mb-4">Insurance we accept:</h3>
+        <p className="text-muted-foreground mb-4">We{"'"}re in-network with most major insurance providers:</p>
+        <ul className="list-disc pl-6 mb-6 space-y-2 text-muted-foreground">
+          <li><Link to="/insurance/caresource" className="text-primary hover:underline">CareSource</Link></li>
+          <li><Link to="/insurance/amerigroup" className="text-primary hover:underline">Amerigroup</Link></li>
+          <li><Link to="/insurance/peach-state" className="text-primary hover:underline">Peach State</Link></li>
+          <li><Link to="/insurance/aetna" className="text-primary hover:underline">Aetna</Link></li>
+          <li><Link to="/insurance/bluecross-blueshield" className="text-primary hover:underline">BlueCross BlueShield</Link></li>
+          <li><Link to="/insurance/cigna" className="text-primary hover:underline">Cigna</Link></li>
+          <li><Link to="/insurance/humana" className="text-primary hover:underline">Humana</Link></li>
+          <li><Link to="/insurance/optum" className="text-primary hover:underline">Optum</Link></li>
+          <li><Link to="/insurance/alliant" className="text-primary hover:underline">Alliant</Link></li>
+          <li>And more—<Link to="/contact-us" className="text-primary hover:underline">contact us</Link> if you don{"'"}t see your insurance listed</li>
+        </ul>
+
+        <h3 className="text-xl font-semibold text-foreground mb-4">Free benefit verification:</h3>
+        <p className="text-muted-foreground mb-4">Not sure what your insurance covers? We{"'"}ll check for you at no cost or obligation. We{"'"}ll tell you:</p>
+        <ul className="list-disc pl-6 mb-6 space-y-2 text-muted-foreground">
+          <li>Whether we{"'"}re in-network with your specific plan</li>
+          <li>Your estimated copay or coinsurance</li>
+          <li>Any deductible you need to meet</li>
+          <li>Session limits or authorization requirements</li>
+        </ul>
+
+        <h3 className="text-xl font-semibold text-foreground mb-4">Free consultation:</h3>
+        <p className="text-muted-foreground mb-4">Before committing financially, you can <Link to="/therapist-matching" className="text-primary hover:underline">schedule a free consultation</Link> to:</p>
+        <ul className="list-disc pl-6 mb-6 space-y-2 text-muted-foreground">
+          <li>Discuss your concerns and goals</li>
+          <li>Learn about our approach</li>
+          <li>Get matched with a therapist</li>
+          <li>Understand your costs</li>
+        </ul>
+
+        <h3 className="text-xl font-semibold text-foreground mb-4">Convenient access:</h3>
+        <ul className="list-disc pl-6 mb-6 space-y-2 text-muted-foreground">
+          <li><Link to="/online-therapy" className="text-primary hover:underline">Online therapy</Link> throughout Georgia—no travel costs</li>
+          <li>Appointments available within 24 hours</li>
+          <li>Flexible scheduling: 7am-7pm, 7 days a week</li>
+          <li>No long-term contracts—stay as long as therapy is helpful</li>
+        </ul>
+
+        <h3 className="text-xl font-semibold text-foreground mb-4">Our commitment:</h3>
+        <p className="text-muted-foreground mb-6">
+          We believe cost shouldn{"'"}t prevent anyone from getting the mental health support they need. Whether you have comprehensive insurance, Medicaid, or are paying out of pocket, we{"'"}ll work with you to make therapy accessible.
+        </p>
+
+        <p className="text-lg text-muted-foreground">
+          Ready to get started? <Link to="/therapist-matching" className="text-primary hover:underline">Schedule your free consultation</Link> today.
+        </p>
+      </section>
+
+      {/* Final CTA */}
+      <section className="mb-12 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-2xl p-8 text-center">
+        <h3 className="text-2xl font-bold text-foreground mb-4">Don{"'"}t Let Cost Be a Barrier to Your Mental Health</h3>
+        <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
+          We accept most insurance plans, Georgia Medicaid, and offer affordable self-pay rates. Schedule your free consultation and we{"'"}ll help you understand your options—no cost, no obligation.
+        </p>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <Link to="/therapist-matching">
+            <button className="inline-flex items-center justify-center rounded-md bg-primary px-6 py-3 text-base font-medium text-primary-foreground shadow hover:bg-primary/90 transition-colors">
+              Schedule Free Consultation
+            </button>
+          </Link>
+          <Link to="/insurance" className="text-primary hover:underline font-medium">
+            View insurance we accept →
+          </Link>
+        </div>
       </section>
     </PillarPageTemplate>
   );
