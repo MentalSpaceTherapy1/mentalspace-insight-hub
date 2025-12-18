@@ -105,6 +105,7 @@ import HowToCalmAnxietyQuickly from "./pages/blog/HowToCalmAnxietyQuickly";
 import HighFunctioningDepression from "./pages/blog/HighFunctioningDepression";
 import SocialAnxietySymptomsTreatment from "./pages/blog/SocialAnxietySymptomsTreatment";
 import FirstTherapySessionWhatToExpect from "./pages/blog/FirstTherapySessionWhatToExpect";
+import ComplexPTSDvsPTSD from "./pages/blog/ComplexPTSDvsPTSD";
 
 import Depression from "./pages/conditions/Depression";
 import Anxiety from "./pages/conditions/Anxiety";
@@ -278,6 +279,7 @@ const App = () => {
                 <Route path="/blog/high-functioning-depression" element={<HighFunctioningDepression />} />
                 <Route path="/blog/social-anxiety-symptoms-treatment" element={<SocialAnxietySymptomsTreatment />} />
                 <Route path="/blog/first-therapy-session-what-to-expect" element={<FirstTherapySessionWhatToExpect />} />
+                <Route path="/blog/complex-ptsd-vs-ptsd" element={<ComplexPTSDvsPTSD />} />
                 
                 <Route path="/mental-health-library/depression" element={<Depression />} />
                 <Route path="/mental-health-library/anxiety" element={<Anxiety />} />
