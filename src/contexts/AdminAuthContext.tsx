@@ -110,7 +110,7 @@ export const AdminAuthProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   useEffect(() => {
     let mounted = true;
     let isProcessing = false;
-    let loadingTimeout: NodeJS.Timeout;
+    let loadingTimeout: ReturnType<typeof setTimeout>;
 
     const handleAuthChange = async (event: string, session: Session | null) => {
       if (!mounted) return;
